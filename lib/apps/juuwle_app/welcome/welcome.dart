@@ -1,0 +1,83 @@
+import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
+import 'package:eliud_pkg_apps/apps/tools/tools.dart';
+import 'package:eliud_model/component/booklet_component.dart';
+import 'package:eliud_model/component/booklet_model.dart';
+import 'package:eliud_model/component/section_model.dart';
+import 'package:eliud_model/model/body_component_model.dart';
+import 'package:eliud_model/model/menu_def_model.dart';
+import 'package:eliud_model/model/page_model.dart';
+import 'package:eliud_model/model/app_bar_model.dart';
+import 'package:eliud_model/model/drawer_model.dart';
+import 'package:eliud_model/model/home_menu_model.dart';
+import 'package:eliud_model/shared/abstract_repository_singleton.dart';
+import 'package:eliud_model/shared/background_model.dart';
+
+import '../../app_section.dart';
+import '../../app_base.dart';
+import 'images.dart';
+
+class Welcome extends AppSection {
+  Welcome({InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+
+  static String identifier = "welcome";
+
+  Future<PageModel> _setupPage(AppBarModel appBar) {
+    return AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
+  }
+
+  PageModel _page(AppBarModel appBar) {
+    List<BodyComponentModel> components = List();
+    components.add(BodyComponentModel(
+        documentID: "4", componentName: AbstractBookletComponent.componentName, componentId: welcomeIdentifier));
+
+    return PageModel(
+        documentID: identifier,
+        appId: JuuwleApp.JUUWLE_APP_ID,
+        title: "Welcome",
+        drawer: drawer,
+        endDrawer: endDrawer,
+        background: pageBG,
+        appBar: appBar,
+        homeMenu: homeMenu,
+        layout: PageLayout.ListView,
+        conditional: PageCondition.Always,
+        bodyComponents: components);
+  }
+
+  static String welcomeIdentifier = "welcome";
+
+  BookletModel _welcome() {
+    List<SectionModel> entries = List();
+    {
+      entries.add(SectionModel(
+          documentID: "1",
+          title: "Hello hello!",
+          description: "Welcome to juuwle.\n\n\nJuuwle is your new favorite online store for all your necklaces, bracelets, and so on. You fancy x, y or z? Then you've come to the right place. Juuwle specialises in a, b and c! You will also be able to find some d, e and f. \n\n\nI hope you enjoy your stay on juuwle.com \n\n\nCharlotte\n\n\nDid you know? For an even better experence: juuwle is available as app on apple store, google play store, and also available as windows, linux and mac application.",
+          image: newAppTools.findImageModel(WelcomeImages.welcomePhoto),
+          imagePositionRelative: RelativeImagePosition.Aside,
+          imageAlignment: SectionImageAlignment.Right,
+          imageWidth: .33,
+          links: List()));
+    }
+
+    return BookletModel(
+      documentID: welcomeIdentifier,
+      name: "Welcome",
+      sections:entries,
+      appId: installApp.appId,
+    );
+  }
+
+  Future<void> _setupWelcome() async {
+    await AbstractRepositorySingleton.singleton.bookletRepository().add(_welcome());
+  }
+
+  Future<PageModel> run() async {
+    await WelcomeImages(newAppTools).run();
+    var appMenu = await installApp.appBarMenu("Welcome", adminMenu);
+    var appBar = await installApp.appBar(identifier, appMenu, "Welcome");
+    await _setupWelcome();
+    //await _setupFader();
+    return await _setupPage(appBar);
+  }
+}

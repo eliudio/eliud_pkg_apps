@@ -1,0 +1,22 @@
+name: eliud_pkg_apps
+description: Eliud package with generation of app contents
+version: 0.0.1
+author:
+homepage:
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.17.0 <2.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  eliud_model:
+    path: ../eliud_model
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
