@@ -2,13 +2,13 @@ import '../../../../apps/app_base.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/pay.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/shop.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
-import 'package:eliud_model/model/cart_component.dart';
-import 'package:eliud_model/model/cart_model.dart';
+import 'package:eliud_pkg_shop/model/cart_component.dart';
+import 'package:eliud_pkg_shop/model/cart_model.dart';
 import 'package:eliud_model/model/menu_def_model.dart';
 import 'package:eliud_model/model/drawer_model.dart';
 import 'package:eliud_model/model/home_menu_model.dart';
 import 'package:eliud_model/model/page_model.dart';
-import 'package:eliud_model/model/shop_model.dart';
+import 'package:eliud_pkg_shop/model/shop_model.dart';
 import 'package:eliud_model/shared/abstract_repository_singleton.dart';
 import 'package:eliud_model/shared/action_model.dart';
 import 'package:eliud_model/shared/background_model.dart';
@@ -75,6 +75,7 @@ class MyCart extends PageTemplate {
 
   @override
   Future<void> setupComponent() async {
-    await AbstractRepositorySingleton.singleton.cartRepository().add(_cart());
+    await AbstractRepositorySingleton.singleton.
+    cartRepository().add(_cart());
   }
 }
