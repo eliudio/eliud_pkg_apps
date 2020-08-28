@@ -1,12 +1,10 @@
-import 'package:eliud_model/shared/abstract_repository_singleton.dart';
-import 'package:eliud_model/shared/font_model.dart';
-import 'package:eliud_model/shared/rgb_model.dart';
-
-
 /* Tool that allows to install fonts and make them available for the app.
  * Fonts available are the fonts which are in the fontNames list, with suffixes H1, H2, H3, H4, H5, Normal, HightLight1, HightLight2 and Link.
  * For example RobotoH1, RobotoNormal, RobotoLink, etc...
  */
+import 'package:eliud_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_model/model/model_export.dart';
+
 class FontTools {
   // Use this for reference:
   static String h1Label = "H1";

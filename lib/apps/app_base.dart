@@ -1,9 +1,12 @@
+import 'package:eliud_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_model/model/admin_app.dart';
+import 'package:eliud_model/model/model_export.dart';
+import 'package:eliud_model/tools/main_abstract_repository_singleton.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/backgrounds.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/grid_views.dart';
 import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
-import 'package:eliud_model/component/divider_model.dart';
 import 'package:eliud_model/core/access/bloc/access_state.dart';
 import 'package:eliud_model/core/global_data.dart';
 import 'package:eliud_model/model/app_bar_model.dart';
@@ -14,16 +17,7 @@ import 'package:eliud_model/model/menu_def_model.dart';
 import 'package:eliud_model/model/menu_item_model.dart';
 import 'package:eliud_model/model/page_model.dart';
 import 'package:eliud_model/platform/platform.dart';
-import 'package:eliud_model/shared/abstract_repository_singleton.dart';
 import 'package:eliud_model/shared/action_model.dart';
-import 'package:eliud_model/shared/admin_app.dart';
-import 'package:eliud_model/shared/background_model.dart';
-import 'package:eliud_model/shared/decoration_color_model.dart';
-import 'package:eliud_model/shared/icon_model.dart';
-import 'package:eliud_model/shared/image_model.dart';
-import 'package:eliud_model/shared/pos_size_model.dart';
-import 'package:eliud_model/shared/rgb_model.dart';
-import 'package:eliud_model/shared/shadow_model.dart';
 
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 
@@ -87,7 +81,7 @@ abstract class InstallApp {
       documentID: appId,
       ownerID: ownerID,
     );
-    return await AbstractRepositorySingleton.singleton
+    return await AbstractMainRepositorySingleton.singleton
         .appRepository()
         .add(application);
   }
@@ -195,7 +189,7 @@ abstract class InstallApp {
   }
 
   Future<ImageModel> _addProfileImage() {
-    return AbstractRepositorySingleton.singleton
+    return AbstractMainRepositorySingleton.singleton
         .imageRepository()
         .add(_profileImage());
   }
@@ -506,12 +500,12 @@ abstract class InstallApp {
 
   void wipeAndReinstall() async {
     AbstractPlatform.platform.initRepository(appId);
-    var usr = await AbstractRepositorySingleton.singleton
+    var usr = await AbstractMainRepositorySingleton.singleton
         .userRepository()
         .signInWithGoogle();
     var installedApp = await claimOwnerShipApplication(appId, usr.uid);
     GlobalData.init(
-        LoggedInWithoutMembership(usr: usr, member: null, app: installedApp, details: null, cartEvent: null));
+        LoggedInWithoutMembership(usr: usr, member: null, app: installedApp, details: null, postLoginAction: null));
     await run(usr.uid);
     // ignore: prefer_single_quotes
     print("Installed $appId successfully");

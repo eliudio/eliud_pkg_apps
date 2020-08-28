@@ -1,12 +1,12 @@
+import 'package:eliud_model/model/abstract_repository_singleton.dart' as ModelRepo;
+import 'package:eliud_model/model/divider_component.dart';
+import 'package:eliud_model/model/fader_component.dart';
+import 'package:eliud_model/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/products.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/shop_images.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
-import 'package:eliud_model/component/divider_component.dart';
-import 'package:eliud_model/component/fader_component.dart';
-import 'package:eliud_model/component/fader_model.dart';
-import 'package:eliud_model/component/listed_item_model.dart';
 import 'package:eliud_model/model/body_component_model.dart';
 import 'package:eliud_model/model/menu_def_model.dart';
 import 'package:eliud_model/model/page_model.dart';
@@ -15,13 +15,10 @@ import 'package:eliud_model/model/drawer_model.dart';
 import 'package:eliud_model/model/home_menu_model.dart';
 import 'package:eliud_model/model/presentation_component.dart';
 import 'package:eliud_model/model/presentation_model.dart';
-import 'package:eliud_model/model/shop_front_component.dart';
-import 'package:eliud_model/model/shop_front_model.dart';
-import 'package:eliud_model/model/shop_model.dart';
-import 'package:eliud_model/shared/abstract_repository_singleton.dart';
 import 'package:eliud_model/shared/action_model.dart';
-import 'package:eliud_model/shared/background_model.dart';
-import 'package:eliud_model/shared/decoration_color_model.dart';
+import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_shop/model/model_export.dart';
+import 'package:eliud_pkg_shop/model/shop_front_component.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
@@ -42,7 +39,7 @@ class Shop extends AppSection {
   static String identifier = 'juuwleshop';
 
   Future<PageModel> _setupPage(AppBarModel appBar) {
-    return AbstractRepositorySingleton.singleton
+    return ModelRepo.AbstractRepositorySingleton.singleton
         .pageRepository()
         .add(_page(appBar));
   }
@@ -77,7 +74,7 @@ class Shop extends AppSection {
   }
 
   Future<void> _setupFader() {
-    return AbstractRepositorySingleton.singleton
+    return ModelRepo.AbstractRepositorySingleton.singleton
         .faderRepository()
         .add(_fader());
   }
@@ -192,7 +189,7 @@ class Shop extends AppSection {
   static String itemBackground = 'card_bg';
 
   Future<void> _setupCardBG() async {
-    await AbstractRepositorySingleton.singleton.backgroundRepository().add(cardBG(installApp.appId));
+    await ModelRepo.AbstractRepositorySingleton.singleton.backgroundRepository().add(cardBG(installApp.appId));
   }
 
   PresentationModel _presentation() {
@@ -211,7 +208,7 @@ class Shop extends AppSection {
   }
 
   Future<void> _setupPresentation() async {
-    await AbstractRepositorySingleton.singleton.presentationRepository().add(_presentation());
+    await ModelRepo.AbstractRepositorySingleton.singleton.presentationRepository().add(_presentation());
   }
 
   static String appBarIdentifier = 'store';

@@ -1,8 +1,10 @@
+import 'package:eliud_model/model/icon_model.dart';
+import 'package:eliud_model/model/image_model.dart';
+import 'package:eliud_model/tools/main_abstract_repository_singleton.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/store/play_store.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/welcome/welcome.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/about.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
-import 'package:eliud_pkg_apps/apps/shared/etc/backgrounds.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_page.dart';
 import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
@@ -10,14 +12,9 @@ import 'package:eliud_model/model/app_bar_model.dart';
 import 'package:eliud_model/model/drawer_model.dart';
 import 'package:eliud_model/model/menu_def_model.dart';
 import 'package:eliud_model/model/page_model.dart';
-import 'package:eliud_model/shared/abstract_repository_singleton.dart';
 import 'package:eliud_model/shared/action_model.dart';
-import 'package:eliud_model/shared/background_model.dart';
-import 'package:eliud_model/shared/image_model.dart';
-import 'package:eliud_model/shared/icon_model.dart';
 import 'package:eliud_model/model/menu_item_model.dart';
 import 'package:eliud_model/model/app_model.dart';
-import 'package:flutter/material.dart';
 
 import '../app_base.dart';
 import 'about/about.dart';
@@ -185,7 +182,7 @@ class MinkeyApp extends InstallApp {
       fontText: fontTools
           .getFont(FontTools.key(FontTools.latoLabel, FontTools.normalLabel)),
     );
-    return AbstractRepositorySingleton.singleton
+    return AbstractMainRepositorySingleton.singleton
         .appRepository()
         .update(application);
   }

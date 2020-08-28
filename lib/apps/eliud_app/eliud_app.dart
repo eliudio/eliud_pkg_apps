@@ -1,3 +1,7 @@
+import 'package:eliud_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_model/model/icon_model.dart';
+import 'package:eliud_model/model/image_model.dart';
+import 'package:eliud_model/tools/main_abstract_repository_singleton.dart';
 import 'package:eliud_pkg_apps/apps/eliud_app/welcome/welcome.dart';
 import 'package:eliud_pkg_apps/apps/eliud_app/who/who.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
@@ -8,10 +12,7 @@ import 'package:eliud_model/model/app_bar_model.dart';
 import 'package:eliud_model/model/drawer_model.dart';
 import 'package:eliud_model/model/menu_def_model.dart';
 import 'package:eliud_model/model/page_model.dart';
-import 'package:eliud_model/shared/abstract_repository_singleton.dart';
 import 'package:eliud_model/shared/action_model.dart';
-import 'package:eliud_model/shared/image_model.dart';
-import 'package:eliud_model/shared/icon_model.dart';
 import 'package:eliud_model/model/menu_item_model.dart';
 import 'package:eliud_model/model/app_model.dart';
 
@@ -178,7 +179,7 @@ class EliudApp extends InstallApp {
       fontText:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.normalLabel)),
     );
 
-    return AbstractRepositorySingleton.singleton
+    return AbstractMainRepositorySingleton.singleton
         .appRepository()
         .update(application);
   }

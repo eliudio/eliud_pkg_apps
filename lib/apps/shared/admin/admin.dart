@@ -1,10 +1,10 @@
+import 'package:eliud_model/model/admin_app.dart';
+import 'package:eliud_model/model/background_model.dart';
+import 'package:eliud_model/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_model/model/menu_def_model.dart';
 import 'package:eliud_model/model/drawer_model.dart';
 import 'package:eliud_model/model/home_menu_model.dart';
-import 'package:eliud_model/shared/admin_app.dart';
-import 'package:eliud_model/shared/background_model.dart';
-import 'package:eliud_model/shared/rgb_model.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';

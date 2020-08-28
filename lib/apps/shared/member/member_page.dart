@@ -1,3 +1,5 @@
+import 'package:eliud_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_model/model/background_model.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_model/extensions/member_profile_component.dart';
 import 'package:eliud_model/model/body_component_model.dart';
@@ -6,8 +8,6 @@ import 'package:eliud_model/model/page_model.dart';
 import 'package:eliud_model/model/app_bar_model.dart';
 import 'package:eliud_model/model/drawer_model.dart';
 import 'package:eliud_model/model/home_menu_model.dart';
-import 'package:eliud_model/shared/abstract_repository_singleton.dart';
-import 'package:eliud_model/shared/background_model.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';

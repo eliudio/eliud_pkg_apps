@@ -1,7 +1,7 @@
+import 'package:eliud_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_model/model/icon_model.dart';
 import 'package:eliud_model/model/menu_def_model.dart';
-import 'package:eliud_model/shared/abstract_repository_singleton.dart';
 import 'package:eliud_model/shared/action_model.dart';
-import 'package:eliud_model/shared/icon_model.dart';
 import 'package:eliud_model/model/menu_item_model.dart';
 
 class AdminMenu {

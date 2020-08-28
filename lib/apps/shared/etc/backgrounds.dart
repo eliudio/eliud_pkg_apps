@@ -1,7 +1,4 @@
-import 'package:eliud_model/shared/background_model.dart';
-import 'package:eliud_model/shared/decoration_color_model.dart';
-import 'package:eliud_model/shared/rgb_model.dart';
-import 'package:eliud_model/shared/shadow_model.dart';
+import 'package:eliud_model/model/model_export.dart';
 import 'package:flutter/cupertino.dart';
 
 class Backgrounds {

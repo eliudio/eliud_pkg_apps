@@ -1,3 +1,7 @@
+import 'package:eliud_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_model/model/icon_model.dart';
+import 'package:eliud_model/model/image_model.dart';
+import 'package:eliud_model/tools/main_abstract_repository_singleton.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/order_overview.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/cart.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/pay.dart';
@@ -13,10 +17,7 @@ import 'package:eliud_model/model/app_bar_model.dart';
 import 'package:eliud_model/model/drawer_model.dart';
 import 'package:eliud_model/model/menu_def_model.dart';
 import 'package:eliud_model/model/page_model.dart';
-import 'package:eliud_model/shared/abstract_repository_singleton.dart';
 import 'package:eliud_model/shared/action_model.dart';
-import 'package:eliud_model/shared/image_model.dart';
-import 'package:eliud_model/shared/icon_model.dart';
 import 'package:eliud_model/model/menu_item_model.dart';
 import 'package:eliud_model/model/app_model.dart';
 
@@ -154,7 +155,7 @@ class JuuwleApp extends InstallApp {
       fontText: fontTools.getFont(
           FontTools.key(FontTools.dancingScriptLabel, FontTools.normalLabel)),
     );
-    return AbstractRepositorySingleton.singleton
+    return AbstractMainRepositorySingleton.singleton
         .appRepository()
         .update(application);
   }

@@ -1,5 +1,4 @@
-import 'package:eliud_model/shared/image_model.dart';
-
+import 'package:eliud_model/model/image_model.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 
 import '../minkey_app.dart';

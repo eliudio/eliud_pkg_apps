@@ -1,8 +1,7 @@
+import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_shop/model/model_export.dart';
+
 import '../../../apps/app_base.dart';
-import 'package:eliud_model/model/product_image_model.dart';
-import 'package:eliud_model/model/product_model.dart';
-import 'package:eliud_model/model/shop_model.dart';
-import 'package:eliud_model/shared/abstract_repository_singleton.dart';
 
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 

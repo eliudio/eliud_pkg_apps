@@ -1,18 +1,15 @@
 import 'dart:collection';
 
-import 'package:eliud_model/component/tutorial_component.dart';
-import 'package:eliud_model/component/tutorial_model.dart';
-import 'package:eliud_model/component/tutorial_entry_model.dart';
+import 'package:eliud_model/model/abstract_repository_singleton.dart';
 import 'package:eliud_model/model/app_bar_model.dart';
 import 'package:eliud_model/model/body_component_model.dart';
 import 'package:eliud_model/model/drawer_model.dart';
 import 'package:eliud_model/model/home_menu_model.dart';
+import 'package:eliud_model/model/model_export.dart';
 import 'package:eliud_model/model/page_model.dart';
-import 'package:eliud_model/shared/abstract_repository_singleton.dart';
-import 'package:eliud_model/shared/background_model.dart';
-import 'package:eliud_model/shared/pos_size_model.dart';
+import 'package:eliud_model/model/tutorial_component.dart';
 import 'package:eliud_model/tools/image_tools.dart';
-import 'package:eliud_model/shared/image_model.dart';
+import 'package:eliud_model/tools/main_abstract_repository_singleton.dart';
 
 class Tools {
   Map<String, ImageModel> _images = HashMap();
@@ -40,10 +37,10 @@ class Tools {
       if (image == null) return null;
       return await ImageTools.createThumbnail(model, name, image)
           .then((model) async {
-        return await AbstractRepositorySingleton.singleton.imageRepository()
+        return await AbstractMainRepositorySingleton.singleton.imageRepository()
             .add(model)
             .then((val) async {
-          return await AbstractRepositorySingleton.singleton.imageRepository()
+          return await AbstractMainRepositorySingleton.singleton.imageRepository()
               .get(documentID)
               .then((img) {
 //            _image = img;

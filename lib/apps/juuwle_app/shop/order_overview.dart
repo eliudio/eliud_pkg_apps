@@ -1,13 +1,12 @@
+import 'package:eliud_model/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_model/model/menu_def_model.dart';
 import 'package:eliud_model/model/drawer_model.dart';
 import 'package:eliud_model/model/home_menu_model.dart';
-import 'package:eliud_model/model/order_overview_component.dart';
-import 'package:eliud_model/model/order_overview_model.dart';
 import 'package:eliud_model/model/page_model.dart';
-import 'package:eliud_model/model/shop_model.dart';
-import 'package:eliud_model/shared/abstract_repository_singleton.dart';
-import 'package:eliud_model/shared/background_model.dart';
+import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_shop/model/model_export.dart';
+import 'package:eliud_pkg_shop/model/order_overview_component.dart';
 
 import '../../app_base.dart';
 import '../../shared/etc/page_template.dart';
