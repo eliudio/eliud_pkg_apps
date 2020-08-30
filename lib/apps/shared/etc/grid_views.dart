@@ -1,5 +1,5 @@
-import 'package:eliud_model/model/abstract_repository_singleton.dart';
-import 'package:eliud_model/model/grid_view_model.dart';
+import 'package:eliud_core/model/abstract_repository_singleton.dart';
+import 'package:eliud_core/model/grid_view_model.dart';
 
 class GridViews {
   GridViewModel _gridView1(int id, String appId,  GridViewScrollDirection scrollDirection) {

@@ -1,8 +1,8 @@
-import 'package:eliud_model/model/abstract_repository_singleton.dart';
-import 'package:eliud_model/model/icon_model.dart';
-import 'package:eliud_model/model/menu_def_model.dart';
-import 'package:eliud_model/shared/action_model.dart';
-import 'package:eliud_model/model/menu_item_model.dart';
+import 'package:eliud_core/model/abstract_repository_singleton.dart';
+import 'package:eliud_core/model/icon_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/menu_item_model.dart';
+import 'package:eliud_core/tools/action_model.dart';
 
 class AdminMenu {
   final String appId;
@@ -15,7 +15,7 @@ class AdminMenu {
         documentID: "ADMIN",
         text: "Admin",
         description: "Admin",
-        icon: IconModel(codePoint: 0xe8b8, fontFamily: "MaterialIcons"),
+        icon: IconModel(codePoint: 0xe9c6, fontFamily: "MaterialIcons"),
         action: PopupMenu(menuDef: adminPopupMenu)));
     MenuDefModel menu = MenuDefModel(
         documentID: "admin_menu",

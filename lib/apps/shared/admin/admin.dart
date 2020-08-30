@@ -1,10 +1,12 @@
-import 'package:eliud_model/model/admin_app.dart';
-import 'package:eliud_model/model/background_model.dart';
-import 'package:eliud_model/model/model_export.dart';
+import 'package:eliud_core/model/admin_app.dart';
+import 'package:eliud_core/model/background_model.dart';
+import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
-import 'package:eliud_model/model/menu_def_model.dart';
-import 'package:eliud_model/model/drawer_model.dart';
-import 'package:eliud_model/model/home_menu_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';

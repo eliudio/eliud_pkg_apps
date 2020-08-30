@@ -1,10 +1,10 @@
-import 'package:eliud_model/model/abstract_repository_singleton.dart';
-import 'package:eliud_model/model/background_model.dart';
+import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
+import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_pkg_apps/apps/eliud_app/eliud_app.dart';
-import 'package:eliud_model/model/page_model.dart';
-import 'package:eliud_model/model/app_bar_model.dart';
-import 'package:eliud_model/model/drawer_model.dart';
-import 'package:eliud_model/model/home_menu_model.dart';
+import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/home_menu_model.dart';
 
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 
@@ -22,15 +22,15 @@ class HelloWorldPages {
   HelloWorldPages(this.newAppTools, this.appBar, this.homeMenu, this.pageBackground, this.drawer, this.endDrawer);
 
   static String _createFlutterCode = """
-  import 'package:eliud_model/core/eliud.dart';
-  import 'package:eliud_model/core/tools/simple_bloc_delegate.dart';
-  import 'package:eliud_model/shared/abstract_repository_singleton.dart';
-  import 'package:eliud_model/shared/eliud_app.dart';
-  import 'package:eliud_model/shared/repository_singleton.dart';
+  import 'package:eliud_core/core/eliud.dart';
+  import 'package:eliud_core/core/tools/simple_bloc_delegate.dart';
+  import 'package:eliud_core/shared/abstract_repository_singleton.dart';
+  import 'package:eliud_core/shared/eliud_app.dart';
+  import 'package:eliud_core/shared/repository_singleton.dart';
   import 'package:flutter/material.dart';
   import 'package:bloc/bloc.dart';
-  import 'package:eliud_model/platform/platform.dart';
-  import 'package:eliud_model/platform/mobile_platform.dart';
+  import 'package:eliud_core/platform/platform.dart';
+  import 'package:eliud_core/platform/mobile_platform.dart';
   
   Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -211,11 +211,11 @@ flutter:
 
   // ************************ Tutorial: Flutter Project *****************
   static String _createFlutterWebCode = """
-import 'package:eliud_model/core/eliud.dart';
-import 'package:eliud_model/platform/web.dart';
-import 'package:eliud_model/shared/abstract_repository_singleton.dart';
-import 'package:eliud_model/shared/js_repository_singleton.dart';
-import 'package:eliud_model/platform/platform.dart';
+import 'package:eliud_core/core/eliud.dart';
+import 'package:eliud_core/platform/web.dart';
+import 'package:eliud_core/shared/abstract_repository_singleton.dart';
+import 'package:eliud_core/shared/js_repository_singleton.dart';
+import 'package:eliud_core/platform/platform.dart';
 
 void main() {
   AbstractRepositorySingleton.singleton = JsRepositorySingleton();

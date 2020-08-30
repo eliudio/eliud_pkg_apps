@@ -1,23 +1,24 @@
-import 'package:eliud_model/model/abstract_repository_singleton.dart';
-import 'package:eliud_model/model/background_model.dart';
-import 'package:eliud_model/model/decoration_color_model.dart';
-import 'package:eliud_model/model/divider_component.dart';
-import 'package:eliud_model/model/fader_component.dart';
-import 'package:eliud_model/model/fader_model.dart';
-import 'package:eliud_model/model/listed_item_model.dart';
-import 'package:eliud_model/model/play_store_component.dart';
-import 'package:eliud_model/model/play_store_model.dart';
-import 'package:eliud_model/model/rgb_model.dart';
-import 'package:eliud_model/model/shadow_model.dart';
+import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
+import 'package:eliud_core/model/background_model.dart';
+import 'package:eliud_core/model/decoration_color_model.dart';
+import 'package:eliud_core/model/rgb_model.dart';
+import 'package:eliud_core/model/shadow_model.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
-import 'package:eliud_model/model/body_component_model.dart';
-import 'package:eliud_model/model/menu_def_model.dart';
-import 'package:eliud_model/model/page_model.dart';
-import 'package:eliud_model/model/app_bar_model.dart';
-import 'package:eliud_model/model/drawer_model.dart';
-import 'package:eliud_model/model/home_menu_model.dart';
+import 'package:eliud_core/model/body_component_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_pkg_fundamentals/model/divider_component.dart';
+import 'package:eliud_pkg_fundamentals/model/fader_component.dart';
+import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
+import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
+import 'package:eliud_pkg_fundamentals/model/play_store_component.dart';
+import 'package:eliud_pkg_fundamentals/model/play_store_model.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
@@ -29,7 +30,7 @@ class PlayStore extends AppSection {
   static String IDENTIFIER = "playstore";
 
   Future<PageModel> _setupPage(AppBarModel appBar) {
-    return AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
+    return corerepo.AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
@@ -121,7 +122,7 @@ class PlayStore extends AppSection {
   }
 
   Future<void> _setupPlayStoreBG() {
-    return AbstractRepositorySingleton.singleton.backgroundRepository().add(playStoreBG());
+    return corerepo.AbstractRepositorySingleton.singleton.backgroundRepository().add(playStoreBG());
   }
 
   ShadowModel _shadowModel() {
@@ -140,7 +141,7 @@ class PlayStore extends AppSection {
   }
 
   Future<void> _setupShadows() {
-    return AbstractRepositorySingleton.singleton.shadowRepository().add(_shadowModel());
+    return corerepo.AbstractRepositorySingleton.singleton.shadowRepository().add(_shadowModel());
   }
 
   // ************************ Tutorials *****************

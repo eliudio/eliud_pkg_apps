@@ -1,25 +1,27 @@
-import 'package:eliud_model/model/abstract_repository_singleton.dart';
-import 'package:eliud_model/model/admin_app.dart';
-import 'package:eliud_model/model/model_export.dart';
-import 'package:eliud_model/tools/main_abstract_repository_singleton.dart';
+import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
+import 'package:eliud_core/model/admin_app.dart';
+import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core/tools/action_model.dart';
+import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/backgrounds.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/grid_views.dart';
 import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
-import 'package:eliud_model/core/access/bloc/access_state.dart';
-import 'package:eliud_model/core/global_data.dart';
-import 'package:eliud_model/model/app_bar_model.dart';
-import 'package:eliud_model/model/app_model.dart';
-import 'package:eliud_model/model/drawer_model.dart';
-import 'package:eliud_model/model/home_menu_model.dart';
-import 'package:eliud_model/model/menu_def_model.dart';
-import 'package:eliud_model/model/menu_item_model.dart';
-import 'package:eliud_model/model/page_model.dart';
-import 'package:eliud_model/platform/platform.dart';
-import 'package:eliud_model/shared/action_model.dart';
+import 'package:eliud_core/core/access/bloc/access_state.dart';
+import 'package:eliud_core/core/global_data.dart';
+import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_core/model/app_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/menu_item_model.dart';
+import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core/platform/platform.dart';
 
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
+import 'package:eliud_pkg_fundamentals/model/divider_model.dart';
 
 abstract class InstallApp {
   Future<void> setupApplication(
@@ -145,13 +147,13 @@ abstract class InstallApp {
   }
 
   Future<PosSizeModel> setupPosSizes() {
-    return AbstractRepositorySingleton.singleton
+    return corerepo.AbstractRepositorySingleton.singleton
         .posSizeRepository()
         .add(halfScreen())
-        .then((_) => AbstractRepositorySingleton.singleton
+        .then((_) => corerepo.AbstractRepositorySingleton.singleton
             .posSizeRepository()
             .add(fullScreen()))
-        .then((_) => AbstractRepositorySingleton.singleton
+        .then((_) => corerepo.AbstractRepositorySingleton.singleton
             .posSizeRepository()
             .add(screen75()));
   }
@@ -183,7 +185,7 @@ abstract class InstallApp {
   }
 
   Future<DrawerModel> setupDrawer(ImageModel logo) {
-    return AbstractRepositorySingleton.singleton
+    return corerepo.AbstractRepositorySingleton.singleton
         .drawerRepository()
         .add(_drawer(logo));
   }
@@ -231,25 +233,25 @@ abstract class InstallApp {
   }
 
   Future<void> setupDecorationColorModel(ImageModel logo) async {
-    await AbstractRepositorySingleton.singleton
+    await corerepo.AbstractRepositorySingleton.singleton
         .backgroundRepository()
         .add(_homeMenuBG());
-    await AbstractRepositorySingleton.singleton
+    await corerepo.AbstractRepositorySingleton.singleton
         .backgroundRepository()
         .add(_drawerHeaderBG(logo));
-    await AbstractRepositorySingleton.singleton
+    await corerepo.AbstractRepositorySingleton.singleton
         .backgroundRepository()
         .add(_drawerBG());
-    await AbstractRepositorySingleton.singleton
+    await corerepo.AbstractRepositorySingleton.singleton
         .backgroundRepository()
         .add(_profileDrawerHeaderBG());
-    await AbstractRepositorySingleton.singleton
+    await corerepo.AbstractRepositorySingleton.singleton
         .backgroundRepository()
         .add(_profileDrawerBG());
-    await AbstractRepositorySingleton.singleton
+    await corerepo.AbstractRepositorySingleton.singleton
         .backgroundRepository()
         .add(appBarBG());
-    await AbstractRepositorySingleton.singleton
+    await corerepo.AbstractRepositorySingleton.singleton
         .backgroundRepository()
         .add(pageBG());
   }
@@ -344,7 +346,7 @@ abstract class InstallApp {
   }
 
   Future<void> setupShadows() {
-    return AbstractRepositorySingleton.singleton
+    return corerepo.AbstractRepositorySingleton.singleton
         .shadowRepository()
         .add(shadowModel());
   }
@@ -375,7 +377,7 @@ abstract class InstallApp {
   }
 
   Future<DrawerModel> setupProfileDrawer() {
-    return AbstractRepositorySingleton.singleton
+    return corerepo.AbstractRepositorySingleton.singleton
         .drawerRepository()
         .add(_profileDrawer());
   }
@@ -410,19 +412,19 @@ abstract class InstallApp {
   }
 
   Future<void> setupMenus(MenuDefModel _adminMenu) async {
-    await AbstractRepositorySingleton.singleton
+    await corerepo.AbstractRepositorySingleton.singleton
         .homeMenuRepository()
         .add(homeMenu())
-        .then((_) => AbstractRepositorySingleton.singleton
+        .then((_) => corerepo.AbstractRepositorySingleton.singleton
             .menuDefRepository()
             .add(menuDefModel1()));
-    await AbstractRepositorySingleton.singleton
+    await corerepo.AbstractRepositorySingleton.singleton
         .menuDefRepository()
         .add(homeMenuDef());
-    await AbstractRepositorySingleton.singleton
+    await corerepo.AbstractRepositorySingleton.singleton
         .menuDefRepository()
         .add(drawerMenuDef());
-    await AbstractRepositorySingleton.singleton
+    await corerepo.AbstractRepositorySingleton.singleton
         .menuDefRepository()
         .add(profileDrawerMenuDef());
   }
@@ -470,7 +472,7 @@ abstract class InstallApp {
       RgbModel menuItemColor,
       RgbModel selectedMenuItemColor,
       RgbModel menuBackgroundColor) {
-    return AbstractRepositorySingleton.singleton.appBarRepository().add(_appBar(documentID, menu, title, textColor, background, iconColor, menuItemColor, selectedMenuItemColor,  menuBackgroundColor));
+    return corerepo.AbstractRepositorySingleton.singleton.appBarRepository().add(_appBar(documentID, menu, title, textColor, background, iconColor, menuItemColor, selectedMenuItemColor,  menuBackgroundColor));
   }
 
   Future<void> installFonts() async {
@@ -479,7 +481,6 @@ abstract class InstallApp {
 
   Future<void> runBase(
       {String ownerID, String urlLogo, String urlLogoHead}) async {
-    AbstractPlatform.platform.initRepository(appId);
     await AdminApp.deleteAll(appId);
     await installFonts();
     await GridViews().run(appId);
@@ -499,7 +500,6 @@ abstract class InstallApp {
   }
 
   void wipeAndReinstall() async {
-    AbstractPlatform.platform.initRepository(appId);
     var usr = await AbstractMainRepositorySingleton.singleton
         .userRepository()
         .signInWithGoogle();
@@ -536,7 +536,7 @@ abstract class InstallApp {
   }
 
   Future<MenuDefModel> appBarMenu(String title, MenuDefModel adminMenu) {
-    return AbstractRepositorySingleton.singleton.menuDefRepository().add(_appBarMenu(title, adminMenu));
+    return corerepo.AbstractRepositorySingleton.singleton.menuDefRepository().add(_appBarMenu(title, adminMenu));
   }
 
 }

@@ -1,22 +1,23 @@
-import 'package:eliud_model/model/abstract_repository_singleton.dart';
-import 'package:eliud_model/model/background_model.dart';
-import 'package:eliud_model/model/divider_component.dart';
-import 'package:eliud_model/model/document_component.dart';
-import 'package:eliud_model/model/document_item_model.dart';
-import 'package:eliud_model/model/document_model.dart';
-import 'package:eliud_model/model/fader_component.dart';
-import 'package:eliud_model/model/fader_model.dart';
-import 'package:eliud_model/model/listed_item_model.dart';
+import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
+import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_pkg_apps/apps/eliud_app/hello_world/hello_world.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/about.dart';
 import 'package:eliud_pkg_apps/apps/tools/dynamic_helper.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
-import 'package:eliud_model/model/body_component_model.dart';
-import 'package:eliud_model/model/menu_def_model.dart';
-import 'package:eliud_model/model/page_model.dart';
-import 'package:eliud_model/model/app_bar_model.dart';
-import 'package:eliud_model/model/drawer_model.dart';
-import 'package:eliud_model/model/home_menu_model.dart';
+import 'package:eliud_core/model/body_component_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_pkg_fundamentals/model/divider_component.dart';
+import 'package:eliud_pkg_fundamentals/model/document_component.dart';
+import 'package:eliud_pkg_fundamentals/model/document_item_model.dart';
+import 'package:eliud_pkg_fundamentals/model/document_model.dart';
+import 'package:eliud_pkg_fundamentals/model/fader_component.dart';
+import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
+import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
 
 import '../../app_base.dart';
 import '../eliud_app.dart';
@@ -38,7 +39,7 @@ class Welcome extends AppSection {
   static String IDENTIFIER = "welcome";
 
   Future<PageModel> _setupPage(AppBarModel appBar) {
-    return AbstractRepositorySingleton.singleton
+    return corerepo.AbstractRepositorySingleton.singleton
         .pageRepository()
         .add(_page(appBar));
   }

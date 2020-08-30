@@ -1,17 +1,18 @@
-import 'package:eliud_model/model/model_export.dart';
+import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_pkg_fundamentals/model/presentation_model.dart';
 import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/model/model_export.dart';
 import 'package:eliud_pkg_shop/model/pay_component.dart';
+import 'package:eliud_pkg_shop/shop_package.dart';
 
 import '../../../../apps/app_base.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/payconfirmation.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
-import 'package:eliud_model/model/menu_def_model.dart';
-import 'package:eliud_model/model/drawer_model.dart';
-import 'package:eliud_model/model/home_menu_model.dart';
-import 'package:eliud_model/model/page_model.dart';
-import 'package:eliud_model/model/presentation_model.dart';
-import 'package:eliud_model/shared/action_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core/tools/action_model.dart';
 
 import '../../../shared/etc/page_template.dart';
 
@@ -53,7 +54,8 @@ class MyPay extends PageTemplate {
     DrawerModel drawer,
     DrawerModel endDrawer,
     MenuDefModel adminMenu}): super(
-      pageCondition: PageCondition.MustHaveStuffInBasket,
+      pageCondition: PageCondition.PluginDecides,
+      pluginCondition: ShopPlugin.CONDITION_CARTS_HAS_ITEMS,
       pageId: identifier,
       installApp: installApp,
       newAppTools: newAppTools,

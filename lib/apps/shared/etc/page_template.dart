@@ -1,14 +1,15 @@
-import 'package:eliud_model/model/abstract_repository_singleton.dart';
-import 'package:eliud_model/model/background_model.dart';
+import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
+import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
-import 'package:eliud_model/model/body_component_model.dart';
-import 'package:eliud_model/model/menu_def_model.dart';
-import 'package:eliud_model/model/page_model.dart';
-import 'package:eliud_model/model/app_bar_model.dart';
-import 'package:eliud_model/model/drawer_model.dart';
-import 'package:eliud_model/model/home_menu_model.dart';
-import 'package:eliud_model/model/presentation_component.dart';
-import 'package:eliud_model/model/presentation_model.dart';
+import 'package:eliud_core/model/body_component_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_pkg_fundamentals/model/presentation_component.dart';
+import 'package:eliud_pkg_fundamentals/model/presentation_model.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
@@ -16,6 +17,7 @@ import '../../app_base.dart';
 abstract class PageTemplate extends AppSection {
   final String pageId;
   final PageCondition pageCondition;
+  final String pluginCondition;
 
   PresentationImageAlignment presentationImageAlignment;
 
@@ -28,7 +30,7 @@ abstract class PageTemplate extends AppSection {
   String componentName();
   Future<void> setupComponent();
 
-  PageTemplate({this.pageId, this.pageCondition, this.presentationImageAlignment, InstallApp installApp,
+  PageTemplate({this.pageId, this.pageCondition, this.pluginCondition, this.presentationImageAlignment, InstallApp installApp,
       Tools newAppTools,
       HomeMenuModel homeMenu,
       BackgroundModel pageBG,
@@ -39,7 +41,7 @@ abstract class PageTemplate extends AppSection {
             adminMenu);
 
   Future<PageModel> _setupPage(AppBarModel appBar) {
-    return AbstractRepositorySingleton.singleton
+    return corerepo.AbstractRepositorySingleton.singleton
         .pageRepository()
         .add(_page(appBar));
   }
@@ -62,6 +64,7 @@ abstract class PageTemplate extends AppSection {
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
         conditional: pageCondition,
+        pluginCondition: pluginCondition,
         bodyComponents: components);
   }
 

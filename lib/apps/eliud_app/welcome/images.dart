@@ -1,4 +1,4 @@
-import 'package:eliud_model/model/image_model.dart';
+import 'package:eliud_core/model/image_model.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 
 import '../eliud_app.dart';

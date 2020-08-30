@@ -1,15 +1,17 @@
 import 'dart:collection';
 
-import 'package:eliud_model/model/abstract_repository_singleton.dart';
-import 'package:eliud_model/model/app_bar_model.dart';
-import 'package:eliud_model/model/body_component_model.dart';
-import 'package:eliud_model/model/drawer_model.dart';
-import 'package:eliud_model/model/home_menu_model.dart';
-import 'package:eliud_model/model/model_export.dart';
-import 'package:eliud_model/model/page_model.dart';
-import 'package:eliud_model/model/tutorial_component.dart';
-import 'package:eliud_model/tools/image_tools.dart';
-import 'package:eliud_model/tools/main_abstract_repository_singleton.dart';
+import 'package:eliud_core/model/abstract_repository_singleton.dart';
+import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_core/model/body_component_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core/tools/image_tools.dart';
+import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
+import 'package:eliud_pkg_fundamentals/model/tutorial_component.dart';
+import 'package:eliud_pkg_fundamentals/model/tutorial_entry_model.dart';
+import 'package:eliud_pkg_fundamentals/model/tutorial_model.dart';
 
 class Tools {
   Map<String, ImageModel> _images = HashMap();

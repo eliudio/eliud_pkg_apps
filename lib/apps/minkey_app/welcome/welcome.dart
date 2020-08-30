@@ -1,17 +1,22 @@
-import 'package:eliud_model/model/abstract_repository_singleton.dart';
-import 'package:eliud_model/model/divider_component.dart';
-import 'package:eliud_model/model/document_component.dart';
-import 'package:eliud_model/model/fader_component.dart';
-import 'package:eliud_model/model/model_export.dart';
+import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
+import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
 import 'package:eliud_pkg_apps/apps/tools/dynamic_helper.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
-import 'package:eliud_model/model/body_component_model.dart';
-import 'package:eliud_model/model/menu_def_model.dart';
-import 'package:eliud_model/model/page_model.dart';
-import 'package:eliud_model/model/app_bar_model.dart';
-import 'package:eliud_model/model/drawer_model.dart';
-import 'package:eliud_model/model/home_menu_model.dart';
+import 'package:eliud_core/model/body_component_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_pkg_fundamentals/model/divider_component.dart';
+import 'package:eliud_pkg_fundamentals/model/document_component.dart';
+import 'package:eliud_pkg_fundamentals/model/document_item_model.dart';
+import 'package:eliud_pkg_fundamentals/model/document_model.dart';
+import 'package:eliud_pkg_fundamentals/model/fader_component.dart';
+import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
+import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
@@ -23,7 +28,7 @@ class Welcome extends AppSection {
   static String IDENTIFIER = "welcome";
 
   Future<PageModel> _setupPage(AppBarModel appBar) {
-    return AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
+    return corerepo.AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
@@ -56,7 +61,8 @@ class Welcome extends AppSection {
   static String FADER_IDENTIFIER = IDENTIFIER;
   FaderModel _fader() {
       List<ListedItemModel> items = List();
-      items.add(ListedItemModel(
+      items.add(
+          ListedItemModel(
           documentID: "android",
           description: "Android",
           posSize: installApp.halfScreen(),

@@ -1,4 +1,4 @@
-import 'package:eliud_model/model/model_export.dart';
+import 'package:eliud_core/model/model_export.dart';
 import 'package:flutter/cupertino.dart';
 
 class Backgrounds {
