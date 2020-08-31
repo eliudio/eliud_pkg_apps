@@ -482,6 +482,8 @@ abstract class InstallApp {
   Future<void> runBase(
       {String ownerID, String urlLogo, String urlLogoHead}) async {
     await AdminApp.deleteAll(appId);
+    await shop.AdminApp.deleteAll(appId);
+    await fundamentals.AdminApp.deleteAll(appId);
     await installFonts();
     await GridViews().run(appId);
     var theLogoHead = await logoHead(urlLogoHead);

@@ -34,19 +34,13 @@ abstract class AdminBase extends AppSection {
       RgbModel appBarMenuItemColor,
       RgbModel appBarSelectedMenuItemColor,
       RgbModel appBarMenuBackgroundColor}
-      ) =>  AdminApp.menu(installApp.appId).then((adminPopupMenu) => AdminMenu(installApp.appId).run(adminPopupMenu).then((adminMenu) {
-        return installApp.appBar(IDENTIFIER, adminMenu, adminTitle())
-          .then((appBar) => AdminApp(installApp.appId,
-                drawer,
-                endDrawer,
-                appBar,
-                homeMenu,
-                appBarMenuItemColor,
-                appBarSelectedMenuItemColor,
-                appBarMenuBackgroundColor)
-            .run()
-            .then((_) => adminPopupMenu));
-      }));
+      ) async {
+  var adminPopupMenu = await AdminApp.menu(installApp.appId);
+  var adminMenu = await AdminMenu(installApp.appId).run(adminPopupMenu);
+  var appBar = await installApp.appBar(IDENTIFIER, adminMenu, adminTitle();
+  await AdminApp(installApp.appId, drawer, endDrawer, appBar, homeMenu, appBarMenuItemColor, appBarSelectedMenuItemColor, appBarMenuBackgroundColor).run();
+  return adminPopupMenu;
+  }
 
   Future<MenuDefModel> run();
 }
