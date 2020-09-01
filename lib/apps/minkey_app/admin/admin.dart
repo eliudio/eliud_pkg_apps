@@ -1,4 +1,9 @@
+import 'package:eliud_core/model/admin_app.dart' as coreadmin;
+import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
+import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/background_model.dart';
+import 'package:eliud_core/model/rgb_model.dart';
+import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
@@ -20,19 +25,32 @@ class Admin extends AdminBase {
       : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer);
 
   Future<MenuDefModel> run() {
-    var menuDef = doIt(
+    var menuDef = doIt(/*
         textColor: EliudColors.black,
         background: installApp.appBarBG(),
         iconColor: EliudColors.black,
         menuItemColor: EliudColors.black,
         selectedMenuItemColor: EliudColors.green,
-        menuBackgroundColor: EliudColors.lightRed,
-        appBarMenuItemColor: EliudColors.black,
-        appBarSelectedMenuItemColor: EliudColors.green,
-        appBarMenuBackgroundColor: EliudColors.lightRed);
+        menuBackgroundColor: EliudColors.lightRed*/);
     return menuDef;
   }
 
   @override
   String adminTitle() => "Admin";
+
+  @override
+  List<AdminAppWhiperBase> adminAppWhipers() {
+    return [
+      coreadmin.AdminAppWhiper(),
+      fundamentals.AdminAppWhiper(),
+    ];
+  }
+
+  @override
+  List<AdminAppInstallerBase> adminAppsInstallers(String appID, DrawerModel drawer, DrawerModel_endDrawer, AppBarModel appBar, HomeMenuModel homeMenu) {
+    return [
+      coreadmin.AdminApp(appID, drawer, endDrawer, appBar, homeMenu, EliudColors.black, EliudColors.green, EliudColors.lightRed),
+      fundamentals.AdminApp(appID, drawer, endDrawer, appBar, homeMenu, EliudColors.black, EliudColors.green, EliudColors.lightRed),
+    ];
+  }
 }

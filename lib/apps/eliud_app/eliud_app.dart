@@ -1,4 +1,3 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/image_model.dart';
 import 'package:eliud_core/tools/action_model.dart';

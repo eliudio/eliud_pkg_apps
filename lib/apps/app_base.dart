@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/admin_app.dart';
 import 'package:eliud_core/model/model_export.dart';
@@ -411,7 +412,7 @@ abstract class InstallApp {
         menuItems: menuItems);
   }
 
-  Future<void> setupMenus(MenuDefModel _adminMenu) async {
+  Future<void> setupMenus() async {
     await corerepo.AbstractRepositorySingleton.singleton
         .homeMenuRepository()
         .add(homeMenu())
@@ -481,18 +482,20 @@ abstract class InstallApp {
 
   Future<void> runBase(
       {String ownerID, String urlLogo, String urlLogoHead}) async {
-    await AdminApp.deleteAll(appId);
-    await shop.AdminApp.deleteAll(appId);
-    await fundamentals.AdminApp.deleteAll(appId);
-    await installFonts();
-    await GridViews().run(appId);
-    var theLogoHead = await logoHead(urlLogoHead);
     var theLogo = await logo(urlLogo);
     var endDrawer = await setupProfileDrawer();
     var drawer = await setupDrawer(theLogo);
-    var adminMenu = await adminBase(drawer, endDrawer).run();
+    var _adminBase = adminBase(drawer, endDrawer);
+
+    // whipe the db for this app
+    _adminBase.adminAppWhipers().forEach((element) async => await element.deleteAll(appId));
+
+    await installFonts();
+    await GridViews().run(appId);
+    var theLogoHead = await logoHead(urlLogoHead);
+    var adminMenu = await _adminBase.run();
     await memberPage(adminMenu, drawer, endDrawer);
-    await setupMenus(adminMenu);
+    await setupMenus();
     await setupPosSizes();
     await setupShadows();
     await setupDecorationColorModel(theLogo);
