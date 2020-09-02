@@ -12,7 +12,7 @@ import '../../app_section.dart';
 import '../../app_base.dart';
 
 abstract class AdminBase extends AppSection {
-  List<AdminAppWhiperBase> adminAppWhipers();
+  List<AdminAppWiperBase> adminAppWipers();
   List<AdminAppInstallerBase> adminAppsInstallers(String appID, DrawerModel drawer, DrawerModel_endDrawer, AppBarModel appBar, HomeMenuModel homeMenu);
 
   AdminBase(InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG,
@@ -41,14 +41,14 @@ abstract class AdminBase extends AppSection {
     List<MenuItemModel> menuItems = List<MenuItemModel>();
     int i = 1;
     installers.forEach((element) async {
-      MenuDefModel pluginMenu = await element.menu(installApp.appId);
-      menuItems.add(MenuItemModel(
-          documentID: "$i",
-          text: "$i",
-          description: "$i",
-          icon: IconModel(codePoint: 0xe9c6, fontFamily: "MaterialIcons"),
-          action: PopupMenu(menuDef: pluginMenu)));
-
+      await element.menu(installApp.appId).then((pm) {
+        menuItems.add(MenuItemModel(
+            documentID: "$i",
+            text: "$i",
+            description: "$i",
+            icon: IconModel(codePoint: 0xe9c6, fontFamily: "MaterialIcons"),
+            action: PopupMenu(menuDef: pm)));
+      });
     });
     MenuDefModel menu = MenuDefModel(
         documentID: "admin_sub_menu",

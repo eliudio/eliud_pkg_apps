@@ -487,8 +487,8 @@ abstract class InstallApp {
     var drawer = await setupDrawer(theLogo);
     var _adminBase = adminBase(drawer, endDrawer);
 
-    // whipe the db for this app
-    _adminBase.adminAppWhipers().forEach((element) async => await element.deleteAll(appId));
+    // wipe the db for this app
+    _adminBase.adminAppWipers().forEach((element) async => await element.deleteAll(appId));
 
     await installFonts();
     await GridViews().run(appId);
