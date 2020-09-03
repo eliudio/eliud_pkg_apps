@@ -180,6 +180,7 @@ class Products {
     )
     ];
 
+    return;
     for (int i = 0; i < theProducts.length; i++) {
       Product p = theProducts[i];
       await newAppTools.getImgModel(name: p.imageId1(), appId: JuuwleApp.JUUWLE_APP_ID, url: p.url1);

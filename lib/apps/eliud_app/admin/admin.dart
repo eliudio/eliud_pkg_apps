@@ -22,14 +22,6 @@ class Admin extends AdminBase {
       DrawerModel endDrawer})
       : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer);
 
-  Future<MenuDefModel> run() => doIt(/*
-      textColor: EliudColors.white,
-      background: installApp.appBarBG(),
-      iconColor: EliudColors.white,
-      menuItemColor: EliudColors.white,
-      selectedMenuItemColor: EliudColors.red,
-      menuBackgroundColor: EliudColors.gray,*/);
-
   @override
   String adminTitle() => "Admin";
 

@@ -45,7 +45,7 @@ abstract class AdminBase extends AppSection {
    * Create the admin menu, referencing the admin popup-menu. Setup the appbar with that admin menu. Then return the admin popup-menu so it can be used in the other
    * menu's, in the other appBars in the other pages.
    */
-  Future<MenuDefModel> doIt() async {
+  Future<MenuDefModel> run() async {
     // create the menu's for all plugins and the main menu that refer to these:
     var appBar = await installApp.appBar(IDENTIFIER, adminMenu, adminTitle());
     List<AdminAppInstallerBase> installers = adminAppsInstallers(
@@ -63,8 +63,6 @@ abstract class AdminBase extends AppSection {
     return await AbstractRepositorySingleton.singleton.menuDefRepository().add(menu);
 //    return await storeMenu(menu);
   }
-
-  Future<MenuDefModel> run();
 
 /*
   MenuDefModel _adminMenu(MenuDefModel allPluginAdminsMenu) {

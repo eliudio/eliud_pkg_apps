@@ -80,6 +80,11 @@ abstract class InstallApp {
   // This process works except when the app was create by someone else before. In which case you must delete the app through console.firebase.google.com or by logging in as the owner of the app
   Future<AppModel> claimOwnerShipApplication(
       String appId, String ownerID) async {
+    // first delete the app
+    AppModel oldApp = await appRepository().get(appId);
+    if (oldApp != null)
+      await appRepository().delete(oldApp);
+    // add the app
     var application = AppModel(
       documentID: appId,
       ownerID: ownerID,
