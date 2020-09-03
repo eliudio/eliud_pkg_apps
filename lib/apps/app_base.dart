@@ -406,7 +406,7 @@ abstract class InstallApp {
     var menuItems = <MenuItemModel>[];
     menuItems.add(menuItem);
     return MenuDefModel(
-        documentID: 'MENU_DEF_1',
+        documentID: 'menu_def_1',
         appId: appId,
         name: 'Menu Definition 1',
         menuItems: menuItems);
@@ -516,7 +516,7 @@ abstract class InstallApp {
     print("Installed $appId successfully");
   }
 
-  String appBarMenuIdentifier = 'appBarMenu';
+  String appBarMenuIdentifier = 'appbar_menu';
 
   MenuDefModel _appBarMenu(String title, MenuDefModel adminMenu) {
     var menuItems = <MenuItemModel>[];

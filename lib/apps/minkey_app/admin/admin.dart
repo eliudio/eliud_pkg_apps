@@ -39,10 +39,10 @@ class Admin extends AdminBase {
   String adminTitle() => "Admin";
 
   @override
-  List<AdminAppWhiperBase> adminAppWhipers() {
+  List<AdminAppWiperBase> adminAppWipers() {
     return [
-      coreadmin.AdminAppWhiper(),
-      fundamentals.AdminAppWhiper(),
+      coreadmin.AdminAppWiper(),
+      fundamentals.AdminAppWiper(),
     ];
   }
 
