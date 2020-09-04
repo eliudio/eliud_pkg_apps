@@ -6,6 +6,7 @@ import 'package:eliud_pkg_apps/apps/eliud_app/welcome/welcome.dart';
 import 'package:eliud_pkg_apps/apps/eliud_app/who/who.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
+import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_page.dart';
 import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
@@ -14,6 +15,7 @@ import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/model/app_model.dart';
+import 'package:flutter/material.dart';
 
 import '../app_base.dart';
 import 'admin/admin.dart';
@@ -50,24 +52,9 @@ class EliudApp extends InstallApp {
         description: "Other apps",
         action:
             InternalAction(internalActionEnum: InternalActionEnum.OtherApps)));
-    menuItems.add(MenuItemModel(
-        documentID: "2",
-        text: "Sign out",
-        description: "Sign out",
-        icon: IconModel(codePoint: 0xe879, fontFamily: "MaterialIcons"),
-        action: InternalAction(internalActionEnum: InternalActionEnum.Logout)));
-    menuItems.add(MenuItemModel(
-        documentID: "3",
-        text: "Flush cache",
-        description: "Flush cache",
-        icon: IconModel(codePoint: 0xe627, fontFamily: "MaterialIcons"),
-        action: InternalAction(internalActionEnum: InternalActionEnum.Flush)));
-    menuItems.add(MenuItemModel(
-        documentID: "4",
-        text: "My Space",
-        description: "My Space",
-        icon: IconModel(codePoint: 0xe8b8, fontFamily: "MaterialIcons"),
-        action: GotoPage(pageID: MemberPage.IDENTIFIER)));
+    menuItems.add(menuItemSignOut("2"));
+    menuItems.add(menuItemFlushCache("3"));
+    menuItems.add(menuItemManageAccount("4", MemberPage.IDENTIFIER));
     MenuDefModel menu = MenuDefModel(
         documentID: "drawer_profile_menu",
         appId: ELIUD_APP_ID,
@@ -84,30 +71,20 @@ class EliudApp extends InstallApp {
   @override
   MenuDefModel homeMenuDef() {
     List<MenuItemModel> menuItems = List<MenuItemModel>();
-    menuItems.add(MenuItemModel(
-        documentID: "1",
-        text: "Home",
-        description: "Home",
-        icon: IconModel(codePoint: 0xe88a, fontFamily: "MaterialIcons"),
-        action: GotoPage(pageID: "welcome")));
+    menuItems.add(menuItemHome("1", "welcome"));
     menuItems.add(MenuItemModel(
         documentID: "2",
         text: "Hello World",
         description: "Hello World",
-        icon: IconModel(codePoint: 0xe83a, fontFamily: "MaterialIcons"),
+        icon: IconModel(codePoint: Icons.flight_takeoff.codePoint, fontFamily: "MaterialIcons"),
         action: GotoPage(pageID: "hello_world")));
     menuItems.add(MenuItemModel(
         documentID: "3",
         text: "Advanced",
         description: "Advanced",
-        icon: IconModel(codePoint: 0xe88a, fontFamily: "MaterialIcons"),
+        icon: IconModel(codePoint: Icons.tour.codePoint, fontFamily: "MaterialIcons"),
         action: GotoPage(pageID: "advanced")));
-    menuItems.add(MenuItemModel(
-        documentID: "4",
-        text: "Who",
-        description: "Who",
-        icon: IconModel(codePoint: 0xe7fb, fontFamily: "MaterialIcons"),
-        action: GotoPage(pageID: "who")));
+    menuItems.add(menuItemAbout("4", "who", "Who"));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
         appId: ELIUD_APP_ID,
@@ -258,4 +235,8 @@ class EliudApp extends InstallApp {
         EliudColors.red,
         EliudColors.gray);
   }
+
+  @override
+  // no extra items
+  List<MenuItemModel> extraMenuItems() => null;
 }

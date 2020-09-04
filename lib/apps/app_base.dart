@@ -23,6 +23,7 @@ import 'package:eliud_core/platform/platform.dart';
 
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_pkg_fundamentals/model/divider_model.dart';
+import 'package:flutter/material.dart';
 
 abstract class InstallApp {
   Future<void> setupApplication(
@@ -404,6 +405,7 @@ abstract class InstallApp {
     await corerepo.AbstractRepositorySingleton.singleton
         .homeMenuRepository()
         .add(homeMenu());
+
     await corerepo.AbstractRepositorySingleton.singleton
         .menuDefRepository()
         .add(homeMenuDef());
@@ -503,8 +505,12 @@ abstract class InstallApp {
 
   String appBarMenuIdentifier = 'appbar_menu';
 
+  List<MenuItemModel> extraMenuItems();
+
   MenuDefModel _appBarMenu(String title, MenuDefModel adminMenu) {
+    List<MenuItemModel> extraItems = extraMenuItems();
     var menuItems = <MenuItemModel>[];
+    if (extraItems != null) menuItems.addAll(extraItems);
     menuItems.add(MenuItemModel(
         documentID: '2',
         text: 'Sign in',
@@ -514,7 +520,7 @@ abstract class InstallApp {
         documentID: '3',
         text: 'Admin',
         description: 'Admin',
-        icon: IconModel(codePoint: 0xe8b8, fontFamily: 'MaterialIcons'),
+        icon: IconModel(codePoint: Icons.settings.codePoint, fontFamily: Icons.settings.fontFamily),
         action: PopupMenu(menuDef: adminMenu)));
 
     var menu = MenuDefModel(

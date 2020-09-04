@@ -7,6 +7,7 @@ import 'package:eliud_pkg_apps/apps/minkey_app/welcome/welcome.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/about.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
+import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_page.dart';
 import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
@@ -15,6 +16,7 @@ import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/model/app_model.dart';
+import 'package:flutter/material.dart';
 
 import '../app_base.dart';
 import 'about/about.dart';
@@ -50,24 +52,9 @@ class MinkeyApp extends InstallApp {
         description: "Other apps",
         action:
             InternalAction(internalActionEnum: InternalActionEnum.OtherApps)));
-    menuItems.add(MenuItemModel(
-        documentID: "2",
-        text: "Sign out",
-        description: "Sign out",
-        icon: IconModel(codePoint: 0xe879, fontFamily: "MaterialIcons"),
-        action: InternalAction(internalActionEnum: InternalActionEnum.Logout)));
-    menuItems.add(MenuItemModel(
-        documentID: "3",
-        text: "Flush cache",
-        description: "Flush cache",
-        icon: IconModel(codePoint: 0xe627, fontFamily: "MaterialIcons"),
-        action: InternalAction(internalActionEnum: InternalActionEnum.Flush)));
-    menuItems.add(MenuItemModel(
-        documentID: "4",
-        text: "My Space",
-        description: "My Space",
-        icon: IconModel(codePoint: 0xe8b8, fontFamily: "MaterialIcons"),
-        action: GotoPage(pageID: MemberPage.IDENTIFIER)));
+    menuItems.add(menuItemSignOut("2"));
+    menuItems.add(menuItemFlushCache("3"));
+    menuItems.add(menuItemManageAccount("4", MemberPage.IDENTIFIER));
     MenuDefModel menu = MenuDefModel(
         documentID: "drawer_profile_menu",
         appId: MINKEY_APP_ID,
@@ -84,24 +71,9 @@ class MinkeyApp extends InstallApp {
   @override
   MenuDefModel homeMenuDef() {
     List<MenuItemModel> menuItems = List<MenuItemModel>();
-    menuItems.add(MenuItemModel(
-        documentID: "1",
-        text: "Apps",
-        description: "Apps",
-        icon: IconModel(codePoint: 0xe83a, fontFamily: "MaterialIcons"),
-        action: GotoPage(pageID: PlayStore.IDENTIFIER)));
-    menuItems.add(MenuItemModel(
-        documentID: "2",
-        text: "Welcome",
-        description: "Welcome",
-        icon: IconModel(codePoint: 0xe88a, fontFamily: "MaterialIcons"),
-        action: GotoPage(pageID: Welcome.IDENTIFIER)));
-    menuItems.add(MenuItemModel(
-        documentID: "3",
-        text: "About",
-        description: "About",
-        icon: IconModel(codePoint: 0xe7fb, fontFamily: "MaterialIcons"),
-        action: GotoPage(pageID: AboutBase.identifier)));
+    menuItems.add(menuItem("1", PlayStore.IDENTIFIER, "Apps", Icons.power_settings_new));
+    menuItems.add(menuItemWelcome("2", Welcome.IDENTIFIER, "Welcome"));
+    menuItems.add(menuItemAbout("3", AboutBase.identifier, "About"));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
         appId: MINKEY_APP_ID,
@@ -259,4 +231,8 @@ class MinkeyApp extends InstallApp {
         EliudColors.green,
         EliudColors.lightRed);
   }
+
+  @override
+  // no extra items
+  List<MenuItemModel> extraMenuItems() => null;
 }

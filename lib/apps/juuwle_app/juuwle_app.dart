@@ -12,6 +12,7 @@ import 'package:eliud_pkg_apps/apps/juuwle_app/welcome/welcome.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/about.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
+import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_page.dart';
 import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
@@ -49,24 +50,14 @@ class JuuwleApp extends InstallApp {
   @override
   MenuDefModel profileDrawerMenuDef() {
     var menuItems = <MenuItemModel>[];
-    menuItems.add(MenuItemModel(
-        documentID: 'my_juuwle',
-        text: 'Manage your account',
-        description: 'Manage your account',
-        icon: IconModel(codePoint: 0xe8b9, fontFamily: 'MaterialIcons'),
-        action: GotoPage(pageID: MemberPage.IDENTIFIER)));
+    menuItems.add(menuItemManageAccount("my_juuwle", MemberPage.IDENTIFIER));
     menuItems.add(MenuItemModel(
         documentID: 'orders',
         text: 'Your orders',
         description: 'Your orders',
         icon: IconModel(codePoint: 0xe896, fontFamily: 'MaterialIcons'),
         action: GotoPage(pageID: OrderOverview.identifier)));
-    menuItems.add(MenuItemModel(
-        documentID: 'sign_out',
-        text: 'Sign out',
-        description: 'Sign out',
-        icon: IconModel(codePoint: 0xe879, fontFamily: 'MaterialIcons'),
-        action: InternalAction(internalActionEnum: InternalActionEnum.Logout)));
+    menuItems.add(menuItemSignOut('sign_out'));
     var menu = MenuDefModel(
         documentID: 'drawer_profile_menu',
         appId: JUUWLE_APP_ID,
@@ -83,24 +74,9 @@ class JuuwleApp extends InstallApp {
   @override
   MenuDefModel homeMenuDef() {
     var menuItems = <MenuItemModel>[];
-    menuItems.add(MenuItemModel(
-        documentID: '1',
-        text: 'Welcome',
-        description: 'Welcome',
-        icon: IconModel(codePoint: 0xe88a, fontFamily: 'MaterialIcons'),
-        action: GotoPage(pageID: Welcome.identifier)));
-    menuItems.add(MenuItemModel(
-        documentID: '2',
-        text: 'Shop',
-        description: 'Shop',
-        icon: IconModel(codePoint: 0xe9dd, fontFamily: 'MaterialIcons'),
-        action: GotoPage(pageID: Shop.identifier)));
-    menuItems.add(MenuItemModel(
-        documentID: '4',
-        text: 'About',
-        description: 'About',
-        icon: IconModel(codePoint: 0xe7fb, fontFamily: 'MaterialIcons'),
-        action: GotoPage(pageID: AboutBase.identifier)));
+    menuItems.add(menuItemWelcome("1", Welcome.identifier, "Welcome"));
+    menuItems.add(menuItemShoppingBag("2", Shop.identifier, "Shop"));
+    menuItems.add(menuItemAbout("4", AboutBase.identifier, "About"));
     var menu = MenuDefModel(
         documentID: 'main',
         appId: JUUWLE_APP_ID,
@@ -280,36 +256,13 @@ class JuuwleApp extends InstallApp {
         EliudColors.lightRed);
   }
 
-  MenuDefModel _appBarMenu(String title, MenuDefModel adminMenu) {
-    var menuItems = <MenuItemModel>[];
-    menuItems.add(MenuItemModel(
+  // no extra menu item for the shopping cart
+  List<MenuItemModel> extraMenuItems() => <MenuItemModel>[
+    MenuItemModel(
         documentID: '1',
         text: 'Your bag',
         description: 'Your bag',
         icon: IconModel(codePoint: Icons.shopping_basket.codePoint, fontFamily: Icons.shopping_basket.fontFamily),
-        action: GotoPage(pageID: MyCart.identifier)));
-    menuItems.add(MenuItemModel(
-        documentID: '2',
-        text: 'Sign in',
-        description: 'Sign in',
-        action: InternalAction(internalActionEnum: InternalActionEnum.Login)));
-    menuItems.add(MenuItemModel(
-        documentID: '3',
-        text: 'Admin',
-        description: 'Admin',
-        icon: IconModel(codePoint: Icons.settings.codePoint, fontFamily: Icons.settings.fontFamily),
-        action: PopupMenu(menuDef: adminMenu)));
-
-    var menu = MenuDefModel(
-        documentID: appBarMenuIdentifier,
-        appId: appId,
-        name: title,
-        menuItems: menuItems);
-    return menu;
-  }
-
-  @override
-  Future<MenuDefModel> appBarMenu(String title, MenuDefModel adminMenu) {
-    return AbstractRepositorySingleton.singleton.menuDefRepository().add(_appBarMenu(title, adminMenu));
-  }
+        action: GotoPage(pageID: MyCart.identifier))
+  ];
 }

@@ -7,6 +7,7 @@ import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:flutter/material.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
@@ -28,17 +29,17 @@ abstract class AdminBase extends AppSection {
   static String IDENTIFIER = "ADMIN";
   String adminTitle();
 
-  MenuItemModel item(MenuDefModel menu) {
+  MenuItemModel _item(MenuDefModel menu) {
     return MenuItemModel(
         documentID: menu.documentID,
         text: menu.name,
         description: menu.name,
-        icon: IconModel(codePoint: 0xe9c6, fontFamily: "MaterialIcons"),
+        icon: IconModel(codePoint: Icons.fiber_manual_record.codePoint, fontFamily: Icons.settings.fontFamily),
         action: PopupMenu(menuDef: menu));
   }
 
-  MenuItemModel mapIt(MenuDefModel menu) {
-    return item(menu);
+  MenuItemModel _mapIt(MenuDefModel menu) {
+    return _item(menu);
   }
 
   /*
@@ -50,7 +51,7 @@ abstract class AdminBase extends AppSection {
     var appBar = await installApp.appBar(IDENTIFIER, adminMenu, adminTitle());
     List<AdminAppInstallerBase> installers = adminAppsInstallers(
         installApp.appId, drawer, endDrawer, appBar, homeMenu);
-    List<MenuItemModel> menuItems = await Future.wait(installers.map((element) async => mapIt(await element.menu(installApp.appId))));
+    List<MenuItemModel> menuItems = await Future.wait(installers.map((element) async => _mapIt(await element.menu(installApp.appId))));
     MenuDefModel menu = MenuDefModel(
         documentID: "admin_sub_menu",
         appId: installApp.appId,
