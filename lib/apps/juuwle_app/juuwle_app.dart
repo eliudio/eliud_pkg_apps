@@ -256,7 +256,7 @@ class JuuwleApp extends InstallApp {
         EliudColors.lightRed);
   }
 
-  // no extra menu item for the shopping cart
+  // an extra menu item for the shopping cart
   List<MenuItemModel> extraMenuItems() => <MenuItemModel>[
     MenuItemModel(
         documentID: '1',

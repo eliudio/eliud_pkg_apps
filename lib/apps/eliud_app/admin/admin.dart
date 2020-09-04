@@ -40,6 +40,14 @@ class Admin extends AdminBase {
       fundamentals.AdminApp(appID, drawer, endDrawer, appBar, homeMenu, EliudColors.white, EliudColors.blackTransparent, EliudColors.gray),
     ];
   }
+
+  @override
+  List<AdminAppMenuInstallerBase> adminMenuInstallers() {
+    return [
+      coreadmin.AdminMenu(),
+      fundamentals.AdminMenu(),
+    ];
+  }
 }
 
 

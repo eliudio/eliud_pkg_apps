@@ -45,4 +45,13 @@ class Admin extends AdminBase {
       shop.AdminApp(appID, drawer, endDrawer, appBar, homeMenu, EliudColors.black, EliudColors.green, EliudColors.lightRed),
     ];
   }
+
+  @override
+  List<AdminAppMenuInstallerBase> adminMenuInstallers() {
+    return [
+      coreadmin.AdminMenu(),
+      fundamentals.AdminMenu(),
+      shop.AdminMenu(),
+    ];
+  }
 }

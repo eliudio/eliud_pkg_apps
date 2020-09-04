@@ -14,6 +14,7 @@ import '../../app_base.dart';
 
 abstract class AdminBase extends AppSection {
   List<AdminAppWiperBase> adminAppWipers();
+  List<AdminAppMenuInstallerBase> adminMenuInstallers();
   List<AdminAppInstallerBase> adminAppsInstallers(
       String appID,
       DrawerModel drawer,
@@ -26,7 +27,6 @@ abstract class AdminBase extends AppSection {
       : super(
             installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, null);
 
-  static String IDENTIFIER = "ADMIN";
   String adminTitle();
 
   MenuItemModel _item(MenuDefModel menu) {
@@ -47,25 +47,23 @@ abstract class AdminBase extends AppSection {
    * menu's, in the other appBars in the other pages.
    */
   Future<MenuDefModel> run() async {
-    // the following is a little bit ackward hack, but it's required because we need to reference the menu whilst we can't fully create the menu.
-    // So we temporarily create one for allowing the reference which we will properly create in a later stage
-    MenuDefModel menuForReferenceOnly = MenuDefModel(
-        documentID: "admin_sub_menu",
-        appId: installApp.appId);
-    var appBar = await installApp.appBar(IDENTIFIER, menuForReferenceOnly, adminTitle());
-    List<AdminAppInstallerBase> installers = adminAppsInstallers(
-        installApp.appId, drawer, endDrawer, appBar, homeMenu);
-    List<MenuItemModel> menuItems = await Future.wait(installers.map((element) async => _mapIt(await element.menu(installApp.appId))));
+    // Create the menus
+    List<AdminAppMenuInstallerBase> _adminMenuInstallers = adminMenuInstallers();
+    List<MenuItemModel> menuItems = await Future.wait(_adminMenuInstallers.map((element) async => _mapIt(await element.menu(installApp.appId))));
     MenuDefModel menu = MenuDefModel(
         documentID: "admin_sub_menu",
         appId: installApp.appId,
         name: "Admin Sub Menu",
         menuItems: menuItems);
-    // run the plugin's installers:
+
+    // Run the plugin's installers:
+    var appBar = await installApp.appBar("admin_app_bar", menu, adminTitle());
+    List<AdminAppInstallerBase> installers = adminAppsInstallers(
+        installApp.appId, drawer, endDrawer, appBar, homeMenu);
     installers.forEach((element) async {
       await element.run();
     });
+
     return await AbstractRepositorySingleton.singleton.menuDefRepository().add(menu);
-//    return await storeMenu(menu);
   }
 }
