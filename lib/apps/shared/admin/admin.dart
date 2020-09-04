@@ -47,8 +47,12 @@ abstract class AdminBase extends AppSection {
    * menu's, in the other appBars in the other pages.
    */
   Future<MenuDefModel> run() async {
-    // create the menu's for all plugins and the main menu that refer to these:
-    var appBar = await installApp.appBar(IDENTIFIER, adminMenu, adminTitle());
+    // the following is a little bit ackward hack, but it's required because we need to reference the menu whilst we can't fully create the menu.
+    // So we temporarily create one for allowing the reference which we will properly create in a later stage
+    MenuDefModel menuForReferenceOnly = MenuDefModel(
+        documentID: "admin_sub_menu",
+        appId: installApp.appId);
+    var appBar = await installApp.appBar(IDENTIFIER, menuForReferenceOnly, adminTitle());
     List<AdminAppInstallerBase> installers = adminAppsInstallers(
         installApp.appId, drawer, endDrawer, appBar, homeMenu);
     List<MenuItemModel> menuItems = await Future.wait(installers.map((element) async => _mapIt(await element.menu(installApp.appId))));
@@ -64,32 +68,4 @@ abstract class AdminBase extends AppSection {
     return await AbstractRepositorySingleton.singleton.menuDefRepository().add(menu);
 //    return await storeMenu(menu);
   }
-
-/*
-  MenuDefModel _adminMenu(MenuDefModel allPluginAdminsMenu) {
-    List<MenuItemModel> menuItems = List<MenuItemModel>();
-    menuItems.add(MenuItemModel(
-        documentID: "ADMIN",
-        text: "Admin",
-        description: "Admin",
-        icon: IconModel(codePoint: 0xe9c6, fontFamily: "MaterialIcons"),
-        action: PopupMenu(menuDef: allPluginAdminsMenu)));
-    MenuDefModel menu = MenuDefModel(
-        documentID: "admin_menu",
-        appId: installApp.appId,
-        name: "Admin Menu",
-        menuItems: menuItems);
-    return menu;
-  }
-
-  Future<MenuDefModel> _storeAdminMenu(MenuDefModel allPluginAdminsMenu) {
-    return AbstractRepositorySingleton.singleton
-        .menuDefRepository()
-        .add(_adminMenu(allPluginAdminsMenu));
-  }
-
-  Future<MenuDefModel> storeMenu(MenuDefModel allPluginAdminsMenu) {
-    return _storeAdminMenu(allPluginAdminsMenu);
-  }
-*/
 }
