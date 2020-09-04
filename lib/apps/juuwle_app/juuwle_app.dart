@@ -20,6 +20,8 @@ import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/model/app_model.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../app_base.dart';
 import 'about/about.dart';
@@ -284,7 +286,7 @@ class JuuwleApp extends InstallApp {
         documentID: '1',
         text: 'Your bag',
         description: 'Your bag',
-        icon: IconModel(codePoint: 0xe8cb, fontFamily: 'MaterialIcons'),
+        icon: IconModel(codePoint: Icons.shopping_basket.codePoint, fontFamily: Icons.shopping_basket.fontFamily),
         action: GotoPage(pageID: MyCart.identifier)));
     menuItems.add(MenuItemModel(
         documentID: '2',
@@ -295,7 +297,7 @@ class JuuwleApp extends InstallApp {
         documentID: '3',
         text: 'Admin',
         description: 'Admin',
-        icon: IconModel(codePoint: 0xe8b8, fontFamily: 'MaterialIcons'),
+        icon: IconModel(codePoint: Icons.settings.codePoint, fontFamily: Icons.settings.fontFamily),
         action: PopupMenu(menuDef: adminMenu)));
 
     var menu = MenuDefModel(

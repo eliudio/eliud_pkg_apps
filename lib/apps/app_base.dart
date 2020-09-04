@@ -400,30 +400,10 @@ abstract class InstallApp {
     return menu;
   }
 
-  // TODO: explain what this is for. Apparently it is used. Without the below, the home menu doesn't show. Why?
-  MenuDefModel menuDefModel1() {
-    var menuItem = MenuItemModel(
-        documentID: '1',
-        text: 'Logout',
-        description: 'Logout',
-        icon: IconModel(codePoint: 0xeb44, fontFamily: 'MaterialIcons'),
-        action: InternalAction(internalActionEnum: InternalActionEnum.Logout));
-    var menuItems = <MenuItemModel>[];
-    menuItems.add(menuItem);
-    return MenuDefModel(
-        documentID: 'menu_def_1',
-        appId: appId,
-        name: 'Menu Definition 1',
-        menuItems: menuItems);
-  }
-
   Future<void> setupMenus() async {
     await corerepo.AbstractRepositorySingleton.singleton
         .homeMenuRepository()
-        .add(homeMenu())
-        .then((_) => corerepo.AbstractRepositorySingleton.singleton
-            .menuDefRepository()
-            .add(menuDefModel1()));
+        .add(homeMenu());
     await corerepo.AbstractRepositorySingleton.singleton
         .menuDefRepository()
         .add(homeMenuDef());
