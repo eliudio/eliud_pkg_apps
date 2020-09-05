@@ -55,8 +55,8 @@ class MemberPage extends AppSection {
 
   // ************************ Tutorials *****************
   Future<PageModel> run() async {
-    var menu = await installApp.appBarMenu("Your Profile", adminMenu);
-    var appBar = await installApp.appBar(IDENTIFIER, menu, "Member Area");
+//    var menu = await installApp.appBarMenu("Your Profile", adminMenu);
+    var appBar = await installApp.appBar(IDENTIFIER, adminMenu, "Member Area");
     return await _setupPage(appBar);
   }
 }

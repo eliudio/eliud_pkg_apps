@@ -97,8 +97,8 @@ abstract class PageTemplate extends AppSection {
     await _setupCartImage();
     await _setupPresentation();
     await setupComponent();
-    var menu = await installApp.appBarMenu("Your Profile", adminMenu);
-    var appBar = await installApp.appBar(pageId, menu, "Member Area");
+//    var menu = await installApp.appBarMenu("Your Profile", adminMenu);
+    var appBar = await installApp.appBar(pageId, adminMenu, "Member Area");
     return await _setupPage(appBar);
   }
 }

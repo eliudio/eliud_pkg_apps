@@ -110,9 +110,8 @@ abstract class AboutBase extends AppSection {
 
   Future<void> doIt() async {
     await installAboutImage();
-    var whoMenu = await installApp.appBarMenu("Who", adminMenu);
-    var appBar =
-    await installApp.appBar(installApp.appId, whoMenu, aboutTitle());
+//    var whoMenu = await installApp.appBarMenu("Who", adminMenu);
+    var appBar = await installApp.appBar(installApp.appId, adminMenu, aboutTitle());
     await _store();
     await _setupPage(appBar);
   }

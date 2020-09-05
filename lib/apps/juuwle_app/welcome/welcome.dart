@@ -75,8 +75,8 @@ class Welcome extends AppSection {
 
   Future<PageModel> run() async {
     await WelcomeImages(newAppTools).run();
-    var appMenu = await installApp.appBarMenu("Welcome", adminMenu);
-    var appBar = await installApp.appBar(identifier, appMenu, "Welcome");
+//    var appMenu = await installApp.appBarMenu("Welcome", adminMenu);
+    var appBar = await installApp.appBar(identifier, adminMenu, "Welcome");
     await _setupWelcome();
     //await _setupFader();
     return await _setupPage(appBar);

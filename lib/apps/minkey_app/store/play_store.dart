@@ -150,8 +150,8 @@ class PlayStore extends AppSection {
     await _setupShadows();
     await _setupPlayStore();
     await _setupPlayStoreBG();
-    var appMenu = await installApp.appBarMenu("Play Store", adminMenu);
-    var appBar = await installApp.appBar(IDENTIFIER, appMenu, "Store");
+//    var appMenu = await installApp.appBarMenu("Play Store", adminMenu);
+    var appBar = await installApp.appBar(IDENTIFIER, adminMenu, "Store");
     return await _setupFader().then((_) => _setupPage(appBar));
   }
 }

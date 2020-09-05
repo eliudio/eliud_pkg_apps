@@ -480,7 +480,8 @@ abstract class InstallApp {
     await installFonts();
     await GridViews().run(appId);
     var theLogoHead = await logoHead(urlLogoHead);
-    var adminMenu = await _adminBase.run();
+    var adminMenu = await _appBarMenu("Menu", await _adminBase.installAdminMenus());
+    await _adminBase.installAdminAppss(adminMenu);
     await memberPage(adminMenu, drawer, endDrawer);
     await setupMenus();
     await setupPosSizes();
@@ -507,7 +508,7 @@ abstract class InstallApp {
 
   List<MenuItemModel> extraMenuItems();
 
-  MenuDefModel _appBarMenu(String title, MenuDefModel adminMenu) {
+  MenuDefModel _appBarMenuDef(String title, MenuDefModel adminMenu) {
     List<MenuItemModel> extraItems = extraMenuItems();
     var menuItems = <MenuItemModel>[];
     if (extraItems != null) menuItems.addAll(extraItems);
@@ -531,8 +532,8 @@ abstract class InstallApp {
     return menu;
   }
 
-  Future<MenuDefModel> appBarMenu(String title, MenuDefModel adminMenu) {
-    return corerepo.AbstractRepositorySingleton.singleton.menuDefRepository().add(_appBarMenu(title, adminMenu));
+  Future<MenuDefModel> _appBarMenu(String title, MenuDefModel adminMenu) {
+    return corerepo.AbstractRepositorySingleton.singleton.menuDefRepository().add(_appBarMenuDef(title, adminMenu));
   }
 
 }

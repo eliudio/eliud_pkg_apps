@@ -221,10 +221,10 @@ class Shop extends AppSection {
     await _setupPresentation();
     await _setupCardBG();
     await _setupShopFronts();
-    var appMenu = await installApp.appBarMenu('Basket', adminMenu);
+//    var appMenu = await installApp.appBarMenu('Basket', adminMenu);
     var appBar = await installApp.appBar(
         identifier,
-        appMenu,
+        adminMenu,
         'Shop');
     var shop = await _setupShop();
     await Products(installApp, newAppTools, shop).run();
