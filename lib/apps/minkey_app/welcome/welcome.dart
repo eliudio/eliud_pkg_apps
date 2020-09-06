@@ -27,8 +27,8 @@ class Welcome extends AppSection {
 
   static String IDENTIFIER = "welcome";
 
-  Future<PageModel> _setupPage(AppBarModel appBar) {
-    return corerepo.AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
+  Future<PageModel> _setupPage(AppBarModel appBar) async {
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
@@ -54,8 +54,8 @@ class Welcome extends AppSection {
         bodyComponents: components);
   }
 
-  Future<void> _setupFader() {
-    return AbstractRepositorySingleton.singleton.faderRepository().add(_fader());
+  Future<void> _setupFader() async {
+    return await AbstractRepositorySingleton.singleton.faderRepository().add(_fader());
   }
 
   static String FADER_IDENTIFIER = IDENTIFIER;
@@ -120,8 +120,8 @@ class Welcome extends AppSection {
     return document;
   }
 
-  Future<void> _setupWelcomeDocument() {
-    return AbstractRepositorySingleton.singleton.documentRepository().add(_welcomeDocument());
+  Future<void> _setupWelcomeDocument() async {
+    return await AbstractRepositorySingleton.singleton.documentRepository().add(_welcomeDocument());
   }
 
   // ************************ Tutorials *****************

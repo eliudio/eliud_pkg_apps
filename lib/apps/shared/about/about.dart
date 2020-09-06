@@ -37,8 +37,8 @@ abstract class AboutBase extends AppSection {
 
   static String identifier = "who";
 
-  Future<PageModel> _setupPage(AppBarModel appBar) {
-    return corerepo.AbstractRepositorySingleton.singleton
+  Future<PageModel> _setupPage(AppBarModel appBar) async {
+    return await corerepo.AbstractRepositorySingleton.singleton
         .pageRepository()
         .add(_page(appBar));
   }
@@ -69,8 +69,8 @@ abstract class AboutBase extends AppSection {
   String aboutTitle();
   String imageURL();
 
-  Future<void> _store() {
-    return AbstractRepositorySingleton.singleton
+  Future<void> _store() async {
+    return await AbstractRepositorySingleton.singleton
         .bookletRepository()
         .add(_header());
   }

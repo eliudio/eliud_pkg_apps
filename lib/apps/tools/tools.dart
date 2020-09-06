@@ -77,7 +77,7 @@ class Tools {
     );
   }
 
-  Future<PageModel> createTutorial(String appId, String tutorialID, String title, DrawerModel drawer, AppBarModel appBar, HomeMenuModel homeMenu, BackgroundModel backgroundModel) {
+  Future<PageModel> createTutorial(String appId, String tutorialID, String title, DrawerModel drawer, AppBarModel appBar, HomeMenuModel homeMenu, BackgroundModel backgroundModel) async {
     List<BodyComponentModel> components = List();
     components.add(BodyComponentModel(
         documentID: "1", componentName: AbstractTutorialComponent.componentName, componentId: tutorialID));
@@ -93,7 +93,7 @@ class Tools {
       layout: PageLayout.OnlyTheFirstComponent,
       conditional: PageCondition.Always,
     );
-    return AbstractRepositorySingleton.singleton.pageRepository().add(page);
+    return await AbstractRepositorySingleton.singleton.pageRepository().add(page);
   }
 
 }

@@ -29,8 +29,8 @@ class PlayStore extends AppSection {
 
   static String IDENTIFIER = "playstore";
 
-  Future<PageModel> _setupPage(AppBarModel appBar) {
-    return corerepo.AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
+  Future<PageModel> _setupPage(AppBarModel appBar) async {
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
@@ -57,8 +57,8 @@ class PlayStore extends AppSection {
         bodyComponents: components);
   }
 
-  Future<void> _setupFader() {
-    return AbstractRepositorySingleton.singleton.faderRepository().add(_fader());
+  Future<void> _setupFader() async {
+    return await AbstractRepositorySingleton.singleton.faderRepository().add(_fader());
   }
 
   static String FADER_IDENTIFIER = IDENTIFIER;
@@ -90,8 +90,8 @@ class PlayStore extends AppSection {
     );
   }
 
-  Future<void> _setupPlayStore() {
-    return AbstractRepositorySingleton.singleton.playStoreRepository().add(playStore());
+  Future<void> _setupPlayStore() async {
+    return await AbstractRepositorySingleton.singleton.playStoreRepository().add(playStore());
   }
 
   BackgroundModel playStoreBG() {
@@ -121,8 +121,8 @@ class PlayStore extends AppSection {
     return backgroundModel;
   }
 
-  Future<void> _setupPlayStoreBG() {
-    return corerepo.AbstractRepositorySingleton.singleton.backgroundRepository().add(playStoreBG());
+  Future<void> _setupPlayStoreBG() async {
+    return await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository().add(playStoreBG());
   }
 
   ShadowModel _shadowModel() {
@@ -140,8 +140,8 @@ class PlayStore extends AppSection {
     return shadowModel;
   }
 
-  Future<void> _setupShadows() {
-    return corerepo.AbstractRepositorySingleton.singleton.shadowRepository().add(_shadowModel());
+  Future<void> _setupShadows() async {
+    return await corerepo.AbstractRepositorySingleton.singleton.shadowRepository().add(_shadowModel());
   }
 
   // ************************ Tutorials *****************
@@ -152,6 +152,7 @@ class PlayStore extends AppSection {
     await _setupPlayStoreBG();
 //    var appMenu = await installApp.appBarMenu("Play Store", adminMenu);
     var appBar = await installApp.appBar(IDENTIFIER, adminMenu, "Store");
-    return await _setupFader().then((_) => _setupPage(appBar));
+    await _setupFader();
+    return await _setupPage(appBar);
   }
 }

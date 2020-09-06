@@ -1,7 +1,5 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
-import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_core/model/admin_app.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/action_model.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
@@ -19,7 +17,6 @@ import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/model/page_model.dart';
-import 'package:eliud_core/platform/platform.dart';
 
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_pkg_fundamentals/model/divider_model.dart';
@@ -153,16 +150,16 @@ abstract class InstallApp {
         clip: ClipType.NoClip);
   }
 
-  Future<PosSizeModel> setupPosSizes() {
-    return corerepo.AbstractRepositorySingleton.singleton
+  Future<void> setupPosSizes() async {
+    await corerepo.AbstractRepositorySingleton.singleton
         .posSizeRepository()
-        .add(halfScreen())
-        .then((_) => corerepo.AbstractRepositorySingleton.singleton
+        .add(halfScreen());
+    await corerepo.AbstractRepositorySingleton.singleton
             .posSizeRepository()
-            .add(fullScreen()))
-        .then((_) => corerepo.AbstractRepositorySingleton.singleton
+            .add(fullScreen());
+    await corerepo.AbstractRepositorySingleton.singleton
             .posSizeRepository()
-            .add(screen75()));
+            .add(screen75());
   }
 
   static String LOGO_ID = 'logo';
@@ -191,14 +188,14 @@ abstract class InstallApp {
         menu: drawerMenuDef());
   }
 
-  Future<DrawerModel> setupDrawer(ImageModel logo) {
-    return corerepo.AbstractRepositorySingleton.singleton
+  Future<DrawerModel> setupDrawer(ImageModel logo) async {
+    return await corerepo.AbstractRepositorySingleton.singleton
         .drawerRepository()
         .add(_drawer(logo));
   }
 
-  Future<ImageModel> _addProfileImage() {
-    return AbstractMainRepositorySingleton.singleton
+  Future<ImageModel> _addProfileImage() async {
+    return await AbstractMainRepositorySingleton.singleton
         .imageRepository()
         .add(_profileImage());
   }
@@ -352,8 +349,8 @@ abstract class InstallApp {
     return shadowModel;
   }
 
-  Future<void> setupShadows() {
-    return corerepo.AbstractRepositorySingleton.singleton
+  Future<void> setupShadows() async {
+    return await corerepo.AbstractRepositorySingleton.singleton
         .shadowRepository()
         .add(shadowModel());
   }
@@ -383,8 +380,8 @@ abstract class InstallApp {
         menu: profileDrawerMenuDef());
   }
 
-  Future<DrawerModel> setupProfileDrawer() {
-    return corerepo.AbstractRepositorySingleton.singleton
+  Future<DrawerModel> setupProfileDrawer() async {
+    return await corerepo.AbstractRepositorySingleton.singleton
         .drawerRepository()
         .add(_profileDrawer());
   }
@@ -405,7 +402,6 @@ abstract class InstallApp {
     await corerepo.AbstractRepositorySingleton.singleton
         .homeMenuRepository()
         .add(homeMenu());
-
     await corerepo.AbstractRepositorySingleton.singleton
         .menuDefRepository()
         .add(homeMenuDef());
@@ -431,8 +427,8 @@ abstract class InstallApp {
     return dividerModel;
   }
 
-  void setupDividers() {
-    AbstractRepositorySingleton.singleton.dividerRepository().add(_divider());
+  Future<void> setupDividers() async {
+    await AbstractRepositorySingleton.singleton.dividerRepository().add(_divider());
   }
 
   AppBarModel _appBar(String documentID, MenuDefModel menu, String title, RgbModel textColor, BackgroundModel background, RgbModel iconColor, RgbModel menuItemColor, RgbModel selectedIconColor, RgbModel menuBackgroundColor) {
@@ -459,8 +455,8 @@ abstract class InstallApp {
       RgbModel iconColor,
       RgbModel menuItemColor,
       RgbModel selectedMenuItemColor,
-      RgbModel menuBackgroundColor) {
-    return corerepo.AbstractRepositorySingleton.singleton.appBarRepository().add(_appBar(documentID, menu, title, textColor, background, iconColor, menuItemColor, selectedMenuItemColor,  menuBackgroundColor));
+      RgbModel menuBackgroundColor) async {
+    return await corerepo.AbstractRepositorySingleton.singleton.appBarRepository().add(_appBar(documentID, menu, title, textColor, background, iconColor, menuItemColor, selectedMenuItemColor,  menuBackgroundColor));
   }
 
   Future<void> installFonts() async {
@@ -532,8 +528,8 @@ abstract class InstallApp {
     return menu;
   }
 
-  Future<MenuDefModel> _appBarMenu(String title, MenuDefModel adminMenu) {
-    return corerepo.AbstractRepositorySingleton.singleton.menuDefRepository().add(_appBarMenuDef(title, adminMenu));
+  Future<MenuDefModel> _appBarMenu(String title, MenuDefModel adminMenu) async {
+    return await corerepo.AbstractRepositorySingleton.singleton.menuDefRepository().add(_appBarMenuDef(title, adminMenu));
   }
 
 }

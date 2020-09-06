@@ -26,8 +26,8 @@ class MemberPage extends AppSection {
 
   static String IDENTIFIER = "member_profile";
 
-  Future<PageModel> _setupPage(AppBarModel appBar) {
-    return AbstractRepositorySingleton.singleton
+  Future<PageModel> _setupPage(AppBarModel appBar) async {
+    return await AbstractRepositorySingleton.singleton
         .pageRepository()
         .add(_page(appBar));
   }

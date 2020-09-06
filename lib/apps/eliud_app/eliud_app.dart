@@ -117,7 +117,7 @@ class EliudApp extends InstallApp {
 */
 
   Future<void> setupApplication(
-      PageModel homePage, String ownerID, ImageModel logo) {
+      PageModel homePage, String ownerID, ImageModel logo) async {
     AppModel application = AppModel(
       documentID: ELIUD_APP_ID,
       title: "Eliud!",
@@ -155,7 +155,7 @@ class EliudApp extends InstallApp {
       fontText:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.normalLabel)),
     );
 
-    return AbstractMainRepositorySingleton.singleton
+    return await AbstractMainRepositorySingleton.singleton
         .appRepository()
         .update(application);
   }

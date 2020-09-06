@@ -134,13 +134,13 @@ class HelloWorldMenu {
     return menu;
   }
 
-  Future<MenuDefModel> run(MenuDefModel adminMenu) {
-    return AbstractRepositorySingleton.singleton.menuDefRepository().add(_prepareHelloWorldMenu())
-        .then((_) => AbstractRepositorySingleton.singleton.menuDefRepository().add(_createAppMenu()))
-        .then((_) => AbstractRepositorySingleton.singleton.menuDefRepository().add(_createAndroidAppMenu()))
-        .then((_) => AbstractRepositorySingleton.singleton.menuDefRepository().add(_createIPhoneAppMenu()))
-        .then((_) => AbstractRepositorySingleton.singleton.menuDefRepository().add(_createWebAppMenu()))
-        .then((_) => AbstractRepositorySingleton.singleton.menuDefRepository().add(_setupHelloWorldMenu()))
-        .then((_) => AbstractRepositorySingleton.singleton.menuDefRepository().add(_helloWorldMenu(adminMenu)));
+  Future<MenuDefModel> run(MenuDefModel adminMenu) async {
+    await AbstractRepositorySingleton.singleton.menuDefRepository().add(_prepareHelloWorldMenu());
+    await AbstractRepositorySingleton.singleton.menuDefRepository().add(_createAppMenu());
+    await AbstractRepositorySingleton.singleton.menuDefRepository().add(_createAndroidAppMenu());
+    await AbstractRepositorySingleton.singleton.menuDefRepository().add(_createIPhoneAppMenu());
+    await AbstractRepositorySingleton.singleton.menuDefRepository().add(_createWebAppMenu());
+    await AbstractRepositorySingleton.singleton.menuDefRepository().add(_setupHelloWorldMenu());
+    return await AbstractRepositorySingleton.singleton.menuDefRepository().add(_helloWorldMenu(adminMenu));
   }
 }

@@ -22,8 +22,8 @@ class Welcome extends AppSection {
 
   static String identifier = "welcome";
 
-  Future<PageModel> _setupPage(AppBarModel appBar) {
-    return corerepo.AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
+  Future<PageModel> _setupPage(AppBarModel appBar) async {
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {

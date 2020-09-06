@@ -41,8 +41,8 @@ class Shop extends AppSection {
 
   static String identifier = 'juuwleshop';
 
-  Future<PageModel> _setupPage(AppBarModel appBar) {
-    return corerepo.AbstractRepositorySingleton.singleton
+  Future<PageModel> _setupPage(AppBarModel appBar) async {
+    return await corerepo.AbstractRepositorySingleton.singleton
         .pageRepository()
         .add(_page(appBar));
   }
@@ -76,8 +76,8 @@ class Shop extends AppSection {
         bodyComponents: components);
   }
 
-  Future<void> _setupFader() {
-    return AbstractRepositorySingleton.singleton
+  Future<void> _setupFader() async {
+    return await AbstractRepositorySingleton.singleton
         .faderRepository()
         .add(_fader());
   }
@@ -102,8 +102,8 @@ class Shop extends AppSection {
     return model;
   }
 
-  Future<ShopModel> _setupShop() {
-    return shoprepo.AbstractRepositorySingleton.singleton.shopRepository().add(_shop());
+  Future<ShopModel> _setupShop() async {
+    return await shoprepo.AbstractRepositorySingleton.singleton.shopRepository().add(_shop());
   }
 
   ShopModel _shop() {

@@ -87,7 +87,7 @@ class JuuwleApp extends InstallApp {
 
   @override
   Future<void> setupApplication(
-      PageModel homePage, String ownerID, ImageModel logo) {
+      PageModel homePage, String ownerID, ImageModel logo) async {
     var application = AppModel(
       documentID: JUUWLE_APP_ID,
       title: 'Juuwle!',
@@ -133,7 +133,7 @@ class JuuwleApp extends InstallApp {
       fontText: fontTools.getFont(
           FontTools.key(FontTools.dancingScriptLabel, FontTools.normalLabel)),
     );
-    return AbstractMainRepositorySingleton.singleton
+    return await AbstractMainRepositorySingleton.singleton
         .appRepository()
         .update(application);
   }

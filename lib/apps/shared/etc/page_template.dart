@@ -40,8 +40,8 @@ abstract class PageTemplate extends AppSection {
       : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer,
             adminMenu);
 
-  Future<PageModel> _setupPage(AppBarModel appBar) {
-    return corerepo.AbstractRepositorySingleton.singleton
+  Future<PageModel> _setupPage(AppBarModel appBar) async {
+    return await corerepo.AbstractRepositorySingleton.singleton
         .pageRepository()
         .add(_page(appBar));
   }

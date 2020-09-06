@@ -108,7 +108,7 @@ class MinkeyApp extends InstallApp {
 
   @override
   Future<void> setupApplication(
-      PageModel homePage, String ownerID, ImageModel logo) {
+      PageModel homePage, String ownerID, ImageModel logo) async {
     AppModel application = AppModel(
       documentID: MINKEY_APP_ID,
       title: "Minkey!",
@@ -154,7 +154,7 @@ class MinkeyApp extends InstallApp {
       fontText: fontTools
           .getFont(FontTools.key(FontTools.latoLabel, FontTools.normalLabel)),
     );
-    return AbstractMainRepositorySingleton.singleton
+    return await AbstractMainRepositorySingleton.singleton
         .appRepository()
         .update(application);
   }

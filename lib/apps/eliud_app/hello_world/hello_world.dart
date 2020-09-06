@@ -216,10 +216,9 @@ class HelloWorld extends AppSection {
     return corerepo.AbstractRepositorySingleton.singleton.pageRepository().add(helloWorldPage(appBar));
   }
 
-  Future<void> store(AppBarModel appBar) {
-    return
-      _storeHelloWorldDocument().then((value) =>
-      _storeHelloWorldPage(appBar));
+  Future<void> store(AppBarModel appBar) async {
+    await _storeHelloWorldDocument();
+    await  _storeHelloWorldPage(appBar);
   }
 
   Future<void> run() async {
