@@ -13,7 +13,6 @@ import '../../app_section.dart';
 import '../../app_base.dart';
 
 abstract class AdminBase extends AppSection {
-  List<AdminAppWiperBase> adminAppWipers();
   List<AdminAppMenuInstallerBase> adminMenuInstallers();
   List<AdminAppInstallerBase> adminAppsInstallers(
       String appID,

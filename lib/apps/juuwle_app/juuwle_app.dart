@@ -1,4 +1,8 @@
+import 'package:eliud_core/model/admin_app.dart' as coreadmin;
+import 'package:eliud_core/tools/admin_app_base.dart';
+import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_shop/model/admin_app.dart' as shop;
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/image_model.dart';
 import 'package:eliud_core/tools/action_model.dart';
@@ -146,6 +150,15 @@ class JuuwleApp extends InstallApp {
       pageBG: pageBG(),
       drawer: drawer,
       endDrawer: endDrawer);
+
+  @override
+  List<AdminAppWiperBase> adminAppWipers() {
+    return [
+      coreadmin.AdminAppWiper(),
+      fundamentals.AdminAppWiper(),
+      shop.AdminAppWiper(),
+    ];
+  }
 
   @override
   Future<PageModel> memberPage(

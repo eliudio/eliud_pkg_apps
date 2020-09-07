@@ -29,15 +29,6 @@ class Admin extends AdminBase {
   String adminTitle() => "Admin";
 
   @override
-  List<AdminAppWiperBase> adminAppWipers() {
-    return [
-      coreadmin.AdminAppWiper(),
-      fundamentals.AdminAppWiper(),
-      shop.AdminAppWiper(),
-    ];
-  }
-
-  @override
   List<AdminAppInstallerBase> adminAppsInstallers(String appID, DrawerModel drawer, DrawerModel_endDrawer, AppBarModel appBar, HomeMenuModel homeMenu) {
     return [
       coreadmin.AdminApp(appID, drawer, endDrawer, appBar, homeMenu, EliudColors.black, EliudColors.green, EliudColors.lightRed),

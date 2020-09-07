@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/action_model.dart';
@@ -23,9 +24,13 @@ import 'package:eliud_pkg_fundamentals/model/divider_model.dart';
 import 'package:flutter/material.dart';
 
 abstract class InstallApp {
+  // adminAppWipers are used to delete the admin part of the app
+  List<AdminAppWiperBase> adminAppWipers();
+  // adminBase is used to install the admin part of the app
+  AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer);
+
   Future<void> setupApplication(
       PageModel homePage, String ownerID, ImageModel logo);
-  AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer);
   Future<PageModel> runTheRest(
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu);
   Future<PageModel> memberPage(
@@ -172,7 +177,7 @@ abstract class InstallApp {
 
   Future<ImageModel> logo(String urlLogo) async {
     await _addProfileImage();
-    return newAppTools.getImgModel(name: LOGO_ID, appId: appId, url: urlLogo);
+    return await newAppTools.getImgModel(name: LOGO_ID, appId: appId, url: urlLogo);
   }
 
   DrawerModel _drawer(ImageModel logo) {
@@ -465,13 +470,13 @@ abstract class InstallApp {
 
   Future<void> runBase(
       {String ownerID, String urlLogo, String urlLogoHead}) async {
+    // wipe the db for this app
+    adminAppWipers().forEach((element) async => await element.deleteAll(appId));
+
     var theLogo = await logo(urlLogo);
     var endDrawer = await setupProfileDrawer();
     var drawer = await setupDrawer(theLogo);
     var _adminBase = adminBase(drawer, endDrawer);
-
-    // wipe the db for this app
-    _adminBase.adminAppWipers().forEach((element) async => await element.deleteAll(appId));
 
     await installFonts();
     await GridViews().run(appId);

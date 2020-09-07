@@ -24,6 +24,7 @@ class Tools {
     return image;
   }
 
+
   Future<ImageModel> getImgModel({String documentID, String appId, String name, String url, PosSizeModel posSizeModel}) async {
     // Create thumbnail and store the image
     if (documentID == null) documentID = name;
@@ -34,24 +35,19 @@ class Tools {
         imageURLOriginal: url,
         appId: appId
     );
-    return await ImageTools.downloadImage(url, name)
-        .then((image) async {
-      if (image == null) return null;
-      return await ImageTools.createThumbnail(model, name, image)
-          .then((model) async {
-        return await AbstractMainRepositorySingleton.singleton.imageRepository()
-            .add(model)
-            .then((val) async {
-          return await AbstractMainRepositorySingleton.singleton.imageRepository()
-              .get(documentID)
-              .then((img) {
-//            _image = img;
-            _images[documentID] = img;
-            return img;
-          });
-        });
-      });
-    });
+    var image = await ImageTools.downloadImage(url, name);
+    if (image == null) {
+      print('issue downloading image with url = $url');
+      return null;
+    } else {
+      await ImageTools.createThumbnail(model, name, image);
+      var val = await AbstractMainRepositorySingleton.singleton
+          .imageRepository().add(model);
+      var img = await AbstractMainRepositorySingleton.singleton
+          .imageRepository().get(documentID);
+      _images[documentID] = img;
+      return img;
+    }
   }
 
   TutorialModel constructTutorialModel(String appId, String tutorialID, String name, String title, String description, List<String> imageIDs, List<String> codes, List<String> descriptions) {
