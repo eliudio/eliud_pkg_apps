@@ -470,9 +470,11 @@ abstract class InstallApp {
 
   Future<void> runBase(
       {String ownerID, String urlLogo, String urlLogoHead}) async {
-    // wipe the db for this app
-    adminAppWipers().forEach((element) async => await element.deleteAll(appId));
-
+    int i = 0;
+    var aaw = adminAppWipers();
+    for (int i = 0; i < aaw.length; i++) {
+      await aaw[i].deleteAll(appId);
+    }
     var theLogo = await logo(urlLogo);
     var endDrawer = await setupProfileDrawer();
     var drawer = await setupDrawer(theLogo);
