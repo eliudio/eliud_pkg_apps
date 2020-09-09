@@ -181,8 +181,7 @@ class Products {
     ];
     
     // for now, during tests, only support 2 products
-    for (int i = 0; i < 2; i++) {
-//    for (int i = 0; i < theProducts.length; i++) {
+    for (int i = 0; i < theProducts.length; i++) {
       Product p = theProducts[i];
       await newAppTools.getImgModel(name: p.imageId1(), appId: JuuwleApp.JUUWLE_APP_ID, url: p.url1);
       await newAppTools.getImgModel(name: p.imageId2(), appId: JuuwleApp.JUUWLE_APP_ID, url: p.url2);
