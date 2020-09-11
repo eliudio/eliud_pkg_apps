@@ -17,7 +17,7 @@ import '../../app_base.dart';
 abstract class PageTemplate extends AppSection {
   final String pageId;
   final PageCondition pageCondition;
-  final String pluginCondition;
+  final String packageCondition;
 
   PresentationImageAlignment presentationImageAlignment;
 
@@ -30,7 +30,7 @@ abstract class PageTemplate extends AppSection {
   String componentName();
   Future<void> setupComponent();
 
-  PageTemplate({this.pageId, this.pageCondition, this.pluginCondition, this.presentationImageAlignment, InstallApp installApp,
+  PageTemplate({this.pageId, this.pageCondition, this.packageCondition, this.presentationImageAlignment, InstallApp installApp,
       Tools newAppTools,
       HomeMenuModel homeMenu,
       BackgroundModel pageBG,
@@ -64,7 +64,7 @@ abstract class PageTemplate extends AppSection {
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
         conditional: pageCondition,
-        pluginCondition: pluginCondition,
+        packageCondition: packageCondition,
         bodyComponents: components);
   }
 

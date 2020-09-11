@@ -495,7 +495,7 @@ abstract class InstallApp {
     await setupApplication(homePage, ownerID, theLogoHead);
   }
 
-  void wipeAndReinstall() async {
+  Future<void> wipeAndReinstall() async {
     var usr = await AbstractMainRepositorySingleton.singleton
         .userRepository()
         .signInWithGoogle();

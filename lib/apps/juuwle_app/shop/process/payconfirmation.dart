@@ -53,8 +53,8 @@ class MyPayConfirmation extends PageTemplate {
     DrawerModel drawer,
     DrawerModel endDrawer,
     MenuDefModel adminMenu}): super(
-      pageCondition: PageCondition.PluginDecides,
-      pluginCondition: ShopPlugin.CONDITION_CARTS_HAS_ITEMS,
+      pageCondition: PageCondition.PackageDecides,
+      packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
       pageId: identifier,
       installApp: installApp,
       newAppTools: newAppTools,
