@@ -36,9 +36,10 @@ class Tools {
         appId: appId
     );
     var image = await ImageTools.downloadImage(url, name);
+//    var image = null;
     if (image == null) {
       print('issue downloading image with url = $url');
-      return null;
+      return model;
     } else {
       await ImageTools.createThumbnail(model, name, image);
       var val = await AbstractMainRepositorySingleton.singleton
