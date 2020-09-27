@@ -3,10 +3,10 @@ import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 
 import '../eliud_app.dart';
 
-class WhoImages {
+class WelcomeImages {
   final Tools newAppTools;
 
-  WhoImages(this.newAppTools);
+  WelcomeImages(this.newAppTools);
 
   Future<void> run() async {
     await newAppTools.getImgModel(name: "iphone", appId: EliudApp.ELIUD_APP_ID, url: "https://live.staticflickr.com/65535/49794358181_47386fdbac_o_d.jpg");
