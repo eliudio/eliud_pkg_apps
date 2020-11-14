@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
@@ -28,7 +29,7 @@ class Welcome extends AppSection {
   static String IDENTIFIER = "welcome";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp.appId).add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
@@ -55,7 +56,7 @@ class Welcome extends AppSection {
   }
 
   Future<void> _setupFader() async {
-    return await AbstractRepositorySingleton.singleton.faderRepository().add(_fader());
+    return await AbstractRepositorySingleton.singleton.faderRepository(installApp.appId).add(_fader());
   }
 
   static String FADER_IDENTIFIER = IDENTIFIER;
@@ -121,7 +122,7 @@ class Welcome extends AppSection {
   }
 
   Future<void> _setupWelcomeDocument() async {
-    return await AbstractRepositorySingleton.singleton.documentRepository().add(_welcomeDocument());
+    return await AbstractRepositorySingleton.singleton.documentRepository(installApp.appId).add(_welcomeDocument());
   }
 
   // ************************ Tutorials *****************

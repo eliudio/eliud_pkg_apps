@@ -54,10 +54,10 @@ class EliudApp extends InstallApp {
         text: "Other apps",
         description: "Other apps",
         action:
-            InternalAction(internalActionEnum: InternalActionEnum.OtherApps)));
-    menuItems.add(menuItemSignOut("2"));
-    menuItems.add(menuItemFlushCache("3"));
-    menuItems.add(menuItemManageAccount("4", MemberPage.IDENTIFIER));
+            InternalAction(appId, internalActionEnum: InternalActionEnum.OtherApps)));
+    menuItems.add(menuItemSignOut(appId, "2"));
+    menuItems.add(menuItemFlushCache(appId, "3"));
+    menuItems.add(menuItemManageAccount(appId, "4", MemberPage.IDENTIFIER));
     MenuDefModel menu = MenuDefModel(
         documentID: "drawer_profile_menu",
         appId: ELIUD_APP_ID,
@@ -74,20 +74,20 @@ class EliudApp extends InstallApp {
   @override
   MenuDefModel homeMenuDef() {
     List<MenuItemModel> menuItems = List<MenuItemModel>();
-    menuItems.add(menuItemHome("1", "welcome"));
+    menuItems.add(menuItemHome(appId, "1", "welcome"));
     menuItems.add(MenuItemModel(
         documentID: "2",
         text: "Hello World",
         description: "Hello World",
         icon: IconModel(codePoint: Icons.flight_takeoff.codePoint, fontFamily: "MaterialIcons"),
-        action: GotoPage(pageID: "hello_world")));
+        action: GotoPage(appId, pageID: "hello_world")));
     menuItems.add(MenuItemModel(
         documentID: "3",
         text: "Advanced",
         description: "Advanced",
         icon: IconModel(codePoint: Icons.tour.codePoint, fontFamily: "MaterialIcons"),
-        action: GotoPage(pageID: "advanced")));
-    menuItems.add(menuItemAbout("4", "who", "Who"));
+        action: GotoPage(appId, pageID: "advanced")));
+    menuItems.add(menuItemAbout(appId, "4", "who", "Who"));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
         appId: ELIUD_APP_ID,

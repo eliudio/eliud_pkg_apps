@@ -38,7 +38,7 @@ class Welcome extends AppSection {
   static String identifier = "welcome";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(EliudApp.ELIUD_APP_ID).add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
@@ -67,7 +67,7 @@ class Welcome extends AppSection {
   }
   Future<void> _setupFader() {
     return AbstractRepositorySingleton.singleton
-        .faderRepository()
+        .faderRepository(EliudApp.ELIUD_APP_ID)
         .add(_fader());
   }
 
@@ -133,7 +133,7 @@ class Welcome extends AppSection {
   }
 
   Future<void> _setupWelcome() async {
-    await AbstractRepositorySingleton.singleton.bookletRepository().add(_welcome());
+    await AbstractRepositorySingleton.singleton.bookletRepository(EliudApp.ELIUD_APP_ID).add(_welcome());
   }
 
   Future<PageModel> run() async {

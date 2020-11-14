@@ -14,6 +14,7 @@ import 'package:eliud_pkg_shop/shop_package.dart';
 
 import '../../../app_base.dart';
 import '../../../shared/etc/page_template.dart';
+import '../../juuwle_app.dart';
 
 class MyPayConfirmation extends PageTemplate {
   final BackgroundModel background;
@@ -27,7 +28,7 @@ class MyPayConfirmation extends PageTemplate {
         appId: installApp.appId,
         title: pageTitle(),
         shop: shop,
-        backToShopAction: GotoPage(pageID: Shop.identifier),
+        backToShopAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: Shop.identifier),
     );
   }
 
@@ -72,6 +73,6 @@ class MyPayConfirmation extends PageTemplate {
 
   @override
   Future<void> setupComponent() async {
-    await AbstractRepositorySingleton.singleton.payConfirmationRepository().add(_payConfirmationModel());
+    await AbstractRepositorySingleton.singleton.payConfirmationRepository(JuuwleApp.JUUWLE_APP_ID).add(_payConfirmationModel());
   }
 }

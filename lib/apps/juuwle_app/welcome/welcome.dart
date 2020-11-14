@@ -23,7 +23,7 @@ class Welcome extends AppSection {
   static String identifier = "welcome";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(JuuwleApp.JUUWLE_APP_ID).add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
@@ -70,7 +70,7 @@ class Welcome extends AppSection {
   }
 
   Future<void> _setupWelcome() async {
-    await AbstractRepositorySingleton.singleton.bookletRepository().add(_welcome());
+    await AbstractRepositorySingleton.singleton.bookletRepository(JuuwleApp.JUUWLE_APP_ID).add(_welcome());
   }
 
   Future<PageModel> run() async {

@@ -54,14 +54,14 @@ class JuuwleApp extends InstallApp {
   @override
   MenuDefModel profileDrawerMenuDef() {
     var menuItems = <MenuItemModel>[];
-    menuItems.add(menuItemManageAccount("my_juuwle", MemberPage.IDENTIFIER));
+    menuItems.add(menuItemManageAccount(appId, "my_juuwle", MemberPage.IDENTIFIER));
     menuItems.add(MenuItemModel(
         documentID: 'orders',
         text: 'Your orders',
         description: 'Your orders',
         icon: IconModel(codePoint: 0xe896, fontFamily: 'MaterialIcons'),
-        action: GotoPage(pageID: OrderOverview.identifier)));
-    menuItems.add(menuItemSignOut('sign_out'));
+        action: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: OrderOverview.identifier)));
+    menuItems.add(menuItemSignOut(appId, 'sign_out'));
     var menu = MenuDefModel(
         documentID: 'drawer_profile_menu',
         appId: JUUWLE_APP_ID,
@@ -78,9 +78,9 @@ class JuuwleApp extends InstallApp {
   @override
   MenuDefModel homeMenuDef() {
     var menuItems = <MenuItemModel>[];
-    menuItems.add(menuItemWelcome("1", Welcome.identifier, "Welcome"));
-    menuItems.add(menuItemShoppingBag("2", Shop.identifier, "Shop"));
-    menuItems.add(menuItemAbout("4", AboutBase.identifier, "About"));
+    menuItems.add(menuItemWelcome(appId, "1", Welcome.identifier, "Welcome"));
+    menuItems.add(menuItemShoppingBag(appId, "2", Shop.identifier, "Shop"));
+    menuItems.add(menuItemAbout(appId, "4", AboutBase.identifier, "About"));
     var menu = MenuDefModel(
         documentID: 'main',
         appId: JUUWLE_APP_ID,
@@ -276,6 +276,6 @@ class JuuwleApp extends InstallApp {
         text: 'Your bag',
         description: 'Your bag',
         icon: IconModel(codePoint: Icons.shopping_basket.codePoint, fontFamily: Icons.shopping_basket.fontFamily),
-        action: GotoPage(pageID: MyCart.identifier))
+        action: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier))
   ];
 }

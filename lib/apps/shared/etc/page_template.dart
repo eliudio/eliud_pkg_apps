@@ -42,7 +42,7 @@ abstract class PageTemplate extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository()
+        .pageRepository(installApp.appId)
         .add(_page(appBar));
   }
 
@@ -85,7 +85,7 @@ abstract class PageTemplate extends AppSection {
   }
 
   Future<void> _setupPresentation() async {
-    await AbstractRepositorySingleton.singleton.presentationRepository().add(_presentation());
+    await AbstractRepositorySingleton.singleton.presentationRepository(installApp.appId).add(_presentation());
   }
 
   Future<void> _setupCartImage() async {

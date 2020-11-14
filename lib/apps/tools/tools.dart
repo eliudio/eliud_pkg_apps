@@ -43,9 +43,9 @@ class Tools {
     } else {
       await ImageTools.createThumbnail(model, name, image);
       var val = await AbstractMainRepositorySingleton.singleton
-          .imageRepository().add(model);
+          .imageRepository(appId).add(model);
       var img = await AbstractMainRepositorySingleton.singleton
-          .imageRepository().get(documentID);
+          .imageRepository(appId).get(documentID);
       _images[documentID] = img;
       return img;
     }
@@ -90,7 +90,7 @@ class Tools {
       layout: PageLayout.OnlyTheFirstComponent,
       conditional: PageCondition.Always,
     );
-    return await AbstractRepositorySingleton.singleton.pageRepository().add(page);
+    return await AbstractRepositorySingleton.singleton.pageRepository(appId).add(page);
   }
 
 }

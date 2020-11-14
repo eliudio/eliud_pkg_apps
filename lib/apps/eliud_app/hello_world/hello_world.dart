@@ -42,27 +42,27 @@ class HelloWorld extends AppSection {
       links.add(LinkModel(
           documentID: "1.1",
           linkText: "1.1. Create Google Account",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_GOOGLE_ACCOUNT)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_GOOGLE_ACCOUNT)
       ));
       links.add(LinkModel(
           documentID: "1.2",
           linkText: "1.2. Create Firebase Project",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_FIREBASE_PROJECT)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_FIREBASE_PROJECT)
       ));
       links.add(LinkModel(
           documentID: "1.3",
           linkText: "1.3. Setup Database",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_DATABASE)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_DATABASE)
       ));
       links.add(LinkModel(
           documentID: "1.4",
           linkText: "1.4. Setup Storage",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_STORAGE)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_STORAGE)
       ));
       links.add(LinkModel(
           documentID: "1.5",
           linkText: "1.5. Setup Authentication",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_AUTHENTICATION)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_AUTHENTICATION)
       ));
 
       entries.add(SectionModel(
@@ -88,12 +88,12 @@ class HelloWorld extends AppSection {
       links.add(LinkModel(
           documentID: "2.1.1",
           linkText: "2.1.1. Create Visual Studio Flutter project for Android App",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_FLUTTER_PROJECT)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_FLUTTER_PROJECT)
       ));
       links.add(LinkModel(
           documentID: "2.1.2",
           linkText: "2.1.2 Create Firebase Android App",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_ANDROID_APP)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_ANDROID_APP)
       ));
       entries.add(SectionModel(
           documentID: "2.1",
@@ -108,12 +108,12 @@ class HelloWorld extends AppSection {
       links.add(LinkModel(
           documentID: "2.2.1",
           linkText: "2.2.1. Create Visual Studio Flutter project for iPhone App",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_FLUTTER_PROJECT)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_FLUTTER_PROJECT)
       ));
       links.add(LinkModel(
           documentID: "2.2.2",
           linkText: "2.2.2 Create Firebase iPhone App",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_ANDROID_APP)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_ANDROID_APP)
       ));
       entries.add(SectionModel(
           documentID: "2.2",
@@ -128,17 +128,17 @@ class HelloWorld extends AppSection {
       links.add(LinkModel(
           documentID: "2.3.1",
           linkText: "2.3.1 Create Firebase Web App",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_WEB_APP)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_WEB_APP)
       ));
       links.add(LinkModel(
           documentID: "2.3.2",
           linkText: "2.3.2. Create Visual Studio Flutter project for Web App",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_FLUTTER_WEBPROJECT)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_FLUTTER_WEBPROJECT)
       ));
       links.add(LinkModel(
           documentID: "2.3.3",
           linkText: "2.3.3 Deploy your Web App",
-          action: GotoPage(pageID: HelloWorldPages.DEPLOY_WEB_APP)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.DEPLOY_WEB_APP)
       ));
       entries.add(SectionModel(
           documentID: "2.3",
@@ -153,22 +153,22 @@ class HelloWorld extends AppSection {
       links.add(LinkModel(
           documentID: "3.1",
           linkText: "3.1 Add a page",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_ANDROID_APP)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_ANDROID_APP)
       ));
       links.add(LinkModel(
           documentID: "3.2",
           linkText: "3.2 Add a drawer",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_ANDROID_APP)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_ANDROID_APP)
       ));
       links.add(LinkModel(
           documentID: "3.3",
           linkText: "3.3 Add a home menu",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_ANDROID_APP)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_ANDROID_APP)
       ));
       links.add(LinkModel(
           documentID: "3.4",
           linkText: "3.4 Add an app bar",
-          action: GotoPage(pageID: HelloWorldPages.CREATE_ANDROID_APP)
+          action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_ANDROID_APP)
       ));
       entries.add(SectionModel(
           documentID: "3",
@@ -188,7 +188,7 @@ class HelloWorld extends AppSection {
   }
 
   Future<void> _storeHelloWorldDocument() {
-    return AbstractRepositorySingleton.singleton.bookletRepository().add(_helloWorldDocument());
+    return AbstractRepositorySingleton.singleton.bookletRepository(EliudApp.ELIUD_APP_ID).add(_helloWorldDocument());
   }
 
   static String IDENTIFIER = "hello_world";
@@ -213,7 +213,7 @@ class HelloWorld extends AppSection {
   }
 
   Future<void> _storeHelloWorldPage(AppBarModel appBar) {
-    return corerepo.AbstractRepositorySingleton.singleton.pageRepository().add(helloWorldPage(appBar));
+    return corerepo.AbstractRepositorySingleton.singleton.pageRepository(EliudApp.ELIUD_APP_ID).add(helloWorldPage(appBar));
   }
 
   Future<void> store(AppBarModel appBar) async {

@@ -129,53 +129,53 @@ class FontTools {
     return fontModel;
   }
 
-  Future<void> _installHeaderFontsFor(int fontIndex) async {
+  Future<void> _installHeaderFontsFor(String appID, int fontIndex) async {
     for (int i = 0; i < _weights.length; i++) {
       await AbstractRepositorySingleton.singleton
-          .fontRepository()
+          .fontRepository(appID)
           .add(_getHeaderFont(fontIndex, i));
     }
   }
 
-  Future<void> _installNormalFontFor(int fontIndex) async {
+  Future<void> _installNormalFontFor(String appID, int fontIndex) async {
     for (int i = 0; i < _weights.length; i++) {
       await AbstractRepositorySingleton.singleton
-          .fontRepository()
+          .fontRepository(appID)
           .add(_getNormalFont(fontIndex));
     }
   }
 
-  Future<void> _installHighlightFont1For(int fontIndex) async {
+  Future<void> _installHighlightFont1For(String appID, int fontIndex) async {
     for (int i = 0; i < _weights.length; i++) {
       await AbstractRepositorySingleton.singleton
-          .fontRepository()
+          .fontRepository(appID)
           .add(_getHightlightFont1(fontIndex));
     }
   }
 
-  Future<void> _installHighlightFont2For(int fontIndex) async {
+  Future<void> _installHighlightFont2For(String appID, int fontIndex) async {
     for (int i = 0; i < _weights.length; i++) {
       await AbstractRepositorySingleton.singleton
-          .fontRepository()
+          .fontRepository(appID)
           .add(_getHightlightFont2(fontIndex));
     }
   }
 
-  Future<void> _installLinkFontFor(int fontIndex) async {
+  Future<void> _installLinkFontFor(String appID, int fontIndex) async {
     for (int i = 0; i < _weights.length; i++) {
       await AbstractRepositorySingleton.singleton
-          .fontRepository()
+          .fontRepository(appID)
           .add(_getLinkFont(fontIndex));
     }
   }
 
-  Future<void> installFonts() async {
+  Future<void> installFonts(String appID) async {
     for (int i = 0; i < fontNames.length; i++) {
-      await _installHeaderFontsFor(i);
-      await _installNormalFontFor(i);
-      await _installHighlightFont1For(i);
-      await _installHighlightFont2For(i);
-      await _installLinkFontFor(i);
+      await _installHeaderFontsFor(appID, i);
+      await _installNormalFontFor(appID, i);
+      await _installHighlightFont1For(appID, i);
+      await _installHighlightFont2For(appID, i);
+      await _installLinkFontFor(appID, i);
     }
   }
 

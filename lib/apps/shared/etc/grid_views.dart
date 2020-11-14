@@ -52,11 +52,11 @@ class GridViews {
   String _toString(GridViewScrollDirection scrollDirection) => scrollDirection == GridViewScrollDirection.Vertical ? "Vertical" : "Horizontal";
 
   Future<void> run(String appId) async {
-    await AbstractRepositorySingleton.singleton.gridViewRepository().add(_gridView1(1, appId, GridViewScrollDirection.Vertical));
-    await AbstractRepositorySingleton.singleton.gridViewRepository().add(_gridView2(2, appId, GridViewScrollDirection.Vertical));
-    await AbstractRepositorySingleton.singleton.gridViewRepository().add(_gridView3(3, appId, GridViewScrollDirection.Vertical));
-    await AbstractRepositorySingleton.singleton.gridViewRepository().add(_gridView1(4, appId, GridViewScrollDirection.Horizontal));
-    await AbstractRepositorySingleton.singleton.gridViewRepository().add(_gridView2(5, appId, GridViewScrollDirection.Horizontal));
-    await AbstractRepositorySingleton.singleton.gridViewRepository().add(_gridView3(6, appId, GridViewScrollDirection.Horizontal));
+    await AbstractRepositorySingleton.singleton.gridViewRepository(appId).add(_gridView1(1, appId, GridViewScrollDirection.Vertical));
+    await AbstractRepositorySingleton.singleton.gridViewRepository(appId).add(_gridView2(2, appId, GridViewScrollDirection.Vertical));
+    await AbstractRepositorySingleton.singleton.gridViewRepository(appId).add(_gridView3(3, appId, GridViewScrollDirection.Vertical));
+    await AbstractRepositorySingleton.singleton.gridViewRepository(appId).add(_gridView1(4, appId, GridViewScrollDirection.Horizontal));
+    await AbstractRepositorySingleton.singleton.gridViewRepository(appId).add(_gridView2(5, appId, GridViewScrollDirection.Horizontal));
+    await AbstractRepositorySingleton.singleton.gridViewRepository(appId).add(_gridView3(6, appId, GridViewScrollDirection.Horizontal));
   }
 }

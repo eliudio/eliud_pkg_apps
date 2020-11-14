@@ -34,7 +34,7 @@ abstract class AdminBase extends AppSection {
         text: menu.name,
         description: menu.name,
         icon: IconModel(codePoint: Icons.fiber_manual_record.codePoint, fontFamily: Icons.settings.fontFamily),
-        action: PopupMenu(menuDef: menu));
+        action: PopupMenu(installApp.appId, menuDef: menu));
   }
 
   MenuItemModel _mapIt(MenuDefModel menu) {
@@ -55,7 +55,7 @@ abstract class AdminBase extends AppSection {
         name: "Admin Sub Menu",
         menuItems: menuItems);
 
-    return await AbstractRepositorySingleton.singleton.menuDefRepository().add(menu);
+    return await AbstractRepositorySingleton.singleton.menuDefRepository(installApp.appId).add(menu);
   }
 
   /*

@@ -10,6 +10,7 @@ import 'package:eliud_pkg_shop/model/order_overview_component.dart';
 
 import '../../app_base.dart';
 import '../../shared/etc/page_template.dart';
+import '../juuwle_app.dart';
 
 class OrderOverview extends PageTemplate {
   final BackgroundModel background;
@@ -67,6 +68,6 @@ class OrderOverview extends PageTemplate {
 
   @override
   Future<void> setupComponent() async {
-    await AbstractRepositorySingleton.singleton.orderOverviewRepository().add(_orderOverview());
+    await AbstractRepositorySingleton.singleton.orderOverviewRepository(JuuwleApp.JUUWLE_APP_ID).add(_orderOverview());
   }
 }

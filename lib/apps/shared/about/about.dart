@@ -39,7 +39,7 @@ abstract class AboutBase extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository()
+        .pageRepository(installApp.appId)
         .add(_page(appBar));
   }
 
@@ -71,7 +71,7 @@ abstract class AboutBase extends AppSection {
 
   Future<void> _store() async {
     return await AbstractRepositorySingleton.singleton
-        .bookletRepository()
+        .bookletRepository(installApp.appId)
         .add(_header());
   }
 

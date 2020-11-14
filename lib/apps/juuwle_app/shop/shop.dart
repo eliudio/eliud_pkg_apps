@@ -43,7 +43,7 @@ class Shop extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository()
+        .pageRepository(JuuwleApp.JUUWLE_APP_ID)
         .add(_page(appBar));
   }
 
@@ -78,7 +78,7 @@ class Shop extends AppSection {
 
   Future<void> _setupFader() async {
     return await AbstractRepositorySingleton.singleton
-        .faderRepository()
+        .faderRepository(JuuwleApp.JUUWLE_APP_ID)
         .add(_fader());
   }
 
@@ -103,7 +103,7 @@ class Shop extends AppSection {
   }
 
   Future<ShopModel> _setupShop() async {
-    return await shoprepo.AbstractRepositorySingleton.singleton.shopRepository().add(_shop());
+    return await shoprepo.AbstractRepositorySingleton.singleton.shopRepository(JuuwleApp.JUUWLE_APP_ID).add(_shop());
   }
 
   ShopModel _shop() {
@@ -128,7 +128,7 @@ class Shop extends AppSection {
       addToCartColor: EliudColors.red,
       itemCardBackground: cardBG(installApp.appId),
       itemDetailBackground: installApp.pageBG(),
-      buyAction: GotoPage(pageID: MyCart.identifier),
+      buyAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier),
       view: ShopFrontView.Slider,
       addToBasketText: 'Add to basket',
       size: 250,
@@ -150,7 +150,7 @@ class Shop extends AppSection {
       addToCartColor: EliudColors.red,
       itemCardBackground: cardBG(installApp.appId),
       itemDetailBackground: installApp.pageBG(),
-      buyAction: GotoPage(pageID: MyCart.identifier),
+      buyAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier),
       view: ShopFrontView.Grid,
       addToBasketText: 'Add to basket',
       size: 250,
@@ -161,8 +161,8 @@ class Shop extends AppSection {
   }
 
   Future<void> _setupShopFronts() async {
-    await shoprepo.AbstractRepositorySingleton.singleton.shopFrontRepository().add(_shopFront1());
-    await shoprepo.AbstractRepositorySingleton.singleton.shopFrontRepository().add(_shopFront2());
+    await shoprepo.AbstractRepositorySingleton.singleton.shopFrontRepository(JuuwleApp.JUUWLE_APP_ID).add(_shopFront1());
+    await shoprepo.AbstractRepositorySingleton.singleton.shopFrontRepository(JuuwleApp.JUUWLE_APP_ID).add(_shopFront2());
   }
 
   static BackgroundModel cardBG(String appId) {
@@ -192,7 +192,7 @@ class Shop extends AppSection {
   static String itemBackground = 'card_bg';
 
   Future<void> _setupCardBG() async {
-    await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository().add(cardBG(installApp.appId));
+    await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository(JuuwleApp.JUUWLE_APP_ID).add(cardBG(installApp.appId));
   }
 
   PresentationModel _presentation() {
@@ -211,7 +211,7 @@ class Shop extends AppSection {
   }
 
   Future<void> _setupPresentation() async {
-    await AbstractRepositorySingleton.singleton.presentationRepository().add(_presentation());
+    await AbstractRepositorySingleton.singleton.presentationRepository(JuuwleApp.JUUWLE_APP_ID).add(_presentation());
   }
 
   static String appBarIdentifier = 'store';

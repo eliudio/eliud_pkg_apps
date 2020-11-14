@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/model/decoration_color_model.dart';
@@ -30,7 +31,7 @@ class PlayStore extends AppSection {
   static String IDENTIFIER = "playstore";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository().add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp.appId).add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
@@ -58,7 +59,7 @@ class PlayStore extends AppSection {
   }
 
   Future<void> _setupFader() async {
-    return await AbstractRepositorySingleton.singleton.faderRepository().add(_fader());
+    return await AbstractRepositorySingleton.singleton.faderRepository(installApp.appId).add(_fader());
   }
 
   static String FADER_IDENTIFIER = IDENTIFIER;
@@ -91,7 +92,7 @@ class PlayStore extends AppSection {
   }
 
   Future<void> _setupPlayStore() async {
-    return await AbstractRepositorySingleton.singleton.playStoreRepository().add(playStore());
+    return await AbstractRepositorySingleton.singleton.playStoreRepository(installApp.appId).add(playStore());
   }
 
   BackgroundModel playStoreBG() {
@@ -122,7 +123,7 @@ class PlayStore extends AppSection {
   }
 
   Future<void> _setupPlayStoreBG() async {
-    return await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository().add(playStoreBG());
+    return await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository(installApp.appId).add(playStoreBG());
   }
 
   ShadowModel _shadowModel() {
@@ -141,7 +142,7 @@ class PlayStore extends AppSection {
   }
 
   Future<void> _setupShadows() async {
-    return await corerepo.AbstractRepositorySingleton.singleton.shadowRepository().add(_shadowModel());
+    return await corerepo.AbstractRepositorySingleton.singleton.shadowRepository(installApp.appId).add(_shadowModel());
   }
 
   // ************************ Tutorials *****************

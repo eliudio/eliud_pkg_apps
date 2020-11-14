@@ -16,6 +16,7 @@ import 'package:eliud_pkg_shop/model/shop_model.dart';
 import 'package:eliud_core/tools/action_model.dart';
 
 import '../../../shared/etc/page_template.dart';
+import '../../juuwle_app.dart';
 
 class MyCart extends PageTemplate {
   final BackgroundModel background;
@@ -33,8 +34,8 @@ class MyCart extends PageTemplate {
         shop: shop,
         itemImageBackground: null,
         itemDetailBackground: background,
-        checkoutAction: GotoPage(pageID: MyPay.identifier),
-        backToShopAction: GotoPage(pageID: Shop.identifier),
+        checkoutAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyPay.identifier),
+        backToShopAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: Shop.identifier),
     );
   }
 
@@ -79,6 +80,6 @@ class MyCart extends PageTemplate {
   @override
   Future<void> setupComponent() async {
     await AbstractRepositorySingleton.singleton.
-    cartRepository().add(_cart());
+    cartRepository(JuuwleApp.JUUWLE_APP_ID).add(_cart());
   }
 }

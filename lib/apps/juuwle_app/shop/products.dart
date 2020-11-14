@@ -185,7 +185,7 @@ class Products {
       Product p = theProducts[i];
       await newAppTools.getImgModel(name: p.imageId1(), appId: JuuwleApp.JUUWLE_APP_ID, url: p.url1);
       await newAppTools.getImgModel(name: p.imageId2(), appId: JuuwleApp.JUUWLE_APP_ID, url: p.url2);
-      await AbstractRepositorySingleton.singleton.productRepository().add(product(p));
+      await AbstractRepositorySingleton.singleton.productRepository(JuuwleApp.JUUWLE_APP_ID).add(product(p));
     }
   }
 }

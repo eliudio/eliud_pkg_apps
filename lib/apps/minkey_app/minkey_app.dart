@@ -1,5 +1,6 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/tools/admin_app_base.dart';
+import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/image_model.dart';
@@ -54,10 +55,10 @@ class MinkeyApp extends InstallApp {
         text: "Other apps",
         description: "Other apps",
         action:
-            InternalAction(internalActionEnum: InternalActionEnum.OtherApps)));
-    menuItems.add(menuItemSignOut("2"));
-    menuItems.add(menuItemFlushCache("3"));
-    menuItems.add(menuItemManageAccount("4", MemberPage.IDENTIFIER));
+            InternalAction(appId, internalActionEnum: InternalActionEnum.OtherApps)));
+    menuItems.add(menuItemSignOut(appId, "2"));
+    menuItems.add(menuItemFlushCache(appId, "3"));
+    menuItems.add(menuItemManageAccount(appId, "4", MemberPage.IDENTIFIER));
     MenuDefModel menu = MenuDefModel(
         documentID: "drawer_profile_menu",
         appId: MINKEY_APP_ID,
@@ -74,9 +75,9 @@ class MinkeyApp extends InstallApp {
   @override
   MenuDefModel homeMenuDef() {
     List<MenuItemModel> menuItems = List<MenuItemModel>();
-    menuItems.add(menuItem("1", PlayStore.IDENTIFIER, "Apps", Icons.power_settings_new));
-    menuItems.add(menuItemWelcome("2", Welcome.IDENTIFIER, "Welcome"));
-    menuItems.add(menuItemAbout("3", AboutBase.identifier, "About"));
+    menuItems.add(menuItem(appId, "1", PlayStore.IDENTIFIER, "Apps", Icons.power_settings_new));
+    menuItems.add(menuItemWelcome(appId, "2", Welcome.IDENTIFIER, "Welcome"));
+    menuItems.add(menuItemAbout(appId, "3", AboutBase.identifier, "About"));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
         appId: MINKEY_APP_ID,

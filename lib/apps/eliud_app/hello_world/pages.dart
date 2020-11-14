@@ -75,7 +75,7 @@ flutter:
   static String CREATE_FLUTTER_PROJECT = "create-flutter-project";
 
   Future<PageModel> _setupCreateFlutterProject() async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository().add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_FLUTTER_PROJECT,
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_FLUTTER_PROJECT,
         "Create Flutter Project", "Create Flutter Project", "Follow the below steps to create your first flutter project.",
         [ "create-flutter-project1", "create-flutter-project2", "create-flutter-project3", "create-flutter-project4", null, null, null ],
         [ null, null, null, null, _createFlutterCode, _pubSpecYamlCode, null, ],
@@ -96,7 +96,7 @@ flutter:
   static String CREATE_GOOGLE_ACCOUNT = "create-google-account";
 
   Future<PageModel> _setupCreateGoogleAccount() async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository().add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_GOOGLE_ACCOUNT,
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_GOOGLE_ACCOUNT,
         "Create Google Account", "Create Google Account", "Follow the below steps to create a google account.",
         [ "create-google-account1", "create-google-account3", "create-google-account2", "create-google-account4", "create-google-account5", ],
         [ null, null, null, null, null, ],
@@ -115,7 +115,7 @@ flutter:
   static String CREATE_FIREBASE_PROJECT = "create-firebase-project";
 
   Future<PageModel> _setupCreateFirebaseProject() async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository().add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_FIREBASE_PROJECT,
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_FIREBASE_PROJECT,
         "Create Firebase Project",
         "Firebase Project", "Follow the below steps to create a Firebase Project.",
     [ "create-firebase-project1", "create-firebase-project2", "create-firebase-project3", "create-firebase-project4", "create-firebase-project5", "create-firebase-project6", ],
@@ -135,7 +135,7 @@ flutter:
   static String CREATE_ANDROID_APP = "create-android-app";
 
   Future<PageModel> _setupCreateFirebaseAndroidApp() async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository().add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_ANDROID_APP, "Create Android App",
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_ANDROID_APP, "Create Android App",
         "Create Firebase Android App", "Follow the below steps to create an Android App.",
     [ "create-android-app1", "firebase-home", "create-android-app2", "create-android-app4", "create-android-app3", "create-android-app5", "create-android-app6", "create-android-app7", ],
     [ null, null, null, null, null, null, null, null, ],
@@ -156,7 +156,7 @@ flutter:
   static String CREATE_DATABASE = "create-database";
 
   Future<PageModel> _setupCreateFirebaseDatabase() async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository().add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_DATABASE, "Create Database",
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_DATABASE, "Create Database",
         "Create Database", "Follow the below steps to create the firebase database.",
     [ "firebase-home", "create-database1", "create-database2", "create-database3"],
     [null, null, null, null], [
@@ -172,7 +172,7 @@ flutter:
   static String CREATE_STORAGE = "create-storage";
 
   Future<PageModel> _setupCreateFirebaseStorage() async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository().add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_STORAGE, "Create Storage",
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_STORAGE, "Create Storage",
         "Create Storage", "Follow the below steps to create the storage.",
     [ "firebase-home", "create-storage1", "create-storage2", "create-storage3", "create-storage4" ],
     [ null, null, null, null, null],
@@ -190,7 +190,7 @@ flutter:
   static String CREATE_AUTHENTICATION = "create-authentication";
 
   Future<PageModel> _setupFirebaseAuthentication() async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository().add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_AUTHENTICATION, "Setup Authentication",
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_AUTHENTICATION, "Setup Authentication",
         "Setup Authentication", "Follow the below steps to setup authentication.",
     [ "firebase-home", "create-authentication1", "create-authentication2"],
     [ null, null, null],
@@ -306,7 +306,7 @@ This will create a google api console project and client ID. We will need this i
   static String CREATE_FLUTTER_WEBPROJECT = "create-flutter-webproject";
 
   Future<PageModel> _setupCreateFlutterWebProject() async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository().add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_FLUTTER_WEBPROJECT,
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_FLUTTER_WEBPROJECT,
         "Create Flutter Web Project", "Create Flutter Web Project", "Follow the below steps to create your first flutter project.",
         // We can reuse the flutter-project images
         [ "create-flutter-project1", "create-flutter-project2", "create-flutter-webproject3", "create-flutter-project4", null, null, null, null, null, null],
@@ -332,7 +332,7 @@ This will create a google api console project and client ID. We will need this i
 
   // todo: this is wrong, this is android explain, not web explain
   Future<PageModel> _setupCreateFirebaseWebApp() async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository().add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_WEB_APP, "Create Web App",
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, CREATE_WEB_APP, "Create Web App",
         "Create Firebase WebApp", "Follow the below steps to create a Web App.",
         // Here we can reuse the android images
         [ "firebase-home", "create-webapp2", null ],
@@ -382,7 +382,7 @@ Basically:
   static String DEPLOY_WEB_APP = "deploy-web-app";
 
   Future<PageModel> _setupDeployWebApp() async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository().add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, DEPLOY_WEB_APP, "Deploy Web App",
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(newAppTools.constructTutorialModel(EliudApp.ELIUD_APP_ID, DEPLOY_WEB_APP, "Deploy Web App",
         "Deploy the WebApp", "Follow the below steps to deploy your Web App.",
         // images
         [ null, "deploy-webapp1", null, null, null ],
