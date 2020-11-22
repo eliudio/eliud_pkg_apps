@@ -500,11 +500,12 @@ abstract class InstallApp {
         .userRepository()
         .signInWithGoogle();
     var installedApp = await claimOwnerShipApplication(appId, usr.uid);
+
+
     GlobalData.init(
-        LoggedInWithoutMembership(usr: usr, member: null, app: installedApp, details: null, postLoginAction: null));
+        LoggedInWithoutMembership(usr: usr, member: null, app: installedApp, postLoginAction: null));
     await run(usr.uid);
-    // ignore: prefer_single_quotes
-    print("Installed $appId successfully");
+    print('Installed $appId successfully');
   }
 
   String appBarMenuIdentifier = 'appbar_menu';
