@@ -501,9 +501,10 @@ abstract class InstallApp {
         .signInWithGoogle();
     var installedApp = await claimOwnerShipApplication(appId, usr.uid);
 
-
+/*
     GlobalData.init(
         LoggedInWithoutMembership(usr: usr, member: null, app: installedApp, postLoginAction: null));
+*/
     await run(usr.uid);
     print('Installed $appId successfully');
   }
