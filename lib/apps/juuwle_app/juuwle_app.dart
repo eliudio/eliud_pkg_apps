@@ -1,5 +1,6 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/tools/admin_app_base.dart';
+import 'package:eliud_pkg_apps/apps/juuwle_app/shop/product_page.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/model/admin_app.dart' as shop;
@@ -223,6 +224,16 @@ class JuuwleApp extends InstallApp {
         .run();
     await MyPayConfirmation(
         background: Shop.cardBG(appId),
+        shop: shop,
+        installApp: this,
+        newAppTools: newAppTools,
+        homeMenu: homeMenu(),
+        pageBG: pageBG(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+        adminMenu: adminMenu)
+        .run();
+    await ProductPage(
         shop: shop,
         installApp: this,
         newAppTools: newAppTools,

@@ -26,6 +26,7 @@ import 'package:eliud_pkg_shop/model/shop_front_component.dart';
 import '../../app_section.dart';
 import '../../app_base.dart';
 import 'process/cart.dart';
+import 'product_page.dart';
 
 class Shop extends AppSection {
   Shop(
@@ -127,10 +128,9 @@ class Shop extends AppSection {
       shop: _shop(),
       addToCartColor: EliudColors.red,
       itemCardBackground: cardBG(installApp.appId),
-      itemDetailBackground: installApp.pageBG(),
       buyAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier),
       view: ShopFrontView.Slider,
-      addToBasketText: 'Add to basket',
+      openProductAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: ProductPage.identifier),
       size: 250,
       cardElevation: 10,
       cardAxisSpacing: 20,
@@ -149,10 +149,9 @@ class Shop extends AppSection {
       shop: _shop(),
       addToCartColor: EliudColors.red,
       itemCardBackground: cardBG(installApp.appId),
-      itemDetailBackground: installApp.pageBG(),
       buyAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier),
       view: ShopFrontView.Grid,
-      addToBasketText: 'Add to basket',
+      openProductAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: ProductPage.identifier),
       size: 250,
       cardElevation: 10,
       cardAxisSpacing: 20,

@@ -17,6 +17,7 @@ import 'package:eliud_core/tools/action_model.dart';
 
 import '../../../shared/etc/page_template.dart';
 import '../../juuwle_app.dart';
+import '../product_page.dart';
 
 class MyCart extends PageTemplate {
   final BackgroundModel background;
@@ -36,6 +37,7 @@ class MyCart extends PageTemplate {
         itemDetailBackground: background,
         checkoutAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyPay.identifier),
         backToShopAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: Shop.identifier),
+        openProductAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: ProductPage.identifier),
     );
   }
 
