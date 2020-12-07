@@ -171,15 +171,6 @@ class MinkeyApp extends InstallApp {
     var member = await AbstractMainRepositorySingleton.singleton
         .memberRepository()
         .get(ownerID);
-    await Feed(
-            installApp: this,
-            newAppTools: newAppTools,
-            homeMenu: homeMenu(),
-            pageBG: pageBG(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            adminMenu: adminMenu)
-        .run(member);
     await About(
             installApp: this,
             newAppTools: newAppTools,
@@ -198,7 +189,7 @@ class MinkeyApp extends InstallApp {
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
-    return await PlayStore(
+    await PlayStore(
             installApp: this,
             newAppTools: newAppTools,
             homeMenu: homeMenu(),
@@ -207,6 +198,15 @@ class MinkeyApp extends InstallApp {
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
+    return await Feed(
+        installApp: this,
+        newAppTools: newAppTools,
+        homeMenu: homeMenu(),
+        pageBG: pageBG(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+        adminMenu: adminMenu)
+        .run(member);
   }
 
   Future<void> run(String ownerID) async {
