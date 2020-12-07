@@ -52,6 +52,13 @@ menuItemAbout(appID, documentID, pageID, text) => MenuItemModel(
     icon: IconModel(codePoint: Icons.info.codePoint, fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID, pageID: pageID));
 
+menuItemFeed(appID, documentID, pageID, text) => MenuItemModel(
+    documentID: documentID,
+    text: text,
+    description: text,
+    icon: IconModel(codePoint: Icons.group.codePoint, fontFamily: Icons.settings.fontFamily),
+    action: GotoPage(appID, pageID: pageID));
+
 menuItemWelcome(appID, documentID, pageID, text) => MenuItemModel(
     documentID: documentID,
     text: text,

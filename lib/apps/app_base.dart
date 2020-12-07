@@ -1,3 +1,4 @@
+import 'package:eliud_core/core/access/bloc/access_bloc.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
@@ -31,7 +32,7 @@ abstract class InstallApp {
 
   Future<void> setupApplication(
       PageModel homePage, String ownerID, ImageModel logo);
-  Future<PageModel> runTheRest(
+  Future<PageModel> runTheRest(String ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu);
   Future<PageModel> memberPage(
       MenuDefModel adminMenu, DrawerModel drawer, DrawerModel endDrawer);
@@ -491,7 +492,7 @@ abstract class InstallApp {
     await setupShadows();
     await setupDecorationColorModel(theLogo);
     await setupDividers();
-    var homePage = await runTheRest(drawer, endDrawer, adminMenu);
+    var homePage = await runTheRest(ownerID, drawer, endDrawer, adminMenu);
     await setupApplication(homePage, ownerID, theLogoHead);
   }
 
@@ -500,13 +501,13 @@ abstract class InstallApp {
         .userRepository()
         .signInWithGoogle();
     var installedApp = await claimOwnerShipApplication(appId, usr.uid);
-
-/*
-    GlobalData.init(
-        LoggedInWithoutMembership(usr: usr, member: null, app: installedApp, postLoginAction: null));
-*/
-    await run(usr.uid);
-    print('Installed $appId successfully');
+    var member = await AccessBloc.firebaseToMemberModel(usr);
+    if (member == null) {
+      print('Can not register $appId because member cannot be created');
+    } else {
+      await run(usr.uid);
+      print('Installed $appId successfully');
+    }
   }
 
   String appBarMenuIdentifier = 'appbar_menu';

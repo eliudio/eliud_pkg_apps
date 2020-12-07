@@ -1,8 +1,6 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/tools/admin_app_base.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
-import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/image_model.dart';
 import 'package:eliud_core/tools/action_model.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
@@ -25,6 +23,7 @@ import 'package:flutter/material.dart';
 import '../app_base.dart';
 import 'about/about.dart';
 import 'admin/admin.dart';
+import 'feed/feed.dart';
 
 /* This code cleans the database and generates the minkey app, which includes the admin pages
  */
@@ -54,8 +53,8 @@ class MinkeyApp extends InstallApp {
         documentID: "1",
         text: "Other apps",
         description: "Other apps",
-        action:
-            InternalAction(appId, internalActionEnum: InternalActionEnum.OtherApps)));
+        action: InternalAction(appId,
+            internalActionEnum: InternalActionEnum.OtherApps)));
     menuItems.add(menuItemSignOut(appId, "2"));
     menuItems.add(menuItemFlushCache(appId, "3"));
     menuItems.add(menuItemManageAccount(appId, "4", MemberPage.IDENTIFIER));
@@ -69,15 +68,18 @@ class MinkeyApp extends InstallApp {
 
   @override
   MenuDefModel drawerMenuDef() {
-    return homeMenuDef().copyWith(documentID: "drawer_menu", name: "Drawer Menu (copy of main menu)");
+    return homeMenuDef().copyWith(
+        documentID: "drawer_menu", name: "Drawer Menu (copy of main menu)");
   }
 
   @override
   MenuDefModel homeMenuDef() {
     List<MenuItemModel> menuItems = List<MenuItemModel>();
-    menuItems.add(menuItem(appId, "1", PlayStore.IDENTIFIER, "Apps", Icons.power_settings_new));
-    menuItems.add(menuItemWelcome(appId, "2", Welcome.IDENTIFIER, "Welcome"));
-    menuItems.add(menuItemAbout(appId, "3", AboutBase.identifier, "About"));
+    menuItems.add(menuItemFeed(appId, "1", Feed.IDENTIFIER, "Feed"));
+    menuItems.add(menuItem(
+        appId, "2", PlayStore.IDENTIFIER, "Apps", Icons.power_settings_new));
+    menuItems.add(menuItemWelcome(appId, "3", Welcome.IDENTIFIER, "Welcome"));
+    menuItems.add(menuItemAbout(appId, "4", AboutBase.identifier, "About"));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
         appId: MINKEY_APP_ID,
@@ -85,30 +87,6 @@ class MinkeyApp extends InstallApp {
         menuItems: menuItems);
     return menu;
   }
-
-/*
-  @override
-  MenuDefModel iconMenuDef(MenuDefModel _adminMenu) {
-    List<MenuItemModel> menuItems = List<MenuItemModel>();
-    menuItems.add(MenuItemModel(
-        documentID: "2",
-        text: "Admin",
-        description: "Admin Stuff",
-        icon: IconModel(codePoint: 0xe5d4, fontFamily: "MaterialIcons"),
-        action: PopupMenu(menuDef: _adminMenu)));
-    menuItems.add(MenuItemModel(
-        documentID: "1",
-        text: "Document 1",
-        description: "Document 1",
-        icon: IconModel(codePoint: 0xe879, fontFamily: "MaterialIcons"),
-        action: InternalAction(internalActionEnum: InternalActionEnum.Login)));
-    return MenuDefModel(
-        documentID: "ICON_MENU_1",
-        appId: MINKEY_APP_ID,
-        name: "Menu Definition 1",
-        menuItems: menuItems);
-  }
-*/
 
   @override
   Future<void> setupApplication(
@@ -188,8 +166,20 @@ class MinkeyApp extends InstallApp {
           .run();
 
   @override
-  Future<PageModel> runTheRest(
-      DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
+  Future<PageModel> runTheRest(String ownerID, DrawerModel drawer,
+      DrawerModel endDrawer, MenuDefModel adminMenu) async {
+    var member = await AbstractMainRepositorySingleton.singleton
+        .memberRepository()
+        .get(ownerID);
+    await Feed(
+            installApp: this,
+            newAppTools: newAppTools,
+            homeMenu: homeMenu(),
+            pageBG: pageBG(),
+            drawer: drawer,
+            endDrawer: endDrawer,
+            adminMenu: adminMenu)
+        .run(member);
     await About(
             installApp: this,
             newAppTools: newAppTools,

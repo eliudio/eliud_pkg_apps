@@ -2,7 +2,6 @@ import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/product_page.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
-import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/model/admin_app.dart' as shop;
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/image_model.dart';
@@ -26,7 +25,6 @@ import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/model/app_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../app_base.dart';
@@ -169,7 +167,7 @@ class JuuwleApp extends InstallApp {
           .run();
 
   @override
-  Future<PageModel> runTheRest(
+  Future<PageModel> runTheRest(String ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
     await About(
             installApp: this,
