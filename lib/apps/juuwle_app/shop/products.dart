@@ -27,7 +27,7 @@ class Products {
         documentID: product.imageId2(),
         image: newAppTools.findImageModel(product.imageId2())));
     return new ProductModel(
-        documentID: product.title,
+        documentID: product.id,
         appId: installApp.appId,
         title: product.title,
         about: product.about,
