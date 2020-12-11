@@ -33,7 +33,7 @@ class OrderOverview extends PageTemplate {
   String pageTitle() => 'Your Orders';
 
   @override
-  String pageImageUrl() => 'https://live.staticflickr.com/65535/50014767528_4b6f07c2c9_o_d.png';
+  String pageImageUrl() => 'https://live.staticflickr.com/65535/50707523407_f582083429_o_d.png';
 
   @override
   String pageImageID() => 'cartImage';

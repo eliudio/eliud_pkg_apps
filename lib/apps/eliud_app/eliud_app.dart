@@ -221,9 +221,9 @@ class EliudApp extends InstallApp {
 
   Future<void> run(String ownerID) async {
     String urlLogo =
-        "https://live.staticflickr.com/65535/49606007538_cf3ca070b9_o.png";
+        "https://live.staticflickr.com/65535/49618794323_0ed83facd8_c_d.jpg";
     String urlLogoHead =
-        "https://live.staticflickr.com/65535/49619576767_19bec81057_o_d.png";
+        "https://live.staticflickr.com/65535/49619576767_13b2947984_w_d.jpg";
 
     return await runBase(
       ownerID: ownerID,

@@ -9,6 +9,6 @@ class WhoImages {
   WhoImages(this.newAppTools);
 
   Future<ImageModel> run() {
-    return newAppTools.getImgModel(name: "minkey", appId: MinkeyApp.MINKEY_APP_ID, url: "https://live.staticflickr.com/65535/49886057112_55cb16cb68_o_d.png");
+    return newAppTools.getImgModel(name: "minkey", appId: MinkeyApp.MINKEY_APP_ID, url: "https://live.staticflickr.com/65535/49886057112_9d82b364bf_c_d.jpg");
   }
 }

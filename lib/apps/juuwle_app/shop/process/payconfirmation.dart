@@ -36,7 +36,7 @@ class MyPayConfirmation extends PageTemplate {
   String pageTitle() => 'Success';
 
   @override
-  String pageImageUrl() => 'https://live.staticflickr.com/65535/50087844111_19d05329c7_o_d.png';
+  String pageImageUrl() => 'https://live.staticflickr.com/65535/50707454221_da890ba31b_o_d.png';
 
   @override
   String pageImageID() => 'payConfirmationImage';

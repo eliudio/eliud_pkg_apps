@@ -16,5 +16,5 @@ abstract class Founders extends AboutBase {
     return (doIt());
   }
 
-  String imageURL() => "https://live.staticflickr.com/65535/49984599212_bae71534e2_o_d.png";
+  String imageURL() => "https://live.staticflickr.com/65535/49984599212_b99c5b91c7_c_d.jpg";
 }

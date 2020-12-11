@@ -10,6 +10,6 @@ class ShopImages {
   static String shopImageId = "shopImage";
 
   Future<void> run() async {
-    await newAppTools.getImgModel(name: shopImageId, appId: JuuwleApp.JUUWLE_APP_ID, url: "https://live.staticflickr.com/65535/50015557987_5ef4cde6c0_o_d.png");
+    await newAppTools.getImgModel(name: shopImageId, appId: JuuwleApp.JUUWLE_APP_ID, url: "https://live.staticflickr.com/65535/50707513357_b5fa84d230_o_d.png");
   }
 }

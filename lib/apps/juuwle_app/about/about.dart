@@ -35,5 +35,5 @@ class About extends AboutBase {
   String aboutTitle() => "About me";
 
   @override
-  String imageURL() => "https://live.staticflickr.com/65535/50014767468_2c7891d64d_o_d.png";
+  String imageURL() => "https://live.staticflickr.com/65535/50707530622_7ddaa71d01_o_d.png";
 }

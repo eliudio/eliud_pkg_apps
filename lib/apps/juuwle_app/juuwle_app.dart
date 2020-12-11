@@ -255,9 +255,9 @@ class JuuwleApp extends InstallApp {
   @override
   Future<void> run(String ownerID) async {
     var urlLogo =
-        'https://live.staticflickr.com/65535/49956557678_154a1c9c18_o_d.png';
+        'https://live.staticflickr.com/65535/50706686648_24b5b910ba_o_d.png';
     var urlLogoHead =
-        'https://live.staticflickr.com/65535/49957341552_351cd8123c_o_d.png';
+        'https://live.staticflickr.com/65535/49957341552_f8023b32d7_w_d.jpg';
 
     return await runBase(
         ownerID: ownerID, urlLogo: urlLogo, urlLogoHead: urlLogoHead);
