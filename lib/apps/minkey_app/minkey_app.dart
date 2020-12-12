@@ -211,9 +211,9 @@ class MinkeyApp extends InstallApp {
 
   Future<void> run(String ownerID) async {
     String urlLogo =
-        "https://live.staticflickr.com/65535/49878112957_dbdb0c0c5a_c_d.jpg";
+        "https://live.staticflickr.com/65535/50708906832_0228495d4b_o_d.png";
     String urlLogoHead =
-        "https://live.staticflickr.com/65535/49891938886_216692242a_w_d.jpg";
+        "https://live.staticflickr.com/65535/50708916682_c517028b44_o_d.png";
 
     return await runBase(
         ownerID: ownerID, urlLogo: urlLogo, urlLogoHead: urlLogoHead);
