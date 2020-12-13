@@ -99,7 +99,6 @@ class Welcome extends AppSection {
       name: "Welcome fader",
       animationMilliseconds: 1000,
       imageSeconds: 5,
-      animation: FaderAnimation.Fade,
       items: items,
       appId: EliudApp.ELIUD_APP_ID,
     );

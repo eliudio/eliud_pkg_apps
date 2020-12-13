@@ -9,9 +9,9 @@ class WhoImages {
   WhoImages(this.newAppTools);
 
   Future<void> run() async {
-    await newAppTools.getImgModel(name: "iphone", appId: MinkeyApp.MINKEY_APP_ID, url: "https://live.staticflickr.com/65535/49794358181_47386fdbac_o_d.jpg");
-    await newAppTools.getImgModel(name: "tablet", appId: MinkeyApp.MINKEY_APP_ID, url: "https://live.staticflickr.com/65535/49793810848_c3cdbaffa0_o_d.jpg");
-    await newAppTools.getImgModel(name: "macbook", appId: MinkeyApp.MINKEY_APP_ID, url: "https://live.staticflickr.com/65535/49794663897_b6f6f90987_o_d.jpg");
-    await newAppTools.getImgModel(name: "android", appId: MinkeyApp.MINKEY_APP_ID, url: "https://live.staticflickr.com/65535/49794009143_00b5d358c2_o_d.jpg");
+    await newAppTools.getImgModel(name: "iphone", appId: MinkeyApp.MINKEY_APP_ID, url: "https://live.staticflickr.com/65535/50714066597_1be6432eb3_w_d.jpg");
+    await newAppTools.getImgModel(name: "tablet", appId: MinkeyApp.MINKEY_APP_ID, url: "https://live.staticflickr.com/65535/49793810848_7fd90874f7_w_d.jpg");
+    await newAppTools.getImgModel(name: "macbook", appId: MinkeyApp.MINKEY_APP_ID, url: "https://live.staticflickr.com/65535/49794663897_cba001e135_w_d.jpg");
+    await newAppTools.getImgModel(name: "android", appId: MinkeyApp.MINKEY_APP_ID, url: "https://live.staticflickr.com/65535/49794009143_bf7a5a0174_w_d.jpg");
   }
 }

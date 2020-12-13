@@ -88,7 +88,6 @@ class Welcome extends AppSection {
           name: "Welcome fader",
           animationMilliseconds: 1000,
           imageSeconds: 5,
-          animation: FaderAnimation.Slide,
           items: items,
           appId: MinkeyApp.MINKEY_APP_ID,
       );

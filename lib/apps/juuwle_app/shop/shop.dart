@@ -96,7 +96,6 @@ class Shop extends AppSection {
       name: 'Juuwle Fader',
       animationMilliseconds: 1000,
       imageSeconds: 5,
-      animation: FaderAnimation.Fade,
       items: items,
       appId: installApp.appId,
     );

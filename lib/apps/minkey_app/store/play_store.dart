@@ -75,7 +75,6 @@ class PlayStore extends AppSection {
           name: "Welcome fader",
           animationMilliseconds: 1000,
           imageSeconds: 5,
-          animation: FaderAnimation.Fade,
           items: items,
           appId: MinkeyApp.MINKEY_APP_ID,
       );
