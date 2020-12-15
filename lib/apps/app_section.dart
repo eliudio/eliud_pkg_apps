@@ -9,14 +9,22 @@ import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 
 import 'app_base.dart';
 
-class AppSection {
+// Required for dialog
+class AppSectionBase {
   final InstallApp installApp;
   final Tools newAppTools;
-  final HomeMenuModel homeMenu;
   final BackgroundModel pageBG;
+
+  AppSectionBase(this.installApp, this.newAppTools, this.pageBG);
+}
+
+// Required for page
+class AppSection extends AppSectionBase {
+  final HomeMenuModel homeMenu;
   final DrawerModel drawer;
   final DrawerModel endDrawer;
   final MenuDefModel adminMenu;
 
-  AppSection(this.installApp, this.newAppTools, this.homeMenu, this.pageBG, this.drawer, this.endDrawer, this.adminMenu);
+  AppSection(InstallApp installApp, Tools newAppTools, this.homeMenu, BackgroundModel pageBG, this.drawer, this.endDrawer, this.adminMenu):
+      super(installApp, newAppTools, pageBG);
 }

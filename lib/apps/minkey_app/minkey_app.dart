@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
+import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/image_model.dart';
@@ -24,6 +25,7 @@ import '../app_base.dart';
 import 'about/about.dart';
 import 'admin/admin.dart';
 import 'feed/feed.dart';
+import 'notifications/dashboard.dart';
 
 /* This code cleans the database and generates the minkey app, which includes the admin pages
  */
@@ -198,6 +200,12 @@ class MinkeyApp extends InstallApp {
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
+    await Dashboard(
+        installApp: this,
+        newAppTools: newAppTools,
+        pageBG: pageBG()
+        )
+        .run();
     return await Feed(
         installApp: this,
         newAppTools: newAppTools,
@@ -235,6 +243,13 @@ class MinkeyApp extends InstallApp {
   }
 
   @override
-  // no extra items
-  List<MenuItemModel> extraMenuItems() => null;
+  List<MenuItemModel> extraMenuItems() => <MenuItemModel>[
+    MenuItemModel(
+        documentID: '1',
+        text: 'Notifications',
+        description: 'Notifications',
+        icon: IconModel(codePoint: Icons.notifications.codePoint, fontFamily: Icons.notifications.fontFamily),
+        action: OpenDialog(MinkeyApp.MINKEY_APP_ID, dialogID: Dashboard.IDENTIFIER))
+  ];
+
 }
