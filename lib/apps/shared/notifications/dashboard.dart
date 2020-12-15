@@ -15,12 +15,11 @@ import 'package:eliud_pkg_notifications/model/dashboard_component.dart';
 import 'package:eliud_pkg_notifications/model/dashboard_model.dart';
 import 'package:eliud_pkg_notifications/notifications_package.dart';
 
-import '../../app_section.dart';
 import '../../app_base.dart';
-import 'example_notifications.dart';
+import '../../app_section.dart';
 
 class Dashboard extends AppSectionBase {
-  Dashboard({InstallApp installApp, Tools newAppTools, BackgroundModel pageBG}) :
+  Dashboard(InstallApp installApp, Tools newAppTools, BackgroundModel pageBG) :
         super(installApp, newAppTools, pageBG);
 
   static String IDENTIFIER = "dashboard";
@@ -37,7 +36,7 @@ class Dashboard extends AppSectionBase {
     return DialogModel(
         documentID: IDENTIFIER,
         appId: MinkeyApp.MINKEY_APP_ID,
-        title: "Feed",
+        title: "Notifications",
         background: pageBG,
         layout: DialogLayout.ListView,
         conditional: DialogCondition.PackageDecides,
@@ -54,7 +53,6 @@ class Dashboard extends AppSectionBase {
   }
 
   Future<DialogModel> run() async {
-    await ExampleNotifications(newAppTools).run();
     await _setupDashboard();
     return await _setupDialog();
   }
