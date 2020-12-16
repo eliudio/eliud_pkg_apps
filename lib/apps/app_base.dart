@@ -345,10 +345,10 @@ abstract class InstallApp {
   BackgroundModel dialogBG() {
     var decorationColorModels = <DecorationColorModel>[];
     var decorationColorModel1 =
-    DecorationColorModel(documentID: '1', color: EliudColors.black, stop: -1);
+    DecorationColorModel(documentID: '1', color: EliudColors.gray, stop: -1);
     decorationColorModels.add(decorationColorModel1);
     var backgroundModel = BackgroundModel(
-      documentID: 'black_bg',
+      documentID: 'gray_bg',
       appId: appId,
       beginGradientPosition: StartGradientPosition.TopRight,
       endGradientPosition: EndGradientPosition.BottomLeft,
