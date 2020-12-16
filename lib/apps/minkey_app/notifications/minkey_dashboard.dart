@@ -21,8 +21,8 @@ import '../../app_base.dart';
 import 'example_notifications.dart';
 
 class MinkeyDashboard extends Dashboard {
-  MinkeyDashboard({InstallApp installApp, Tools newAppTools, BackgroundModel pageBG}) :
-        super(installApp, newAppTools, pageBG);
+  MinkeyDashboard({InstallApp installApp, Tools newAppTools, RgbModel backgroundColor}) :
+        super(installApp, newAppTools, backgroundColor);
   Future<DialogModel> run() async {
     await ExampleNotifications(newAppTools).run();
     return super.run();

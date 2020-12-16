@@ -19,8 +19,10 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 class Dashboard extends AppSectionBase {
-  Dashboard(InstallApp installApp, Tools newAppTools, BackgroundModel pageBG) :
-        super(installApp, newAppTools, pageBG);
+  final RgbModel backgroundColor;
+
+  Dashboard(InstallApp installApp, Tools newAppTools, this.backgroundColor) :
+        super(installApp, newAppTools);
 
   static String IDENTIFIER = "dashboard";
 
@@ -37,7 +39,7 @@ class Dashboard extends AppSectionBase {
         documentID: IDENTIFIER,
         appId: MinkeyApp.MINKEY_APP_ID,
         title: "Notifications",
-        background: pageBG,
+        background: backgroundColor,
         layout: DialogLayout.ListView,
         conditional: DialogCondition.PackageDecides,
         packageCondition: NotificationsPackage.CONDITION_MEMBER_HAS_UNREAD_NOTIFICATIONS,

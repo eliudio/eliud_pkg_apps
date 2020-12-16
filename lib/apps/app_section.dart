@@ -13,9 +13,8 @@ import 'app_base.dart';
 class AppSectionBase {
   final InstallApp installApp;
   final Tools newAppTools;
-  final BackgroundModel pageBG;
 
-  AppSectionBase(this.installApp, this.newAppTools, this.pageBG);
+  AppSectionBase(this.installApp, this.newAppTools);
 }
 
 // Required for page
@@ -24,7 +23,8 @@ class AppSection extends AppSectionBase {
   final DrawerModel drawer;
   final DrawerModel endDrawer;
   final MenuDefModel adminMenu;
+  final BackgroundModel pageBG;
 
-  AppSection(InstallApp installApp, Tools newAppTools, this.homeMenu, BackgroundModel pageBG, this.drawer, this.endDrawer, this.adminMenu):
-      super(installApp, newAppTools, pageBG);
+  AppSection(InstallApp installApp, Tools newAppTools, this.homeMenu, this.pageBG, this.drawer, this.endDrawer, this.adminMenu):
+      super(installApp, newAppTools);
 }

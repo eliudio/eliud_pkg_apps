@@ -342,21 +342,6 @@ abstract class InstallApp {
     return backgroundModel;
   }
 
-  BackgroundModel dialogBG() {
-    var decorationColorModels = <DecorationColorModel>[];
-    var decorationColorModel1 =
-    DecorationColorModel(documentID: '1', color: EliudColors.gray, stop: -1);
-    decorationColorModels.add(decorationColorModel1);
-    var backgroundModel = BackgroundModel(
-      documentID: 'gray_bg',
-      appId: appId,
-      beginGradientPosition: StartGradientPosition.TopRight,
-      endGradientPosition: EndGradientPosition.BottomLeft,
-      decorationColors: decorationColorModels,
-    );
-    return backgroundModel;
-  }
-
   ShadowModel shadowModel() {
     var shadowModel = ShadowModel(
         documentID: 'normal_shadow',

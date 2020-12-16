@@ -204,7 +204,7 @@ class MinkeyApp extends InstallApp {
     await MinkeyDashboard(
         installApp: this,
         newAppTools: newAppTools,
-        pageBG: dialogBG()
+        backgroundColor: EliudColors.gray
         )
         .run();
     return await Feed(
