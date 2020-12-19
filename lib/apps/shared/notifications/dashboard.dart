@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_feed/model/feed_component.dart';
 import 'package:eliud_pkg_feed/model/feed_model.dart';
@@ -44,6 +45,7 @@ class Dashboard extends AppSectionBase {
         layout: DialogLayout.ListView,
         readCondition: ReadCondition.PackageDecides,
         packageCondition: NotificationsPackage.CONDITION_MEMBER_HAS_UNREAD_NOTIFICATIONS,
+        privilegeLevelRequired: 0,
         bodyComponents: components);
   }
 

@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/background_model.dart';
+import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/shop_package.dart';

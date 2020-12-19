@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/background_model.dart';
@@ -210,6 +211,7 @@ class HelloWorld extends AppSection {
       layout: PageLayout.OnlyTheFirstComponent,
       bodyComponents: components,
       readCondition: ReadCondition.NoRestriction,
+      privilegeLevelRequired: 0
     );
   }
 
