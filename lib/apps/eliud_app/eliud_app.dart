@@ -156,6 +156,7 @@ class EliudApp extends InstallApp {
       fontHighlight2:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.highlightLabel2)),
       fontLink:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.linkLabel)),
       fontText:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.normalLabel)),
+      entryPages: [],
     );
 
     return await AbstractMainRepositorySingleton.singleton

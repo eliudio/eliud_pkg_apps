@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
@@ -16,7 +17,8 @@ import '../../app_base.dart';
 
 abstract class PageTemplate extends AppSection {
   final String pageId;
-  final PageCondition pageCondition;
+  final ReadCondition pageCondition;
+  final int privilegeLevelRequired;
   final String packageCondition;
 
   PresentationImageAlignment presentationImageAlignment;
@@ -30,7 +32,7 @@ abstract class PageTemplate extends AppSection {
   String componentName();
   Future<void> setupComponent();
 
-  PageTemplate({this.pageId, this.pageCondition, this.packageCondition, this.presentationImageAlignment, InstallApp installApp,
+  PageTemplate({this.pageId, this.pageCondition, this.privilegeLevelRequired, this.packageCondition, this.presentationImageAlignment, InstallApp installApp,
       Tools newAppTools,
       HomeMenuModel homeMenu,
       BackgroundModel pageBG,
@@ -63,7 +65,8 @@ abstract class PageTemplate extends AppSection {
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
-        conditional: pageCondition,
+        readCondition: pageCondition,
+        privilegeLevelRequired: privilegeLevelRequired,
         packageCondition: packageCondition,
         bodyComponents: components);
   }

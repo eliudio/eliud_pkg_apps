@@ -135,6 +135,7 @@ class JuuwleApp extends InstallApp {
           FontTools.key(FontTools.dancingScriptLabel, FontTools.linkLabel)),
       fontText: fontTools.getFont(
           FontTools.key(FontTools.dancingScriptLabel, FontTools.normalLabel)),
+      entryPages: [],
     );
     return await AbstractMainRepositorySingleton.singleton
         .appRepository()

@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_feed/model/feed_component.dart';
 import 'package:eliud_pkg_feed/model/feed_model.dart';
@@ -41,7 +42,7 @@ class Feed extends AppSection {
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
-        conditional: PageCondition.Always,
+        readCondition: ReadCondition.NoRestriction,
         bodyComponents: components);
   }
 

@@ -1,5 +1,6 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/background_model.dart';
+import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/extensions/member_profile_component.dart';
 import 'package:eliud_core/model/body_component_model.dart';
@@ -49,7 +50,7 @@ class MemberPage extends AppSection {
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.OnlyTheFirstComponent,
-        conditional: PageCondition.Always,
+        readCondition: ReadCondition.NoRestriction,
         bodyComponents: components);
   }
 

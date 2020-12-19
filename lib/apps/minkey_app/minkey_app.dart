@@ -138,6 +138,7 @@ class MinkeyApp extends InstallApp {
           .getFont(FontTools.key(FontTools.latoLabel, FontTools.linkLabel)),
       fontText: fontTools
           .getFont(FontTools.key(FontTools.latoLabel, FontTools.normalLabel)),
+      entryPages: [],
     );
     return await AbstractMainRepositorySingleton.singleton
         .appRepository()

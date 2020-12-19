@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/shop.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
@@ -54,7 +55,7 @@ class MyPayConfirmation extends PageTemplate {
     DrawerModel drawer,
     DrawerModel endDrawer,
     MenuDefModel adminMenu}): super(
-      pageCondition: PageCondition.PackageDecides,
+      pageCondition: ReadCondition.PackageDecides,
       packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
       pageId: identifier,
       installApp: installApp,

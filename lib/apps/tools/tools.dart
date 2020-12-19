@@ -9,6 +9,7 @@ import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/tools/image_tools.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
+import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_fundamentals/model/tutorial_component.dart';
 import 'package:eliud_pkg_fundamentals/model/tutorial_entry_model.dart';
 import 'package:eliud_pkg_fundamentals/model/tutorial_model.dart';
@@ -88,7 +89,7 @@ class Tools {
       bodyComponents: components,
       background: backgroundModel,
       layout: PageLayout.OnlyTheFirstComponent,
-      conditional: PageCondition.Always,
+      readCondition: ReadCondition.NoRestriction,
     );
     return await AbstractRepositorySingleton.singleton.pageRepository(appId).add(page);
   }

@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
@@ -52,7 +53,7 @@ class OrderOverview extends PageTemplate {
     DrawerModel endDrawer,
     MenuDefModel adminMenu}): super(
       pageId: identifier,
-      pageCondition: PageCondition.Always,
+      pageCondition: ReadCondition.NoRestriction,
       installApp: installApp,
       newAppTools: newAppTools,
       homeMenu: homeMenu,

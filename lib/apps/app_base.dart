@@ -92,6 +92,7 @@ abstract class InstallApp {
     var application = AppModel(
       documentID: appId,
       ownerID: ownerID,
+      entryPages: [],
     );
     return await AbstractMainRepositorySingleton.singleton
         .appRepository()
