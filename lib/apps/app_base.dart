@@ -1,6 +1,7 @@
 import 'package:eliud_core/core/access/bloc/access_bloc.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/tools/admin_app_base.dart';
+import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/action_model.dart';
@@ -10,8 +11,6 @@ import 'package:eliud_pkg_apps/apps/shared/etc/backgrounds.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/grid_views.dart';
 import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
-import 'package:eliud_core/core/access/bloc/access_state.dart';
-import 'package:eliud_core/core/global_data.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/app_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
@@ -97,6 +96,15 @@ abstract class InstallApp {
     return await AbstractMainRepositorySingleton.singleton
         .appRepository()
         .add(application);
+  }
+
+  Future <AccessModel> claimAccess(String ownerID) async {
+    return await appRepository().accessRepository(appId).add(AccessModel(
+        documentID: ownerID,
+        privilegeLevel: OWNER_PRIVILEGES,
+        points: 0
+      )
+    );
   }
 
   PosSizeModel halfScreen() {
@@ -498,6 +506,9 @@ abstract class InstallApp {
   }
 
   Future<void> wipeAndReinstall() async {
+    // If I would be logged in > logout (to give the user opportunity to select the user in the signIn)
+    await AbstractMainRepositorySingleton.singleton
+        .userRepository().signOut();
     var usr = await AbstractMainRepositorySingleton.singleton
         .userRepository()
         .signInWithGoogle();
@@ -506,6 +517,7 @@ abstract class InstallApp {
     if (member == null) {
       print('Can not register $appId because member cannot be created');
     } else {
+      await claimAccess(usr.uid);
       await run(usr.uid);
       print('Installed $appId successfully');
     }
