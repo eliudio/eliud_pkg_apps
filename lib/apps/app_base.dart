@@ -1,5 +1,6 @@
 import 'package:eliud_core/core/access/bloc/access_bloc.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
@@ -99,7 +100,7 @@ abstract class InstallApp {
   }
 
   Future <AccessModel> claimAccess(String ownerID) async {
-    return await appRepository().accessRepository(appId).add(AccessModel(
+    return await accessRepository(appId: appId).add(AccessModel(
         documentID: ownerID,
         privilegeLevel: OWNER_PRIVILEGES,
         points: 0
@@ -443,7 +444,7 @@ abstract class InstallApp {
   }
 
   Future<void> setupDividers() async {
-    await AbstractRepositorySingleton.singleton.dividerRepository(appId).add(_divider());
+    await dividerRepository(appId: appId).add(_divider());
   }
 
   AppBarModel _appBar(String documentID, MenuDefModel menu, String title, RgbModel textColor, BackgroundModel background, RgbModel iconColor, RgbModel menuItemColor, RgbModel selectedIconColor, RgbModel menuBackgroundColor) {

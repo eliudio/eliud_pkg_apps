@@ -1,6 +1,5 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/tools/common_tools.dart';
-import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/tools/action_model.dart';
@@ -28,9 +27,9 @@ class HelloWorld extends AppSection {
   HelloWorld({InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   BookletModel _helloWorldDocument() {
-    List<SectionModel> entries = List();
+    List<SectionModel> entries = [];
     {
-      List<LinkModel> links = List();
+      List<LinkModel> links = [];
       entries.add(SectionModel(
           documentID: "Welcome",
           title: "Welcome",
@@ -40,7 +39,7 @@ class HelloWorld extends AppSection {
       ));
     }
     {
-      List<LinkModel> links = List();
+      List<LinkModel> links = [];
       links.add(LinkModel(
           documentID: "1.1",
           linkText: "1.1. Create Google Account",
@@ -76,7 +75,7 @@ class HelloWorld extends AppSection {
       ));
     }
     {
-      List<LinkModel> links = List();
+      List<LinkModel> links = [];
       entries.add(SectionModel(
           documentID: "2.",
           title: "2. Install App",
@@ -86,7 +85,7 @@ class HelloWorld extends AppSection {
       ));
     }
     {
-      List<LinkModel> links = List();
+      List<LinkModel> links = [];
       links.add(LinkModel(
           documentID: "2.1.1",
           linkText: "2.1.1. Create Visual Studio Flutter project for Android App",
@@ -106,7 +105,7 @@ class HelloWorld extends AppSection {
       ));
     }
     {
-      List<LinkModel> links = List();
+      List<LinkModel> links = [];
       links.add(LinkModel(
           documentID: "2.2.1",
           linkText: "2.2.1. Create Visual Studio Flutter project for iPhone App",
@@ -126,7 +125,7 @@ class HelloWorld extends AppSection {
       ));
     }
     {
-      List<LinkModel> links = List();
+      List<LinkModel> links = [];
       links.add(LinkModel(
           documentID: "2.3.1",
           linkText: "2.3.1 Create Firebase Web App",
@@ -151,7 +150,7 @@ class HelloWorld extends AppSection {
       ));
     }
     {
-      List<LinkModel> links = List();
+      List<LinkModel> links = [];
       links.add(LinkModel(
           documentID: "3.1",
           linkText: "3.1 Add a page",
@@ -190,13 +189,13 @@ class HelloWorld extends AppSection {
   }
 
   Future<void> _storeHelloWorldDocument() {
-    return AbstractRepositorySingleton.singleton.bookletRepository(EliudApp.ELIUD_APP_ID).add(_helloWorldDocument());
+    return bookletRepository(appId: EliudApp.ELIUD_APP_ID).add(_helloWorldDocument());
   }
 
   static String IDENTIFIER = "hello_world";
 
   PageModel helloWorldPage(AppBarModel appBar) {
-    List<BodyComponentModel> components = List();
+    List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(documentID: "1", componentName: AbstractBookletComponent.componentName, componentId: "hello_world"));
 
     return PageModel(
@@ -216,7 +215,7 @@ class HelloWorld extends AppSection {
   }
 
   Future<void> _storeHelloWorldPage(AppBarModel appBar) {
-    return corerepo.AbstractRepositorySingleton.singleton.pageRepository(EliudApp.ELIUD_APP_ID).add(helloWorldPage(appBar));
+    return pageRepository(appId: EliudApp.ELIUD_APP_ID).add(helloWorldPage(appBar));
   }
 
   Future<void> store(AppBarModel appBar) async {
