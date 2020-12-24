@@ -1,6 +1,7 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
+import 'package:eliud_pkg_apps/apps/minkey_app/workflow/workflow_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/dashboard.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/image_model.dart';
@@ -175,6 +176,7 @@ class MinkeyApp extends InstallApp {
     var member = await AbstractMainRepositorySingleton.singleton
         .memberRepository()
         .get(ownerID);
+    await WorkflowSetup(installApp: this).run();
     await About(
             installApp: this,
             newAppTools: newAppTools,
@@ -251,7 +253,13 @@ class MinkeyApp extends InstallApp {
         text: 'Notifications',
         description: 'Notifications',
         icon: IconModel(codePoint: Icons.notifications.codePoint, fontFamily: Icons.notifications.fontFamily),
-        action: OpenDialog(MinkeyApp.MINKEY_APP_ID, dialogID: Dashboard.IDENTIFIER))
+        action: OpenDialog(MinkeyApp.MINKEY_APP_ID, dialogID: Dashboard.IDENTIFIER)),
+    MenuItemModel(
+        documentID: "5",
+        text: "JOIN",
+        description: "Request membership",
+        icon: null,
+        action: WorkflowSetup.requestMembershipAction())
   ];
 
 }

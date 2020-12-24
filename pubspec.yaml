@@ -27,6 +27,9 @@ dependencies:
   eliud_pkg_notifications:
     path: ../eliud_pkg_notifications
 
+  eliud_pkg_workflow:
+    path: ../eliud_pkg_workflow
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

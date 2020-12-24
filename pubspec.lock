@@ -204,6 +204,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  eliud_pkg_workflow:
+    dependency: "direct main"
+    description:
+      path: "../eliud_pkg_workflow"
+      relative: true
+    source: path
+    version: "0.0.1"
   equatable:
     dependency: transitive
     description:
