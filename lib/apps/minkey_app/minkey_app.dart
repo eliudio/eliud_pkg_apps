@@ -4,7 +4,7 @@ import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/dashboard.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/image_model.dart';
-import 'package:eliud_core/tools/action_model.dart';
+import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/store/play_store.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/welcome/welcome.dart';

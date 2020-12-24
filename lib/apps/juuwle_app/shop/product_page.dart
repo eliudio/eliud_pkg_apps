@@ -1,5 +1,5 @@
 import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_core/tools/action_model.dart';
+import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/cart.dart';

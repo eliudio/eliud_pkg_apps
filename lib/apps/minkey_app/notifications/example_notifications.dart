@@ -1,4 +1,4 @@
-import 'package:eliud_core/tools/action_model.dart';
+import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/about.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_pkg_notifications/model/abstract_repository_singleton.dart';

@@ -1,6 +1,6 @@
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
-import 'package:eliud_core/tools/action_model.dart';
+import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:flutter/material.dart';
 
 menuItem(appID, documentID, pageID, text, IconData iconData) => MenuItemModel(

@@ -15,7 +15,7 @@ import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_pkg_shop/model/shop_model.dart';
-import 'package:eliud_core/tools/action_model.dart';
+import 'package:eliud_core/tools/action/action_model.dart';
 
 import '../../../shared/etc/page_template.dart';
 import '../../juuwle_app.dart';
