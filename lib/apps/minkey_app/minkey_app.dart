@@ -259,7 +259,7 @@ class MinkeyApp extends InstallApp {
         text: "JOIN",
         description: "Request membership",
         icon: null,
-        action: WorkflowSetup.requestMembershipAction())
+        action: WorkflowSetup.requestMembershipAction(MinkeyApp.MINKEY_APP_ID))
   ];
 
 }

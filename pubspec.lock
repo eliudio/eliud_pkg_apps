@@ -190,6 +190,13 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
+  eliud_pkg_membership:
+    dependency: "direct main"
+    description:
+      path: "../eliud_pkg_membership"
+      relative: true
+    source: path
+    version: "0.0.1"
   eliud_pkg_notifications:
     dependency: "direct main"
     description:

@@ -536,7 +536,9 @@ abstract class InstallApp {
         documentID: '2',
         text: 'Sign in',
         description: 'Sign in',
-        action: InternalAction(appId, internalActionEnum: InternalActionEnum.Login)));
+        action: InternalAction(appId, internalActionEnum: InternalActionEnum.Login)),
+
+    );
     menuItems.add(MenuItemModel(
         documentID: '3',
         text: 'Admin',
