@@ -204,6 +204,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  eliud_pkg_pay:
+    dependency: "direct main"
+    description:
+      path: "../eliud_pkg_pay"
+      relative: true
+    source: path
+    version: "0.0.1"
   eliud_pkg_shop:
     dependency: "direct main"
     description:

@@ -3,6 +3,7 @@ import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_core/tools/common_tools.dart';
+import 'package:eliud_core/tools/main_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
@@ -86,8 +87,10 @@ abstract class InstallApp {
       String appId, String ownerID) async {
     // first delete the app
     AppModel oldApp = await appRepository().get(appId);
-    if (oldApp != null)
+    if (oldApp != null) {
       await appRepository().delete(oldApp);
+    }
+
     // add the app
     var application = AppModel(
       documentID: appId,
@@ -481,11 +484,15 @@ abstract class InstallApp {
 
   Future<void> runBase(
       {String ownerID, String urlLogo, String urlLogoHead}) async {
+/*
+    // this code isn't necesairily working correctly: I think it should probably delete all collections, including all packages, and I have the feeling it's not working.
+    // however, with the introduction of subcollections for app data, we don't really need this any more, so hence we can skip it
     int i = 0;
     var aaw = adminAppWipers();
     for (int i = 0; i < aaw.length; i++) {
       await aaw[i].deleteAll(appId);
     }
+*/
     var theLogo = await logo(urlLogo);
     var endDrawer = await setupProfileDrawer();
     var drawer = await setupDrawer(theLogo);

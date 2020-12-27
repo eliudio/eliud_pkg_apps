@@ -33,6 +33,9 @@ dependencies:
   eliud_pkg_membership:
     path: ../eliud_pkg_membership
 
+  eliud_pkg_pay:
+    path: ../eliud_pkg_pay
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
