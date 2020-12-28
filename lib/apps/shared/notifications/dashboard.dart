@@ -1,17 +1,8 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/tools/common_tools.dart';
-import 'package:eliud_core/tools/types.dart';
-import 'package:eliud_pkg_feed/model/feed_component.dart';
-import 'package:eliud_pkg_feed/model/feed_model.dart';
 import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/page_model.dart';
-import 'package:eliud_core/model/app_bar_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_pkg_notifications/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_notifications/model/dashboard_component.dart';
 import 'package:eliud_pkg_notifications/model/dashboard_model.dart';
@@ -33,13 +24,13 @@ class Dashboard extends AppSectionBase {
   }
 
   DialogModel _dialog() {
-    List<BodyComponentModel> components = List();
+    List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "1", componentName: AbstractDashboardComponent.componentName, componentId: IDENTIFIER));
 
     return DialogModel(
         documentID: IDENTIFIER,
-        appId: MinkeyApp.MINKEY_APP_ID,
+        appId: installApp.appId,
         title: "Notifications",
         background: backgroundColor,
         layout: DialogLayout.ListView,
@@ -50,7 +41,7 @@ class Dashboard extends AppSectionBase {
   }
 
   DashboardModel _dashboardModel() {
-    return DashboardModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, description: "My Minkey Notifications");
+    return DashboardModel(documentID: IDENTIFIER, appId: installApp.appId, description: "My Notifications");
   }
 
   Future<DashboardModel> _setupDashboard() async {

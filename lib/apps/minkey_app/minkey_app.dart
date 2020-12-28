@@ -2,6 +2,7 @@ import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/workflow/workflow_setup.dart';
+import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/dashboard.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/image_model.dart';
@@ -26,6 +27,7 @@ import 'package:flutter/material.dart';
 import '../app_base.dart';
 import 'about/about.dart';
 import 'admin/admin.dart';
+import 'assignments/minkey_assignments.dart';
 import 'feed/feed.dart';
 import 'notifications/minkey_dashboard.dart';
 
@@ -207,9 +209,12 @@ class MinkeyApp extends InstallApp {
     await MinkeyDashboard(
         installApp: this,
         newAppTools: newAppTools,
-        backgroundColor: EliudColors.gray
-        )
+        backgroundColor: EliudColors.gray)
         .run();
+    await MinkeyAssignmentViewSetup(
+        installApp: this,
+        newAppTools: newAppTools,
+        backgroundColor: EliudColors.gray).run();
     return await Feed(
         installApp: this,
         newAppTools: newAppTools,
@@ -254,6 +259,12 @@ class MinkeyApp extends InstallApp {
         description: 'Notifications',
         icon: IconModel(codePoint: Icons.notifications.codePoint, fontFamily: Icons.notifications.fontFamily),
         action: OpenDialog(MinkeyApp.MINKEY_APP_ID, dialogID: Dashboard.IDENTIFIER)),
+    MenuItemModel(
+        documentID: '2',
+        text: 'Assignments',
+        description: 'Assignments',
+        icon: IconModel(codePoint: Icons.playlist_add_check.codePoint, fontFamily: Icons.notifications.fontFamily),
+        action: OpenDialog(MinkeyApp.MINKEY_APP_ID, dialogID: AssignmentViewSetup.IDENTIFIER)),
     MenuItemModel(
         documentID: "5",
         text: "JOIN",
