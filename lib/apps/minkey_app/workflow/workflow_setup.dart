@@ -1,8 +1,9 @@
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_pkg_apps/apps/app_base.dart';
 import 'package:eliud_pkg_apps/apps/shared/workflow/workflow_helper.dart';
-import 'package:eliud_pkg_membership/tools/task/membership_task_model.dart';
 import 'package:eliud_pkg_pay/tools/task/pay_task_model.dart';
+import 'package:eliud_pkg_pay/tools/task/pay_type_model.dart';
+import 'package:eliud_pkg_shop/shop_package.dart';
 import 'package:eliud_pkg_workflow/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_workflow/model/workflow_model.dart';
 import 'package:eliud_pkg_workflow/model/workflow_task_model.dart';
@@ -14,68 +15,61 @@ class WorkflowSetup {
 
   WorkflowSetup({this.installApp});
 
-  static WorkflowModel _workflowModel() {
-    return WorkflowModel(
-        documentID: "just_a_test",
-        name: "Manual Membership (paid)",
-        workflowTask: [
-          WorkflowTaskModel(
-            seqNumber: 1,
-            documentID: "workflow_task_payment_manual",
-            responsible: WorkflowTaskResponsible.CurrentMember,
-            task: FixedAmountPayModel(
-                description: 'To join, deposit 20 GBP by wired transfer',
-                paymentType: ManualPayTypeModel(
-                    payTo: "Mr Minkey",
-                    country: "United Kingdom",
-                    bankIdentifierCode: "Bank ID Code",
-                    payeeIBAN: "IBAN 543232187632167",
-                    bankName: "Bank Of America"),
-                ccy: "GBP",
-                amount: 20),
-          ),
-          WorkflowTaskModel(
-            seqNumber: 2,
-            documentID: "workflow_task_payment_stripe1",
-            responsible: WorkflowTaskResponsible.CurrentMember,
-            task: FixedAmountPayModel(
-                description: 'To join, pay 20 GBP',
-                paymentType: CreditCardPayTypeModel(),
-                ccy: "GBP",
-                amount: 20),
-          ),
-          WorkflowTaskModel(
-            seqNumber: 3,
-            documentID: "workflow_task_payment_stripe2",
-            responsible: WorkflowTaskResponsible.Owner,
-            task: FixedAmountPayModel(
-                description: 'To join, pay 20 GBP',
-                paymentType: CreditCardPayTypeModel(),
-                ccy: "GBP",
-                amount: 20),
-          ),
-        ]);
-  }
+  static double amount = 20;
+  static String ccy = 'gbp';
+  static String payTo = "Mr Minkey";
+  static String country = "United Kingdom";
+  static String bankIdentifierCode = "Bank ID Code";
+  static String payeeIBAN = "IBAN 543232187632167";
+  static String bankName = "Bank Of America";
 
   static WorkflowModel _workflowForManuallyPaidMembership() {
     return WorkflowHelper.workflowForManuallyPaidMembership(
-      amount: 20,
-      ccy: 'gbp',
-        payTo: "Mr Minkey",
-        country: "United Kingdom",
-        bankIdentifierCode: "Bank ID Code",
-        payeeIBAN: "IBAN 543232187632167",
-        bankName: "Bank Of America"
+        amount: amount,
+        ccy: ccy,
+        payTo: payTo,
+        country: country,
+        bankIdentifierCode: bankIdentifierCode,
+        payeeIBAN: payeeIBAN,
+        bankName: bankName
+    );
+  }
+
+  static WorkflowModel _workflowForMembershipPaidByCard() {
+    return WorkflowHelper.workflowForMembershipPaidByCard(
+      amount: amount,
+      ccy: ccy,
+    );
+  }
+
+  static WorkflowModel _workflowForManualPaymentCart() {
+    return WorkflowHelper.workflowForManualPaymentCart(
+        payTo: payTo,
+        country: country,
+        bankIdentifierCode: bankIdentifierCode,
+        payeeIBAN: payeeIBAN,
+        bankName: bankName
+    );
+  }
+
+  static WorkflowModel _workflowForCreditCardPaymentCart() {
+    return WorkflowHelper.workflowForCreditCardPaymentCart(
     );
   }
 
   Future<void> _setupWorkflows() async {
     await AbstractRepositorySingleton.singleton
         .workflowRepository(installApp.appId)
-        .add(_workflowModel());
+        .add(_workflowForManuallyPaidMembership());
     await AbstractRepositorySingleton.singleton
         .workflowRepository(installApp.appId)
-        .add(_workflowForManuallyPaidMembership());
+        .add(_workflowForMembershipPaidByCard());
+    await AbstractRepositorySingleton.singleton
+        .workflowRepository(installApp.appId)
+        .add(_workflowForManualPaymentCart());
+    await AbstractRepositorySingleton.singleton
+        .workflowRepository(installApp.appId)
+        .add(_workflowForCreditCardPaymentCart());
   }
 
   static WorkflowAction requestMembershipAction(String appId) =>
@@ -83,6 +77,12 @@ class WorkflowSetup {
           readCondition: ReadCondition.PackageDecides,
           packageCondition: MembershipPackage.MEMBER_HAS_NO_MEMBERSHIP_YET,
           workflow: _workflowForManuallyPaidMembership());
+
+  static WorkflowAction payCart(String appId) =>
+      WorkflowAction(appId,
+          readCondition: ReadCondition.PackageDecides,
+          packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
+          workflow: _workflowForCreditCardPaymentCart());
 
   void run() async {
     await _setupWorkflows();

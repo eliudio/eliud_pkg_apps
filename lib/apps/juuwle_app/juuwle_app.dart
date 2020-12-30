@@ -1,6 +1,7 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/product_page.dart';
+import 'package:eliud_pkg_apps/apps/juuwle_app/workflow/workflow_setup.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_pkg_shop/model/admin_app.dart' as shop;
 import 'package:eliud_core/model/icon_model.dart';
@@ -170,6 +171,7 @@ class JuuwleApp extends InstallApp {
   @override
   Future<PageModel> runTheRest(String ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
+    await WorkflowSetup(installApp: this).run();
     await About(
             installApp: this,
             newAppTools: newAppTools,
@@ -286,6 +288,12 @@ class JuuwleApp extends InstallApp {
         text: 'Your bag',
         description: 'Your bag',
         icon: IconModel(codePoint: Icons.shopping_basket.codePoint, fontFamily: Icons.shopping_basket.fontFamily),
-        action: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier))
+        action: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier)),
+    MenuItemModel(
+        documentID: '2',
+        text: 'Pay',
+        description: 'Pay',
+        icon: IconModel(codePoint: Icons.attach_money.codePoint, fontFamily: Icons.shopping_basket.fontFamily),
+        action: WorkflowSetup.payCart(JUUWLE_APP_ID)),
   ];
 }
