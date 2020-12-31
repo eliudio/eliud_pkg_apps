@@ -22,8 +22,8 @@ class WorkflowSetup {
         .add(_workflowForCreditCardPaymentCart());
   }
 
-  static WorkflowAction payCart(String appId) =>
-      WorkflowAction(appId,
+  static WorkflowActionModel payCart(String appId) =>
+      WorkflowActionModel(appId,
           readCondition: ReadCondition.PackageDecides,
           packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
           workflow: _workflowForCreditCardPaymentCart());

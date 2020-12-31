@@ -1,6 +1,7 @@
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/types.dart';
+import 'package:eliud_pkg_apps/apps/juuwle_app/workflow/workflow_setup.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_model.dart';
 import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/model/model_export.dart';
@@ -31,6 +32,7 @@ class MyPay extends PageTemplate {
         appId: installApp.appId,
         title: pageTitle(),
         shop: shop,
+        payAction: WorkflowSetup.payCart(installApp.appId),
         succeeded: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyPayConfirmation.identifier),
     );
   }

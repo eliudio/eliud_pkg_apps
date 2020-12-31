@@ -72,14 +72,14 @@ class WorkflowSetup {
         .add(_workflowForCreditCardPaymentCart());
   }
 
-  static WorkflowAction requestMembershipAction(String appId) =>
-      WorkflowAction(appId,
+  static WorkflowActionModel requestMembershipAction(String appId) =>
+      WorkflowActionModel(appId,
           readCondition: ReadCondition.PackageDecides,
           packageCondition: MembershipPackage.MEMBER_HAS_NO_MEMBERSHIP_YET,
           workflow: _workflowForManuallyPaidMembership());
 
-  static WorkflowAction payCart(String appId) =>
-      WorkflowAction(appId,
+  static WorkflowActionModel payCart(String appId) =>
+      WorkflowActionModel(appId,
           readCondition: ReadCondition.PackageDecides,
           packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
           workflow: _workflowForCreditCardPaymentCart());

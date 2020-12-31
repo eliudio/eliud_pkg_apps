@@ -289,11 +289,5 @@ class JuuwleApp extends InstallApp {
         description: 'Your bag',
         icon: IconModel(codePoint: Icons.shopping_basket.codePoint, fontFamily: Icons.shopping_basket.fontFamily),
         action: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier)),
-    MenuItemModel(
-        documentID: '2',
-        text: 'Pay',
-        description: 'Pay',
-        icon: IconModel(codePoint: Icons.attach_money.codePoint, fontFamily: Icons.shopping_basket.fontFamily),
-        action: WorkflowSetup.payCart(JUUWLE_APP_ID)),
   ];
 }

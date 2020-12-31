@@ -88,6 +88,6 @@ class WorkflowHelper {
   }
 
   static WorkflowModel workflowForMembershipPaidByCard({double amount, String ccy}) {
-    return _workflowForMembership("membership_paid_manually", "Paid Membership (manually paid)", 20, "GBP", CreditCardPayTypeModel());
+    return _workflowForMembership("membership_paid_manually", "Paid Membership (manually paid)", 20, "GBP", CreditCardPayTypeModel(requiresConfirmation: true));
   }
 }
