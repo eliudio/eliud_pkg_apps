@@ -2,6 +2,8 @@ import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/product_page.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/workflow/workflow_setup.dart';
+import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
+import 'package:eliud_pkg_apps/apps/shared/notifications/dashboard.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_pkg_shop/model/admin_app.dart' as shop;
 import 'package:eliud_core/model/icon_model.dart';
@@ -31,6 +33,8 @@ import 'package:flutter/material.dart';
 import '../app_base.dart';
 import 'about/about.dart';
 import 'admin/admin.dart';
+import 'assignments/juuwle_assignments.dart';
+import 'notifications/juuwle_dashboard.dart';
 
 class JuuwleApp extends InstallApp {
   static String JUUWLE_APP_ID = 'JUUWLE_APP';
@@ -244,6 +248,15 @@ class JuuwleApp extends InstallApp {
         endDrawer: endDrawer,
         adminMenu: adminMenu)
         .run();
+    await JuuwleDashboard(
+        installApp: this,
+        newAppTools: newAppTools,
+        backgroundColor: EliudColors.gray)
+        .run();
+    await JuuwleAssignmentViewSetup(
+        installApp: this,
+        newAppTools: newAppTools,
+        backgroundColor: EliudColors.gray).run();
     return await Welcome(
             installApp: this,
             newAppTools: newAppTools,
@@ -289,5 +302,17 @@ class JuuwleApp extends InstallApp {
         description: 'Your bag',
         icon: IconModel(codePoint: Icons.shopping_basket.codePoint, fontFamily: Icons.shopping_basket.fontFamily),
         action: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier)),
+    MenuItemModel(
+        documentID: '1',
+        text: 'Notifications',
+        description: 'Notifications',
+        icon: IconModel(codePoint: Icons.notifications.codePoint, fontFamily: Icons.notifications.fontFamily),
+        action: OpenDialog(JuuwleApp.JUUWLE_APP_ID, dialogID: Dashboard.IDENTIFIER)),
+    MenuItemModel(
+        documentID: '2',
+        text: 'Assignments',
+        description: 'Assignments',
+        icon: IconModel(codePoint: Icons.playlist_add_check.codePoint, fontFamily: Icons.notifications.fontFamily),
+        action: OpenDialog(JuuwleApp.JUUWLE_APP_ID, dialogID: AssignmentViewSetup.IDENTIFIER)),
   ];
 }

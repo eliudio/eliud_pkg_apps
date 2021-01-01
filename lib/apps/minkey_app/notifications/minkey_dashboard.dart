@@ -18,13 +18,11 @@ import 'package:eliud_pkg_notifications/notifications_package.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
-import 'example_notifications.dart';
 
 class MinkeyDashboard extends Dashboard {
   MinkeyDashboard({InstallApp installApp, Tools newAppTools, RgbModel backgroundColor}) :
         super(installApp, newAppTools, backgroundColor);
   Future<DialogModel> run() async {
-    await ExampleNotifications(newAppTools).run();
     return super.run();
   }
 }

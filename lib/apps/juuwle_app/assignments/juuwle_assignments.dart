@@ -5,7 +5,7 @@ import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import '../../app_base.dart';
 
 // Nothing implemented, just a placeholder
-class MinkeyAssignmentViewSetup extends AssignmentViewSetup {
-  MinkeyAssignmentViewSetup({InstallApp installApp, Tools newAppTools, RgbModel backgroundColor}) :
+class JuuwleAssignmentViewSetup extends AssignmentViewSetup {
+  JuuwleAssignmentViewSetup({InstallApp installApp, Tools newAppTools, RgbModel backgroundColor}) :
         super(installApp, newAppTools, backgroundColor);
 }
