@@ -4,8 +4,8 @@ import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_pkg_notifications/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_notifications/model/dashboard_component.dart';
-import 'package:eliud_pkg_notifications/model/dashboard_model.dart';
+import 'package:eliud_pkg_notifications/model/notification_dashboard_component.dart';
+import 'package:eliud_pkg_notifications/model/notification_dashboard_model.dart';
 import 'package:eliud_pkg_notifications/notifications_package.dart';
 
 import '../../app_base.dart';
@@ -26,7 +26,7 @@ class Dashboard extends AppSectionBase {
   DialogModel _dialog() {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
-        documentID: "1", componentName: AbstractDashboardComponent.componentName, componentId: IDENTIFIER));
+        documentID: "1", componentName: AbstractNotificationDashboardComponent.componentName, componentId: IDENTIFIER));
 
     return DialogModel(
         documentID: IDENTIFIER,
@@ -40,12 +40,12 @@ class Dashboard extends AppSectionBase {
         bodyComponents: components);
   }
 
-  DashboardModel _dashboardModel() {
-    return DashboardModel(documentID: IDENTIFIER, appId: installApp.appId, description: "My Notifications");
+  NotificationDashboardModel _dashboardModel() {
+    return NotificationDashboardModel(documentID: IDENTIFIER, appId: installApp.appId, description: "My Notifications");
   }
 
-  Future<DashboardModel> _setupDashboard() async {
-    return await AbstractRepositorySingleton.singleton.dashboardRepository(installApp.appId).add(_dashboardModel());
+  Future<NotificationDashboardModel> _setupDashboard() async {
+    return await AbstractRepositorySingleton.singleton.notificationDashboardRepository(installApp.appId).add(_dashboardModel());
   }
 
   Future<DialogModel> run() async {

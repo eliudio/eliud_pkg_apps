@@ -12,8 +12,8 @@ import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_pkg_notifications/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_notifications/model/dashboard_component.dart';
-import 'package:eliud_pkg_notifications/model/dashboard_model.dart';
+import 'package:eliud_pkg_notifications/model/notification_dashboard_component.dart';
+import 'package:eliud_pkg_notifications/model/notification_dashboard_model.dart';
 import 'package:eliud_pkg_notifications/notifications_package.dart';
 
 import '../../app_section.dart';
