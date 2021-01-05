@@ -3,6 +3,7 @@ import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/workflow/workflow_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
+import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/dashboard.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/image_model.dart';
@@ -29,6 +30,7 @@ import 'about/about.dart';
 import 'admin/admin.dart';
 import 'assignments/minkey_assignments.dart';
 import 'feed/feed.dart';
+import 'membership/membership_dashboard.dart';
 import 'notifications/minkey_dashboard.dart';
 
 /* This code cleans the database and generates the minkey app, which includes the admin pages
@@ -211,6 +213,11 @@ class MinkeyApp extends InstallApp {
         newAppTools: newAppTools,
         backgroundColor: EliudColors.gray)
         .run();
+    await MinkeyMembershipDashboard(
+        installApp: this,
+        newAppTools: newAppTools,
+        backgroundColor: EliudColors.gray)
+        .run();
     await MinkeyAssignmentViewSetup(
         installApp: this,
         newAppTools: newAppTools,
@@ -265,6 +272,12 @@ class MinkeyApp extends InstallApp {
         description: 'Assignments',
         icon: IconModel(codePoint: Icons.playlist_add_check.codePoint, fontFamily: Icons.notifications.fontFamily),
         action: OpenDialog(MinkeyApp.MINKEY_APP_ID, dialogID: AssignmentViewSetup.IDENTIFIER)),
+    MenuItemModel(
+        documentID: '3',
+        text: 'Members',
+        description: 'Members',
+        icon: IconModel(codePoint: Icons.people.codePoint, fontFamily: Icons.notifications.fontFamily),
+        action: OpenDialog(MinkeyApp.MINKEY_APP_ID, dialogID: MembershipDashboard.IDENTIFIER)),
     MenuItemModel(
         documentID: "5",
         text: "JOIN",
