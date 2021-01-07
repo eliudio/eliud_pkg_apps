@@ -1,10 +1,12 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
+import 'package:eliud_core/model/app_home_page_references_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
+import 'package:eliud_pkg_apps/apps/minkey_app/notifications/minkey_notification_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/workflow/workflow_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
-import 'package:eliud_pkg_apps/apps/shared/notifications/dashboard.dart';
+import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/image_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
@@ -29,9 +31,9 @@ import '../app_base.dart';
 import 'about/about.dart';
 import 'admin/admin.dart';
 import 'assignments/minkey_assignments.dart';
+import 'blocked/minkey_blocked.dart';
 import 'feed/feed.dart';
-import 'membership/membership_dashboard.dart';
-import 'notifications/minkey_dashboard.dart';
+import 'membership/minkey_membership_dashboard.dart';
 
 /* This code cleans the database and generates the minkey app, which includes the admin pages
  */
@@ -97,8 +99,8 @@ class MinkeyApp extends InstallApp {
   }
 
   @override
-  Future<void> setupApplication(
-      PageModel homePage, String ownerID, ImageModel logo) async {
+  Future<void> setupApplication(AppHomePageReferencesModel homePages,
+      String ownerID, ImageModel logo) async {
     AppModel application = AppModel(
       documentID: MINKEY_APP_ID,
       title: "Minkey!",
@@ -106,7 +108,7 @@ class MinkeyApp extends InstallApp {
       logo: logo,
       email: "minkey.io.info@gmail.com",
       darkOrLight: DarkOrLight.Light,
-      entryPage: homePage,
+      homePages: homePages,
       formBackground: pageBG(),
       formSubmitButtonColor: EliudColors.red,
       formSubmitButtonTextColor: EliudColors.white,
@@ -143,7 +145,6 @@ class MinkeyApp extends InstallApp {
           .getFont(FontTools.key(FontTools.latoLabel, FontTools.linkLabel)),
       fontText: fontTools
           .getFont(FontTools.key(FontTools.latoLabel, FontTools.normalLabel)),
-      entryPages: [],
     );
     return await AbstractMainRepositorySingleton.singleton
         .appRepository()
@@ -175,8 +176,8 @@ class MinkeyApp extends InstallApp {
           .run();
 
   @override
-  Future<PageModel> runTheRest(String ownerID, DrawerModel drawer,
-      DrawerModel endDrawer, MenuDefModel adminMenu) async {
+  Future<AppHomePageReferencesModel> runTheRest(String ownerID,
+      DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
     var member = await AbstractMainRepositorySingleton.singleton
         .memberRepository()
         .get(ownerID);
@@ -199,7 +200,7 @@ class MinkeyApp extends InstallApp {
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
-    await PlayStore(
+    var homePageSubscribedMember = await PlayStore(
             installApp: this,
             newAppTools: newAppTools,
             homeMenu: homeMenu(),
@@ -208,21 +209,31 @@ class MinkeyApp extends InstallApp {
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
-    await MinkeyDashboard(
-        installApp: this,
-        newAppTools: newAppTools,
-        backgroundColor: EliudColors.gray)
+    await MinkeyNotificationDashboard(
+            installApp: this,
+            newAppTools: newAppTools,
+            backgroundColor: EliudColors.gray)
         .run();
     await MinkeyMembershipDashboard(
-        installApp: this,
-        newAppTools: newAppTools,
-        backgroundColor: EliudColors.gray)
+            installApp: this,
+            newAppTools: newAppTools,
+            backgroundColor: EliudColors.gray)
         .run();
     await MinkeyAssignmentViewSetup(
+            installApp: this,
+            newAppTools: newAppTools,
+            backgroundColor: EliudColors.gray)
+        .run();
+    var homePageBlockedMember = await MinkeyBlocked(
         installApp: this,
         newAppTools: newAppTools,
-        backgroundColor: EliudColors.gray).run();
-    return await Feed(
+        homeMenu: homeMenu(),
+        pageBG: pageBG(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+        adminMenu: adminMenu)
+        .run();
+    var homePageLevel1Member = await Feed(
         installApp: this,
         newAppTools: newAppTools,
         homeMenu: homeMenu(),
@@ -231,6 +242,12 @@ class MinkeyApp extends InstallApp {
         endDrawer: endDrawer,
         adminMenu: adminMenu)
         .run(member);
+    AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
+      homePageBlockedMemberId: homePageBlockedMember.documentID,
+      homePageSubscribedMemberId: homePageSubscribedMember.documentID,
+      homePageLevel1MemberId: homePageLevel1Member.documentID,
+    );
+    return homePages;
   }
 
   Future<void> run(String ownerID) async {
@@ -260,30 +277,39 @@ class MinkeyApp extends InstallApp {
 
   @override
   List<MenuItemModel> extraMenuItems() => <MenuItemModel>[
-    MenuItemModel(
-        documentID: '1',
-        text: 'Notifications',
-        description: 'Notifications',
-        icon: IconModel(codePoint: Icons.notifications.codePoint, fontFamily: Icons.notifications.fontFamily),
-        action: OpenDialog(MinkeyApp.MINKEY_APP_ID, dialogID: Dashboard.IDENTIFIER)),
-    MenuItemModel(
-        documentID: '2',
-        text: 'Assignments',
-        description: 'Assignments',
-        icon: IconModel(codePoint: Icons.playlist_add_check.codePoint, fontFamily: Icons.notifications.fontFamily),
-        action: OpenDialog(MinkeyApp.MINKEY_APP_ID, dialogID: AssignmentViewSetup.IDENTIFIER)),
-    MenuItemModel(
-        documentID: '3',
-        text: 'Members',
-        description: 'Members',
-        icon: IconModel(codePoint: Icons.people.codePoint, fontFamily: Icons.notifications.fontFamily),
-        action: OpenDialog(MinkeyApp.MINKEY_APP_ID, dialogID: MembershipDashboard.IDENTIFIER)),
-    MenuItemModel(
-        documentID: "5",
-        text: "JOIN",
-        description: "Request membership",
-        icon: null,
-        action: WorkflowSetup.requestMembershipAction(MinkeyApp.MINKEY_APP_ID))
-  ];
-
+        MenuItemModel(
+            documentID: '1',
+            text: 'Notifications',
+            description: 'Notifications',
+            icon: IconModel(
+                codePoint: Icons.notifications.codePoint,
+                fontFamily: Icons.notifications.fontFamily),
+            action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
+                dialogID: NotificationDashboard.IDENTIFIER)),
+        MenuItemModel(
+            documentID: '2',
+            text: 'Assignments',
+            description: 'Assignments',
+            icon: IconModel(
+                codePoint: Icons.playlist_add_check.codePoint,
+                fontFamily: Icons.notifications.fontFamily),
+            action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
+                dialogID: AssignmentViewSetup.IDENTIFIER)),
+        MenuItemModel(
+            documentID: '3',
+            text: 'Members',
+            description: 'Members',
+            icon: IconModel(
+                codePoint: Icons.people.codePoint,
+                fontFamily: Icons.notifications.fontFamily),
+            action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
+                dialogID: MembershipDashboard.IDENTIFIER)),
+        MenuItemModel(
+            documentID: "5",
+            text: "JOIN",
+            description: "Request membership",
+            icon: null,
+            action:
+                WorkflowSetup.requestMembershipAction(MinkeyApp.MINKEY_APP_ID))
+      ];
 }

@@ -43,8 +43,8 @@ class Feed extends AppSection {
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
-        readCondition: ReadCondition.NoRestriction,
-        privilegeLevelRequired: 0,
+        readCondition: ReadCondition.MemberOrPrivilegedMemberOnly,
+        privilegeLevelRequired: OWNER_PRIVILEGES,
         bodyComponents: components);
   }
 

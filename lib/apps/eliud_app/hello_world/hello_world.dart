@@ -210,7 +210,7 @@ class HelloWorld extends AppSection {
       layout: PageLayout.OnlyTheFirstComponent,
       bodyComponents: components,
       readCondition: ReadCondition.NoRestriction,
-      privilegeLevelRequired: 0
+      privilegeLevelRequired: NO_PRIVILEGE
     );
   }
 

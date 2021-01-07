@@ -49,7 +49,7 @@ class AssignmentViewSetup extends AppSectionBase {
         layout: DialogLayout.ListView,
         readCondition: ReadCondition.PackageDecides,
         packageCondition: WorkflowPackage.CONDITION_MUST_HAVE_ASSIGNMENTS,
-        privilegeLevelRequired: 0,
+        privilegeLevelRequired: NO_PRIVILEGE,
         bodyComponents: components);
   }
 

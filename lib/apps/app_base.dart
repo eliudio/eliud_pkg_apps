@@ -3,7 +3,6 @@ import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_core/tools/common_tools.dart';
-import 'package:eliud_core/tools/main_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
@@ -32,8 +31,8 @@ abstract class InstallApp {
   AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer);
 
   Future<void> setupApplication(
-      PageModel homePage, String ownerID, ImageModel logo);
-  Future<PageModel> runTheRest(String ownerID,
+      AppHomePageReferencesModel homePages, String ownerID, ImageModel logo);
+  Future<AppHomePageReferencesModel> runTheRest(String ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu);
   Future<PageModel> memberPage(
       MenuDefModel adminMenu, DrawerModel drawer, DrawerModel endDrawer);
@@ -95,7 +94,6 @@ abstract class InstallApp {
     var application = AppModel(
       documentID: appId,
       ownerID: ownerID,
-      entryPages: [],
     );
     return await AbstractMainRepositorySingleton.singleton
         .appRepository()
@@ -509,8 +507,8 @@ abstract class InstallApp {
     await setupShadows();
     await setupDecorationColorModel(theLogo);
     await setupDividers();
-    var homePage = await runTheRest(ownerID, drawer, endDrawer, adminMenu);
-    await setupApplication(homePage, ownerID, theLogoHead);
+    var homePages = await runTheRest(ownerID, drawer, endDrawer, adminMenu);
+    await setupApplication(homePages, ownerID, theLogoHead);
   }
 
   Future<void> wipeAndReinstall() async {

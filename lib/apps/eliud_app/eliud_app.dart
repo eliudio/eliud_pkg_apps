@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
+import 'package:eliud_core/model/app_home_page_references_model.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/image_model.dart';
@@ -120,7 +121,9 @@ class EliudApp extends InstallApp {
 */
 
   Future<void> setupApplication(
-      PageModel homePage, String ownerID, ImageModel logo) async {
+      AppHomePageReferencesModel homePages,
+      String ownerID,
+      ImageModel logo) async {
     AppModel application = AppModel(
       documentID: ELIUD_APP_ID,
       title: "Eliud!",
@@ -128,7 +131,7 @@ class EliudApp extends InstallApp {
       logo: logo,
       email: "eliud.io.info@gmail.com",
       darkOrLight: DarkOrLight.Light,
-      entryPage: homePage,
+      homePages: homePages,
       formBackground: pageBG(),
       formSubmitButtonColor: EliudColors.red,
       formSubmitButtonTextColor: EliudColors.white,
@@ -156,7 +159,6 @@ class EliudApp extends InstallApp {
       fontHighlight2:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.highlightLabel2)),
       fontLink:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.linkLabel)),
       fontText:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.normalLabel)),
-      entryPages: [],
     );
 
     return await AbstractMainRepositorySingleton.singleton
@@ -189,7 +191,7 @@ class EliudApp extends InstallApp {
           .run();
 
   @override
-  Future<PageModel> runTheRest(String ownerID,
+  Future<AppHomePageReferencesModel> runTheRest(String ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
     await Who(
             installApp: this,
@@ -209,7 +211,7 @@ class EliudApp extends InstallApp {
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
-    return await Welcome(
+    var homePageSubscribedMember = await Welcome(
             installApp: this,
             newAppTools: newAppTools,
             homeMenu: homeMenu(),
@@ -218,6 +220,10 @@ class EliudApp extends InstallApp {
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
+    AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
+        homePageSubscribedMemberId: homePageSubscribedMember.documentID
+    );
+    return homePages;
   }
 
   Future<void> run(String ownerID) async {

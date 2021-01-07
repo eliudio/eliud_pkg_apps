@@ -1,9 +1,12 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
+import 'package:eliud_core/model/app_home_page_references_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
+import 'package:eliud_pkg_apps/apps/juuwle_app/membership/juuwle_membership_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/product_page.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/workflow/workflow_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
-import 'package:eliud_pkg_apps/apps/shared/notifications/dashboard.dart';
+import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
+import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_pkg_shop/model/admin_app.dart' as shop;
 import 'package:eliud_core/model/icon_model.dart';
@@ -34,7 +37,8 @@ import '../app_base.dart';
 import 'about/about.dart';
 import 'admin/admin.dart';
 import 'assignments/juuwle_assignments.dart';
-import 'notifications/juuwle_dashboard.dart';
+import 'blocked/juuwle_blocked.dart';
+import 'notifications/juuwle_notification_dashboard.dart';
 
 class JuuwleApp extends InstallApp {
   static String JUUWLE_APP_ID = 'JUUWLE_APP';
@@ -58,13 +62,15 @@ class JuuwleApp extends InstallApp {
   @override
   MenuDefModel profileDrawerMenuDef() {
     var menuItems = <MenuItemModel>[];
-    menuItems.add(menuItemManageAccount(appId, "my_juuwle", MemberPage.IDENTIFIER));
+    menuItems
+        .add(menuItemManageAccount(appId, "my_juuwle", MemberPage.IDENTIFIER));
     menuItems.add(MenuItemModel(
         documentID: 'orders',
         text: 'Your orders',
         description: 'Your orders',
         icon: IconModel(codePoint: 0xe896, fontFamily: 'MaterialIcons'),
-        action: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: OrderOverview.identifier)));
+        action: GotoPage(JuuwleApp.JUUWLE_APP_ID,
+            pageID: OrderOverview.identifier)));
     menuItems.add(menuItemSignOut(appId, 'sign_out'));
     var menu = MenuDefModel(
         documentID: 'drawer_profile_menu',
@@ -76,7 +82,8 @@ class JuuwleApp extends InstallApp {
 
   @override
   MenuDefModel drawerMenuDef() {
-    return homeMenuDef().copyWith(documentID: 'drawer_menu', name: 'Drawer Menu (copy of main menu)');
+    return homeMenuDef().copyWith(
+        documentID: 'drawer_menu', name: 'Drawer Menu (copy of main menu)');
   }
 
   @override
@@ -94,8 +101,8 @@ class JuuwleApp extends InstallApp {
   }
 
   @override
-  Future<void> setupApplication(
-      PageModel homePage, String ownerID, ImageModel logo) async {
+  Future<void> setupApplication(AppHomePageReferencesModel homePages,
+      String ownerID, ImageModel logo) async {
     var application = AppModel(
       documentID: JUUWLE_APP_ID,
       title: 'Juuwle!',
@@ -103,7 +110,7 @@ class JuuwleApp extends InstallApp {
       logo: logo,
       email: 'juuwle.com.info@gmail.com',
       darkOrLight: DarkOrLight.Light,
-      entryPage: homePage,
+      homePages: homePages,
       formBackground: pageBG(),
       formSubmitButtonColor: EliudColors.red,
       formSubmitButtonTextColor: EliudColors.white,
@@ -140,7 +147,6 @@ class JuuwleApp extends InstallApp {
           FontTools.key(FontTools.dancingScriptLabel, FontTools.linkLabel)),
       fontText: fontTools.getFont(
           FontTools.key(FontTools.dancingScriptLabel, FontTools.normalLabel)),
-      entryPages: [],
     );
     return await AbstractMainRepositorySingleton.singleton
         .appRepository()
@@ -173,7 +179,7 @@ class JuuwleApp extends InstallApp {
           .run();
 
   @override
-  Future<PageModel> runTheRest(String ownerID,
+  Future<AppHomePageReferencesModel> runTheRest(String ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
     await WorkflowSetup(installApp: this).run();
     await About(
@@ -195,69 +201,8 @@ class JuuwleApp extends InstallApp {
             adminMenu: adminMenu)
         .run();
     await MyCart(
-        background: Shop.cardBG(appId),
-        shop: shop,
-        installApp: this,
-        newAppTools: newAppTools,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run();
-    await MyPay(
-        background: Shop.cardBG(appId),
-        shop: shop,
-        installApp: this,
-        newAppTools: newAppTools,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run();
-    await OrderOverview(
-        background: Shop.cardBG(appId),
-        shop: shop,
-        installApp: this,
-        newAppTools: newAppTools,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run();
-    await MyPayConfirmation(
-        background: Shop.cardBG(appId),
-        shop: shop,
-        installApp: this,
-        newAppTools: newAppTools,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run();
-    await ProductPage(
-        shop: shop,
-        installApp: this,
-        newAppTools: newAppTools,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run();
-    await JuuwleDashboard(
-        installApp: this,
-        newAppTools: newAppTools,
-        backgroundColor: EliudColors.gray)
-        .run();
-    await JuuwleAssignmentViewSetup(
-        installApp: this,
-        newAppTools: newAppTools,
-        backgroundColor: EliudColors.gray).run();
-    return await Welcome(
+            background: Shop.cardBG(appId),
+            shop: shop,
             installApp: this,
             newAppTools: newAppTools,
             homeMenu: homeMenu(),
@@ -266,6 +211,86 @@ class JuuwleApp extends InstallApp {
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
+    await MyPay(
+            background: Shop.cardBG(appId),
+            shop: shop,
+            installApp: this,
+            newAppTools: newAppTools,
+            homeMenu: homeMenu(),
+            pageBG: pageBG(),
+            drawer: drawer,
+            endDrawer: endDrawer,
+            adminMenu: adminMenu)
+        .run();
+    await OrderOverview(
+            background: Shop.cardBG(appId),
+            shop: shop,
+            installApp: this,
+            newAppTools: newAppTools,
+            homeMenu: homeMenu(),
+            pageBG: pageBG(),
+            drawer: drawer,
+            endDrawer: endDrawer,
+            adminMenu: adminMenu)
+        .run();
+    await MyPayConfirmation(
+            background: Shop.cardBG(appId),
+            shop: shop,
+            installApp: this,
+            newAppTools: newAppTools,
+            homeMenu: homeMenu(),
+            pageBG: pageBG(),
+            drawer: drawer,
+            endDrawer: endDrawer,
+            adminMenu: adminMenu)
+        .run();
+    await ProductPage(
+            shop: shop,
+            installApp: this,
+            newAppTools: newAppTools,
+            homeMenu: homeMenu(),
+            pageBG: pageBG(),
+            drawer: drawer,
+            endDrawer: endDrawer,
+            adminMenu: adminMenu)
+        .run();
+    await JuuwleNotificationDashboard(
+            installApp: this,
+            newAppTools: newAppTools,
+            backgroundColor: EliudColors.gray)
+        .run();
+    await JuuwleMembershipDashboard(
+            installApp: this,
+            newAppTools: newAppTools,
+            backgroundColor: EliudColors.gray)
+        .run();
+    await JuuwleAssignmentViewSetup(
+            installApp: this,
+            newAppTools: newAppTools,
+            backgroundColor: EliudColors.gray)
+        .run();
+    var homePageSubscribedMember = await Welcome(
+            installApp: this,
+            newAppTools: newAppTools,
+            homeMenu: homeMenu(),
+            pageBG: pageBG(),
+            drawer: drawer,
+            endDrawer: endDrawer,
+            adminMenu: adminMenu)
+        .run();
+    var homePageBlockedMember = await JuuwleBlocked(
+            installApp: this,
+            newAppTools: newAppTools,
+            homeMenu: homeMenu(),
+            pageBG: pageBG(),
+            drawer: drawer,
+            endDrawer: endDrawer,
+            adminMenu: adminMenu)
+        .run();
+    AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
+        homePageBlockedMemberId: homePageBlockedMember.documentID,
+        homePageSubscribedMemberId: homePageSubscribedMember.documentID);
+    return homePages;
   }
 
   @override
@@ -296,23 +321,41 @@ class JuuwleApp extends InstallApp {
 
   // an extra menu item for the shopping cart
   List<MenuItemModel> extraMenuItems() => <MenuItemModel>[
-    MenuItemModel(
-        documentID: '1',
-        text: 'Your bag',
-        description: 'Your bag',
-        icon: IconModel(codePoint: Icons.shopping_basket.codePoint, fontFamily: Icons.shopping_basket.fontFamily),
-        action: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier)),
-    MenuItemModel(
-        documentID: '1',
-        text: 'Notifications',
-        description: 'Notifications',
-        icon: IconModel(codePoint: Icons.notifications.codePoint, fontFamily: Icons.notifications.fontFamily),
-        action: OpenDialog(JuuwleApp.JUUWLE_APP_ID, dialogID: Dashboard.IDENTIFIER)),
-    MenuItemModel(
-        documentID: '2',
-        text: 'Assignments',
-        description: 'Assignments',
-        icon: IconModel(codePoint: Icons.playlist_add_check.codePoint, fontFamily: Icons.notifications.fontFamily),
-        action: OpenDialog(JuuwleApp.JUUWLE_APP_ID, dialogID: AssignmentViewSetup.IDENTIFIER)),
-  ];
+        MenuItemModel(
+            documentID: '1',
+            text: 'Your bag',
+            description: 'Your bag',
+            icon: IconModel(
+                codePoint: Icons.shopping_basket.codePoint,
+                fontFamily: Icons.shopping_basket.fontFamily),
+            action:
+                GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier)),
+        MenuItemModel(
+            documentID: '2',
+            text: 'Notifications',
+            description: 'Notifications',
+            icon: IconModel(
+                codePoint: Icons.notifications.codePoint,
+                fontFamily: Icons.notifications.fontFamily),
+            action: OpenDialog(JuuwleApp.JUUWLE_APP_ID,
+                dialogID: NotificationDashboard.IDENTIFIER)),
+        MenuItemModel(
+            documentID: '3',
+            text: 'Members',
+            description: 'Members',
+            icon: IconModel(
+                codePoint: Icons.people.codePoint,
+                fontFamily: Icons.notifications.fontFamily),
+            action: OpenDialog(JuuwleApp.JUUWLE_APP_ID,
+                dialogID: MembershipDashboard.IDENTIFIER)),
+        MenuItemModel(
+            documentID: '4',
+            text: 'Assignments',
+            description: 'Assignments',
+            icon: IconModel(
+                codePoint: Icons.playlist_add_check.codePoint,
+                fontFamily: Icons.notifications.fontFamily),
+            action: OpenDialog(JuuwleApp.JUUWLE_APP_ID,
+                dialogID: AssignmentViewSetup.IDENTIFIER)),
+      ];
 }

@@ -11,13 +11,13 @@ import 'package:eliud_pkg_notifications/notifications_package.dart';
 import '../../app_base.dart';
 import '../../app_section.dart';
 
-class Dashboard extends AppSectionBase {
+class NotificationDashboard extends AppSectionBase {
   final RgbModel backgroundColor;
 
-  Dashboard(InstallApp installApp, Tools newAppTools, this.backgroundColor) :
+  NotificationDashboard(InstallApp installApp, Tools newAppTools, this.backgroundColor) :
         super(installApp, newAppTools);
 
-  static String IDENTIFIER = "dashboard";
+  static String IDENTIFIER = "notification_dashboard";
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton.dialogRepository(installApp.appId).add(_dialog());
@@ -36,7 +36,7 @@ class Dashboard extends AppSectionBase {
         layout: DialogLayout.ListView,
         readCondition: ReadCondition.PackageDecides,
         packageCondition: NotificationsPackage.CONDITION_MEMBER_HAS_UNREAD_NOTIFICATIONS,
-        privilegeLevelRequired: 0,
+        privilegeLevelRequired: NO_PRIVILEGE,
         bodyComponents: components);
   }
 

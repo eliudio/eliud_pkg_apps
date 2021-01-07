@@ -91,7 +91,7 @@ class Tools {
       background: backgroundModel,
       layout: PageLayout.OnlyTheFirstComponent,
       readCondition: ReadCondition.NoRestriction,
-      privilegeLevelRequired: 0,
+      privilegeLevelRequired: NO_PRIVILEGE,
     );
     return await AbstractRepositorySingleton.singleton.pageRepository(appId).add(page);
   }

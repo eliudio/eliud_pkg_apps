@@ -76,7 +76,7 @@ class Shop extends AppSection {
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
         readCondition: ReadCondition.NoRestriction,
-        privilegeLevelRequired: 0,
+        privilegeLevelRequired: NO_PRIVILEGE,
         bodyComponents: components);
   }
 
