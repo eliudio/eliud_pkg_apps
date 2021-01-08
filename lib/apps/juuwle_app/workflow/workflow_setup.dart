@@ -26,8 +26,8 @@ class WorkflowSetup {
   static WorkflowActionModel payCart(String appId) =>
       WorkflowActionModel(appId,
           conditions: ConditionsModel(
-          readCondition: ReadCondition.PackageDecides,
-          packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
+            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+            packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
           ),
           workflow: _workflowForCreditCardPaymentCart());
 

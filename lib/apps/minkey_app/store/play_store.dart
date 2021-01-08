@@ -58,8 +58,7 @@ class PlayStore extends AppSection {
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
         conditions: ConditionsModel(
-        readCondition: ReadCondition.NoRestriction,
-        privilegeLevelRequired: NO_PRIVILEGE,
+          privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
         ),
         bodyComponents: components);
   }

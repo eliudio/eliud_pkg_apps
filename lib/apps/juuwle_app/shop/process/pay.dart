@@ -59,7 +59,7 @@ class MyPay extends PageTemplate {
     DrawerModel drawer,
     DrawerModel endDrawer,
     MenuDefModel adminMenu}): super(
-      pageCondition: ReadCondition.PackageDecides,
+      privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
       packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
       pageId: identifier,
       installApp: installApp,

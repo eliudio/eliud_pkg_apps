@@ -103,7 +103,7 @@ abstract class InstallApp {
   Future <AccessModel> claimAccess(String ownerID) async {
     return await accessRepository(appId: appId).add(AccessModel(
         documentID: ownerID,
-        privilegeLevel: OWNER_PRIVILEGES,
+        privilegeLevel: PrivilegeLevel.OwnerPrivilege,
         points: 0
       )
     );

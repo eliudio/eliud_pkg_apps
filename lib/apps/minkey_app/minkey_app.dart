@@ -58,7 +58,7 @@ class MinkeyApp extends InstallApp {
 
   @override
   MenuDefModel profileDrawerMenuDef() {
-    List<MenuItemModel> menuItems = List<MenuItemModel>();
+    List<MenuItemModel> menuItems = [];
     menuItems.add(MenuItemModel(
         documentID: "1",
         text: "Other apps",
@@ -84,12 +84,14 @@ class MinkeyApp extends InstallApp {
 
   @override
   MenuDefModel homeMenuDef() {
-    List<MenuItemModel> menuItems = List<MenuItemModel>();
-    menuItems.add(menuItemFeed(appId, "1", Feed.IDENTIFIER, "Feed"));
+    List<MenuItemModel> menuItems = [];
+    menuItems.add(menuItemFeed(appId, "feed", Feed.IDENTIFIER, "Feed"));
     menuItems.add(menuItem(
-        appId, "2", PlayStore.IDENTIFIER, "Apps", Icons.power_settings_new));
-    menuItems.add(menuItemWelcome(appId, "3", Welcome.IDENTIFIER, "Welcome"));
-    menuItems.add(menuItemAbout(appId, "4", AboutBase.identifier, "About"));
+        appId, "apps", PlayStore.IDENTIFIER, "Apps", Icons.power_settings_new));
+    for (int i = 0; i < Welcome.IDENTIFIERs.length; i++) {
+      menuItems.add(menuItemWelcome(appId, Welcome.IDENTIFIERs[i], Welcome.IDENTIFIERs[i], "Welcome"));
+    }
+    menuItems.add(menuItemAbout(appId, "about", AboutBase.identifier, "About"));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
         appId: MINKEY_APP_ID,

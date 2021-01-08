@@ -53,8 +53,8 @@ class OrderOverview extends PageTemplate {
     DrawerModel drawer,
     DrawerModel endDrawer,
     MenuDefModel adminMenu}): super(
+      privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
       pageId: identifier,
-      pageCondition: ReadCondition.NoRestriction,
       installApp: installApp,
       newAppTools: newAppTools,
       homeMenu: homeMenu,

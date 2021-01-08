@@ -41,10 +41,10 @@ class NotificationDashboard extends AppSectionBase {
         background: backgroundColor,
         layout: DialogLayout.ListView,
         conditions: ConditionsModel(
-          readCondition: ReadCondition.PackageDecides,
+          privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
           packageCondition:
               NotificationsPackage.CONDITION_MEMBER_HAS_UNREAD_NOTIFICATIONS,
-          privilegeLevelRequired: NO_PRIVILEGE,
+          conditionOverride: ConditionOverride.InclusiveForBlockedMembers // allow blocked members to see
         ),
         bodyComponents: components);
   }

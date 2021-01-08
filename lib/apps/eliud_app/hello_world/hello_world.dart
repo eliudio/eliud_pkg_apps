@@ -211,8 +211,7 @@ class HelloWorld extends AppSection {
       layout: PageLayout.OnlyTheFirstComponent,
       bodyComponents: components,
       conditions: ConditionsModel(
-        readCondition: ReadCondition.NoRestriction,
-        privilegeLevelRequired: NO_PRIVILEGE
+        privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired
       ),
     );
   }

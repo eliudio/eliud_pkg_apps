@@ -40,8 +40,7 @@ class MembershipDashboard extends AppSectionBase {
         background: backgroundColor,
         layout: DialogLayout.ListView,
         conditions: ConditionsModel(
-          readCondition: ReadCondition.MemberOrPrivilegedMemberOnly,
-          privilegeLevelRequired: OWNER_PRIVILEGES,
+          privilegeLevelRequired: PrivilegeLevelRequired.OwnerPrivilegeRequired,
         ),
         bodyComponents: components);
   }

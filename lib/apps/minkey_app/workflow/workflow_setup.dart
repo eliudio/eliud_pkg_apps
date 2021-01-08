@@ -76,20 +76,20 @@ class WorkflowSetup {
   static WorkflowActionModel requestMembershipAction(String appId) =>
       WorkflowActionModel(appId,
           conditions: ConditionsModel(
-          readCondition: ReadCondition.PackageDecides,
-          packageCondition: MembershipPackage.MEMBER_HAS_NO_MEMBERSHIP_YET,
+            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+            packageCondition: MembershipPackage.MEMBER_HAS_NO_MEMBERSHIP_YET,
           ),
           workflow: _workflowForManuallyPaidMembership());
 
   static WorkflowActionModel payCart(String appId) =>
       WorkflowActionModel(appId,
           conditions: ConditionsModel(
-          readCondition: ReadCondition.PackageDecides,
-          packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
+            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+            packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
           ),
           workflow: _workflowForCreditCardPaymentCart());
 
-  void run() async {
+  Future<void> run() async {
     await _setupWorkflows();
   }
 }

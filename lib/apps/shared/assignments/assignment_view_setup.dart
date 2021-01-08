@@ -48,9 +48,9 @@ class AssignmentViewSetup extends AppSectionBase {
         background: backgroundColor,
         layout: DialogLayout.ListView,
         conditions: ConditionsModel(
-          readCondition: ReadCondition.PackageDecides,
-          packageCondition: WorkflowPackage.CONDITION_MUST_HAVE_ASSIGNMENTS,
-          privilegeLevelRequired: NO_PRIVILEGE,
+            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+            packageCondition: WorkflowPackage.CONDITION_MUST_HAVE_ASSIGNMENTS,
+            conditionOverride: ConditionOverride.InclusiveForBlockedMembers // allow blocked members to see
         ),
         bodyComponents: components);
   }

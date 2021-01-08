@@ -19,9 +19,9 @@ import '../../app_base.dart';
 
 abstract class PageTemplate extends AppSection {
   final String pageId;
-  final ReadCondition pageCondition;
-  final int privilegeLevelRequired;
+  final PrivilegeLevelRequired privilegeLevelRequired;
   final String packageCondition;
+  final ConditionOverride conditionOverride;
 
   PresentationImageAlignment presentationImageAlignment;
 
@@ -34,7 +34,7 @@ abstract class PageTemplate extends AppSection {
   String componentName();
   Future<void> setupComponent();
 
-  PageTemplate({this.pageId, this.pageCondition, this.privilegeLevelRequired, this.packageCondition, this.presentationImageAlignment, InstallApp installApp,
+  PageTemplate({this.pageId, this.privilegeLevelRequired, this.packageCondition, this.conditionOverride, this.presentationImageAlignment, InstallApp installApp,
       Tools newAppTools,
       HomeMenuModel homeMenu,
       BackgroundModel pageBG,
@@ -68,9 +68,9 @@ abstract class PageTemplate extends AppSection {
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
         conditions: ConditionsModel(
-          readCondition: pageCondition,
           privilegeLevelRequired: privilegeLevelRequired,
           packageCondition: packageCondition,
+          conditionOverride: conditionOverride
         ),
         bodyComponents: components);
   }

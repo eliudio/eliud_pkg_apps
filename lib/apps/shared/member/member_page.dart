@@ -53,8 +53,7 @@ class MemberPage extends AppSection {
         homeMenu: homeMenu,
         layout: PageLayout.OnlyTheFirstComponent,
         conditions: ConditionsModel(
-          readCondition: ReadCondition.NoRestriction,
-          privilegeLevelRequired: NO_PRIVILEGE,
+          privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
         ),
         bodyComponents: components);
   }
