@@ -64,8 +64,10 @@ class Welcome extends AppSection {
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
+        conditions: ConditionsModel(
         readCondition: ReadCondition.NoRestriction,
         privilegeLevelRequired: NO_PRIVILEGE,
+        ),
         bodyComponents: components);
   }
   Future<void> _setupFader() {

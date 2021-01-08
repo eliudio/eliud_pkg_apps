@@ -90,8 +90,10 @@ class Tools {
       bodyComponents: components,
       background: backgroundModel,
       layout: PageLayout.OnlyTheFirstComponent,
-      readCondition: ReadCondition.NoRestriction,
-      privilegeLevelRequired: NO_PRIVILEGE,
+      conditions: ConditionsModel(
+        readCondition: ReadCondition.NoRestriction,
+        privilegeLevelRequired: NO_PRIVILEGE,
+      ),
     );
     return await AbstractRepositorySingleton.singleton.pageRepository(appId).add(page);
   }

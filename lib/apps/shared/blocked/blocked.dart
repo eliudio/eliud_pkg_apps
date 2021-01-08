@@ -42,8 +42,10 @@ class Blocked extends AppSection {
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
-        readCondition: ReadCondition.NoRestriction,
-        privilegeLevelRequired: NO_PRIVILEGE,
+        conditions: ConditionsModel(
+          readCondition: ReadCondition.NoRestriction,
+          privilegeLevelRequired: NO_PRIVILEGE,
+        ),
         bodyComponents: components);
   }
 

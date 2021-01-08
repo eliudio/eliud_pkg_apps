@@ -1,3 +1,4 @@
+import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_pkg_apps/apps/app_base.dart';
 import 'package:eliud_pkg_apps/apps/shared/workflow/workflow_helper.dart';
@@ -74,14 +75,18 @@ class WorkflowSetup {
 
   static WorkflowActionModel requestMembershipAction(String appId) =>
       WorkflowActionModel(appId,
+          conditions: ConditionsModel(
           readCondition: ReadCondition.PackageDecides,
           packageCondition: MembershipPackage.MEMBER_HAS_NO_MEMBERSHIP_YET,
+          ),
           workflow: _workflowForManuallyPaidMembership());
 
   static WorkflowActionModel payCart(String appId) =>
       WorkflowActionModel(appId,
+          conditions: ConditionsModel(
           readCondition: ReadCondition.PackageDecides,
           packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
+          ),
           workflow: _workflowForCreditCardPaymentCart());
 
   void run() async {

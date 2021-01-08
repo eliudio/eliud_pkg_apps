@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
@@ -56,8 +57,10 @@ class PlayStore extends AppSection {
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
+        conditions: ConditionsModel(
         readCondition: ReadCondition.NoRestriction,
         privilegeLevelRequired: NO_PRIVILEGE,
+        ),
         bodyComponents: components);
   }
 
