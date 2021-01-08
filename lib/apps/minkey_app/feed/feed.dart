@@ -44,7 +44,7 @@ class Feed extends AppSection {
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
         conditions: ConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequired.OwnerPrivilegeRequired,
+          privilegeLevelRequired: PrivilegeLevelRequired.Level1PrivilegeRequired,
         ),
         bodyComponents: components);
   }
