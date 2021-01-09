@@ -133,7 +133,7 @@ class Welcome extends AppSection {
   }
 
   String _welcomePageContents(PrivilegeLevelRequired privilegeLevelRequired) {
-    var privilegeLevelString = privilegeLevelIntToMemberRoleString(privilegeLevelRequired.index);
+    var privilegeLevelString = privilegeLevelIntToMemberRoleString(privilegeLevelRequired.index, false);
     List<SectionSpec> sections = List();
     {
       sections.add(

@@ -4,6 +4,7 @@ import 'package:eliud_pkg_pay/tools/task/pay_type_model.dart';
 import 'package:eliud_pkg_pay/tools/task/review_and_ship_task_model.dart';
 import 'package:eliud_pkg_workflow/model/workflow_model.dart';
 import 'package:eliud_pkg_workflow/model/workflow_task_model.dart';
+import 'package:eliud_pkg_workflow/model/workflow_notification_model.dart';
 
 class WorkflowHelper {
   static WorkflowModel _workflowForPaymentCart(
@@ -26,6 +27,14 @@ class WorkflowHelper {
             seqNumber: 2,
             documentID: "review_payment_and_ship",
             responsible: WorkflowTaskResponsible.Owner,
+            confirmMessage: WorkflowNotificationModel(
+                message:
+                "Your payment has been reviewed and approved and your order is being prepared for shipment. Feedback from the shop: ",
+                addressee: WorkflowNotificationAddressee.CurrentMember),
+            rejectMessage: WorkflowNotificationModel(
+                message:
+                "Your payment has been reviewed and rejected. Feedback from the shop: ",
+                addressee: WorkflowNotificationAddressee.CurrentMember),
             task: ReviewAndShipTaskModel(
               executeInstantly: false,
               description: 'Review the payment and ship the products',
@@ -72,6 +81,11 @@ class WorkflowHelper {
         seqNumber: 2,
         documentID: "pay_membership",
         responsible: WorkflowTaskResponsible.CurrentMember,
+        confirmMessage: WorkflowNotificationModel(
+            message:
+                "Your payment and membership request is now with the owner for review. You will be notified soon",
+            addressee: WorkflowNotificationAddressee.CurrentMember),
+        rejectMessage: null,
         task: FixedAmountPayModel(
             executeInstantly: true,
             description: 'To join, pay 20 GBP',
@@ -83,6 +97,14 @@ class WorkflowHelper {
         seqNumber: 3,
         documentID: "confirm_membership",
         responsible: WorkflowTaskResponsible.Owner,
+        confirmMessage: WorkflowNotificationModel(
+            message:
+            "You payment has been verified and you're now a member. Welcome! Feedback: ",
+            addressee: WorkflowNotificationAddressee.CurrentMember),
+        rejectMessage: WorkflowNotificationModel(
+            message:
+            "You payment has been verified and unfortunatly something went wrong. Feedback: ",
+            addressee: WorkflowNotificationAddressee.CurrentMember),
         task: ApproveMembershipTaskModel(
           executeInstantly: false,
           description: 'Verify payment and confirm membership',
@@ -116,7 +138,7 @@ class WorkflowHelper {
       {double amount, String ccy}) {
     return _workflowForMembership(
         "membership_paid_manually",
-        "Paid Membership (manually paid)",
+        "Paid Membership (Credit card payment)",
         20,
         "GBP",
         CreditCardPayTypeModel(requiresConfirmation: true));
