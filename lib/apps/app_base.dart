@@ -440,6 +440,9 @@ abstract class InstallApp {
       indent: 0,
       thickness: .5,
       appId: appId,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
     return dividerModel;
   }

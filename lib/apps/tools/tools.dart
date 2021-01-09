@@ -72,7 +72,10 @@ class Tools {
       name: name,
       title: title,
       description: description,
-      tutorialEntries: items
+      tutorialEntries: items,
+      conditions: ConditionsSimpleModel(
+        privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
   }
 

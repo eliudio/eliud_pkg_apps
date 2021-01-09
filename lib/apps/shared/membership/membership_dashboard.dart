@@ -49,7 +49,11 @@ class MembershipDashboard extends AppSectionBase {
     return MembershipDashboardModel(
         documentID: IDENTIFIER,
         appId: installApp.appId,
-        description: "Members");
+        description: "Members",
+        conditions: ConditionsSimpleModel(
+            privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+        ),
+    );
   }
 
   Future<MembershipDashboardModel> _setupDashboard() async {

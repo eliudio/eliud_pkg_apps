@@ -1,3 +1,4 @@
+import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/model/model_export.dart';
 
@@ -35,7 +36,11 @@ class Products {
         images: productImages,
         price: product.price,
         weight: 100,
-        posSize: installApp.screen75());
+        posSize: installApp.screen75(),
+        conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+        ),
+    );
   }
 
   static String productId1 = "gouldian_finch";

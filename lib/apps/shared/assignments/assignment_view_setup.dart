@@ -56,7 +56,14 @@ class AssignmentViewSetup extends AppSectionBase {
   }
 
   AssignmentViewModel _assignmentViewModel() {
-    return AssignmentViewModel(documentID: IDENTIFIER, appId: installApp.appId, description: "My Assignments");
+    return AssignmentViewModel(
+        documentID: IDENTIFIER,
+        appId: installApp.appId,
+        description: "My Assignments",
+        conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+        ),
+    );
   }
 
   Future<AssignmentViewModel> _setupAssignmentView() async {

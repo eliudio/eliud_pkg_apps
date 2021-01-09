@@ -31,6 +31,9 @@ class MyPayConfirmation extends PageTemplate {
         title: pageTitle(),
         shop: shop,
         backToShopAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: Shop.identifier),
+        conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+        ),
     );
   }
 

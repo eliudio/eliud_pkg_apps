@@ -1,5 +1,6 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/model/conditions_model.dart';
+import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
@@ -110,6 +111,9 @@ abstract class AboutBase extends AppSection {
       name: "About",
       sections: entries,
       appId: installApp.appId,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
   }
 

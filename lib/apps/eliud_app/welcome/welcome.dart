@@ -105,6 +105,9 @@ class Welcome extends AppSection {
       imageSeconds: 5,
       items: items,
       appId: EliudApp.ELIUD_APP_ID,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
     return model;
   }
@@ -132,6 +135,9 @@ class Welcome extends AppSection {
       name: "Welcome",
       sections:entries,
       appId: installApp.appId,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
   }
 

@@ -100,6 +100,9 @@ class Shop extends AppSection {
       imageSeconds: 5,
       items: items,
       appId: installApp.appId,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
     return model;
   }
@@ -207,6 +210,9 @@ class Shop extends AppSection {
       imagePositionRelative: PresentationRelativeImagePosition.Aside,
       imageAlignment: PresentationImageAlignment.Left,
       imageWidth: .33,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
   }
 

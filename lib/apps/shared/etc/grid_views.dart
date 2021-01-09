@@ -1,4 +1,5 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
+import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_core/model/grid_view_model.dart';
 
 class GridViews {
@@ -13,7 +14,10 @@ class GridViews {
       padding: 4,
       mainAxisSpacing: 4,
       crossAxisSpacing: 4,
-      scrollDirection: scrollDirection
+      scrollDirection: scrollDirection,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
   }
 
@@ -29,7 +33,10 @@ class GridViews {
       padding: 4,
       mainAxisSpacing: 4,
       crossAxisSpacing: 4,
-      scrollDirection: scrollDirection
+      scrollDirection: scrollDirection,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
   }
 
@@ -45,7 +52,10 @@ class GridViews {
       padding: 4,
       mainAxisSpacing: 4,
       crossAxisSpacing: 4,
-      scrollDirection: scrollDirection
+      scrollDirection: scrollDirection,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
   }
 

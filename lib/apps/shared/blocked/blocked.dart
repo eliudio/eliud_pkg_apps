@@ -69,6 +69,9 @@ class Blocked extends AppSection {
       name: "Blocked!",
       sections:entries,
       appId: installApp.appId,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
   }
 

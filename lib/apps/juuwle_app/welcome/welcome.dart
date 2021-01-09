@@ -70,6 +70,9 @@ class Welcome extends AppSection {
       name: "Welcome",
       sections:entries,
       appId: installApp.appId,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
   }
 

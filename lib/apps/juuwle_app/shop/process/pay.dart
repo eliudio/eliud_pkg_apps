@@ -34,6 +34,9 @@ class MyPay extends PageTemplate {
         shop: shop,
         payAction: WorkflowSetup.payCart(installApp.appId),
         succeeded: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyPayConfirmation.identifier),
+        conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+        ),
     );
   }
 

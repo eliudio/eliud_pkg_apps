@@ -1,5 +1,6 @@
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/model/conditions_model.dart';
+import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
@@ -41,6 +42,9 @@ class MyCart extends PageTemplate {
         checkoutAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyPay.identifier),
         backToShopAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: Shop.identifier),
         openProductAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: ProductPage.identifier),
+        conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+        ),
     );
   }
 

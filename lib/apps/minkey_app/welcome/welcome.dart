@@ -128,6 +128,9 @@ class Welcome extends AppSection {
       imageSeconds: 5,
       items: items,
       appId: MinkeyApp.MINKEY_APP_ID,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
     return model;
   }
@@ -160,7 +163,11 @@ class Welcome extends AppSection {
         documentRenderer: DocumentRenderer.dynamic_widget,
         appId: MinkeyApp.MINKEY_APP_ID,
         images: list,
-        padding: 10);
+        padding: 10,
+        conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+        ),
+    );
     return document;
   }
 

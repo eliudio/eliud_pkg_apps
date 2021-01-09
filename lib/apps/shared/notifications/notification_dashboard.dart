@@ -53,7 +53,11 @@ class NotificationDashboard extends AppSectionBase {
     return NotificationDashboardModel(
         documentID: IDENTIFIER,
         appId: installApp.appId,
-        description: "My Notifications");
+        description: "My Notifications",
+        conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+        ),
+    );
   }
 
   Future<NotificationDashboardModel> _setupDashboard() async {

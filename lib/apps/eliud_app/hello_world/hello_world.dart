@@ -1,5 +1,6 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/conditions_model.dart';
+import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/background_model.dart';
@@ -182,10 +183,13 @@ class HelloWorld extends AppSection {
     }
 
     return BookletModel(
-        documentID: "hello_world",
-        name: "Hello world",
-        sections:entries,
-        appId: EliudApp.ELIUD_APP_ID
+      documentID: "hello_world",
+      name: "Hello world",
+      sections:entries,
+      appId: EliudApp.ELIUD_APP_ID,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      )
     );
   }
 

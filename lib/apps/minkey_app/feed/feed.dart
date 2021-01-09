@@ -50,7 +50,11 @@ class Feed extends AppSection {
   }
 
   FeedModel _feedModel() {
-    return FeedModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, description: "My Minkey Feed");
+    return FeedModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, description: "My Minkey Feed",
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
+    );
   }
 
   Future<FeedModel> _setupFeed() async {

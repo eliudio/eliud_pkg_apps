@@ -27,7 +27,10 @@ class OrderOverview extends PageTemplate {
         title: pageTitle(),
         shop: shop,
         itemImageBackground: null,
-        itemDetailBackground: background
+        itemDetailBackground: background,
+        conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+        ),
     );
   }
 

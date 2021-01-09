@@ -1,5 +1,6 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/model/conditions_model.dart';
+import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
@@ -76,12 +77,15 @@ class PlayStore extends AppSection {
           posSize: installApp.halfScreen(),
           image: newAppTools.findImageModel("minkey")));
       FaderModel model = FaderModel(
-          documentID: FADER_IDENTIFIER,
-          name: "Welcome fader",
-          animationMilliseconds: 1000,
-          imageSeconds: 5,
-          items: items,
-          appId: MinkeyApp.MINKEY_APP_ID,
+        documentID: FADER_IDENTIFIER,
+        name: "Welcome fader",
+        animationMilliseconds: 1000,
+        imageSeconds: 5,
+        items: items,
+        appId: MinkeyApp.MINKEY_APP_ID,
+        conditions: ConditionsSimpleModel(
+            privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+        ),
       );
       return model;
   }
@@ -92,6 +96,9 @@ class PlayStore extends AppSection {
       appId: MinkeyApp.MINKEY_APP_ID,
       description: "Minkey Store",
       itemBackground: playStoreBG(),
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
   }
 
