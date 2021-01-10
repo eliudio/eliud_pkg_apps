@@ -5,6 +5,7 @@ import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/notifications/minkey_notification_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/workflow/workflow_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
+import 'package:eliud_pkg_apps/apps/shared/follow/follow_dashboards.dart';
 import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
@@ -33,6 +34,7 @@ import 'admin/admin.dart';
 import 'assignments/minkey_assignments.dart';
 import 'blocked/minkey_blocked.dart';
 import 'feed/feed.dart';
+import 'follow/follow_dashboards.dart';
 import 'membership/minkey_membership_dashboard.dart';
 
 /* This code cleans the database and generates the minkey app, which includes the admin pages
@@ -68,6 +70,13 @@ class MinkeyApp extends InstallApp {
     menuItems.add(menuItemSignOut(appId, "2"));
     menuItems.add(menuItemFlushCache(appId, "3"));
     menuItems.add(menuItemManageAccount(appId, "4", MemberPage.IDENTIFIER));
+    menuItems.add(
+        menuItemFollowers(appId, "5", FollowDashboards.FOLLOWERS_IDENTIFIER));
+    menuItems.add(
+        menuItemFollowing(appId, "6", FollowDashboards.FOLLOWING_IDENTIFIER));
+    menuItems.add(
+        menuItemFiendFriends(appId, "7", InviteDashboard.INVITE_IDENTIFIER));
+
     MenuDefModel menu = MenuDefModel(
         documentID: "drawer_profile_menu",
         appId: MINKEY_APP_ID,
@@ -89,7 +98,8 @@ class MinkeyApp extends InstallApp {
     menuItems.add(menuItem(
         appId, "apps", PlayStore.IDENTIFIER, "Apps", Icons.power_settings_new));
     for (int i = 0; i < Welcome.IDENTIFIERs.length; i++) {
-      menuItems.add(menuItemWelcome(appId, Welcome.IDENTIFIERs[i], Welcome.IDENTIFIERs[i], "Welcome"));
+      menuItems.add(menuItemWelcome(
+          appId, Welcome.IDENTIFIERs[i], Welcome.IDENTIFIERs[i], "Welcome"));
     }
     menuItems.add(menuItemAbout(appId, "about", AboutBase.identifier, "About"));
     MenuDefModel menu = MenuDefModel(
@@ -226,23 +236,28 @@ class MinkeyApp extends InstallApp {
             newAppTools: newAppTools,
             backgroundColor: EliudColors.gray)
         .run();
+    await MinkeyFollowDashboards(
+            installApp: this,
+            newAppTools: newAppTools,
+            backgroundColor: EliudColors.gray)
+        .run();
     var homePageBlockedMember = await MinkeyBlocked(
-        installApp: this,
-        newAppTools: newAppTools,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
+            installApp: this,
+            newAppTools: newAppTools,
+            homeMenu: homeMenu(),
+            pageBG: pageBG(),
+            drawer: drawer,
+            endDrawer: endDrawer,
+            adminMenu: adminMenu)
         .run();
     var homePageLevel1Member = await Feed(
-        installApp: this,
-        newAppTools: newAppTools,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
+            installApp: this,
+            newAppTools: newAppTools,
+            homeMenu: homeMenu(),
+            pageBG: pageBG(),
+            drawer: drawer,
+            endDrawer: endDrawer,
+            adminMenu: adminMenu)
         .run(member);
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
       homePageBlockedMemberId: homePageBlockedMember.documentID,
@@ -299,6 +314,15 @@ class MinkeyApp extends InstallApp {
                 dialogID: AssignmentViewSetup.IDENTIFIER)),
         MenuItemModel(
             documentID: '3',
+            text: 'Follow requests',
+            description: 'Follow requests',
+            icon: IconModel(
+                codePoint: Icons.favorite_border.codePoint,
+                fontFamily: Icons.notifications.fontFamily),
+            action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
+                dialogID: FollowRequestDashboard.FOLLOW_REQUEST_IDENTIFIER)),
+        MenuItemModel(
+            documentID: '4',
             text: 'Members',
             description: 'Members',
             icon: IconModel(

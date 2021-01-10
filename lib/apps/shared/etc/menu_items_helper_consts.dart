@@ -87,3 +87,30 @@ menuItemShoppingCart(appID, documentID, pageID, text) => MenuItemModel(
     icon: IconModel(codePoint: Icons.shopping_cart.codePoint, fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID, pageID: pageID));
 
+menuItemFollowers(appID, documentID, dialogID) => MenuItemModel(
+    documentID: documentID,
+    text: 'Followers',
+    description: 'Followers',
+    icon: IconModel(
+        codePoint: Icons.favorite_sharp.codePoint,
+        fontFamily: Icons.settings.fontFamily),
+    action: OpenDialog(appID, dialogID: dialogID));
+
+menuItemFollowing(appID, documentID, dialogID) => MenuItemModel(
+    documentID: documentID,
+    text: 'Following',
+    description: 'Following',
+    icon: IconModel(
+        codePoint: Icons.favorite_sharp.codePoint,
+        fontFamily: Icons.settings.fontFamily),
+    action: OpenDialog(appID, dialogID: dialogID));
+
+menuItemFiendFriends(appID, documentID, dialogID) => MenuItemModel(
+    documentID: documentID,
+    text: 'Find friends',
+    description: 'Fiend friends',
+    icon: IconModel(
+        codePoint: Icons.favorite_sharp.codePoint,
+        fontFamily: Icons.settings.fontFamily),
+    action: OpenDialog(appID, dialogID: dialogID));
+

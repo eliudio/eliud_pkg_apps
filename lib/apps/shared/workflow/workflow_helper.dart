@@ -29,11 +29,11 @@ class WorkflowHelper {
             responsible: WorkflowTaskResponsible.Owner,
             confirmMessage: WorkflowNotificationModel(
                 message:
-                "Your payment has been reviewed and approved and your order is being prepared for shipment. Feedback from the shop: ",
+                    "Your payment has been reviewed and approved and your order is being prepared for shipment. Feedback from the shop: ",
                 addressee: WorkflowNotificationAddressee.CurrentMember),
             rejectMessage: WorkflowNotificationModel(
                 message:
-                "Your payment has been reviewed and rejected. Feedback from the shop: ",
+                    "Your payment has been reviewed and rejected. Feedback from the shop: ",
                 addressee: WorkflowNotificationAddressee.CurrentMember),
             task: ReviewAndShipTaskModel(
               executeInstantly: false,
@@ -99,11 +99,11 @@ class WorkflowHelper {
         responsible: WorkflowTaskResponsible.Owner,
         confirmMessage: WorkflowNotificationModel(
             message:
-            "You payment has been verified and you're now a member. Welcome! Feedback: ",
+                "You payment has been verified and you're now a member. Welcome! Feedback: ",
             addressee: WorkflowNotificationAddressee.CurrentMember),
         rejectMessage: WorkflowNotificationModel(
             message:
-            "You payment has been verified and unfortunatly something went wrong. Feedback: ",
+                "You payment has been verified and unfortunatly something went wrong. Feedback: ",
             addressee: WorkflowNotificationAddressee.CurrentMember),
         task: ApproveMembershipTaskModel(
           executeInstantly: false,
@@ -143,4 +143,5 @@ class WorkflowHelper {
         "GBP",
         CreditCardPayTypeModel(requiresConfirmation: true));
   }
+
 }

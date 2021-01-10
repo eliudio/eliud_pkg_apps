@@ -183,6 +183,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  eliud_pkg_follow:
+    dependency: "direct main"
+    description:
+      path: "../eliud_pkg_follow"
+      relative: true
+    source: path
+    version: "0.0.1"
   eliud_pkg_fundamentals:
     dependency: "direct main"
     description:
