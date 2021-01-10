@@ -159,8 +159,8 @@ class InviteDashboard extends AppSectionBase {
         bodyComponents: components);
   }
 
-  FollowRequestsDashboardModel _dashboardModel() {
-    return FollowRequestsDashboardModel(
+  FollowingDashboardModel _dashboardModel() {
+    return FollowingDashboardModel(
       documentID: INVITE_IDENTIFIER,
       appId: installApp.appId,
       description: "Follow requests",
@@ -170,9 +170,9 @@ class InviteDashboard extends AppSectionBase {
     );
   }
 
-  Future<FollowRequestsDashboardModel> _setupDashboard() async {
+  Future<FollowingDashboardModel> _setupDashboard() async {
     return await AbstractRepositorySingleton.singleton
-        .followRequestsDashboardRepository(installApp.appId)
+        .followingDashboardRepository(installApp.appId)
         .add(_dashboardModel());
   }
 
