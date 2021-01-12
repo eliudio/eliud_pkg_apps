@@ -138,7 +138,10 @@ class Shop extends AppSection {
       size: 250,
       cardElevation: 10,
       cardAxisSpacing: 20,
-      scrollDirection: ScrollDirection.Vertical
+      scrollDirection: ScrollDirection.Vertical,
+      conditions: ConditionsSimpleModel(
+        privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
   }
 
@@ -159,7 +162,10 @@ class Shop extends AppSection {
       size: 250,
       cardElevation: 10,
       cardAxisSpacing: 20,
-      scrollDirection: ScrollDirection.Vertical
+      scrollDirection: ScrollDirection.Vertical,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
   }
 
