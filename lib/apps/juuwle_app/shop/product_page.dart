@@ -27,6 +27,9 @@ class ProductPage extends BasicPageTemplate {
       buyAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier),
       itemDetailBackground: installApp.pageBG(),
       addToBasketText: 'Add to basket',
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
     );
   }
 
