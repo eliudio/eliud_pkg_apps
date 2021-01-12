@@ -100,11 +100,11 @@ class WorkflowHelper {
         confirmMessage: WorkflowNotificationModel(
             message:
                 "You payment has been verified and you're now a member. Welcome! Feedback: ",
-            addressee: WorkflowNotificationAddressee.CurrentMember),
+            addressee: WorkflowNotificationAddressee.First),
         rejectMessage: WorkflowNotificationModel(
             message:
-                "You payment has been verified and unfortunatly something went wrong. Feedback: ",
-            addressee: WorkflowNotificationAddressee.CurrentMember),
+                "You payment has been verified and unfortunately something went wrong. Feedback: ",
+            addressee: WorkflowNotificationAddressee.First),
         task: ApproveMembershipTaskModel(
           executeInstantly: false,
           description: 'Verify payment and confirm membership',
