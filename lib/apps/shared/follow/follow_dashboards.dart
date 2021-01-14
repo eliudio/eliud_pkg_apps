@@ -5,9 +5,12 @@ import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_pkg_follow/follow_package.dart';
 import 'package:eliud_pkg_follow/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_follow/model/follow_requests_dashboard_component.dart';
 import 'package:eliud_pkg_follow/model/follow_requests_dashboard_model.dart';
 import 'package:eliud_pkg_follow/model/following_dashboard_component.dart';
 import 'package:eliud_pkg_follow/model/following_dashboard_model.dart';
+import 'package:eliud_pkg_follow/model/invite_dashboard_component.dart';
+import 'package:eliud_pkg_follow/model/invite_dashboard_model.dart';
 
 import '../../app_base.dart';
 import '../../app_section.dart';
@@ -51,7 +54,7 @@ class _FollowingDashboard extends AppSectionBase {
     return FollowingDashboardModel(
         documentID: identifier,
         appId: installApp.appId,
-        description: "Members",
+        description: title,
         view: view,
         conditions: ConditionsSimpleModel(
             privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
@@ -88,7 +91,7 @@ class FollowRequestDashboard extends AppSectionBase {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "1",
-        componentName: AbstractFollowingDashboardComponent.componentName,
+        componentName: AbstractFollowRequestsDashboardComponent.componentName,
         componentId: FOLLOW_REQUEST_IDENTIFIER));
 
     return DialogModel(
@@ -144,7 +147,7 @@ class InviteDashboard extends AppSectionBase {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "1",
-        componentName: AbstractFollowingDashboardComponent.componentName,
+        componentName: AbstractInviteDashboardComponent.componentName,
         componentId: INVITE_IDENTIFIER));
 
     return DialogModel(
@@ -159,20 +162,20 @@ class InviteDashboard extends AppSectionBase {
         bodyComponents: components);
   }
 
-  FollowingDashboardModel _dashboardModel() {
-    return FollowingDashboardModel(
+  InviteDashboardModel _dashboardModel() {
+    return InviteDashboardModel(
       documentID: INVITE_IDENTIFIER,
       appId: installApp.appId,
-      description: "Follow requests",
+      description: "Follow members",
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );
   }
 
-  Future<FollowingDashboardModel> _setupDashboard() async {
+  Future<InviteDashboardModel> _setupDashboard() async {
     return await AbstractRepositorySingleton.singleton
-        .followingDashboardRepository(installApp.appId)
+        .inviteDashboardRepository(installApp.appId)
         .add(_dashboardModel());
   }
 

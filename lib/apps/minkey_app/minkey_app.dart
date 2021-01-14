@@ -1,5 +1,8 @@
+import 'package:eliud_core/eliud.dart';
+import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
+import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/notifications/minkey_notification_dashboard.dart';
@@ -70,12 +73,6 @@ class MinkeyApp extends InstallApp {
     menuItems.add(menuItemSignOut(appId, "2"));
     menuItems.add(menuItemFlushCache(appId, "3"));
     menuItems.add(menuItemManageAccount(appId, "4", MemberPage.IDENTIFIER));
-    menuItems.add(
-        menuItemFollowers(appId, "5", FollowDashboards.FOLLOWERS_IDENTIFIER));
-    menuItems.add(
-        menuItemFollowing(appId, "6", FollowDashboards.FOLLOWING_IDENTIFIER));
-    menuItems.add(
-        menuItemFiendFriends(appId, "7", InviteDashboard.INVITE_IDENTIFIER));
 
     MenuDefModel menu = MenuDefModel(
         documentID: "drawer_profile_menu",
@@ -193,6 +190,7 @@ class MinkeyApp extends InstallApp {
     var member = await AbstractMainRepositorySingleton.singleton
         .memberRepository()
         .get(ownerID);
+    await createFollowMenu();
     await WorkflowSetup(installApp: this).run();
     await About(
             installApp: this,
@@ -267,6 +265,53 @@ class MinkeyApp extends InstallApp {
     return homePages;
   }
 
+  static String FOLLOW_MENU_ID = "followMenu";
+  MenuDefModel followMenu() {
+    var menuItems = <MenuItemModel>[
+      MenuItemModel(
+          documentID: '1',
+          text: 'Follow requests',
+          description: 'Follow requests',
+          icon: IconModel(
+              codePoint: Icons.favorite_border.codePoint,
+              fontFamily: Icons.notifications.fontFamily),
+          action: OpenDialog(
+            MinkeyApp.MINKEY_APP_ID,
+            dialogID: FollowRequestDashboard.FOLLOW_REQUEST_IDENTIFIER,
+          )),
+      menuItemFollowers(appId, "2", FollowDashboards.FOLLOWERS_IDENTIFIER),
+      menuItemFollowing(appId, "3", FollowDashboards.FOLLOWING_IDENTIFIER),
+      menuItemFiendFriends(appId, "4", InviteDashboard.INVITE_IDENTIFIER),
+      MenuItemModel(
+          documentID: '5',
+          text: 'Members of the app',
+          description: 'Members of the app',
+          icon: IconModel(
+              codePoint: Icons.people.codePoint,
+              fontFamily: Icons.notifications.fontFamily),
+          action: OpenDialog(
+            MinkeyApp.MINKEY_APP_ID,
+            conditions: ConditionsModel(
+                privilegeLevelRequired:
+                    PrivilegeLevelRequired.NoPrivilegeRequired,
+                packageCondition: CorePackage.MUST_BE_LOGGED_ON),
+            dialogID: MembershipDashboard.IDENTIFIER,
+          )),
+    ];
+    MenuDefModel menu = MenuDefModel(
+        documentID: "followMenu",
+        appId: MINKEY_APP_ID,
+        name: "Main Menu",
+        menuItems: menuItems);
+    return menu;
+  }
+
+  Future<MenuDefModel> createFollowMenu() async {
+    await AbstractRepositorySingleton.singleton
+        .menuDefRepository(appId)
+        .add(followMenu());
+  }
+
   Future<void> run(String ownerID) async {
     String urlLogo =
         "https://live.staticflickr.com/65535/50708906832_0228495d4b_o_d.png";
@@ -314,24 +359,14 @@ class MinkeyApp extends InstallApp {
                 dialogID: AssignmentViewSetup.IDENTIFIER)),
         MenuItemModel(
             documentID: '3',
-            text: 'Follow requests',
-            description: 'Follow requests',
+            text: 'Members area',
+            description: 'Members area',
             icon: IconModel(
                 codePoint: Icons.favorite_border.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
-                dialogID: FollowRequestDashboard.FOLLOW_REQUEST_IDENTIFIER)),
+            action: PopupMenu(MinkeyApp.MINKEY_APP_ID, menuDef: followMenu())),
         MenuItemModel(
-            documentID: '4',
-            text: 'Members',
-            description: 'Members',
-            icon: IconModel(
-                codePoint: Icons.people.codePoint,
-                fontFamily: Icons.notifications.fontFamily),
-            action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
-                dialogID: MembershipDashboard.IDENTIFIER)),
-        MenuItemModel(
-            documentID: "5",
+            documentID: "4",
             text: "JOIN",
             description: "Request membership",
             icon: null,

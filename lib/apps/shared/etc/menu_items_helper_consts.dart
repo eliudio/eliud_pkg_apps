@@ -1,3 +1,5 @@
+import 'package:eliud_core/eliud.dart';
+import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
@@ -7,7 +9,8 @@ menuItem(appID, documentID, pageID, text, IconData iconData) => MenuItemModel(
     documentID: documentID,
     text: text,
     description: text,
-    icon: IconModel(codePoint: iconData.codePoint, fontFamily: Icons.settings.fontFamily),
+    icon: IconModel(
+        codePoint: iconData.codePoint, fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID, pageID: pageID));
 
 menuItemSignOut(appID, documentID) => MenuItemModel(
@@ -17,7 +20,8 @@ menuItemSignOut(appID, documentID) => MenuItemModel(
     icon: IconModel(
         codePoint: Icons.power_settings_new.codePoint,
         fontFamily: Icons.settings.fontFamily),
-    action: InternalAction(appID, internalActionEnum: InternalActionEnum.Logout));
+    action:
+        InternalAction(appID, internalActionEnum: InternalActionEnum.Logout));
 
 menuItemFlushCache(appID, documentID) => MenuItemModel(
     documentID: documentID,
@@ -26,7 +30,8 @@ menuItemFlushCache(appID, documentID) => MenuItemModel(
     icon: IconModel(
         codePoint: Icons.power_settings_new.codePoint,
         fontFamily: Icons.settings.fontFamily),
-    action: InternalAction(appID, internalActionEnum: InternalActionEnum.Flush));
+    action:
+        InternalAction(appID, internalActionEnum: InternalActionEnum.Flush));
 
 menuItemManageAccount(appID, documentID, pageID) => MenuItemModel(
     documentID: documentID,
@@ -49,42 +54,52 @@ menuItemAbout(appID, documentID, pageID, text) => MenuItemModel(
     documentID: documentID,
     text: text,
     description: text,
-    icon: IconModel(codePoint: Icons.info.codePoint, fontFamily: Icons.settings.fontFamily),
+    icon: IconModel(
+        codePoint: Icons.info.codePoint, fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID, pageID: pageID));
 
 menuItemFeed(appID, documentID, pageID, text) => MenuItemModel(
     documentID: documentID,
     text: text,
     description: text,
-    icon: IconModel(codePoint: Icons.group.codePoint, fontFamily: Icons.settings.fontFamily),
+    icon: IconModel(
+        codePoint: Icons.group.codePoint,
+        fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID, pageID: pageID));
 
 menuItemWelcome(appID, documentID, pageID, text) => MenuItemModel(
     documentID: documentID,
     text: text,
     description: text,
-    icon: IconModel(codePoint: Icons.emoji_people.codePoint, fontFamily: Icons.settings.fontFamily),
+    icon: IconModel(
+        codePoint: Icons.emoji_people.codePoint,
+        fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID, pageID: pageID));
 
 menuItemShop(appID, documentID, pageID, text) => MenuItemModel(
     documentID: documentID,
     text: text,
     description: text,
-    icon: IconModel(codePoint: Icons.shop.codePoint, fontFamily: Icons.settings.fontFamily),
+    icon: IconModel(
+        codePoint: Icons.shop.codePoint, fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID, pageID: pageID));
 
 menuItemShoppingBag(appID, documentID, pageID, text) => MenuItemModel(
     documentID: documentID,
     text: text,
     description: text,
-    icon: IconModel(codePoint: Icons.shopping_basket.codePoint, fontFamily: Icons.settings.fontFamily),
+    icon: IconModel(
+        codePoint: Icons.shopping_basket.codePoint,
+        fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID, pageID: pageID));
 
 menuItemShoppingCart(appID, documentID, pageID, text) => MenuItemModel(
     documentID: documentID,
     text: text,
     description: text,
-    icon: IconModel(codePoint: Icons.shopping_cart.codePoint, fontFamily: Icons.settings.fontFamily),
+    icon: IconModel(
+        codePoint: Icons.shopping_cart.codePoint,
+        fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID, pageID: pageID));
 
 menuItemFollowers(appID, documentID, dialogID) => MenuItemModel(
@@ -94,7 +109,11 @@ menuItemFollowers(appID, documentID, dialogID) => MenuItemModel(
     icon: IconModel(
         codePoint: Icons.favorite_sharp.codePoint,
         fontFamily: Icons.settings.fontFamily),
-    action: OpenDialog(appID, dialogID: dialogID));
+    action: OpenDialog(appID,
+        dialogID: dialogID,
+        conditions: ConditionsModel(
+            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+            packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
 
 menuItemFollowing(appID, documentID, dialogID) => MenuItemModel(
     documentID: documentID,
@@ -103,7 +122,11 @@ menuItemFollowing(appID, documentID, dialogID) => MenuItemModel(
     icon: IconModel(
         codePoint: Icons.favorite_sharp.codePoint,
         fontFamily: Icons.settings.fontFamily),
-    action: OpenDialog(appID, dialogID: dialogID));
+    action: OpenDialog(appID,
+        dialogID: dialogID,
+        conditions: ConditionsModel(
+            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+            packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
 
 menuItemFiendFriends(appID, documentID, dialogID) => MenuItemModel(
     documentID: documentID,
@@ -112,5 +135,8 @@ menuItemFiendFriends(appID, documentID, dialogID) => MenuItemModel(
     icon: IconModel(
         codePoint: Icons.favorite_sharp.codePoint,
         fontFamily: Icons.settings.fontFamily),
-    action: OpenDialog(appID, dialogID: dialogID));
-
+    action: OpenDialog(appID,
+        dialogID: dialogID,
+        conditions: ConditionsModel(
+            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+            packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
