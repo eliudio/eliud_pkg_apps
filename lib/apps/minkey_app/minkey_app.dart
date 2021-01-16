@@ -11,6 +11,7 @@ import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dar
 import 'package:eliud_pkg_apps/apps/shared/follow/follow_dashboards.dart';
 import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
+import 'package:eliud_pkg_feed/tools/action/post_action_model.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/image_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
@@ -340,7 +341,22 @@ class MinkeyApp extends InstallApp {
   @override
   List<MenuItemModel> extraMenuItems() => <MenuItemModel>[
         MenuItemModel(
-            documentID: '1',
+            documentID: 'feed',
+            text: 'Post',
+            description: 'Post this page to my feed',
+            icon: IconModel(
+                codePoint: Icons.post_add.codePoint,
+                fontFamily: Icons.notifications.fontFamily),
+            action: PostActionModel(
+                MinkeyApp.MINKEY_APP_ID,
+                feed: null,
+                conditions: ConditionsModel(
+                  privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+                  packageCondition: CorePackage.MUST_BE_LOGGED_ON
+                )
+            )),
+        MenuItemModel(
+            documentID: 'notifications',
             text: 'Notifications',
             description: 'Notifications',
             icon: IconModel(
@@ -349,7 +365,7 @@ class MinkeyApp extends InstallApp {
             action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
                 dialogID: NotificationDashboard.IDENTIFIER)),
         MenuItemModel(
-            documentID: '2',
+            documentID: 'assignments',
             text: 'Assignments',
             description: 'Assignments',
             icon: IconModel(
@@ -358,7 +374,7 @@ class MinkeyApp extends InstallApp {
             action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
                 dialogID: AssignmentViewSetup.IDENTIFIER)),
         MenuItemModel(
-            documentID: '3',
+            documentID: 'member_area',
             text: 'Members area',
             description: 'Members area',
             icon: IconModel(
@@ -366,7 +382,7 @@ class MinkeyApp extends InstallApp {
                 fontFamily: Icons.notifications.fontFamily),
             action: PopupMenu(MinkeyApp.MINKEY_APP_ID, menuDef: followMenu())),
         MenuItemModel(
-            documentID: "4",
+            documentID: "join",
             text: "JOIN",
             description: "Request membership",
             icon: null,
