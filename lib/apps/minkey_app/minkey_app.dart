@@ -349,7 +349,7 @@ class MinkeyApp extends InstallApp {
                 fontFamily: Icons.notifications.fontFamily),
             action: PostActionModel(
                 MinkeyApp.MINKEY_APP_ID,
-                feed: null,
+                feed: Feed.feedModel(),
                 conditions: ConditionsModel(
                   privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
                   packageCondition: CorePackage.MUST_BE_LOGGED_ON

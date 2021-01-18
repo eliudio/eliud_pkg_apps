@@ -49,7 +49,7 @@ class Feed extends AppSection {
         bodyComponents: components);
   }
 
-  FeedModel _feedModel() {
+  static FeedModel feedModel() {
     return FeedModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, description: "My Minkey Feed",
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
@@ -58,7 +58,7 @@ class Feed extends AppSection {
   }
 
   Future<FeedModel> _setupFeed() async {
-    return await AbstractRepositorySingleton.singleton.feedRepository(installApp.appId).add(_feedModel());
+    return await AbstractRepositorySingleton.singleton.feedRepository(installApp.appId).add(feedModel());
   }
 
   Future<PageModel> run(MemberModel member) async {
