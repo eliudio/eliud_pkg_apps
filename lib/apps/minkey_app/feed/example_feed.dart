@@ -8,6 +8,7 @@ import 'package:eliud_pkg_apps/apps/shared/about/about.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_feed/model/post_model.dart';
+import 'package:eliud_pkg_membership/model/abstract_repository_singleton.dart' as memberRepo;
 
 import '../minkey_app.dart';
 
@@ -17,9 +18,10 @@ class ExampleFeed {
   ExampleFeed(this.newAppTools);
 
   Future<void> run(MemberModel member) async {
+    var memberPublicInfo = await memberRepo.memberPublicInfoRepository().get(member.documentID);
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '1',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -28,7 +30,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '2',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -37,7 +39,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '3',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -46,7 +48,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '4',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -55,7 +57,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '4',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -64,7 +66,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '5',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -73,7 +75,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '6',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -82,7 +84,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '7',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -91,7 +93,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '8',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -100,7 +102,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '9',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -109,7 +111,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '10',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -118,7 +120,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '11',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -127,7 +129,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '12',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -136,7 +138,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '13',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -145,7 +147,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '14',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -154,7 +156,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '15',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -163,7 +165,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '16',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: ProductPage.identifier,
@@ -172,7 +174,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '17',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: Shop.identifier,
@@ -180,7 +182,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '17',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  MinkeyApp.MINKEY_APP_ID,
         postPageId: AboutBase.identifier,
@@ -188,7 +190,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '18',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  JuuwleApp.JUUWLE_APP_ID,
         postPageId: AboutBase.identifier,
@@ -196,7 +198,7 @@ class ExampleFeed {
         readAccess: ['PUBLIC']));
     await AbstractRepositorySingleton.singleton.postRepository(MinkeyApp.MINKEY_APP_ID).add(PostModel(
         documentID: '19',
-        author: member,
+        author: memberPublicInfo,
         appId:  MinkeyApp.MINKEY_APP_ID,
         postAppId:  EliudApp.ELIUD_APP_ID,
         postPageId: AboutBase.identifier,
