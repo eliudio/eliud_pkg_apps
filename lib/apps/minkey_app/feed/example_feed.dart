@@ -19,7 +19,8 @@ class ExampleFeed {
 
   Future<void> run(MemberModel member) async {
     var memberPublicInfo = await memberRepo.memberPublicInfoRepository().get(member.documentID);
-    for (int j = 0; j < 1; j++) {
+//    for (int j = 0; j < 1; j++) {
+    int j = 0;
       int i = j * 21;
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
@@ -248,6 +249,6 @@ class ExampleFeed {
           postPageId: AboutBase.identifier,
           description: 'Hi guys, this is another post, this time about the about of the Eliud app',
           readAccess: ['PUBLIC']));
-    }
+//    }
   }
 }
