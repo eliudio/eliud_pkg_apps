@@ -62,7 +62,7 @@ class Feed extends AppSection {
   }
 
   Future<PageModel> run(MemberModel member) async {
-    await ExampleFeed(newAppTools).run(member);
+    await ExampleFeed(newAppTools, installApp.appId).run(member);
     var appBar = await installApp.appBar(IDENTIFIER, adminMenu, "Welcome");
     await _setupFeed();
     return await _setupPage(appBar);

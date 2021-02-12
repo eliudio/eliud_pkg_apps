@@ -39,8 +39,13 @@ dependencies:
   eliud_pkg_pay:
     path: ../eliud_pkg_pay
 
+  eliud_pkg_storage:
+    path: ../eliud_pkg_storage
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 flutter:
+  assets:
+    - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1old.jpg

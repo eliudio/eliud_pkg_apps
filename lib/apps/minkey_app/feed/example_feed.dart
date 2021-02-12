@@ -9,15 +9,26 @@ import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_feed/model/post_model.dart';
 import 'package:eliud_pkg_membership/model/abstract_repository_singleton.dart' as memberRepo;
+import 'package:eliud_pkg_storage/tools/uploadfile.dart';
 
 import '../minkey_app.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:path_provider/path_provider.dart';
+import 'dart:async';
+import 'dart:io';
 
 class ExampleFeed {
+  final String appId;
   final Tools newAppTools;
 
-  ExampleFeed(this.newAppTools);
+  ExampleFeed(this.newAppTools, this.appId);
+
+  Future<void> uploadPhotos(MemberModel member) async {
+    await UploadFile.createThumbnailUploadAsset(appId, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg', member.documentID, ['PUBLIC']);
+  }
 
   Future<void> run(MemberModel member) async {
+    await uploadPhotos(member);
     var memberPublicInfo = await memberRepo.memberPublicInfoRepository().get(member.documentID);
 //    for (int j = 0; j < 1; j++) {
     int j = 0;
@@ -32,7 +43,10 @@ class ExampleFeed {
           pageParameters: {'productId': Products.productId1},
           archived: PostArchiveStatus.Active,
           description: "Hi guys, this is my first post and it's about a product in my shop",
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC'],
+          memberMedia: null,
+        ),
+      );
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 2).toString(),
