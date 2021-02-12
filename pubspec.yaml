@@ -49,3 +49,4 @@ dev_dependencies:
 flutter:
   assets:
     - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1old.jpg
+    - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2old.jpg
