@@ -349,9 +349,11 @@ This will create a google api console project and client ID. We will need this i
   static String oAuthInstructions = """
   1. Goto https://console.developers.google.com/apis/credentials
   2. Select your project from the combo box next to 'Google APIs'
-  3. Find the OAuth Client from OAuth 2.0 client IDs and press edit
+  3. Find the OAuth Client from OAuth 2.0 client IDs and press edit. If it doesn't exist CREATE IT manually
   4. Add the URL http://localhost:7357
   5. Also add the URL of your domain, e.g. https://eliud.io
+  6. Then copy the client ID and client secret.
+  7. Now goto console.firebase.google.com, select your project > authentication > sign-in method > edit google and pase the client ID and secret from 6 into the web sdk configuration
   """;
 
   static String hosting = """
