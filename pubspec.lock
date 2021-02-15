@@ -36,6 +36,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.3"
+  buttons_tabbar:
+    dependency: transitive
+    description:
+      name: buttons_tabbar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.1"
   cached_network_image:
     dependency: transitive
     description:
@@ -197,6 +204,13 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
+  eliud_pkg_album:
+    dependency: "direct main"
+    description:
+      path: "../eliud_pkg_album"
+      relative: true
+    source: path
+    version: "0.0.1"
   eliud_pkg_feed:
     dependency: "direct main"
     description:
@@ -236,6 +250,13 @@ packages:
     dependency: "direct main"
     description:
       path: "../eliud_pkg_pay"
+      relative: true
+    source: path
+    version: "0.0.1"
+  eliud_pkg_post:
+    dependency: "direct main"
+    description:
+      path: "../eliud_pkg_post"
       relative: true
     source: path
     version: "0.0.1"
@@ -370,6 +391,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.1"
+  flutter_carousel_slider:
+    dependency: transitive
+    description:
+      name: flutter_carousel_slider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
   flutter_colorpicker:
     dependency: transitive
     description:
@@ -405,6 +433,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.8"
+  flutter_staggered_grid_view:
+    dependency: transitive
+    description:
+      name: flutter_staggered_grid_view
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.4"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -784,6 +819,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  transparent_image:
+    dependency: transitive
+    description:
+      name: transparent_image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   typed_data:
     dependency: transitive
     description:

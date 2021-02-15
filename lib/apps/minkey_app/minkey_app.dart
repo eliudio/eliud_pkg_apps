@@ -35,6 +35,7 @@ import 'package:flutter/material.dart';
 import '../app_base.dart';
 import 'about/about.dart';
 import 'admin/admin.dart';
+import 'album/album.dart';
 import 'assignments/minkey_assignments.dart';
 import 'blocked/minkey_blocked.dart';
 import 'feed/feed.dart';
@@ -100,6 +101,7 @@ class MinkeyApp extends InstallApp {
           appId, Welcome.IDENTIFIERs[i], Welcome.IDENTIFIERs[i], "Welcome"));
     }
     menuItems.add(menuItemAbout(appId, "about", AboutBase.identifier, "About"));
+    menuItems.add(menuItem(appId, "album", Album.IDENTIFIER, "Album", Icons.photo));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
         appId: MINKEY_APP_ID,
@@ -250,13 +252,22 @@ class MinkeyApp extends InstallApp {
             adminMenu: adminMenu)
         .run();
     var homePageLevel1Member = await Feed(
-            installApp: this,
-            newAppTools: newAppTools,
-            homeMenu: homeMenu(),
-            pageBG: pageBG(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            adminMenu: adminMenu)
+        installApp: this,
+        newAppTools: newAppTools,
+        homeMenu: homeMenu(),
+        pageBG: pageBG(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+        adminMenu: adminMenu)
+        .run(member);
+    await Album(
+        installApp: this,
+        newAppTools: newAppTools,
+        homeMenu: homeMenu(),
+        pageBG: pageBG(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+        adminMenu: adminMenu)
         .run(member);
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
       homePageBlockedMemberId: homePageBlockedMember.documentID,
@@ -340,53 +351,53 @@ class MinkeyApp extends InstallApp {
 
   @override
   List<MenuItemModel> extraMenuItems() => <MenuItemModel>[
-        MenuItemModel(
-            documentID: 'feed',
-            text: 'Post',
-            description: 'Post this page to my feed',
-            icon: IconModel(
-                codePoint: Icons.post_add.codePoint,
-                fontFamily: Icons.notifications.fontFamily),
-            action: PostActionModel(
-                MinkeyApp.MINKEY_APP_ID,
-                feed: Feed.feedModel(),
-                conditions: ConditionsModel(
-                  privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-                  packageCondition: CorePackage.MUST_BE_LOGGED_ON
-                )
-            )),
-        MenuItemModel(
-            documentID: 'notifications',
-            text: 'Notifications',
-            description: 'Notifications',
-            icon: IconModel(
-                codePoint: Icons.notifications.codePoint,
-                fontFamily: Icons.notifications.fontFamily),
-            action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
-                dialogID: NotificationDashboard.IDENTIFIER)),
-        MenuItemModel(
-            documentID: 'assignments',
-            text: 'Assignments',
-            description: 'Assignments',
-            icon: IconModel(
-                codePoint: Icons.playlist_add_check.codePoint,
-                fontFamily: Icons.notifications.fontFamily),
-            action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
-                dialogID: AssignmentViewSetup.IDENTIFIER)),
-        MenuItemModel(
-            documentID: 'member_area',
-            text: 'Members area',
-            description: 'Members area',
-            icon: IconModel(
-                codePoint: Icons.favorite_border.codePoint,
-                fontFamily: Icons.notifications.fontFamily),
-            action: PopupMenu(MinkeyApp.MINKEY_APP_ID, menuDef: followMenu())),
-        MenuItemModel(
-            documentID: "join",
-            text: "JOIN",
-            description: "Request membership",
-            icon: null,
-            action:
-                WorkflowSetup.requestMembershipAction(MinkeyApp.MINKEY_APP_ID))
-      ];
+    MenuItemModel(
+        documentID: 'feed',
+        text: 'Post',
+        description: 'Post this page to my feed',
+        icon: IconModel(
+            codePoint: Icons.post_add.codePoint,
+            fontFamily: Icons.notifications.fontFamily),
+        action: PostActionModel(
+            MinkeyApp.MINKEY_APP_ID,
+            feed: Feed.feedModel(),
+            conditions: ConditionsModel(
+              privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+              packageCondition: CorePackage.MUST_BE_LOGGED_ON
+            )
+        )),
+    MenuItemModel(
+        documentID: 'notifications',
+        text: 'Notifications',
+        description: 'Notifications',
+        icon: IconModel(
+            codePoint: Icons.notifications.codePoint,
+            fontFamily: Icons.notifications.fontFamily),
+        action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
+            dialogID: NotificationDashboard.IDENTIFIER)),
+    MenuItemModel(
+        documentID: 'assignments',
+        text: 'Assignments',
+        description: 'Assignments',
+        icon: IconModel(
+            codePoint: Icons.playlist_add_check.codePoint,
+            fontFamily: Icons.notifications.fontFamily),
+        action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
+            dialogID: AssignmentViewSetup.IDENTIFIER)),
+    MenuItemModel(
+        documentID: 'member_area',
+        text: 'Members area',
+        description: 'Members area',
+        icon: IconModel(
+            codePoint: Icons.favorite_border.codePoint,
+            fontFamily: Icons.notifications.fontFamily),
+        action: PopupMenu(MinkeyApp.MINKEY_APP_ID, menuDef: followMenu())),
+    MenuItemModel(
+        documentID: "join",
+        text: "JOIN",
+        description: "Request membership",
+        icon: null,
+        action:
+            WorkflowSetup.requestMembershipAction(MinkeyApp.MINKEY_APP_ID))
+    ];
 }

@@ -1,9 +1,8 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
-import 'package:eliud_core/tools/common_tools.dart';
-import 'package:eliud_core/tools/types.dart';
-import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_album/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_album/model/album_component.dart';
+import 'package:eliud_pkg_album/model/album_model.dart';
 import 'package:eliud_pkg_feed/model/feed_component.dart';
-import 'package:eliud_pkg_feed/model/feed_model.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
@@ -13,15 +12,16 @@ import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_pkg_post/model/post_model.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
-import 'example_posts.dart';
+import 'example_post.dart';
 
-class Feed extends AppSection {
-  Feed({InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+class Album extends AppSection {
+  Album({InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
-  static String IDENTIFIER = "feed";
+  static String IDENTIFIER = "album";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp.appId).add(_page(appBar));
@@ -30,12 +30,12 @@ class Feed extends AppSection {
   PageModel _page(AppBarModel appBar) {
     List<BodyComponentModel> components = List();
     components.add(BodyComponentModel(
-        documentID: "1", componentName: AbstractFeedComponent.componentName, componentId: IDENTIFIER));
+        documentID: "1", componentName: AbstractAlbumComponent.componentName, componentId: IDENTIFIER));
 
     return PageModel(
         documentID: IDENTIFIER,
         appId: MinkeyApp.MINKEY_APP_ID,
-        title: "Feed",
+        title: "Album",
         drawer: drawer,
         endDrawer: endDrawer,
         background: pageBG,
@@ -48,22 +48,23 @@ class Feed extends AppSection {
         bodyComponents: components);
   }
 
-  static FeedModel feedModel() {
-    return FeedModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, description: "My Minkey Feed",
+  static AlbumModel albumModel(PostModel postModel) {
+    return AlbumModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, post: postModel, description: "My Minkey Photos",
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );
   }
 
-  Future<FeedModel> _setupFeed() async {
-    return await AbstractRepositorySingleton.singleton.feedRepository(installApp.appId).add(feedModel());
+  Future<AlbumModel> _setupAlbum(PostModel postModel) async {
+    return await AbstractRepositorySingleton.singleton.albumRepository(installApp.appId).add(albumModel(postModel));
   }
 
   Future<PageModel> run(MemberModel member) async {
-    await ExamplePosts(newAppTools, installApp.appId).run(member, IDENTIFIER);
-    var appBar = await installApp.appBar(IDENTIFIER, adminMenu, "Welcome");
-    await _setupFeed();
+    PostModel photoAlbum = await ExamplePost(newAppTools, installApp.appId).photoAlbum(member);
+//    PostModel videoAlbum = await ExamplePost(newAppTools, installApp.appId).videoAlbum(member);
+    var appBar = await installApp.appBar(IDENTIFIER, adminMenu, "Album");
+    await _setupAlbum(photoAlbum);
     return await _setupPage(appBar);
   }
 }

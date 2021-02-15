@@ -42,6 +42,12 @@ dependencies:
   eliud_pkg_storage:
     path: ../eliud_pkg_storage
 
+  eliud_pkg_post:
+    path: ../eliud_pkg_post
+
+  eliud_pkg_album:
+    path: ../eliud_pkg_album
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
