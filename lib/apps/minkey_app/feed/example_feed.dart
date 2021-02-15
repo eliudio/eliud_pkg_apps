@@ -36,7 +36,19 @@ class ExampleFeed {
     var memberPublicInfo = await memberRepo.memberPublicInfoRepository().get(member.documentID);
 //    for (int j = 0; j < 1; j++) {
     int j = 0;
-      int i = j * 21;
+    int i = j * 21;
+        await AbstractRepositorySingleton.singleton.postRepository(
+            MinkeyApp.MINKEY_APP_ID).add(PostModel(
+            documentID: (i + 2).toString(),
+            author: memberPublicInfo,
+            appId: MinkeyApp.MINKEY_APP_ID,
+            postAppId: JuuwleApp.JUUWLE_APP_ID,
+            postPageId: ProductPage.identifier,
+            pageParameters: {'productId': Products.productId2},
+            archived: PostArchiveStatus.Active,
+            description: 'Hi guys, this is another post, this time about another product in my shop',
+            readAccess: ['PUBLIC']));
+
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 1).toString(),
