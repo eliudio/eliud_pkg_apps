@@ -58,3 +58,7 @@ flutter:
     - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg
     - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg
     - packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4
+    - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4

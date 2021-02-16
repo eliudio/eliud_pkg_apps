@@ -1,10 +1,10 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
-import 'package:eliud_pkg_shop/model/admin_app.dart' as shop;
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/model/rgb_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
+import 'package:eliud_pkg_apps/apps/incidamus_app/incidamus_app.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
@@ -16,8 +16,7 @@ import '../../app_base.dart';
 
 class Admin extends AdminBase {
   Admin(
-      {
-      InstallApp installApp,
+      {InstallApp installApp,
       Tools newAppTools,
       HomeMenuModel homeMenu,
       BackgroundModel pageBG,
@@ -33,7 +32,6 @@ class Admin extends AdminBase {
     return [
       coreadmin.AdminApp(appID, drawer, endDrawer, appBar, homeMenu, EliudColors.black, EliudColors.green, EliudColors.lightRed),
       fundamentals.AdminApp(appID, drawer, endDrawer, appBar, homeMenu, EliudColors.black, EliudColors.green, EliudColors.lightRed),
-      shop.AdminApp(appID, drawer, endDrawer, appBar, homeMenu, EliudColors.black, EliudColors.green, EliudColors.lightRed),
     ];
   }
 
@@ -42,7 +40,6 @@ class Admin extends AdminBase {
     return [
       coreadmin.AdminMenu(),
       fundamentals.AdminMenu(),
-      shop.AdminMenu(),
     ];
   }
 }
