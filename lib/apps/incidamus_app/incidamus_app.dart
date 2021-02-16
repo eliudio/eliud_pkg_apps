@@ -55,18 +55,18 @@ class IncidamusApp extends InstallApp {
   IncidamusApp()
       : super(
             appId: INCIDAMUS_APP_ID,
-            appColor1: EliudColors.red,
-            appColor2: EliudColors.white,
-            appColor3: EliudColors.lightRed,
-            appColor4: EliudColors.white,
-            dividerColor: EliudColors.gray,
-            homeMenuIconColor: EliudColors.black,
-            homeMenuPopupBGColor: EliudColors.white,
-            headerColor1To3: EliudColors.white,
-            headerColor4To5: EliudColors.black,
-            defaultColor: EliudColors.black,
-            highlightColor: EliudColors.red,
-            linkColor: EliudColors.white);
+            appColor1: EliudColors.darkRed,
+            appColor2: EliudColors.black,
+            appColor3: EliudColors.darkRed2,
+            appColor4: EliudColors.black,
+            dividerColor: EliudColors.darkRed,
+            homeMenuIconColor: EliudColors.white,
+            homeMenuPopupBGColor: EliudColors.black,
+            headerColor1To3: EliudColors.black,
+            headerColor4To5: EliudColors.white,
+            defaultColor: EliudColors.white,
+            highlightColor: EliudColors.blue,
+            linkColor: EliudColors.black);
 
   @override
   MenuDefModel profileDrawerMenuDef() {
@@ -98,14 +98,14 @@ class IncidamusApp extends InstallApp {
   @override
   MenuDefModel homeMenuDef() {
     List<MenuItemModel> menuItems = [];
-    menuItems.add(menuItemFeed(appId, "feed", Feed.IDENTIFIER, "Feed"));
     for (int i = 0; i < Welcome.IDENTIFIERs.length; i++) {
       menuItems.add(menuItemWelcome(
           appId, Welcome.IDENTIFIERs[i], Welcome.IDENTIFIERs[i], "Welcome"));
     }
+    menuItems.add(menuItem(appId, "album", Album.IDENTIFIER, "Album", Icons.photo));
+    menuItems.add(menuItemFeed(appId, "feed", Feed.IDENTIFIER, "Feed"));
     menuItems.add(menuItemShoppingBag(appId, "shop", Shop.identifier, "Shop"));
     menuItems.add(menuItemAbout(appId, "about", AboutBase.identifier, "About"));
-    menuItems.add(menuItem(appId, "album", Album.IDENTIFIER, "Album", Icons.photo));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
         appId: INCIDAMUS_APP_ID,
@@ -199,7 +199,7 @@ class IncidamusApp extends InstallApp {
         .get(ownerID);
     await createFollowMenu();
     await WorkflowSetup(installApp: this).run();
-    var homePageLevel1Member = await Feed(
+    await Feed(
         installApp: this,
         newAppTools: newAppTools,
         homeMenu: homeMenu(),
@@ -226,7 +226,7 @@ class IncidamusApp extends InstallApp {
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
-    var welcome = await Welcome(
+    var welcomePages = await Welcome(
             installApp: this,
             newAppTools: newAppTools,
             homeMenu: homeMenu(),
@@ -329,8 +329,10 @@ class IncidamusApp extends InstallApp {
         .run();
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
       homePageBlockedMemberId: homePageBlockedMember.documentID,
-      homePageSubscribedMemberId: welcome.documentID,
-      homePageLevel1MemberId: homePageLevel1Member.documentID,
+      homePageSubscribedMemberId: welcomePages[0].documentID,
+      homePageLevel1MemberId: welcomePages[1].documentID,
+      homePageLevel2MemberId: welcomePages[2].documentID,
+      homePageOwnerId: welcomePages[3].documentID,
     );
     return homePages;
   }
@@ -399,11 +401,11 @@ class IncidamusApp extends InstallApp {
         identifier,
         menu,
         title,
-        EliudColors.black,
+        EliudColors.white,
         appBarBG(),
-        EliudColors.black,
-        EliudColors.black,
-        EliudColors.green,
+        EliudColors.white,
+        EliudColors.white,
+        EliudColors.red,
         EliudColors.lightRed);
   }
 

@@ -178,7 +178,7 @@ class Welcome extends AppSection {
   }
 
   // ************************ Tutorials *****************
-  Future<PageModel> run() async {
+  Future<List<PageModel>> run() async {
     await WhoImages(newAppTools).run();
 //    var appMenu = await installApp.appBarMenu("Welcome", adminMenu);
     var appBar =
@@ -189,6 +189,6 @@ class Welcome extends AppSection {
       await _setupWelcomeDocument(privilegeLevelsRequired[i]);
       pages.add(await _setupPage(appBar, privilegeLevelsRequired[i]));
     }
-    return pages[0];
+    return pages;
   }
 }

@@ -4,6 +4,8 @@ import 'package:eliud_core/model/rgb_model.dart';
 class EliudColors {
   static RgbModel lightRed = RgbModel(r: 145, g: 0, b: 0, opacity: 0.50);
   static RgbModel red = RgbModel(r: 255, g: 0, b: 0, opacity: 1.00);
+  static RgbModel darkRed = RgbModel(r: 35, g: 8, b: 0, opacity: 1.00);
+  static RgbModel darkRed2 = RgbModel(r: 90, g: 8, b: 0, opacity: 1.00);
   static RgbModel white = RgbModel(r: 255, g: 255, b: 255, opacity: 1.00);
   static RgbModel whiteTransparent = RgbModel(r: 255, g: 255, b: 255, opacity: 0.50);
   static RgbModel blackTransparent = RgbModel(r: 0, g: 0, b: 0, opacity: .80);
@@ -17,4 +19,5 @@ class EliudColors {
   static RgbModel ochre = RgbModel(r: 0xda, g: 0x9b, b: 0x00, opacity: 1);
   static RgbModel ochreTransparent = RgbModel(r: 0xda, g: 0x9b, b: 0x00, opacity: .2);
   static RgbModel lightBlueTransparent = RgbModel(r: 0xa3, g: 0x92, b: 0xf9, opacity: 1);
+  static RgbModel blue = RgbModel(r: 0, g: 0, b: 255, opacity: 1);
 }
