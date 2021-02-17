@@ -55,18 +55,18 @@ class IncidamusApp extends InstallApp {
   IncidamusApp()
       : super(
             appId: INCIDAMUS_APP_ID,
-            appColor1: EliudColors.darkRed,
+            appColor1: EliudColors.darkBlue,
             appColor2: EliudColors.black,
-            appColor3: EliudColors.darkRed2,
+            appColor3: EliudColors.darkBlue2,
             appColor4: EliudColors.black,
-            dividerColor: EliudColors.darkRed,
-            homeMenuIconColor: EliudColors.white,
+            dividerColor: EliudColors.darkBlue,
+            homeMenuIconColor: EliudColors.blue,
             homeMenuPopupBGColor: EliudColors.black,
-            headerColor1To3: EliudColors.black,
+            headerColor1To3: EliudColors.white,
             headerColor4To5: EliudColors.white,
             defaultColor: EliudColors.white,
             highlightColor: EliudColors.blue,
-            linkColor: EliudColors.black);
+            linkColor: EliudColors.blue);
 
   @override
   MenuDefModel profileDrawerMenuDef() {

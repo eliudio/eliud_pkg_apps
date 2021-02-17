@@ -6,6 +6,8 @@ class EliudColors {
   static RgbModel red = RgbModel(r: 255, g: 0, b: 0, opacity: 1.00);
   static RgbModel darkRed = RgbModel(r: 35, g: 8, b: 0, opacity: 1.00);
   static RgbModel darkRed2 = RgbModel(r: 90, g: 8, b: 0, opacity: 1.00);
+  static RgbModel darkBlue = RgbModel(r: 0, g: 8, b: 90, opacity: 1.00);
+  static RgbModel darkBlue2 = RgbModel(r: 0, g: 8, b: 130, opacity: 1.00);
   static RgbModel white = RgbModel(r: 255, g: 255, b: 255, opacity: 1.00);
   static RgbModel whiteTransparent = RgbModel(r: 255, g: 255, b: 255, opacity: 0.50);
   static RgbModel blackTransparent = RgbModel(r: 0, g: 0, b: 0, opacity: .80);
