@@ -188,7 +188,7 @@ abstract class InstallApp {
   }
 
   Future<ImageModel> logo(String urlLogo) async {
-    await _addProfileImage();
+    //await _addProfileImage();
     return await newAppTools.getImgModel(name: LOGO_ID, appId: appId, url: urlLogo);
   }
 
@@ -211,6 +211,7 @@ abstract class InstallApp {
         .add(_drawer(logo));
   }
 
+/*
   Future<ImageModel> _addProfileImage() async {
     return await AbstractMainRepositorySingleton.singleton
         .imageRepository(appId)
@@ -225,13 +226,14 @@ abstract class InstallApp {
         appId: appId);
   }
 
+*/
   BackgroundModel _profileDrawerHeaderBG() {
     var decorationColorModels = <DecorationColorModel>[];
     var backgroundModel = BackgroundModel(
         documentID: 'profile_drawer_header_bg',
         appId: appId,
         decorationColors: decorationColorModels,
-        backgroundImage: _profileImage());
+        useProfilePhotoAsBackground: true);
     return backgroundModel;
   }
 

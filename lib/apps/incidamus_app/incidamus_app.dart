@@ -50,36 +50,29 @@ import 'notifications/notification_dashboard.dart';
 /* This code cleans the database and generates the incidamus app, which includes the admin pages
  */
 class IncidamusApp extends InstallApp {
-  static String INCIDAMUS_APP_ID = "INCIDAMUS";
+  static String INCIDAMUS_APP_ID = "INCIDAMUS_APP";
 
   IncidamusApp()
       : super(
             appId: INCIDAMUS_APP_ID,
-            appColor1: EliudColors.darkBlue,
+            appColor1: EliudColors.darkRed,
             appColor2: EliudColors.black,
-            appColor3: EliudColors.darkBlue2,
+            appColor3: EliudColors.darkRed2,
             appColor4: EliudColors.black,
-            dividerColor: EliudColors.darkBlue,
-            homeMenuIconColor: EliudColors.blue,
+            dividerColor: EliudColors.darkRed2,
+            homeMenuIconColor: EliudColors.orange1,
             homeMenuPopupBGColor: EliudColors.black,
-            headerColor1To3: EliudColors.white,
+            headerColor1To3: EliudColors.orange1,
             headerColor4To5: EliudColors.white,
             defaultColor: EliudColors.white,
-            highlightColor: EliudColors.blue,
-            linkColor: EliudColors.blue);
+            highlightColor: EliudColors.orange1,
+            linkColor: EliudColors.orange1);
 
   @override
   MenuDefModel profileDrawerMenuDef() {
     List<MenuItemModel> menuItems = [];
-    menuItems.add(MenuItemModel(
-        documentID: "1",
-        text: "Other apps",
-        description: "Other apps",
-        action: InternalAction(appId,
-            internalActionEnum: InternalActionEnum.OtherApps)));
-    menuItems.add(menuItemSignOut(appId, "2"));
-    menuItems.add(menuItemFlushCache(appId, "3"));
-    menuItems.add(menuItemManageAccount(appId, "4", MemberPage.IDENTIFIER));
+    menuItems.add(menuItemSignOut(appId, "SIGN_OUT"));
+    menuItems.add(menuItemManageAccount(appId, "MANAGE_ACCOUNT", MemberPage.IDENTIFIER));
 
     MenuDefModel menu = MenuDefModel(
         documentID: "drawer_profile_menu",

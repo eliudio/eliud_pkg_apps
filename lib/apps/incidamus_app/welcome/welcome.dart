@@ -15,6 +15,8 @@ import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_pkg_fundamentals/model/booklet_component.dart';
+import 'package:eliud_pkg_fundamentals/model/booklet_model.dart';
 import 'package:eliud_pkg_fundamentals/model/divider_component.dart';
 import 'package:eliud_pkg_fundamentals/model/document_component.dart';
 import 'package:eliud_pkg_fundamentals/model/document_item_model.dart';
@@ -22,6 +24,7 @@ import 'package:eliud_pkg_fundamentals/model/document_model.dart';
 import 'package:eliud_pkg_fundamentals/model/fader_component.dart';
 import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
 import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
+import 'package:eliud_pkg_fundamentals/model/section_model.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
@@ -72,7 +75,7 @@ class Welcome extends AppSection {
         componentId: "divider_1"));
     components.add(BodyComponentModel(
         documentID: "4",
-        componentName: AbstractDocumentComponent.componentName,
+        componentName: AbstractBookletComponent.componentName,
         componentId: IDENTIFIERs[privilegeLevelRequired.index]));
 
     return PageModel(
@@ -137,22 +140,13 @@ class Welcome extends AppSection {
 
   String _welcomePageContents(PrivilegeLevelRequired privilegeLevelRequired) {
     var privilegeLevelString = privilegeLevelIntToMemberRoleString(privilegeLevelRequired.index, false);
-    List<SectionSpec> sections = List();
-    {
-      sections.add(
-        SectionSpec(
-            "Hello!",
+    return "Hello!\n"
             "Welcome back to Incidamus." +
                 ((privilegeLevelRequired.index == 0)
                     ? "You are not yet registered. Why not JOIN?"
-                    : "You are registered as $privilegeLevelString")),
-      );
-    }
-
-    PageSpec pageSpec = PageSpec(sections);
-
-    return DynamicHelper.getPage(pageSpec);
+                    : "You are registered as $privilegeLevelString");
   }
+/*
 
   DocumentModel _welcomeDocument(PrivilegeLevelRequired privilegeLevelRequired) {
     List<DocumentItemModel> list = List();
@@ -176,6 +170,40 @@ class Welcome extends AppSection {
         .documentRepository(installApp.appId)
         .add(_welcomeDocument(privilegeLevelRequired));
   }
+*/
+
+
+
+
+  Future<void> _storeBookletModel(PrivilegeLevelRequired privilegeLevelRequired) async {
+    return await AbstractRepositorySingleton.singleton
+        .bookletRepository(installApp.appId)
+        .add(_welcomeBooklet(privilegeLevelRequired));
+  }
+
+  BookletModel _welcomeBooklet(PrivilegeLevelRequired privilegeLevelRequired) {
+    List<SectionModel> entries = List();
+    {
+      entries.add(SectionModel(
+          documentID: "1",
+          title: "Welcome",
+          description: _welcomePageContents(privilegeLevelRequired),
+          links: null));
+    }
+
+    return BookletModel(
+      documentID: IDENTIFIERs[privilegeLevelRequired.index],
+      name: "About",
+      sections: entries,
+      appId: installApp.appId,
+      conditions: ConditionsSimpleModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+      ),
+    );
+  }
+
+
+
 
   // ************************ Tutorials *****************
   Future<List<PageModel>> run() async {
@@ -186,7 +214,7 @@ class Welcome extends AppSection {
     await _setupFader();
     List<PageModel> pages = [];
     for (int i = 0; i < IDENTIFIERs.length; i++) {
-      await _setupWelcomeDocument(privilegeLevelsRequired[i]);
+      await _storeBookletModel(privilegeLevelsRequired[i]);
       pages.add(await _setupPage(appBar, privilegeLevelsRequired[i]));
     }
     return pages;
