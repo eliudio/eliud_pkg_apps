@@ -18,10 +18,10 @@ class About extends AboutBase {
       DrawerModel drawer,
       DrawerModel endDrawer,
       MenuDefModel adminMenu})
-      : super(RelativeImagePosition.Aside, 1, SectionImageAlignment.Right, installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer,
+      : super(IDENTIFIER, RelativeImagePosition.Aside, 1, SectionImageAlignment.Right, installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer,
             adminMenu);
 
-  static String identifier = "about";
+  static String IDENTIFIER = "about";
 
   Future<void> run() {
     doIt();
@@ -35,5 +35,5 @@ class About extends AboutBase {
   String aboutTitle() => "About me";
 
   @override
-  String imageURL() => "https://live.staticflickr.com/65535/50707530622_7ddaa71d01_o_d.png";
+  String assetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/charlotte_sitting.png';
 }

@@ -39,9 +39,6 @@ dependencies:
   eliud_pkg_pay:
     path: ../eliud_pkg_pay
 
-  eliud_pkg_storage:
-    path: ../eliud_pkg_storage
-
   eliud_pkg_post:
     path: ../eliud_pkg_post
 
@@ -62,3 +59,74 @@ flutter:
     - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg
     - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg
     - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4
+    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/face1.png
+    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/face2.png
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/1.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/2.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/3.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/4.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/5.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/6.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/7.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/8.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/9.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/10.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/11.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/12.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/13.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/14.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/15.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/16.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/17.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/18.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/19.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/20.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/21.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/22.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/23.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/24.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/25.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/26.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/27.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/28.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/29.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/30.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/31.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/32.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/33.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/34.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/35.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/36.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/37.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/38.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/39.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/40.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/41.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/42.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/43.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/44.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/45.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/46.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/47.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/48.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/49.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/50.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/51.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/52.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/53.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/54.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/55.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/56.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/57.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/58.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/59.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/60.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/61.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/62.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/63.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/photos/64.jpg
+    - packages/eliud_pkg_apps/assets/shared/about/thocha.png
+    - packages/eliud_pkg_apps/assets/shared/blocked/blocked.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/charlotte_sitting.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/charlotte_standing.png
+

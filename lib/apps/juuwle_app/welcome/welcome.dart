@@ -17,7 +17,6 @@ import 'package:eliud_pkg_fundamentals/model/section_model.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
-import 'images.dart';
 
 class Welcome extends AppSection {
   Welcome({InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, adminMenu);
@@ -51,14 +50,18 @@ class Welcome extends AppSection {
 
   static String welcomeIdentifier = "welcome";
 
-  BookletModel _welcome() {
+  Future<MemberMediumModel> uploadWelcomeImage() async {
+    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/juuwle_app/charlotte_standing.png');
+  }
+
+  BookletModel _welcome(MemberMediumModel welcomeImage) {
     List<SectionModel> entries = List();
     {
       entries.add(SectionModel(
           documentID: "1",
           title: "Hello hello!",
           description: "Welcome to juuwle.\n\n\nJuuwle is your new favorite online store for all your necklaces, bracelets, and so on. You fancy x, y or z? Then you've come to the right place. Juuwle specialises in a, b and c! You will also be able to find some d, e and f. \n\n\nI hope you enjoy your stay on juuwle.com \n\n\nCharlotte\n\n\nDid you know? For an even better experence: juuwle is available as app on apple store, google play store, and also available as windows, linux and mac application.",
-          image: newAppTools.findImageModel(WelcomeImages.welcomePhoto),
+          image: welcomeImage,
           imagePositionRelative: RelativeImagePosition.Aside,
           imageAlignment: SectionImageAlignment.Right,
           imageWidth: .33,
@@ -76,15 +79,15 @@ class Welcome extends AppSection {
     );
   }
 
-  Future<void> _setupWelcome() async {
-    await AbstractRepositorySingleton.singleton.bookletRepository(JuuwleApp.JUUWLE_APP_ID).add(_welcome());
+  Future<void> _setupWelcome(MemberMediumModel welcomeImage) async {
+    await AbstractRepositorySingleton.singleton.bookletRepository(JuuwleApp.JUUWLE_APP_ID).add(_welcome(welcomeImage));
   }
 
   Future<PageModel> run() async {
-    await WelcomeImages(newAppTools).run();
+    var welcomeImage = await uploadWelcomeImage();
 //    var appMenu = await installApp.appBarMenu("Welcome", adminMenu);
     var appBar = await installApp.appBar(identifier, adminMenu, "Welcome");
-    await _setupWelcome();
+    await _setupWelcome(welcomeImage);
     //await _setupFader();
     return await _setupPage(appBar);
   }

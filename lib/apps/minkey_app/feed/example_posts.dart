@@ -6,8 +6,6 @@ import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_pkg_post/model/abstract_repository_singleton.dart' as postRepo;
 import 'package:eliud_pkg_membership/model/abstract_repository_singleton.dart' as memberRepo;
 import 'package:eliud_pkg_post/model/post_model.dart';
-import 'package:eliud_pkg_storage/model/member_medium_model.dart';
-import 'package:eliud_pkg_storage/tools/uploadfile.dart';
 
 import '../minkey_app.dart';
 import 'dart:async';
@@ -17,14 +15,6 @@ class ExamplePosts {
   final Tools newAppTools;
 
   ExamplePosts(this.newAppTools, this.appId);
-
-  Future<MemberMediumModel> uploadPhoto(MemberModel member, String assetName) async {
-    return await UploadFile.createThumbnailUploadPhotoAsset(appId, assetName, member.documentID, ['PUBLIC']);
-  }
-
-  Future<MemberMediumModel> uploadVideo(MemberModel member, String assetName) async {
-    return await UploadFile.createThumbnailUploadVideoAsset(appId, assetName, member.documentID, ['PUBLIC']);
-  }
 
   Future<void> run(MemberModel member, String feedId) async {
     var memberPublicInfo = await memberRepo.memberPublicInfoRepository().get(member.documentID);
@@ -54,24 +44,24 @@ class ExamplePosts {
       description: "Hi guys, this is my first post these are photos",
       readAccess: ['PUBLIC'],
       memberMedia: [
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
-        await uploadPhoto(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
+        await newAppTools.uploadPublicPhoto(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
       ],
     ),
     );
@@ -86,12 +76,12 @@ class ExamplePosts {
       description: "Hi guys, this is my first post these are videos",
       readAccess: ['PUBLIC'],
       memberMedia: [
-        await uploadVideo(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
-        await uploadVideo(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
-        await uploadVideo(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
-        await uploadVideo(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
-        await uploadVideo(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
-        await uploadVideo(member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
+        await newAppTools.uploadPublicVideo(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
+        await newAppTools.uploadPublicVideo(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
+        await newAppTools.uploadPublicVideo(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
+        await newAppTools.uploadPublicVideo(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
+        await newAppTools.uploadPublicVideo(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
+        await newAppTools.uploadPublicVideo(appId, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
       ],
     ),
     );

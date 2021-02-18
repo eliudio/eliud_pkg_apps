@@ -52,6 +52,7 @@ abstract class InstallApp {
   final RgbModel homeMenuPopupBGColor;
 
   final String appId;
+  MemberModel member;
 
   // Constructor
   InstallApp({
@@ -524,7 +525,7 @@ abstract class InstallApp {
         .userRepository()
         .signInWithGoogle();
     var installedApp = await claimOwnerShipApplication(appId, usr.uid);
-    var member = await AccessBloc.firebaseToMemberModel(usr);
+    member = await AccessBloc.firebaseToMemberModel(usr);
     if (member == null) {
       print('Can not register $appId because member cannot be created');
     } else {

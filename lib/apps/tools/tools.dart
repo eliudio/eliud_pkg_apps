@@ -10,6 +10,7 @@ import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/image_tools.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
+import 'package:eliud_core/tools/storage/uploadfile.dart';
 import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_fundamentals/model/tutorial_component.dart';
 import 'package:eliud_pkg_fundamentals/model/tutorial_entry_model.dart';
@@ -17,6 +18,14 @@ import 'package:eliud_pkg_fundamentals/model/tutorial_model.dart';
 
 class Tools {
   Map<String, ImageModel> _images = HashMap();
+
+  Future<MemberMediumModel> uploadPublicPhoto(String appId, MemberModel member, String assetName) async {
+    return await UploadFile.createThumbnailUploadPhotoAsset(appId, assetName, member.documentID, ['PUBLIC']);
+  }
+
+  Future<MemberMediumModel> uploadPublicVideo(String appId, MemberModel member, String assetName) async {
+    return await UploadFile.createThumbnailUploadVideoAsset(appId, assetName, member.documentID, ['PUBLIC']);
+  }
 
   ImageModel findImageModel(String documentID) {
     ImageModel image = _images[documentID];
@@ -27,7 +36,7 @@ class Tools {
   }
 
 
-  Future<ImageModel> getImgModel({String documentID, String appId, String name, String url, PosSizeModel posSizeModel}) async {
+  Future<ImageModel> getImgModel({String documentID, String appId, String name, String url}) async {
     // Create thumbnail and store the image
     if (documentID == null) documentID = name;
     ImageModel model = ImageModel(

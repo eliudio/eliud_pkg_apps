@@ -91,7 +91,7 @@ class JuuwleApp extends InstallApp {
     var menuItems = <MenuItemModel>[];
     menuItems.add(menuItemWelcome(appId, "1", Welcome.identifier, "Welcome"));
     menuItems.add(menuItemShoppingBag(appId, "2", Shop.identifier, "Shop"));
-    menuItems.add(menuItemAbout(appId, "4", AboutBase.identifier, "About"));
+    menuItems.add(menuItemAbout(appId, "4", About.IDENTIFIER, "About"));
     var menu = MenuDefModel(
         documentID: 'main',
         appId: JUUWLE_APP_ID,

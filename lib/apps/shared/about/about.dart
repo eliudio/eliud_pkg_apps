@@ -1,8 +1,7 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/conditions_simple_model.dart';
-import 'package:eliud_core/tools/common_tools.dart';
-import 'package:eliud_core/tools/types.dart';
+import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/model/body_component_model.dart';
@@ -22,10 +21,12 @@ import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import '../../app_base.dart';
 
 abstract class AboutBase extends AppSection {
+  final String identifier;
   final double imageWidth;
   final RelativeImagePosition imagePosition;
   final SectionImageAlignment alignment;
   AboutBase(
+      this.identifier,
       this.imagePosition,
       this.imageWidth,
       this.alignment,
@@ -39,7 +40,7 @@ abstract class AboutBase extends AppSection {
       : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer,
       adminMenu);
 
-  static String identifier = "who";
+  //static String identifier = "who";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -50,9 +51,9 @@ abstract class AboutBase extends AppSection {
   PageModel _page(AppBarModel appBar) {
     List<BodyComponentModel> components = List();
     components.add(BodyComponentModel(
-      documentID: "4",
+      documentID: "1",
       componentName: AbstractBookletComponent.componentName,
-      componentId: _header().documentID,
+      componentId: identifier,
     ));
 
     return PageModel(
@@ -73,33 +74,27 @@ abstract class AboutBase extends AppSection {
 
   String aboutText();
   String aboutTitle();
-  String imageURL();
+  String assetLocation();
 
-  Future<void> _store() async {
-    return await AbstractRepositorySingleton.singleton
+  Future<String> _store(MemberMediumModel memberMediumModel) async {
+    return (await AbstractRepositorySingleton.singleton
         .bookletRepository(installApp.appId)
-        .add(_header());
+        .add(_header(memberMediumModel))).documentID;
   }
 
-  static String aboutImageIdentifier = "charlotte";
-
-  Future<void> installAboutImage() async {
-    await newAppTools.getImgModel(
-        name: aboutImageIdentifier,
-        appId: installApp.appId,
-        url:
-        imageURL());
+  Future<MemberMediumModel> installAboutImage() async {
+    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, assetLocation());
   }
 
-  BookletModel _header() {
-    List<SectionModel> entries = List();
+  BookletModel _header(MemberMediumModel memberMediumModel) {
+    List<SectionModel> entries = [];
     {
-      List<LinkModel> links = List();
+      List<LinkModel> links = [];
       entries.add(SectionModel(
           documentID: "1",
           title: aboutTitle(),
           description: aboutText(),
-          image: newAppTools.findImageModel(aboutImageIdentifier),
+          image: memberMediumModel,
           imagePositionRelative: imagePosition,
           imageAlignment: alignment,
           imageWidth: imageWidth,
@@ -118,10 +113,9 @@ abstract class AboutBase extends AppSection {
   }
 
   Future<void> doIt() async {
-    await installAboutImage();
-//    var whoMenu = await installApp.appBarMenu("Who", adminMenu);
+    var image = await installAboutImage();
     var appBar = await installApp.appBar(installApp.appId, adminMenu, aboutTitle());
-    await _store();
+    await _store(image);
     await _setupPage(appBar);
   }
 }

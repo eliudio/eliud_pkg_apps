@@ -1,5 +1,6 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
+import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/image_model.dart';
@@ -88,7 +89,7 @@ class EliudApp extends InstallApp {
         description: "Advanced",
         icon: IconModel(codePoint: Icons.tour.codePoint, fontFamily: "MaterialIcons"),
         action: GotoPage(appId, pageID: "advanced")));
-    menuItems.add(menuItemAbout(appId, "4", "who", "Who"));
+    menuItems.add(menuItemAbout(appId, "4", Founders.IDENTIFIER, Founders.IDENTIFIER));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
         appId: ELIUD_APP_ID,

@@ -267,13 +267,6 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
-  eliud_pkg_storage:
-    dependency: "direct main"
-    description:
-      path: "../eliud_pkg_storage"
-      relative: true
-    source: path
-    version: "0.0.1"
   eliud_pkg_workflow:
     dependency: "direct main"
     description:

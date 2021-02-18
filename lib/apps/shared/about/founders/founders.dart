@@ -10,11 +10,12 @@ import 'package:eliud_pkg_fundamentals/model/section_model.dart';
 import '../../../app_base.dart';
 
 abstract class Founders extends AboutBase {
-  Founders(InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) : super(RelativeImagePosition.Aside, .3, SectionImageAlignment.Left, installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  static String IDENTIFIER = 'about';
+  Founders(InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) : super(IDENTIFIER, RelativeImagePosition.Aside, .3, SectionImageAlignment.Left, installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   Future<void> doItForFounders() {
     return (doIt());
   }
 
-  String imageURL() => "https://live.staticflickr.com/65535/50708894517_b2e734dcb5_o_d.png";
+  String assetLocation() => 'packages/eliud_pkg_apps/assets/shared/about/thocha.png';
 }

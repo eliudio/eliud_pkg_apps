@@ -91,14 +91,12 @@ class IncidamusApp extends InstallApp {
   @override
   MenuDefModel homeMenuDef() {
     List<MenuItemModel> menuItems = [];
-    for (int i = 0; i < Welcome.IDENTIFIERs.length; i++) {
-      menuItems.add(menuItemWelcome(
-          appId, Welcome.IDENTIFIERs[i], Welcome.IDENTIFIERs[i], "Welcome"));
-    }
+    menuItems.add(menuItemWelcome(
+        appId, Welcome.IDENTIFIER, Welcome.IDENTIFIER, "Welcome"));
     menuItems.add(menuItem(appId, "album", Album.IDENTIFIER, "Album", Icons.photo));
     menuItems.add(menuItemFeed(appId, "feed", Feed.IDENTIFIER, "Feed"));
     menuItems.add(menuItemShoppingBag(appId, "shop", Shop.identifier, "Shop"));
-    menuItems.add(menuItemAbout(appId, "about", AboutBase.identifier, "About"));
+    menuItems.add(menuItemAbout(appId, "about", About.IDENTIFIER, "About"));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
         appId: INCIDAMUS_APP_ID,
@@ -219,7 +217,7 @@ class IncidamusApp extends InstallApp {
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
-    var welcomePages = await Welcome(
+    await Welcome(
             installApp: this,
             newAppTools: newAppTools,
             homeMenu: homeMenu(),
@@ -322,10 +320,10 @@ class IncidamusApp extends InstallApp {
         .run();
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
       homePageBlockedMemberId: homePageBlockedMember.documentID,
-      homePageSubscribedMemberId: welcomePages[0].documentID,
-      homePageLevel1MemberId: welcomePages[1].documentID,
-      homePageLevel2MemberId: welcomePages[2].documentID,
-      homePageOwnerId: welcomePages[3].documentID,
+      homePageSubscribedMemberId: Welcome.IDENTIFIER,
+      homePageLevel1MemberId: Welcome.IDENTIFIER,
+      homePageLevel2MemberId: Welcome.IDENTIFIER,
+      homePageOwnerId: Welcome.IDENTIFIER,
     );
     return homePages;
   }

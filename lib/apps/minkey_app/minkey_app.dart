@@ -7,6 +7,7 @@ import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/notifications/minkey_notification_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/workflow/workflow_setup.dart';
+import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
 import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/follow/follow_dashboards.dart';
 import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
@@ -100,7 +101,7 @@ class MinkeyApp extends InstallApp {
       menuItems.add(menuItemWelcome(
           appId, Welcome.IDENTIFIERs[i], Welcome.IDENTIFIERs[i], "Welcome"));
     }
-    menuItems.add(menuItemAbout(appId, "about", AboutBase.identifier, "About"));
+    menuItems.add(menuItemAbout(appId, "about", Founders.IDENTIFIER, "About"));
     menuItems.add(menuItem(appId, "album", Album.IDENTIFIER, "Album", Icons.photo));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
