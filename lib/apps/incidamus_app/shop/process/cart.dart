@@ -52,12 +52,6 @@ class MyCart extends PageTemplate {
   String pageTitle() => 'Your Bag';
 
   @override
-  String pageImageUrl() => 'https://live.staticflickr.com/65535/50707523407_f582083429_o_d.png';
-
-  @override
-  String pageImageID() => 'cartImage';
-
-  @override
   String componentName() => AbstractCartComponent.componentName;
 
   MyCart({
@@ -91,4 +85,7 @@ class MyCart extends PageTemplate {
     await AbstractRepositorySingleton.singleton.
     cartRepository(IncidamusApp.INCIDAMUS_APP_ID).add(_cart());
   }
+
+  @override
+  String assetLocation() => 'packages/eliud_pkg_apps/assets/incidamus_app/decorating/face3.png';
 }

@@ -41,12 +41,6 @@ class MyPayConfirmation extends PageTemplate {
   String pageTitle() => 'Success';
 
   @override
-  String pageImageUrl() => 'https://live.staticflickr.com/65535/50707454221_da890ba31b_o_d.png';
-
-  @override
-  String pageImageID() => 'payConfirmationImage';
-
-  @override
   String componentName() => AbstractPayConfirmationComponent.componentName;
 
   MyPayConfirmation({
@@ -80,4 +74,7 @@ class MyPayConfirmation extends PageTemplate {
   Future<void> setupComponent() async {
     await AbstractRepositorySingleton.singleton.payConfirmationRepository(JuuwleApp.JUUWLE_APP_ID).add(_payConfirmationModel());
   }
+
+  @override
+  String assetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/charlotte_with_credit_card.png';
 }

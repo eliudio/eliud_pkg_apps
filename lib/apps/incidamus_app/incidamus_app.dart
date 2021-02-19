@@ -189,6 +189,15 @@ class IncidamusApp extends InstallApp {
         .memberRepository()
         .get(ownerID);
     await createFollowMenu();
+    var shop = await Shop(
+        installApp: this,
+        newAppTools: newAppTools,
+        homeMenu: homeMenu(),
+        pageBG: pageBG(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+        adminMenu: adminMenu)
+        .run();
     await WorkflowSetup(installApp: this).run();
     await Feed(
         installApp: this,
@@ -225,15 +234,6 @@ class IncidamusApp extends InstallApp {
             drawer: drawer,
             endDrawer: endDrawer,
             adminMenu: adminMenu)
-        .run();
-    var shop = await Shop(
-        installApp: this,
-        newAppTools: newAppTools,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
         .run();
     await MyCart(
         background: Shop.cardBG(appId),

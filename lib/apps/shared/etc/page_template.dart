@@ -1,6 +1,7 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/conditions_simple_model.dart';
+import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
@@ -28,8 +29,7 @@ abstract class PageTemplate extends AppSection {
 
   String pageTitle();
 
-  String pageImageUrl();
-  String pageImageID();
+  String assetLocation();
 
   String componentID();
   String componentName();
@@ -45,17 +45,17 @@ abstract class PageTemplate extends AppSection {
       : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer,
             adminMenu);
 
-  Future<PageModel> _setupPage(AppBarModel appBar) async {
+  Future<PageModel> _setupPage(AppBarModel appBar, String presentationId) async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .pageRepository(installApp.appId)
-        .add(_page(appBar));
+        .add(_page(appBar, presentationId));
   }
 
-  PageModel _page(AppBarModel appBar) {
+  PageModel _page(AppBarModel appBar, String presentationId) {
     List<BodyComponentModel> components = List();
     components.add(BodyComponentModel(
         documentID: pageId,
-        componentId: _presentation().documentID,
+        componentId: presentationId,
         componentName: AbstractPresentationComponent.componentName));
 
     return PageModel(
@@ -76,7 +76,7 @@ abstract class PageTemplate extends AppSection {
         bodyComponents: components);
   }
 
-  PresentationModel _presentation() {
+  PresentationModel _presentation(MemberMediumModel image) {
     return PresentationModel(
       documentID: pageId,
       appId: installApp.appId,
@@ -85,7 +85,7 @@ abstract class PageTemplate extends AppSection {
           documentID: pageId,
           componentId: componentID(),
           componentName: componentName())],
-      image: newAppTools.findImageModel(pageImageID()),
+      image: image,
       imagePositionRelative: PresentationRelativeImagePosition.Aside,
       imageAlignment: presentationImageAlignment == null ? PresentationImageAlignment.Right : presentationImageAlignment,
       imageWidth: .40,
@@ -95,21 +95,26 @@ abstract class PageTemplate extends AppSection {
     );
   }
 
-  Future<void> _setupPresentation() async {
-    await AbstractRepositorySingleton.singleton.presentationRepository(installApp.appId).add(_presentation());
+  Future<PresentationModel> _setupPresentation(MemberMediumModel image) async {
+    var presentation = _presentation(image);
+    await AbstractRepositorySingleton.singleton.presentationRepository(installApp.appId).add(presentation);
+    return presentation;
   }
 
-  Future<void> _setupCartImage() async {
-    await newAppTools.getImgModel(name: pageImageID(), appId: installApp.appId, url: pageImageUrl());
+  Future<MemberMediumModel> uploadImage() async {
+    return await newAppTools.uploadPublicPhoto(
+        installApp.appId,
+        installApp.member,
+        assetLocation());
   }
 
 
   Future<PageModel>  run() async {
-    await _setupCartImage();
-    await _setupPresentation();
+    var image = await uploadImage();
+    PresentationModel presentationModel = await _setupPresentation(image);
     await setupComponent();
 //    var menu = await installApp.appBarMenu("Your Profile", adminMenu);
     var appBar = await installApp.appBar(pageId, adminMenu, "Member Area");
-    return await _setupPage(appBar);
+    return await _setupPage(appBar, presentationModel.documentID);
   }
 }

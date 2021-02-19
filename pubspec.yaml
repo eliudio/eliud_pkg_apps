@@ -61,6 +61,11 @@ flutter:
     - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4
     - packages/eliud_pkg_apps/assets/incidamus_app/decorating/face1.png
     - packages/eliud_pkg_apps/assets/incidamus_app/decorating/face2.png
+    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/face3.png
+    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/face4.png
+    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/body1.png
+    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/body2.png
+    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/body3.png
     - packages/eliud_pkg_apps/assets/incidamus_app/photos/1.jpg
     - packages/eliud_pkg_apps/assets/incidamus_app/photos/2.jpg
     - packages/eliud_pkg_apps/assets/incidamus_app/photos/3.jpg
@@ -129,4 +134,6 @@ flutter:
     - packages/eliud_pkg_apps/assets/shared/blocked/blocked.png
     - packages/eliud_pkg_apps/assets/juuwle_app/charlotte_sitting.png
     - packages/eliud_pkg_apps/assets/juuwle_app/charlotte_standing.png
-
+    - packages/eliud_pkg_apps/assets/juuwle_app/charlotte_with_credit_card.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/charlotte_presenting.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/charlotte_with_bags.png

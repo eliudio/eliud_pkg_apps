@@ -5,7 +5,6 @@ import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/products.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/shop/shop_images.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
@@ -42,13 +41,13 @@ class Shop extends AppSection {
 
   static String identifier = 'juuwleshop';
 
-  Future<PageModel> _setupPage(AppBarModel appBar) async {
+  Future<PageModel> _setupPage(AppBarModel appBar, String presentationDocumentId) async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .pageRepository(JuuwleApp.JUUWLE_APP_ID)
-        .add(_page(appBar));
+        .add(_page(appBar, presentationDocumentId));
   }
 
-  PageModel _page(AppBarModel appBar) {
+  PageModel _page(AppBarModel appBar, String presentationDocumentId) {
     var components = <BodyComponentModel>[];
     components.add(BodyComponentModel(
         documentID: '1',
@@ -61,7 +60,7 @@ class Shop extends AppSection {
     components.add(BodyComponentModel(
         documentID: '2',
         componentName: AbstractPresentationComponent.componentName,
-        componentId: _presentation().documentID));
+        componentId: presentationDocumentId));
 
     return PageModel(
         documentID: identifier,
@@ -204,7 +203,7 @@ class Shop extends AppSection {
     await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository(JuuwleApp.JUUWLE_APP_ID).add(cardBG(installApp.appId));
   }
 
-  PresentationModel _presentation() {
+  PresentationModel _presentation(MemberMediumModel memberMediumModel) {
     return PresentationModel(
         documentID: 'shop',
         appId: installApp.appId,
@@ -212,7 +211,7 @@ class Shop extends AppSection {
           documentID: '1',
           componentName: AbstractShopFrontComponent.componentName,
           componentId: _shopFront2().documentID)],
-      image: newAppTools.findImageModel(ShopImages.shopImageId),
+      image: memberMediumModel,
       imagePositionRelative: PresentationRelativeImagePosition.Aside,
       imageAlignment: PresentationImageAlignment.Left,
       imageWidth: .33,
@@ -222,26 +221,33 @@ class Shop extends AppSection {
     );
   }
 
-  Future<void> _setupPresentation() async {
-    await AbstractRepositorySingleton.singleton.presentationRepository(JuuwleApp.JUUWLE_APP_ID).add(_presentation());
+  Future<PresentationModel> _setupPresentation(MemberMediumModel memberMediumModel) async {
+    var presentationModel = _presentation(memberMediumModel);
+    await AbstractRepositorySingleton.singleton
+        .presentationRepository(JuuwleApp.JUUWLE_APP_ID)
+        .add(presentationModel);
+    return presentationModel;
+  }
+
+  Future<MemberMediumModel> uploadImage() async {
+    return await newAppTools.uploadPublicPhoto(
+        installApp.appId,
+        installApp.member,
+        'packages/eliud_pkg_apps/assets/incidamus_app/decorating/body1.png');
   }
 
   static String appBarIdentifier = 'store';
 
   Future<ShopModel> run() async {
-    await ShopImages(newAppTools).run();
-    await _setupPresentation();
+    var image = await uploadImage();
+    var presentationDocumentId = (await _setupPresentation(image)).documentID;
     await _setupCardBG();
     await _setupShopFronts();
-//    var appMenu = await installApp.appBarMenu('Basket', adminMenu);
-    var appBar = await installApp.appBar(
-        identifier,
-        adminMenu,
-        'Shop');
+    var appBar = await installApp.appBar(identifier, adminMenu, 'Shop');
     var shop = await _setupShop();
     await Products(installApp, newAppTools, shop).run();
     await _setupFader();
-    await _setupPage(appBar);
+    await _setupPage(appBar, presentationDocumentId);
     return shop;
   }
 }

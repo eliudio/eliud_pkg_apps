@@ -44,12 +44,6 @@ class MyPay extends PageTemplate {
   String pageTitle() => 'Payment';
 
   @override
-  String pageImageUrl() => 'https://live.staticflickr.com/65535/50707454221_da890ba31b_o_d.png';
-
-  @override
-  String pageImageID() => 'payImage';
-
-  @override
   String componentName() => AbstractPayComponent.componentName;
 
   MyPay({
@@ -83,4 +77,7 @@ class MyPay extends PageTemplate {
   Future<void> setupComponent() async {
     await AbstractRepositorySingleton.singleton.payRepository(IncidamusApp.INCIDAMUS_APP_ID).add(_payModel());
   }
+
+  @override
+  String assetLocation() => 'packages/eliud_pkg_apps/assets/incidamus_app/decorating/face4.png';
 }

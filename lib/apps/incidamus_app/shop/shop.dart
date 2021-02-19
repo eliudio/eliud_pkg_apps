@@ -1,11 +1,12 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/abstract_repository_singleton.dart'
+    as corerepo;
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart' as shoprepo;
+import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart'
+    as shoprepo;
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/incidamus_app.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/products.dart';
-import 'package:eliud_pkg_apps/apps/incidamus_app/shop/shop_images.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
@@ -42,13 +43,13 @@ class Shop extends AppSection {
 
   static String identifier = 'juuwleshop';
 
-  Future<PageModel> _setupPage(AppBarModel appBar) async {
+  Future<PageModel> _setupPage(AppBarModel appBar, String presentationDocumentId) async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .pageRepository(IncidamusApp.INCIDAMUS_APP_ID)
-        .add(_page(appBar));
+        .add(_page(appBar, presentationDocumentId));
   }
 
-  PageModel _page(AppBarModel appBar) {
+  PageModel _page(AppBarModel appBar, String presentationDocumentId) {
     var components = <BodyComponentModel>[];
     components.add(BodyComponentModel(
         documentID: '1',
@@ -61,7 +62,7 @@ class Shop extends AppSection {
     components.add(BodyComponentModel(
         documentID: '2',
         componentName: AbstractPresentationComponent.componentName,
-        componentId: _presentation().documentID));
+        componentId: presentationDocumentId));
 
     return PageModel(
         documentID: identifier,
@@ -101,14 +102,16 @@ class Shop extends AppSection {
       items: items,
       appId: installApp.appId,
       conditions: ConditionsSimpleModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );
     return model;
   }
 
   Future<ShopModel> _setupShop() async {
-    return await shoprepo.AbstractRepositorySingleton.singleton.shopRepository(IncidamusApp.INCIDAMUS_APP_ID).add(_shop());
+    return await shoprepo.AbstractRepositorySingleton.singleton
+        .shopRepository(IncidamusApp.INCIDAMUS_APP_ID)
+        .add(_shop());
   }
 
   ShopModel _shop() {
@@ -132,16 +135,18 @@ class Shop extends AppSection {
       shop: _shop(),
       addToCartColor: EliudColors.red,
       itemCardBackground: cardBG(installApp.appId),
-      buyAction: GotoPage(IncidamusApp.INCIDAMUS_APP_ID, pageID: MyCart.identifier),
+      buyAction:
+          GotoPage(IncidamusApp.INCIDAMUS_APP_ID, pageID: MyCart.identifier),
       view: ShopFrontView.Slider,
-      openProductAction: GotoPage(IncidamusApp.INCIDAMUS_APP_ID, pageID: ProductPage.identifier),
+      openProductAction: GotoPage(IncidamusApp.INCIDAMUS_APP_ID,
+          pageID: ProductPage.identifier),
       size: 250,
       cardElevation: 10,
       cardAxisSpacing: 20,
       scrollDirection: ScrollDirection.Vertical,
       conditions: ConditionsSimpleModel(
-        privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );
   }
 
@@ -156,22 +161,28 @@ class Shop extends AppSection {
       shop: _shop(),
       addToCartColor: EliudColors.red,
       itemCardBackground: cardBG(installApp.appId),
-      buyAction: GotoPage(IncidamusApp.INCIDAMUS_APP_ID, pageID: MyCart.identifier),
+      buyAction:
+          GotoPage(IncidamusApp.INCIDAMUS_APP_ID, pageID: MyCart.identifier),
       view: ShopFrontView.Grid,
-      openProductAction: GotoPage(IncidamusApp.INCIDAMUS_APP_ID, pageID: ProductPage.identifier),
+      openProductAction: GotoPage(IncidamusApp.INCIDAMUS_APP_ID,
+          pageID: ProductPage.identifier),
       size: 250,
       cardElevation: 10,
       cardAxisSpacing: 20,
       scrollDirection: ScrollDirection.Vertical,
       conditions: ConditionsSimpleModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );
   }
 
   Future<void> _setupShopFronts() async {
-    await shoprepo.AbstractRepositorySingleton.singleton.shopFrontRepository(IncidamusApp.INCIDAMUS_APP_ID).add(_shopFront1());
-    await shoprepo.AbstractRepositorySingleton.singleton.shopFrontRepository(IncidamusApp.INCIDAMUS_APP_ID).add(_shopFront2());
+    await shoprepo.AbstractRepositorySingleton.singleton
+        .shopFrontRepository(IncidamusApp.INCIDAMUS_APP_ID)
+        .add(_shopFront1());
+    await shoprepo.AbstractRepositorySingleton.singleton
+        .shopFrontRepository(IncidamusApp.INCIDAMUS_APP_ID)
+        .add(_shopFront2());
   }
 
   static BackgroundModel cardBG(String appId) {
@@ -201,48 +212,60 @@ class Shop extends AppSection {
   static String itemBackground = 'card_bg';
 
   Future<void> _setupCardBG() async {
-    await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository(IncidamusApp.INCIDAMUS_APP_ID).add(cardBG(installApp.appId));
+    await corerepo.AbstractRepositorySingleton.singleton
+        .backgroundRepository(IncidamusApp.INCIDAMUS_APP_ID)
+        .add(cardBG(installApp.appId));
   }
 
-  PresentationModel _presentation() {
+  PresentationModel _presentation(MemberMediumModel memberMediumModel) {
     return PresentationModel(
-        documentID: 'shop',
-        appId: installApp.appId,
-      bodyComponents: [BodyComponentModel(
-          documentID: '1',
-          componentName: AbstractShopFrontComponent.componentName,
-          componentId: _shopFront2().documentID)],
-      image: null,
+      documentID: 'shop',
+      title: 'Shop',
+      appId: installApp.appId,
+      bodyComponents: [
+        BodyComponentModel(
+            documentID: '1',
+            componentName: AbstractShopFrontComponent.componentName,
+            componentId: _shopFront2().documentID)
+      ],
+      image: memberMediumModel,
       imagePositionRelative: PresentationRelativeImagePosition.Aside,
       imageAlignment: PresentationImageAlignment.Left,
       imageWidth: .33,
       conditions: ConditionsSimpleModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );
   }
 
-  Future<void> _setupPresentation() async {
-    await AbstractRepositorySingleton.singleton.presentationRepository(IncidamusApp.INCIDAMUS_APP_ID).add(_presentation());
+  Future<PresentationModel> _setupPresentation(MemberMediumModel memberMediumModel) async {
+    var presentationModel = _presentation(memberMediumModel);
+    await AbstractRepositorySingleton.singleton
+        .presentationRepository(IncidamusApp.INCIDAMUS_APP_ID)
+        .add(presentationModel);
+    return presentationModel;
   }
 
   Future<MemberMediumModel> uploadImage() async {
-    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/incidamus_app/decorating/body1.png');
-  }  static String appBarIdentifier = 'store';
+    return await newAppTools.uploadPublicPhoto(
+        installApp.appId,
+        installApp.member,
+        'packages/eliud_pkg_apps/assets/incidamus_app/decorating/body1.png');
+  }
+
+  static String appBarIdentifier = 'store';
 
   Future<ShopModel> run() async {
     var image = await uploadImage();
-    await _setupPresentation();
+    var presentation = await _setupPresentation(image);
+    var presentationDocumentId = presentation.documentID;
     await _setupCardBG();
     await _setupShopFronts();
-    var appBar = await installApp.appBar(
-        identifier,
-        adminMenu,
-        'Shop');
+    var appBar = await installApp.appBar(identifier, adminMenu, 'Shop');
     var shop = await _setupShop();
     await Products(installApp, newAppTools, shop).run();
     await _setupFader();
-    await _setupPage(appBar);
+    await _setupPage(appBar, presentationDocumentId);
     return shop;
   }
 }

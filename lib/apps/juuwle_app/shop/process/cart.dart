@@ -52,9 +52,6 @@ class MyCart extends PageTemplate {
   String pageTitle() => 'Your Bag';
 
   @override
-  String pageImageUrl() => 'https://live.staticflickr.com/65535/50707523407_f582083429_o_d.png';
-
-  @override
   String pageImageID() => 'cartImage';
 
   @override
@@ -91,4 +88,7 @@ class MyCart extends PageTemplate {
     await AbstractRepositorySingleton.singleton.
     cartRepository(JuuwleApp.JUUWLE_APP_ID).add(_cart());
   }
+
+  @override
+  String assetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/charlotte_with_bags.png';
 }
