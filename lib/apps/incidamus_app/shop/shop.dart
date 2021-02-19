@@ -212,7 +212,7 @@ class Shop extends AppSection {
           documentID: '1',
           componentName: AbstractShopFrontComponent.componentName,
           componentId: _shopFront2().documentID)],
-      image: newAppTools.findImageModel(ShopImages.shopImageId),
+      image: null,
       imagePositionRelative: PresentationRelativeImagePosition.Aside,
       imageAlignment: PresentationImageAlignment.Left,
       imageWidth: .33,
@@ -226,14 +226,15 @@ class Shop extends AppSection {
     await AbstractRepositorySingleton.singleton.presentationRepository(IncidamusApp.INCIDAMUS_APP_ID).add(_presentation());
   }
 
-  static String appBarIdentifier = 'store';
+  Future<MemberMediumModel> uploadImage() async {
+    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/incidamus_app/decorating/body1.png');
+  }  static String appBarIdentifier = 'store';
 
   Future<ShopModel> run() async {
-    await ShopImages(newAppTools).run();
+    var image = await uploadImage();
     await _setupPresentation();
     await _setupCardBG();
     await _setupShopFronts();
-//    var appMenu = await installApp.appBarMenu('Basket', adminMenu);
     var appBar = await installApp.appBar(
         identifier,
         adminMenu,
