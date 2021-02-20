@@ -233,7 +233,7 @@ class Shop extends AppSection {
     return await newAppTools.uploadPublicPhoto(
         installApp.appId,
         installApp.member,
-        'packages/eliud_pkg_apps/assets/incidamus_app/decorating/body1.png');
+        'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_presenting.png');
   }
 
   static String appBarIdentifier = 'store';
