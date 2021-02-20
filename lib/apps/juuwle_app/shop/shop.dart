@@ -91,7 +91,7 @@ class Shop extends AppSection {
         documentID: 'juuwle',
         description: 'Juuwle',
         posSize: installApp.halfScreen(),
-        image: newAppTools.findImageModel('logo')));
+        image: installApp.theLogo));
     var model = FaderModel(
       documentID: faderIdentifier,
       name: 'Juuwle Fader',

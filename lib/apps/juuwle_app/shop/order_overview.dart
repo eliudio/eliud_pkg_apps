@@ -68,5 +68,5 @@ class OrderOverview extends PageTemplate {
   }
 
   @override
-  String assetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/charlotte_with_bags.png';
+  String assetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_with_bags.png';
 }

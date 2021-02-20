@@ -1,5 +1,6 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
+import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/membership/juuwle_membership_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/product_page.dart';
@@ -102,7 +103,7 @@ class JuuwleApp extends InstallApp {
 
   @override
   Future<void> setupApplication(AppHomePageReferencesModel homePages,
-      String ownerID, ImageModel logo) async {
+      String ownerID, MemberMediumModel logo) async {
     var application = AppModel(
       documentID: JUUWLE_APP_ID,
       title: 'Juuwle!',
@@ -295,13 +296,8 @@ class JuuwleApp extends InstallApp {
 
   @override
   Future<void> run(String ownerID) async {
-    var urlLogo =
-        'https://live.staticflickr.com/65535/50706686648_24b5b910ba_o_d.png';
-    var urlLogoHead =
-        'https://live.staticflickr.com/65535/49957341552_f8023b32d7_w_d.jpg';
-
     return await runBase(
-        ownerID: ownerID, urlLogo: urlLogo, urlLogoHead: urlLogoHead);
+        ownerID: ownerID);
   }
 
   @override
@@ -358,4 +354,10 @@ class JuuwleApp extends InstallApp {
             action: OpenDialog(JuuwleApp.JUUWLE_APP_ID,
                 dialogID: AssignmentViewSetup.IDENTIFIER)),
       ];
+
+  @override
+  String logoAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/logos/logo.png';
+
+  @override
+  String logoHeadAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/logos/logo_head.png';
 }

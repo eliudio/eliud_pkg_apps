@@ -1,5 +1,6 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
+import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/icon_model.dart';
@@ -124,7 +125,7 @@ class EliudApp extends InstallApp {
   Future<void> setupApplication(
       AppHomePageReferencesModel homePages,
       String ownerID,
-      ImageModel logo) async {
+      MemberMediumModel logo) async {
     AppModel application = AppModel(
       documentID: ELIUD_APP_ID,
       title: "Eliud!",
@@ -228,16 +229,9 @@ class EliudApp extends InstallApp {
   }
 
   Future<void> run(String ownerID) async {
-    String urlLogo =
-        "https://live.staticflickr.com/65535/49618794323_0ed83facd8_c_d.jpg";
-    String urlLogoHead =
-        "https://live.staticflickr.com/65535/49619576767_13b2947984_w_d.jpg";
-
     return await runBase(
       ownerID: ownerID,
-      urlLogo: urlLogo,
-      urlLogoHead: urlLogoHead,
-    );
+          );
   }
 
   @override
@@ -258,4 +252,10 @@ class EliudApp extends InstallApp {
   @override
   // no extra items
   List<MenuItemModel> extraMenuItems() => null;
+
+  @override
+  String logoAssetLocation() => 'packages/eliud_pkg_apps/assets/eliud_app/logos/logo.jpg';
+
+  @override
+  String logoHeadAssetLocation() => 'packages/eliud_pkg_apps/assets/eliud_app/logos/logo_head.jpg';
 }

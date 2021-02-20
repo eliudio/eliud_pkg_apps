@@ -4,6 +4,7 @@ import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
+import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/order_overview.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/process/cart.dart';
@@ -107,7 +108,7 @@ class IncidamusApp extends InstallApp {
 
   @override
   Future<void> setupApplication(AppHomePageReferencesModel homePages,
-      String ownerID, ImageModel logo) async {
+      String ownerID, MemberMediumModel logo) async {
     AppModel application = AppModel(
       documentID: INCIDAMUS_APP_ID,
       title: "Incidamus!",
@@ -376,13 +377,8 @@ class IncidamusApp extends InstallApp {
   }
 
   Future<void> run(String ownerID) async {
-    String urlLogo =
-        "https://live.staticflickr.com/65535/50708906832_0228495d4b_o_d.png";
-    String urlLogoHead =
-        "https://live.staticflickr.com/65535/50708916682_c517028b44_o_d.png";
-
     return await runBase(
-        ownerID: ownerID, urlLogo: urlLogo, urlLogoHead: urlLogoHead);
+        ownerID: ownerID);
   }
 
   @override
@@ -460,4 +456,11 @@ class IncidamusApp extends InstallApp {
         action:
             WorkflowSetup.requestMembershipAction(IncidamusApp.INCIDAMUS_APP_ID))
     ];
+
+  @override
+  String logoAssetLocation() => 'packages/eliud_pkg_apps/assets/incidamus_app/logos/logo.png';
+
+  @override
+  String logoHeadAssetLocation() => 'packages/eliud_pkg_apps/assets/incidamus_app/logos/logo_head.png';
+
 }

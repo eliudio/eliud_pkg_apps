@@ -31,7 +31,7 @@ abstract class InstallApp {
   AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer);
 
   Future<void> setupApplication(
-      AppHomePageReferencesModel homePages, String ownerID, ImageModel logo);
+      AppHomePageReferencesModel homePages, String ownerID, MemberMediumModel logo);
   Future<AppHomePageReferencesModel> runTheRest(String ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu);
   Future<PageModel> memberPage(
@@ -50,6 +50,8 @@ abstract class InstallApp {
   final RgbModel dividerColor;
   final RgbModel homeMenuIconColor;
   final RgbModel homeMenuPopupBGColor;
+  var theLogo;
+  var theLogoHead;
 
   final String appId;
   MemberModel member;
@@ -180,20 +182,11 @@ abstract class InstallApp {
             .add(screen75());
   }
 
-  static String LOGO_ID = 'logo';
-  static String LOGO_HEAD_ID = 'logo_head';
-
-  Future<ImageModel> logoHead(String urlLogoHead) async {
-    return await newAppTools.getImgModel(
-        name: LOGO_HEAD_ID, appId: appId, url: urlLogoHead);
+  Future<MemberMediumModel> _memberMediumModel(String assetLocation) async {
+    return await newAppTools.uploadPublicPhoto(appId, member, assetLocation);
   }
 
-  Future<ImageModel> logo(String urlLogo) async {
-    //await _addProfileImage();
-    return await newAppTools.getImgModel(name: LOGO_ID, appId: appId, url: urlLogo);
-  }
-
-  DrawerModel _drawer(ImageModel logo) {
+  DrawerModel _drawer(MemberMediumModel logo) {
     return DrawerModel(
         documentID: 'DRAWER',
         appId: appId,
@@ -206,7 +199,7 @@ abstract class InstallApp {
         menu: drawerMenuDef());
   }
 
-  Future<DrawerModel> setupDrawer(ImageModel logo) async {
+  Future<DrawerModel> setupDrawer(MemberMediumModel logo) async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .drawerRepository(appId)
         .add(_drawer(logo));
@@ -256,7 +249,7 @@ abstract class InstallApp {
     return backgroundModel;
   }
 
-  Future<void> setupDecorationColorModel(ImageModel logo) async {
+  Future<void> setupDecorationColorModel(MemberMediumModel logo) async {
     await corerepo.AbstractRepositorySingleton.singleton
         .backgroundRepository(appId)
         .add(_homeMenuBG());
@@ -305,7 +298,7 @@ abstract class InstallApp {
     return backgroundModel;
   }
 
-  BackgroundModel _drawerHeaderBG(ImageModel logo) {
+  BackgroundModel _drawerHeaderBG(MemberMediumModel logo) {
     var decorationColorModels = <DecorationColorModel>[];
     var backgroundModel = BackgroundModel(
         documentID: 'left_drawer_header_bg',
@@ -486,8 +479,11 @@ abstract class InstallApp {
     await fontTools.installFonts(appId);
   }
 
+  String logoAssetLocation();
+  String logoHeadAssetLocation();
+
   Future<void> runBase(
-      {String ownerID, String urlLogo, String urlLogoHead}) async {
+      {String ownerID}) async {
 /*
     // this code isn't necesairily working correctly: I think it should probably delete all collections, including all packages, and I have the feeling it's not working.
     // however, with the introduction of subcollections for app data, we don't really need this any more, so hence we can skip it
@@ -497,14 +493,14 @@ abstract class InstallApp {
       await aaw[i].deleteAll(appId);
     }
 */
-    var theLogo = await logo(urlLogo);
+    theLogo = await _memberMediumModel(logoAssetLocation());
+    theLogoHead = await _memberMediumModel(logoHeadAssetLocation());
     var endDrawer = await setupProfileDrawer();
     var drawer = await setupDrawer(theLogo);
     var _adminBase = adminBase(drawer, endDrawer);
 
     await installFonts();
     await GridViews().run(appId);
-    var theLogoHead = await logoHead(urlLogoHead);
     var adminMenu = await _appBarMenu("Menu", await _adminBase.installAdminMenus());
     await _adminBase.installAdminAppss(adminMenu);
     await memberPage(adminMenu, drawer, endDrawer);

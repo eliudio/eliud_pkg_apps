@@ -1,9 +1,6 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
-import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/tool_set.dart';
-import 'package:eliud_core/tools/types.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
@@ -25,7 +22,6 @@ import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
-import 'images.dart';
 
 class Welcome extends AppSection {
   Welcome(
@@ -93,34 +89,50 @@ class Welcome extends AppSection {
         bodyComponents: components);
   }
 
-  Future<void> _setupFader() async {
+  Future<void> _setupFader(MemberMediumModel android, MemberMediumModel iphone, MemberMediumModel tablet, MemberMediumModel macbook, ) async {
     return await AbstractRepositorySingleton.singleton
         .faderRepository(installApp.appId)
-        .add(_fader());
+        .add(_fader(android, iphone, tablet, macbook, ));
   }
 
-  FaderModel _fader() {
+  Future<MemberMediumModel> androidImage() async {
+    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg');
+  }
+
+  Future<MemberMediumModel> iphoneImage() async {
+    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg');
+  }
+
+  Future<MemberMediumModel> tabletImage() async {
+    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg');
+  }
+
+  Future<MemberMediumModel> macbookImage() async {
+    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg');
+  }
+
+  FaderModel _fader(MemberMediumModel android, MemberMediumModel iphone, MemberMediumModel tablet, MemberMediumModel macbook, ) {
     List<ListedItemModel> items = List();
     items.add(ListedItemModel(
         documentID: "android",
         description: "Android",
         posSize: installApp.halfScreen(),
-        image: newAppTools.findImageModel("android")));
+        image: android));
     items.add(ListedItemModel(
         documentID: "macbook",
         description: "Macbook",
         posSize: installApp.halfScreen(),
-        image: newAppTools.findImageModel("macbook")));
+        image: macbook));
     items.add(ListedItemModel(
         documentID: "iphone",
         description: "iphone",
         posSize: installApp.halfScreen(),
-        image: newAppTools.findImageModel("iphone")));
+        image: iphone));
     items.add(ListedItemModel(
         documentID: "tablet",
         description: "Tablet",
         posSize: installApp.halfScreen(),
-        image: newAppTools.findImageModel("tablet")));
+        image: tablet));
     FaderModel model = FaderModel(
       documentID: FADER_IDENTIFIER,
       name: "Welcome fader",
@@ -179,11 +191,14 @@ class Welcome extends AppSection {
 
   // ************************ Tutorials *****************
   Future<void> run() async {
-    await WhoImages(newAppTools).run();
-//    var appMenu = await installApp.appBarMenu("Welcome", adminMenu);
     var appBar =
         await installApp.appBar(APP_BAR_IDENTIFIER, adminMenu, "Welcome");
-    await _setupFader();
+    var android = await androidImage();
+    var iphone = await iphoneImage();
+    var tablet = await tabletImage();
+    var macbook = await macbookImage();
+
+    await _setupFader(android, iphone, tablet, macbook);
     for (int i = 0; i < IDENTIFIERs.length; i++) {
       await _setupWelcomeDocument(privilegeLevelsRequired[i]);
       await _setupPage(appBar, privilegeLevelsRequired[i]);

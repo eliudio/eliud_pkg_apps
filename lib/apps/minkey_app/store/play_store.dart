@@ -1,6 +1,7 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/conditions_simple_model.dart';
+import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
@@ -27,7 +28,6 @@ import 'package:eliud_pkg_fundamentals/model/play_store_model.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
-import 'images.dart';
 
 class PlayStore extends AppSection {
   PlayStore({InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, adminMenu);
@@ -39,7 +39,7 @@ class PlayStore extends AppSection {
   }
 
   PageModel _page(AppBarModel appBar) {
-    List<BodyComponentModel> components = List();
+    List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "2", componentName: AbstractFaderComponent.componentName, componentId: FADER_IDENTIFIER));
     components.add(BodyComponentModel(
@@ -70,12 +70,12 @@ class PlayStore extends AppSection {
 
   static String FADER_IDENTIFIER = IDENTIFIER;
   FaderModel _fader() {
-      List<ListedItemModel> items = List();
+      List<ListedItemModel> items = [];
       items.add(ListedItemModel(
           documentID: "minkey",
           description: "Minkey",
           posSize: installApp.halfScreen(),
-          image: newAppTools.findImageModel("minkey")));
+          image: installApp.theLogo));
       FaderModel model = FaderModel(
         documentID: FADER_IDENTIFIER,
         name: "Welcome fader",
@@ -108,7 +108,7 @@ class PlayStore extends AppSection {
 
   BackgroundModel playStoreBG() {
     // this is a clone of _pageBG
-    List<DecorationColorModel> decorationColorModels = List();
+    List<DecorationColorModel> decorationColorModels = [];
     DecorationColorModel decorationColorModel1 = DecorationColorModel(
       documentID: "1",
       color: RgbModel(r: 0xF5, g: 0xEE, b: 0xF5, opacity: 0.30),
@@ -158,11 +158,8 @@ class PlayStore extends AppSection {
 
   // ************************ Tutorials *****************
   Future<PageModel> run() async {
-    await WhoImages(newAppTools).run();
-    await _setupShadows();
     await _setupPlayStore();
     await _setupPlayStoreBG();
-//    var appMenu = await installApp.appBarMenu("Play Store", adminMenu);
     var appBar = await installApp.appBar(IDENTIFIER, adminMenu, "Store");
     await _setupFader();
     return await _setupPage(appBar);

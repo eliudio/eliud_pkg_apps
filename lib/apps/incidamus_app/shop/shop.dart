@@ -41,7 +41,7 @@ class Shop extends AppSection {
       : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer,
             adminMenu);
 
-  static String identifier = 'juuwleshop';
+  static String identifier = 'shop';
 
   Future<PageModel> _setupPage(AppBarModel appBar, String presentationDocumentId) async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -86,17 +86,17 @@ class Shop extends AppSection {
         .add(_fader());
   }
 
-  static String faderIdentifier = 'juuwlefader';
+  static String faderIdentifier = 'fader';
   FaderModel _fader() {
     var items = <ListedItemModel>[];
     items.add(ListedItemModel(
-        documentID: 'juuwle',
-        description: 'Juuwle',
+        documentID: 'fader',
+        description: 'Fader',
         posSize: installApp.halfScreen(),
-        image: newAppTools.findImageModel('logo')));
+        image: installApp.theLogo));
     var model = FaderModel(
       documentID: faderIdentifier,
-      name: 'Juuwle Fader',
+      name: 'Fader',
       animationMilliseconds: 1000,
       imageSeconds: 5,
       items: items,
@@ -156,8 +156,8 @@ class Shop extends AppSection {
     return ShopFrontModel(
       documentID: shopFrontIdentifier2,
       appId: installApp.appId,
-      title: 'My products',
-      description: 'These are my lovely products',
+      title: 'My photos for sale',
+      description: 'Welcome to my shop. Blah blah blah.',
       shop: _shop(),
       addToCartColor: EliudColors.red,
       itemCardBackground: cardBG(installApp.appId),
@@ -250,7 +250,7 @@ class Shop extends AppSection {
     return await newAppTools.uploadPublicPhoto(
         installApp.appId,
         installApp.member,
-        'packages/eliud_pkg_apps/assets/incidamus_app/decorating/body1.png');
+        'packages/eliud_pkg_apps/assets/incidamus_app/decorating/body3b.png');
   }
 
   static String appBarIdentifier = 'store';

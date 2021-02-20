@@ -79,5 +79,5 @@ class MyPay extends PageTemplate {
   }
 
   @override
-  String assetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/charlotte_with_credit_card.png';
+  String assetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_with_credit_card.png';
 }

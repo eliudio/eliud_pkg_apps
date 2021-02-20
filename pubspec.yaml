@@ -51,10 +51,24 @@ dev_dependencies:
 
 flutter:
   assets:
+    - packages/eliud_pkg_apps/assets/eliud_app/logos/logo.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/logos/logo_head.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/devices/android.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/devices/iphone.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/devices/macbook.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/devices/tablet.jpg
+    - packages/eliud_pkg_apps/assets/minkey_app/logos/logo.png
+    - packages/eliud_pkg_apps/assets/minkey_app/logos/logo_head.png
     - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg
     - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg
     - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg
     - packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4
+    - packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg
+    - packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg
+    - packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg
+    - packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/logos/logo.png
+    - packages/eliud_pkg_apps/assets/incidamus_app/logos/logo_head.png
     - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg
     - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg
     - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg
@@ -66,6 +80,7 @@ flutter:
     - packages/eliud_pkg_apps/assets/incidamus_app/decorating/body1.png
     - packages/eliud_pkg_apps/assets/incidamus_app/decorating/body2.png
     - packages/eliud_pkg_apps/assets/incidamus_app/decorating/body3.png
+    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/body3b.png
     - packages/eliud_pkg_apps/assets/incidamus_app/photos/1.jpg
     - packages/eliud_pkg_apps/assets/incidamus_app/photos/2.jpg
     - packages/eliud_pkg_apps/assets/incidamus_app/photos/3.jpg
@@ -130,10 +145,51 @@ flutter:
     - packages/eliud_pkg_apps/assets/incidamus_app/photos/62.jpg
     - packages/eliud_pkg_apps/assets/incidamus_app/photos/63.jpg
     - packages/eliud_pkg_apps/assets/incidamus_app/photos/64.jpg
+    - packages/eliud_pkg_apps/assets/incidamus_app/products/blackandwhite1.webp
+    - packages/eliud_pkg_apps/assets/incidamus_app/products/blackandwhite2.webp
+    - packages/eliud_pkg_apps/assets/incidamus_app/products/blackandwhite3.webp
+    - packages/eliud_pkg_apps/assets/incidamus_app/products/blackandwhite4.webp
+    - packages/eliud_pkg_apps/assets/incidamus_app/products/sludge1.webp
+    - packages/eliud_pkg_apps/assets/incidamus_app/products/govno1.webp
+    - packages/eliud_pkg_apps/assets/incidamus_app/products/blackandwhitecar1.webp
+    - packages/eliud_pkg_apps/assets/juuwle_app/logos/logo.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/logos/logo_head.jpg
     - packages/eliud_pkg_apps/assets/shared/about/thocha.png
     - packages/eliud_pkg_apps/assets/shared/blocked/blocked.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/charlotte_sitting.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/charlotte_standing.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/charlotte_with_credit_card.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/charlotte_presenting.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/charlotte_with_bags.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_sitting.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_standing.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_with_credit_card.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_presenting.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_with_bags.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/gouldianfinch1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/gouldianfinch2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/redbreastedblackbird1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/redbreastedblackbird2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/queenofthenight1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/queenofthenight2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/goldenoriole1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/goldenoriole2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/turquoisekakariki1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/turquoisekakariki2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/amaryllis1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/amaryllis2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/daisy1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/daisy2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/anemone1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/anemone2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/lilyofthenile1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/lilyofthenile2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/bluebackedmanakin1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/bluebackedmanakin2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/northerncardinal1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/northerncardinal2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/eurasianmagpie1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/eurasianmagpie2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/myna1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/myna2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/parakeet1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/parakeet2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/kingbird1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/kingbird2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/grosbeak1.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/products/grosbeak2.png

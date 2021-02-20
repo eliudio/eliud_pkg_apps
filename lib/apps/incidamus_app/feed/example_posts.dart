@@ -39,7 +39,7 @@ class ExamplePosts {
         appId: IncidamusApp.INCIDAMUS_APP_ID,
         postAppId: IncidamusApp.INCIDAMUS_APP_ID,
         postPageId: ProductPage.identifier,
-        pageParameters: {'productId': Products.productId2},
+        pageParameters: {'productId': Products.productId1},
         archived: PostArchiveStatus.Active,
         description: 'Hi guys, this is another post, this time about another product in my shop',
         readAccess: ['PUBLIC']));
