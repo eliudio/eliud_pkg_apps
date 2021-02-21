@@ -12,7 +12,6 @@ import 'package:eliud_core/model/rgb_model.dart';
 import 'package:eliud_core/model/shadow_model.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
@@ -30,7 +29,7 @@ import '../../app_section.dart';
 import '../../app_base.dart';
 
 class PlayStore extends AppSection {
-  PlayStore({InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  PlayStore({InstallApp installApp, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   static String IDENTIFIER = "playstore";
 

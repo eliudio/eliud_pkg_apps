@@ -1,5 +1,4 @@
 import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
@@ -41,7 +40,6 @@ class OrderOverview extends PageTemplate {
     this.background,
     this.shop,
     InstallApp installApp,
-    Tools newAppTools,
     HomeMenuModel homeMenu,
     BackgroundModel pageBG,
     DrawerModel drawer,
@@ -50,7 +48,6 @@ class OrderOverview extends PageTemplate {
       privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
       pageId: identifier,
       installApp: installApp,
-      newAppTools: newAppTools,
       homeMenu: homeMenu,
       pageBG: pageBG,
       drawer: drawer,

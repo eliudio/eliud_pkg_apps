@@ -14,9 +14,9 @@ import 'package:eliud_pkg_fundamentals/model/booklet_component.dart';
 import 'package:eliud_pkg_fundamentals/model/booklet_model.dart';
 import 'package:eliud_pkg_fundamentals/model/link_model.dart';
 import 'package:eliud_pkg_fundamentals/model/section_model.dart';
+import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 
 import '../../app_section.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 
 import '../../app_base.dart';
 
@@ -31,13 +31,12 @@ abstract class AboutBase extends AppSection {
       this.imageWidth,
       this.alignment,
       InstallApp installApp,
-      Tools newAppTools,
       HomeMenuModel homeMenu,
       BackgroundModel pageBG,
       DrawerModel drawer,
       DrawerModel endDrawer,
       MenuDefModel adminMenu)
-      : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer,
+      : super(installApp, homeMenu, pageBG, drawer, endDrawer,
       adminMenu);
 
   //static String identifier = "who";
@@ -83,7 +82,7 @@ abstract class AboutBase extends AppSection {
   }
 
   Future<MemberMediumModel> installAboutImage() async {
-    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, assetLocation());
+    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, assetLocation());
   }
 
   BookletModel _header(MemberMediumModel memberMediumModel) {

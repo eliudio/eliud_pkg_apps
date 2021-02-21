@@ -1,18 +1,15 @@
 import 'package:eliud_pkg_apps/apps/shared/products/product.dart';
 import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/model/model_export.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import '../../../apps/app_base.dart';
 import '../juuwle_app.dart';
 
 class Products {
   final InstallApp installApp;
-  final Tools newAppTools;
   final ShopModel shop;
 
   Products(
     this.installApp,
-    this.newAppTools,
     this.shop,
   );
 
@@ -234,7 +231,7 @@ class Products {
       Product p = theProducts[i];
       await AbstractRepositorySingleton.singleton
           .productRepository(JuuwleApp.JUUWLE_APP_ID)
-          .add(await productToProductModel(shop, installApp, newAppTools, p));
+          .add(await productToProductModel(shop, installApp, p));
     }
   }
 }

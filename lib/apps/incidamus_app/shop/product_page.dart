@@ -2,7 +2,6 @@ import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/process/cart.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/basic_page_template.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
@@ -42,7 +41,6 @@ class ProductPage extends BasicPageTemplate {
   ProductPage({
     this.shop,
     InstallApp installApp,
-    Tools newAppTools,
     HomeMenuModel homeMenu,
     BackgroundModel pageBG,
     DrawerModel drawer,
@@ -51,7 +49,6 @@ class ProductPage extends BasicPageTemplate {
       pageId: identifier,
       privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
       installApp: installApp,
-      newAppTools: newAppTools,
       homeMenu: homeMenu,
       pageBG: pageBG,
       drawer: drawer,

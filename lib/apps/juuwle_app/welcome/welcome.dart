@@ -1,10 +1,10 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/types.dart';
+import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
@@ -19,7 +19,7 @@ import '../../app_section.dart';
 import '../../app_base.dart';
 
 class Welcome extends AppSection {
-  Welcome({InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  Welcome({InstallApp installApp, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   static String identifier = "welcome";
 
@@ -51,11 +51,11 @@ class Welcome extends AppSection {
   static String welcomeIdentifier = "welcome";
 
   Future<MemberMediumModel> uploadWelcomeImage() async {
-    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_standing.png');
+    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_standing.png');
   }
 
   BookletModel _welcome(MemberMediumModel welcomeImage) {
-    List<SectionModel> entries = List();
+    List<SectionModel> entries = [];
     {
       entries.add(SectionModel(
           documentID: "1",

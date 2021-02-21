@@ -6,7 +6,6 @@ import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/background_model.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
@@ -15,6 +14,7 @@ import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_component.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_model.dart';
+import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
@@ -36,14 +36,12 @@ abstract class PageTemplate extends AppSection {
   Future<void> setupComponent();
 
   PageTemplate({this.pageId, this.privilegeLevelRequired, this.packageCondition, this.conditionOverride, this.presentationImageAlignment, InstallApp installApp,
-      Tools newAppTools,
       HomeMenuModel homeMenu,
       BackgroundModel pageBG,
       DrawerModel drawer,
       DrawerModel endDrawer,
       MenuDefModel adminMenu})
-      : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer,
-            adminMenu);
+      : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   Future<PageModel> _setupPage(AppBarModel appBar, String presentationId) async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -102,7 +100,7 @@ abstract class PageTemplate extends AppSection {
   }
 
   Future<MemberMediumModel> uploadImage() async {
-    return await newAppTools.uploadPublicPhoto(
+    return await ImageTools.uploadPublicPhoto(
         installApp.appId,
         installApp.member,
         assetLocation());

@@ -12,9 +12,8 @@ import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_pkg_fundamentals/model/photo_and_text_component.dart';
 import 'package:eliud_pkg_fundamentals/model/photo_and_text_model.dart';
-
+import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import '../../app_section.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 
 import '../../app_base.dart';
 
@@ -23,14 +22,12 @@ abstract class PhotoAndText extends AppSection {
   PhotoAndText(
       this.identifier,
       InstallApp installApp,
-      Tools newAppTools,
       HomeMenuModel homeMenu,
       BackgroundModel pageBG,
       DrawerModel drawer,
       DrawerModel endDrawer,
       MenuDefModel adminMenu)
-      : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer,
-      adminMenu);
+      : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -74,7 +71,7 @@ abstract class PhotoAndText extends AppSection {
   }
 
   Future<MemberMediumModel> installAboutImage() async {
-    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, assetLocation());
+    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, assetLocation());
   }
 
   PhotoAndTextModel _photoAndText(MemberMediumModel memberMediumModel) {

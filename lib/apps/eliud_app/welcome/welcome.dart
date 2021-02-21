@@ -1,7 +1,7 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
@@ -32,7 +32,7 @@ Minkey is a platform that allows to build online apps / websites / ... and make 
 """;
 
 class Welcome extends AppSection {
-  Welcome({InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  Welcome({InstallApp installApp, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   static String identifier = "welcome";
 
@@ -74,19 +74,19 @@ class Welcome extends AppSection {
   }
 
   Future<MemberMediumModel> androidImage() async {
-    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg');
   }
 
   Future<MemberMediumModel> iphoneImage() async {
-    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg');
   }
 
   Future<MemberMediumModel> tabletImage() async {
-    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg');
   }
 
   Future<MemberMediumModel> macbookImage() async {
-    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg');
   }
 
   static String FADER_IDENTIFIER = "welcome_fader";

@@ -11,7 +11,6 @@ import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_pkg_shop/model/admin_app.dart' as shop;
 import 'package:eliud_core/model/icon_model.dart';
-import 'package:eliud_core/model/image_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/order_overview.dart';
@@ -20,7 +19,6 @@ import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/pay.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/payconfirmation.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/shop.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/welcome/welcome.dart';
-import 'package:eliud_pkg_apps/apps/shared/about/about.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
@@ -157,7 +155,6 @@ class JuuwleApp extends InstallApp {
   @override
   AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer) => Admin(
       installApp: this,
-      newAppTools: newAppTools,
       homeMenu: homeMenu(),
       pageBG: pageBG(),
       drawer: drawer,
@@ -175,7 +172,7 @@ class JuuwleApp extends InstallApp {
   @override
   Future<PageModel> memberPage(
           MenuDefModel adminMenu, DrawerModel drawer, DrawerModel endDrawer) =>
-      MemberPage(this, newAppTools, homeMenu(), pageBG(), drawer, endDrawer,
+      MemberPage(this, homeMenu(), pageBG(), drawer, endDrawer,
               adminMenu)
           .run();
 
@@ -185,7 +182,6 @@ class JuuwleApp extends InstallApp {
     await WorkflowSetup(installApp: this).run();
     await About(
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,
@@ -194,7 +190,6 @@ class JuuwleApp extends InstallApp {
         .run();
     var shop = await Shop(
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,
@@ -205,7 +200,6 @@ class JuuwleApp extends InstallApp {
             background: Shop.cardBG(appId),
             shop: shop,
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,
@@ -216,7 +210,6 @@ class JuuwleApp extends InstallApp {
             background: Shop.cardBG(appId),
             shop: shop,
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,
@@ -227,7 +220,6 @@ class JuuwleApp extends InstallApp {
             background: Shop.cardBG(appId),
             shop: shop,
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,
@@ -238,7 +230,6 @@ class JuuwleApp extends InstallApp {
             background: Shop.cardBG(appId),
             shop: shop,
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,
@@ -248,7 +239,6 @@ class JuuwleApp extends InstallApp {
     await ProductPage(
             shop: shop,
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,
@@ -257,22 +247,18 @@ class JuuwleApp extends InstallApp {
         .run();
     await JuuwleNotificationDashboard(
             installApp: this,
-            newAppTools: newAppTools,
             backgroundColor: EliudColors.gray)
         .run();
     await JuuwleMembershipDashboard(
             installApp: this,
-            newAppTools: newAppTools,
             backgroundColor: EliudColors.gray)
         .run();
     await JuuwleAssignmentViewSetup(
             installApp: this,
-            newAppTools: newAppTools,
             backgroundColor: EliudColors.gray)
         .run();
     var homePageSubscribedMember = await Welcome(
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,
@@ -281,7 +267,6 @@ class JuuwleApp extends InstallApp {
         .run();
     var homePageBlockedMember = await JuuwleBlocked(
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,

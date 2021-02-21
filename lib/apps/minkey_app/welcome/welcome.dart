@@ -5,7 +5,6 @@ import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart'
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
 import 'package:eliud_pkg_apps/apps/tools/dynamic_helper.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
@@ -19,6 +18,7 @@ import 'package:eliud_pkg_fundamentals/model/document_model.dart';
 import 'package:eliud_pkg_fundamentals/model/fader_component.dart';
 import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
 import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
+import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
@@ -26,13 +26,12 @@ import '../../app_base.dart';
 class Welcome extends AppSection {
   Welcome(
       {InstallApp installApp,
-      Tools newAppTools,
       HomeMenuModel homeMenu,
       BackgroundModel pageBG,
       DrawerModel drawer,
       DrawerModel endDrawer,
       MenuDefModel adminMenu})
-      : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer,
+      : super(installApp, homeMenu, pageBG, drawer, endDrawer,
             adminMenu);
 
   static List<String> IDENTIFIERs = [
@@ -96,19 +95,19 @@ class Welcome extends AppSection {
   }
 
   Future<MemberMediumModel> androidImage() async {
-    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg');
   }
 
   Future<MemberMediumModel> iphoneImage() async {
-    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg');
   }
 
   Future<MemberMediumModel> tabletImage() async {
-    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg');
   }
 
   Future<MemberMediumModel> macbookImage() async {
-    return await newAppTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg');
   }
 
   FaderModel _fader(MemberMediumModel android, MemberMediumModel iphone, MemberMediumModel tablet, MemberMediumModel macbook, ) {

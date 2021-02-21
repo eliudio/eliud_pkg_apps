@@ -19,10 +19,9 @@ import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/model/page_model.dart';
-
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_pkg_fundamentals/model/divider_model.dart';
 import 'package:flutter/material.dart';
+import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 
 abstract class InstallApp {
   // adminAppWipers are used to delete the admin part of the app
@@ -76,7 +75,6 @@ abstract class InstallApp {
   }
 
   // Implementation
-  final Tools newAppTools = Tools();
   FontTools fontTools;
   Future<void> run(String ownerID);
 
@@ -183,7 +181,7 @@ abstract class InstallApp {
   }
 
   Future<MemberMediumModel> _memberMediumModel(String assetLocation) async {
-    return await newAppTools.uploadPublicPhoto(appId, member, assetLocation);
+    return await ImageTools.uploadPublicPhoto(appId, member, assetLocation);
   }
 
   DrawerModel _drawer(MemberMediumModel logo) {

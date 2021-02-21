@@ -1,7 +1,6 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_pkg_follow/follow_package.dart';
 import 'package:eliud_pkg_follow/model/abstract_repository_singleton.dart';
@@ -22,8 +21,8 @@ class _FollowingDashboard extends AppSectionBase {
   final FollowingView view;
 
   _FollowingDashboard(this.identifier, this.title, this.view,
-      InstallApp installApp, Tools newAppTools, this.backgroundColor)
-      : super(installApp, newAppTools);
+      InstallApp installApp, this.backgroundColor)
+      : super(installApp);
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -78,8 +77,8 @@ class FollowRequestDashboard extends AppSectionBase {
   final RgbModel backgroundColor;
 
   static String FOLLOW_REQUEST_IDENTIFIER = "follow_requests_dashboard";
-  FollowRequestDashboard(InstallApp installApp, Tools newAppTools, this.backgroundColor)
-      : super(installApp, newAppTools);
+  FollowRequestDashboard(InstallApp installApp, this.backgroundColor)
+      : super(installApp);
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -134,8 +133,8 @@ class InviteDashboard extends AppSectionBase {
   final RgbModel backgroundColor;
 
   static String INVITE_IDENTIFIER = "invite_dashboard";
-  InviteDashboard(InstallApp installApp, Tools newAppTools, this.backgroundColor)
-      : super(installApp, newAppTools);
+  InviteDashboard(InstallApp installApp, this.backgroundColor)
+      : super(installApp);
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -187,19 +186,19 @@ class InviteDashboard extends AppSectionBase {
 
 class FollowDashboards extends AppSectionBase {
   final RgbModel backgroundColor;
-  FollowDashboards(InstallApp installApp, Tools newAppTools, this.backgroundColor)
-      : super(installApp, newAppTools);
+  FollowDashboards(InstallApp installApp, this.backgroundColor)
+      : super(installApp);
 
   static String FOLLOWERS_IDENTIFIER = "followers_dashboard";
   static String FOLLOWING_IDENTIFIER = "following_dashboard";
 
   Future<DialogModel> run() async {
     await _FollowingDashboard(FOLLOWERS_IDENTIFIER, "Followers", FollowingView.Followers,
-        installApp, newAppTools, backgroundColor).run();
+        installApp, backgroundColor).run();
     await _FollowingDashboard(FOLLOWING_IDENTIFIER, "Following", FollowingView.Following,
-        installApp, newAppTools, backgroundColor).run();
-    await FollowRequestDashboard(installApp, newAppTools, backgroundColor).run();
-    await InviteDashboard(installApp, newAppTools, backgroundColor).run();
+        installApp, backgroundColor).run();
+    await FollowRequestDashboard(installApp, backgroundColor).run();
+    await InviteDashboard(installApp, backgroundColor).run();
   }
 }
 

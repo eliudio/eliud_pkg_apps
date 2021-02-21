@@ -1,8 +1,6 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
-import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_pkg_notifications/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_notifications/model/notification_dashboard_component.dart';
@@ -16,8 +14,8 @@ class NotificationDashboard extends AppSectionBase {
   final RgbModel backgroundColor;
 
   NotificationDashboard(
-      InstallApp installApp, Tools newAppTools, this.backgroundColor)
-      : super(installApp, newAppTools);
+      InstallApp installApp, this.backgroundColor)
+      : super(installApp);
 
   static String IDENTIFIER = "notification_dashboard";
 

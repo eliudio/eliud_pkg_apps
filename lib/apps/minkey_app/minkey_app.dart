@@ -15,12 +15,10 @@ import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart'
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
 import 'package:eliud_pkg_feed/tools/action/post_action_model.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
-import 'package:eliud_core/model/image_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/store/play_store.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/welcome/welcome.dart';
-import 'package:eliud_pkg_apps/apps/shared/about/about.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
@@ -168,7 +166,6 @@ class MinkeyApp extends InstallApp {
   @override
   AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer) => Admin(
       installApp: this,
-      newAppTools: newAppTools,
       homeMenu: homeMenu(),
       pageBG: pageBG(),
       drawer: drawer,
@@ -185,7 +182,7 @@ class MinkeyApp extends InstallApp {
   @override
   Future<PageModel> memberPage(
           MenuDefModel adminMenu, DrawerModel drawer, DrawerModel endDrawer) =>
-      MemberPage(this, newAppTools, homeMenu(), pageBG(), drawer, endDrawer,
+      MemberPage(this, homeMenu(), pageBG(), drawer, endDrawer,
               adminMenu)
           .run();
 
@@ -199,7 +196,6 @@ class MinkeyApp extends InstallApp {
     await WorkflowSetup(installApp: this).run();
     await About(
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,
@@ -208,7 +204,6 @@ class MinkeyApp extends InstallApp {
         .run();
     await Welcome(
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,
@@ -217,7 +212,6 @@ class MinkeyApp extends InstallApp {
         .run();
     var homePageSubscribedMember = await PlayStore(
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,
@@ -226,27 +220,22 @@ class MinkeyApp extends InstallApp {
         .run();
     await MinkeyNotificationDashboard(
             installApp: this,
-            newAppTools: newAppTools,
             backgroundColor: EliudColors.gray)
         .run();
     await MinkeyMembershipDashboard(
             installApp: this,
-            newAppTools: newAppTools,
             backgroundColor: EliudColors.gray)
         .run();
     await MinkeyAssignmentViewSetup(
             installApp: this,
-            newAppTools: newAppTools,
             backgroundColor: EliudColors.gray)
         .run();
     await MinkeyFollowDashboards(
             installApp: this,
-            newAppTools: newAppTools,
             backgroundColor: EliudColors.gray)
         .run();
     var homePageBlockedMember = await MinkeyBlocked(
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,
@@ -255,7 +244,6 @@ class MinkeyApp extends InstallApp {
         .run();
     var homePageLevel1Member = await Feed(
         installApp: this,
-        newAppTools: newAppTools,
         homeMenu: homeMenu(),
         pageBG: pageBG(),
         drawer: drawer,
@@ -264,7 +252,6 @@ class MinkeyApp extends InstallApp {
         .run(member);
     await Album(
         installApp: this,
-        newAppTools: newAppTools,
         homeMenu: homeMenu(),
         pageBG: pageBG(),
         drawer: drawer,

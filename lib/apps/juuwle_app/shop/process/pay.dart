@@ -1,6 +1,4 @@
 import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_core/tools/common_tools.dart';
-import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/workflow/workflow_setup.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_model.dart';
 import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
@@ -10,11 +8,9 @@ import 'package:eliud_pkg_shop/shop_package.dart';
 
 import '../../../../apps/app_base.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/payconfirmation.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
-import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 
 import '../../../shared/etc/page_template.dart';
@@ -50,7 +46,6 @@ class MyPay extends PageTemplate {
     this.background,
     this.shop,
     InstallApp installApp,
-    Tools newAppTools,
     HomeMenuModel homeMenu,
     BackgroundModel pageBG,
     DrawerModel drawer,
@@ -60,7 +55,6 @@ class MyPay extends PageTemplate {
       packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
       pageId: identifier,
       installApp: installApp,
-      newAppTools: newAppTools,
       homeMenu: homeMenu,
       pageBG: pageBG,
       drawer: drawer,

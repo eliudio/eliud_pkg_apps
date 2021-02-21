@@ -1,7 +1,6 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/background_model.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
@@ -28,14 +27,12 @@ abstract class BasicPageTemplate extends AppSection {
   Future<void> setupComponent();
 
   BasicPageTemplate({this.pageId, this.privilegeLevelRequired, this.packageCondition, this.conditionOverride, this.presentationImageAlignment, InstallApp installApp,
-      Tools newAppTools,
       HomeMenuModel homeMenu,
       BackgroundModel pageBG,
       DrawerModel drawer,
       DrawerModel endDrawer,
       MenuDefModel adminMenu})
-      : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer,
-            adminMenu);
+      : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -44,7 +41,7 @@ abstract class BasicPageTemplate extends AppSection {
   }
 
   PageModel _page(AppBarModel appBar) {
-    List<BodyComponentModel> components = List();
+    List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: pageId,
         componentId: componentID(),

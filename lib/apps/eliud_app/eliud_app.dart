@@ -4,7 +4,6 @@ import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/icon_model.dart';
-import 'package:eliud_core/model/image_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
@@ -51,7 +50,7 @@ class EliudApp extends InstallApp {
 
   @override
   MenuDefModel profileDrawerMenuDef() {
-    List<MenuItemModel> menuItems = List<MenuItemModel>();
+    List<MenuItemModel> menuItems = [];
     menuItems.add(MenuItemModel(
         documentID: "1",
         text: "Other apps",
@@ -76,7 +75,7 @@ class EliudApp extends InstallApp {
 
   @override
   MenuDefModel homeMenuDef() {
-    List<MenuItemModel> menuItems = List<MenuItemModel>();
+    List<MenuItemModel> menuItems = [];
     menuItems.add(menuItemHome(appId, "1", "welcome"));
     menuItems.add(MenuItemModel(
         documentID: "2",
@@ -171,7 +170,6 @@ class EliudApp extends InstallApp {
   @override
   AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer) => Admin(
       installApp: this,
-      newAppTools: newAppTools,
       homeMenu: homeMenu(),
       pageBG: pageBG(),
       drawer: drawer,
@@ -188,7 +186,7 @@ class EliudApp extends InstallApp {
   @override
   Future<PageModel> memberPage(
           MenuDefModel adminMenu, DrawerModel drawer, DrawerModel endDrawer) =>
-      MemberPage(this, newAppTools, homeMenu(), pageBG(), drawer, endDrawer,
+      MemberPage(this, homeMenu(), pageBG(), drawer, endDrawer,
               adminMenu)
           .run();
 
@@ -197,7 +195,6 @@ class EliudApp extends InstallApp {
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
     await Who(
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,
@@ -206,7 +203,6 @@ class EliudApp extends InstallApp {
         .run();
     await HelloWorld(
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,
@@ -215,7 +211,6 @@ class EliudApp extends InstallApp {
         .run();
     var homePageSubscribedMember = await Welcome(
             installApp: this,
-            newAppTools: newAppTools,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
             drawer: drawer,

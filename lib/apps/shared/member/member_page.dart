@@ -1,9 +1,6 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/model/conditions_model.dart';
-import 'package:eliud_core/tools/common_tools.dart';
-import 'package:eliud_core/tools/types.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/extensions/member_profile_component.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
@@ -18,14 +15,12 @@ import '../../app_base.dart';
 class MemberPage extends AppSection {
   MemberPage(
       InstallApp installApp,
-      Tools newAppTools,
       HomeMenuModel homeMenu,
       BackgroundModel pageBG,
       DrawerModel drawer,
       DrawerModel endDrawer,
       MenuDefModel adminMenu)
-      : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer,
-            adminMenu);
+      : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   static String IDENTIFIER = "member_profile";
 
@@ -36,7 +31,7 @@ class MemberPage extends AppSection {
   }
 
   PageModel _page(AppBarModel appBar) {
-    List<BodyComponentModel> components = List();
+    List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "1",
         componentName: MemberProfileConstructorDefault

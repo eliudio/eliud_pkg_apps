@@ -7,16 +7,14 @@ import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/model/page_model.dart';
-import 'package:eliud_core/tools/common_tools.dart';
-import 'package:eliud_core/tools/image_tools.dart';
-import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
-import 'package:eliud_core/tools/storage/uploadfile.dart';
-import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_fundamentals/model/tutorial_component.dart';
 import 'package:eliud_pkg_fundamentals/model/tutorial_entry_model.dart';
 import 'package:eliud_pkg_fundamentals/model/tutorial_model.dart';
 
-class Tools {
+import 'image_tools.dart';
+
+class TutorialTools {
+/*
   Map<String, ImageModel> _images = HashMap();
 
   Future<MemberMediumModel> uploadPublicPhoto(String appId, MemberModel member, String assetName) async {
@@ -62,15 +60,20 @@ class Tools {
     }
   }
 
-  TutorialModel constructTutorialModel(String appId, String tutorialID, String name, String title, String description, List<String> imageIDs, List<String> codes, List<String> descriptions) {
-    assert(imageIDs.length == descriptions.length);
+*/
+  static Future<TutorialModel> constructTutorialModel(MemberModel member, String appId, String tutorialID, String name, String title, String description, String assetRoot, List<String> assetLocations, List<String> codes, List<String> descriptions) async {
+    assert(assetLocations.length == descriptions.length);
     List<TutorialEntryModel> items = [];
-    for (int i = 0; i < imageIDs.length; i++) {
+    for (int i = 0; i < assetLocations.length; i++) {
+      String assetLocation;
+      if (assetLocations[i] != null) {
+        assetLocation = assetRoot + assetLocations[i];
+      }
       String documentID = i.toString();
       items.add(TutorialEntryModel(
           documentID: documentID,
           description: descriptions[i],
-          image: _images[imageIDs[i]],
+          image: await ImageTools.uploadPublicPhoto(appId, member, assetLocation),
           code: codes[i]
       ));
     }
@@ -88,8 +91,8 @@ class Tools {
     );
   }
 
-  Future<PageModel> createTutorial(String appId, String tutorialID, String title, DrawerModel drawer, AppBarModel appBar, HomeMenuModel homeMenu, BackgroundModel backgroundModel) async {
-    List<BodyComponentModel> components = List();
+  static Future<PageModel> createTutorial(String appId, String tutorialID, String title, DrawerModel drawer, AppBarModel appBar, HomeMenuModel homeMenu, BackgroundModel backgroundModel) async {
+    List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "1", componentName: AbstractTutorialComponent.componentName, componentId: tutorialID));
     PageModel page = PageModel(

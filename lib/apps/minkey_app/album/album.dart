@@ -5,7 +5,6 @@ import 'package:eliud_pkg_album/model/album_model.dart';
 import 'package:eliud_pkg_feed/model/feed_component.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
@@ -19,7 +18,7 @@ import '../../app_base.dart';
 import 'example_post.dart';
 
 class Album extends AppSection {
-  Album({InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  Album({InstallApp installApp, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   static String IDENTIFIER = "album";
 
@@ -61,7 +60,7 @@ class Album extends AppSection {
   }
 
   Future<PageModel> run(MemberModel member) async {
-    PostModel photoAlbum = await ExamplePost(newAppTools, installApp.appId).photoAlbum(member);
+    PostModel photoAlbum = await ExamplePost(installApp.appId).photoAlbum(member);
 //    PostModel videoAlbum = await ExamplePost(newAppTools, installApp.appId).videoAlbum(member);
     var appBar = await installApp.appBar(IDENTIFIER, adminMenu, "Album");
     await _setupAlbum(photoAlbum);

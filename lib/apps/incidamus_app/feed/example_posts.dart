@@ -4,7 +4,6 @@ import 'package:eliud_core/tools/storage/uploadfile.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/incidamus_app.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/product_page.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/products.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_pkg_post/model/abstract_repository_singleton.dart' as postRepo;
 import 'package:eliud_pkg_membership/model/abstract_repository_singleton.dart' as memberRepo;
 import 'package:eliud_pkg_post/model/post_model.dart';
@@ -14,9 +13,8 @@ import 'dart:async';
 
 class ExamplePosts {
   final String appId;
-  final Tools newAppTools;
 
-  ExamplePosts(this.newAppTools, this.appId);
+  ExamplePosts(this.appId);
 
   Future<MemberMediumModel> uploadPhoto(MemberModel member, String assetName) async {
     return await UploadFile.createThumbnailUploadPhotoAsset(appId, assetName, member.documentID, ['PUBLIC']);

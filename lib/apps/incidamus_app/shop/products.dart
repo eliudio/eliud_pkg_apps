@@ -2,21 +2,15 @@ import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/products/product.dart';
 import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/model/model_export.dart';
-
 import '../../../apps/app_base.dart';
-
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
-
 import '../incidamus_app.dart';
 
 class Products {
   final InstallApp installApp;
-  final Tools newAppTools;
   final ShopModel shop;
 
   Products(
     this.installApp,
-    this.newAppTools,
     this.shop,
   );
 
@@ -80,7 +74,7 @@ class Products {
       Product p = theProducts[i];
       await AbstractRepositorySingleton.singleton
           .productRepository(IncidamusApp.INCIDAMUS_APP_ID)
-          .add(await productToProductModel(shop, installApp, newAppTools, p));
+          .add(await productToProductModel(shop, installApp, p));
     }
   }
 }

@@ -6,7 +6,6 @@ import 'package:eliud_pkg_feed/model/feed_component.dart';
 import 'package:eliud_pkg_feed/model/feed_model.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
@@ -19,7 +18,7 @@ import '../../app_base.dart';
 import 'example_posts.dart';
 
 class Feed extends AppSection {
-  Feed({InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  Feed({InstallApp installApp, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   static String IDENTIFIER = "feed";
 
@@ -61,7 +60,7 @@ class Feed extends AppSection {
   }
 
   Future<PageModel> run(MemberModel member) async {
-    await ExamplePosts(newAppTools, installApp.appId).run(member, IDENTIFIER);
+    await ExamplePosts(installApp.appId).run(member, IDENTIFIER);
     var appBar = await installApp.appBar(IDENTIFIER, adminMenu, "Welcome");
     await _setupFeed();
     return await _setupPage(appBar);

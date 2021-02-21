@@ -1,21 +1,17 @@
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/conditions_simple_model.dart';
-import 'package:eliud_core/tools/common_tools.dart';
-import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/shop_package.dart';
 
 import '../../../../apps/app_base.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/process/pay.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/shop.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_pkg_shop/model/cart_component.dart';
 import 'package:eliud_pkg_shop/model/cart_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
-import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_pkg_shop/model/shop_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 
@@ -58,7 +54,6 @@ class MyCart extends PageTemplate {
     this.background,
     this.shop,
     InstallApp installApp,
-    Tools newAppTools,
     HomeMenuModel homeMenu,
     BackgroundModel pageBG,
     DrawerModel drawer,
@@ -68,7 +63,6 @@ class MyCart extends PageTemplate {
       packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
       pageId: identifier,
       installApp: installApp,
-      newAppTools: newAppTools,
       homeMenu: homeMenu,
       pageBG: pageBG,
       drawer: drawer,

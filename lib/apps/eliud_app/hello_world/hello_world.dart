@@ -1,7 +1,6 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/conditions_simple_model.dart';
-import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
@@ -20,13 +19,11 @@ import 'package:eliud_core/model/home_menu_model.dart';
 import '../../app_base.dart';
 import '../eliud_app.dart';
 import '../../app_section.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'menus.dart';
-import 'images.dart';
 
 
 class HelloWorld extends AppSection {
-  HelloWorld({InstallApp installApp, Tools newAppTools, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  HelloWorld({InstallApp installApp, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   BookletModel _helloWorldDocument() {
     List<SectionModel> entries = [];
@@ -233,7 +230,6 @@ class HelloWorld extends AppSection {
     var helloWorldMenuValue = await HelloWorldMenu().run(adminMenu);
     var appBar = await installApp.appBar(IDENTIFIER, helloWorldMenuValue, "Hello World");
     await store(appBar);
-    await HelloWorldImages(newAppTools).run();
-    await HelloWorldPages(newAppTools, appBar, homeMenu, pageBG, drawer, endDrawer).run();
+    await HelloWorldPages(appBar, homeMenu, pageBG, drawer, endDrawer).run(installApp.member);
   }
 }

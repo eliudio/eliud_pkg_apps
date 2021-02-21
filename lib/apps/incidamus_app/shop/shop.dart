@@ -1,5 +1,6 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
+import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart'
     as shoprepo;
@@ -8,7 +9,6 @@ import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/incidamus_app.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/products.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
-import 'package:eliud_pkg_apps/apps/tools/tools.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
@@ -32,13 +32,12 @@ import 'product_page.dart';
 class Shop extends AppSection {
   Shop(
       {InstallApp installApp,
-      Tools newAppTools,
       HomeMenuModel homeMenu,
       BackgroundModel pageBG,
       DrawerModel drawer,
       DrawerModel endDrawer,
       MenuDefModel adminMenu})
-      : super(installApp, newAppTools, homeMenu, pageBG, drawer, endDrawer,
+      : super(installApp, homeMenu, pageBG, drawer, endDrawer,
             adminMenu);
 
   static String identifier = 'shop';
@@ -247,7 +246,7 @@ class Shop extends AppSection {
   }
 
   Future<MemberMediumModel> uploadImage() async {
-    return await newAppTools.uploadPublicPhoto(
+    return await ImageTools.uploadPublicPhoto(
         installApp.appId,
         installApp.member,
         'packages/eliud_pkg_apps/assets/incidamus_app/decorating/body3b.png');
@@ -263,7 +262,7 @@ class Shop extends AppSection {
     await _setupShopFronts();
     var appBar = await installApp.appBar(identifier, adminMenu, 'Shop');
     var shop = await _setupShop();
-    await Products(installApp, newAppTools, shop).run();
+    await Products(installApp, shop).run();
     await _setupFader();
     await _setupPage(appBar, presentationDocumentId);
     return shop;
