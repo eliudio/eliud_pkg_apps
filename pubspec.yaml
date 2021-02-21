@@ -57,6 +57,41 @@ flutter:
     - packages/eliud_pkg_apps/assets/eliud_app/devices/iphone.jpg
     - packages/eliud_pkg_apps/assets/eliud_app/devices/macbook.jpg
     - packages/eliud_pkg_apps/assets/eliud_app/devices/tablet.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app1.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app2.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app3.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app4.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app5.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app6.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app7.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-authentication1.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-authentication2.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-database1.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-database2.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-database3.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project1.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project2.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project3.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project4.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project5.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project6.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-project1.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-project2.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-project3.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-project4.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-webproject3.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account1.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account2.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account3.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account4.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account5.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-storage1.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-storage2.png
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-storage3.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-storage4.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-webapp2.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/deploy-webapp1.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/firebase-home.jpg
     - packages/eliud_pkg_apps/assets/minkey_app/logos/logo.png
     - packages/eliud_pkg_apps/assets/minkey_app/logos/logo_head.png
     - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg

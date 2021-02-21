@@ -1,4 +1,4 @@
-import 'package:eliud_core/eliud.dart';
+import 'package:eliud_core/core_package.dart';
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';

@@ -76,7 +76,7 @@ flutter:
     await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_FLUTTER_PROJECT,
         "Create Flutter Project", "Create Flutter Project", "Follow the below steps to create your first flutter project.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
-        [ "create-flutter-project1", "create-flutter-project2", "create-flutter-project3", "create-flutter-project4", null, null, null ],
+        [ "create-flutter-project1.jpg", "create-flutter-project2.jpg", "create-flutter-project3.jpg", "create-flutter-project4.jpg", null, null, null ],
         [ null, null, null, null, _createFlutterCode, _pubSpecYamlCode, null, ],
         [
           "1. Start Android Studio. From Android Studio, select File > New > New Flutter Project",
@@ -98,7 +98,7 @@ flutter:
     await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_GOOGLE_ACCOUNT,
         "Create Google Account", "Create Google Account", "Follow the below steps to create a google account.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
-        [ "create-google-account1", "create-google-account3", "create-google-account2", "create-google-account4", "create-google-account5", ],
+        [ "create-google-account1.jpg", "create-google-account3.jpg", "create-google-account2.jpg", "create-google-account4.jpg", "create-google-account5.jpg", ],
         [ null, null, null, null, null, ],
         [
           "1. Goto https://accounts.google.com/sigNup, specify First name, Last name, Username and password. Then press Next.",
@@ -119,7 +119,7 @@ flutter:
         "Create Firebase Project",
         "Firebase Project", "Follow the below steps to create a Firebase Project.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
-    [ "create-firebase-project1", "create-firebase-project2", "create-firebase-project3", "create-firebase-project4", "create-firebase-project5", "create-firebase-project6", ],
+    [ "create-firebase-project1.jpg", "create-firebase-project2.jpg", "create-firebase-project3.jpg", "create-firebase-project4.jpg", "create-firebase-project5.jpg", "create-firebase-project6.jpg", ],
     [ null, null, null, null, null, null, ],
     [
       "1. Goto https://console.firebase.google.com/ and press Create a project",
@@ -139,7 +139,7 @@ flutter:
     await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_ANDROID_APP, "Create Android App",
         "Create Firebase Android App", "Follow the below steps to create an Android App.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
-    [ "create-android-app1", "firebase-home", "create-android-app2", "create-android-app4", "create-android-app3", "create-android-app5", "create-android-app6", "create-android-app7", ],
+    [ "create-android-app1.jpg", "firebase-home.jpg", "create-android-app2.jpg", "create-android-app4.jpg", "create-android-app3.jpg", "create-android-app5.jpg", "create-android-app6.jpg", "create-android-app7.jpg", ],
     [ null, null, null, null, null, null, null, null, ],
     [
       "1. First step into creating an Android app on Firebase is creating an SHA1 Certifcate footprint. Open a command line and run the command and run: 'keytool -list -v -alias androiddebugkey -keystore %USERPROFILE%\\.android\\debug.keystore'. Specify default parameters by pressing enter. Then copy the entry next to SHA1. Find more information at https://developers.google.com/android/guides/client-auth",
@@ -161,7 +161,7 @@ flutter:
     await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_DATABASE, "Create Database",
         "Create Database", "Follow the below steps to create the firebase database.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
-    [ "firebase-home", "create-database1", "create-database2", "create-database3"],
+    [ "firebase-home.jpg", "create-database1.jpg", "create-database2.jpg", "create-database3.jpg"],
     [null, null, null, null], [
       "1." + _gotoHomeFirebase,
       "2. Select Database from the left hand side menu. Then press Create database",
@@ -178,7 +178,7 @@ flutter:
     await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_STORAGE, "Create Storage",
         "Create Storage", "Follow the below steps to create the storage.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
-    [ "firebase-home", "create-storage1", "create-storage2", "create-storage3", "create-storage4" ],
+    [ "firebase-home.jpg", "create-storage1.jpg", "create-storage2.png", "create-storage3.jpg", "create-storage4.jpg" ],
     [ null, null, null, null, null],
     [
       "1. " + _gotoHomeFirebase,
@@ -197,7 +197,7 @@ flutter:
     await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID).add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_AUTHENTICATION, "Setup Authentication",
         "Setup Authentication", "Follow the below steps to setup authentication.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
-    [ "firebase-home", "create-authentication1", "create-authentication2"],
+    [ "firebase-home.jpg", "create-authentication1.jpg", "create-authentication2.jpg"],
     [ null, null, null],
     [
       "1. " + _gotoHomeFirebase,
@@ -315,7 +315,7 @@ This will create a google api console project and client ID. We will need this i
         "Create Flutter Web Project", "Create Flutter Web Project", "Follow the below steps to create your first flutter project.",
         // We can reuse the flutter-project images
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
-        [ "create-flutter-project1", "create-flutter-project2", "create-flutter-webproject3", "create-flutter-project4", null, null, null, null, null, null],
+        [ "create-flutter-project1.jpg", "create-flutter-project2.jpg", "create-flutter-webproject3.jpg", "create-flutter-project4.jpg", null, null, null, null, null, null],
         [ null, null, null, null, _createFlutterWebCode, _pubSpecYamlWebCode, signin_instructions, _index, null, null ],
         [
           "1. Start Android Studio. From Android Studio, select File > New > New Flutter Project",
@@ -342,7 +342,7 @@ This will create a google api console project and client ID. We will need this i
         "Create Firebase WebApp", "Follow the below steps to create a Web App.",
         // Here we can reuse the android images
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
-        [ "firebase-home", "create-webapp2", null ],
+        [ "firebase-home.jpg", "create-webapp2.jpg", null ],
         [ null, null, null ],
         [
           "1. " + _gotoHomeFirebase + ". Click 'Add app' and select platform 'Web'",
@@ -395,7 +395,7 @@ Basically:
         "Deploy the WebApp", "Follow the below steps to deploy your Web App.",
         // images
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
-        [ null, "deploy-webapp1", null, null, null ],
+        [ null, "deploy-webapp1.jpg", null, null, null ],
         // code
         [ oAuthInstructions, null, null, hosting, domainName ],
         // text

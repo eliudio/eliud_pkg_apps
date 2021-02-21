@@ -66,14 +66,16 @@ class TutorialTools {
     List<TutorialEntryModel> items = [];
     for (int i = 0; i < assetLocations.length; i++) {
       String assetLocation;
+      var image;
       if (assetLocations[i] != null) {
         assetLocation = assetRoot + assetLocations[i];
+        image = await ImageTools.uploadPublicPhoto(appId, member, assetLocation);
       }
       String documentID = i.toString();
       items.add(TutorialEntryModel(
           documentID: documentID,
           description: descriptions[i],
-          image: await ImageTools.uploadPublicPhoto(appId, member, assetLocation),
+          image: image,
           code: codes[i]
       ));
     }
