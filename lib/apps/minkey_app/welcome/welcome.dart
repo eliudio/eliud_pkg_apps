@@ -153,7 +153,7 @@ class Welcome extends AppSection {
       sections.add(
         SectionSpec(
             "Hello!",
-            "Welcome back to Minkey." +
+            "Welcome back to Minkey. This is a page demonstrating with dynamic widgets. " +
                 ((privilegeLevelRequired.index == 0)
                     ? "You are not yet registered. Why not JOIN?"
                     : "You are registered as $privilegeLevelString")),
