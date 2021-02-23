@@ -146,6 +146,7 @@ class EliudApp extends InstallApp {
       listBackground: pageBG(),
       floatingButtonForegroundColor: EliudColors.white,
       floatingButtonBackgroundColor: EliudColors.red,
+      iconColor: EliudColors.red,
       dividerColor: EliudColors.red,
       routeBuilder: PageTransitionAnimation.FadeRoute,
       routeAnimationDuration: 800,

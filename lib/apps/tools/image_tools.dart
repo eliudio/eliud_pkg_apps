@@ -14,11 +14,11 @@ import 'package:eliud_pkg_fundamentals/model/tutorial_model.dart';
 
 class ImageTools {
   static Future<MemberMediumModel> uploadPublicPhoto(String appId, MemberModel member, String assetPath) async {
-    return await UploadFile.createThumbnailUploadPhotoAsset(appId, assetPath, member.documentID, ['PUBLIC']);
+    return await UploadFile.createThumbnailUploadPhotoAsset(appId, assetPath, member.documentID, ['PUBLIC',member.documentID]);
   }
 
   static Future<MemberMediumModel> uploadPublicVideo(String appId, MemberModel member, String assetPath) async {
-    return await UploadFile.createThumbnailUploadVideoAsset(appId, assetPath, member.documentID, ['PUBLIC']);
+    return await UploadFile.createThumbnailUploadVideoAsset(appId, assetPath, member.documentID, ['PUBLIC',member.documentID]);
   }
 
 }

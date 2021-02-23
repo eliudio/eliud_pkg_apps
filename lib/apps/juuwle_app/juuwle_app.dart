@@ -122,6 +122,7 @@ class JuuwleApp extends InstallApp {
       listTextItemColor: EliudColors.white,
       listBackground: pageBG(),
       floatingButtonForegroundColor: EliudColors.white,
+      iconColor: EliudColors.red,
       floatingButtonBackgroundColor: EliudColors.red,
       dividerColor: EliudColors.red,
       routeBuilder: PageTransitionAnimation.FadeRoute,

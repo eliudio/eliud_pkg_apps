@@ -16,7 +16,7 @@ class Welcome extends PhotoAndText {
         DrawerModel endDrawer,
         MenuDefModel adminMenu})
       : super(IDENTIFIER, installApp, homeMenu, pageBG, drawer, endDrawer,
-      adminMenu);
+      adminMenu, .3, addLogo: true);
 
   static String IDENTIFIER = "welcome";
 
@@ -39,10 +39,10 @@ MENTAL HEALTH
 FETISH
 LEATHER 
 LATEX
-TATTOO""";
+TATTOO\n\n""";
 
   @override
-  PhotoAndTextImagePosition position() => PhotoAndTextImagePosition.Left;
+  PhotoAndTextImagePosition position() => PhotoAndTextImagePosition.LeftIfSpaceAvailableOtherwiseBottom;
 
   @override
   String title() => "Welcome";

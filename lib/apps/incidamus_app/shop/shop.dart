@@ -15,10 +15,6 @@ import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
-import 'package:eliud_pkg_fundamentals/model/divider_component.dart';
-import 'package:eliud_pkg_fundamentals/model/fader_component.dart';
-import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
-import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_component.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_model.dart';
 import 'package:eliud_pkg_shop/model/model_export.dart';
@@ -51,14 +47,6 @@ class Shop extends AppSection {
   PageModel _page(AppBarModel appBar, String presentationDocumentId) {
     var components = <BodyComponentModel>[];
     components.add(BodyComponentModel(
-        documentID: '1',
-        componentName: AbstractFaderComponent.componentName,
-        componentId: faderIdentifier));
-    components.add(BodyComponentModel(
-        documentID: '2',
-        componentName: AbstractDividerComponent.componentName,
-        componentId: 'divider_1'));
-    components.add(BodyComponentModel(
         documentID: '2',
         componentName: AbstractPresentationComponent.componentName,
         componentId: presentationDocumentId));
@@ -77,34 +65,6 @@ class Shop extends AppSection {
           privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
         ),
         bodyComponents: components);
-  }
-
-  Future<void> _setupFader() async {
-    return await AbstractRepositorySingleton.singleton
-        .faderRepository(IncidamusApp.INCIDAMUS_APP_ID)
-        .add(_fader());
-  }
-
-  static String faderIdentifier = 'fader';
-  FaderModel _fader() {
-    var items = <ListedItemModel>[];
-    items.add(ListedItemModel(
-        documentID: 'fader',
-        description: 'Fader',
-        posSize: installApp.halfScreen(),
-        image: installApp.theLogo));
-    var model = FaderModel(
-      documentID: faderIdentifier,
-      name: 'Fader',
-      animationMilliseconds: 1000,
-      imageSeconds: 5,
-      items: items,
-      appId: installApp.appId,
-      conditions: ConditionsSimpleModel(
-          privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
-    );
-    return model;
   }
 
   Future<ShopModel> _setupShop() async {
@@ -263,7 +223,6 @@ class Shop extends AppSection {
     var appBar = await installApp.appBar(identifier, adminMenu, 'Shop');
     var shop = await _setupShop();
     await Products(installApp, shop).run();
-    await _setupFader();
     await _setupPage(appBar, presentationDocumentId);
     return shop;
   }

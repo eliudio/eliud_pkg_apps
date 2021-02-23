@@ -127,6 +127,7 @@ class IncidamusApp extends InstallApp {
       listTextItemColor: EliudColors.white,
       listBackground: pageBG(),
       floatingButtonForegroundColor: EliudColors.white,
+      iconColor: EliudColors.red,
       floatingButtonBackgroundColor: EliudColors.red,
       dividerColor: EliudColors.red,
       routeBuilder: PageTransitionAnimation.FadeRoute,
@@ -183,6 +184,14 @@ class IncidamusApp extends InstallApp {
   @override
   Future<AppHomePageReferencesModel> runTheRest(String ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
+    await Welcome(
+        installApp: this,
+        homeMenu: homeMenu(),
+        pageBG: pageBG(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+        adminMenu: adminMenu)
+        .run();
     var member = await AbstractMainRepositorySingleton.singleton
         .memberRepository()
         .get(ownerID);
@@ -213,14 +222,6 @@ class IncidamusApp extends InstallApp {
         adminMenu: adminMenu)
         .run(member);
     await About(
-            installApp: this,
-            homeMenu: homeMenu(),
-            pageBG: pageBG(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            adminMenu: adminMenu)
-        .run();
-    await Welcome(
             installApp: this,
             homeMenu: homeMenu(),
             pageBG: pageBG(),
