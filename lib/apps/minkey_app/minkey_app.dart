@@ -281,9 +281,9 @@ class MinkeyApp extends InstallApp {
             MinkeyApp.MINKEY_APP_ID,
             dialogID: FollowRequestDashboard.FOLLOW_REQUEST_IDENTIFIER,
           )),
-      menuItemFollowers(appId, "2", FollowDashboards.FOLLOWERS_IDENTIFIER),
-      menuItemFollowing(appId, "3", FollowDashboards.FOLLOWING_IDENTIFIER),
-      menuItemFiendFriends(appId, "4", InviteDashboard.INVITE_IDENTIFIER),
+      menuItemFollowers(appId, "2", FollowDashboards.FOLLOWERS_IDENTIFIER, PrivilegeLevelRequired.NoPrivilegeRequired),
+      menuItemFollowing(appId, "3", FollowDashboards.FOLLOWING_IDENTIFIER, PrivilegeLevelRequired.NoPrivilegeRequired),
+      menuItemFiendFriends(appId, "4", InviteDashboard.INVITE_IDENTIFIER, PrivilegeLevelRequired.NoPrivilegeRequired),
       MenuItemModel(
           documentID: '5',
           text: 'Members of the app',

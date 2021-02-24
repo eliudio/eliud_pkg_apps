@@ -16,7 +16,7 @@ class About extends PhotoAndText {
       DrawerModel endDrawer,
       MenuDefModel adminMenu})
       : super(IDENTIFIER, installApp, homeMenu, pageBG, drawer, endDrawer,
-            adminMenu, .5);
+            adminMenu, .5, addLogo: true);
 
   static String IDENTIFIER = "about";
 
@@ -41,7 +41,7 @@ as well as beauty ,purity ,elegance ,sensitivity and sensuality ...";
 """;
 
   @override
-  PhotoAndTextImagePosition position() => PhotoAndTextImagePosition.RightIfSpaceAvailableOtherwiseTop;
+  PhotoAndTextImagePosition position() => PhotoAndTextImagePosition.RightIfSpaceAvailableOtherwiseBottom;
 
   @override
   String title() => "About me";

@@ -102,7 +102,7 @@ menuItemShoppingCart(appID, documentID, pageID, text) => MenuItemModel(
         fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID, pageID: pageID));
 
-menuItemFollowers(appID, documentID, dialogID) => MenuItemModel(
+menuItemFollowers(appID, documentID, dialogID, privilegeLevelRequired) => MenuItemModel(
     documentID: documentID,
     text: 'Followers',
     description: 'Followers',
@@ -112,10 +112,10 @@ menuItemFollowers(appID, documentID, dialogID) => MenuItemModel(
     action: OpenDialog(appID,
         dialogID: dialogID,
         conditions: ConditionsModel(
-            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+            privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
 
-menuItemFollowing(appID, documentID, dialogID) => MenuItemModel(
+menuItemFollowing(appID, documentID, dialogID, privilegeLevelRequired) => MenuItemModel(
     documentID: documentID,
     text: 'Following',
     description: 'Following',
@@ -125,10 +125,10 @@ menuItemFollowing(appID, documentID, dialogID) => MenuItemModel(
     action: OpenDialog(appID,
         dialogID: dialogID,
         conditions: ConditionsModel(
-            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+            privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
 
-menuItemFiendFriends(appID, documentID, dialogID) => MenuItemModel(
+menuItemFiendFriends(appID, documentID, dialogID, privilegeLevelRequired) => MenuItemModel(
     documentID: documentID,
     text: 'Find friends',
     description: 'Fiend friends',
@@ -138,5 +138,5 @@ menuItemFiendFriends(appID, documentID, dialogID) => MenuItemModel(
     action: OpenDialog(appID,
         dialogID: dialogID,
         conditions: ConditionsModel(
-            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+            privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));

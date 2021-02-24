@@ -326,9 +326,9 @@ class IncidamusApp extends InstallApp {
             IncidamusApp.INCIDAMUS_APP_ID,
             dialogID: FollowRequestDashboard.FOLLOW_REQUEST_IDENTIFIER,
           )),
-      menuItemFollowers(appId, "2", FollowDashboards.FOLLOWERS_IDENTIFIER),
-      menuItemFollowing(appId, "3", FollowDashboards.FOLLOWING_IDENTIFIER),
-      menuItemFiendFriends(appId, "4", InviteDashboard.INVITE_IDENTIFIER),
+      menuItemFollowers(appId, "2", FollowDashboards.FOLLOWERS_IDENTIFIER, PrivilegeLevelRequired.Level1PrivilegeRequired),
+      menuItemFollowing(appId, "3", FollowDashboards.FOLLOWING_IDENTIFIER, PrivilegeLevelRequired.Level1PrivilegeRequired),
+      menuItemFiendFriends(appId, "4", InviteDashboard.INVITE_IDENTIFIER, PrivilegeLevelRequired.Level1PrivilegeRequired),
       MenuItemModel(
           documentID: '5',
           text: 'Members of the app',
@@ -340,7 +340,7 @@ class IncidamusApp extends InstallApp {
             IncidamusApp.INCIDAMUS_APP_ID,
             conditions: ConditionsModel(
                 privilegeLevelRequired:
-                    PrivilegeLevelRequired.NoPrivilegeRequired,
+                    PrivilegeLevelRequired.Level1PrivilegeRequired,
                 packageCondition: CorePackage.MUST_BE_LOGGED_ON),
             dialogID: MembershipDashboard.IDENTIFIER,
           )),
