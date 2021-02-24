@@ -1,17 +1,19 @@
 import 'package:eliud_core/model/conditions_simple_model.dart';
+import 'package:eliud_pkg_album/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_album/model/model_export.dart';
+import 'package:eliud_pkg_album/model/photo_cube_component.dart';
 import 'package:eliud_pkg_apps/apps/shared/decoratedcontent/photoandsomething.dart';
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals/model/decorated_content_model.dart';
-import 'package:eliud_pkg_fundamentals/model/simple_text_component.dart';
 import 'package:eliud_pkg_fundamentals/model/simple_text_model.dart';
+
 import '../../app_base.dart';
 
-abstract class OnlyPhotoAndText extends PhotoAndSomthing {
-  OnlyPhotoAndText(
+abstract class OnlyPhotoAndPhotoCube extends PhotoAndSomthing {
+  OnlyPhotoAndPhotoCube(
       String identifier,
       InstallApp installApp,
       HomeMenuModel homeMenu,
@@ -20,35 +22,35 @@ abstract class OnlyPhotoAndText extends PhotoAndSomthing {
       DrawerModel endDrawer,
       MenuDefModel adminMenu,
       double percentageDecorationVisible,
-      PrivilegeLevelRequiredSimple privilegeLevelRequiredSimple,
-      {bool addLogo,})
+      {bool addLogo,
+      PrivilegeLevelRequiredSimple privilegeLevelRequiredSimple})
       : super(identifier, installApp, homeMenu, pageBG, drawer, endDrawer,
             adminMenu, percentageDecorationVisible,
             addLogo: addLogo,
             privilegeLevelRequiredSimple: privilegeLevelRequiredSimple);
 
-  Future<SimpleTextModel> createSimpleTextModel(
-      String appId, String title, String contents,
+  Future<PhotoCubeModel> createPhotoCube(
+      String appId, String title, List<PhotoCubeMediumModel> items,
       {SimpleTextAlign align}) async {
-    var simpleTextModel = SimpleTextModel(
+    var photoCubeMediumModel = PhotoCubeModel(
         documentID: identifier,
         appId: appId,
         title: title,
-        text: contents,
-        textAlign: align,
+        description: title,
+        size: 1000,
+        items: items,
         conditions: ConditionsSimpleModel(
             privilegeLevelRequired: privilegeLevelRequiredSimple));
-    await simpleTextRepository(appId: appId).add(simpleTextModel);
-    return simpleTextModel;
+    await photoCubeRepository(appId: appId).add(photoCubeMediumModel);
+    return photoCubeMediumModel;
   }
 
-  Future<void> installPhotoAndText(String title, String contents,
-      DecorationComponentPosition imagePosition, String imageAssetLocation,
+  Future<void> installPhotoAndCube(String title,
+      DecorationComponentPosition imagePosition, String imageAssetLocation, List<PhotoCubeMediumModel> items,
       {SimpleTextAlign align}) async {
-    var simpleTextModel =
-        await createSimpleTextModel(installApp.appId, title, contents, align: align);
-    var componentId = simpleTextModel.documentID;
-    var componentName = AbstractSimpleTextComponent.componentName;
+    var photoCube = await createPhotoCube(installApp.appId, title, items, align: align);
+    var componentId = photoCube.documentID;
+    var componentName = AbstractPhotoCubeComponent.componentName;
     return super.installPhoto(componentId, componentName, title, imagePosition, imageAssetLocation);
   }
 }

@@ -41,6 +41,7 @@ import 'admin/admin.dart';
 import 'album/album.dart';
 import 'assignments/assignments.dart';
 import 'blocked/blocked.dart';
+import 'cube/cube.dart';
 import 'feed/feed.dart';
 import 'follow/follow_dashboards.dart';
 import 'membership/membership_dashboard.dart';
@@ -93,9 +94,10 @@ class IncidamusApp extends InstallApp {
     menuItems.add(menuItemWelcome(
         appId, Welcome.IDENTIFIER, Welcome.IDENTIFIER, "Welcome"));
     menuItems.add(menuItem(appId, "album", Album.IDENTIFIER, "Album", Icons.photo));
-    menuItems.add(menuItemFeed(appId, "feed", Feed.IDENTIFIER, "Feed"));
     menuItems.add(menuItemShoppingBag(appId, "shop", Shop.identifier, "Shop"));
     menuItems.add(menuItemAbout(appId, "about", About.IDENTIFIER, "About"));
+    menuItems.add(menuItem(appId, "cube", Cube.IDENTIFIER, "Cube", Icons.rotate_left_sharp));
+    menuItems.add(menuItemFeed(appId, "feed", Feed.IDENTIFIER, "Feed"));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
         appId: INCIDAMUS_APP_ID,
@@ -221,13 +223,21 @@ class IncidamusApp extends InstallApp {
         endDrawer: endDrawer,
         adminMenu: adminMenu)
         .run(member);
+    await Cube(
+        installApp: this,
+        homeMenu: homeMenu(),
+        pageBG: pageBG(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+        adminMenu: adminMenu)
+        .run(member);
     await About(
-            installApp: this,
-            homeMenu: homeMenu(),
-            pageBG: pageBG(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            adminMenu: adminMenu)
+        installApp: this,
+        homeMenu: homeMenu(),
+        pageBG: pageBG(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+        adminMenu: adminMenu)
         .run();
     await MyCart(
         background: Shop.cardBG(appId),

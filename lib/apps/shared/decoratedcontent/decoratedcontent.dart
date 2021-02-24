@@ -10,12 +10,12 @@ import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_pkg_fundamentals/model/decorated_content_component.dart';
 import 'package:eliud_pkg_fundamentals/model/decorated_content_model.dart';
 import 'package:eliud_pkg_fundamentals/model/divider_component.dart';
 import 'package:eliud_pkg_fundamentals/model/fader_component.dart';
 import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
 import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
-import 'package:eliud_pkg_fundamentals/model/photo_and_text_component.dart';
 import '../../app_section.dart';
 
 import '../../app_base.dart';
@@ -87,8 +87,8 @@ abstract class DecoratedContent extends AppSection {
           componentId: 'divider_1'));
     }
     components.add(BodyComponentModel(
-      documentID: "welcome",
-      componentName: AbstractPhotoAndTextComponent.componentName,
+      documentID: "content",
+      componentName: AbstractDecoratedContentComponent.componentName,
       componentId: identifier,
     ));
 
@@ -117,7 +117,7 @@ abstract class DecoratedContent extends AppSection {
     var decoratedContent = DecoratedContentModel(
       documentID: identifier,
       appId: installApp.appId,
-      name: "About",
+      name: identifier,
       contentComponentId: componentId,
       contentComponentName: componentName,
       decoratingComponentName: decoratingComponentName,

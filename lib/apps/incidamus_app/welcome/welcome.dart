@@ -1,11 +1,10 @@
 import 'package:eliud_core/model/background_model.dart';
+import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/decoratedcontent/onlyphotoandtext.dart';
-import 'package:eliud_pkg_apps/apps/shared/photoandtext/photoandtext.dart';
 import 'package:eliud_pkg_fundamentals/model/decorated_content_model.dart';
-import 'package:eliud_pkg_fundamentals/model/photo_and_text_model.dart';
 import 'package:eliud_pkg_fundamentals/model/simple_text_model.dart';
 
 import '../../app_base.dart';
@@ -19,7 +18,7 @@ class Welcome extends OnlyPhotoAndText {
         DrawerModel endDrawer,
         MenuDefModel adminMenu})
       : super(IDENTIFIER, installApp, homeMenu, pageBG, drawer, endDrawer,
-      adminMenu, .3, addLogo: true);
+      adminMenu, .3, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple, addLogo: true);
 
   static String IDENTIFIER = "welcome";
 

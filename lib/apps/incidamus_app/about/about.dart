@@ -4,9 +4,7 @@ import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/decoratedcontent/onlyphotoandtext.dart';
-import 'package:eliud_pkg_apps/apps/shared/photoandtext/photoandtext.dart';
 import 'package:eliud_pkg_fundamentals/model/decorated_content_model.dart';
-import 'package:eliud_pkg_fundamentals/model/photo_and_text_model.dart';
 import 'package:eliud_pkg_fundamentals/model/simple_text_model.dart';
 
 import '../../app_base.dart';
@@ -20,7 +18,7 @@ class About extends OnlyPhotoAndText {
       DrawerModel endDrawer,
       MenuDefModel adminMenu})
       : super(IDENTIFIER, installApp, homeMenu, pageBG, drawer, endDrawer,
-            adminMenu, .5, addLogo: true, privilegeLevelRequiredSimple: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+            adminMenu, .5, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple, addLogo: true, );
 
   static String IDENTIFIER = "about";
 
