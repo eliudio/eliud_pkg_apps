@@ -37,7 +37,6 @@ abstract class OnlyPhotoAndPhotoCube extends PhotoAndSomthing {
         appId: appId,
         title: title,
         description: title,
-        size: 1000,
         items: items,
         conditions: ConditionsSimpleModel(
             privilegeLevelRequired: privilegeLevelRequiredSimple));
