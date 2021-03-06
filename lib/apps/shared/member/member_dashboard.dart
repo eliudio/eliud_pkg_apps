@@ -29,11 +29,15 @@ However, be careful: this process cannot be undone and everything you've ever st
 """;
 
   static String retrieveDataEmailSubject = """
-Your request for retrieving data from 
+Your request for retrieving your data...
 """;
 
   static String deleteDataEmailSubject = """
-Your request for destroy your account on
+Your request to destroy your account...
+""";
+
+  static String deleteDataEmailMessage = """
+Sorry to see you go. Your account has been destroyed.
 """;
 
   MemberDashboard(
@@ -78,6 +82,7 @@ Your request for destroy your account on
         deleteDataText: deleteDataText,
         retrieveDataEmailSubject: retrieveDataEmailSubject,
         deleteDataEmailSubject: deleteDataEmailSubject,
+        deleteDataEmailMessage: deleteDataEmailMessage,
         conditions: ConditionsSimpleModel(
             privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
         ),
