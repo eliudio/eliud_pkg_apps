@@ -14,6 +14,28 @@ import '../../app_section.dart';
 class MemberDashboard extends AppSectionBase {
   final RgbModel backgroundColor;
 
+  static String updateProfileText = '''
+Maintain your personal details here
+''';
+
+  static String retrieveDataText = '''
+Retrieve all you account details, every single piece of information that you have shared with us will be made available to you
+''';
+
+  static String deleteDataText = """
+Do you want to leave us? Do you want to delete every single detail, every potential photo, video, text, anything?
+Then here's where you can do this.
+However, be careful: this process cannot be undone and everything you've ever stored here will be removed permanently",
+""";
+
+  static String retrieveDataEmailSubject = """
+Your request for retrieving data from 
+""";
+
+  static String deleteDataEmailSubject = """
+Your request for destroy your account on
+""";
+
   MemberDashboard(
       InstallApp installApp, this.backgroundColor)
       : super(installApp);
@@ -50,7 +72,12 @@ class MemberDashboard extends AppSectionBase {
     return MemberDashboardModel(
         documentID: IDENTIFIER,
         appId: installApp.appId,
-        description: "Members",
+        description: "Member dashboard",
+        updateProfileText: updateProfileText,
+        retrieveDataText: retrieveDataText,
+        deleteDataText: deleteDataText,
+        retrieveDataEmailSubject: retrieveDataEmailSubject,
+        deleteDataEmailSubject: deleteDataEmailSubject,
         conditions: ConditionsSimpleModel(
             privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
         ),
