@@ -33,8 +33,6 @@ abstract class InstallApp {
       AppHomePageReferencesModel homePages, String ownerID, MemberMediumModel logo);
   Future<AppHomePageReferencesModel> runTheRest(String ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu);
-  Future<PageModel> memberPage(
-      MenuDefModel adminMenu, DrawerModel drawer, DrawerModel endDrawer);
   Future<AppBarModel> appBar(String appBarIdentifier, MenuDefModel menu, String title);
   MenuDefModel drawerMenuDef();
   MenuDefModel profileDrawerMenuDef();
@@ -501,7 +499,6 @@ abstract class InstallApp {
     await GridViews().run(appId);
     var adminMenu = await _appBarMenu("Menu", await _adminBase.installAdminMenus());
     await _adminBase.installAdminAppss(adminMenu);
-    await memberPage(adminMenu, drawer, endDrawer);
     await setupMenus();
     await setupPosSizes();
     await setupShadows();

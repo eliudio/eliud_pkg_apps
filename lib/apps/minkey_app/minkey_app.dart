@@ -11,6 +11,7 @@ import 'package:eliud_pkg_apps/apps/minkey_app/workflow/workflow_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
 import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/follow/follow_dashboards.dart';
+import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
 import 'package:eliud_pkg_feed/tools/action/post_action_model.dart';
@@ -22,7 +23,6 @@ import 'package:eliud_pkg_apps/apps/minkey_app/welcome/welcome.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
-import 'package:eliud_pkg_apps/apps/shared/member/member_page.dart';
 import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
@@ -40,6 +40,7 @@ import 'assignments/minkey_assignments.dart';
 import 'blocked/minkey_blocked.dart';
 import 'feed/feed.dart';
 import 'follow/follow_dashboards.dart';
+import 'member/minkey_member_dashboard.dart';
 import 'membership/minkey_membership_dashboard.dart';
 
 /* This code cleans the database and generates the minkey app, which includes the admin pages
@@ -74,7 +75,7 @@ class MinkeyApp extends InstallApp {
             internalActionEnum: InternalActionEnum.OtherApps)));
     menuItems.add(menuItemSignOut(appId, "2"));
     menuItems.add(menuItemFlushCache(appId, "3"));
-    menuItems.add(menuItemManageAccount(appId, "4", MemberPage.IDENTIFIER));
+    menuItems.add(menuItemManageAccount(appId, "4", MemberDashboard.IDENTIFIER));
 
     MenuDefModel menu = MenuDefModel(
         documentID: "drawer_profile_menu",
@@ -181,13 +182,6 @@ class MinkeyApp extends InstallApp {
   }
 
   @override
-  Future<PageModel> memberPage(
-          MenuDefModel adminMenu, DrawerModel drawer, DrawerModel endDrawer) =>
-      MemberPage(this, homeMenu(), pageBG(), drawer, endDrawer,
-              adminMenu)
-          .run();
-
-  @override
   Future<AppHomePageReferencesModel> runTheRest(String ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
     var member = await AbstractMainRepositorySingleton.singleton
@@ -223,9 +217,13 @@ class MinkeyApp extends InstallApp {
             installApp: this,
             backgroundColor: EliudColors.gray)
         .run();
+    await MinkeyMemberDashboard(
+        installApp: this,
+        backgroundColor: EliudColors.gray)
+        .run();
     await MinkeyMembershipDashboard(
-            installApp: this,
-            backgroundColor: EliudColors.gray)
+        installApp: this,
+        backgroundColor: EliudColors.gray)
         .run();
     await MinkeyAssignmentViewSetup(
             installApp: this,

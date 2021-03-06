@@ -33,14 +33,18 @@ menuItemFlushCache(appID, documentID) => MenuItemModel(
     action:
         InternalAction(appID, internalActionEnum: InternalActionEnum.Flush));
 
-menuItemManageAccount(appID, documentID, pageID) => MenuItemModel(
+menuItemManageAccount(appID, documentID, dialogID) => MenuItemModel(
     documentID: documentID,
     text: 'Manage your account',
     description: 'Manage your account',
     icon: IconModel(
         codePoint: Icons.account_box.codePoint,
         fontFamily: Icons.settings.fontFamily),
-    action: GotoPage(appID, pageID: pageID));
+    action: OpenDialog(appID,
+        dialogID: dialogID,
+        conditions: ConditionsModel(
+            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+            packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
 
 menuItemHome(appID, documentID, pageID) => MenuItemModel(
     documentID: documentID,

@@ -15,6 +15,7 @@ import 'package:eliud_pkg_apps/apps/incidamus_app/shop/shop.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/workflow/workflow_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/follow/follow_dashboards.dart';
+import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
 import 'package:eliud_pkg_feed/tools/action/post_action_model.dart';
@@ -25,12 +26,10 @@ import 'package:eliud_pkg_apps/apps/incidamus_app/welcome/welcome.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
-import 'package:eliud_pkg_apps/apps/shared/member/member_page.dart';
 import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/model/app_model.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +43,7 @@ import 'blocked/blocked.dart';
 import 'cube/cube.dart';
 import 'feed/feed.dart';
 import 'follow/follow_dashboards.dart';
+import 'member/incidamus_member_dashboard.dart';
 import 'membership/membership_dashboard.dart';
 import 'notifications/notification_dashboard.dart';
 
@@ -72,7 +72,7 @@ class IncidamusApp extends InstallApp {
   MenuDefModel profileDrawerMenuDef() {
     List<MenuItemModel> menuItems = [];
     menuItems.add(menuItemSignOut(appId, "SIGN_OUT"));
-    menuItems.add(menuItemManageAccount(appId, "MANAGE_ACCOUNT", MemberPage.IDENTIFIER));
+    menuItems.add(menuItemManageAccount(appId, "MANAGE_ACCOUNT", MemberDashboard.IDENTIFIER));
 
     MenuDefModel menu = MenuDefModel(
         documentID: "drawer_profile_menu",
@@ -175,13 +175,6 @@ class IncidamusApp extends InstallApp {
       fundamentals.AdminAppWiper(),
     ];
   }
-
-  @override
-  Future<PageModel> memberPage(
-          MenuDefModel adminMenu, DrawerModel drawer, DrawerModel endDrawer) =>
-      MemberPage(this, homeMenu(), pageBG(), drawer, endDrawer,
-              adminMenu)
-          .run();
 
   @override
   Future<AppHomePageReferencesModel> runTheRest(String ownerID,
@@ -293,8 +286,12 @@ class IncidamusApp extends InstallApp {
             backgroundColor: EliudColors.gray)
         .run();
     await IncidamusMembershipDashboard(
-            installApp: this,
-            backgroundColor: EliudColors.gray)
+        installApp: this,
+        backgroundColor: EliudColors.gray)
+        .run();
+    await IncidamusMemberDashboard(
+        installApp: this,
+        backgroundColor: EliudColors.gray)
         .run();
     await IncidamusAssignmentViewSetup(
             installApp: this,

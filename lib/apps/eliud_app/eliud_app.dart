@@ -2,6 +2,7 @@ import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
 import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
+import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
@@ -12,7 +13,6 @@ import 'package:eliud_pkg_apps/apps/eliud_app/who/who.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
-import 'package:eliud_pkg_apps/apps/shared/member/member_page.dart';
 import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
@@ -25,6 +25,7 @@ import 'package:flutter/material.dart';
 import '../app_base.dart';
 import 'admin/admin.dart';
 import 'hello_world/hello_world.dart';
+import 'member/eliud_member_dashboard.dart';
 
 /* This code cleans the database and generates a hello-eliud app, which includes the admin pages
  * Extend this code to support new components
@@ -59,7 +60,7 @@ class EliudApp extends InstallApp {
             InternalAction(appId, internalActionEnum: InternalActionEnum.OtherApps)));
     menuItems.add(menuItemSignOut(appId, "2"));
     menuItems.add(menuItemFlushCache(appId, "3"));
-    menuItems.add(menuItemManageAccount(appId, "4", MemberPage.IDENTIFIER));
+    menuItems.add(menuItemManageAccount(appId, "4", MemberDashboard.IDENTIFIER));
     MenuDefModel menu = MenuDefModel(
         documentID: "drawer_profile_menu",
         appId: ELIUD_APP_ID,
@@ -185,13 +186,6 @@ class EliudApp extends InstallApp {
   }
 
   @override
-  Future<PageModel> memberPage(
-          MenuDefModel adminMenu, DrawerModel drawer, DrawerModel endDrawer) =>
-      MemberPage(this, homeMenu(), pageBG(), drawer, endDrawer,
-              adminMenu)
-          .run();
-
-  @override
   Future<AppHomePageReferencesModel> runTheRest(String ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
     await Who(
@@ -201,6 +195,10 @@ class EliudApp extends InstallApp {
             drawer: drawer,
             endDrawer: endDrawer,
             adminMenu: adminMenu)
+        .run();
+    await EliudMemberDashboard(
+        installApp: this,
+        backgroundColor: EliudColors.gray)
         .run();
     await HelloWorld(
             installApp: this,

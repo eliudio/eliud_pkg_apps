@@ -6,6 +6,7 @@ import 'package:eliud_pkg_apps/apps/juuwle_app/membership/juuwle_membership_dash
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/product_page.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/workflow/workflow_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
+import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
@@ -22,7 +23,6 @@ import 'package:eliud_pkg_apps/apps/juuwle_app/welcome/welcome.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
-import 'package:eliud_pkg_apps/apps/shared/member/member_page.dart';
 import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
@@ -37,6 +37,7 @@ import 'about/about.dart';
 import 'admin/admin.dart';
 import 'assignments/juuwle_assignments.dart';
 import 'blocked/juuwle_blocked.dart';
+import 'member/juuwle_member_dashboard.dart';
 import 'notifications/juuwle_notification_dashboard.dart';
 
 class JuuwleApp extends InstallApp {
@@ -62,7 +63,7 @@ class JuuwleApp extends InstallApp {
   MenuDefModel profileDrawerMenuDef() {
     var menuItems = <MenuItemModel>[];
     menuItems
-        .add(menuItemManageAccount(appId, "my_juuwle", MemberPage.IDENTIFIER));
+        .add(menuItemManageAccount(appId, "my_juuwle", MemberDashboard.IDENTIFIER));
     menuItems.add(MenuItemModel(
         documentID: 'orders',
         text: 'Your orders',
@@ -171,13 +172,6 @@ class JuuwleApp extends InstallApp {
   }
 
   @override
-  Future<PageModel> memberPage(
-          MenuDefModel adminMenu, DrawerModel drawer, DrawerModel endDrawer) =>
-      MemberPage(this, homeMenu(), pageBG(), drawer, endDrawer,
-              adminMenu)
-          .run();
-
-  @override
   Future<AppHomePageReferencesModel> runTheRest(String ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
     await WorkflowSetup(installApp: this).run();
@@ -251,8 +245,12 @@ class JuuwleApp extends InstallApp {
             backgroundColor: EliudColors.gray)
         .run();
     await JuuwleMembershipDashboard(
-            installApp: this,
-            backgroundColor: EliudColors.gray)
+        installApp: this,
+        backgroundColor: EliudColors.gray)
+        .run();
+    await JuuwleMemberDashboard(
+        installApp: this,
+        backgroundColor: EliudColors.gray)
         .run();
     await JuuwleAssignmentViewSetup(
             installApp: this,
