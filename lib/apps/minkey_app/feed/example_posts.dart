@@ -16,21 +16,28 @@ class ExamplePosts {
 
   Future<void> run(MemberModel member, String feedId) async {
     var memberPublicInfo = await memberRepo.memberPublicInfoRepository().get(member.documentID);
+    if (memberPublicInfo == null) {
+      print("ERROR: can't retrieve member data");
+    }
 //    for (int j = 0; j < 1; j++) {
     int j = 0;
     int i = j * 21;
-    await postRepo.AbstractRepositorySingleton.singleton.postRepository(
-        MinkeyApp.MINKEY_APP_ID).add(PostModel(
-        documentID: "example1",
-        feedId: feedId,
-        author: memberPublicInfo,
-        appId: MinkeyApp.MINKEY_APP_ID,
-        postAppId: JuuwleApp.JUUWLE_APP_ID,
-        postPageId: ProductPage.identifier,
-        pageParameters: {'productId': Products.productId2},
-        archived: PostArchiveStatus.Active,
-        description: 'Hi guys, this is another post, this time about another product in my shop',
-        readAccess: ['PUBLIC']));
+    try {
+      await postRepo.AbstractRepositorySingleton.singleton.postRepository(
+          MinkeyApp.MINKEY_APP_ID).add(PostModel(
+          documentID: "example1",
+          feedId: feedId,
+          author: memberPublicInfo,
+          appId: MinkeyApp.MINKEY_APP_ID,
+          postAppId: JuuwleApp.JUUWLE_APP_ID,
+          postPageId: ProductPage.identifier,
+          pageParameters: {'productId': Products.productId2},
+          archived: PostArchiveStatus.Active,
+          description: 'Hi guys, this is another post, this time about another product in my shop',
+          readAccess: ['PUBLIC']));
+    } catch (e) {
+      print(e);
+    }
 
     await postRepo.AbstractRepositorySingleton.singleton.postRepository(
         MinkeyApp.MINKEY_APP_ID).add(PostModel(

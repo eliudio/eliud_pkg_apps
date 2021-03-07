@@ -188,6 +188,14 @@ class MinkeyApp extends InstallApp {
         .memberRepository()
         .get(ownerID);
     await createFollowMenu();
+    var homePageLevel1Member = await Feed(
+        installApp: this,
+        homeMenu: homeMenu(),
+        pageBG: pageBG(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+        adminMenu: adminMenu)
+        .run(member);
     await WorkflowSetup(installApp: this).run();
     await About(
             installApp: this,
@@ -241,14 +249,6 @@ class MinkeyApp extends InstallApp {
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
-    var homePageLevel1Member = await Feed(
-        installApp: this,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run(member);
     await Album(
         installApp: this,
         homeMenu: homeMenu(),
