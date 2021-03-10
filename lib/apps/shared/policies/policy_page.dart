@@ -1,10 +1,11 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/conditions_simple_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/policy_model.dart';
 import 'package:eliud_core/model/policy_presentation_component.dart';
 import 'package:eliud_core/model/policy_presentation_model.dart';
-import 'package:eliud_pkg_apps/apps/tools/policy_tools.dart';
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/page_model.dart';
@@ -15,26 +16,26 @@ import '../../app_section.dart';
 
 import '../../app_base.dart';
 
-class PolicyPageAndModel extends AppSection {
-  final String id;
+class PolicyPage extends AppSection {
+  final PolicyModel policy;
   final String title;
-  final String policyAssetLocation;
 
-  PolicyPageAndModel({
-      this.id,
+  PolicyPage({
+      this.policy,
       this.title,
-      this.policyAssetLocation,
       InstallApp installApp,
       HomeMenuModel homeMenu,
-      BackgroundModel pageBG})
-      : super(installApp, homeMenu, pageBG, null, null,
-      null);
+      BackgroundModel pageBG,
+      DrawerModel drawer,
+      DrawerModel endDrawer,
+      MenuDefModel adminMenu})
+      : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   PolicyPresentationModel getPesentationModel(PolicyModel policyModel) {
     return PolicyPresentationModel(
-      documentID: id,
+      documentID: policy.documentID,
       appId: installApp.appId,
-      description: id,
+      description: title,
       policy: policyModel,
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired:
@@ -57,13 +58,13 @@ class PolicyPageAndModel extends AppSection {
   PageModel _page(AppBarModel appBar) {
     List<BodyComponentModel> components = [
       BodyComponentModel(
-          documentID: id,
+          documentID: policy.documentID,
           componentName: AbstractPolicyPresentationComponent.componentName,
-          componentId: id)
+          componentId: policy.documentID)
     ];
 
     return PageModel(
-        documentID: id,
+        documentID: policy.documentID,
         appId: installApp.appId,
         title: title,
         drawer: drawer,
@@ -78,12 +79,9 @@ class PolicyPageAndModel extends AppSection {
         bodyComponents: components);
   }
 
-  Future<PolicyModel> run() async {
-    var policy = await PolicyTools.getPolicyFromHtml(
-        installApp.appId, id, policyAssetLocation);
+  Future<PageModel> run() async {
     await createPresentationComponent(policy);
     var appBar = await installApp.appBar(installApp.appId, adminMenu, title);
-    await _setupPage(appBar);
-    return policy;
+    return await _setupPage(appBar);
   }
 }

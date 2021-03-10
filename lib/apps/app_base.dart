@@ -2,9 +2,8 @@ import 'package:eliud_core/core/access/bloc/access_bloc.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
-import 'package:eliud_core/model/policy_presentation_component.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
-import 'package:eliud_core/tools/common_tools.dart';
+import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/policies/policy_page.dart';
 import 'package:eliud_pkg_apps/apps/tools/policy_tools.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
@@ -34,7 +33,7 @@ abstract class InstallApp {
   AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer);
 
   Future<void> setupApplication(AppHomePageReferencesModel homePages,
-      String ownerID, MemberMediumModel logo, AppPolicyModel policy);
+      String ownerID, MemberMediumModel logo);
   Future<AppHomePageReferencesModel> runTheRest(String ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu);
   Future<AppBarModel> appBar(
@@ -59,6 +58,7 @@ abstract class InstallApp {
 
   final String appId;
   MemberModel member;
+  AppPolicyModel appPolicyModel;
 
   // Constructor
   InstallApp({
@@ -495,13 +495,13 @@ abstract class InstallApp {
       await aaw[i].deleteAll(appId);
     }
 */
+    await setupAppPolicy();
     theLogo = await _memberMediumModel(logoAssetLocation());
     theLogoHead = await _memberMediumModel(logoHeadAssetLocation());
     var endDrawer = await setupProfileDrawer();
     var drawer = await setupDrawer(theLogo);
     var _adminBase = adminBase(drawer, endDrawer);
 
-    var policy = await getAppPolicy();
     await installFonts();
     await GridViews().run(appId);
     var adminMenu =
@@ -513,7 +513,7 @@ abstract class InstallApp {
     await setupDecorationColorModel(theLogo);
     await setupDividers();
     var homePages = await runTheRest(ownerID, drawer, endDrawer, adminMenu);
-    await setupApplication(homePages, ownerID, theLogoHead, policy);
+    await setupApplication(homePages, ownerID, theLogoHead);
   }
 
   Future<void> wipeAndReinstall() async {
@@ -577,33 +577,17 @@ abstract class InstallApp {
   static String termsOfServiceID = 'terms_of_service';
   static String disclaimerID = 'disclaimer';
 
-  Future<AppPolicyModel> getAppPolicy() async {
-    var privacyPolicy = await PolicyPageAndModel(
-            id: privacyID,
-            title: 'Privacy Policy',
-            policyAssetLocation: privacyPolicyAssetLocation(),
-            installApp: this,
-            homeMenu: homeMenu(),
-            pageBG: pageBG())
-        .run();
-    var termsOfServicePolicy = await PolicyPageAndModel(
-            id: termsOfServiceID,
-            title: 'Terms of Service',
-            policyAssetLocation: termsOfServiceAssetLocation(),
-            installApp: this,
-            homeMenu: homeMenu(),
-            pageBG: pageBG())
-        .run();
-    var disclaimerPolicy = await PolicyPageAndModel(
-            id: disclaimerID,
-            title: 'Disclaimer',
-            policyAssetLocation: disclaimerAssetLocation(),
-            installApp: this,
-            homeMenu: homeMenu(),
-            pageBG: pageBG())
-        .run();
+  Future<void> setupAppPolicy() async {
+    var privacyPolicy = await PolicyTools.getPolicyFromHtml(
+        appId, privacyID, 'Privacy Policy', privacyPolicyAssetLocation());
 
-    var appPolicyModel = AppPolicyModel(
+    var termsOfServicePolicy = await PolicyTools.getPolicyFromHtml(
+        appId, termsOfServiceID, 'Terms of Service', termsOfServiceAssetLocation());
+
+    var disclaimerPolicy = await PolicyTools.getPolicyFromHtml(
+        appId, disclaimerID, 'Disclaimer', disclaimerAssetLocation());
+
+    appPolicyModel = AppPolicyModel(
         documentID: 'policies',
         appId: appId,
         comments: 'All policies of the app',
@@ -622,6 +606,33 @@ abstract class InstallApp {
           ),
         ]);
     await corerepo.appPolicyRepository(appId: appId).add(appPolicyModel);
-    return appPolicyModel;
+  }
+
+  Future<List<PageModel>> createPolicyPages(AppPolicyModel appPolicyModel, DrawerModel drawer,
+      DrawerModel endDrawer,
+      MenuDefModel adminMenu) async {
+    List<PageModel> pages = [];
+    await appPolicyModel.policies.forEach((element) async {
+       pages.add(await PolicyPage(
+          policy: element.policy,
+          title: element.policy.name,
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run());
+    });
+    return pages;
+  }
+
+  List<MenuItemModel> getPolicyMenuItems() {
+    List<MenuItemModel> menuItems = [];
+    appPolicyModel.policies.forEach((element) async {
+      menuItems.add(menuItem(
+          appId, element.documentID, element.documentID, element.policy.name, Icons.rule));
+    });
+    return menuItems;
   }
 }

@@ -72,7 +72,14 @@ class EliudApp extends InstallApp {
 
   @override
   MenuDefModel drawerMenuDef() {
-    return homeMenuDef().copyWith(documentID: "drawer_menu", name: "Drawer Menu (copy of main menu)");
+    MenuDefModel _homeMenuDef = homeMenuDef();
+    var drawerMenuItems = _homeMenuDef.menuItems;
+    drawerMenuItems.addAll(getPolicyMenuItems());
+    MenuDefModel drawerMenu = _homeMenuDef.copyWith(
+        documentID: "drawer_menu", name: "Drawer Menu (copy of main menu)",
+        menuItems: drawerMenuItems
+    );
+    return drawerMenu;
   }
 
   @override
@@ -126,8 +133,7 @@ class EliudApp extends InstallApp {
   Future<void> setupApplication(
       AppHomePageReferencesModel homePages,
       String ownerID,
-      MemberMediumModel logo,
-      AppPolicyModel policy) async {
+      MemberMediumModel logo) async {
     AppModel application = AppModel(
       documentID: ELIUD_APP_ID,
       title: "Eliud!",
@@ -164,7 +170,7 @@ class EliudApp extends InstallApp {
       fontHighlight2:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.highlightLabel2)),
       fontLink:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.linkLabel)),
       fontText:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.normalLabel)),
-      policies: policy
+      policies: appPolicyModel
     );
 
     return await AbstractMainRepositorySingleton.singleton
@@ -219,6 +225,7 @@ class EliudApp extends InstallApp {
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
+    await createPolicyPages(appPolicyModel, drawer, endDrawer,  adminMenu);
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
         homePageSubscribedMemberId: homePageSubscribedMember.documentID
     );

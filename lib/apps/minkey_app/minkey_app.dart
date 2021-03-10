@@ -87,8 +87,14 @@ class MinkeyApp extends InstallApp {
 
   @override
   MenuDefModel drawerMenuDef() {
-    return homeMenuDef().copyWith(
-        documentID: "drawer_menu", name: "Drawer Menu (copy of main menu)");
+    MenuDefModel _homeMenuDef = homeMenuDef();
+    var drawerMenuItems = _homeMenuDef.menuItems;
+    drawerMenuItems.addAll(getPolicyMenuItems());
+    MenuDefModel drawerMenu = _homeMenuDef.copyWith(
+        documentID: "drawer_menu", name: "Drawer Menu (copy of main menu)",
+        menuItems: drawerMenuItems
+    );
+    return drawerMenu;
   }
 
   @override
@@ -113,7 +119,7 @@ class MinkeyApp extends InstallApp {
 
   @override
   Future<void> setupApplication(AppHomePageReferencesModel homePages,
-      String ownerID, MemberMediumModel logo, AppPolicyModel policy) async {
+      String ownerID, MemberMediumModel logo) async {
     AppModel application = AppModel(
       documentID: MINKEY_APP_ID,
       title: "Minkey!",
@@ -159,7 +165,7 @@ class MinkeyApp extends InstallApp {
           .getFont(FontTools.key(FontTools.latoLabel, FontTools.linkLabel)),
       fontText: fontTools
           .getFont(FontTools.key(FontTools.latoLabel, FontTools.normalLabel)),
-      policies: policy
+      policies: appPolicyModel
     );
     return await AbstractMainRepositorySingleton.singleton
         .appRepository()
@@ -258,6 +264,9 @@ class MinkeyApp extends InstallApp {
         endDrawer: endDrawer,
         adminMenu: adminMenu)
         .run(member);
+
+    await createPolicyPages(appPolicyModel, drawer, endDrawer,  adminMenu);
+
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
       homePageBlockedMemberId: homePageBlockedMember.documentID,
       homePageSubscribedMemberId: homePageSubscribedMember.documentID,

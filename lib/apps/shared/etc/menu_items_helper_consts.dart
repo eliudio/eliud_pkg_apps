@@ -144,3 +144,4 @@ menuItemFiendFriends(appID, documentID, dialogID, privilegeLevelRequired) => Men
         conditions: ConditionsModel(
             privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
+

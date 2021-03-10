@@ -4,10 +4,10 @@ import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/storage/asset_helper.dart';
 
 class PolicyTools {
-  static Future<PolicyModel> getPolicyFromHtml(String appId, String name, String assetPath) async {
+  static Future<PolicyModel> getPolicyFromHtml(String appId, String id, String name, String assetPath) async {
     var html = await AssetHelper.getContents(assetPath);
     var policyModel = PolicyModel(
-      documentID: name,
+      documentID: id,
       appId: appId,
       name: name,
       html: html,
