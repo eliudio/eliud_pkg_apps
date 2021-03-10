@@ -169,6 +169,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  docx_template:
+    dependency: transitive
+    description:
+      name: docx_template
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.7"
   dynamic_widget:
     dependency: transitive
     description:
@@ -391,6 +398,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.8"
+  flutter_stage:
+    dependency: transitive
+    description:
+      name: flutter_stage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   flutter_staggered_grid_view:
     dependency: transitive
     description:
@@ -650,7 +664,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.1"
   stack_trace:
     dependency: transitive
     description:

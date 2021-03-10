@@ -1,5 +1,6 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
+import 'package:eliud_core/model/app_policy_model.dart';
 import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
@@ -125,7 +126,8 @@ class EliudApp extends InstallApp {
   Future<void> setupApplication(
       AppHomePageReferencesModel homePages,
       String ownerID,
-      MemberMediumModel logo) async {
+      MemberMediumModel logo,
+      AppPolicyModel policy) async {
     AppModel application = AppModel(
       documentID: ELIUD_APP_ID,
       title: "Eliud!",
@@ -162,6 +164,7 @@ class EliudApp extends InstallApp {
       fontHighlight2:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.highlightLabel2)),
       fontLink:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.linkLabel)),
       fontText:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.normalLabel)),
+      policies: policy
     );
 
     return await AbstractMainRepositorySingleton.singleton
@@ -252,4 +255,14 @@ class EliudApp extends InstallApp {
 
   @override
   String logoHeadAssetLocation() => 'packages/eliud_pkg_apps/assets/eliud_app/logos/logo_head.jpg';
+
+  // Policies
+  @override
+  String privacyPolicyAssetLocation() => 'packages/eliud_pkg_apps/assets/eliud_app/legal/privacy-policy.html';
+
+  @override
+  String termsOfServiceAssetLocation() => 'packages/eliud_pkg_apps/assets/eliud_app/legal/terms-of-service.html';
+
+  @override
+  String disclaimerAssetLocation() => 'packages/eliud_pkg_apps/assets/eliud_app/legal/disclaimer.html';
 }

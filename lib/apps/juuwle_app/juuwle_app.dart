@@ -1,5 +1,6 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
+import 'package:eliud_core/model/app_policy_model.dart';
 import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/membership/juuwle_membership_dashboard.dart';
@@ -27,7 +28,6 @@ import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/model/app_model.dart';
 import 'package:flutter/material.dart';
@@ -102,7 +102,7 @@ class JuuwleApp extends InstallApp {
 
   @override
   Future<void> setupApplication(AppHomePageReferencesModel homePages,
-      String ownerID, MemberMediumModel logo) async {
+      String ownerID, MemberMediumModel logo, AppPolicyModel policy) async {
     var application = AppModel(
       documentID: JUUWLE_APP_ID,
       title: 'Juuwle!',
@@ -148,6 +148,7 @@ class JuuwleApp extends InstallApp {
           FontTools.key(FontTools.dancingScriptLabel, FontTools.linkLabel)),
       fontText: fontTools.getFont(
           FontTools.key(FontTools.dancingScriptLabel, FontTools.normalLabel)),
+      policies: policy,
     );
     return await AbstractMainRepositorySingleton.singleton
         .appRepository()
@@ -344,4 +345,14 @@ class JuuwleApp extends InstallApp {
 
   @override
   String logoHeadAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/logos/logo_head.jpg';
+
+  // Policies
+  @override
+  String privacyPolicyAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/legal/privacy-policy.html';
+
+  @override
+  String termsOfServiceAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/legal/terms-of-service.html';
+
+  @override
+  String disclaimerAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/legal/disclaimer.html';
 }

@@ -2,6 +2,7 @@ import 'package:eliud_core/core_package.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
+import 'package:eliud_core/model/app_policy_model.dart';
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/member_medium_model.dart';
@@ -108,7 +109,7 @@ class IncidamusApp extends InstallApp {
 
   @override
   Future<void> setupApplication(AppHomePageReferencesModel homePages,
-      String ownerID, MemberMediumModel logo) async {
+      String ownerID, MemberMediumModel logo, AppPolicyModel policy) async {
     AppModel application = AppModel(
       documentID: INCIDAMUS_APP_ID,
       title: "Incidamus!",
@@ -154,6 +155,7 @@ class IncidamusApp extends InstallApp {
           .getFont(FontTools.key(FontTools.latoLabel, FontTools.linkLabel)),
       fontText: fontTools
           .getFont(FontTools.key(FontTools.latoLabel, FontTools.normalLabel)),
+      policies: policy,
     );
     return await AbstractMainRepositorySingleton.singleton
         .appRepository()
@@ -453,4 +455,13 @@ class IncidamusApp extends InstallApp {
   @override
   String logoHeadAssetLocation() => 'packages/eliud_pkg_apps/assets/incidamus_app/logos/logo_head.png';
 
+  // Policies
+  @override
+  String privacyPolicyAssetLocation() => 'packages/eliud_pkg_apps/assets/incidamus_app/legal/privacy-policy.html';
+
+  @override
+  String termsOfServiceAssetLocation() => 'packages/eliud_pkg_apps/assets/incidamus_app/legal/terms-of-service.html';
+
+  @override
+  String disclaimerAssetLocation() => 'packages/eliud_pkg_apps/assets/incidamus_app/legal/disclaimer.html';
 }

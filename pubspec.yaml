@@ -92,6 +92,9 @@ flutter:
     - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-webapp2.jpg
     - packages/eliud_pkg_apps/assets/eliud_app/tutorials/deploy-webapp1.jpg
     - packages/eliud_pkg_apps/assets/eliud_app/tutorials/firebase-home.jpg
+    - packages/eliud_pkg_apps/assets/eliud_app/legal/privacy-policy.html
+    - packages/eliud_pkg_apps/assets/eliud_app/legal/terms-of-service.html
+    - packages/eliud_pkg_apps/assets/eliud_app/legal/disclaimer.html
     - packages/eliud_pkg_apps/assets/minkey_app/logos/logo.png
     - packages/eliud_pkg_apps/assets/minkey_app/logos/logo_head.png
     - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg
@@ -102,6 +105,9 @@ flutter:
     - packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg
     - packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg
     - packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg
+    - packages/eliud_pkg_apps/assets/minkey_app/legal/privacy-policy.html
+    - packages/eliud_pkg_apps/assets/minkey_app/legal/terms-of-service.html
+    - packages/eliud_pkg_apps/assets/minkey_app/legal/disclaimer.html
     - packages/eliud_pkg_apps/assets/incidamus_app/logos/logo.png
     - packages/eliud_pkg_apps/assets/incidamus_app/logos/logo_head.png
     - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg
@@ -188,6 +194,9 @@ flutter:
     - packages/eliud_pkg_apps/assets/incidamus_app/products/sludge1.webp
     - packages/eliud_pkg_apps/assets/incidamus_app/products/govno1.webp
     - packages/eliud_pkg_apps/assets/incidamus_app/products/blackandwhitecar1.webp
+    - packages/eliud_pkg_apps/assets/incidamus_app/legal/privacy-policy.html
+    - packages/eliud_pkg_apps/assets/incidamus_app/legal/terms-of-service.html
+    - packages/eliud_pkg_apps/assets/incidamus_app/legal/disclaimer.html
     - packages/eliud_pkg_apps/assets/juuwle_app/logos/logo.png
     - packages/eliud_pkg_apps/assets/juuwle_app/logos/logo_head.jpg
     - packages/eliud_pkg_apps/assets/shared/about/thocha.png
@@ -229,3 +238,6 @@ flutter:
     - packages/eliud_pkg_apps/assets/juuwle_app/products/kingbird2.png
     - packages/eliud_pkg_apps/assets/juuwle_app/products/grosbeak1.png
     - packages/eliud_pkg_apps/assets/juuwle_app/products/grosbeak2.png
+    - packages/eliud_pkg_apps/assets/juuwle_app/legal/privacy-policy.html
+    - packages/eliud_pkg_apps/assets/juuwle_app/legal/terms-of-service.html
+    - packages/eliud_pkg_apps/assets/juuwle_app/legal/disclaimer.html
