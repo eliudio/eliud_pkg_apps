@@ -5,7 +5,6 @@ import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/policies/policy_page.dart';
-import 'package:eliud_pkg_apps/apps/tools/policy_tools.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
@@ -578,14 +577,9 @@ abstract class InstallApp {
   static String disclaimerID = 'disclaimer';
 
   Future<void> setupAppPolicy() async {
-    var privacyPolicy = await PolicyTools.getPolicyFromHtml(
-        appId, privacyID, 'Privacy Policy', privacyPolicyAssetLocation());
-
-    var termsOfServicePolicy = await PolicyTools.getPolicyFromHtml(
-        appId, termsOfServiceID, 'Terms of Service', termsOfServiceAssetLocation());
-
-    var disclaimerPolicy = await PolicyTools.getPolicyFromHtml(
-        appId, disclaimerID, 'Disclaimer', disclaimerAssetLocation());
+    var privacyPolicy = await ImageTools.uploadPublicPdf(appId, member, privacyPolicyAssetLocation(), documentID: privacyID);
+    var termsOfServicePolicy = await ImageTools.uploadPublicPdf(appId, member, termsOfServiceAssetLocation(), documentID: termsOfServiceID);
+    var disclaimerPolicy = await ImageTools.uploadPublicPdf(appId, member, disclaimerAssetLocation(), documentID: disclaimerID);
 
     appPolicyModel = AppPolicyModel(
         documentID: 'policies',
@@ -594,14 +588,17 @@ abstract class InstallApp {
         policies: [
           AppPolicyItemModel(
             documentID: privacyID,
+            name: 'Privacy Policy',
             policy: privacyPolicy,
           ),
           AppPolicyItemModel(
             documentID: termsOfServiceID,
+            name: 'Terms of Service',
             policy: termsOfServicePolicy,
           ),
           AppPolicyItemModel(
             documentID: disclaimerID,
+            name: 'Disclaimer',
             policy: disclaimerPolicy,
           ),
         ]);
@@ -615,7 +612,7 @@ abstract class InstallApp {
     await appPolicyModel.policies.forEach((element) async {
        pages.add(await PolicyPage(
           policy: element.policy,
-          title: element.policy.name,
+          title: element.name,
           installApp: this,
           homeMenu: homeMenu(),
           pageBG: pageBG(),
@@ -631,7 +628,7 @@ abstract class InstallApp {
     List<MenuItemModel> menuItems = [];
     appPolicyModel.policies.forEach((element) async {
       menuItems.add(menuItem(
-          appId, element.documentID, element.documentID, element.policy.name, Icons.rule));
+          appId, element.documentID, element.documentID, element.name, Icons.rule));
     });
     return menuItems;
   }

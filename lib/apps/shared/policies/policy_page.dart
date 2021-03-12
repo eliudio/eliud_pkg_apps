@@ -2,8 +2,8 @@ import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/policy_model.dart';
 import 'package:eliud_core/model/policy_presentation_component.dart';
 import 'package:eliud_core/model/policy_presentation_model.dart';
 import 'package:eliud_core/model/background_model.dart';
@@ -17,7 +17,7 @@ import '../../app_section.dart';
 import '../../app_base.dart';
 
 class PolicyPage extends AppSection {
-  final PolicyModel policy;
+  final MemberMediumModel policy;
   final String title;
 
   PolicyPage({
@@ -31,7 +31,7 @@ class PolicyPage extends AppSection {
       MenuDefModel adminMenu})
       : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
-  PolicyPresentationModel getPesentationModel(PolicyModel policyModel) {
+  PolicyPresentationModel getPesentationModel(MemberMediumModel policyModel) {
     return PolicyPresentationModel(
       documentID: policy.documentID,
       appId: installApp.appId,
@@ -43,7 +43,7 @@ class PolicyPage extends AppSection {
     );
   }
 
-  Future<PolicyPresentationModel> createPresentationComponent(PolicyModel policyModel) async {
+  Future<PolicyPresentationModel> createPresentationComponent(MemberMediumModel policyModel) async {
     return await corerepo
         .policyPresentationRepository(appId: installApp.appId)
         .add(getPesentationModel(policyModel));

@@ -355,11 +355,11 @@ class JuuwleApp extends InstallApp {
 
   // Policies
   @override
-  String privacyPolicyAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/legal/privacy-policy.html';
+  String privacyPolicyAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Privacy-Policy.pdf';
 
   @override
-  String termsOfServiceAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/legal/terms-of-service.html';
+  String termsOfServiceAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Terms-of-Service.pdf';
 
   @override
-  String disclaimerAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/legal/disclaimer.html';
+  String disclaimerAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Disclaimer.pdf';
 }

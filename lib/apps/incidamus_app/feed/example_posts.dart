@@ -1,6 +1,5 @@
 import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/model/member_model.dart';
-import 'package:eliud_core/tools/storage/uploadfile.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/incidamus_app.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/product_page.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/products.dart';

@@ -464,11 +464,11 @@ class IncidamusApp extends InstallApp {
 
   // Policies
   @override
-  String privacyPolicyAssetLocation() => 'packages/eliud_pkg_apps/assets/incidamus_app/legal/privacy-policy.html';
+  String privacyPolicyAssetLocation() => 'packages/eliud_pkg_apps/assets/incidamus_app/legal/Incidamus-Privacy-Policy.pdf';
 
   @override
-  String termsOfServiceAssetLocation() => 'packages/eliud_pkg_apps/assets/incidamus_app/legal/terms-of-service.html';
+  String termsOfServiceAssetLocation() => 'packages/eliud_pkg_apps/assets/incidamus_app/legal/Incidamus-Terms-of-Service.pdf';
 
   @override
-  String disclaimerAssetLocation() => 'packages/eliud_pkg_apps/assets/incidamus_app/legal/disclaimer.html';
+  String disclaimerAssetLocation() => 'packages/eliud_pkg_apps/assets/incidamus_app/legal/Incidamus-Disclaimer.pdf';
 }

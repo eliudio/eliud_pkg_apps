@@ -2,7 +2,6 @@ import 'package:eliud_core/core_package.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
-import 'package:eliud_core/model/app_policy_model.dart';
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/member_medium_model.dart';
@@ -191,6 +190,7 @@ class MinkeyApp extends InstallApp {
   @override
   Future<AppHomePageReferencesModel> runTheRest(String ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
+    await createPolicyPages(appPolicyModel, drawer, endDrawer,  adminMenu);
     var member = await AbstractMainRepositorySingleton.singleton
         .memberRepository()
         .get(ownerID);
@@ -265,7 +265,6 @@ class MinkeyApp extends InstallApp {
         adminMenu: adminMenu)
         .run(member);
 
-    await createPolicyPages(appPolicyModel, drawer, endDrawer,  adminMenu);
 
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
       homePageBlockedMemberId: homePageBlockedMember.documentID,
@@ -402,11 +401,11 @@ class MinkeyApp extends InstallApp {
 
   // Policies
   @override
-  String privacyPolicyAssetLocation() => 'packages/eliud_pkg_apps/assets/minkey_app/legal/privacy-policy.html';
+  String privacyPolicyAssetLocation() => 'packages/eliud_pkg_apps/assets/minkey_app/legal/Minkey-Privacy-Policy.pdf';
 
   @override
-  String termsOfServiceAssetLocation() => 'packages/eliud_pkg_apps/assets/minkey_app/legal/terms-of-service.html';
+  String termsOfServiceAssetLocation() => 'packages/eliud_pkg_apps/assets/minkey_app/legal/Minkey-Terms-of-Service.pdf';
 
   @override
-  String disclaimerAssetLocation() => 'packages/eliud_pkg_apps/assets/minkey_app/legal/disclaimer.html';
+  String disclaimerAssetLocation() => 'packages/eliud_pkg_apps/assets/minkey_app/legal/Minkey-Disclaimer.pdf';
 }
