@@ -4,13 +4,14 @@ import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/policy_presentation_component.dart';
-import 'package:eliud_core/model/policy_presentation_model.dart';
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_pkg_etc/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_etc/model/policy_presentation_component.dart';
+import 'package:eliud_pkg_etc/model/policy_presentation_model.dart';
 
 import '../../app_section.dart';
 
@@ -44,8 +45,7 @@ class PolicyPage extends AppSection {
   }
 
   Future<PolicyPresentationModel> createPresentationComponent(MemberMediumModel policyModel) async {
-    return await corerepo
-        .policyPresentationRepository(appId: installApp.appId)
+    return await policyPresentationRepository(appId: installApp.appId)
         .add(getPesentationModel(policyModel));
   }
 

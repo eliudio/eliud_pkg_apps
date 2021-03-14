@@ -45,6 +45,9 @@ dependencies:
   eliud_pkg_album:
     path: ../eliud_pkg_album
 
+  eliud_pkg_etc:
+    path: ../eliud_pkg_etc
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
