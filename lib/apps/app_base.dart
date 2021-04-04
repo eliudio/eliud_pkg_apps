@@ -520,7 +520,7 @@ abstract class InstallApp {
     await AbstractMainRepositorySingleton.singleton.userRepository().signOut();
     var usr = await AbstractMainRepositorySingleton.singleton
         .userRepository()
-        .signInWithGoogle();
+        .signInWithGoogle(null);
     var installedApp = await claimOwnerShipApplication(appId, usr.uid);
     member = await AccessBloc.firebaseToMemberModel(usr);
     if (member == null) {
