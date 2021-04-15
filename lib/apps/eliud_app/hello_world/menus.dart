@@ -10,7 +10,7 @@ import '../eliud_app.dart';
 
 class HelloWorldMenu {
   MenuDefModel _prepareHelloWorldMenu() {
-    List<MenuItemModel> menuItems = List<MenuItemModel>();
+    List<MenuItemModel> menuItems = [];
     menuItems.add(MenuItemModel(documentID: HelloWorldPages.CREATE_GOOGLE_ACCOUNT, text: "1.1 Create Google Account", description: "1.1 Create Google Account", icon: IconModel(codePoint: Icons.arrow_right.codePoint, fontFamily: Icons.settings.fontFamily), action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_GOOGLE_ACCOUNT)));
     menuItems.add(MenuItemModel(documentID: HelloWorldPages.CREATE_FIREBASE_PROJECT, text: "1.2 Create Firebase Project", description: "1.2 Create Firebase Project", icon: IconModel(codePoint: Icons.arrow_right.codePoint, fontFamily: Icons.settings.fontFamily), action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_FIREBASE_PROJECT)));
     menuItems.add(MenuItemModel(documentID: HelloWorldPages.CREATE_DATABASE, text: "1.3 Create Database", description: "1.3 Create Database", icon: IconModel(codePoint: Icons.arrow_right.codePoint, fontFamily: Icons.settings.fontFamily), action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_DATABASE)));
@@ -24,7 +24,7 @@ class HelloWorldMenu {
   }
 
   MenuDefModel _createAndroidAppMenu() {
-    List<MenuItemModel> menuItems = List<MenuItemModel>();
+    List<MenuItemModel> menuItems = [];
     menuItems.add(MenuItemModel(documentID: HelloWorldPages.CREATE_FLUTTER_WEBPROJECT, text: "2.1.1 Create Android Studio Flutter Project", description: "2.1.1 Create Android Studio Flutter Project for Android App", icon: IconModel(codePoint: Icons.arrow_right.codePoint, fontFamily: Icons.settings.fontFamily), action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_FLUTTER_WEBPROJECT)));
     menuItems.add(MenuItemModel(documentID: HelloWorldPages.CREATE_WEB_APP, text: "2.1.2 Create Firebase Android App", description: "2.1.2 Create Firebase Android App", icon: IconModel(codePoint: Icons.arrow_right.codePoint, fontFamily: Icons.settings.fontFamily), action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_WEB_APP)));
     return MenuDefModel(
@@ -35,7 +35,7 @@ class HelloWorldMenu {
   }
 
   MenuDefModel _createIPhoneAppMenu() {
-    List<MenuItemModel> menuItems = List<MenuItemModel>();
+    List<MenuItemModel> menuItems = [];
     menuItems.add(MenuItemModel(documentID: HelloWorldPages.CREATE_FLUTTER_PROJECT, text: "2.2.1 Create Android Studio Flutter Project", description: "2.2.1 Create Android Studio Flutter Project", icon: IconModel(codePoint: Icons.arrow_right.codePoint, fontFamily: Icons.settings.fontFamily), action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_FLUTTER_PROJECT)));
     menuItems.add(MenuItemModel(documentID: HelloWorldPages.CREATE_ANDROID_APP, text: "2.2.2 Create Firebase iPhone App", description: "2.2.2 Create Firebase iPhone App", icon: IconModel(codePoint: Icons.arrow_right.codePoint, fontFamily: Icons.settings.fontFamily), action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_ANDROID_APP)));
     return MenuDefModel(
@@ -46,7 +46,7 @@ class HelloWorldMenu {
   }
 
   MenuDefModel _createWebAppMenu() {
-    List<MenuItemModel> menuItems = List<MenuItemModel>();
+    List<MenuItemModel> menuItems = [];
     menuItems.add(MenuItemModel(documentID: HelloWorldPages.CREATE_FLUTTER_PROJECT, text: "2.3.1 Create Firebase Web App", description: "2.3.1 Create Firebase Web App", icon: IconModel(codePoint: Icons.arrow_right.codePoint, fontFamily: Icons.settings.fontFamily), action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_WEB_APP)));
     menuItems.add(MenuItemModel(documentID: HelloWorldPages.CREATE_ANDROID_APP, text: "2.3.2 Create Visual Studio Flutter Project for Web App", description: "2.3.2 Create Visual Studio Flutter Project for Web App", icon: IconModel(codePoint: Icons.arrow_right.codePoint, fontFamily: Icons.settings.fontFamily), action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_FLUTTER_WEBPROJECT)));
     menuItems.add(MenuItemModel(documentID: HelloWorldPages.DEPLOY_WEB_APP, text: "2.3.3 Deploy your Web App", description: "2.3.3 Deploy your Web App", icon: IconModel(codePoint: Icons.arrow_right.codePoint, fontFamily: Icons.settings.fontFamily), action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.DEPLOY_WEB_APP)));
@@ -58,7 +58,7 @@ class HelloWorldMenu {
   }
 
   MenuDefModel _setupHelloWorldMenu() {
-    List<MenuItemModel> menuItems = List<MenuItemModel>();
+    List<MenuItemModel> menuItems = [];
     menuItems.add(MenuItemModel(documentID: HelloWorldPages.CREATE_ANDROID_APP, text: "3.1 Add a page", description: "3.1 Add a page", icon: IconModel(codePoint: Icons.arrow_right.codePoint, fontFamily: Icons.settings.fontFamily), action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_ANDROID_APP)));
     menuItems.add(MenuItemModel(documentID: HelloWorldPages.CREATE_FLUTTER_PROJECT, text: "3.2 Setup a drawer", description: "3.2 Setup a drawer", icon: IconModel(codePoint: Icons.arrow_right.codePoint, fontFamily: Icons.settings.fontFamily), action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_FLUTTER_PROJECT)));
     menuItems.add(MenuItemModel(documentID: HelloWorldPages.CREATE_FLUTTER_PROJECT, text: "3.3 Add a home page", description: "3.3 Add a home page", icon: IconModel(codePoint: Icons.arrow_right.codePoint, fontFamily: Icons.settings.fontFamily), action: GotoPage(EliudApp.ELIUD_APP_ID, pageID: HelloWorldPages.CREATE_FLUTTER_PROJECT)));
@@ -71,7 +71,7 @@ class HelloWorldMenu {
   }
 
   MenuDefModel _createAppMenu() {
-    List<MenuItemModel> menuItems = List<MenuItemModel>();
+    List<MenuItemModel> menuItems = [];
     menuItems.add(MenuItemModel(
         documentID: "1",
         text: "2.1 Create Android App",
@@ -95,8 +95,8 @@ class HelloWorldMenu {
     return menu;
   }
 
-  MenuDefModel _helloWorldMenu(MenuDefModel adminMenu) {
-    List<MenuItemModel> menuItems = List<MenuItemModel>();
+  MenuDefModel _helloWorldMenu(MenuDefModel? adminMenu) {
+    List<MenuItemModel> menuItems = [];
     menuItems.add(MenuItemModel(
         documentID: "1",
         text: "1. Prepare",
@@ -134,13 +134,13 @@ class HelloWorldMenu {
     return menu;
   }
 
-  Future<MenuDefModel> run(MenuDefModel adminMenu) async {
-    await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID).add(_prepareHelloWorldMenu());
-    await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID).add(_createAppMenu());
-    await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID).add(_createAndroidAppMenu());
-    await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID).add(_createIPhoneAppMenu());
-    await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID).add(_createWebAppMenu());
-    await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID).add(_setupHelloWorldMenu());
-    return await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID).add(_helloWorldMenu(adminMenu));
+  Future<MenuDefModel> run(MenuDefModel? adminMenu) async {
+    await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_prepareHelloWorldMenu());
+    await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_createAppMenu());
+    await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_createAndroidAppMenu());
+    await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_createIPhoneAppMenu());
+    await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_createWebAppMenu());
+    await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_setupHelloWorldMenu());
+    return await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_helloWorldMenu(adminMenu));
   }
 }

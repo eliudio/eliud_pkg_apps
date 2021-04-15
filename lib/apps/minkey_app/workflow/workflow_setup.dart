@@ -12,7 +12,7 @@ import 'package:eliud_pkg_workflow/tools/action/workflow_action_model.dart';
 import 'package:eliud_pkg_membership/membership_package.dart';
 
 class WorkflowSetup {
-  final InstallApp installApp;
+  final InstallApp? installApp;
 
   WorkflowSetup({this.installApp});
 
@@ -60,16 +60,16 @@ class WorkflowSetup {
 
   Future<void> _setupWorkflows() async {
     await AbstractRepositorySingleton.singleton
-        .workflowRepository(installApp.appId)
+        .workflowRepository(installApp!.appId)!
         .add(_workflowForManuallyPaidMembership());
     await AbstractRepositorySingleton.singleton
-        .workflowRepository(installApp.appId)
+        .workflowRepository(installApp!.appId)!
         .add(_workflowForMembershipPaidByCard());
     await AbstractRepositorySingleton.singleton
-        .workflowRepository(installApp.appId)
+        .workflowRepository(installApp!.appId)!
         .add(_workflowForManualPaymentCart());
     await AbstractRepositorySingleton.singleton
-        .workflowRepository(installApp.appId)
+        .workflowRepository(installApp!.appId)!
         .add(_workflowForCreditCardPaymentCart());
   }
 

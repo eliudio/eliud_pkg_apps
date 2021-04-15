@@ -10,15 +10,15 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 class AssignmentViewSetup extends AppSectionBase {
-  final RgbModel backgroundColor;
+  final RgbModel? backgroundColor;
 
-  AssignmentViewSetup(InstallApp installApp, this.backgroundColor) :
+  AssignmentViewSetup(InstallApp? installApp, this.backgroundColor) :
         super(installApp);
 
   static String IDENTIFIER = "assignments";
 
   Future<DialogModel> _setupDialog() async {
-    return await corerepo.AbstractRepositorySingleton.singleton.dialogRepository(installApp.appId).add(_dialog());
+    return await corerepo.AbstractRepositorySingleton.singleton.dialogRepository(installApp!.appId)!.add(_dialog());
   }
 
   DialogModel _dialog() {
@@ -28,7 +28,7 @@ class AssignmentViewSetup extends AppSectionBase {
 
     return DialogModel(
         documentID: IDENTIFIER,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: "Assignments",
         background: backgroundColor,
         layout: DialogLayout.ListView,
@@ -43,7 +43,7 @@ class AssignmentViewSetup extends AppSectionBase {
   AssignmentViewModel _assignmentViewModel() {
     return AssignmentViewModel(
         documentID: IDENTIFIER,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         description: "My Assignments",
         conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
@@ -52,7 +52,7 @@ class AssignmentViewSetup extends AppSectionBase {
   }
 
   Future<AssignmentViewModel> _setupAssignmentView() async {
-    return await AbstractRepositorySingleton.singleton.assignmentViewRepository(installApp.appId).add(_assignmentViewModel());
+    return await AbstractRepositorySingleton.singleton.assignmentViewRepository(installApp!.appId)!.add(_assignmentViewModel());
   }
 
   Future<DialogModel> run() async {

@@ -2,8 +2,8 @@ import 'package:eliud_core/model/model_export.dart';
 import 'package:flutter/cupertino.dart';
 
 class Backgrounds {
-  static BackgroundModel _construct({String appId, String documentId, RgbModel fromColor, RgbModel toColor, ShadowModel withShadow, StartGradientPosition startPosition, EndGradientPosition endPosition, }) {
-    List<DecorationColorModel> decorationColorModels = List();
+  static BackgroundModel _construct({String? appId, String? documentId, RgbModel? fromColor, RgbModel? toColor, ShadowModel? withShadow, StartGradientPosition? startPosition, EndGradientPosition? endPosition, }) {
+    List<DecorationColorModel> decorationColorModels = [];
     DecorationColorModel decorationColorModel1 = DecorationColorModel(
       documentID: "1",
       color: fromColor,
@@ -27,7 +27,7 @@ class Backgrounds {
   }
 
 
-  static BackgroundModel gradient({String appId, String documentId, RgbModel fromColor, RgbModel toColor, ShadowModel withShadow, StartGradientPosition startPosition, EndGradientPosition endPosition, }) {
+  static BackgroundModel gradient({String? appId, String? documentId, RgbModel? fromColor, RgbModel? toColor, ShadowModel? withShadow, StartGradientPosition? startPosition, EndGradientPosition? endPosition, }) {
     return _construct(appId: appId, documentId: documentId, fromColor: fromColor, toColor: toColor, withShadow: withShadow, startPosition: startPosition, endPosition: endPosition);
   }
 

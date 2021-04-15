@@ -9,7 +9,7 @@ import '../../../app_base.dart';
 
 abstract class Founders extends AboutBase {
   static String IDENTIFIER = 'about';
-  Founders(InstallApp installApp, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) : super(IDENTIFIER, RelativeImagePosition.Aside, .3, SectionImageAlignment.Left, installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  Founders(InstallApp? installApp, HomeMenuModel? homeMenu, BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu) : super(IDENTIFIER, RelativeImagePosition.Aside, .3, SectionImageAlignment.Left, installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   Future<void> doItForFounders() {
     return (doIt());

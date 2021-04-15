@@ -5,7 +5,7 @@ import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import '../../app_base.dart';
 
 class MinkeyMemberDashboard extends MemberDashboard {
-  MinkeyMemberDashboard({InstallApp installApp, RgbModel backgroundColor}) :
+  MinkeyMemberDashboard({InstallApp? installApp, RgbModel? backgroundColor}) :
         super(installApp, backgroundColor);
   Future<DialogModel> run() async {
     return super.run();

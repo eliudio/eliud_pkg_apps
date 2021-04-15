@@ -11,15 +11,15 @@ import '../../shared/etc/page_template.dart';
 import '../incidamus_app.dart';
 
 class OrderOverview extends PageTemplate {
-  final BackgroundModel background;
-  final ShopModel shop;
+  final BackgroundModel? background;
+  final ShopModel? shop;
 
   static const String identifier = 'juuwleorders';
 
   OrderOverviewModel _orderOverview() {
     return OrderOverviewModel(
         documentID: 'orders',
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: pageTitle(),
         shop: shop,
         itemImageBackground: null,
@@ -39,12 +39,12 @@ class OrderOverview extends PageTemplate {
   OrderOverview({
     this.background,
     this.shop,
-    InstallApp installApp,
-    HomeMenuModel homeMenu,
-    BackgroundModel pageBG,
-    DrawerModel drawer,
-    DrawerModel endDrawer,
-    MenuDefModel adminMenu}): super(
+    InstallApp? installApp,
+    HomeMenuModel? homeMenu,
+    BackgroundModel? pageBG,
+    DrawerModel? drawer,
+    DrawerModel? endDrawer,
+    MenuDefModel? adminMenu}): super(
       privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
       pageId: identifier,
       installApp: installApp,
@@ -55,13 +55,13 @@ class OrderOverview extends PageTemplate {
       adminMenu: adminMenu);
 
   @override
-  String componentID() {
+  String? componentID() {
     return _orderOverview().documentID;
   }
 
   @override
   Future<void> setupComponent() async {
-    await AbstractRepositorySingleton.singleton.orderOverviewRepository(IncidamusApp.INCIDAMUS_APP_ID).add(_orderOverview());
+    await AbstractRepositorySingleton.singleton.orderOverviewRepository(IncidamusApp.INCIDAMUS_APP_ID)!.add(_orderOverview());
   }
 
   @override

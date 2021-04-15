@@ -11,17 +11,17 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 class NotificationDashboard extends AppSectionBase {
-  final RgbModel backgroundColor;
+  final RgbModel? backgroundColor;
 
   NotificationDashboard(
-      InstallApp installApp, this.backgroundColor)
+      InstallApp? installApp, this.backgroundColor)
       : super(installApp);
 
   static String IDENTIFIER = "notification_dashboard";
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp.appId)
+        .dialogRepository(installApp!.appId)!
         .add(_dialog());
   }
 
@@ -34,7 +34,7 @@ class NotificationDashboard extends AppSectionBase {
 
     return DialogModel(
         documentID: IDENTIFIER,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: "Notifications",
         background: backgroundColor,
         layout: DialogLayout.ListView,
@@ -50,7 +50,7 @@ class NotificationDashboard extends AppSectionBase {
   NotificationDashboardModel _dashboardModel() {
     return NotificationDashboardModel(
         documentID: IDENTIFIER,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         description: "My Notifications",
         conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
@@ -60,7 +60,7 @@ class NotificationDashboard extends AppSectionBase {
 
   Future<NotificationDashboardModel> _setupDashboard() async {
     return await AbstractRepositorySingleton.singleton
-        .notificationDashboardRepository(installApp.appId)
+        .notificationDashboardRepository(installApp!.appId)!
         .add(_dashboardModel());
   }
 

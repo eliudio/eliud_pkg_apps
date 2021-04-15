@@ -83,7 +83,7 @@ class JuuwleApp extends InstallApp {
   @override
   MenuDefModel drawerMenuDef() {
     MenuDefModel _homeMenuDef = homeMenuDef();
-    var drawerMenuItems = _homeMenuDef.menuItems;
+    var drawerMenuItems = _homeMenuDef.menuItems!;
     drawerMenuItems.addAll(getPolicyMenuItems());
     MenuDefModel drawerMenu = _homeMenuDef.copyWith(
         documentID: "drawer_menu", name: "Drawer Menu (copy of main menu)",
@@ -107,8 +107,8 @@ class JuuwleApp extends InstallApp {
   }
 
   @override
-  Future<void> setupApplication(AppHomePageReferencesModel homePages,
-      String ownerID, MemberMediumModel logo) async {
+  Future<AppModel> setupApplication(AppHomePageReferencesModel homePages,
+      String? ownerID, MemberMediumModel? logo) async {
     var application = AppModel(
       documentID: JUUWLE_APP_ID,
       title: 'Juuwle!',
@@ -157,7 +157,7 @@ class JuuwleApp extends InstallApp {
       policies: appPolicyModel,
     );
     return await AbstractMainRepositorySingleton.singleton
-        .appRepository()
+        .appRepository()!
         .update(application);
   }
 
@@ -179,7 +179,7 @@ class JuuwleApp extends InstallApp {
   }
 
   @override
-  Future<AppHomePageReferencesModel> runTheRest(String ownerID,
+  Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
     await WorkflowSetup(installApp: this).run();
     await About(
@@ -279,7 +279,7 @@ class JuuwleApp extends InstallApp {
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
-    await createPolicyPages(appPolicyModel, drawer, endDrawer,  adminMenu);
+    await createPolicyPages(appPolicyModel!, drawer, endDrawer,  adminMenu);
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
         homePageBlockedMemberId: homePageBlockedMember.documentID,
         homePageSubscribedMemberId: homePageSubscribedMember.documentID);
@@ -294,7 +294,7 @@ class JuuwleApp extends InstallApp {
 
   @override
   Future<AppBarModel> appBar(
-      String identifier, MenuDefModel menu, String title) async {
+      String? identifier, MenuDefModel? menu, String? title) async {
     return await setupAppBar(
         identifier,
         menu,

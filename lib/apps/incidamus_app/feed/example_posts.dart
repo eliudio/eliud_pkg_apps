@@ -1,3 +1,4 @@
+import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/model/member_model.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/incidamus_app.dart';
@@ -12,17 +13,17 @@ import '../incidamus_app.dart';
 import 'dart:async';
 
 class ExamplePosts {
-  final String appId;
+  final String? appId;
 
   ExamplePosts(this.appId);
   
   Future<void> run(MemberModel member, String feedId) async {
-    var memberPublicInfo = await memberRepo.memberPublicInfoRepository().get(member.documentID);
+    var memberPublicInfo = await memberPublicInfoRepository()!.get(member.documentID);
 //    for (int j = 0; j < 1; j++) {
     int j = 0;
     int i = j * 21;
     await postRepo.AbstractRepositorySingleton.singleton.postRepository(
-        IncidamusApp.INCIDAMUS_APP_ID).add(PostModel(
+        IncidamusApp.INCIDAMUS_APP_ID)!.add(PostModel(
         documentID: "example1",
         feedId: feedId,
         author: memberPublicInfo,
@@ -35,7 +36,7 @@ class ExamplePosts {
         readAccess: ['PUBLIC']));
 
     await postRepo.AbstractRepositorySingleton.singleton.postRepository(
-        IncidamusApp.INCIDAMUS_APP_ID).add(PostModel(
+        IncidamusApp.INCIDAMUS_APP_ID)!.add(PostModel(
       documentID: "example2",
       feedId: feedId,
       author: memberPublicInfo,
@@ -44,30 +45,30 @@ class ExamplePosts {
       description: "Hi guys, this is my first post these are photos",
       readAccess: ['PUBLIC'],
       memberMedia: [
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg'),
-        await ImageTools.createPostMediumModelPhoto(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg'),
+        await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg'),
       ],
     ),
     );
 
     await postRepo.AbstractRepositorySingleton.singleton.postRepository(
-        IncidamusApp.INCIDAMUS_APP_ID).add(PostModel(
+        IncidamusApp.INCIDAMUS_APP_ID)!.add(PostModel(
       documentID: "example3",
       feedId: feedId,
       author: memberPublicInfo,
@@ -76,12 +77,12 @@ class ExamplePosts {
       description: "Hi guys, this is my first post these are videos",
       readAccess: ['PUBLIC'],
       memberMedia: [
-        await ImageTools.createPostMediumModelVideo(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4'),
-        await ImageTools.createPostMediumModelVideo(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4'),
-        await ImageTools.createPostMediumModelVideo(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4'),
-        await ImageTools.createPostMediumModelVideo(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4'),
-        await ImageTools.createPostMediumModelVideo(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4'),
-        await ImageTools.createPostMediumModelVideo(appId, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4'),
+        await ImageTools.createPostMediumModelVideo(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4'),
+        await ImageTools.createPostMediumModelVideo(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4'),
+        await ImageTools.createPostMediumModelVideo(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4'),
+        await ImageTools.createPostMediumModelVideo(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4'),
+        await ImageTools.createPostMediumModelVideo(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4'),
+        await ImageTools.createPostMediumModelVideo(appId!, member, 'packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4'),
       ],
     ),
     );

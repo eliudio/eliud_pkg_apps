@@ -18,24 +18,24 @@ import '../../app_section.dart';
 import '../../app_base.dart';
 
 class PolicyPage extends AppSection {
-  final MemberMediumModel policy;
-  final String title;
+  final MemberMediumModel? policy;
+  final String? title;
 
   PolicyPage({
       this.policy,
       this.title,
-      InstallApp installApp,
-      HomeMenuModel homeMenu,
-      BackgroundModel pageBG,
-      DrawerModel drawer,
-      DrawerModel endDrawer,
-      MenuDefModel adminMenu})
+      InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
+      MenuDefModel? adminMenu})
       : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
-  PolicyPresentationModel getPesentationModel(MemberMediumModel policyModel) {
+  PolicyPresentationModel getPesentationModel(MemberMediumModel? policyModel) {
     return PolicyPresentationModel(
-      documentID: policy.documentID,
-      appId: installApp.appId,
+      documentID: policy!.documentID,
+      appId: installApp!.appId,
       description: title,
       policy: policyModel,
       conditions: ConditionsSimpleModel(
@@ -44,28 +44,28 @@ class PolicyPage extends AppSection {
     );
   }
 
-  Future<PolicyPresentationModel> createPresentationComponent(MemberMediumModel policyModel) async {
-    return await policyPresentationRepository(appId: installApp.appId)
+  Future<PolicyPresentationModel> createPresentationComponent(MemberMediumModel? policyModel) async {
+    return await policyPresentationRepository(appId: installApp!.appId)!
         .add(getPesentationModel(policyModel));
   }
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp.appId)
+        .pageRepository(installApp!.appId)!
         .add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
     List<BodyComponentModel> components = [
       BodyComponentModel(
-          documentID: policy.documentID,
+          documentID: policy!.documentID,
           componentName: AbstractPolicyPresentationComponent.componentName,
-          componentId: policy.documentID)
+          componentId: policy!.documentID)
     ];
 
     return PageModel(
-        documentID: policy.documentID,
-        appId: installApp.appId,
+        documentID: policy!.documentID,
+        appId: installApp!.appId,
         title: title,
         drawer: drawer,
         endDrawer: endDrawer,
@@ -81,7 +81,7 @@ class PolicyPage extends AppSection {
 
   Future<PageModel> run() async {
     await createPresentationComponent(policy);
-    var appBar = await installApp.appBar(installApp.appId, adminMenu, title);
+    var appBar = await installApp!.appBar(installApp!.appId, adminMenu, title);
     return await _setupPage(appBar);
   }
 }

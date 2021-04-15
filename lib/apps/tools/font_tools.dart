@@ -21,12 +21,12 @@ class FontTools {
   static String dancingScriptLabel = "DancingScript";
 
   final Map<String, FontModel> fonts = new Map();
-  final String appId;
-  final RgbModel headerColor1To3;
-  final RgbModel headerColor4To5;
-  final RgbModel defaultColor;
-  final RgbModel highlightColor;
-  final RgbModel linkColor;
+  final String? appId;
+  final RgbModel? headerColor1To3;
+  final RgbModel? headerColor4To5;
+  final RgbModel? defaultColor;
+  final RgbModel? highlightColor;
+  final RgbModel? linkColor;
 
   static List<EliudFontWeight> _weights = <EliudFontWeight>[EliudFontWeight.Bold, EliudFontWeight.Bold, EliudFontWeight.Bold, EliudFontWeight.Bold, EliudFontWeight.Normal];
   static List<EliudFontStyle> _styles = <EliudFontStyle>[EliudFontStyle.Normal, EliudFontStyle.Normal, EliudFontStyle.Normal, EliudFontStyle.Normal, EliudFontStyle.Normal];
@@ -129,47 +129,47 @@ class FontTools {
     return fontModel;
   }
 
-  Future<void> _installHeaderFontsFor(String appID, int fontIndex) async {
+  Future<void> _installHeaderFontsFor(String? appID, int fontIndex) async {
     for (int i = 0; i < _weights.length; i++) {
       await AbstractRepositorySingleton.singleton
-          .fontRepository(appID)
+          .fontRepository(appID)!
           .add(_getHeaderFont(fontIndex, i));
     }
   }
 
-  Future<void> _installNormalFontFor(String appID, int fontIndex) async {
+  Future<void> _installNormalFontFor(String? appID, int fontIndex) async {
     for (int i = 0; i < _weights.length; i++) {
       await AbstractRepositorySingleton.singleton
-          .fontRepository(appID)
+          .fontRepository(appID)!
           .add(_getNormalFont(fontIndex));
     }
   }
 
-  Future<void> _installHighlightFont1For(String appID, int fontIndex) async {
+  Future<void> _installHighlightFont1For(String? appID, int fontIndex) async {
     for (int i = 0; i < _weights.length; i++) {
       await AbstractRepositorySingleton.singleton
-          .fontRepository(appID)
+          .fontRepository(appID)!
           .add(_getHightlightFont1(fontIndex));
     }
   }
 
-  Future<void> _installHighlightFont2For(String appID, int fontIndex) async {
+  Future<void> _installHighlightFont2For(String? appID, int fontIndex) async {
     for (int i = 0; i < _weights.length; i++) {
       await AbstractRepositorySingleton.singleton
-          .fontRepository(appID)
+          .fontRepository(appID)!
           .add(_getHightlightFont2(fontIndex));
     }
   }
 
-  Future<void> _installLinkFontFor(String appID, int fontIndex) async {
+  Future<void> _installLinkFontFor(String? appID, int fontIndex) async {
     for (int i = 0; i < _weights.length; i++) {
       await AbstractRepositorySingleton.singleton
-          .fontRepository(appID)
+          .fontRepository(appID)!
           .add(_getLinkFont(fontIndex));
     }
   }
 
-  Future<void> installFonts(String appID) async {
+  Future<void> installFonts(String? appID) async {
     for (int i = 0; i < fontNames.length; i++) {
       await _installHeaderFontsFor(appID, i);
       await _installNormalFontFor(appID, i);
@@ -179,8 +179,8 @@ class FontTools {
     }
   }
 
-  FontModel getFont(String fontKey) {
-    FontModel fontModel = fonts[fontKey];
+  FontModel? getFont(String fontKey) {
+    FontModel? fontModel = fonts[fontKey];
     if (fontModel == null) {
       print("Warning: font $fontKey not found");
     }

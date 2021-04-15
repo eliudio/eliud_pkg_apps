@@ -7,7 +7,7 @@ import 'package:eliud_core/model/home_menu_model.dart';
 import '../../app_base.dart';
 
 class IncidamusBlocked extends Blocked {
-  IncidamusBlocked({InstallApp installApp, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) :
+  IncidamusBlocked({InstallApp? installApp, HomeMenuModel? homeMenu, BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) :
         super(installApp: installApp, homeMenu: homeMenu, pageBG: pageBG, drawer: drawer,
           endDrawer: endDrawer, adminMenu: adminMenu);
 }

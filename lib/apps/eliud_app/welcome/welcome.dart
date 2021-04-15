@@ -32,12 +32,12 @@ Minkey is a platform that allows to build online apps / websites / ... and make 
 """;
 
 class Welcome extends AppSection {
-  Welcome({InstallApp installApp, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  Welcome({InstallApp? installApp, HomeMenuModel? homeMenu, BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   static String identifier = "welcome";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(EliudApp.ELIUD_APP_ID).add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(EliudApp.ELIUD_APP_ID)!.add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
@@ -67,26 +67,26 @@ class Welcome extends AppSection {
         bodyComponents: components);
   }
 
-  Future<void> _setupFader(MemberMediumModel android, MemberMediumModel iphone, MemberMediumModel tablet, MemberMediumModel macbook, ) async {
+  Future<FaderModel> _setupFader(MemberMediumModel android, MemberMediumModel iphone, MemberMediumModel tablet, MemberMediumModel macbook, ) async {
     return AbstractRepositorySingleton.singleton
-        .faderRepository(EliudApp.ELIUD_APP_ID)
+        .faderRepository(EliudApp.ELIUD_APP_ID)!
         .add(_fader(android, iphone, tablet, macbook, ));
   }
 
   Future<MemberMediumModel> androidImage() async {
-    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg');
   }
 
   Future<MemberMediumModel> iphoneImage() async {
-    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg');
   }
 
   Future<MemberMediumModel> tabletImage() async {
-    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg');
   }
 
   Future<MemberMediumModel> macbookImage() async {
-    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg');
   }
 
   static String FADER_IDENTIFIER = "welcome_fader";
@@ -95,22 +95,22 @@ class Welcome extends AppSection {
     items.add(ListedItemModel(
         documentID: "android",
         description: "Android",
-        posSize: installApp.screen75(),
+        posSize: installApp!.screen75(),
         image: android));
     items.add(ListedItemModel(
         documentID: "macbook",
         description: "Macbook",
-        posSize: installApp.screen75(),
+        posSize: installApp!.screen75(),
         image: macbook));
     items.add(ListedItemModel(
         documentID: "iphone",
         description: "iphone",
-        posSize: installApp.screen75(),
+        posSize: installApp!.screen75(),
         image: iphone));
     items.add(ListedItemModel(
         documentID: "tablet",
         description: "Tablet",
-        posSize: installApp.screen75(),
+        posSize: installApp!.screen75(),
         image: tablet));
     FaderModel model = FaderModel(
       documentID: FADER_IDENTIFIER,
@@ -148,7 +148,7 @@ class Welcome extends AppSection {
       documentID: welcomeIdentifier,
       name: "Welcome",
       sections:entries,
-      appId: installApp.appId,
+      appId: installApp!.appId,
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
@@ -156,7 +156,7 @@ class Welcome extends AppSection {
   }
 
   Future<void> _setupWelcome() async {
-    await AbstractRepositorySingleton.singleton.bookletRepository(EliudApp.ELIUD_APP_ID).add(_welcome());
+    await AbstractRepositorySingleton.singleton.bookletRepository(EliudApp.ELIUD_APP_ID)!.add(_welcome());
   }
 
   Future<PageModel> run() async {
@@ -165,7 +165,7 @@ class Welcome extends AppSection {
     var tablet = await tabletImage();
     var macbook = await macbookImage();
 
-    var appBar = await installApp.appBar(identifier, adminMenu, "Welcome");
+    var appBar = await installApp!.appBar(identifier, adminMenu, "Welcome");
     await _setupWelcome();
     await _setupFader(android, iphone, tablet, macbook);
     return await _setupPage(appBar);

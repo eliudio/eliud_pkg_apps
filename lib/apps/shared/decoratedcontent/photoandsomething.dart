@@ -15,15 +15,15 @@ import '../../app_base.dart';
 abstract class PhotoAndSomthing extends DecoratedContent {
   PhotoAndSomthing(
       String identifier,
-      InstallApp installApp,
-      HomeMenuModel homeMenu,
-      BackgroundModel pageBG,
-      DrawerModel drawer,
-      DrawerModel endDrawer,
-      MenuDefModel adminMenu,
+      InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
+      MenuDefModel? adminMenu,
       double percentageDecorationVisible,
-      {bool addLogo,
-      PrivilegeLevelRequiredSimple privilegeLevelRequiredSimple})
+      {bool? addLogo,
+      PrivilegeLevelRequiredSimple? privilegeLevelRequiredSimple})
       : super(identifier, installApp, homeMenu, pageBG, drawer, endDrawer,
             adminMenu, percentageDecorationVisible,
             addLogo: addLogo,
@@ -31,7 +31,7 @@ abstract class PhotoAndSomthing extends DecoratedContent {
 
   Future<MemberMediumModel> installImage(String assetLocation) async {
     return await ImageTools.uploadPublicPhoto(
-        installApp.appId, installApp.member, assetLocation);
+        installApp!.appId!, installApp!.member!, assetLocation);
   }
 
   Future<SimpleImageModel> createSimpleImage(
@@ -44,12 +44,12 @@ abstract class PhotoAndSomthing extends DecoratedContent {
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: getPrivilegeLevelRequiredSimple()),
     );
-    await simpleImageRepository(appId: memberMediumModel.appId)
+    await simpleImageRepository(appId: memberMediumModel.appId)!
         .add(simpleImageModel);
     return simpleImageModel;
   }
 
-  Future<void> installPhoto(String componentId, String componentName, String title, DecorationComponentPosition imagePosition, String imageAssetLocation,
+  Future<void> installPhoto(String? componentId, String componentName, String title, DecorationComponentPosition imagePosition, String imageAssetLocation,
       ) async {
     var memberMediumModel = await installImage(imageAssetLocation);
     var decoration = await createSimpleImage(memberMediumModel);

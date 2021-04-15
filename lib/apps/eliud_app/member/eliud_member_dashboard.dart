@@ -5,7 +5,7 @@ import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import '../../app_base.dart';
 
 class EliudMemberDashboard extends MemberDashboard {
-  EliudMemberDashboard({InstallApp installApp, RgbModel backgroundColor}) :
+  EliudMemberDashboard({InstallApp? installApp, RgbModel? backgroundColor}) :
         super(installApp, backgroundColor);
   Future<DialogModel> run() async {
     return super.run();

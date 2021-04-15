@@ -17,18 +17,18 @@ import '../../../shared/etc/page_template.dart';
 import '../../juuwle_app.dart';
 
 class MyPay extends PageTemplate {
-  final BackgroundModel background;
-  final ShopModel shop;
+  final BackgroundModel? background;
+  final ShopModel? shop;
 
   static const String identifier = 'juuwlepay';
 
   PayModel _payModel() {
     return PayModel(
         documentID: 'pay',
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: pageTitle(),
         shop: shop,
-        payAction: WorkflowSetup.payCart(installApp.appId),
+        payAction: WorkflowSetup.payCart(installApp!.appId),
         succeeded: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyPayConfirmation.identifier),
         conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
@@ -45,12 +45,12 @@ class MyPay extends PageTemplate {
   MyPay({
     this.background,
     this.shop,
-    InstallApp installApp,
-    HomeMenuModel homeMenu,
-    BackgroundModel pageBG,
-    DrawerModel drawer,
-    DrawerModel endDrawer,
-    MenuDefModel adminMenu}): super(
+    InstallApp? installApp,
+    HomeMenuModel? homeMenu,
+    BackgroundModel? pageBG,
+    DrawerModel? drawer,
+    DrawerModel? endDrawer,
+    MenuDefModel? adminMenu}): super(
       privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
       packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
       pageId: identifier,
@@ -63,13 +63,13 @@ class MyPay extends PageTemplate {
       presentationImageAlignment: PresentationImageAlignment.Left);
 
   @override
-  String componentID() {
+  String? componentID() {
     return _payModel().documentID;
   }
 
   @override
   Future<void> setupComponent() async {
-    await AbstractRepositorySingleton.singleton.payRepository(JuuwleApp.JUUWLE_APP_ID).add(_payModel());
+    await AbstractRepositorySingleton.singleton.payRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_payModel());
   }
 
   @override

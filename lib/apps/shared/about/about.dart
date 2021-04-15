@@ -30,12 +30,12 @@ abstract class AboutBase extends AppSection {
       this.imagePosition,
       this.imageWidth,
       this.alignment,
-      InstallApp installApp,
-      HomeMenuModel homeMenu,
-      BackgroundModel pageBG,
-      DrawerModel drawer,
-      DrawerModel endDrawer,
-      MenuDefModel adminMenu)
+      InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
+      MenuDefModel? adminMenu)
       : super(installApp, homeMenu, pageBG, drawer, endDrawer,
       adminMenu);
 
@@ -43,12 +43,12 @@ abstract class AboutBase extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp.appId)
+        .pageRepository(installApp!.appId)!
         .add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
-    List<BodyComponentModel> components = List();
+    List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
       documentID: "1",
       componentName: AbstractBookletComponent.componentName,
@@ -57,7 +57,7 @@ abstract class AboutBase extends AppSection {
 
     return PageModel(
         documentID: identifier,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: aboutTitle(),
         drawer: drawer,
         endDrawer: endDrawer,
@@ -75,14 +75,14 @@ abstract class AboutBase extends AppSection {
   String aboutTitle();
   String assetLocation();
 
-  Future<String> _store(MemberMediumModel memberMediumModel) async {
+  Future<String?> _store(MemberMediumModel memberMediumModel) async {
     return (await AbstractRepositorySingleton.singleton
-        .bookletRepository(installApp.appId)
+        .bookletRepository(installApp!.appId)!
         .add(_header(memberMediumModel))).documentID;
   }
 
   Future<MemberMediumModel> installAboutImage() async {
-    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, assetLocation());
+    return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, assetLocation());
   }
 
   BookletModel _header(MemberMediumModel memberMediumModel) {
@@ -104,7 +104,7 @@ abstract class AboutBase extends AppSection {
       documentID: identifier,
       name: "About",
       sections: entries,
-      appId: installApp.appId,
+      appId: installApp!.appId,
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
@@ -113,7 +113,7 @@ abstract class AboutBase extends AppSection {
 
   Future<void> doIt() async {
     var image = await installAboutImage();
-    var appBar = await installApp.appBar(installApp.appId, adminMenu, aboutTitle());
+    var appBar = await installApp!.appBar(installApp!.appId, adminMenu, aboutTitle());
     await _store(image);
     await _setupPage(appBar);
   }

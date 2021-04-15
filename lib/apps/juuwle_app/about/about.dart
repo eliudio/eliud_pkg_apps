@@ -9,19 +9,19 @@ import '../../app_base.dart';
 
 class About extends AboutBase {
   About(
-      {InstallApp installApp,
-      HomeMenuModel homeMenu,
-      BackgroundModel pageBG,
-      DrawerModel drawer,
-      DrawerModel endDrawer,
-      MenuDefModel adminMenu})
+      {InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
+      MenuDefModel? adminMenu})
       : super(IDENTIFIER, RelativeImagePosition.Aside, 1, SectionImageAlignment.Right, installApp, homeMenu, pageBG, drawer, endDrawer,
             adminMenu);
 
   static String IDENTIFIER = "about";
 
   Future<void> run() {
-    doIt();
+    return doIt();
   }
 
   @override

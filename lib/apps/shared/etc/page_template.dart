@@ -20,37 +20,37 @@ import '../../app_section.dart';
 import '../../app_base.dart';
 
 abstract class PageTemplate extends AppSection {
-  final String pageId;
-  final PrivilegeLevelRequired privilegeLevelRequired;
-  final String packageCondition;
-  final ConditionOverride conditionOverride;
+  final String? pageId;
+  final PrivilegeLevelRequired? privilegeLevelRequired;
+  final String? packageCondition;
+  final ConditionOverride? conditionOverride;
 
-  PresentationImageAlignment presentationImageAlignment;
+  PresentationImageAlignment? presentationImageAlignment;
 
   String pageTitle();
 
   String assetLocation();
 
-  String componentID();
+  String? componentID();
   String componentName();
   Future<void> setupComponent();
 
-  PageTemplate({this.pageId, this.privilegeLevelRequired, this.packageCondition, this.conditionOverride, this.presentationImageAlignment, InstallApp installApp,
-      HomeMenuModel homeMenu,
-      BackgroundModel pageBG,
-      DrawerModel drawer,
-      DrawerModel endDrawer,
-      MenuDefModel adminMenu})
+  PageTemplate({this.pageId, this.privilegeLevelRequired, this.packageCondition, this.conditionOverride, this.presentationImageAlignment, InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
+      MenuDefModel? adminMenu})
       : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
-  Future<PageModel> _setupPage(AppBarModel appBar, String presentationId) async {
+  Future<PageModel> _setupPage(AppBarModel appBar, String? presentationId) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp.appId)
+        .pageRepository(installApp!.appId)!
         .add(_page(appBar, presentationId));
   }
 
-  PageModel _page(AppBarModel appBar, String presentationId) {
-    List<BodyComponentModel> components = List();
+  PageModel _page(AppBarModel appBar, String? presentationId) {
+    List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: pageId,
         componentId: presentationId,
@@ -58,7 +58,7 @@ abstract class PageTemplate extends AppSection {
 
     return PageModel(
         documentID: pageId,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: pageTitle(),
         drawer: drawer,
         endDrawer: endDrawer,
@@ -77,7 +77,7 @@ abstract class PageTemplate extends AppSection {
   PresentationModel _presentation(MemberMediumModel image) {
     return PresentationModel(
       documentID: pageId,
-      appId: installApp.appId,
+      appId: installApp!.appId,
       bodyComponents: [
         BodyComponentModel(
           documentID: pageId,
@@ -95,14 +95,14 @@ abstract class PageTemplate extends AppSection {
 
   Future<PresentationModel> _setupPresentation(MemberMediumModel image) async {
     var presentation = _presentation(image);
-    await AbstractRepositorySingleton.singleton.presentationRepository(installApp.appId).add(presentation);
+    await AbstractRepositorySingleton.singleton.presentationRepository(installApp!.appId)!.add(presentation);
     return presentation;
   }
 
   Future<MemberMediumModel> uploadImage() async {
     return await ImageTools.uploadPublicPhoto(
-        installApp.appId,
-        installApp.member,
+        installApp!.appId!,
+        installApp!.member!,
         assetLocation());
   }
 
@@ -112,7 +112,7 @@ abstract class PageTemplate extends AppSection {
     PresentationModel presentationModel = await _setupPresentation(image);
     await setupComponent();
 //    var menu = await installApp.appBarMenu("Your Profile", adminMenu);
-    var appBar = await installApp.appBar(pageId, adminMenu, "Member Area");
+    var appBar = await installApp!.appBar(pageId, adminMenu, "Member Area");
     return await _setupPage(appBar, presentationModel.documentID);
   }
 }

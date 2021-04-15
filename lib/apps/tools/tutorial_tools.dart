@@ -61,15 +61,15 @@ class TutorialTools {
   }
 
 */
-  static Future<TutorialModel> constructTutorialModel(MemberModel member, String appId, String tutorialID, String name, String title, String description, String assetRoot, List<String> assetLocations, List<String> codes, List<String> descriptions) async {
+  static Future<TutorialModel> constructTutorialModel(MemberModel? member, String appId, String tutorialID, String name, String title, String description, String assetRoot, List<String?> assetLocations, List<String?> codes, List<String> descriptions) async {
     assert(assetLocations.length == descriptions.length);
     List<TutorialEntryModel> items = [];
     for (int i = 0; i < assetLocations.length; i++) {
       String assetLocation;
       var image;
       if (assetLocations[i] != null) {
-        assetLocation = assetRoot + assetLocations[i];
-        image = await ImageTools.uploadPublicPhoto(appId, member, assetLocation);
+        assetLocation = assetRoot + assetLocations[i]!;
+        image = await ImageTools.uploadPublicPhoto(appId, member!, assetLocation);
       }
       String documentID = i.toString();
       items.add(TutorialEntryModel(
@@ -93,7 +93,7 @@ class TutorialTools {
     );
   }
 
-  static Future<PageModel> createTutorial(String appId, String tutorialID, String title, DrawerModel drawer, AppBarModel appBar, HomeMenuModel homeMenu, BackgroundModel backgroundModel) async {
+  static Future<PageModel> createTutorial(String appId, String tutorialID, String title, DrawerModel? drawer, AppBarModel appBar, HomeMenuModel? homeMenu, BackgroundModel? backgroundModel) async {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "1", componentName: AbstractTutorialComponent.componentName, componentId: tutorialID));
@@ -111,7 +111,7 @@ class TutorialTools {
         privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
       ),
     );
-    return await AbstractRepositorySingleton.singleton.pageRepository(appId).add(page);
+    return await AbstractRepositorySingleton.singleton.pageRepository(appId)!.add(page);
   }
 
 }

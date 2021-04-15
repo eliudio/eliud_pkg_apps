@@ -27,24 +27,24 @@ import 'product_page.dart';
 
 class Shop extends AppSection {
   Shop(
-      {InstallApp installApp,
-      HomeMenuModel homeMenu,
-      BackgroundModel pageBG,
-      DrawerModel drawer,
-      DrawerModel endDrawer,
-      MenuDefModel adminMenu})
+      {InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
+      MenuDefModel? adminMenu})
       : super(installApp, homeMenu, pageBG, drawer, endDrawer,
             adminMenu);
 
   static String identifier = 'shop';
 
-  Future<PageModel> _setupPage(AppBarModel appBar, String presentationDocumentId) async {
+  Future<PageModel> _setupPage(AppBarModel appBar, String? presentationDocumentId) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(IncidamusApp.INCIDAMUS_APP_ID)
+        .pageRepository(IncidamusApp.INCIDAMUS_APP_ID)!
         .add(_page(appBar, presentationDocumentId));
   }
 
-  PageModel _page(AppBarModel appBar, String presentationDocumentId) {
+  PageModel _page(AppBarModel appBar, String? presentationDocumentId) {
     var components = <BodyComponentModel>[];
     components.add(BodyComponentModel(
         documentID: '2',
@@ -69,7 +69,7 @@ class Shop extends AppSection {
 
   Future<ShopModel> _setupShop() async {
     return await shoprepo.AbstractRepositorySingleton.singleton
-        .shopRepository(IncidamusApp.INCIDAMUS_APP_ID)
+        .shopRepository(IncidamusApp.INCIDAMUS_APP_ID)!
         .add(_shop());
   }
 
@@ -79,7 +79,7 @@ class Shop extends AppSection {
         description: 'Main shop',
         shortDescription: 'Main shop',
         currency: 'eur',
-        appId: installApp.appId);
+        appId: installApp!.appId);
     return document;
   }
 
@@ -88,12 +88,12 @@ class Shop extends AppSection {
   ShopFrontModel _shopFront1() {
     return ShopFrontModel(
       documentID: shopFrontIdentifier1,
-      appId: installApp.appId,
+      appId: installApp!.appId,
       title: 'Featured',
       description: 'These are my featured products',
       shop: _shop(),
       addToCartColor: EliudColors.red,
-      itemCardBackground: cardBG(installApp.appId),
+      itemCardBackground: cardBG(installApp!.appId),
       buyAction:
           GotoPage(IncidamusApp.INCIDAMUS_APP_ID, pageID: MyCart.identifier),
       view: ShopFrontView.Slider,
@@ -114,12 +114,12 @@ class Shop extends AppSection {
   ShopFrontModel _shopFront2() {
     return ShopFrontModel(
       documentID: shopFrontIdentifier2,
-      appId: installApp.appId,
+      appId: installApp!.appId,
       title: 'My photos for sale',
       description: 'Welcome to my shop. Blah blah blah.',
       shop: _shop(),
       addToCartColor: EliudColors.red,
-      itemCardBackground: cardBG(installApp.appId),
+      itemCardBackground: cardBG(installApp!.appId),
       buyAction:
           GotoPage(IncidamusApp.INCIDAMUS_APP_ID, pageID: MyCart.identifier),
       view: ShopFrontView.Grid,
@@ -137,14 +137,14 @@ class Shop extends AppSection {
 
   Future<void> _setupShopFronts() async {
     await shoprepo.AbstractRepositorySingleton.singleton
-        .shopFrontRepository(IncidamusApp.INCIDAMUS_APP_ID)
+        .shopFrontRepository(IncidamusApp.INCIDAMUS_APP_ID)!
         .add(_shopFront1());
     await shoprepo.AbstractRepositorySingleton.singleton
-        .shopFrontRepository(IncidamusApp.INCIDAMUS_APP_ID)
+        .shopFrontRepository(IncidamusApp.INCIDAMUS_APP_ID)!
         .add(_shopFront2());
   }
 
-  static BackgroundModel cardBG(String appId) {
+  static BackgroundModel cardBG(String? appId) {
     var decorationColorModels = <DecorationColorModel>[];
     var decorationColorModel1 = DecorationColorModel(
       documentID: '1',
@@ -172,15 +172,15 @@ class Shop extends AppSection {
 
   Future<void> _setupCardBG() async {
     await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(IncidamusApp.INCIDAMUS_APP_ID)
-        .add(cardBG(installApp.appId));
+        .backgroundRepository(IncidamusApp.INCIDAMUS_APP_ID)!
+        .add(cardBG(installApp!.appId));
   }
 
   PresentationModel _presentation(MemberMediumModel memberMediumModel) {
     return PresentationModel(
       documentID: 'shop',
       title: 'Shop',
-      appId: installApp.appId,
+      appId: installApp!.appId,
       bodyComponents: [
         BodyComponentModel(
             documentID: '1',
@@ -200,15 +200,15 @@ class Shop extends AppSection {
   Future<PresentationModel> _setupPresentation(MemberMediumModel memberMediumModel) async {
     var presentationModel = _presentation(memberMediumModel);
     await AbstractRepositorySingleton.singleton
-        .presentationRepository(IncidamusApp.INCIDAMUS_APP_ID)
+        .presentationRepository(IncidamusApp.INCIDAMUS_APP_ID)!
         .add(presentationModel);
     return presentationModel;
   }
 
   Future<MemberMediumModel> uploadImage() async {
     return await ImageTools.uploadPublicPhoto(
-        installApp.appId,
-        installApp.member,
+        installApp!.appId!,
+        installApp!.member!,
         'packages/eliud_pkg_apps/assets/incidamus_app/decorating/body3b.png');
   }
 
@@ -220,7 +220,7 @@ class Shop extends AppSection {
     var presentationDocumentId = presentation.documentID;
     await _setupCardBG();
     await _setupShopFronts();
-    var appBar = await installApp.appBar(identifier, adminMenu, 'Shop');
+    var appBar = await installApp!.appBar(identifier, adminMenu, 'Shop');
     var shop = await _setupShop();
     await Products(installApp, shop).run();
     await _setupPage(appBar, presentationDocumentId);

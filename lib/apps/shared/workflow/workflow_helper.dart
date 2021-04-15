@@ -44,11 +44,11 @@ class WorkflowHelper {
   }
 
   static WorkflowModel workflowForManualPaymentCart(
-      {String payTo,
-      String country,
-      String bankIdentifierCode,
-      String payeeIBAN,
-      String bankName}) {
+      {String? payTo,
+      String? country,
+      String? bankIdentifierCode,
+      String? payeeIBAN,
+      String? bankName}) {
     return _workflowForPaymentCart(
         "cat_paid_manually",
         "Manual Cart Payment",
@@ -114,13 +114,13 @@ class WorkflowHelper {
   }
 
   static WorkflowModel workflowForManuallyPaidMembership(
-      {double amount,
-      String ccy,
-      String payTo,
-      String country,
-      String bankIdentifierCode,
-      String payeeIBAN,
-      String bankName}) {
+      {double? amount,
+      String? ccy,
+      String? payTo,
+      String? country,
+      String? bankIdentifierCode,
+      String? payeeIBAN,
+      String? bankName}) {
     return _workflowForMembership(
         "membership_paid_manually",
         "Paid Membership (manually paid)",
@@ -135,7 +135,7 @@ class WorkflowHelper {
   }
 
   static WorkflowModel workflowForMembershipPaidByCard(
-      {double amount, String ccy}) {
+      {double? amount, String? ccy}) {
     return _workflowForMembership(
         "membership_paid_manually",
         "Paid Membership (Credit card payment)",

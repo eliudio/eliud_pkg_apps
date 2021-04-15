@@ -22,34 +22,34 @@ import '../../app_base.dart';
 
 abstract class DecoratedContent extends AppSection {
   final String identifier;
-  final bool addLogo;
+  final bool? addLogo;
   final double percentageDecorationVisible;
-  final PrivilegeLevelRequiredSimple privilegeLevelRequiredSimple;
+  final PrivilegeLevelRequiredSimple? privilegeLevelRequiredSimple;
 
-  PrivilegeLevelRequiredSimple getPrivilegeLevelRequiredSimple() {
+  PrivilegeLevelRequiredSimple? getPrivilegeLevelRequiredSimple() {
     if (privilegeLevelRequiredSimple == null) return PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple;
     return privilegeLevelRequiredSimple;
   }
 
   DecoratedContent(
       this.identifier,
-      InstallApp installApp,
-      HomeMenuModel homeMenu,
-      BackgroundModel pageBG,
-      DrawerModel drawer,
-      DrawerModel endDrawer,
-      MenuDefModel adminMenu, this.percentageDecorationVisible, { this.addLogo, this.privilegeLevelRequiredSimple })
+      InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
+      MenuDefModel? adminMenu, this.percentageDecorationVisible, { this.addLogo, this.privilegeLevelRequiredSimple })
       : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   Future<PageModel> _setupPage(AppBarModel appBar, String title) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp.appId)
+        .pageRepository(installApp!.appId)!
         .add(_page(appBar, title));
   }
 
-  Future<void> _setupFader() async {
+  Future<FaderModel> _setupFader() async {
     return await AbstractRepositorySingleton.singleton
-        .faderRepository(installApp.appId)
+        .faderRepository(installApp!.appId)!
         .add(_fader());
   }
 
@@ -59,15 +59,15 @@ abstract class DecoratedContent extends AppSection {
     items.add(ListedItemModel(
         documentID: 'fader',
         description: 'Fader',
-        posSize: installApp.halfScreen(),
-        image: installApp.theLogo));
+        posSize: installApp!.halfScreen(),
+        image: installApp!.theLogo));
     var model = FaderModel(
       documentID: faderIdentifier,
       name: 'Fader',
       animationMilliseconds: 1000,
       imageSeconds: 5,
       items: items,
-      appId: installApp.appId,
+      appId: installApp!.appId,
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired:privilegeLevelRequiredSimple),
     );
@@ -75,8 +75,8 @@ abstract class DecoratedContent extends AppSection {
   }
 
   PageModel _page(AppBarModel appBar, String title) {
-    List<BodyComponentModel> components = List();
-    if ((addLogo != null) && (addLogo)) {
+    List<BodyComponentModel> components = [];
+    if ((addLogo != null) && addLogo!) {
       components.add(BodyComponentModel(
           documentID: 'fader',
           componentName: AbstractFaderComponent.componentName,
@@ -94,7 +94,7 @@ abstract class DecoratedContent extends AppSection {
 
     return PageModel(
         documentID: identifier,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: title,
         drawer: drawer,
         endDrawer: endDrawer,
@@ -109,14 +109,14 @@ abstract class DecoratedContent extends AppSection {
   }
 
   Future<DecoratedContentModel> _decoratedContent(
-      String componentId,
+      String? componentId,
       String componentName,
-      String decoratingComponentId,
+      String? decoratingComponentId,
       String decoratingComponentName,
       DecorationComponentPosition position) async {
     var decoratedContent = DecoratedContentModel(
       documentID: identifier,
-      appId: installApp.appId,
+      appId: installApp!.appId,
       name: identifier,
       contentComponentId: componentId,
       contentComponentName: componentName,
@@ -129,23 +129,23 @@ abstract class DecoratedContent extends AppSection {
       ),
     );
     await AbstractRepositorySingleton.singleton
-        .decoratedContentRepository(installApp.appId)
+        .decoratedContentRepository(installApp!.appId)!
         .add(decoratedContent);
     return decoratedContent;
   }
 
   Future<void> installDecoratedContent(
       String title,
-      String componentId,
+      String? componentId,
       String componentName,
-      String decoratingComponentId,
+      String? decoratingComponentId,
       String decoratingComponentName,
       DecorationComponentPosition position) async {
-    if ((addLogo != null) && (addLogo)) {
+    if ((addLogo != null) && addLogo!) {
       await _setupFader();
     }
     await _decoratedContent(componentId, componentName, decoratingComponentId, decoratingComponentName, position);
-    var appBar = await installApp.appBar(installApp.appId, adminMenu, title);
+    var appBar = await installApp!.appBar(installApp!.appId, adminMenu, title);
     await _setupPage(appBar, title);
   }
 }

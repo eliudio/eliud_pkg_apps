@@ -18,15 +18,15 @@ import '../../../shared/etc/page_template.dart';
 import '../../juuwle_app.dart';
 
 class MyPayConfirmation extends PageTemplate {
-  final BackgroundModel background;
-  final ShopModel shop;
+  final BackgroundModel? background;
+  final ShopModel? shop;
 
   static const String identifier = 'juuwlepayconfirmation';
 
   PayConfirmationModel _payConfirmationModel() {
     return PayConfirmationModel(
         documentID: 'payconfirmation',
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: pageTitle(),
         shop: shop,
         backToShopAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: Shop.identifier),
@@ -45,12 +45,12 @@ class MyPayConfirmation extends PageTemplate {
   MyPayConfirmation({
     this.background,
     this.shop,
-    InstallApp installApp,
-    HomeMenuModel homeMenu,
-    BackgroundModel pageBG,
-    DrawerModel drawer,
-    DrawerModel endDrawer,
-    MenuDefModel adminMenu}): super(
+    InstallApp? installApp,
+    HomeMenuModel? homeMenu,
+    BackgroundModel? pageBG,
+    DrawerModel? drawer,
+    DrawerModel? endDrawer,
+    MenuDefModel? adminMenu}): super(
       privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
       packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
       pageId: identifier,
@@ -63,13 +63,13 @@ class MyPayConfirmation extends PageTemplate {
       presentationImageAlignment: PresentationImageAlignment.Right);
 
   @override
-  String componentID() {
+  String? componentID() {
     return _payConfirmationModel().documentID;
   }
 
   @override
   Future<void> setupComponent() async {
-    await AbstractRepositorySingleton.singleton.payConfirmationRepository(JuuwleApp.JUUWLE_APP_ID).add(_payConfirmationModel());
+    await AbstractRepositorySingleton.singleton.payConfirmationRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_payConfirmationModel());
   }
 
   @override

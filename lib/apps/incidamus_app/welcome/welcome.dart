@@ -11,19 +11,19 @@ import '../../app_base.dart';
 
 class Welcome extends OnlyPhotoAndText {
   Welcome(
-      {InstallApp installApp,
-        HomeMenuModel homeMenu,
-        BackgroundModel pageBG,
-        DrawerModel drawer,
-        DrawerModel endDrawer,
-        MenuDefModel adminMenu})
+      {InstallApp? installApp,
+        HomeMenuModel? homeMenu,
+        BackgroundModel? pageBG,
+        DrawerModel? drawer,
+        DrawerModel? endDrawer,
+        MenuDefModel? adminMenu})
       : super(IDENTIFIER, installApp, homeMenu, pageBG, drawer, endDrawer,
       adminMenu, .3, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple, addLogo: true);
 
   static String IDENTIFIER = "welcome";
 
   Future<void> run() {
-    installPhotoAndText("Welcome", contents(), DecorationComponentPosition.LeftIfSpaceAvailableOtherwiseBottom,
+    return installPhotoAndText("Welcome", contents(), DecorationComponentPosition.LeftIfSpaceAvailableOtherwiseBottom,
         assetLocation(), align: SimpleTextAlign.Center) ;
   }
 

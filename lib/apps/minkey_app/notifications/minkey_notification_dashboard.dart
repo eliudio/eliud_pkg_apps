@@ -3,7 +3,7 @@ import 'package:eliud_core/model/model_export.dart';
 import '../../app_base.dart';
 
 class MinkeyNotificationDashboard extends NotificationDashboard {
-  MinkeyNotificationDashboard({InstallApp installApp, RgbModel backgroundColor}) :
+  MinkeyNotificationDashboard({InstallApp? installApp, RgbModel? backgroundColor}) :
         super(installApp, backgroundColor);
   Future<DialogModel> run() async {
     return super.run();

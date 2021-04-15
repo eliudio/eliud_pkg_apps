@@ -16,19 +16,19 @@ import 'package:eliud_pkg_post/model/post_medium_model.dart';
 
 class ImageTools {
   static Future<MemberMediumModel> uploadPublicPhoto(String appId, MemberModel member, String assetPath) async {
-    return await UploadFile.createThumbnailUploadPhotoAsset(appId, assetPath, member.documentID, ['PUBLIC',member.documentID]);
+    return await UploadFile.createThumbnailUploadPhotoAsset(appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!]);
   }
 
   static Future<MemberMediumModel> uploadPublicVideo(String appId, MemberModel member, String assetPath) async {
-    return await UploadFile.createThumbnailUploadVideoAsset(appId, assetPath, member.documentID, ['PUBLIC',member.documentID]);
+    return await UploadFile.createThumbnailUploadVideoAsset(appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!]);
   }
 
-  static Future<MemberMediumModel> uploadPublicPdf(String appId, MemberModel member, String assetPath, {String documentID}) async {
-    return await UploadFile.createThumbnailUploadPdfAsset(appId, assetPath, member.documentID, ['PUBLIC',member.documentID], documentID: documentID);
+  static Future<MemberMediumModel> uploadPublicPdf(String appId, MemberModel member, String assetPath, {String? documentID}) async {
+    return await UploadFile.createThumbnailUploadPdfAsset(appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!], documentID: documentID);
   }
 
   static Future<PostMediumModel> createPostMediumModelPhoto(String appId, MemberModel member, String assetPath) async {
-    var photo = await UploadFile.createThumbnailUploadPhotoAsset(appId, assetPath, member.documentID, ['PUBLIC',member.documentID]);
+    var photo = await UploadFile.createThumbnailUploadPhotoAsset(appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!]);
     return PostMediumModel(
       documentID: newRandomKey(),
       memberMedium: photo,

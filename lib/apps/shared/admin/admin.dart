@@ -14,14 +14,14 @@ import '../../app_base.dart';
 abstract class AdminBase extends AppSection {
   List<AdminAppMenuInstallerBase> adminMenuInstallers();
   List<AdminAppInstallerBase> adminAppsInstallers(
-      String appID,
-      DrawerModel drawer,
-      DrawerModel endDrawer,
+      String? appID,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
       AppBarModel appBar,
-      HomeMenuModel homeMenu);
+      HomeMenuModel? homeMenu);
 
-  AdminBase(InstallApp installApp, HomeMenuModel homeMenu,
-      BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer)
+  AdminBase(InstallApp? installApp, HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer)
       : super(
             installApp, homeMenu, pageBG, drawer, endDrawer, null);
 
@@ -33,7 +33,7 @@ abstract class AdminBase extends AppSection {
         text: menu.name,
         description: menu.name,
         icon: IconModel(codePoint: Icons.fiber_manual_record.codePoint, fontFamily: Icons.settings.fontFamily),
-        action: PopupMenu(installApp.appId, menuDef: menu));
+        action: PopupMenu(installApp!.appId, menuDef: menu));
   }
 
   MenuItemModel _mapIt(MenuDefModel menu) {
@@ -47,14 +47,14 @@ abstract class AdminBase extends AppSection {
   Future<MenuDefModel> installAdminMenus() async {
     // Create the menus
     List<AdminAppMenuInstallerBase> _adminMenuInstallers = adminMenuInstallers();
-    List<MenuItemModel> menuItems = await Future.wait(_adminMenuInstallers.map((element) async => _mapIt(await element.menu(installApp.appId))));
+    List<MenuItemModel> menuItems = await Future.wait(_adminMenuInstallers.map((element) async => _mapIt(await element.menu(installApp!.appId!))));
     MenuDefModel menu = MenuDefModel(
         documentID: "admin_sub_menu",
-        appId: installApp.appId,
+        appId: installApp!.appId,
         name: "Admin Sub Menu",
         menuItems: menuItems);
 
-    return await AbstractRepositorySingleton.singleton.menuDefRepository(installApp.appId).add(menu);
+    return await AbstractRepositorySingleton.singleton.menuDefRepository(installApp!.appId)!.add(menu);
   }
 
   /*
@@ -62,9 +62,9 @@ abstract class AdminBase extends AppSection {
    * menu's, in the other appBars in the other pages.
    */
   Future<void> installAdminAppss(MenuDefModel menu) async {
-    var appBar = await installApp.appBar("admin_app_bar", menu, adminTitle());
+    var appBar = await installApp!.appBar("admin_app_bar", menu, adminTitle());
     List<AdminAppInstallerBase> installers = adminAppsInstallers(
-        installApp.appId, drawer, endDrawer, appBar, homeMenu);
+        installApp!.appId, drawer, endDrawer, appBar, homeMenu);
     installers.forEach((element) async {
       await element.run();
     });

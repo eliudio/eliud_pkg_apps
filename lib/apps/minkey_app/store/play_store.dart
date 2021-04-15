@@ -29,12 +29,12 @@ import '../../app_section.dart';
 import '../../app_base.dart';
 
 class PlayStore extends AppSection {
-  PlayStore({InstallApp installApp, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  PlayStore({InstallApp? installApp, HomeMenuModel? homeMenu, BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   static String IDENTIFIER = "playstore";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp.appId).add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp!.appId)!.add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
@@ -63,8 +63,8 @@ class PlayStore extends AppSection {
         bodyComponents: components);
   }
 
-  Future<void> _setupFader() async {
-    return await AbstractRepositorySingleton.singleton.faderRepository(installApp.appId).add(_fader());
+  Future<FaderModel> _setupFader() async {
+    return await AbstractRepositorySingleton.singleton.faderRepository(installApp!.appId)!.add(_fader());
   }
 
   static String FADER_IDENTIFIER = IDENTIFIER;
@@ -73,8 +73,8 @@ class PlayStore extends AppSection {
       items.add(ListedItemModel(
           documentID: "minkey",
           description: "Minkey",
-          posSize: installApp.halfScreen(),
-          image: installApp.theLogo));
+          posSize: installApp!.halfScreen(),
+          image: installApp!.theLogo));
       FaderModel model = FaderModel(
         documentID: FADER_IDENTIFIER,
         name: "Welcome fader",
@@ -101,8 +101,8 @@ class PlayStore extends AppSection {
     );
   }
 
-  Future<void> _setupPlayStore() async {
-    return await AbstractRepositorySingleton.singleton.playStoreRepository(installApp.appId).add(playStore());
+  Future<PlayStoreModel> _setupPlayStore() async {
+    return await AbstractRepositorySingleton.singleton.playStoreRepository(installApp!.appId)!.add(playStore());
   }
 
   BackgroundModel playStoreBG() {
@@ -132,8 +132,8 @@ class PlayStore extends AppSection {
     return backgroundModel;
   }
 
-  Future<void> _setupPlayStoreBG() async {
-    return await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository(installApp.appId).add(playStoreBG());
+  Future<BackgroundModel> _setupPlayStoreBG() async {
+    return await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository(installApp!.appId)!.add(playStoreBG());
   }
 
   ShadowModel _shadowModel() {
@@ -151,15 +151,15 @@ class PlayStore extends AppSection {
     return shadowModel;
   }
 
-  Future<void> _setupShadows() async {
-    return await corerepo.AbstractRepositorySingleton.singleton.shadowRepository(installApp.appId).add(_shadowModel());
+  Future<ShadowModel> _setupShadows() async {
+    return await corerepo.AbstractRepositorySingleton.singleton.shadowRepository(installApp!.appId)!.add(_shadowModel());
   }
 
   // ************************ Tutorials *****************
   Future<PageModel> run() async {
     await _setupPlayStore();
     await _setupPlayStoreBG();
-    var appBar = await installApp.appBar(IDENTIFIER, adminMenu, "Store");
+    var appBar = await installApp!.appBar(IDENTIFIER, adminMenu, "Store");
     await _setupFader();
     return await _setupPage(appBar);
   }

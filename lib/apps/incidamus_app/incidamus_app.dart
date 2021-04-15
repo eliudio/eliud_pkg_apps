@@ -2,7 +2,6 @@ import 'package:eliud_core/core_package.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
-import 'package:eliud_core/model/app_policy_model.dart';
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/member_medium_model.dart';
@@ -41,7 +40,6 @@ import 'admin/admin.dart';
 import 'album/album.dart';
 import 'assignments/assignments.dart';
 import 'blocked/blocked.dart';
-import 'cube/cube.dart';
 import 'feed/feed.dart';
 import 'follow/follow_dashboards.dart';
 import 'member/incidamus_member_dashboard.dart';
@@ -86,7 +84,7 @@ class IncidamusApp extends InstallApp {
   @override
   MenuDefModel drawerMenuDef() {
     MenuDefModel _homeMenuDef = homeMenuDef();
-    var drawerMenuItems = _homeMenuDef.menuItems;
+    var drawerMenuItems = _homeMenuDef.menuItems!;
     drawerMenuItems.addAll(getPolicyMenuItems());
     MenuDefModel drawerMenu = _homeMenuDef.copyWith(
         documentID: "drawer_menu", name: "Drawer Menu (copy of main menu)",
@@ -103,7 +101,6 @@ class IncidamusApp extends InstallApp {
     menuItems.add(menuItem(appId, "album", Album.IDENTIFIER, "Album", Icons.photo));
     menuItems.add(menuItemShoppingBag(appId, "shop", Shop.identifier, "Shop"));
     menuItems.add(menuItemAbout(appId, "about", About.IDENTIFIER, "About"));
-    menuItems.add(menuItem(appId, "cube", Cube.IDENTIFIER, "Cube", Icons.rotate_left_sharp));
     menuItems.add(menuItemFeed(appId, "feed", Feed.IDENTIFIER, "Feed"));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
@@ -114,8 +111,8 @@ class IncidamusApp extends InstallApp {
   }
 
   @override
-  Future<void> setupApplication(AppHomePageReferencesModel homePages,
-      String ownerID, MemberMediumModel logo) async {
+  Future<AppModel> setupApplication(AppHomePageReferencesModel homePages,
+      String? ownerID, MemberMediumModel? logo) async {
     AppModel application = AppModel(
       documentID: INCIDAMUS_APP_ID,
       title: "Incidamus!",
@@ -164,7 +161,7 @@ class IncidamusApp extends InstallApp {
       policies: appPolicyModel,
     );
     return await AbstractMainRepositorySingleton.singleton
-        .appRepository()
+        .appRepository()!
         .update(application);
   }
 
@@ -185,7 +182,7 @@ class IncidamusApp extends InstallApp {
   }
 
   @override
-  Future<AppHomePageReferencesModel> runTheRest(String ownerID,
+  Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
     await Welcome(
         installApp: this,
@@ -195,137 +192,133 @@ class IncidamusApp extends InstallApp {
         endDrawer: endDrawer,
         adminMenu: adminMenu)
         .run();
-    var member = await AbstractMainRepositorySingleton.singleton
-        .memberRepository()
-        .get(ownerID);
-    await createFollowMenu();
-    var shop = await Shop(
-        installApp: this,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run();
-    await WorkflowSetup(installApp: this).run();
-    await Feed(
-        installApp: this,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run(member);
-    await Album(
-        installApp: this,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run(member);
-    await Cube(
-        installApp: this,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run(member);
-    await About(
-        installApp: this,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run();
-    await MyCart(
-        background: Shop.cardBG(appId),
-        shop: shop,
-        installApp: this,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run();
-    await MyPay(
-        background: Shop.cardBG(appId),
-        shop: shop,
-        installApp: this,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run();
-    await OrderOverview(
-        background: Shop.cardBG(appId),
-        shop: shop,
-        installApp: this,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run();
-    await MyPayConfirmation(
-        background: Shop.cardBG(appId),
-        shop: shop,
-        installApp: this,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run();
-    await ProductPage(
-        shop: shop,
-        installApp: this,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run();
-    await IncidamusNotificationDashboard(
-            installApp: this,
-            backgroundColor: EliudColors.gray)
-        .run();
-    await IncidamusMembershipDashboard(
-        installApp: this,
-        backgroundColor: EliudColors.gray)
-        .run();
-    await IncidamusMemberDashboard(
-        installApp: this,
-        backgroundColor: EliudColors.gray)
-        .run();
-    await IncidamusAssignmentViewSetup(
-            installApp: this,
-            backgroundColor: EliudColors.gray)
-        .run();
-    await IncidamusFollowDashboards(
-            installApp: this,
-            backgroundColor: EliudColors.gray)
-        .run();
-    var homePageBlockedMember = await IncidamusBlocked(
-            installApp: this,
-            homeMenu: homeMenu(),
-            pageBG: pageBG(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            adminMenu: adminMenu)
-        .run();
-    await createPolicyPages(appPolicyModel, drawer, endDrawer,  adminMenu);
-    AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
-      homePageBlockedMemberId: homePageBlockedMember.documentID,
-      homePageSubscribedMemberId: Welcome.IDENTIFIER,
-      homePageLevel1MemberId: Welcome.IDENTIFIER,
-      homePageLevel2MemberId: Welcome.IDENTIFIER,
-      homePageOwnerId: Welcome.IDENTIFIER,
-    );
-    return homePages;
+    var member = await (AbstractMainRepositorySingleton.singleton
+        .memberRepository()!
+        .get(ownerID));
+    if (member == null) {
+      throw Exception("Can't find member");
+    } else {
+      await createFollowMenu();
+      var shop = await Shop(
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run();
+      await WorkflowSetup(installApp: this).run();
+      await Feed(
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run(member);
+      await Album(
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run(member);
+      await About(
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run();
+      await MyCart(
+          background: Shop.cardBG(appId),
+          shop: shop,
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run();
+      await MyPay(
+          background: Shop.cardBG(appId),
+          shop: shop,
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run();
+      await OrderOverview(
+          background: Shop.cardBG(appId),
+          shop: shop,
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run();
+      await MyPayConfirmation(
+          background: Shop.cardBG(appId),
+          shop: shop,
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run();
+      await ProductPage(
+          shop: shop,
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run();
+      await IncidamusNotificationDashboard(
+          installApp: this,
+          backgroundColor: EliudColors.gray)
+          .run();
+      await IncidamusMembershipDashboard(
+          installApp: this,
+          backgroundColor: EliudColors.gray)
+          .run();
+      await IncidamusMemberDashboard(
+          installApp: this,
+          backgroundColor: EliudColors.gray)
+          .run();
+      await IncidamusAssignmentViewSetup(
+          installApp: this,
+          backgroundColor: EliudColors.gray)
+          .run();
+      await IncidamusFollowDashboards(
+          installApp: this,
+          backgroundColor: EliudColors.gray)
+          .run();
+      var homePageBlockedMember = await IncidamusBlocked(
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run();
+      await createPolicyPages(appPolicyModel!, drawer, endDrawer, adminMenu);
+      AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
+        homePageBlockedMemberId: homePageBlockedMember.documentID,
+        homePageSubscribedMemberId: Welcome.IDENTIFIER,
+        homePageLevel1MemberId: Welcome.IDENTIFIER,
+        homePageLevel2MemberId: Welcome.IDENTIFIER,
+        homePageOwnerId: Welcome.IDENTIFIER,
+      );
+      return homePages;
+    }
   }
 
   static String FOLLOW_MENU_ID = "followMenu";
@@ -370,8 +363,8 @@ class IncidamusApp extends InstallApp {
   }
 
   Future<MenuDefModel> createFollowMenu() async {
-    await AbstractRepositorySingleton.singleton
-        .menuDefRepository(appId)
+    return await AbstractRepositorySingleton.singleton
+        .menuDefRepository(appId)!
         .add(followMenu());
   }
 
@@ -382,7 +375,7 @@ class IncidamusApp extends InstallApp {
 
   @override
   Future<AppBarModel> appBar(
-      String identifier, MenuDefModel menu, String title) async {
+      String? identifier, MenuDefModel? menu, String? title) async {
     return await setupAppBar(
         identifier,
         menu,

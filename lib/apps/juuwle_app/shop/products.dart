@@ -5,7 +5,7 @@ import '../../../apps/app_base.dart';
 import '../juuwle_app.dart';
 
 class Products {
-  final InstallApp installApp;
+  final InstallApp? installApp;
   final ShopModel shop;
 
   Products(
@@ -230,8 +230,8 @@ class Products {
     for (int i = 0; i < theProducts.length; i++) {
       Product p = theProducts[i];
       await AbstractRepositorySingleton.singleton
-          .productRepository(JuuwleApp.JUUWLE_APP_ID)
-          .add(await productToProductModel(shop, installApp, p));
+          .productRepository(JuuwleApp.JUUWLE_APP_ID)!
+          .add(await productToProductModel(shop, installApp!, p));
     }
   }
 }

@@ -3,7 +3,7 @@ import 'package:eliud_core/model/model_export.dart';
 import '../../app_base.dart';
 
 class IncidamusMembershipDashboard extends MembershipDashboard {
-  IncidamusMembershipDashboard({InstallApp installApp, RgbModel backgroundColor}) :
+  IncidamusMembershipDashboard({InstallApp? installApp, RgbModel? backgroundColor}) :
         super(installApp, backgroundColor);
   Future<DialogModel> run() async {
     return super.run();

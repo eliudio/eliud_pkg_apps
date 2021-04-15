@@ -18,22 +18,22 @@ import '../../app_section.dart';
 import '../../app_base.dart';
 
 class Blocked extends AppSection {
-  Blocked({InstallApp installApp, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  Blocked({InstallApp? installApp, HomeMenuModel? homeMenu, BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   static String identifier = "blocked";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp.appId).add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp!.appId)!.add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
-    List<BodyComponentModel> components = List();
+    List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "1", componentName: AbstractBookletComponent.componentName, componentId: blockedIdentifier));
 
     return PageModel(
         documentID: identifier,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: "Blocked !",
         drawer: drawer,
         endDrawer: endDrawer,
@@ -50,11 +50,11 @@ class Blocked extends AppSection {
   static String blockedIdentifier = "blocked";
 
   Future<MemberMediumModel> uploadBlockedImage() async {
-    await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/shared/blocked/blocked.png');
+    return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/shared/blocked/blocked.png');
   }
 
   BookletModel _blocked(MemberMediumModel blockedImage) {
-    List<SectionModel> entries = List();
+    List<SectionModel> entries = [];
     {
       entries.add(SectionModel(
           documentID: "1",
@@ -64,14 +64,14 @@ class Blocked extends AppSection {
           imagePositionRelative: RelativeImagePosition.Aside,
           imageAlignment: SectionImageAlignment.Right,
           imageWidth: .33,
-          links: List()));
+          links: []));
     }
 
     return BookletModel(
       documentID: blockedIdentifier,
       name: "Blocked!",
       sections:entries,
-      appId: installApp.appId,
+      appId: installApp!.appId,
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
@@ -79,12 +79,12 @@ class Blocked extends AppSection {
   }
 
   Future<void> _setupBlocked(MemberMediumModel blockedImage) async {
-    await AbstractRepositorySingleton.singleton.bookletRepository(installApp.appId).add(_blocked(blockedImage));
+    await AbstractRepositorySingleton.singleton.bookletRepository(installApp!.appId)!.add(_blocked(blockedImage));
   }
 
   Future<PageModel> run() async {
     var blockedImage = await uploadBlockedImage();
-    var appBar = await installApp.appBar(identifier, adminMenu, "Blocked");
+    var appBar = await installApp!.appBar(identifier, adminMenu, "Blocked");
     await _setupBlocked(blockedImage);
     return await _setupPage(appBar);
   }

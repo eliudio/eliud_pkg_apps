@@ -87,7 +87,7 @@ class MinkeyApp extends InstallApp {
   @override
   MenuDefModel drawerMenuDef() {
     MenuDefModel _homeMenuDef = homeMenuDef();
-    var drawerMenuItems = _homeMenuDef.menuItems;
+    var drawerMenuItems = _homeMenuDef.menuItems!;
     drawerMenuItems.addAll(getPolicyMenuItems());
     MenuDefModel drawerMenu = _homeMenuDef.copyWith(
         documentID: "drawer_menu", name: "Drawer Menu (copy of main menu)",
@@ -117,8 +117,8 @@ class MinkeyApp extends InstallApp {
   }
 
   @override
-  Future<void> setupApplication(AppHomePageReferencesModel homePages,
-      String ownerID, MemberMediumModel logo) async {
+  Future<AppModel> setupApplication(AppHomePageReferencesModel homePages,
+      String? ownerID, MemberMediumModel? logo) async {
     AppModel application = AppModel(
       documentID: MINKEY_APP_ID,
       title: "Minkey!",
@@ -167,7 +167,7 @@ class MinkeyApp extends InstallApp {
       policies: appPolicyModel
     );
     return await AbstractMainRepositorySingleton.singleton
-        .appRepository()
+        .appRepository()!
         .update(application);
   }
 
@@ -188,90 +188,94 @@ class MinkeyApp extends InstallApp {
   }
 
   @override
-  Future<AppHomePageReferencesModel> runTheRest(String ownerID,
+  Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
-    await createPolicyPages(appPolicyModel, drawer, endDrawer,  adminMenu);
+    await createPolicyPages(appPolicyModel!, drawer, endDrawer,  adminMenu);
     var member = await AbstractMainRepositorySingleton.singleton
-        .memberRepository()
+        .memberRepository()!
         .get(ownerID);
-    await createFollowMenu();
-    var homePageLevel1Member = await Feed(
-        installApp: this,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run(member);
-    await WorkflowSetup(installApp: this).run();
-    await About(
-            installApp: this,
-            homeMenu: homeMenu(),
-            pageBG: pageBG(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            adminMenu: adminMenu)
-        .run();
-    await Welcome(
-            installApp: this,
-            homeMenu: homeMenu(),
-            pageBG: pageBG(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            adminMenu: adminMenu)
-        .run();
-    var homePageSubscribedMember = await PlayStore(
-            installApp: this,
-            homeMenu: homeMenu(),
-            pageBG: pageBG(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            adminMenu: adminMenu)
-        .run();
-    await MinkeyNotificationDashboard(
-            installApp: this,
-            backgroundColor: EliudColors.gray)
-        .run();
-    await MinkeyMemberDashboard(
-        installApp: this,
-        backgroundColor: EliudColors.gray)
-        .run();
-    await MinkeyMembershipDashboard(
-        installApp: this,
-        backgroundColor: EliudColors.gray)
-        .run();
-    await MinkeyAssignmentViewSetup(
-            installApp: this,
-            backgroundColor: EliudColors.gray)
-        .run();
-    await MinkeyFollowDashboards(
-            installApp: this,
-            backgroundColor: EliudColors.gray)
-        .run();
-    var homePageBlockedMember = await MinkeyBlocked(
-            installApp: this,
-            homeMenu: homeMenu(),
-            pageBG: pageBG(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            adminMenu: adminMenu)
-        .run();
-    await Album(
-        installApp: this,
-        homeMenu: homeMenu(),
-        pageBG: pageBG(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
-        .run(member);
+    if (member == null) {
+      throw Exception("Can not find member");
+    } else {
+      await createFollowMenu();
+      var homePageLevel1Member = await Feed(
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run(member);
+      await WorkflowSetup(installApp: this).run();
+      await About(
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run();
+      await Welcome(
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run();
+      var homePageSubscribedMember = await PlayStore(
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run();
+      await MinkeyNotificationDashboard(
+          installApp: this,
+          backgroundColor: EliudColors.gray)
+          .run();
+      await MinkeyMemberDashboard(
+          installApp: this,
+          backgroundColor: EliudColors.gray)
+          .run();
+      await MinkeyMembershipDashboard(
+          installApp: this,
+          backgroundColor: EliudColors.gray)
+          .run();
+      await MinkeyAssignmentViewSetup(
+          installApp: this,
+          backgroundColor: EliudColors.gray)
+          .run();
+      await MinkeyFollowDashboards(
+          installApp: this,
+          backgroundColor: EliudColors.gray)
+          .run();
+      var homePageBlockedMember = await MinkeyBlocked(
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run();
+      await Album(
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run(member);
 
 
-    AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
-      homePageBlockedMemberId: homePageBlockedMember.documentID,
-      homePageSubscribedMemberId: homePageSubscribedMember.documentID,
-      homePageLevel1MemberId: homePageLevel1Member.documentID,
-    );
-    return homePages;
+      AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
+        homePageBlockedMemberId: homePageBlockedMember.documentID,
+        homePageSubscribedMemberId: homePageSubscribedMember.documentID,
+        homePageLevel1MemberId: homePageLevel1Member.documentID,
+      );
+      return homePages;
+    }
   }
 
   static String FOLLOW_MENU_ID = "followMenu";
@@ -316,8 +320,8 @@ class MinkeyApp extends InstallApp {
   }
 
   Future<MenuDefModel> createFollowMenu() async {
-    await AbstractRepositorySingleton.singleton
-        .menuDefRepository(appId)
+    return await AbstractRepositorySingleton.singleton
+        .menuDefRepository(appId)!
         .add(followMenu());
   }
 
@@ -328,7 +332,7 @@ class MinkeyApp extends InstallApp {
 
   @override
   Future<AppBarModel> appBar(
-      String identifier, MenuDefModel menu, String title) async {
+      String? identifier, MenuDefModel? menu, String? title) async {
     return await setupAppBar(
         identifier,
         menu,

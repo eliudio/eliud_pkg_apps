@@ -73,7 +73,7 @@ class EliudApp extends InstallApp {
   @override
   MenuDefModel drawerMenuDef() {
     MenuDefModel _homeMenuDef = homeMenuDef();
-    var drawerMenuItems = _homeMenuDef.menuItems;
+    var drawerMenuItems = _homeMenuDef.menuItems!;
     drawerMenuItems.addAll(getPolicyMenuItems());
     MenuDefModel drawerMenu = _homeMenuDef.copyWith(
         documentID: "drawer_menu", name: "Drawer Menu (copy of main menu)",
@@ -130,10 +130,10 @@ class EliudApp extends InstallApp {
   }
 */
 
-  Future<void> setupApplication(
+  Future<AppModel> setupApplication(
       AppHomePageReferencesModel homePages,
-      String ownerID,
-      MemberMediumModel logo) async {
+      String? ownerID,
+      MemberMediumModel? logo) async {
     AppModel application = AppModel(
       documentID: ELIUD_APP_ID,
       title: "Eliud!",
@@ -174,7 +174,7 @@ class EliudApp extends InstallApp {
     );
 
     return await AbstractMainRepositorySingleton.singleton
-        .appRepository()
+        .appRepository()!
         .update(application);
   }
 
@@ -195,7 +195,7 @@ class EliudApp extends InstallApp {
   }
 
   @override
-  Future<AppHomePageReferencesModel> runTheRest(String ownerID,
+  Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
       DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
     await Who(
             installApp: this,
@@ -225,7 +225,7 @@ class EliudApp extends InstallApp {
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
-    await createPolicyPages(appPolicyModel, drawer, endDrawer,  adminMenu);
+    await createPolicyPages(appPolicyModel!, drawer, endDrawer,  adminMenu);
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
         homePageSubscribedMemberId: homePageSubscribedMember.documentID
     );
@@ -240,7 +240,7 @@ class EliudApp extends InstallApp {
 
   @override
   Future<AppBarModel> appBar(
-      String identifier, MenuDefModel menu, String title) async {
+      String? identifier, MenuDefModel? menu, String? title) async {
     return await setupAppBar(
         identifier,
         menu,
@@ -255,7 +255,7 @@ class EliudApp extends InstallApp {
 
   @override
   // no extra items
-  List<MenuItemModel> extraMenuItems() => null;
+  List<MenuItemModel>? extraMenuItems() => null;
 
   @override
   String logoAssetLocation() => 'packages/eliud_pkg_apps/assets/eliud_app/logos/logo.jpg';

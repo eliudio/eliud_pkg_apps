@@ -16,22 +16,22 @@ import '../../app_base.dart';
 class Admin extends AdminBase {
   Admin(
       {
-      InstallApp installApp,
-      HomeMenuModel homeMenu,
-      BackgroundModel pageBG,
-      DrawerModel drawer,
-      DrawerModel endDrawer})
+      InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer})
       : super(installApp, homeMenu, pageBG, drawer, endDrawer);
 
   @override
   String adminTitle() => "Admin";
 
   @override
-  List<AdminAppInstallerBase> adminAppsInstallers(String appID, DrawerModel drawer, DrawerModel_endDrawer, AppBarModel appBar, HomeMenuModel homeMenu) {
+  List<AdminAppInstallerBase> adminAppsInstallers(String? appID, DrawerModel? drawer, DrawerModel_endDrawer, AppBarModel appBar, HomeMenuModel? homeMenu) {
     return [
-      coreadmin.AdminApp(appID, drawer, endDrawer, appBar, homeMenu, EliudColors.black, EliudColors.green, EliudColors.lightRed),
-      fundamentals.AdminApp(appID, drawer, endDrawer, appBar, homeMenu, EliudColors.black, EliudColors.green, EliudColors.lightRed),
-      shop.AdminApp(appID, drawer, endDrawer, appBar, homeMenu, EliudColors.black, EliudColors.green, EliudColors.lightRed),
+      coreadmin.AdminApp(appID!, drawer!, endDrawer!, appBar, homeMenu!, EliudColors.black, EliudColors.green, EliudColors.lightRed),
+      fundamentals.AdminApp(appID, drawer, endDrawer!, appBar, homeMenu, EliudColors.black, EliudColors.green, EliudColors.lightRed),
+      shop.AdminApp(appID, drawer, endDrawer!, appBar, homeMenu, EliudColors.black, EliudColors.green, EliudColors.lightRed),
     ];
   }
 

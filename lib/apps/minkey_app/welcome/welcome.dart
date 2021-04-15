@@ -25,12 +25,12 @@ import '../../app_base.dart';
 
 class Welcome extends AppSection {
   Welcome(
-      {InstallApp installApp,
-      HomeMenuModel homeMenu,
-      BackgroundModel pageBG,
-      DrawerModel drawer,
-      DrawerModel endDrawer,
-      MenuDefModel adminMenu})
+      {InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
+      MenuDefModel? adminMenu})
       : super(installApp, homeMenu, pageBG, drawer, endDrawer,
             adminMenu);
 
@@ -51,12 +51,12 @@ class Welcome extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar, PrivilegeLevelRequired privilegeLevelRequired) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp.appId)
+        .pageRepository(installApp!.appId)!
         .add(_page(appBar, privilegeLevelRequired));
   }
 
   PageModel _page(AppBarModel appBar, PrivilegeLevelRequired privilegeLevelRequired) {
-    List<BodyComponentModel> components = List();
+    List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "2",
         componentName: AbstractFaderComponent.componentName,
@@ -88,49 +88,49 @@ class Welcome extends AppSection {
         bodyComponents: components);
   }
 
-  Future<void> _setupFader(MemberMediumModel android, MemberMediumModel iphone, MemberMediumModel tablet, MemberMediumModel macbook, ) async {
+  Future<FaderModel> _setupFader(MemberMediumModel android, MemberMediumModel iphone, MemberMediumModel tablet, MemberMediumModel macbook, ) async {
     return await AbstractRepositorySingleton.singleton
-        .faderRepository(installApp.appId)
+        .faderRepository(installApp!.appId)!
         .add(_fader(android, iphone, tablet, macbook, ));
   }
 
   Future<MemberMediumModel> androidImage() async {
-    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg');
   }
 
   Future<MemberMediumModel> iphoneImage() async {
-    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg');
   }
 
   Future<MemberMediumModel> tabletImage() async {
-    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg');
   }
 
   Future<MemberMediumModel> macbookImage() async {
-    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg');
+    return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg');
   }
 
   FaderModel _fader(MemberMediumModel android, MemberMediumModel iphone, MemberMediumModel tablet, MemberMediumModel macbook, ) {
-    List<ListedItemModel> items = List();
+    List<ListedItemModel> items = [];
     items.add(ListedItemModel(
         documentID: "android",
         description: "Android",
-        posSize: installApp.halfScreen(),
+        posSize: installApp!.halfScreen(),
         image: android));
     items.add(ListedItemModel(
         documentID: "macbook",
         description: "Macbook",
-        posSize: installApp.halfScreen(),
+        posSize: installApp!.halfScreen(),
         image: macbook));
     items.add(ListedItemModel(
         documentID: "iphone",
         description: "iphone",
-        posSize: installApp.halfScreen(),
+        posSize: installApp!.halfScreen(),
         image: iphone));
     items.add(ListedItemModel(
         documentID: "tablet",
         description: "Tablet",
-        posSize: installApp.halfScreen(),
+        posSize: installApp!.halfScreen(),
         image: tablet));
     FaderModel model = FaderModel(
       documentID: FADER_IDENTIFIER,
@@ -148,7 +148,7 @@ class Welcome extends AppSection {
 
   String _welcomePageContents(PrivilegeLevelRequired privilegeLevelRequired) {
     var privilegeLevelString = privilegeLevelIntToMemberRoleString(privilegeLevelRequired.index, false);
-    List<SectionSpec> sections = List();
+    List<SectionSpec> sections = [];
     {
       sections.add(
         SectionSpec(
@@ -166,7 +166,7 @@ class Welcome extends AppSection {
   }
 
   DocumentModel _welcomeDocument(PrivilegeLevelRequired privilegeLevelRequired) {
-    List<DocumentItemModel> list = List();
+    List<DocumentItemModel> list = [];
     DocumentModel document = DocumentModel(
         documentID: IDENTIFIERs[privilegeLevelRequired.index],
         name: "First document",
@@ -182,16 +182,16 @@ class Welcome extends AppSection {
     return document;
   }
 
-  Future<void> _setupWelcomeDocument(PrivilegeLevelRequired privilegeLevelRequired) async {
+  Future<DocumentModel> _setupWelcomeDocument(PrivilegeLevelRequired privilegeLevelRequired) async {
     return await AbstractRepositorySingleton.singleton
-        .documentRepository(installApp.appId)
+        .documentRepository(installApp!.appId)!
         .add(_welcomeDocument(privilegeLevelRequired));
   }
 
   // ************************ Tutorials *****************
   Future<void> run() async {
     var appBar =
-        await installApp.appBar(APP_BAR_IDENTIFIER, adminMenu, "Welcome");
+        await installApp!.appBar(APP_BAR_IDENTIFIER, adminMenu, "Welcome");
     var android = await androidImage();
     var iphone = await iphoneImage();
     var tablet = await tabletImage();

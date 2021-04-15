@@ -13,23 +13,23 @@ import '../../app_base.dart';
 abstract class OnlyPhotoAndText extends PhotoAndSomthing {
   OnlyPhotoAndText(
       String identifier,
-      InstallApp installApp,
-      HomeMenuModel homeMenu,
-      BackgroundModel pageBG,
-      DrawerModel drawer,
-      DrawerModel endDrawer,
-      MenuDefModel adminMenu,
+      InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
+      MenuDefModel? adminMenu,
       double percentageDecorationVisible,
       PrivilegeLevelRequiredSimple privilegeLevelRequiredSimple,
-      {bool addLogo,})
+      {bool? addLogo,})
       : super(identifier, installApp, homeMenu, pageBG, drawer, endDrawer,
             adminMenu, percentageDecorationVisible,
             addLogo: addLogo,
             privilegeLevelRequiredSimple: privilegeLevelRequiredSimple);
 
   Future<SimpleTextModel> createSimpleTextModel(
-      String appId, String title, String contents,
-      {SimpleTextAlign align}) async {
+      String? appId, String title, String contents,
+      {SimpleTextAlign? align}) async {
     var simpleTextModel = SimpleTextModel(
         documentID: identifier,
         appId: appId,
@@ -38,15 +38,15 @@ abstract class OnlyPhotoAndText extends PhotoAndSomthing {
         textAlign: align,
         conditions: ConditionsSimpleModel(
             privilegeLevelRequired: privilegeLevelRequiredSimple));
-    await simpleTextRepository(appId: appId).add(simpleTextModel);
+    await simpleTextRepository(appId: appId)!.add(simpleTextModel);
     return simpleTextModel;
   }
 
   Future<void> installPhotoAndText(String title, String contents,
       DecorationComponentPosition imagePosition, String imageAssetLocation,
-      {SimpleTextAlign align}) async {
+      {SimpleTextAlign? align}) async {
     var simpleTextModel =
-        await createSimpleTextModel(installApp.appId, title, contents, align: align);
+        await createSimpleTextModel(installApp!.appId, title, contents, align: align);
     var componentId = simpleTextModel.documentID;
     var componentName = AbstractSimpleTextComponent.componentName;
     return super.installPhoto(componentId, componentName, title, imagePosition, imageAssetLocation);

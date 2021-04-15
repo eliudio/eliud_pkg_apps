@@ -12,7 +12,7 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 class MemberDashboard extends AppSectionBase {
-  final RgbModel backgroundColor;
+  final RgbModel? backgroundColor;
 
   static String updateProfileText = '''
 Maintain your personal details here
@@ -41,14 +41,14 @@ Sorry to see you go. Your account has been destroyed.
 """;
 
   MemberDashboard(
-      InstallApp installApp, this.backgroundColor)
+      InstallApp? installApp, this.backgroundColor)
       : super(installApp);
 
   static String IDENTIFIER = "member_dashboard";
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp.appId)
+        .dialogRepository(installApp!.appId)!
         .add(_dialog());
   }
 
@@ -61,7 +61,7 @@ Sorry to see you go. Your account has been destroyed.
 
     return DialogModel(
         documentID: IDENTIFIER,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: "Member dashboard",
         background: backgroundColor,
         layout: DialogLayout.ListView,
@@ -75,7 +75,7 @@ Sorry to see you go. Your account has been destroyed.
   MemberDashboardModel _dashboardModel() {
     return MemberDashboardModel(
         documentID: IDENTIFIER,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         description: "Member dashboard",
         updateProfileText: updateProfileText,
         retrieveDataText: retrieveDataText,
@@ -91,7 +91,7 @@ Sorry to see you go. Your account has been destroyed.
 
   Future<MemberDashboardModel> _setupDashboard() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .memberDashboardRepository(installApp.appId)
+        .memberDashboardRepository(installApp!.appId)!
         .add(_dashboardModel());
   }
 

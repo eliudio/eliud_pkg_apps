@@ -20,15 +20,15 @@ import '../../incidamus_app.dart';
 import '../product_page.dart';
 
 class MyCart extends PageTemplate {
-  final BackgroundModel background;
-  final ShopModel shop;
+  final BackgroundModel? background;
+  final ShopModel? shop;
 
   static const String identifier = 'juuwlecart';
 
   CartModel _cart() {
     return CartModel(
         documentID: 'cart',
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: pageTitle(),
         description: 'Shopping bag',
         checkoutText: 'Checkout',
@@ -53,12 +53,12 @@ class MyCart extends PageTemplate {
   MyCart({
     this.background,
     this.shop,
-    InstallApp installApp,
-    HomeMenuModel homeMenu,
-    BackgroundModel pageBG,
-    DrawerModel drawer,
-    DrawerModel endDrawer,
-    MenuDefModel adminMenu}): super(
+    InstallApp? installApp,
+    HomeMenuModel? homeMenu,
+    BackgroundModel? pageBG,
+    DrawerModel? drawer,
+    DrawerModel? endDrawer,
+    MenuDefModel? adminMenu}): super(
       privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
       packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
       pageId: identifier,
@@ -70,14 +70,14 @@ class MyCart extends PageTemplate {
       adminMenu: adminMenu);
 
   @override
-  String componentID() {
+  String? componentID() {
     return _cart().documentID;
   }
 
   @override
   Future<void> setupComponent() async {
     await AbstractRepositorySingleton.singleton.
-    cartRepository(IncidamusApp.INCIDAMUS_APP_ID).add(_cart());
+    cartRepository(IncidamusApp.INCIDAMUS_APP_ID)!.add(_cart());
   }
 
   @override

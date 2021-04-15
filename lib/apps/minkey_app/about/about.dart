@@ -9,17 +9,17 @@ import '../../app_base.dart';
 
 class About extends Founders {
   About({
-      InstallApp installApp,
-      HomeMenuModel homeMenu,
-      BackgroundModel pageBG,
-      DrawerModel drawer,
-      DrawerModel endDrawer,
-      MenuDefModel adminMenu})
+      InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
+      MenuDefModel? adminMenu})
       : super(installApp, homeMenu, pageBG, drawer, endDrawer,
             adminMenu);
 
   Future<void> run() {
-    doItForFounders();
+    return doItForFounders();
   }
 
   @override

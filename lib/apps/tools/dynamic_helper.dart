@@ -9,7 +9,7 @@ class SectionSpec {
   final String title;
   final String text;
 
-  final List<LinkSpec> links;
+  final List<LinkSpec>? links;
 
   SectionSpec(this.title, this.text, {this.links});
 }
@@ -80,7 +80,7 @@ String linksFooter = """
     { "type": "SizedBox", "height": 20.0, "child":{} },""";
 
 class DynamicHelper {
-  static String _replace(String template, { Map<String, String> parameters }) {
+  static String _replace(String template, { Map<String, String>? parameters }) {
     if (parameters != null) {
       String processed = template;
       parameters.forEach((key, value) {
@@ -109,9 +109,9 @@ class DynamicHelper {
             "\${text}": "${section.text}"});
       String linksValue = linksHeader;
       if (section.links != null) {
-        int lenLinks = section.links.length;
+        int lenLinks = section.links!.length;
         for (int j = 0; j < lenLinks; j++) {
-          LinkSpec link = section.links[j];
+          LinkSpec link = section.links![j];
           linksValue = linksValue + _replace(linkContent,
               parameters: <String, String>{
                 "\${link}": "${link.link}",

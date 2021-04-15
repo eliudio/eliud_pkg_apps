@@ -13,18 +13,18 @@ import '../../app_base.dart';
 import '../incidamus_app.dart';
 
 class ProductPage extends BasicPageTemplate {
-  final ShopModel shop;
+  final ShopModel? shop;
 
   static const String identifier = 'productpage';
 
   ProductDisplayModel _productDisplayOverview() {
     return ProductDisplayModel(
       documentID: 'product',
-      appId: installApp.appId,
+      appId: installApp!.appId,
       title: pageTitle(),
       shop: shop,
       buyAction: GotoPage(IncidamusApp.INCIDAMUS_APP_ID, pageID: MyCart.identifier),
-      itemDetailBackground: installApp.pageBG(),
+      itemDetailBackground: installApp!.pageBG(),
       addToBasketText: 'Add to basket',
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
@@ -40,12 +40,12 @@ class ProductPage extends BasicPageTemplate {
 
   ProductPage({
     this.shop,
-    InstallApp installApp,
-    HomeMenuModel homeMenu,
-    BackgroundModel pageBG,
-    DrawerModel drawer,
-    DrawerModel endDrawer,
-    MenuDefModel adminMenu}): super(
+    InstallApp? installApp,
+    HomeMenuModel? homeMenu,
+    BackgroundModel? pageBG,
+    DrawerModel? drawer,
+    DrawerModel? endDrawer,
+    MenuDefModel? adminMenu}): super(
       pageId: identifier,
       privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
       installApp: installApp,
@@ -56,12 +56,12 @@ class ProductPage extends BasicPageTemplate {
       adminMenu: adminMenu);
 
   @override
-  String componentID() {
+  String? componentID() {
     return _productDisplayOverview().documentID;
   }
 
   @override
   Future<void> setupComponent() async {
-    await AbstractRepositorySingleton.singleton.productDisplayRepository(IncidamusApp.INCIDAMUS_APP_ID).add(_productDisplayOverview());
+    await AbstractRepositorySingleton.singleton.productDisplayRepository(IncidamusApp.INCIDAMUS_APP_ID)!.add(_productDisplayOverview());
   }
 }

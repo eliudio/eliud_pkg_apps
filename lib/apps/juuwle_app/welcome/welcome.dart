@@ -19,16 +19,16 @@ import '../../app_section.dart';
 import '../../app_base.dart';
 
 class Welcome extends AppSection {
-  Welcome({InstallApp installApp, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  Welcome({InstallApp? installApp, HomeMenuModel? homeMenu, BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   static String identifier = "welcome";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(JuuwleApp.JUUWLE_APP_ID).add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
-    List<BodyComponentModel> components = List();
+    List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "4", componentName: AbstractBookletComponent.componentName, componentId: welcomeIdentifier));
 
@@ -51,7 +51,7 @@ class Welcome extends AppSection {
   static String welcomeIdentifier = "welcome";
 
   Future<MemberMediumModel> uploadWelcomeImage() async {
-    return await ImageTools.uploadPublicPhoto(installApp.appId, installApp.member, 'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_standing.png');
+    return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_standing.png');
   }
 
   BookletModel _welcome(MemberMediumModel welcomeImage) {
@@ -65,14 +65,14 @@ class Welcome extends AppSection {
           imagePositionRelative: RelativeImagePosition.Aside,
           imageAlignment: SectionImageAlignment.Right,
           imageWidth: .33,
-          links: List()));
+          links: []));
     }
 
     return BookletModel(
       documentID: welcomeIdentifier,
       name: "Welcome",
       sections:entries,
-      appId: installApp.appId,
+      appId: installApp!.appId,
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
@@ -80,13 +80,13 @@ class Welcome extends AppSection {
   }
 
   Future<void> _setupWelcome(MemberMediumModel welcomeImage) async {
-    await AbstractRepositorySingleton.singleton.bookletRepository(JuuwleApp.JUUWLE_APP_ID).add(_welcome(welcomeImage));
+    await AbstractRepositorySingleton.singleton.bookletRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_welcome(welcomeImage));
   }
 
   Future<PageModel> run() async {
     var welcomeImage = await uploadWelcomeImage();
 //    var appMenu = await installApp.appBarMenu("Welcome", adminMenu);
-    var appBar = await installApp.appBar(identifier, adminMenu, "Welcome");
+    var appBar = await installApp!.appBar(identifier, adminMenu, "Welcome");
     await _setupWelcome(welcomeImage);
     //await _setupFader();
     return await _setupPage(appBar);

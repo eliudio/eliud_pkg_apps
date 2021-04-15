@@ -10,17 +10,17 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 class MembershipDashboard extends AppSectionBase {
-  final RgbModel backgroundColor;
+  final RgbModel? backgroundColor;
 
   MembershipDashboard(
-      InstallApp installApp, this.backgroundColor)
+      InstallApp? installApp, this.backgroundColor)
       : super(installApp);
 
   static String IDENTIFIER = "membership_dashboard";
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp.appId)
+        .dialogRepository(installApp!.appId)!
         .add(_dialog());
   }
 
@@ -33,7 +33,7 @@ class MembershipDashboard extends AppSectionBase {
 
     return DialogModel(
         documentID: IDENTIFIER,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: "Membership dashboard",
         background: backgroundColor,
         layout: DialogLayout.ListView,
@@ -46,7 +46,7 @@ class MembershipDashboard extends AppSectionBase {
   MembershipDashboardModel _dashboardModel() {
     return MembershipDashboardModel(
         documentID: IDENTIFIER,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         description: "Members",
         conditions: ConditionsSimpleModel(
             privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
@@ -56,7 +56,7 @@ class MembershipDashboard extends AppSectionBase {
 
   Future<MembershipDashboardModel> _setupDashboard() async {
     return await AbstractRepositorySingleton.singleton
-        .membershipDashboardRepository(installApp.appId)
+        .membershipDashboardRepository(installApp!.appId)!
         .add(_dashboardModel());
   }
 

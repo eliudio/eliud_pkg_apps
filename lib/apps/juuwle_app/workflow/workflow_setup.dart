@@ -8,7 +8,7 @@ import 'package:eliud_pkg_workflow/model/workflow_model.dart';
 import 'package:eliud_pkg_workflow/tools/action/workflow_action_model.dart';
 
 class WorkflowSetup {
-  final InstallApp installApp;
+  final InstallApp? installApp;
 
   WorkflowSetup({this.installApp});
 
@@ -19,11 +19,11 @@ class WorkflowSetup {
 
   Future<void> _setupWorkflows() async {
     await AbstractRepositorySingleton.singleton
-        .workflowRepository(installApp.appId)
+        .workflowRepository(installApp!.appId)!
         .add(_workflowForCreditCardPaymentCart());
   }
 
-  static WorkflowActionModel payCart(String appId) =>
+  static WorkflowActionModel payCart(String? appId) =>
       WorkflowActionModel(appId,
           conditions: ConditionsModel(
             privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
@@ -31,7 +31,7 @@ class WorkflowSetup {
           ),
           workflow: _workflowForCreditCardPaymentCart());
 
-  void run() async {
-    await _setupWorkflows();
+  Future<void> run() async {
+    return await _setupWorkflows();
   }
 }

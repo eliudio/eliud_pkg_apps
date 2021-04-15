@@ -15,18 +15,18 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 class _FollowingDashboard extends AppSectionBase {
-  final RgbModel backgroundColor;
+  final RgbModel? backgroundColor;
   final String identifier;
   final String title;
   final FollowingView view;
 
   _FollowingDashboard(this.identifier, this.title, this.view,
-      InstallApp installApp, this.backgroundColor)
+      InstallApp? installApp, this.backgroundColor)
       : super(installApp);
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp.appId)
+        .dialogRepository(installApp!.appId)!
         .add(_dialog());
   }
 
@@ -39,7 +39,7 @@ class _FollowingDashboard extends AppSectionBase {
 
     return DialogModel(
         documentID: identifier,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: title,
         background: backgroundColor,
         layout: DialogLayout.ListView,
@@ -52,7 +52,7 @@ class _FollowingDashboard extends AppSectionBase {
   FollowingDashboardModel _dashboardModel() {
     return FollowingDashboardModel(
         documentID: identifier,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         description: title,
         view: view,
         conditions: ConditionsSimpleModel(
@@ -63,7 +63,7 @@ class _FollowingDashboard extends AppSectionBase {
 
   Future<FollowingDashboardModel> _setupDashboard() async {
     return await AbstractRepositorySingleton.singleton
-        .followingDashboardRepository(installApp.appId)
+        .followingDashboardRepository(installApp!.appId)!
         .add(_dashboardModel());
   }
 
@@ -74,15 +74,15 @@ class _FollowingDashboard extends AppSectionBase {
 }
 
 class FollowRequestDashboard extends AppSectionBase {
-  final RgbModel backgroundColor;
+  final RgbModel? backgroundColor;
 
   static String FOLLOW_REQUEST_IDENTIFIER = "follow_requests_dashboard";
-  FollowRequestDashboard(InstallApp installApp, this.backgroundColor)
+  FollowRequestDashboard(InstallApp? installApp, this.backgroundColor)
       : super(installApp);
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp.appId)
+        .dialogRepository(installApp!.appId)!
         .add(_dialog());
   }
 
@@ -95,7 +95,7 @@ class FollowRequestDashboard extends AppSectionBase {
 
     return DialogModel(
         documentID: FOLLOW_REQUEST_IDENTIFIER,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: "Follow requests",
         background: backgroundColor,
         layout: DialogLayout.ListView,
@@ -109,7 +109,7 @@ class FollowRequestDashboard extends AppSectionBase {
   FollowRequestsDashboardModel _dashboardModel() {
     return FollowRequestsDashboardModel(
       documentID: FOLLOW_REQUEST_IDENTIFIER,
-      appId: installApp.appId,
+      appId: installApp!.appId,
       description: "Follow requests",
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
@@ -119,7 +119,7 @@ class FollowRequestDashboard extends AppSectionBase {
 
   Future<FollowRequestsDashboardModel> _setupDashboard() async {
     return await AbstractRepositorySingleton.singleton
-        .followRequestsDashboardRepository(installApp.appId)
+        .followRequestsDashboardRepository(installApp!.appId)!
         .add(_dashboardModel());
   }
 
@@ -130,15 +130,15 @@ class FollowRequestDashboard extends AppSectionBase {
 }
 
 class InviteDashboard extends AppSectionBase {
-  final RgbModel backgroundColor;
+  final RgbModel? backgroundColor;
 
   static String INVITE_IDENTIFIER = "invite_dashboard";
-  InviteDashboard(InstallApp installApp, this.backgroundColor)
+  InviteDashboard(InstallApp? installApp, this.backgroundColor)
       : super(installApp);
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp.appId)
+        .dialogRepository(installApp!.appId)!
         .add(_dialog());
   }
 
@@ -151,7 +151,7 @@ class InviteDashboard extends AppSectionBase {
 
     return DialogModel(
         documentID: INVITE_IDENTIFIER,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: "Follow members",
         background: backgroundColor,
         layout: DialogLayout.ListView,
@@ -164,7 +164,7 @@ class InviteDashboard extends AppSectionBase {
   InviteDashboardModel _dashboardModel() {
     return InviteDashboardModel(
       documentID: INVITE_IDENTIFIER,
-      appId: installApp.appId,
+      appId: installApp!.appId,
       description: "Follow members",
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
@@ -174,7 +174,7 @@ class InviteDashboard extends AppSectionBase {
 
   Future<InviteDashboardModel> _setupDashboard() async {
     return await AbstractRepositorySingleton.singleton
-        .inviteDashboardRepository(installApp.appId)
+        .inviteDashboardRepository(installApp!.appId)!
         .add(_dashboardModel());
   }
 
@@ -185,8 +185,8 @@ class InviteDashboard extends AppSectionBase {
 }
 
 class FollowDashboards extends AppSectionBase {
-  final RgbModel backgroundColor;
-  FollowDashboards(InstallApp installApp, this.backgroundColor)
+  final RgbModel? backgroundColor;
+  FollowDashboards(InstallApp? installApp, this.backgroundColor)
       : super(installApp);
 
   static String FOLLOWERS_IDENTIFIER = "followers_dashboard";
@@ -198,7 +198,7 @@ class FollowDashboards extends AppSectionBase {
     await _FollowingDashboard(FOLLOWING_IDENTIFIER, "Following", FollowingView.Following,
         installApp, backgroundColor).run();
     await FollowRequestDashboard(installApp, backgroundColor).run();
-    await InviteDashboard(installApp, backgroundColor).run();
+    return await InviteDashboard(installApp, backgroundColor).run();
   }
 }
 

@@ -11,19 +11,19 @@ import '../../app_base.dart';
 
 class About extends OnlyPhotoAndText {
   About(
-      {InstallApp installApp,
-      HomeMenuModel homeMenu,
-      BackgroundModel pageBG,
-      DrawerModel drawer,
-      DrawerModel endDrawer,
-      MenuDefModel adminMenu})
+      {InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
+      MenuDefModel? adminMenu})
       : super(IDENTIFIER, installApp, homeMenu, pageBG, drawer, endDrawer,
             adminMenu, .5, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple, addLogo: true, );
 
   static String IDENTIFIER = "about";
 
   Future<void> run() {
-    installPhotoAndText("About me", contents(), DecorationComponentPosition.RightIfSpaceAvailableOtherwiseBottom,
+    return installPhotoAndText("About me", contents(), DecorationComponentPosition.RightIfSpaceAvailableOtherwiseBottom,
         assetLocation(), align: SimpleTextAlign.Left) ;
   }
 

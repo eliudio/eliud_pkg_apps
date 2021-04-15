@@ -16,16 +16,16 @@ import '../../app_base.dart';
 import 'example_posts.dart';
 
 class Feed extends AppSection {
-  Feed({InstallApp installApp, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  Feed({InstallApp? installApp, HomeMenuModel? homeMenu, BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   static String IDENTIFIER = "feed";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp.appId).add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp!.appId)!.add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
-    List<BodyComponentModel> components = List();
+    List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "1", componentName: AbstractFeedComponent.componentName, componentId: IDENTIFIER));
 
@@ -54,12 +54,12 @@ class Feed extends AppSection {
   }
 
   Future<FeedModel> _setupFeed() async {
-    return await AbstractRepositorySingleton.singleton.feedRepository(installApp.appId).add(feedModel());
+    return await AbstractRepositorySingleton.singleton.feedRepository(installApp!.appId)!.add(feedModel());
   }
 
   Future<PageModel> run(MemberModel member) async {
-    await ExamplePosts(installApp.appId).run(member, IDENTIFIER);
-    var appBar = await installApp.appBar(IDENTIFIER, adminMenu, "Welcome");
+    await ExamplePosts(installApp!.appId).run(member, IDENTIFIER);
+    var appBar = await installApp!.appBar(IDENTIFIER, adminMenu, "Welcome");
     await _setupFeed();
     return await _setupPage(appBar);
   }

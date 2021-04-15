@@ -13,30 +13,30 @@ import '../../app_section.dart';
 import '../../app_base.dart';
 
 abstract class BasicPageTemplate extends AppSection {
-  final String pageId;
-  final PrivilegeLevelRequired privilegeLevelRequired;
-  final String packageCondition;
-  final ConditionOverride conditionOverride;
+  final String? pageId;
+  final PrivilegeLevelRequired? privilegeLevelRequired;
+  final String? packageCondition;
+  final ConditionOverride? conditionOverride;
 
-  PresentationImageAlignment presentationImageAlignment;
+  PresentationImageAlignment? presentationImageAlignment;
 
   String pageTitle();
 
-  String componentID();
+  String? componentID();
   String componentName();
   Future<void> setupComponent();
 
-  BasicPageTemplate({this.pageId, this.privilegeLevelRequired, this.packageCondition, this.conditionOverride, this.presentationImageAlignment, InstallApp installApp,
-      HomeMenuModel homeMenu,
-      BackgroundModel pageBG,
-      DrawerModel drawer,
-      DrawerModel endDrawer,
-      MenuDefModel adminMenu})
+  BasicPageTemplate({this.pageId, this.privilegeLevelRequired, this.packageCondition, this.conditionOverride, this.presentationImageAlignment, InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
+      MenuDefModel? adminMenu})
       : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp.appId)
+        .pageRepository(installApp!.appId)!
         .add(_page(appBar));
   }
 
@@ -49,7 +49,7 @@ abstract class BasicPageTemplate extends AppSection {
 
     return PageModel(
         documentID: pageId,
-        appId: installApp.appId,
+        appId: installApp!.appId,
         title: pageTitle(),
         drawer: drawer,
         endDrawer: endDrawer,
@@ -67,7 +67,7 @@ abstract class BasicPageTemplate extends AppSection {
 
   Future<PageModel>  run() async {
     await setupComponent();
-    var appBar = await installApp.appBar(pageId, adminMenu, "Member Area");
+    var appBar = await installApp!.appBar(pageId, adminMenu, "Member Area");
     return await _setupPage(appBar);
   }
 }

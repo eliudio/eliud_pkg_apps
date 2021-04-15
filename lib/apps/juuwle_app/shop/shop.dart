@@ -29,24 +29,24 @@ import 'product_page.dart';
 
 class Shop extends AppSection {
   Shop(
-      {InstallApp installApp,
-      HomeMenuModel homeMenu,
-      BackgroundModel pageBG,
-      DrawerModel drawer,
-      DrawerModel endDrawer,
-      MenuDefModel adminMenu})
+      {InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
+      MenuDefModel? adminMenu})
       : super(installApp, homeMenu, pageBG, drawer, endDrawer,
             adminMenu);
 
   static String identifier = 'juuwleshop';
 
-  Future<PageModel> _setupPage(AppBarModel appBar, String presentationDocumentId) async {
+  Future<PageModel> _setupPage(AppBarModel appBar, String? presentationDocumentId) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(JuuwleApp.JUUWLE_APP_ID)
+        .pageRepository(JuuwleApp.JUUWLE_APP_ID)!
         .add(_page(appBar, presentationDocumentId));
   }
 
-  PageModel _page(AppBarModel appBar, String presentationDocumentId) {
+  PageModel _page(AppBarModel appBar, String? presentationDocumentId) {
     var components = <BodyComponentModel>[];
     components.add(BodyComponentModel(
         documentID: '1',
@@ -77,9 +77,9 @@ class Shop extends AppSection {
         bodyComponents: components);
   }
 
-  Future<void> _setupFader() async {
+  Future<FaderModel> _setupFader() async {
     return await AbstractRepositorySingleton.singleton
-        .faderRepository(JuuwleApp.JUUWLE_APP_ID)
+        .faderRepository(JuuwleApp.JUUWLE_APP_ID)!
         .add(_fader());
   }
 
@@ -89,15 +89,15 @@ class Shop extends AppSection {
     items.add(ListedItemModel(
         documentID: 'juuwle',
         description: 'Juuwle',
-        posSize: installApp.halfScreen(),
-        image: installApp.theLogo));
+        posSize: installApp!.halfScreen(),
+        image: installApp!.theLogo));
     var model = FaderModel(
       documentID: faderIdentifier,
       name: 'Juuwle Fader',
       animationMilliseconds: 1000,
       imageSeconds: 5,
       items: items,
-      appId: installApp.appId,
+      appId: installApp!.appId,
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
@@ -106,7 +106,7 @@ class Shop extends AppSection {
   }
 
   Future<ShopModel> _setupShop() async {
-    return await shoprepo.AbstractRepositorySingleton.singleton.shopRepository(JuuwleApp.JUUWLE_APP_ID).add(_shop());
+    return await shoprepo.AbstractRepositorySingleton.singleton.shopRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_shop());
   }
 
   ShopModel _shop() {
@@ -115,7 +115,7 @@ class Shop extends AppSection {
         description: 'Main shop',
         shortDescription: 'Main shop',
         currency: 'eur',
-        appId: installApp.appId);
+        appId: installApp!.appId);
     return document;
   }
 
@@ -124,12 +124,12 @@ class Shop extends AppSection {
   ShopFrontModel _shopFront1() {
     return ShopFrontModel(
       documentID: shopFrontIdentifier1,
-      appId: installApp.appId,
+      appId: installApp!.appId,
       title: 'Featured',
       description: 'These are my featured products',
       shop: _shop(),
       addToCartColor: EliudColors.red,
-      itemCardBackground: cardBG(installApp.appId),
+      itemCardBackground: cardBG(installApp!.appId),
       buyAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier),
       view: ShopFrontView.Slider,
       openProductAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: ProductPage.identifier),
@@ -148,12 +148,12 @@ class Shop extends AppSection {
   ShopFrontModel _shopFront2() {
     return ShopFrontModel(
       documentID: shopFrontIdentifier2,
-      appId: installApp.appId,
+      appId: installApp!.appId,
       title: 'My products',
       description: 'These are my lovely products',
       shop: _shop(),
       addToCartColor: EliudColors.red,
-      itemCardBackground: cardBG(installApp.appId),
+      itemCardBackground: cardBG(installApp!.appId),
       buyAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier),
       view: ShopFrontView.Grid,
       openProductAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: ProductPage.identifier),
@@ -168,11 +168,11 @@ class Shop extends AppSection {
   }
 
   Future<void> _setupShopFronts() async {
-    await shoprepo.AbstractRepositorySingleton.singleton.shopFrontRepository(JuuwleApp.JUUWLE_APP_ID).add(_shopFront1());
-    await shoprepo.AbstractRepositorySingleton.singleton.shopFrontRepository(JuuwleApp.JUUWLE_APP_ID).add(_shopFront2());
+    await shoprepo.AbstractRepositorySingleton.singleton.shopFrontRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_shopFront1());
+    await shoprepo.AbstractRepositorySingleton.singleton.shopFrontRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_shopFront2());
   }
 
-  static BackgroundModel cardBG(String appId) {
+  static BackgroundModel cardBG(String? appId) {
     var decorationColorModels = <DecorationColorModel>[];
     var decorationColorModel1 = DecorationColorModel(
       documentID: '1',
@@ -199,13 +199,13 @@ class Shop extends AppSection {
   static String itemBackground = 'card_bg';
 
   Future<void> _setupCardBG() async {
-    await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository(JuuwleApp.JUUWLE_APP_ID).add(cardBG(installApp.appId));
+    await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository(JuuwleApp.JUUWLE_APP_ID)!.add(cardBG(installApp!.appId));
   }
 
   PresentationModel _presentation(MemberMediumModel memberMediumModel) {
     return PresentationModel(
         documentID: 'shop',
-        appId: installApp.appId,
+        appId: installApp!.appId,
       bodyComponents: [BodyComponentModel(
           documentID: '1',
           componentName: AbstractShopFrontComponent.componentName,
@@ -223,15 +223,15 @@ class Shop extends AppSection {
   Future<PresentationModel> _setupPresentation(MemberMediumModel memberMediumModel) async {
     var presentationModel = _presentation(memberMediumModel);
     await AbstractRepositorySingleton.singleton
-        .presentationRepository(JuuwleApp.JUUWLE_APP_ID)
+        .presentationRepository(JuuwleApp.JUUWLE_APP_ID)!
         .add(presentationModel);
     return presentationModel;
   }
 
   Future<MemberMediumModel> uploadImage() async {
     return await ImageTools.uploadPublicPhoto(
-        installApp.appId,
-        installApp.member,
+        installApp!.appId!,
+        installApp!.member!,
         'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_presenting.png');
   }
 
@@ -242,7 +242,7 @@ class Shop extends AppSection {
     var presentationDocumentId = (await _setupPresentation(image)).documentID;
     await _setupCardBG();
     await _setupShopFronts();
-    var appBar = await installApp.appBar(identifier, adminMenu, 'Shop');
+    var appBar = await installApp!.appBar(identifier, adminMenu, 'Shop');
     var shop = await _setupShop();
     await Products(installApp, shop).run();
     await _setupFader();

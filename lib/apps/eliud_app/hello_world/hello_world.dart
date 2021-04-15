@@ -23,7 +23,7 @@ import 'menus.dart';
 
 
 class HelloWorld extends AppSection {
-  HelloWorld({InstallApp installApp, HomeMenuModel homeMenu, BackgroundModel pageBG, DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  HelloWorld({InstallApp? installApp, HomeMenuModel? homeMenu, BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   BookletModel _helloWorldDocument() {
     List<SectionModel> entries = [];
@@ -191,7 +191,7 @@ class HelloWorld extends AppSection {
   }
 
   Future<void> _storeHelloWorldDocument() {
-    return bookletRepository(appId: EliudApp.ELIUD_APP_ID).add(_helloWorldDocument());
+    return bookletRepository(appId: EliudApp.ELIUD_APP_ID)!.add(_helloWorldDocument());
   }
 
   static String IDENTIFIER = "hello_world";
@@ -218,7 +218,7 @@ class HelloWorld extends AppSection {
   }
 
   Future<void> _storeHelloWorldPage(AppBarModel appBar) {
-    return pageRepository(appId: EliudApp.ELIUD_APP_ID).add(helloWorldPage(appBar));
+    return pageRepository(appId: EliudApp.ELIUD_APP_ID)!.add(helloWorldPage(appBar));
   }
 
   Future<void> store(AppBarModel appBar) async {
@@ -228,8 +228,8 @@ class HelloWorld extends AppSection {
 
   Future<void> run() async {
     var helloWorldMenuValue = await HelloWorldMenu().run(adminMenu);
-    var appBar = await installApp.appBar(IDENTIFIER, helloWorldMenuValue, "Hello World");
+    var appBar = await installApp!.appBar(IDENTIFIER, helloWorldMenuValue, "Hello World");
     await store(appBar);
-    await HelloWorldPages(appBar, homeMenu, pageBG, drawer, endDrawer).run(installApp.member);
+    await HelloWorldPages(appBar, homeMenu, pageBG, drawer, endDrawer).run(installApp!.member);
   }
 }
