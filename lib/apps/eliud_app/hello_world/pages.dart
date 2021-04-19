@@ -139,17 +139,18 @@ flutter:
     await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_ANDROID_APP, "Create Android App",
         "Create Firebase Android App", "Follow the below steps to create an Android App.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
-    [ "create-android-app1.jpg", "firebase-home.jpg", "create-android-app2.jpg", "create-android-app4.jpg", "create-android-app3.jpg", "create-android-app5.jpg", "create-android-app6.jpg", "create-android-app7.jpg", ],
-    [ null, null, null, null, null, null, null, null, ],
+    [ null, "create-android-app1.jpg", "firebase-home.jpg", "create-android-app2.jpg", "create-android-app4.jpg", "create-android-app3.jpg", "create-android-app5.jpg", "create-android-app6.jpg", "create-android-app7.jpg", ],
+    [ null, null, null, null, null, null, null, null, null, ],
     [
-      "1. First step into creating an Android app on Firebase is creating an SHA1 Certifcate footprint. Open a command line and run the command and run: 'keytool -list -v -alias androiddebugkey -keystore %USERPROFILE%\\.android\\debug.keystore'. Specify default parameters by pressing enter. Then copy the entry next to SHA1. Find more information at https://developers.google.com/android/guides/client-auth",
-      "2. " + _gotoHomeFirebase + ". Click 'Add app' and select platform 'Android'",
-      "3. Specify the Android package name, optionally an App nickname and paste the SHA1 Certifcate footprint you've retrieved in the first step earlier. Then click Register App",
-      "4. Now download google-services.json to your local disk and press Next",
-      "5. Now goto Android Studio, open your project and copy the downloaded google-services.json file into your project as indicated.",
-      "6. Now follow the guidelines specified, i.e. make sure you've updated the 2 build.gradle files correctly as indicated. Then press Next",
-      "7. Allow this screen to indicate your app is working correctly. Run your app form Android Studio.",
-      "8. The screen should indicate your app is working correctly and connected to firebase as required. Success! If not, go through the different steps of the tutorial ones again and verify if you've followed each step correctly.",
+      "1. First generate a key. Open a command line and enter: 'keytool -genkey -v -keystore %USERPROFILE%\\.android\\debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000'",
+      "2. Next step retrieving the SHA1 Certifcate footprint. Open a command line and run the command and run: 'keytool -list -v -alias androiddebugkey -keystore %USERPROFILE%\\.android\\debug.keystore -storepass android -keypass android'. Specify default parameters by pressing enter. Then copy the entry next to SHA1. Find more information at https://developers.google.com/android/guides/client-auth. Also more info at https://coderwall.com/p/r09hoq/android-generate-release-debug-keystores",
+      "3. " + _gotoHomeFirebase + ". Click 'Add app' and select platform 'Android'",
+      "4. Specify the Android package name, optionally an App nickname and paste the SHA1 Certifcate footprint you've retrieved in the first step earlier. Then click Register App",
+      "5. Now download google-services.json to your local disk and press Next",
+      "6. Now goto Android Studio, open your project and copy the downloaded google-services.json file into your project as indicated.",
+      "7. Now follow the guidelines specified, i.e. make sure you've updated the 2 build.gradle files correctly as indicated. Then press Next",
+      "8. Allow this screen to indicate your app is working correctly. Run your app form Android Studio.",
+      "9. The screen should indicate your app is working correctly and connected to firebase as required. Success! If not, go through the different steps of the tutorial ones again and verify if you've followed each step correctly.",
     ]));
     return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_ANDROID_APP, "Create Android App", drawer, appBar, homeMenu, pageBackground);
   }
