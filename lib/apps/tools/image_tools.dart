@@ -12,7 +12,7 @@ import 'package:eliud_core/tools/storage/firestore_helper.dart';
 import 'package:eliud_pkg_fundamentals/model/tutorial_component.dart';
 import 'package:eliud_pkg_fundamentals/model/tutorial_entry_model.dart';
 import 'package:eliud_pkg_fundamentals/model/tutorial_model.dart';
-import 'package:eliud_pkg_post/model/post_medium_model.dart';
+import 'package:eliud_pkg_feed/model/post_medium_model.dart';
 
 class ImageTools {
   static Future<MemberMediumModel> uploadPublicPhoto(String appId, MemberModel member, String assetPath) async {

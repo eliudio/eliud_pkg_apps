@@ -2,9 +2,9 @@ import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/member_model.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/incidamus_app.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-import 'package:eliud_pkg_post/model/abstract_repository_singleton.dart' as postRepo;
+import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart' as postRepo;
 import 'package:eliud_pkg_membership/model/abstract_repository_singleton.dart' as memberRepo;
-import 'package:eliud_pkg_post/model/post_model.dart';
+import 'package:eliud_pkg_feed/model/post_model.dart';
 
 import '../incidamus_app.dart';
 import 'dart:async';

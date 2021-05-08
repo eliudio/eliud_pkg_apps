@@ -1,7 +1,7 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
-import 'package:eliud_pkg_post/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_post/model/album_component.dart';
-import 'package:eliud_pkg_post/model/album_model.dart';
+import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_feed/model/album_component.dart';
+import 'package:eliud_pkg_feed/model/album_model.dart';
 import 'package:eliud_pkg_feed/model/feed_component.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
@@ -11,7 +11,7 @@ import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
-import 'package:eliud_pkg_post/model/post_model.dart';
+import 'package:eliud_pkg_feed/model/post_model.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
