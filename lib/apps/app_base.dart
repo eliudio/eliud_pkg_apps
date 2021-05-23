@@ -581,9 +581,9 @@ abstract class InstallApp {
   static String disclaimerID = 'disclaimer';
 
   Future<void> setupAppPolicy() async {
-    var privacyPolicy = await ImageTools.uploadPublicPdf(appId!, member!, privacyPolicyAssetLocation(), documentID: privacyID);
-    var termsOfServicePolicy = await ImageTools.uploadPublicPdf(appId!, member!, termsOfServiceAssetLocation(), documentID: termsOfServiceID);
-    var disclaimerPolicy = await ImageTools.uploadPublicPdf(appId!, member!, disclaimerAssetLocation(), documentID: disclaimerID);
+    var privacyPolicy = await ImageTools.uploadPublicPdf(appId!, member!, privacyPolicyAssetLocation(), privacyID);
+    var termsOfServicePolicy = await ImageTools.uploadPublicPdf(appId!, member!, termsOfServiceAssetLocation(), termsOfServiceID);
+    var disclaimerPolicy = await ImageTools.uploadPublicPdf(appId!, member!, disclaimerAssetLocation(), disclaimerID);
 
     appPolicyModel = AppPolicyModel(
         documentID: 'policies',

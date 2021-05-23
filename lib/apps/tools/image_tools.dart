@@ -23,8 +23,8 @@ class ImageTools {
     return await MemberMediumHelper.createThumbnailUploadVideoAsset(appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!]);
   }
 
-  static Future<MemberMediumModel> uploadPublicPdf(String appId, MemberModel member, String assetPath, {String? documentID}) async {
-    return await MemberMediumHelper.createThumbnailUploadPdfAsset(appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!], documentID: documentID);
+  static Future<MemberMediumModel> uploadPublicPdf(String appId, MemberModel member, String assetPath, String documentID) async {
+    return await MemberMediumHelper.createThumbnailUploadPdfAsset(appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!], documentID);
   }
 
   static Future<PostMediumModel> createPostMediumModelPhoto(String appId, MemberModel member, String assetPath) async {
