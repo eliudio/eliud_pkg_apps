@@ -16,6 +16,8 @@ import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_pkg_feed/model/header_component.dart';
+import 'package:eliud_pkg_feed/model/profile_component.dart';
+import 'package:eliud_pkg_feed/model/profile_model.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
@@ -23,10 +25,10 @@ import 'example_posts.dart';
 import 'feed_menu.dart';
 import 'header_component.dart';
 
-class Feed extends AppSection {
-  Feed({InstallApp? installApp, HomeMenuModel? homeMenu, BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+class Profile extends AppSection {
+  Profile({InstallApp? installApp, HomeMenuModel? homeMenu, BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
-  static String IDENTIFIER = "feed";
+  static String IDENTIFIER = "profile";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp!.appId)!.add(_page(appBar));
@@ -35,16 +37,16 @@ class Feed extends AppSection {
   PageModel _page(AppBarModel appBar) {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
-        documentID: "1", componentName: AbstractHeaderComponent.componentName, componentId: HeaderComponent.HEADER_ID));
+        documentID: "1", componentName: AbstractHeaderComponent.componentName, componentId:HeaderComponent.HEADER_ID));
     components.add(BodyComponentModel(
         documentID: "2", componentName: AbstractFeedMenuComponent.componentName, componentId: FeedMenu.FEED_MENU_ID));
     components.add(BodyComponentModel(
-        documentID: "3", componentName: AbstractFeedComponent.componentName, componentId: IDENTIFIER));
+        documentID: "3", componentName: AbstractProfileComponent.componentName, componentId: IDENTIFIER));
 
     return PageModel(
         documentID: IDENTIFIER,
         appId: MinkeyApp.MINKEY_APP_ID,
-        title: "Feed",
+        title: "Profile",
         drawer: drawer,
         endDrawer: endDrawer,
         background: pageBG,
@@ -57,28 +59,21 @@ class Feed extends AppSection {
         bodyComponents: components);
   }
 
-  static FeedModel feedModel() {
-    return FeedModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, description: "My Minkey Feed",
+  static ProfileModel profileModel() {
+    return ProfileModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, description: "My Profile",
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );
   }
 
-  Future<FeedModel> _setupFeed() async {
-    return await AbstractRepositorySingleton.singleton.feedRepository(installApp!.appId)!.add(feedModel());
+  Future<ProfileModel> _setupProfile() async {
+    return await AbstractRepositorySingleton.singleton.profileRepository(installApp!.appId)!.add(profileModel());
   }
 
   Future<PageModel> run(MemberModel member) async {
-    // common for all pages:
-    await ExamplePosts(installApp!.appId).run(member, IDENTIFIER);
-    await FeedMenu(installApp!.appId!).run();
-    await ProfileComponent(installApp!.appId!).run();
-    await HeaderComponent(installApp!.appId!).run();
-
-    // Specific to feed page
-    var appBar = await installApp!.appBar(IDENTIFIER, adminMenu, "Feed");
-    await _setupFeed();
+    var appBar = await installApp!.appBar(IDENTIFIER, adminMenu, "Profile");
+    await _setupProfile();
     return await _setupPage(appBar);
   }
 }

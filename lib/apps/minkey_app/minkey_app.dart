@@ -38,6 +38,7 @@ import 'album/album.dart';
 import 'assignments/minkey_assignments.dart';
 import 'blocked/minkey_blocked.dart';
 import 'feed/feed.dart';
+import 'feed/profile.dart';
 import 'follow/follow_dashboards.dart';
 import 'member/minkey_member_dashboard.dart';
 import 'membership/minkey_membership_dashboard.dart';
@@ -206,6 +207,14 @@ class MinkeyApp extends InstallApp {
           endDrawer: endDrawer,
           adminMenu: adminMenu)
           .run(member);
+      await Profile(
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run(member);
       await WorkflowSetup(installApp: this).run();
       await About(
           installApp: this,
@@ -281,35 +290,11 @@ class MinkeyApp extends InstallApp {
   static String FOLLOW_MENU_ID = "followMenu";
   MenuDefModel followMenu() {
     var menuItems = <MenuItemModel>[
-      MenuItemModel(
-          documentID: '1',
-          text: 'Follow requests',
-          description: 'Follow requests',
-          icon: IconModel(
-              codePoint: Icons.favorite_border.codePoint,
-              fontFamily: Icons.notifications.fontFamily),
-          action: OpenDialog(
-            MinkeyApp.MINKEY_APP_ID,
-            dialogID: FollowRequestDashboard.FOLLOW_REQUEST_IDENTIFIER,
-          )),
+      menuItemFollowRequests(appId, "1", FollowRequestDashboard.FOLLOW_REQUEST_IDENTIFIER),
       menuItemFollowers(appId, "2", FollowDashboards.FOLLOWERS_IDENTIFIER, PrivilegeLevelRequired.NoPrivilegeRequired),
       menuItemFollowing(appId, "3", FollowDashboards.FOLLOWING_IDENTIFIER, PrivilegeLevelRequired.NoPrivilegeRequired),
       menuItemFiendFriends(appId, "4", InviteDashboard.INVITE_IDENTIFIER, PrivilegeLevelRequired.NoPrivilegeRequired),
-      MenuItemModel(
-          documentID: '5',
-          text: 'Members of the app',
-          description: 'Members of the app',
-          icon: IconModel(
-              codePoint: Icons.people.codePoint,
-              fontFamily: Icons.notifications.fontFamily),
-          action: OpenDialog(
-            MinkeyApp.MINKEY_APP_ID,
-            conditions: ConditionsModel(
-                privilegeLevelRequired:
-                    PrivilegeLevelRequired.NoPrivilegeRequired,
-                packageCondition: CorePackage.MUST_BE_LOGGED_ON),
-            dialogID: MembershipDashboard.IDENTIFIER,
-          )),
+      menuItemAppMembers(appId, "5", MembershipDashboard.IDENTIFIER, PrivilegeLevelRequired.NoPrivilegeRequired),
     ];
     MenuDefModel menu = MenuDefModel(
         documentID: "followMenu",

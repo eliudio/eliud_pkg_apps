@@ -26,7 +26,7 @@ class ExamplePost {
       appId: MinkeyApp.MINKEY_APP_ID,
       archived: PostArchiveStatus.Active,
       description: "These are my photos",
-      readAccess: ['PUBLIC'],
+      readAccess: ['PUBLIC', member.documentID!],
       memberMedia: [
         await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
         await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
@@ -60,7 +60,7 @@ class ExamplePost {
           appId: MinkeyApp.MINKEY_APP_ID,
           archived: PostArchiveStatus.Active,
           description: "These are my videos",
-          readAccess: ['PUBLIC'],
+          readAccess: ['PUBLIC', member.documentID!],
           memberMedia: [
             await ImageTools.createPostMediumModelVideo(appId!, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
             await ImageTools.createPostMediumModelVideo(appId!, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),

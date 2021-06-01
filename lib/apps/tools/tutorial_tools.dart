@@ -18,11 +18,11 @@ class TutorialTools {
   Map<String, ImageModel> _images = HashMap();
 
   Future<MemberMediumModel> uploadPublicPhoto(String appId, MemberModel member, String assetName) async {
-    return await UploadFile.createThumbnailUploadPhotoAsset(appId, assetName, member.documentID, ['PUBLIC']);
+    return await UploadFile.createThumbnailUploadPhotoAsset(appId, assetName, member.documentID, ['PUBLIC', member.documentID!]);
   }
 
   Future<MemberMediumModel> uploadPublicVideo(String appId, MemberModel member, String assetName) async {
-    return await UploadFile.createThumbnailUploadVideoAsset(appId, assetName, member.documentID, ['PUBLIC']);
+    return await UploadFile.createThumbnailUploadVideoAsset(appId, assetName, member.documentID, ['PUBLIC', member.documentID!]);
   }
 
   ImageModel findImageModel(String documentID) {

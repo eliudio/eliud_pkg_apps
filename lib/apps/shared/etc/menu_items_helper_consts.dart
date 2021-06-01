@@ -106,6 +106,19 @@ menuItemShoppingCart(appID, documentID, pageID, text) => MenuItemModel(
         fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID, pageID: pageID));
 
+menuItemFollowRequests(appID, documentID, dialogID) =>
+    MenuItemModel(
+    documentID: documentID,
+    text: 'Follow requests',
+    description: 'Follow requests',
+    icon: IconModel(
+        codePoint: Icons.favorite_border.codePoint,
+        fontFamily: Icons.notifications.fontFamily),
+    action: OpenDialog(
+            appID,
+            dialogID: dialogID,
+    ));
+
 menuItemFollowers(appID, documentID, dialogID, privilegeLevelRequired) => MenuItemModel(
     documentID: documentID,
     text: 'Followers',
@@ -131,6 +144,21 @@ menuItemFollowing(appID, documentID, dialogID, privilegeLevelRequired) => MenuIt
         conditions: ConditionsModel(
             privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
+
+menuItemAppMembers(appID, documentID, dialogID, privilegeLevelRequired) => MenuItemModel(
+    documentID: '5',
+    text: 'Members of the app',
+    description: 'Members of the app',
+    icon: IconModel(
+        codePoint: Icons.people.codePoint,
+        fontFamily: Icons.notifications.fontFamily),
+    action: OpenDialog(
+            appID,
+            conditions: ConditionsModel(
+                privilegeLevelRequired: privilegeLevelRequired,
+                packageCondition: CorePackage.MUST_BE_LOGGED_ON),
+            dialogID: dialogID,
+    ));
 
 menuItemFiendFriends(appID, documentID, dialogID, privilegeLevelRequired) => MenuItemModel(
     documentID: documentID,

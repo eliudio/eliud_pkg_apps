@@ -35,7 +35,7 @@ class ExamplePosts{
             pageParameters: {'productId': Products.productId2},
             archived: PostArchiveStatus.Active,
             description: 'Hi guys, this is another post, this time about another product in my shop',
-            readAccess: ['PUBLIC']));
+            readAccess: ['PUBLIC', member.documentID!]));
       } catch (e) {
         print(e);
       }
@@ -49,7 +49,7 @@ class ExamplePosts{
       appId: MinkeyApp.MINKEY_APP_ID,
       archived: PostArchiveStatus.Active,
       description: "Hi guys, this is my first post these are photos",
-      readAccess: ['PUBLIC'],
+      readAccess: ['PUBLIC', member.documentID!],
       memberMedia: [
         await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
         await ImageTools.createPostMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
@@ -81,7 +81,7 @@ class ExamplePosts{
       appId: MinkeyApp.MINKEY_APP_ID,
       archived: PostArchiveStatus.Active,
       description: "Hi guys, this is my first post these are videos",
-      readAccess: ['PUBLIC'],
+      readAccess: ['PUBLIC', member.documentID!],
       memberMedia: [
         await ImageTools.createPostMediumModelVideo(appId!, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
         await ImageTools.createPostMediumModelVideo(appId!, member, 'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
@@ -104,7 +104,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId2},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 3).toString(),
@@ -115,7 +115,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId3},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 4).toString(),
@@ -126,7 +126,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId4},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 5).toString(),
@@ -137,7 +137,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId3},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 6).toString(),
@@ -148,7 +148,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId5},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 7).toString(),
@@ -159,7 +159,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId6},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 8).toString(),
@@ -170,7 +170,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId7},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 9).toString(),
@@ -181,7 +181,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId8},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 10).toString(),
@@ -192,7 +192,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId9},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 11).toString(),
@@ -203,7 +203,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId10},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 12).toString(),
@@ -214,7 +214,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId11},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 13).toString(),
@@ -225,7 +225,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId12},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 14).toString(),
@@ -236,7 +236,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId13},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 15).toString(),
@@ -247,7 +247,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId14},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 16).toString(),
@@ -258,7 +258,7 @@ class ExamplePosts{
           archived: PostArchiveStatus.Active,
           pageParameters: {'productId': Products.productId15},
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 17).toString(),
@@ -269,7 +269,7 @@ class ExamplePosts{
           pageParameters: {'productId': Products.productId16},
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about another product in my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 18).toString(),
@@ -279,7 +279,7 @@ class ExamplePosts{
           postPageId: Shop.identifier,
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about my shop',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 19).toString(),
@@ -289,7 +289,7 @@ class ExamplePosts{
           postPageId: AboutBase.identifier,
           archived: PostArchiveStatus.Active,
           description: 'Hi guys, this is another post, this time about the about of the Minkey app',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 20).toString(),
@@ -299,7 +299,7 @@ class ExamplePosts{
           postAppId: JuuwleApp.JUUWLE_APP_ID,
           postPageId: AboutBase.identifier,
           description: 'Hi guys, this is another post, this time about the about of the Juuwle app',
-          readAccess: ['PUBLIC']));
+          readAccess: ['PUBLIC', member.documentID!]));
       await AbstractRepositorySingleton.singleton.postRepository(
           MinkeyApp.MINKEY_APP_ID).add(PostModel(
           documentID: (i + 21).toString(),
@@ -309,7 +309,7 @@ class ExamplePosts{
           postAppId: EliudApp.ELIUD_APP_ID,
           postPageId: AboutBase.identifier,
           description: 'Hi guys, this is another post, this time about the about of the Eliud app',
-          readAccess: ['PUBLIC']));*/
+          readAccess: ['PUBLIC', member.documentID!]));*/
 //    }
   }
 }
