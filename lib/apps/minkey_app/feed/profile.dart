@@ -37,9 +37,9 @@ class Profile extends AppSection {
   PageModel _page(AppBarModel appBar) {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
-        documentID: "1", componentName: AbstractHeaderComponent.componentName, componentId:HeaderComponent.HEADER_ID));
+        documentID: "1", componentName: AbstractFeedMenuComponent.componentName, componentId: FeedMenu.FEED_MENU_ID));
     components.add(BodyComponentModel(
-        documentID: "2", componentName: AbstractFeedMenuComponent.componentName, componentId: FeedMenu.FEED_MENU_ID));
+        documentID: "2", componentName: AbstractHeaderComponent.componentName, componentId:HeaderComponent.HEADER_ID));
     components.add(BodyComponentModel(
         documentID: "3", componentName: AbstractProfileComponent.componentName, componentId: IDENTIFIER));
 
