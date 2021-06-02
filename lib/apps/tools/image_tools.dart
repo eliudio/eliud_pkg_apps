@@ -27,8 +27,13 @@ class ImageTools {
     return await MemberMediumHelper.createThumbnailUploadPdfAsset(appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!], documentID);
   }
 
-  static Future<PostMediumModel> createPostMediumModelPhoto(String appId, MemberModel member, String assetPath) async {
+  static Future<MemberMediumModel> createMemberMediumModelPhoto(String appId, MemberModel member, String assetPath) async {
     var photo = await MemberMediumHelper.createThumbnailUploadPhotoAsset(appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!]);
+    return photo;
+  }
+
+  static Future<PostMediumModel> createPostMediumModelPhoto(String appId, MemberModel member, String assetPath) async {
+    var photo = await createMemberMediumModelPhoto(appId, member, assetPath);
     return PostMediumModel(
       documentID: newRandomKey(),
       memberMedium: photo,

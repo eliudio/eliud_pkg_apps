@@ -16,10 +16,12 @@ import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_pkg_feed/model/header_component.dart';
+import 'package:eliud_pkg_feed/tools/etc/post_followers_helper.dart';
 
 import '../../app_section.dart';
 import '../../app_base.dart';
 import 'example_posts.dart';
+import 'example_profile.dart';
 import 'feed_menu.dart';
 import 'header_component.dart';
 
@@ -71,7 +73,9 @@ class Feed extends AppSection {
 
   Future<PageModel> run(MemberModel member) async {
     // common for all pages:
-    await ExamplePosts(installApp!.appId).run(member, IDENTIFIER);
+    var readAccess = await  PostFollowersMemberHelper.asPublic(installApp!.appId!, member.documentID!);
+    await ExamplePosts(installApp!.appId, readAccess).run(member, IDENTIFIER);
+    await ExampleProfile(installApp!.appId, readAccess).run(member);
     await FeedMenu(installApp!.appId!).run();
     await ProfileComponent(installApp!.appId!).run();
     await HeaderComponent(installApp!.appId!).run();

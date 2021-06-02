@@ -105,6 +105,8 @@ flutter:
     - packages/eliud_pkg_apps/assets/minkey_app/legal/Minkey-Privacy-Policy.pdf
     - packages/eliud_pkg_apps/assets/minkey_app/legal/Minkey-Terms-of-Service.pdf
     - packages/eliud_pkg_apps/assets/minkey_app/legal/Minkey-Disclaimer.pdf
+    - packages/eliud_pkg_apps/assets/minkey_app/profile/exampleprofile.png
+    - packages/eliud_pkg_apps/assets/minkey_app/profile/pexels-pixabay-258109.jpg
     - packages/eliud_pkg_apps/assets/incidamus_app/logos/logo.png
     - packages/eliud_pkg_apps/assets/incidamus_app/logos/logo_head.png
     - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg
