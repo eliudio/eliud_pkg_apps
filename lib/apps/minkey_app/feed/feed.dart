@@ -75,7 +75,7 @@ class Feed extends AppSection {
     // common for all pages:
     var readAccess = await  PostFollowersMemberHelper.asPublic(installApp!.appId!, member.documentID!);
     await ExamplePosts(installApp!.appId, readAccess).run(member, IDENTIFIER);
-    await ExampleProfile(installApp!.appId, readAccess).run(member);
+    await ExampleProfile(installApp!.appId, readAccess).run(member, IDENTIFIER);
     await FeedMenu(installApp!.appId!).run();
     await ProfileComponent(installApp!.appId!).run();
     await HeaderComponent(installApp!.appId!).run();

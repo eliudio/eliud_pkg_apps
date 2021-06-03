@@ -19,7 +19,7 @@ class ExamplePosts{
   Future<void> run(MemberModel member, String feedId) async {
     var memberPublicInfo = await memberPublicInfoRepository()!.get(member.documentID);
     if (memberPublicInfo == null) {
-      print("ERROR: can't retrieve member data");
+      throw Exception("ERROR: can't retrieve member data");
     }
     for (int j = 0; j < 1; j++) {
       int j = 0;

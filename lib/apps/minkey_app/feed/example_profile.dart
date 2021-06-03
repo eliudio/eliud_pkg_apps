@@ -1,14 +1,9 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/member_model.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/shop/product_page.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/shop/products.dart';
+import 'package:eliud_core/tools/random.dart';
 import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart' as postRepo;
 import 'package:eliud_pkg_feed/model/member_profile_model.dart';
-import 'package:eliud_pkg_membership/model/abstract_repository_singleton.dart' as memberRepo;
-import 'package:eliud_pkg_feed/model/post_model.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-import '../minkey_app.dart';
 import 'dart:async';
 
 class ExampleProfile {
@@ -19,21 +14,30 @@ class ExampleProfile {
 
   ExampleProfile(this.appId, this.readAccess);
 
-  Future<void> run(MemberModel member) async {
-    await exampleMemberProfileModel(member);
+  Future<void> run(MemberModel member, String  feedId) async {
+    await exampleMemberProfileModel(member, feedId);
   }
 
-  Future<MemberProfileModel> exampleMemberProfileModel(MemberModel member) async {
+  Future<MemberProfileModel> exampleMemberProfileModel(MemberModel member, String feedId) async {
+    var memberPublicInfo = await memberPublicInfoRepository()!.get(member.documentID);
+    if (memberPublicInfo == null) {
+      throw Exception("ERROR: can't retrieve member data");
+    }
     var profilePhoto = await ImageTools.createMemberMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/minkey_app/profile/exampleprofile.png');
     var profileBackground = await ImageTools.createMemberMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/minkey_app/profile/pexels-pixabay-258109.jpg');
-    return MemberProfileModel(
-      documentID: member.documentID,
+    var value = MemberProfileModel(
+      documentID: newRandomKey(),
       appId: appId,
+      author: memberPublicInfo,
+      feedId: feedId,
       profileBackground: profileBackground,
       profileOverride: profilePhoto,
       readAccess: readAccess,
       profile: kHtml,
     );
+
+     await postRepo.memberProfileRepository(appId: appId)!.add(value);
+    return value;
   }
 }
 

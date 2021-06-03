@@ -214,7 +214,7 @@ class MinkeyApp extends InstallApp {
           drawer: drawer,
           endDrawer: endDrawer,
           adminMenu: adminMenu)
-          .run(member);
+          .run(member, Feed.feedModel());
       await WorkflowSetup(installApp: this).run();
       await About(
           installApp: this,
