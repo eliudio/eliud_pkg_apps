@@ -72,17 +72,17 @@ class Feed extends AppSection {
   }
 
   Future<PageModel> run(MemberModel member) async {
+    var feed = await _setupFeed();
     // common for all pages:
     var readAccess = await  PostFollowersMemberHelper.asPublic(installApp!.appId!, member.documentID!);
     await ExamplePosts(installApp!.appId, readAccess).run(member, IDENTIFIER);
     await ExampleProfile(installApp!.appId, readAccess).run(member, IDENTIFIER);
     await FeedMenu(installApp!.appId!).run();
-    await ProfileComponent(installApp!.appId!).run();
-    await HeaderComponent(installApp!.appId!).run();
+    await ProfileComponent(installApp!.appId!).run(feed);
+    await HeaderComponent(installApp!.appId!).run(feed);
 
     // Specific to feed page
     var appBar = await installApp!.appBar(IDENTIFIER, adminMenu, "Feed");
-    await _setupFeed();
     return await _setupPage(appBar);
   }
 }
