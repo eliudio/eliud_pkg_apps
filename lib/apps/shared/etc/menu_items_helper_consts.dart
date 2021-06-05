@@ -147,7 +147,7 @@ menuItemFollowing(appID, documentID, dialogID, privilegeLevelRequired) => MenuIt
 
 menuItemAppMembers(appID, documentID, dialogID, privilegeLevelRequired) => MenuItemModel(
     documentID: '5',
-    text: 'Members of the app',
+    text: 'App Members',
     description: 'Members of the app',
     icon: IconModel(
         codePoint: Icons.people.codePoint,
