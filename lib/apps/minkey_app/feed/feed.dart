@@ -50,6 +50,7 @@ class Feed extends AppSection {
         drawer: drawer,
         endDrawer: endDrawer,
         background: pageBG,
+        widgetWrapper: 'profile',
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
@@ -61,6 +62,7 @@ class Feed extends AppSection {
 
   static FeedModel feedModel() {
     return FeedModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, description: "My Minkey Feed",
+        thumbImage: ThumbStyle.Banana,
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
