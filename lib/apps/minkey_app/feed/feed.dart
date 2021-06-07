@@ -1,4 +1,5 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/abstract_repository_singleton.dart'
+    as corerepo;
 import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_core/tools/types.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/feed/profile.dart';
@@ -26,22 +27,37 @@ import 'feed_menu.dart';
 import 'header_component.dart';
 
 class Feed extends AppSection {
-  Feed({InstallApp? installApp, HomeMenuModel? homeMenu, BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  Feed(
+      {InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      BackgroundModel? pageBG,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer,
+      MenuDefModel? adminMenu})
+      : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
 
   static String IDENTIFIER = "feed";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp!.appId)!.add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton
+        .pageRepository(installApp!.appId)!
+        .add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
-        documentID: "1", componentName: AbstractFeedMenuComponent.componentName, componentId: FeedMenu.FEED_MENU_ID));
+        documentID: "1",
+        componentName: AbstractFeedMenuComponent.componentName,
+        componentId: FeedMenu.FEED_MENU_ID));
     components.add(BodyComponentModel(
-        documentID: "2", componentName: AbstractHeaderComponent.componentName, componentId: HeaderComponent.HEADER_ID));
+        documentID: "2",
+        componentName: AbstractHeaderComponent.componentName,
+        componentId: HeaderComponent.HEADER_ID));
     components.add(BodyComponentModel(
-        documentID: "3", componentName: AbstractFeedComponent.componentName, componentId: IDENTIFIER));
+        documentID: "3",
+        componentName: AbstractFeedComponent.componentName,
+        componentId: IDENTIFIER));
 
     return PageModel(
         documentID: IDENTIFIER,
@@ -55,28 +71,41 @@ class Feed extends AppSection {
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
         conditions: ConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequired.Level1PrivilegeRequired,
+          privilegeLevelRequired:
+              PrivilegeLevelRequired.Level1PrivilegeRequired,
         ),
         bodyComponents: components);
   }
 
   static FeedModel feedModel() {
-    return FeedModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, description: "My Minkey Feed",
-        thumbImage: ThumbStyle.Banana,
+    return FeedModel(
+      documentID: IDENTIFIER,
+      appId: MinkeyApp.MINKEY_APP_ID,
+      description: "My Minkey Feed",
+      thumbImage: ThumbStyle.Banana,
+      photoPost: true,
+      videoPost: true,
+      messagePost: true,
+      audioPost: false,
+      albumPost: true,
+      articlePost: true,
       conditions: ConditionsSimpleModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );
   }
 
   Future<FeedModel> _setupFeed() async {
-    return await AbstractRepositorySingleton.singleton.feedRepository(installApp!.appId)!.add(feedModel());
+    return await AbstractRepositorySingleton.singleton
+        .feedRepository(installApp!.appId)!
+        .add(feedModel());
   }
 
   Future<PageModel> run(MemberModel member) async {
     var feed = await _setupFeed();
     // common for all pages:
-    var readAccess = await  PostFollowersMemberHelper.asPublic(installApp!.appId!, member.documentID!);
+    var readAccess = await PostFollowersMemberHelper.asPublic(
+        installApp!.appId!, member.documentID!);
     await ExamplePosts(installApp!.appId, readAccess).run(member, IDENTIFIER);
     await ExampleProfile(installApp!.appId, readAccess).run(member, IDENTIFIER);
     await FeedMenu(installApp!.appId!).run();
