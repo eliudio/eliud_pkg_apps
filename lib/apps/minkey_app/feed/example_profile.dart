@@ -26,7 +26,7 @@ class ExampleProfile {
     var profilePhoto = await ImageTools.createMemberMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/minkey_app/profile/exampleprofile.png');
     var profileBackground = await ImageTools.createMemberMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/minkey_app/profile/pexels-pixabay-258109.jpg');
     var value = MemberProfileModel(
-      documentID: newRandomKey(),
+      documentID: memberPublicInfo.documentID! + "-" + feedId,
       appId: appId,
       author: memberPublicInfo,
       feedId: feedId,
