@@ -38,6 +38,7 @@ import 'album/album.dart';
 import 'assignments/minkey_assignments.dart';
 import 'blocked/minkey_blocked.dart';
 import 'feed/feed.dart';
+import 'feed/other_feed_pages.dart';
 import 'feed/profile.dart';
 import 'follow/follow_dashboards.dart';
 import 'member/minkey_member_dashboard.dart';
@@ -198,7 +199,7 @@ class MinkeyApp extends InstallApp {
     if (member == null) {
       throw Exception("Can not find member");
     } else {
-      await createFollowMenu();
+      // await createFollowMenu();
       var homePageLevel1Member = await Feed(
           installApp: this,
           homeMenu: homeMenu(),
@@ -207,6 +208,14 @@ class MinkeyApp extends InstallApp {
           endDrawer: endDrawer,
           adminMenu: adminMenu)
           .run(member);
+      await OtherFeedPages(
+          installApp: this,
+          homeMenu: homeMenu(),
+          pageBG: pageBG(),
+          drawer: drawer,
+          endDrawer: endDrawer,
+          adminMenu: adminMenu)
+          .run();
       await Profile(
           installApp: this,
           homeMenu: homeMenu(),
@@ -287,6 +296,7 @@ class MinkeyApp extends InstallApp {
     }
   }
 
+  /*
   static String FOLLOW_MENU_ID = "followMenu";
   MenuDefModel followMenu() {
     var menuItems = <MenuItemModel>[
@@ -308,7 +318,7 @@ class MinkeyApp extends InstallApp {
     return await AbstractRepositorySingleton.singleton
         .menuDefRepository(appId)!
         .add(followMenu());
-  }
+  }*/
 
   Future<void> run(String ownerID) async {
     return await runBase(
@@ -365,6 +375,7 @@ class MinkeyApp extends InstallApp {
             fontFamily: Icons.notifications.fontFamily),
         action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
             dialogID: AssignmentViewSetup.IDENTIFIER)),
+/*
     MenuItemModel(
         documentID: 'member_area',
         text: 'Members area',
@@ -373,6 +384,7 @@ class MinkeyApp extends InstallApp {
             codePoint: Icons.favorite_border.codePoint,
             fontFamily: Icons.notifications.fontFamily),
         action: PopupMenu(MinkeyApp.MINKEY_APP_ID, menuDef: followMenu())),
+*/
     MenuItemModel(
         documentID: "join",
         text: "JOIN",

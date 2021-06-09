@@ -39,15 +39,18 @@ class FeedMenu {
               codePoint: Icons.person.codePoint,
               fontFamily: Icons.settings.fontFamily),
           action: GotoPage(appId, pageID: Profile.IDENTIFIER)),
-      menuItemFollowRequests(
-          appId, "3", FollowRequestDashboard.FOLLOW_REQUEST_IDENTIFIER),
-      menuItemFollowers(appId, "4", FollowDashboards.FOLLOWERS_IDENTIFIER,
+      menuItemFollowRequestsPage(
+          appId,
+          "3",
+          FollowRequestDashboard.FOLLOW_REQUEST_IDENTIFIER,
           PrivilegeLevelRequired.NoPrivilegeRequired),
-      menuItemFollowing(appId, "5", FollowDashboards.FOLLOWING_IDENTIFIER,
+      menuItemFollowersPage(appId, "4", FollowDashboards.FOLLOWERS_IDENTIFIER,
           PrivilegeLevelRequired.NoPrivilegeRequired),
-      menuItemFiendFriends(appId, "6", InviteDashboard.INVITE_IDENTIFIER,
+      menuItemFollowingPage(appId, "5", FollowDashboards.FOLLOWING_IDENTIFIER,
           PrivilegeLevelRequired.NoPrivilegeRequired),
-      menuItemAppMembers(appId, "7", MembershipDashboard.IDENTIFIER,
+      menuItemFiendFriendsPage(appId, "6", InviteDashboard.INVITE_IDENTIFIER,
+          PrivilegeLevelRequired.NoPrivilegeRequired),
+      menuItemAppMembersPage(appId, "7", MembershipDashboard.IDENTIFIER,
           PrivilegeLevelRequired.NoPrivilegeRequired),
     ];
     MenuDefModel menu = MenuDefModel(

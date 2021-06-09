@@ -3,6 +3,7 @@ import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
+import 'package:eliud_pkg_follow/follow_package.dart';
 import 'package:flutter/material.dart';
 
 menuItem(appID, documentID, pageID, text, IconData iconData) => MenuItemModel(
@@ -108,16 +109,28 @@ menuItemShoppingCart(appID, documentID, pageID, text) => MenuItemModel(
 
 menuItemFollowRequests(appID, documentID, dialogID) =>
     MenuItemModel(
-    documentID: documentID,
-    text: 'Follow requests',
-    description: 'Follow requests',
-    icon: IconModel(
-        codePoint: Icons.favorite_border.codePoint,
-        fontFamily: Icons.notifications.fontFamily),
-    action: OpenDialog(
-            appID,
-            dialogID: dialogID,
-    ));
+        documentID: documentID,
+        text: 'Follow requests',
+        description: 'Follow requests',
+        icon: IconModel(
+            codePoint: Icons.favorite_border.codePoint,
+            fontFamily: Icons.notifications.fontFamily),
+        action: OpenDialog(
+          appID,
+          dialogID: dialogID,
+        ));
+
+menuItemFollowRequestsPage(appID, documentID, pageID, privilegeLevelRequired) =>
+    MenuItemModel(
+        documentID: documentID,
+        text: 'Follow Requests',
+        description: 'Follow Requests',
+        icon: IconModel(
+            codePoint: Icons.person.codePoint,
+            fontFamily: Icons.notifications.fontFamily),
+        action: GotoPage(appID, pageID: pageID, conditions: ConditionsModel(
+            privilegeLevelRequired: privilegeLevelRequired,
+            packageCondition: FollowPackage.CONDITION_MEMBER_HAS_OPEN_REQUESTS)));
 
 menuItemFollowers(appID, documentID, dialogID, privilegeLevelRequired) => MenuItemModel(
     documentID: documentID,
@@ -128,6 +141,19 @@ menuItemFollowers(appID, documentID, dialogID, privilegeLevelRequired) => MenuIt
         fontFamily: Icons.settings.fontFamily),
     action: OpenDialog(appID,
         dialogID: dialogID,
+        conditions: ConditionsModel(
+            privilegeLevelRequired: privilegeLevelRequired,
+            packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
+
+menuItemFollowersPage(appID, documentID, pageID, privilegeLevelRequired) => MenuItemModel(
+    documentID: documentID,
+    text: 'Followers',
+    description: 'Followers',
+    icon: IconModel(
+        codePoint: Icons.favorite_sharp.codePoint,
+        fontFamily: Icons.settings.fontFamily),
+    action: GotoPage(appID,
+        pageID: pageID,
         conditions: ConditionsModel(
             privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
@@ -145,6 +171,19 @@ menuItemFollowing(appID, documentID, dialogID, privilegeLevelRequired) => MenuIt
             privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
 
+menuItemFollowingPage(appID, documentID, pageID, privilegeLevelRequired) => MenuItemModel(
+    documentID: documentID,
+    text: 'Following',
+    description: 'Following',
+    icon: IconModel(
+        codePoint: Icons.favorite_sharp.codePoint,
+        fontFamily: Icons.settings.fontFamily),
+    action: GotoPage(appID,
+        pageID: pageID,
+        conditions: ConditionsModel(
+            privilegeLevelRequired: privilegeLevelRequired,
+            packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
+
 menuItemAppMembers(appID, documentID, dialogID, privilegeLevelRequired) => MenuItemModel(
     documentID: '5',
     text: 'App Members',
@@ -153,11 +192,26 @@ menuItemAppMembers(appID, documentID, dialogID, privilegeLevelRequired) => MenuI
         codePoint: Icons.people.codePoint,
         fontFamily: Icons.notifications.fontFamily),
     action: OpenDialog(
-            appID,
-            conditions: ConditionsModel(
-                privilegeLevelRequired: privilegeLevelRequired,
-                packageCondition: CorePackage.MUST_BE_LOGGED_ON),
-            dialogID: dialogID,
+      appID,
+      conditions: ConditionsModel(
+          privilegeLevelRequired: privilegeLevelRequired,
+          packageCondition: CorePackage.MUST_BE_LOGGED_ON),
+      dialogID: dialogID,
+    ));
+
+menuItemAppMembersPage(appID, documentID, pageID, privilegeLevelRequired) => MenuItemModel(
+    documentID: '5',
+    text: 'App Members',
+    description: 'Members of the app',
+    icon: IconModel(
+        codePoint: Icons.people.codePoint,
+        fontFamily: Icons.notifications.fontFamily),
+    action: GotoPage(
+      appID,
+      conditions: ConditionsModel(
+          privilegeLevelRequired: privilegeLevelRequired,
+          packageCondition: CorePackage.MUST_BE_LOGGED_ON),
+      pageID: pageID,
     ));
 
 menuItemFiendFriends(appID, documentID, dialogID, privilegeLevelRequired) => MenuItemModel(
@@ -169,6 +223,19 @@ menuItemFiendFriends(appID, documentID, dialogID, privilegeLevelRequired) => Men
         fontFamily: Icons.settings.fontFamily),
     action: OpenDialog(appID,
         dialogID: dialogID,
+        conditions: ConditionsModel(
+            privilegeLevelRequired: privilegeLevelRequired,
+            packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
+
+menuItemFiendFriendsPage(appID, documentID, pageID, privilegeLevelRequired) => MenuItemModel(
+    documentID: documentID,
+    text: 'Find friends',
+    description: 'Fiend friends',
+    icon: IconModel(
+        codePoint: Icons.favorite_sharp.codePoint,
+        fontFamily: Icons.settings.fontFamily),
+    action: GotoPage(appID,
+        pageID: pageID,
         conditions: ConditionsModel(
             privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
