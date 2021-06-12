@@ -13,7 +13,6 @@ import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/backgrounds.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/grid_views.dart';
-import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/app_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
@@ -44,14 +43,6 @@ abstract class InstallApp {
   String termsOfServiceAssetLocation();
   String disclaimerAssetLocation();
 
-  // To provide through the constructor
-  final RgbModel? appColor1;
-  final RgbModel? appColor2;
-  final RgbModel? appColor3;
-  final RgbModel? appColor4;
-  final RgbModel? dividerColor;
-  final RgbModel? homeMenuIconColor;
-  final RgbModel? homeMenuPopupBGColor;
   var theLogo;
   var theLogoHead;
 
@@ -60,32 +51,10 @@ abstract class InstallApp {
   AppPolicyModel? appPolicyModel;
 
   // Constructor
-  InstallApp({
-    this.appId,
-    this.appColor1,
-    this.appColor2,
-    this.appColor3,
-    this.appColor4,
-    this.dividerColor,
-    this.homeMenuIconColor,
-    this.homeMenuPopupBGColor,
-    RgbModel? headerColor1To3,
-    RgbModel? headerColor4To5,
-    RgbModel? defaultColor,
-    RgbModel? highlightColor,
-    RgbModel? linkColor,
-  }) {
-    fontTools = FontTools(
-        appId: appId,
-        headerColor1To3: headerColor1To3,
-        headerColor4To5: headerColor4To5,
-        defaultColor: defaultColor,
-        highlightColor: highlightColor,
-        linkColor: linkColor);
+  InstallApp({this.appId}) {
   }
 
   // Implementation
-  late FontTools fontTools;
   Future<void> run(String ownerID);
 
   // Start the installation by claiming ownership of the app.
@@ -316,28 +285,6 @@ abstract class InstallApp {
     return backgroundModel;
   }
 
-  BackgroundModel pageBG() {
-    var decorationColorModels = <DecorationColorModel>[];
-    var decorationColorModel1 = DecorationColorModel(
-      documentID: '1',
-      color: appColor4,
-    );
-    decorationColorModels.add(decorationColorModel1);
-    var decorationColorModel2 = DecorationColorModel(
-      documentID: '2',
-      color: appColor3,
-    );
-
-    decorationColorModels.add(decorationColorModel2);
-    var backgroundModel = BackgroundModel(
-      documentID: 'page_bg',
-      appId: appId,
-      beginGradientPosition: StartGradientPosition.CenterLeft,
-      endGradientPosition: EndGradientPosition.CenterRight,
-      decorationColors: decorationColorModels,
-    );
-    return backgroundModel;
-  }
 
   ShadowModel shadowModel() {
     var shadowModel = ShadowModel(
@@ -356,17 +303,6 @@ abstract class InstallApp {
     return await corerepo.AbstractRepositorySingleton.singleton
         .shadowRepository(appId)!
         .add(shadowModel());
-  }
-
-  BackgroundModel appBarBG() {
-    return Backgrounds.gradient(
-      appId: appId,
-      documentId: 'appbar_bg',
-      fromColor: appColor1,
-      toColor: appColor2,
-      startPosition: StartGradientPosition.TopLeft,
-      endPosition: EndGradientPosition.BottomRight,
-    );
   }
 
   DrawerModel _profileDrawer() {
