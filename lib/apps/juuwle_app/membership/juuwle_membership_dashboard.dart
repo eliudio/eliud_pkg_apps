@@ -1,5 +1,6 @@
-import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
 import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
+
 import '../../app_base.dart';
 
 class JuuwleMembershipDashboard extends MembershipDashboard {

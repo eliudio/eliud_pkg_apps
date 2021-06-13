@@ -1,13 +1,13 @@
 import 'package:eliud_core/model/conditions_simple_model.dart';
-import 'package:eliud_pkg_apps/apps/shared/decoratedcontent/photoandsomething.dart';
-import 'package:eliud_core/model/background_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_pkg_apps/apps/shared/decoratedcontent/photoandsomething.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals/model/decorated_content_model.dart';
 import 'package:eliud_pkg_fundamentals/model/simple_text_component.dart';
 import 'package:eliud_pkg_fundamentals/model/simple_text_model.dart';
+
 import '../../app_base.dart';
 
 abstract class OnlyPhotoAndText extends PhotoAndSomthing {
@@ -15,14 +15,13 @@ abstract class OnlyPhotoAndText extends PhotoAndSomthing {
       String identifier,
       InstallApp? installApp,
       HomeMenuModel? homeMenu,
-      BackgroundModel? pageBG,
       DrawerModel? drawer,
       DrawerModel? endDrawer,
       MenuDefModel? adminMenu,
       double percentageDecorationVisible,
       PrivilegeLevelRequiredSimple privilegeLevelRequiredSimple,
       {bool? addLogo,})
-      : super(identifier, installApp, homeMenu, pageBG, drawer, endDrawer,
+      : super(identifier, installApp, homeMenu, drawer, endDrawer,
             adminMenu, percentageDecorationVisible,
             addLogo: addLogo,
             privilegeLevelRequiredSimple: privilegeLevelRequiredSimple);

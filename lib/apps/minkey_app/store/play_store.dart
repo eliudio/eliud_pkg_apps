@@ -1,23 +1,19 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_core/model/background_model.dart';
+import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/conditions_simple_model.dart';
-import 'package:eliud_core/model/member_medium_model.dart';
-import 'package:eliud_core/tools/common_tools.dart';
-import 'package:eliud_core/tools/types.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/model/decoration_color_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/rgb_model.dart';
 import 'package:eliud_core/model/shadow_model.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
-import 'package:eliud_core/model/body_component_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/page_model.dart';
-import 'package:eliud_core/model/app_bar_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals/model/divider_component.dart';
 import 'package:eliud_pkg_fundamentals/model/fader_component.dart';
 import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
@@ -25,11 +21,11 @@ import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
 import 'package:eliud_pkg_fundamentals/model/play_store_component.dart';
 import 'package:eliud_pkg_fundamentals/model/play_store_model.dart';
 
-import '../../app_section.dart';
 import '../../app_base.dart';
+import '../../app_section.dart';
 
 class PlayStore extends AppSection {
-  PlayStore({InstallApp? installApp, HomeMenuModel? homeMenu, BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  PlayStore({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu,  drawer, endDrawer, adminMenu);
 
   static String IDENTIFIER = "playstore";
 
@@ -53,7 +49,6 @@ class PlayStore extends AppSection {
         title: "Apps",
         drawer: drawer,
         endDrawer: endDrawer,
-        background: pageBG,
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
@@ -122,7 +117,6 @@ class PlayStore extends AppSection {
     BackgroundModel backgroundModel =
     BackgroundModel(
       documentID: "playstore_bg",
-      appId: MinkeyApp.MINKEY_APP_ID,
       beginGradientPosition: StartGradientPosition.TopLeft,
       endGradientPosition: EndGradientPosition.BottomRight,
       decorationColors: decorationColorModels,
@@ -133,7 +127,7 @@ class PlayStore extends AppSection {
   }
 
   Future<BackgroundModel> _setupPlayStoreBG() async {
-    return await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository(installApp!.appId)!.add(playStoreBG());
+    return await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository()!.add(playStoreBG());
   }
 
   ShadowModel _shadowModel() {
@@ -152,7 +146,7 @@ class PlayStore extends AppSection {
   }
 
   Future<ShadowModel> _setupShadows() async {
-    return await corerepo.AbstractRepositorySingleton.singleton.shadowRepository(installApp!.appId)!.add(_shadowModel());
+    return await corerepo.AbstractRepositorySingleton.singleton.shadowRepository()!.add(_shadowModel());
   }
 
   // ************************ Tutorials *****************

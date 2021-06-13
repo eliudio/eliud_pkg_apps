@@ -1,37 +1,38 @@
 import 'package:eliud_core/core_package.dart';
+import 'package:eliud_core/default_style/eliud_style.dart';
+import 'package:eliud_core/default_style/instances/eliud_incidamus_style.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
+import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/app_home_page_references_model.dart';
+import 'package:eliud_core/model/app_model.dart';
 import 'package:eliud_core/model/conditions_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/member_medium_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/menu_item_model.dart';
+import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
+import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/order_overview.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/process/cart.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/process/pay.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/process/payconfirmation.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/product_page.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/shop.dart';
+import 'package:eliud_pkg_apps/apps/incidamus_app/welcome/welcome.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/workflow/workflow_setup.dart';
+import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
+import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
+import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/follow/follow_dashboards.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
 import 'package:eliud_pkg_feed/tools/action/post_action_model.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
-import 'package:eliud_core/tools/action/action_model.dart';
-import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
-import 'package:eliud_pkg_apps/apps/incidamus_app/welcome/welcome.dart';
-import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
-import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
-import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
-import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
-import 'package:eliud_core/model/app_bar_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/menu_item_model.dart';
-import 'package:eliud_core/model/app_model.dart';
 import 'package:flutter/material.dart';
 
 import '../app_base.dart';
@@ -54,18 +55,7 @@ class IncidamusApp extends InstallApp {
   IncidamusApp()
       : super(
             appId: INCIDAMUS_APP_ID,
-            appColor1: EliudColors.darkRed,
-            appColor2: EliudColors.black,
-            appColor3: EliudColors.darkRed2,
-            appColor4: EliudColors.black,
-            dividerColor: EliudColors.darkRed2,
-            homeMenuIconColor: EliudColors.orange1,
-            homeMenuPopupBGColor: EliudColors.black,
-            headerColor1To3: EliudColors.orange1,
-            headerColor4To5: EliudColors.white,
-            defaultColor: EliudColors.white,
-            highlightColor: EliudColors.orange1,
-            linkColor: EliudColors.orange1);
+            );
 
   @override
   MenuDefModel profileDrawerMenuDef() {
@@ -119,45 +109,13 @@ class IncidamusApp extends InstallApp {
       description: "Incidamus",
       logo: logo,
       email: "ex.incidamus@gmail.com",
-      darkOrLight: DarkOrLight.Light,
       homePages: homePages,
-      formBackground: pageBG(),
-      formSubmitButtonColor: EliudColors.red,
-      formSubmitButtonTextColor: EliudColors.white,
-      formGroupTitleColor: EliudColors.red,
-      formFieldTextColor: EliudColors.white,
-      formFieldHeaderColor: EliudColors.red,
-      formFieldFocusColor: EliudColors.red,
-      formAppBarBackground: appBarBG(),
-      formAppBarTextColor: EliudColors.white,
-      listTextItemColor: EliudColors.white,
-      listBackground: pageBG(),
-      floatingButtonForegroundColor: EliudColors.white,
-      iconColor: EliudColors.red,
-      floatingButtonBackgroundColor: EliudColors.red,
-      dividerColor: EliudColors.red,
+      styleFamily: EliudStyle.eliudFamilyName,
+      styleName: EliudIncidamusStyle.styleName,
       routeBuilder: PageTransitionAnimation.FadeRoute,
       routeAnimationDuration: 800,
       ownerID: ownerID,
       appStatus: AppStatus.Live,
-      h1: fontTools
-          .getFont(FontTools.key(FontTools.latoLabel, FontTools.h1Label)),
-      h2: fontTools
-          .getFont(FontTools.key(FontTools.latoLabel, FontTools.h2Label)),
-      h3: fontTools
-          .getFont(FontTools.key(FontTools.latoLabel, FontTools.h3Label)),
-      h4: fontTools
-          .getFont(FontTools.key(FontTools.latoLabel, FontTools.h4Label)),
-      h5: fontTools
-          .getFont(FontTools.key(FontTools.latoLabel, FontTools.h5Label)),
-      fontHighlight1: fontTools.getFont(
-          FontTools.key(FontTools.latoLabel, FontTools.highlightLabel1)),
-      fontHighlight2: fontTools.getFont(
-          FontTools.key(FontTools.latoLabel, FontTools.highlightLabel2)),
-      fontLink: fontTools
-          .getFont(FontTools.key(FontTools.latoLabel, FontTools.linkLabel)),
-      fontText: fontTools
-          .getFont(FontTools.key(FontTools.latoLabel, FontTools.normalLabel)),
       policies: appPolicyModel,
     );
     return await AbstractMainRepositorySingleton.singleton
@@ -169,7 +127,6 @@ class IncidamusApp extends InstallApp {
   AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer) => Admin(
       installApp: this,
       homeMenu: homeMenu(),
-      pageBG: pageBG(),
       drawer: drawer,
       endDrawer: endDrawer);
 
@@ -187,7 +144,6 @@ class IncidamusApp extends InstallApp {
     await Welcome(
         installApp: this,
         homeMenu: homeMenu(),
-        pageBG: pageBG(),
         drawer: drawer,
         endDrawer: endDrawer,
         adminMenu: adminMenu)
@@ -202,7 +158,6 @@ class IncidamusApp extends InstallApp {
       var shop = await Shop(
           installApp: this,
           homeMenu: homeMenu(),
-          pageBG: pageBG(),
           drawer: drawer,
           endDrawer: endDrawer,
           adminMenu: adminMenu)
@@ -211,7 +166,6 @@ class IncidamusApp extends InstallApp {
       await Feed(
           installApp: this,
           homeMenu: homeMenu(),
-          pageBG: pageBG(),
           drawer: drawer,
           endDrawer: endDrawer,
           adminMenu: adminMenu)
@@ -219,7 +173,6 @@ class IncidamusApp extends InstallApp {
       await Album(
           installApp: this,
           homeMenu: homeMenu(),
-          pageBG: pageBG(),
           drawer: drawer,
           endDrawer: endDrawer,
           adminMenu: adminMenu)
@@ -227,47 +180,42 @@ class IncidamusApp extends InstallApp {
       await About(
           installApp: this,
           homeMenu: homeMenu(),
-          pageBG: pageBG(),
           drawer: drawer,
           endDrawer: endDrawer,
           adminMenu: adminMenu)
           .run();
       await MyCart(
-          background: Shop.cardBG(appId),
+          background: Shop.cardBG(),
           shop: shop,
           installApp: this,
           homeMenu: homeMenu(),
-          pageBG: pageBG(),
           drawer: drawer,
           endDrawer: endDrawer,
           adminMenu: adminMenu)
           .run();
       await MyPay(
-          background: Shop.cardBG(appId),
+          background: Shop.cardBG(),
           shop: shop,
           installApp: this,
           homeMenu: homeMenu(),
-          pageBG: pageBG(),
           drawer: drawer,
           endDrawer: endDrawer,
           adminMenu: adminMenu)
           .run();
       await OrderOverview(
-          background: Shop.cardBG(appId),
+          background: Shop.cardBG(),
           shop: shop,
           installApp: this,
           homeMenu: homeMenu(),
-          pageBG: pageBG(),
           drawer: drawer,
           endDrawer: endDrawer,
           adminMenu: adminMenu)
           .run();
       await MyPayConfirmation(
-          background: Shop.cardBG(appId),
+          background: Shop.cardBG(),
           shop: shop,
           installApp: this,
           homeMenu: homeMenu(),
-          pageBG: pageBG(),
           drawer: drawer,
           endDrawer: endDrawer,
           adminMenu: adminMenu)
@@ -276,7 +224,6 @@ class IncidamusApp extends InstallApp {
           shop: shop,
           installApp: this,
           homeMenu: homeMenu(),
-          pageBG: pageBG(),
           drawer: drawer,
           endDrawer: endDrawer,
           adminMenu: adminMenu)
@@ -304,7 +251,6 @@ class IncidamusApp extends InstallApp {
       var homePageBlockedMember = await IncidamusBlocked(
           installApp: this,
           homeMenu: homeMenu(),
-          pageBG: pageBG(),
           drawer: drawer,
           endDrawer: endDrawer,
           adminMenu: adminMenu)
@@ -381,7 +327,7 @@ class IncidamusApp extends InstallApp {
         menu,
         title,
         EliudColors.white,
-        appBarBG(),
+        null,
         EliudColors.white,
         EliudColors.white,
         EliudColors.red,

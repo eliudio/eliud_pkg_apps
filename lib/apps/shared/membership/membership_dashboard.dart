@@ -1,10 +1,10 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
-import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/model/body_component_model.dart';
+import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_pkg_membership/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_membership/model/membership_dashboard_component.dart';
 import 'package:eliud_pkg_membership/model/membership_dashboard_model.dart';
-import 'package:eliud_pkg_membership/model/abstract_repository_singleton.dart';
 
 import '../../app_base.dart';
 import '../../app_section.dart';
@@ -35,7 +35,6 @@ class MembershipDashboard extends AppSectionBase {
         documentID: IDENTIFIER,
         appId: installApp!.appId,
         title: "Membership dashboard",
-        background: backgroundColor,
         layout: DialogLayout.ListView,
         conditions: ConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequired.OwnerPrivilegeRequired,

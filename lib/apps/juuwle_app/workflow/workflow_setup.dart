@@ -1,5 +1,4 @@
 import 'package:eliud_core/model/conditions_model.dart';
-import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_pkg_apps/apps/app_base.dart';
 import 'package:eliud_pkg_apps/apps/shared/workflow/workflow_helper.dart';
 import 'package:eliud_pkg_shop/shop_package.dart';

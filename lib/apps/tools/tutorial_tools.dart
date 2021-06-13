@@ -1,4 +1,3 @@
-import 'dart:collection';
 
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
@@ -93,7 +92,7 @@ class TutorialTools {
     );
   }
 
-  static Future<PageModel> createTutorial(String appId, String tutorialID, String title, DrawerModel? drawer, AppBarModel appBar, HomeMenuModel? homeMenu, BackgroundModel? backgroundModel) async {
+  static Future<PageModel> createTutorial(String appId, String tutorialID, String title, DrawerModel? drawer, AppBarModel appBar, HomeMenuModel? homeMenu) async {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "1", componentName: AbstractTutorialComponent.componentName, componentId: tutorialID));
@@ -105,7 +104,6 @@ class TutorialTools {
       drawer: drawer,
       homeMenu: homeMenu,
       bodyComponents: components,
-      background: backgroundModel,
       layout: PageLayout.OnlyTheFirstComponent,
       conditions: ConditionsModel(
         privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,

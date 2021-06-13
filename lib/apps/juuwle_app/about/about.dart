@@ -1,8 +1,7 @@
-import 'package:eliud_core/model/background_model.dart';
-import 'package:eliud_pkg_apps/apps/shared/about/about.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_pkg_apps/apps/shared/about/about.dart';
 import 'package:eliud_pkg_fundamentals/model/section_model.dart';
 
 import '../../app_base.dart';
@@ -11,11 +10,10 @@ class About extends AboutBase {
   About(
       {InstallApp? installApp,
       HomeMenuModel? homeMenu,
-      BackgroundModel? pageBG,
       DrawerModel? drawer,
       DrawerModel? endDrawer,
       MenuDefModel? adminMenu})
-      : super(IDENTIFIER, RelativeImagePosition.Aside, 1, SectionImageAlignment.Right, installApp, homeMenu, pageBG, drawer, endDrawer,
+      : super(IDENTIFIER, RelativeImagePosition.Aside, 1, SectionImageAlignment.Right, installApp, homeMenu, drawer, endDrawer,
             adminMenu);
 
   static String IDENTIFIER = "about";

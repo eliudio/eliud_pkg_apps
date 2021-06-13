@@ -1,35 +1,35 @@
+import 'package:eliud_core/default_style/eliud_style.dart';
+import 'package:eliud_core/default_style/instances/eliud_juuwle_style.dart';
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
+import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/app_home_page_references_model.dart';
-import 'package:eliud_core/model/app_policy_model.dart';
+import 'package:eliud_core/model/app_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/member_medium_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/menu_item_model.dart';
+import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
+import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/membership/juuwle_membership_dashboard.dart';
+import 'package:eliud_pkg_apps/apps/juuwle_app/shop/order_overview.dart';
+import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/cart.dart';
+import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/pay.dart';
+import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/payconfirmation.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/product_page.dart';
+import 'package:eliud_pkg_apps/apps/juuwle_app/shop/shop.dart';
+import 'package:eliud_pkg_apps/apps/juuwle_app/welcome/welcome.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/workflow/workflow_setup.dart';
+import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
+import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
+import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_pkg_shop/model/admin_app.dart' as shop;
-import 'package:eliud_core/model/icon_model.dart';
-import 'package:eliud_core/tools/action/action_model.dart';
-import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/shop/order_overview.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/cart.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/pay.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/payconfirmation.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/shop/shop.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/welcome/welcome.dart';
-import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
-import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
-import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
-import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
-import 'package:eliud_core/model/app_bar_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/menu_item_model.dart';
-import 'package:eliud_core/model/app_model.dart';
 import 'package:flutter/material.dart';
 
 import '../app_base.dart';
@@ -45,19 +45,7 @@ class JuuwleApp extends InstallApp {
 
   JuuwleApp()
       : super(
-            appId: JUUWLE_APP_ID,
-            appColor1: EliudColors.bordeauxRed,
-            appColor2: EliudColors.ochre,
-            appColor3: EliudColors.ochreTransparent,
-            appColor4: EliudColors.white,
-            dividerColor: EliudColors.gray,
-            homeMenuIconColor: EliudColors.black,
-            homeMenuPopupBGColor: EliudColors.white,
-            headerColor1To3: EliudColors.lightBlueTransparent,
-            headerColor4To5: EliudColors.black,
-            defaultColor: EliudColors.black,
-            highlightColor: EliudColors.ochre,
-            linkColor: EliudColors.ochre);
+            appId: JUUWLE_APP_ID,);
 
   @override
   MenuDefModel profileDrawerMenuDef() {
@@ -115,45 +103,13 @@ class JuuwleApp extends InstallApp {
       description: 'Juuwle',
       logo: logo,
       email: 'juuwle.com.info@gmail.com',
-      darkOrLight: DarkOrLight.Light,
+      styleFamily: EliudStyle.eliudFamilyName,
+      styleName: EliudJuuwleStyle.styleName,
       homePages: homePages,
-      formBackground: pageBG(),
-      formSubmitButtonColor: EliudColors.red,
-      formSubmitButtonTextColor: EliudColors.white,
-      formGroupTitleColor: EliudColors.red,
-      formFieldTextColor: EliudColors.black,
-      formFieldHeaderColor: EliudColors.red,
-      formFieldFocusColor: EliudColors.red,
-      formAppBarBackground: appBarBG(),
-      formAppBarTextColor: EliudColors.white,
-      listTextItemColor: EliudColors.white,
-      listBackground: pageBG(),
-      floatingButtonForegroundColor: EliudColors.white,
-      iconColor: EliudColors.red,
-      floatingButtonBackgroundColor: EliudColors.red,
-      dividerColor: EliudColors.red,
       routeBuilder: PageTransitionAnimation.FadeRoute,
       routeAnimationDuration: 800,
       ownerID: ownerID,
       appStatus: AppStatus.Live,
-      h1: fontTools.getFont(
-          FontTools.key(FontTools.dancingScriptLabel, FontTools.h1Label)),
-      h2: fontTools.getFont(
-          FontTools.key(FontTools.dancingScriptLabel, FontTools.h2Label)),
-      h3: fontTools.getFont(
-          FontTools.key(FontTools.dancingScriptLabel, FontTools.h3Label)),
-      h4: fontTools.getFont(
-          FontTools.key(FontTools.dancingScriptLabel, FontTools.h4Label)),
-      h5: fontTools.getFont(
-          FontTools.key(FontTools.dancingScriptLabel, FontTools.h5Label)),
-      fontHighlight1: fontTools.getFont(FontTools.key(
-          FontTools.dancingScriptLabel, FontTools.highlightLabel1)),
-      fontHighlight2: fontTools.getFont(FontTools.key(
-          FontTools.dancingScriptLabel, FontTools.highlightLabel2)),
-      fontLink: fontTools.getFont(
-          FontTools.key(FontTools.dancingScriptLabel, FontTools.linkLabel)),
-      fontText: fontTools.getFont(
-          FontTools.key(FontTools.dancingScriptLabel, FontTools.normalLabel)),
       policies: appPolicyModel,
     );
     return await AbstractMainRepositorySingleton.singleton
@@ -165,7 +121,6 @@ class JuuwleApp extends InstallApp {
   AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer) => Admin(
       installApp: this,
       homeMenu: homeMenu(),
-      pageBG: pageBG(),
       drawer: drawer,
       endDrawer: endDrawer);
 
@@ -185,7 +140,6 @@ class JuuwleApp extends InstallApp {
     await About(
             installApp: this,
             homeMenu: homeMenu(),
-            pageBG: pageBG(),
             drawer: drawer,
             endDrawer: endDrawer,
             adminMenu: adminMenu)
@@ -193,47 +147,42 @@ class JuuwleApp extends InstallApp {
     var shop = await Shop(
             installApp: this,
             homeMenu: homeMenu(),
-            pageBG: pageBG(),
             drawer: drawer,
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
     await MyCart(
-            background: Shop.cardBG(appId),
+            background: Shop.cardBG(),
             shop: shop,
             installApp: this,
             homeMenu: homeMenu(),
-            pageBG: pageBG(),
             drawer: drawer,
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
     await MyPay(
-            background: Shop.cardBG(appId),
+            background: Shop.cardBG(),
             shop: shop,
             installApp: this,
             homeMenu: homeMenu(),
-            pageBG: pageBG(),
             drawer: drawer,
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
     await OrderOverview(
-            background: Shop.cardBG(appId),
+            background: Shop.cardBG(),
             shop: shop,
             installApp: this,
             homeMenu: homeMenu(),
-            pageBG: pageBG(),
             drawer: drawer,
             endDrawer: endDrawer,
             adminMenu: adminMenu)
         .run();
     await MyPayConfirmation(
-            background: Shop.cardBG(appId),
+            background: Shop.cardBG(),
             shop: shop,
             installApp: this,
             homeMenu: homeMenu(),
-            pageBG: pageBG(),
             drawer: drawer,
             endDrawer: endDrawer,
             adminMenu: adminMenu)
@@ -242,7 +191,6 @@ class JuuwleApp extends InstallApp {
             shop: shop,
             installApp: this,
             homeMenu: homeMenu(),
-            pageBG: pageBG(),
             drawer: drawer,
             endDrawer: endDrawer,
             adminMenu: adminMenu)
@@ -266,7 +214,6 @@ class JuuwleApp extends InstallApp {
     var homePageSubscribedMember = await Welcome(
             installApp: this,
             homeMenu: homeMenu(),
-            pageBG: pageBG(),
             drawer: drawer,
             endDrawer: endDrawer,
             adminMenu: adminMenu)
@@ -274,7 +221,6 @@ class JuuwleApp extends InstallApp {
     var homePageBlockedMember = await JuuwleBlocked(
             installApp: this,
             homeMenu: homeMenu(),
-            pageBG: pageBG(),
             drawer: drawer,
             endDrawer: endDrawer,
             adminMenu: adminMenu)
@@ -300,7 +246,7 @@ class JuuwleApp extends InstallApp {
         menu,
         title,
         EliudColors.black,
-        appBarBG(),
+        null,
         EliudColors.black,
         EliudColors.black,
         EliudColors.white,

@@ -1,25 +1,23 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
-import 'package:eliud_core/tools/common_tools.dart';
-import 'package:eliud_core/tools/types.dart';
-import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
-import 'package:eliud_core/model/body_component_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
+import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
+import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals/model/booklet_component.dart';
 import 'package:eliud_pkg_fundamentals/model/booklet_model.dart';
 import 'package:eliud_pkg_fundamentals/model/section_model.dart';
 
-import '../../app_section.dart';
 import '../../app_base.dart';
+import '../../app_section.dart';
 
 class Welcome extends AppSection {
-  Welcome({InstallApp? installApp, HomeMenuModel? homeMenu, BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+  Welcome({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
 
   static String identifier = "welcome";
 
@@ -38,7 +36,6 @@ class Welcome extends AppSection {
         title: "Welcome",
         drawer: drawer,
         endDrawer: endDrawer,
-        background: pageBG,
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,

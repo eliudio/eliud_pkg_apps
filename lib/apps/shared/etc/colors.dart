@@ -1,4 +1,3 @@
-import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/rgb_model.dart';
 
 class EliudColors {

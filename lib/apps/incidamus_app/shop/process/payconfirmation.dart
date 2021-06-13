@@ -1,9 +1,9 @@
-import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_pkg_apps/apps/incidamus_app/shop/shop.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
+import 'package:eliud_pkg_apps/apps/incidamus_app/shop/shop.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_model.dart';
 import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/model/model_export.dart';
@@ -44,7 +44,6 @@ class MyPayConfirmation extends PageTemplate {
     this.shop,
     InstallApp? installApp,
     HomeMenuModel? homeMenu,
-    BackgroundModel? pageBG,
     DrawerModel? drawer,
     DrawerModel? endDrawer,
     MenuDefModel? adminMenu}): super(
@@ -53,7 +52,6 @@ class MyPayConfirmation extends PageTemplate {
       pageId: identifier,
       installApp: installApp,
       homeMenu: homeMenu,
-      pageBG: pageBG,
       drawer: drawer,
       endDrawer: endDrawer,
       adminMenu: adminMenu,

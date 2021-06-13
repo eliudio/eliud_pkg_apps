@@ -2,27 +2,26 @@ import 'package:eliud_core/core/access/bloc/access_bloc.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
-import 'package:eliud_core/tools/admin_app_base.dart';
-import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
-import 'package:eliud_pkg_apps/apps/shared/policies/policy_page.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_core/tools/action/action_model.dart';
-import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
-import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
-import 'package:eliud_pkg_apps/apps/shared/etc/backgrounds.dart';
-import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
-import 'package:eliud_pkg_apps/apps/shared/etc/grid_views.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/app_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
+import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core/tools/action/action_model.dart';
+import 'package:eliud_core/tools/admin_app_base.dart';
+import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
+import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
+import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
+import 'package:eliud_pkg_apps/apps/shared/etc/grid_views.dart';
+import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
+import 'package:eliud_pkg_apps/apps/shared/policies/policy_page.dart';
+import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
+import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals/model/divider_model.dart';
 import 'package:flutter/material.dart';
-import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 
 abstract class InstallApp {
   // adminAppWipers are used to delete the admin part of the app
@@ -166,9 +165,8 @@ abstract class InstallApp {
         documentID: 'DRAWER',
         appId: appId,
         name: 'Drawer',
-        background: _drawerBG(),
         headerText: '',
-        headerBackground: _drawerHeaderBG(logo),
+        headerBackgroundOverride: _drawerHeaderBGOverride(logo),
         headerHeight: 0,
         popupMenuBackgroundColor: EliudColors.red,
         menu: drawerMenuDef());
@@ -180,129 +178,19 @@ abstract class InstallApp {
         .add(_drawer(logo));
   }
 
-  BackgroundModel _profileDrawerHeaderBG() {
-    var decorationColorModels = <DecorationColorModel>[];
-    var backgroundModel = BackgroundModel(
-        documentID: 'profile_drawer_header_bg',
-        appId: appId,
-        decorationColors: decorationColorModels,
-        useProfilePhotoAsBackground: true);
-    return backgroundModel;
-  }
-
-  BackgroundModel _drawerBG() {
-    var decorationColorModels = <DecorationColorModel>[];
-    var decorationColorModel1 =
-        DecorationColorModel(documentID: '1', color: appColor2, stop: -1);
-    decorationColorModels.add(decorationColorModel1);
-    var decorationColorModel2 =
-        DecorationColorModel(documentID: '2', color: appColor1, stop: -1);
-    decorationColorModels.add(decorationColorModel2);
-    var backgroundModel = BackgroundModel(
-      documentID: 'left_drawer_bg',
-      appId: appId,
-      beginGradientPosition: StartGradientPosition.TopLeft,
-      endGradientPosition: EndGradientPosition.BottomRight,
-      decorationColors: decorationColorModels,
-    );
-    return backgroundModel;
-  }
-
   Future<void> setupDecorationColorModel(MemberMediumModel? logo) async {
     await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(appId)!
-        .add(_homeMenuBG());
-    await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(appId)!
-        .add(_drawerHeaderBG(logo));
-    await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(appId)!
-        .add(_drawerBG());
-    await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(appId)!
-        .add(_profileDrawerHeaderBG());
-    await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(appId)!
-        .add(_profileDrawerBG());
-    await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(appId)!
-        .add(appBarBG());
-    await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(appId)!
-        .add(pageBG());
+        .backgroundRepository()!
+        .add(_drawerHeaderBGOverride(logo));
   }
 
-  BackgroundModel _homeMenuBG() {
-    // this is a clone of _pageBG
-    var decorationColorModels = <DecorationColorModel>[];
-    var decorationColorModel1 = DecorationColorModel(
-      documentID: '1',
-      color: appColor1,
-    );
-    decorationColorModels.add(decorationColorModel1);
-    var decorationColorModel2 = DecorationColorModel(
-      documentID: '2',
-      color: appColor2,
-    );
-
-    decorationColorModels.add(decorationColorModel2);
-    var backgroundModel = BackgroundModel(
-      documentID: 'home_menu_bg',
-      appId: appId,
-      beginGradientPosition: StartGradientPosition.CenterLeft,
-      endGradientPosition: EndGradientPosition.CenterRight,
-      decorationColors: decorationColorModels,
-      shadow: shadowModel(),
-    );
-    return backgroundModel;
-  }
-
-  BackgroundModel _drawerHeaderBG(MemberMediumModel? logo) {
+  BackgroundModel _drawerHeaderBGOverride(MemberMediumModel? logo) {
     var decorationColorModels = <DecorationColorModel>[];
     var backgroundModel = BackgroundModel(
         documentID: 'left_drawer_header_bg',
-        appId: appId,
         decorationColors: decorationColorModels,
         backgroundImage: logo);
     return backgroundModel;
-  }
-
-  BackgroundModel _profileDrawerBG() {
-    var decorationColorModels = <DecorationColorModel>[];
-    var decorationColorModel1 =
-        DecorationColorModel(documentID: '1', color: appColor2, stop: -1);
-    decorationColorModels.add(decorationColorModel1);
-    var decorationColorModel2 =
-        DecorationColorModel(documentID: '2', color: appColor1, stop: -1);
-    decorationColorModels.add(decorationColorModel2);
-    var backgroundModel = BackgroundModel(
-      documentID: 'profile_drawer_bg',
-      appId: appId,
-      beginGradientPosition: StartGradientPosition.TopRight,
-      endGradientPosition: EndGradientPosition.BottomLeft,
-      decorationColors: decorationColorModels,
-    );
-    return backgroundModel;
-  }
-
-
-  ShadowModel shadowModel() {
-    var shadowModel = ShadowModel(
-        documentID: 'normal_shadow',
-        appId: appId,
-        comments: 'Normal shadow',
-        color: EliudColors.gray,
-        offsetDX: 4,
-        offsetDY: 3,
-        spreadRadius: 7,
-        blurRadius: 7);
-    return shadowModel;
-  }
-
-  Future<ShadowModel> setupShadows() async {
-    return await corerepo.AbstractRepositorySingleton.singleton
-        .shadowRepository(appId)!
-        .add(shadowModel());
   }
 
   DrawerModel _profileDrawer() {
@@ -310,10 +198,8 @@ abstract class InstallApp {
         documentID: 'PROFILE_DRAWER',
         appId: appId,
         name: 'Profile Drawer',
-        background: _profileDrawerBG(),
         headerText: '',
         secondHeaderText: 'name: \${userName}\ngroup: \${userGroup}',
-        headerBackground: _profileDrawerHeaderBG(),
         headerHeight: 0,
         popupMenuBackgroundColor: EliudColors.red,
         menu: profileDrawerMenuDef());
@@ -330,10 +216,7 @@ abstract class InstallApp {
         documentID: 'MAIN_MENU',
         appId: appId,
         name: 'Home menu 1',
-        menu: homeMenuDef(),
-        iconColor: homeMenuIconColor,
-        popupMenuBackgroundColor: homeMenuPopupBGColor,
-        background: _homeMenuBG());
+        menu: homeMenuDef(),);
     return menu;
   }
 
@@ -356,7 +239,7 @@ abstract class InstallApp {
     var dividerModel = DividerModel(
       documentID: 'divider_1',
       name: 'first divider',
-      color: dividerColor,
+      color: EliudColors.black,
       endIndent: 0,
       height: 10,
       indent: 0,
@@ -378,7 +261,7 @@ abstract class InstallApp {
       MenuDefModel? menu,
       String? title,
       RgbModel textColor,
-      BackgroundModel background,
+      BackgroundModel? background,
       RgbModel iconColor,
       RgbModel menuItemColor,
       RgbModel selectedIconColor,
@@ -388,7 +271,7 @@ abstract class InstallApp {
       appId: appId,
       header: HeaderSelection.None,
       title: title,
-      background: background,
+      backgroundOverride: background,
       iconColor: iconColor,
       iconMenu: menu,
       selectedIconColor: selectedIconColor,
@@ -402,14 +285,14 @@ abstract class InstallApp {
       MenuDefModel? menu,
       String? title,
       RgbModel textColor,
-      BackgroundModel background,
+      BackgroundModel? backgroundOverride,
       RgbModel iconColor,
       RgbModel menuItemColor,
       RgbModel selectedMenuItemColor,
       RgbModel menuBackgroundColor) async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .appBarRepository(appId)!
-        .add(_appBar(documentID, menu, title, textColor, background, iconColor,
+        .add(_appBar(documentID, menu, title, textColor, backgroundOverride, iconColor,
             menuItemColor, selectedMenuItemColor, menuBackgroundColor));
   }
 
@@ -439,7 +322,6 @@ abstract class InstallApp {
     await _adminBase.installAdminAppss(adminMenu);
     await setupMenus();
     await setupPosSizes();
-    await setupShadows();
     await setupDecorationColorModel(theLogo);
     await setupDividers();
     var homePages = await runTheRest(ownerID, drawer, endDrawer, adminMenu);
@@ -550,7 +432,6 @@ abstract class InstallApp {
           title: element.name,
           installApp: this,
           homeMenu: homeMenu(),
-          pageBG: pageBG(),
           drawer: drawer,
           endDrawer: endDrawer,
           adminMenu: adminMenu)

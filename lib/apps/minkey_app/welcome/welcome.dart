@@ -1,16 +1,17 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
-import 'package:eliud_core/tools/tool_set.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
-import 'package:eliud_pkg_apps/apps/tools/dynamic_helper.dart';
-import 'package:eliud_core/model/body_component_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core/tools/tool_set.dart';
+import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
+import 'package:eliud_pkg_apps/apps/tools/dynamic_helper.dart';
+import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
+import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals/model/divider_component.dart';
 import 'package:eliud_pkg_fundamentals/model/document_component.dart';
 import 'package:eliud_pkg_fundamentals/model/document_item_model.dart';
@@ -18,20 +19,18 @@ import 'package:eliud_pkg_fundamentals/model/document_model.dart';
 import 'package:eliud_pkg_fundamentals/model/fader_component.dart';
 import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
 import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
-import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 
-import '../../app_section.dart';
 import '../../app_base.dart';
+import '../../app_section.dart';
 
 class Welcome extends AppSection {
   Welcome(
       {InstallApp? installApp,
       HomeMenuModel? homeMenu,
-      BackgroundModel? pageBG,
       DrawerModel? drawer,
       DrawerModel? endDrawer,
       MenuDefModel? adminMenu})
-      : super(installApp, homeMenu, pageBG, drawer, endDrawer,
+      : super(installApp, homeMenu, drawer, endDrawer,
             adminMenu);
 
   static List<String> IDENTIFIERs = [
@@ -76,7 +75,6 @@ class Welcome extends AppSection {
         title: "Welcome",
         drawer: drawer,
         endDrawer: endDrawer,
-        background: pageBG,
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,

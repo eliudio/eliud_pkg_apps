@@ -1,28 +1,22 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
-import 'package:eliud_core/tools/common_tools.dart';
-import 'package:eliud_core/tools/types.dart';
-import 'package:eliud_pkg_apps/apps/minkey_app/feed/profile.dart';
-import 'package:eliud_pkg_apps/apps/minkey_app/feed/profile_component.dart';
-import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_feed/model/feed_component.dart';
-import 'package:eliud_pkg_feed/model/feed_menu_component.dart';
-import 'package:eliud_pkg_feed/model/feed_model.dart';
-import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
-import 'package:eliud_core/model/body_component_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
+import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_feed/model/feed_menu_component.dart';
+import 'package:eliud_pkg_feed/model/feed_model.dart';
 import 'package:eliud_pkg_feed/model/header_component.dart';
 import 'package:eliud_pkg_feed/model/profile_component.dart';
 import 'package:eliud_pkg_feed/model/profile_model.dart';
 
-import '../../app_section.dart';
 import '../../app_base.dart';
-import 'example_posts.dart';
+import '../../app_section.dart';
 import 'feed_menu.dart';
 import 'header_component.dart';
 
@@ -30,11 +24,10 @@ class Profile extends AppSection {
   Profile(
       {InstallApp? installApp,
       HomeMenuModel? homeMenu,
-      BackgroundModel? pageBG,
       DrawerModel? drawer,
       DrawerModel? endDrawer,
       MenuDefModel? adminMenu})
-      : super(installApp, homeMenu, pageBG, drawer, endDrawer, adminMenu);
+      : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
 
   static String IDENTIFIER = "profile";
 
@@ -66,7 +59,6 @@ class Profile extends AppSection {
         drawer: drawer,
         widgetWrapper: 'profile',
         endDrawer: endDrawer,
-        background: pageBG,
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,

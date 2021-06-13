@@ -1,12 +1,9 @@
 import 'package:eliud_core/core_package.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
+import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/member_dashboard_component.dart';
 import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_core/model/body_component_model.dart';
-import 'package:eliud_pkg_membership/model/membership_dashboard_component.dart';
-import 'package:eliud_pkg_membership/model/membership_dashboard_model.dart';
-import 'package:eliud_pkg_membership/model/abstract_repository_singleton.dart';
 
 import '../../app_base.dart';
 import '../../app_section.dart';
@@ -63,7 +60,6 @@ Sorry to see you go. Your account has been destroyed.
         documentID: IDENTIFIER,
         appId: installApp!.appId,
         title: "Member dashboard",
-        background: backgroundColor,
         layout: DialogLayout.ListView,
         conditions: ConditionsModel(
             privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,

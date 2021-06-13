@@ -1,7 +1,6 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
-import 'package:eliud_core/tools/common_tools.dart';
-import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/model/body_component_model.dart';
+import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_follow/follow_package.dart';
 import 'package:eliud_pkg_follow/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_follow/model/follow_requests_dashboard_component.dart';
@@ -41,7 +40,6 @@ class _FollowingDashboard extends AppSectionBase {
         documentID: identifier,
         appId: installApp!.appId,
         title: title,
-        background: backgroundColor,
         layout: DialogLayout.ListView,
         conditions: ConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
@@ -97,7 +95,6 @@ class FollowRequestDashboard extends AppSectionBase {
         documentID: FOLLOW_REQUEST_IDENTIFIER,
         appId: installApp!.appId,
         title: "Follow requests",
-        background: backgroundColor,
         layout: DialogLayout.ListView,
         conditions: ConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
@@ -153,7 +150,6 @@ class InviteDashboard extends AppSectionBase {
         documentID: INVITE_IDENTIFIER,
         appId: installApp!.appId,
         title: "Follow members",
-        background: backgroundColor,
         layout: DialogLayout.ListView,
         conditions: ConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,

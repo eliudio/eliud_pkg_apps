@@ -1,27 +1,27 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
-import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart'
-    as shoprepo;
+import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_core/model/body_component_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/incidamus_app.dart';
 import 'package:eliud_pkg_apps/apps/incidamus_app/shop/products.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
-import 'package:eliud_core/model/body_component_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/page_model.dart';
-import 'package:eliud_core/model/app_bar_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
+import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_component.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_model.dart';
+import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart'
+    as shoprepo;
 import 'package:eliud_pkg_shop/model/model_export.dart';
 import 'package:eliud_pkg_shop/model/shop_front_component.dart';
 
-import '../../app_section.dart';
 import '../../app_base.dart';
+import '../../app_section.dart';
 import 'process/cart.dart';
 import 'product_page.dart';
 
@@ -29,11 +29,10 @@ class Shop extends AppSection {
   Shop(
       {InstallApp? installApp,
       HomeMenuModel? homeMenu,
-      BackgroundModel? pageBG,
       DrawerModel? drawer,
       DrawerModel? endDrawer,
       MenuDefModel? adminMenu})
-      : super(installApp, homeMenu, pageBG, drawer, endDrawer,
+      : super(installApp, homeMenu,  drawer, endDrawer,
             adminMenu);
 
   static String identifier = 'shop';
@@ -57,7 +56,6 @@ class Shop extends AppSection {
         title: 'Shop',
         drawer: drawer,
         endDrawer: endDrawer,
-        background: pageBG,
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
@@ -93,7 +91,7 @@ class Shop extends AppSection {
       description: 'These are my featured products',
       shop: _shop(),
       addToCartColor: EliudColors.red,
-      itemCardBackground: cardBG(installApp!.appId),
+      itemCardBackground: cardBG(),
       buyAction:
           GotoPage(IncidamusApp.INCIDAMUS_APP_ID, pageID: MyCart.identifier),
       view: ShopFrontView.Slider,
@@ -119,7 +117,7 @@ class Shop extends AppSection {
       description: 'Welcome to my shop. Blah blah blah.',
       shop: _shop(),
       addToCartColor: EliudColors.red,
-      itemCardBackground: cardBG(installApp!.appId),
+      itemCardBackground: cardBG(),
       buyAction:
           GotoPage(IncidamusApp.INCIDAMUS_APP_ID, pageID: MyCart.identifier),
       view: ShopFrontView.Grid,
@@ -144,7 +142,7 @@ class Shop extends AppSection {
         .add(_shopFront2());
   }
 
-  static BackgroundModel cardBG(String? appId) {
+  static BackgroundModel cardBG() {
     var decorationColorModels = <DecorationColorModel>[];
     var decorationColorModel1 = DecorationColorModel(
       documentID: '1',
@@ -159,7 +157,6 @@ class Shop extends AppSection {
     decorationColorModels.add(decorationColorModel2);
     var backgroundModel = BackgroundModel(
       documentID: itemBackground,
-      appId: appId,
       border: true,
       beginGradientPosition: StartGradientPosition.CenterLeft,
       endGradientPosition: EndGradientPosition.CenterRight,
@@ -172,8 +169,8 @@ class Shop extends AppSection {
 
   Future<void> _setupCardBG() async {
     await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(IncidamusApp.INCIDAMUS_APP_ID)!
-        .add(cardBG(installApp!.appId));
+        .backgroundRepository()!
+        .add(cardBG());
   }
 
   PresentationModel _presentation(MemberMediumModel memberMediumModel) {

@@ -1,7 +1,7 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
-import 'package:eliud_pkg_workflow/model/abstract_repository_singleton.dart';
-import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/model/body_component_model.dart';
+import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_pkg_workflow/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_workflow/model/assignment_view_component.dart';
 import 'package:eliud_pkg_workflow/model/assignment_view_model.dart';
 import 'package:eliud_pkg_workflow/workflow_package.dart';
@@ -30,7 +30,6 @@ class AssignmentViewSetup extends AppSectionBase {
         documentID: IDENTIFIER,
         appId: installApp!.appId,
         title: "Assignments",
-        background: backgroundColor,
         layout: DialogLayout.ListView,
         conditions: ConditionsModel(
             privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,

@@ -1,15 +1,11 @@
 import 'package:eliud_core/model/conditions_model.dart';
-import 'package:eliud_core/tools/common_tools.dart';
 import 'package:eliud_pkg_apps/apps/app_base.dart';
 import 'package:eliud_pkg_apps/apps/shared/workflow/workflow_helper.dart';
-import 'package:eliud_pkg_pay/tools/task/pay_task_model.dart';
-import 'package:eliud_pkg_pay/tools/task/pay_type_model.dart';
+import 'package:eliud_pkg_membership/membership_package.dart';
 import 'package:eliud_pkg_shop/shop_package.dart';
 import 'package:eliud_pkg_workflow/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_workflow/model/workflow_model.dart';
-import 'package:eliud_pkg_workflow/model/workflow_task_model.dart';
 import 'package:eliud_pkg_workflow/tools/action/workflow_action_model.dart';
-import 'package:eliud_pkg_membership/membership_package.dart';
 
 class WorkflowSetup {
   final InstallApp? installApp;

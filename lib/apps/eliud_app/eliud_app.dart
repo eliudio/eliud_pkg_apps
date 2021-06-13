@@ -1,26 +1,25 @@
+import 'package:eliud_core/default_style/eliud_style.dart';
+import 'package:eliud_core/default_style/instances/eliud_incidamus_style.dart';
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
+import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/app_home_page_references_model.dart';
-import 'package:eliud_core/model/app_policy_model.dart';
-import 'package:eliud_core/model/member_medium_model.dart';
-import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
-import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
-import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
+import 'package:eliud_core/model/app_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
+import 'package:eliud_core/model/member_medium_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
 import 'package:eliud_pkg_apps/apps/eliud_app/welcome/welcome.dart';
 import 'package:eliud_pkg_apps/apps/eliud_app/who/who.dart';
+import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
-import 'package:eliud_pkg_apps/apps/tools/font_tools.dart';
-import 'package:eliud_core/model/app_bar_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/page_model.dart';
-import 'package:eliud_core/model/menu_item_model.dart';
-import 'package:eliud_core/model/app_model.dart';
+import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
+import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:flutter/material.dart';
 
 import '../app_base.dart';
@@ -36,19 +35,7 @@ class EliudApp extends InstallApp {
 
   EliudApp()
       : super(
-            appId: ELIUD_APP_ID,
-            appColor1: EliudColors.gray,
-            appColor2: EliudColors.blackTransparent,
-            appColor3: EliudColors.gray,
-            appColor4: EliudColors.blackTransparent,
-            dividerColor: EliudColors.gray,
-            homeMenuIconColor: EliudColors.white,
-            homeMenuPopupBGColor: EliudColors.lightRed,
-            headerColor1To3: EliudColors.red,
-            headerColor4To5: EliudColors.white,
-            defaultColor: EliudColors.black,
-            highlightColor: EliudColors.green,
-            linkColor: EliudColors.ochre);
+            appId: ELIUD_APP_ID,);
 
   @override
   MenuDefModel profileDrawerMenuDef() {
@@ -140,36 +127,13 @@ class EliudApp extends InstallApp {
       description: "Eliud",
       logo: logo,
       email: "eliud.io.info@gmail.com",
-      darkOrLight: DarkOrLight.Light,
       homePages: homePages,
-      formBackground: pageBG(),
-      formSubmitButtonColor: EliudColors.red,
-      formSubmitButtonTextColor: EliudColors.white,
-      formGroupTitleColor: EliudColors.red,
-      formFieldTextColor: EliudColors.white,
-      formFieldHeaderColor: EliudColors.red,
-      formFieldFocusColor: EliudColors.red,
-      formAppBarBackground: appBarBG(),
-      formAppBarTextColor: EliudColors.white,
-      listTextItemColor: EliudColors.white,
-      listBackground: pageBG(),
-      floatingButtonForegroundColor: EliudColors.white,
-      floatingButtonBackgroundColor: EliudColors.red,
-      iconColor: EliudColors.red,
-      dividerColor: EliudColors.red,
+      styleFamily: EliudStyle.eliudFamilyName,
+      styleName: EliudIncidamusStyle.styleName,
       routeBuilder: PageTransitionAnimation.FadeRoute,
       routeAnimationDuration: 800,
       ownerID: ownerID,
       appStatus: AppStatus.Live,
-      h1:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.h1Label)),
-      h2:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.h2Label)),
-      h3:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.h3Label)),
-      h4:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.h4Label)),
-      h5:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.h5Label)),
-      fontHighlight1:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.highlightLabel1)),
-      fontHighlight2:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.highlightLabel2)),
-      fontLink:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.linkLabel)),
-      fontText:fontTools.getFont(FontTools.key(FontTools.robotoLabel, FontTools.normalLabel)),
       policies: appPolicyModel
     );
 
@@ -182,7 +146,6 @@ class EliudApp extends InstallApp {
   AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer) => Admin(
       installApp: this,
       homeMenu: homeMenu(),
-      pageBG: pageBG(),
       drawer: drawer,
       endDrawer: endDrawer);
 
@@ -200,7 +163,6 @@ class EliudApp extends InstallApp {
     await Who(
             installApp: this,
             homeMenu: homeMenu(),
-            pageBG: pageBG(),
             drawer: drawer,
             endDrawer: endDrawer,
             adminMenu: adminMenu)
@@ -212,7 +174,6 @@ class EliudApp extends InstallApp {
     await HelloWorld(
             installApp: this,
             homeMenu: homeMenu(),
-            pageBG: pageBG(),
             drawer: drawer,
             endDrawer: endDrawer,
             adminMenu: adminMenu)
@@ -220,7 +181,6 @@ class EliudApp extends InstallApp {
     var homePageSubscribedMember = await Welcome(
             installApp: this,
             homeMenu: homeMenu(),
-            pageBG: pageBG(),
             drawer: drawer,
             endDrawer: endDrawer,
             adminMenu: adminMenu)
@@ -246,7 +206,7 @@ class EliudApp extends InstallApp {
         menu,
         title,
         EliudColors.white,
-        appBarBG(),
+        null,
         EliudColors.white,
         EliudColors.white,
         EliudColors.red,

@@ -1,15 +1,14 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
-import 'package:eliud_core/model/background_model.dart';
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:flutter/material.dart';
 
-import '../../app_section.dart';
 import '../../app_base.dart';
+import '../../app_section.dart';
 
 abstract class AdminBase extends AppSection {
   List<AdminAppMenuInstallerBase> adminMenuInstallers();
@@ -20,10 +19,9 @@ abstract class AdminBase extends AppSection {
       AppBarModel appBar,
       HomeMenuModel? homeMenu);
 
-  AdminBase(InstallApp? installApp, HomeMenuModel? homeMenu,
-      BackgroundModel? pageBG, DrawerModel? drawer, DrawerModel? endDrawer)
+  AdminBase(InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer)
       : super(
-            installApp, homeMenu, pageBG, drawer, endDrawer, null);
+            installApp, homeMenu, drawer, endDrawer, null);
 
   String adminTitle();
 

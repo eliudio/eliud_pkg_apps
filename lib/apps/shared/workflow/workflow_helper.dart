@@ -3,8 +3,8 @@ import 'package:eliud_pkg_pay/tools/task/pay_task_model.dart';
 import 'package:eliud_pkg_pay/tools/task/pay_type_model.dart';
 import 'package:eliud_pkg_pay/tools/task/review_and_ship_task_model.dart';
 import 'package:eliud_pkg_workflow/model/workflow_model.dart';
-import 'package:eliud_pkg_workflow/model/workflow_task_model.dart';
 import 'package:eliud_pkg_workflow/model/workflow_notification_model.dart';
+import 'package:eliud_pkg_workflow/model/workflow_task_model.dart';
 
 class WorkflowHelper {
   static WorkflowModel _workflowForPaymentCart(

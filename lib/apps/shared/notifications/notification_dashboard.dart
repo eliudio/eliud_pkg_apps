@@ -1,7 +1,7 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
-import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/model/body_component_model.dart';
+import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_notifications/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_notifications/model/notification_dashboard_component.dart';
 import 'package:eliud_pkg_notifications/model/notification_dashboard_model.dart';
@@ -36,7 +36,6 @@ class NotificationDashboard extends AppSectionBase {
         documentID: IDENTIFIER,
         appId: installApp!.appId,
         title: "Notifications",
-        background: backgroundColor,
         layout: DialogLayout.ListView,
         conditions: ConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,

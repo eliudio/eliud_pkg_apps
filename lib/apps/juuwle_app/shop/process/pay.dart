@@ -1,4 +1,9 @@
+import 'package:eliud_core/model/drawer_model.dart';
+import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core/tools/action/action_model.dart';
+import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/payconfirmation.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/workflow/workflow_setup.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_model.dart';
 import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
@@ -7,12 +12,6 @@ import 'package:eliud_pkg_shop/model/pay_component.dart';
 import 'package:eliud_pkg_shop/shop_package.dart';
 
 import '../../../../apps/app_base.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/payconfirmation.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/home_menu_model.dart';
-import 'package:eliud_core/tools/action/action_model.dart';
-
 import '../../../shared/etc/page_template.dart';
 import '../../juuwle_app.dart';
 
@@ -47,7 +46,6 @@ class MyPay extends PageTemplate {
     this.shop,
     InstallApp? installApp,
     HomeMenuModel? homeMenu,
-    BackgroundModel? pageBG,
     DrawerModel? drawer,
     DrawerModel? endDrawer,
     MenuDefModel? adminMenu}): super(
@@ -56,7 +54,6 @@ class MyPay extends PageTemplate {
       pageId: identifier,
       installApp: installApp,
       homeMenu: homeMenu,
-      pageBG: pageBG,
       drawer: drawer,
       endDrawer: endDrawer,
       adminMenu: adminMenu,

@@ -1,24 +1,22 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/conditions_simple_model.dart';
-import 'package:eliud_core/model/member_medium_model.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_core/model/background_model.dart';
-import 'package:eliud_core/model/body_component_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/page_model.dart';
-import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core/model/member_medium_model.dart';
+import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
+import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals/model/booklet_component.dart';
 import 'package:eliud_pkg_fundamentals/model/booklet_model.dart';
 import 'package:eliud_pkg_fundamentals/model/link_model.dart';
 import 'package:eliud_pkg_fundamentals/model/section_model.dart';
-import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-
-import '../../app_section.dart';
 
 import '../../app_base.dart';
+import '../../app_section.dart';
 
 abstract class AboutBase extends AppSection {
   final String identifier;
@@ -32,11 +30,10 @@ abstract class AboutBase extends AppSection {
       this.alignment,
       InstallApp? installApp,
       HomeMenuModel? homeMenu,
-      BackgroundModel? pageBG,
       DrawerModel? drawer,
       DrawerModel? endDrawer,
       MenuDefModel? adminMenu)
-      : super(installApp, homeMenu, pageBG, drawer, endDrawer,
+      : super(installApp, homeMenu, drawer, endDrawer,
       adminMenu);
 
   //static String identifier = "who";
@@ -61,7 +58,6 @@ abstract class AboutBase extends AppSection {
         title: aboutTitle(),
         drawer: drawer,
         endDrawer: endDrawer,
-        background: pageBG,
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
