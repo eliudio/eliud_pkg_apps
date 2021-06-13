@@ -413,10 +413,6 @@ abstract class InstallApp {
             menuItemColor, selectedMenuItemColor, menuBackgroundColor));
   }
 
-  Future<void> installFonts() async {
-    await fontTools.installFonts(appId);
-  }
-
   String logoAssetLocation();
   String logoHeadAssetLocation();
 
@@ -437,7 +433,6 @@ abstract class InstallApp {
     var drawer = await setupDrawer(theLogo);
     var _adminBase = adminBase(drawer, endDrawer);
 
-    await installFonts();
     await GridViews().run(appId);
     var adminMenu =
         await _appBarMenu("Menu", await _adminBase.installAdminMenus());
