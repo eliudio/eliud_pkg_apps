@@ -153,6 +153,7 @@ class PlayStore extends AppSection {
   Future<PageModel> run() async {
     await _setupPlayStore();
     await _setupPlayStoreBG();
+    await _setupShadows();
     var appBar = await installApp!.appBar(IDENTIFIER, adminMenu, "Store");
     await _setupFader();
     return await _setupPage(appBar);
