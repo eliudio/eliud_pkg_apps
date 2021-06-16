@@ -245,12 +245,7 @@ class JuuwleApp extends InstallApp {
         identifier,
         menu,
         title,
-        EliudColors.black,
-        null,
-        EliudColors.black,
-        EliudColors.black,
-        EliudColors.white,
-        EliudColors.lightRed);
+        );
   }
 
   // an extra menu item for the shopping cart

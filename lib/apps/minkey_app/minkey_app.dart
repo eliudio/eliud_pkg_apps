@@ -278,12 +278,7 @@ class MinkeyApp extends InstallApp {
         identifier,
         menu,
         title,
-        EliudColors.black,
-        null,
-        EliudColors.black,
-        EliudColors.black,
-        EliudColors.green,
-        EliudColors.lightRed);
+        );
   }
 
   @override

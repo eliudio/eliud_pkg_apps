@@ -259,23 +259,21 @@ abstract class InstallApp {
   AppBarModel _appBar(
       String? documentID,
       MenuDefModel? menu,
-      String? title,
-      RgbModel textColor,
-      BackgroundModel? background,
-      RgbModel iconColor,
-      RgbModel menuItemColor,
-      RgbModel selectedIconColor,
-      RgbModel menuBackgroundColor) {
+      String? title,{
+      BackgroundModel? backgroundOverride,
+      RgbModel? iconColorOverride,
+      RgbModel? selectedIconColorOverride,
+      RgbModel? menuBackgroundColorOverride}) {
     var appBar = AppBarModel(
       documentID: documentID,
       appId: appId,
       header: HeaderSelection.None,
       title: title,
-      backgroundOverride: background,
-      iconColor: iconColor,
+      backgroundOverride: backgroundOverride,
+      iconColorOverride: iconColorOverride,
       iconMenu: menu,
-      selectedIconColor: selectedIconColor,
-      menuBackgroundColor: menuBackgroundColor,
+      selectedIconColorOverride: selectedIconColorOverride,
+      menuBackgroundColorOverride: menuBackgroundColorOverride,
     );
     return appBar;
   }
@@ -283,17 +281,15 @@ abstract class InstallApp {
   Future<AppBarModel> setupAppBar(
       String? documentID,
       MenuDefModel? menu,
-      String? title,
-      RgbModel textColor,
+      String? title,{
       BackgroundModel? backgroundOverride,
-      RgbModel iconColor,
-      RgbModel menuItemColor,
-      RgbModel selectedMenuItemColor,
-      RgbModel menuBackgroundColor) async {
+      RgbModel? iconColorOverride,
+      RgbModel? selectedIconColorOverride,
+      RgbModel? menuBackgroundColorOverride}) async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .appBarRepository(appId)!
-        .add(_appBar(documentID, menu, title, textColor, backgroundOverride, iconColor,
-            menuItemColor, selectedMenuItemColor, menuBackgroundColor));
+        .add(_appBar(documentID, menu, title, backgroundOverride: backgroundOverride, iconColorOverride: iconColorOverride,
+        selectedIconColorOverride: selectedIconColorOverride, menuBackgroundColorOverride: menuBackgroundColorOverride));
   }
 
   String logoAssetLocation();

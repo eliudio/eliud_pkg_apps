@@ -326,12 +326,7 @@ class IncidamusApp extends InstallApp {
         identifier,
         menu,
         title,
-        EliudColors.white,
-        null,
-        EliudColors.white,
-        EliudColors.white,
-        EliudColors.red,
-        EliudColors.lightRed);
+        );
   }
 
   @override

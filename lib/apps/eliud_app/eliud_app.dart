@@ -205,12 +205,7 @@ class EliudApp extends InstallApp {
         identifier,
         menu,
         title,
-        EliudColors.white,
-        null,
-        EliudColors.white,
-        EliudColors.white,
-        EliudColors.red,
-        EliudColors.gray);
+        );
   }
 
   @override
