@@ -134,7 +134,6 @@ class PlayStore extends AppSection {
     ShadowModel shadowModel =
     ShadowModel(
         documentID: "store_item_shadow",
-        appId: MinkeyApp.MINKEY_APP_ID,
         comments: "Store Item shadow",
         color: EliudColors.grayTransparent,
         offsetDX: 4,

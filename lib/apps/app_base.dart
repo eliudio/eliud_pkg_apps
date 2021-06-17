@@ -187,7 +187,7 @@ abstract class InstallApp {
   BackgroundModel _drawerHeaderBGOverride(MemberMediumModel? logo) {
     var decorationColorModels = <DecorationColorModel>[];
     var backgroundModel = BackgroundModel(
-        documentID: 'left_drawer_header_bg',
+        documentID: 'left_drawer_header_bg_' + logo!.appId!,
         decorationColors: decorationColorModels,
         backgroundImageURL: logo != null ? logo.url : null);
     return backgroundModel;
