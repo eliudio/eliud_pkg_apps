@@ -189,7 +189,7 @@ abstract class InstallApp {
     var backgroundModel = BackgroundModel(
         documentID: 'left_drawer_header_bg',
         decorationColors: decorationColorModels,
-        backgroundImageURL: logo != null ? logo!.url : null);
+        backgroundImageURL: logo != null ? logo.url : null);
     return backgroundModel;
   }
 
