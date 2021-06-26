@@ -25,7 +25,7 @@ class ExamplePosts {
         IncidamusApp.INCIDAMUS_APP_ID)!.add(PostModel(
         documentID: "example1",
         feedId: feedId,
-        author: memberPublicInfo,
+        authorId: memberPublicInfo!.documentID!,
         appId: IncidamusApp.INCIDAMUS_APP_ID,
         postAppId: IncidamusApp.INCIDAMUS_APP_ID,
         postPageId: ProductPage.identifier,
@@ -38,7 +38,7 @@ class ExamplePosts {
         IncidamusApp.INCIDAMUS_APP_ID)!.add(PostModel(
       documentID: "example2",
       feedId: feedId,
-      author: memberPublicInfo,
+      authorId: memberPublicInfo!.documentID!,
       appId: IncidamusApp.INCIDAMUS_APP_ID,
       archived: PostArchiveStatus.Active,
       description: "Hi guys, this is my first post these are photos",
@@ -70,7 +70,7 @@ class ExamplePosts {
         IncidamusApp.INCIDAMUS_APP_ID)!.add(PostModel(
       documentID: "example3",
       feedId: feedId,
-      author: memberPublicInfo,
+      authorId: memberPublicInfo!.documentID!,
       appId: IncidamusApp.INCIDAMUS_APP_ID,
       archived: PostArchiveStatus.Active,
       description: "Hi guys, this is my first post these are videos",

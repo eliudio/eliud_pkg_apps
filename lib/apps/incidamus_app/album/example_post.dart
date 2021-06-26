@@ -22,7 +22,7 @@ class ExamplePost {
     return await postRepo.AbstractRepositorySingleton.singleton.postRepository(
         IncidamusApp.INCIDAMUS_APP_ID)!.add(PostModel(
       documentID: ALBUM_POST_PHOTOS,
-      author: memberPublicInfo,
+      authorId: memberPublicInfo!.documentID!,
       appId: IncidamusApp.INCIDAMUS_APP_ID,
       archived: PostArchiveStatus.Active,
       description: "These are my photos",
@@ -103,7 +103,7 @@ class ExamplePost {
       return await postRepo.AbstractRepositorySingleton.singleton.postRepository(
           IncidamusApp.INCIDAMUS_APP_ID)!.add(PostModel(
           documentID: ALBUM_POST_MOVIES,
-          author: memberPublicInfo,
+        authorId: memberPublicInfo!.documentID!,
           appId: IncidamusApp.INCIDAMUS_APP_ID,
           archived: PostArchiveStatus.Active,
           description: "These are my videos",

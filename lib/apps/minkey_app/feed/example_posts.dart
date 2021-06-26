@@ -34,7 +34,7 @@ class ExamplePosts {
             .add(PostModel(
                 documentID: "example1",
                 feedId: feedId,
-                author: memberPublicInfo,
+                authorId: memberPublicInfo!.documentID!,
                 appId: MinkeyApp.MINKEY_APP_ID,
                 postAppId: JuuwleApp.JUUWLE_APP_ID,
                 postPageId: ProductPage.identifier,
@@ -53,7 +53,7 @@ class ExamplePosts {
         .add(PostModel(
         documentID: "exampleHtml",
         feedId: feedId,
-        author: memberPublicInfo,
+        authorId: memberPublicInfo!.documentID!,
         appId: MinkeyApp.MINKEY_APP_ID,
         archived: PostArchiveStatus.Active,
         html: kHtml,
@@ -65,7 +65,7 @@ class ExamplePosts {
           PostModel(
             documentID: "example2",
             feedId: feedId,
-            author: memberPublicInfo,
+            authorId: memberPublicInfo!.documentID!,
             appId: MinkeyApp.MINKEY_APP_ID,
             archived: PostArchiveStatus.Active,
             description: "Hi guys, this is my first post these are photos",
@@ -117,7 +117,7 @@ class ExamplePosts {
           PostModel(
             documentID: "example3",
             feedId: feedId,
-            author: memberPublicInfo,
+            authorId: memberPublicInfo!.documentID!,
             appId: MinkeyApp.MINKEY_APP_ID,
             archived: PostArchiveStatus.Active,
             description: "Hi guys, this is my first post these are videos",
