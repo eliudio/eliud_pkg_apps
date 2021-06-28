@@ -28,10 +28,10 @@ class ExampleProfile {
     var value = MemberProfileModel(
       documentID: memberPublicInfo.documentID! + "-" + feedId,
       appId: appId,
-      author: memberPublicInfo,
+      authorId: member.documentID,
       feedId: feedId,
       profileBackground: profileBackground,
-      profileOverride: profilePhoto,
+      profileOverride: profilePhoto.url,
       readAccess: readAccess,
       profile: kHtml,
     );

@@ -17,7 +17,6 @@ class ExamplePosts {
   ExamplePosts(this.appId);
   
   Future<void> run(MemberModel member, String feedId) async {
-    var memberPublicInfo = await memberPublicInfoRepository()!.get(member.documentID);
 //    for (int j = 0; j < 1; j++) {
     int j = 0;
     int i = j * 21;
@@ -25,7 +24,7 @@ class ExamplePosts {
         IncidamusApp.INCIDAMUS_APP_ID)!.add(PostModel(
         documentID: "example1",
         feedId: feedId,
-        authorId: memberPublicInfo!.documentID!,
+        authorId: member.documentID!,
         appId: IncidamusApp.INCIDAMUS_APP_ID,
         postAppId: IncidamusApp.INCIDAMUS_APP_ID,
         postPageId: ProductPage.identifier,
@@ -38,7 +37,7 @@ class ExamplePosts {
         IncidamusApp.INCIDAMUS_APP_ID)!.add(PostModel(
       documentID: "example2",
       feedId: feedId,
-      authorId: memberPublicInfo!.documentID!,
+      authorId: member.documentID!,
       appId: IncidamusApp.INCIDAMUS_APP_ID,
       archived: PostArchiveStatus.Active,
       description: "Hi guys, this is my first post these are photos",
@@ -70,7 +69,7 @@ class ExamplePosts {
         IncidamusApp.INCIDAMUS_APP_ID)!.add(PostModel(
       documentID: "example3",
       feedId: feedId,
-      authorId: memberPublicInfo!.documentID!,
+      authorId: member.documentID!,
       appId: IncidamusApp.INCIDAMUS_APP_ID,
       archived: PostArchiveStatus.Active,
       description: "Hi guys, this is my first post these are videos",
