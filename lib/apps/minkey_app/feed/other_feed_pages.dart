@@ -55,7 +55,7 @@ class OtherFeedPages extends AppSection {
     return PageModel(
         documentID: identifier,
         appId: MinkeyApp.MINKEY_APP_ID,
-        title: "Profile",
+        title: title,
         drawer: drawer,
         widgetWrapper: 'profile',
         endDrawer: endDrawer,
