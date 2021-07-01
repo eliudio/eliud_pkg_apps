@@ -187,7 +187,8 @@ class EliudApp extends InstallApp {
         .run();
     await createPolicyPages(appPolicyModel!, drawer, endDrawer,  adminMenu);
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
-        homePageSubscribedMemberId: homePageSubscribedMember.documentID
+      homePageSubscribedMember: homePageSubscribedMember.documentID,
+      homePagePublic: homePageSubscribedMember.documentID,
     );
     return homePages;
   }

@@ -257,11 +257,12 @@ class IncidamusApp extends InstallApp {
           .run();
       await createPolicyPages(appPolicyModel!, drawer, endDrawer, adminMenu);
       AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
-        homePageBlockedMemberId: homePageBlockedMember.documentID,
-        homePageSubscribedMemberId: Welcome.IDENTIFIER,
-        homePageLevel1MemberId: Welcome.IDENTIFIER,
-        homePageLevel2MemberId: Welcome.IDENTIFIER,
-        homePageOwnerId: Welcome.IDENTIFIER,
+        homePageBlockedMember: homePageBlockedMember.documentID,
+        homePagePublic: Welcome.IDENTIFIER,
+        homePageSubscribedMember: Welcome.IDENTIFIER,
+        homePageLevel1Member: Welcome.IDENTIFIER,
+        homePageLevel2Member: Welcome.IDENTIFIER,
+        homePageOwner: Welcome.IDENTIFIER,
       );
       return homePages;
     }

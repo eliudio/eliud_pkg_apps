@@ -234,9 +234,11 @@ class MinkeyApp extends InstallApp {
 
 
       AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
-        homePageBlockedMemberId: homePageBlockedMember.documentID,
-        homePageSubscribedMemberId: homePageSubscribedMember.documentID,
-        homePageLevel1MemberId: homePageLevel1Member.documentID,
+        homePageBlockedMember: homePageBlockedMember.documentID,
+        homePageSubscribedMember: homePageSubscribedMember.documentID,
+        homePageLevel1Member: homePageLevel1Member.documentID,
+        homePageLevel2Member: homePageLevel1Member.documentID,
+        homePagePublic: homePageSubscribedMember.documentID,
       );
       return homePages;
     }
