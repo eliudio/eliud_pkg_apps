@@ -77,7 +77,7 @@ class Feed extends AppSection {
       documentID: IDENTIFIER,
       appId: MinkeyApp.MINKEY_APP_ID,
       description: "My Minkey Feed",
-      thumbImage: ThumbStyle.Banana,
+      thumbImage: ThumbStyle.Thumbs,
       photoPost: true,
       videoPost: true,
       messagePost: true,
