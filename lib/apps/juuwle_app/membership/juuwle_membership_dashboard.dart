@@ -5,7 +5,7 @@ import '../../app_base.dart';
 
 class JuuwleMembershipDashboard extends MembershipDashboard {
   JuuwleMembershipDashboard({InstallApp? installApp, RgbModel? backgroundColor}) :
-        super(installApp, backgroundColor);
+        super(installApp, backgroundColor, null, null);
   Future<DialogModel> run() async {
     return super.run();
   }

@@ -1,6 +1,7 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_pkg_apps/apps/shared/etc/profile_and_feed_to_action.dart';
 import 'package:eliud_pkg_follow/follow_package.dart';
 import 'package:eliud_pkg_follow/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_follow/model/follow_requests_dashboard_component.dart';
@@ -18,9 +19,11 @@ class _FollowingDashboard extends AppSectionBase {
   final String identifier;
   final String title;
   final FollowingView view;
+  final String? profilePageId;
+  final String? feedPageId;
 
   _FollowingDashboard(this.identifier, this.title, this.view,
-      InstallApp? installApp, this.backgroundColor)
+      InstallApp? installApp, this.backgroundColor, this.profilePageId, this.feedPageId, )
       : super(installApp);
 
   Future<DialogModel> _setupDialog() async {
@@ -53,6 +56,7 @@ class _FollowingDashboard extends AppSectionBase {
         appId: installApp!.appId,
         description: title,
         view: view,
+        memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId!, profilePageId, feedPageId),
         conditions: ConditionsSimpleModel(
             privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
         ),
@@ -73,9 +77,11 @@ class _FollowingDashboard extends AppSectionBase {
 
 class FollowRequestDashboard extends AppSectionBase {
   final RgbModel? backgroundColor;
+  final String? profilePageId;
+  final String? feedPageId;
 
   static String FOLLOW_REQUEST_IDENTIFIER = "follow_requests_dashboard";
-  FollowRequestDashboard(InstallApp? installApp, this.backgroundColor)
+  FollowRequestDashboard(InstallApp? installApp, this.backgroundColor, this.profilePageId, this.feedPageId)
       : super(installApp);
 
   Future<DialogModel> _setupDialog() async {
@@ -108,6 +114,7 @@ class FollowRequestDashboard extends AppSectionBase {
       documentID: FOLLOW_REQUEST_IDENTIFIER,
       appId: installApp!.appId,
       description: "Follow requests",
+      memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId!, profilePageId, feedPageId),
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
@@ -128,9 +135,11 @@ class FollowRequestDashboard extends AppSectionBase {
 
 class InviteDashboard extends AppSectionBase {
   final RgbModel? backgroundColor;
+  final String? profilePageId;
+  final String? feedPageId;
 
   static String INVITE_IDENTIFIER = "invite_dashboard";
-  InviteDashboard(InstallApp? installApp, this.backgroundColor)
+  InviteDashboard(InstallApp? installApp, this.backgroundColor, this.profilePageId, this.feedPageId)
       : super(installApp);
 
   Future<DialogModel> _setupDialog() async {
@@ -162,6 +171,7 @@ class InviteDashboard extends AppSectionBase {
       documentID: INVITE_IDENTIFIER,
       appId: installApp!.appId,
       description: "Follow members",
+      memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId!, profilePageId, feedPageId),
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
@@ -188,13 +198,13 @@ class FollowDashboards extends AppSectionBase {
   static String FOLLOWERS_IDENTIFIER = "followers_dashboard";
   static String FOLLOWING_IDENTIFIER = "following_dashboard";
 
-  Future<DialogModel> run() async {
+  Future<DialogModel> runIt(String? profilePageId,  String? feedPageId) async {
     await _FollowingDashboard(FOLLOWERS_IDENTIFIER, "Followers", FollowingView.Followers,
-        installApp, backgroundColor).run();
+        installApp, backgroundColor, profilePageId, feedPageId).run();
     await _FollowingDashboard(FOLLOWING_IDENTIFIER, "Following", FollowingView.Following,
-        installApp, backgroundColor).run();
-    await FollowRequestDashboard(installApp, backgroundColor).run();
-    return await InviteDashboard(installApp, backgroundColor).run();
+        installApp, backgroundColor, profilePageId, feedPageId).run();
+    await FollowRequestDashboard(installApp, backgroundColor, profilePageId, feedPageId).run();
+    return await InviteDashboard(installApp, backgroundColor, profilePageId, feedPageId).run();
   }
 }
 
