@@ -5,6 +5,6 @@ import '../../app_base.dart';
 
 // Nothing implemented, just a placeholder
 class JuuwleAssignmentViewSetup extends AssignmentViewSetup {
-  JuuwleAssignmentViewSetup({InstallApp? installApp, RgbModel? backgroundColor}) :
-        super(installApp, backgroundColor);
+  JuuwleAssignmentViewSetup({InstallApp? installApp}) :
+        super(installApp);
 }

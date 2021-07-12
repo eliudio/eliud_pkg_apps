@@ -6,8 +6,8 @@ import 'package:eliud_pkg_apps/apps/shared/follow/follow_dashboards.dart';
 import '../../app_base.dart';
 
 class MinkeyFollowDashboards extends FollowDashboards {
-  MinkeyFollowDashboards({InstallApp? installApp, RgbModel? backgroundColor}) :
-        super(installApp, backgroundColor);
+  MinkeyFollowDashboards({InstallApp? installApp}) :
+        super(installApp);
   Future<DialogModel> run() async {
     return super.runIt(Profile.IDENTIFIER, Feed.IDENTIFIER);
   }

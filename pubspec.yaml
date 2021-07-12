@@ -42,6 +42,9 @@ dependencies:
   eliud_pkg_etc:
     path: ../eliud_pkg_etc
 
+  eliud_pkg_chat:
+    path: ../eliud_pkg_chat
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

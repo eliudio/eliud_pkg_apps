@@ -230,23 +230,23 @@ class IncidamusApp extends InstallApp {
           .run();
       await IncidamusNotificationDashboard(
           installApp: this,
-          backgroundColor: EliudColors.gray)
+          )
           .run();
       await IncidamusMembershipDashboard(
           installApp: this,
-          backgroundColor: EliudColors.gray)
+          )
           .run();
       await IncidamusMemberDashboard(
           installApp: this,
-          backgroundColor: EliudColors.gray)
+          )
           .run();
       await IncidamusAssignmentViewSetup(
           installApp: this,
-          backgroundColor: EliudColors.gray)
+          )
           .run();
       await IncidamusFollowDashboards(
           installApp: this,
-          backgroundColor: EliudColors.gray)
+          )
           .run();
       var homePageBlockedMember = await IncidamusBlocked(
           installApp: this,

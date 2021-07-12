@@ -6,8 +6,8 @@ import 'package:eliud_pkg_feed/extensions/profile/profile.dart';
 import '../../app_base.dart';
 
 class IncidamusFollowDashboards extends FollowDashboards {
-  IncidamusFollowDashboards({InstallApp? installApp, RgbModel? backgroundColor}) :
-        super(installApp, backgroundColor);
+  IncidamusFollowDashboards({InstallApp? installApp}) :
+        super(installApp);
   Future<DialogModel> run() async {
     return super.runIt(null, Feed.IDENTIFIER);
   }

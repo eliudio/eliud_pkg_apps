@@ -10,9 +10,7 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 class AssignmentViewSetup extends AppSectionBase {
-  final RgbModel? backgroundColor;
-
-  AssignmentViewSetup(InstallApp? installApp, this.backgroundColor) :
+  AssignmentViewSetup(InstallApp? installApp) :
         super(installApp);
 
   static String IDENTIFIER = "assignments";

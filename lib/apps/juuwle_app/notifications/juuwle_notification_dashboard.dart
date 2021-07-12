@@ -4,8 +4,8 @@ import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.
 import '../../app_base.dart';
 
 class JuuwleNotificationDashboard extends NotificationDashboard {
-  JuuwleNotificationDashboard({InstallApp? installApp, RgbModel? backgroundColor}) :
-        super(installApp, backgroundColor);
+  JuuwleNotificationDashboard({InstallApp? installApp}) :
+        super(installApp);
   Future<DialogModel> run() async {
     return super.run();
   }

@@ -9,8 +9,6 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 class MemberDashboard extends AppSectionBase {
-  final RgbModel? backgroundColor;
-
   static String updateProfileText = '''
 Maintain your personal details here
 ''';
@@ -38,7 +36,7 @@ Sorry to see you go. Your account has been destroyed.
 """;
 
   MemberDashboard(
-      InstallApp? installApp, this.backgroundColor)
+      InstallApp? installApp)
       : super(installApp);
 
   static String IDENTIFIER = "member_dashboard";

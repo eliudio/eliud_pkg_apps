@@ -5,6 +5,6 @@ import '../../app_base.dart';
 
 // Nothing implemented, just a placeholder
 class IncidamusAssignmentViewSetup extends AssignmentViewSetup {
-  IncidamusAssignmentViewSetup({InstallApp? installApp, RgbModel? backgroundColor}) :
-        super(installApp, backgroundColor);
+  IncidamusAssignmentViewSetup({InstallApp? installApp}) :
+        super(installApp);
 }

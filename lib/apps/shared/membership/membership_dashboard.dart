@@ -12,12 +12,11 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 class MembershipDashboard extends AppSectionBase {
-  final RgbModel? backgroundColor;
   final String? profilePageId;
   final String? feedPageId;
 
   MembershipDashboard(
-      InstallApp? installApp, this.backgroundColor, this.profilePageId, this.feedPageId)
+      InstallApp? installApp, this.profilePageId, this.feedPageId)
       : super(installApp);
 
   static String IDENTIFIER = "membership_dashboard";

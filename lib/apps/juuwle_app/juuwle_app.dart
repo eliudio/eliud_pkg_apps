@@ -197,19 +197,19 @@ class JuuwleApp extends InstallApp {
         .run();
     await JuuwleNotificationDashboard(
             installApp: this,
-            backgroundColor: EliudColors.gray)
+    )
         .run();
     await JuuwleMembershipDashboard(
         installApp: this,
-        backgroundColor: EliudColors.gray)
+        )
         .run();
     await JuuwleMemberDashboard(
         installApp: this,
-        backgroundColor: EliudColors.gray)
+        )
         .run();
     await JuuwleAssignmentViewSetup(
             installApp: this,
-            backgroundColor: EliudColors.gray)
+        )
         .run();
     var homePageSubscribedMember = await Welcome(
             installApp: this,

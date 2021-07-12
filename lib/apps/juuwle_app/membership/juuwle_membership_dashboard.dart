@@ -4,8 +4,8 @@ import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart'
 import '../../app_base.dart';
 
 class JuuwleMembershipDashboard extends MembershipDashboard {
-  JuuwleMembershipDashboard({InstallApp? installApp, RgbModel? backgroundColor}) :
-        super(installApp, backgroundColor, null, null);
+  JuuwleMembershipDashboard({InstallApp? installApp}) :
+        super(installApp, null, null);
   Future<DialogModel> run() async {
     return super.run();
   }

@@ -15,7 +15,6 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 class _FollowingDashboard extends AppSectionBase {
-  final RgbModel? backgroundColor;
   final String identifier;
   final String title;
   final FollowingView view;
@@ -23,7 +22,7 @@ class _FollowingDashboard extends AppSectionBase {
   final String? feedPageId;
 
   _FollowingDashboard(this.identifier, this.title, this.view,
-      InstallApp? installApp, this.backgroundColor, this.profilePageId, this.feedPageId, )
+      InstallApp? installApp, this.profilePageId, this.feedPageId, )
       : super(installApp);
 
   Future<DialogModel> _setupDialog() async {
@@ -76,12 +75,11 @@ class _FollowingDashboard extends AppSectionBase {
 }
 
 class FollowRequestDashboard extends AppSectionBase {
-  final RgbModel? backgroundColor;
   final String? profilePageId;
   final String? feedPageId;
 
   static String FOLLOW_REQUEST_IDENTIFIER = "follow_requests_dashboard";
-  FollowRequestDashboard(InstallApp? installApp, this.backgroundColor, this.profilePageId, this.feedPageId)
+  FollowRequestDashboard(InstallApp? installApp, this.profilePageId, this.feedPageId)
       : super(installApp);
 
   Future<DialogModel> _setupDialog() async {
@@ -134,12 +132,11 @@ class FollowRequestDashboard extends AppSectionBase {
 }
 
 class InviteDashboard extends AppSectionBase {
-  final RgbModel? backgroundColor;
   final String? profilePageId;
   final String? feedPageId;
 
   static String INVITE_IDENTIFIER = "invite_dashboard";
-  InviteDashboard(InstallApp? installApp, this.backgroundColor, this.profilePageId, this.feedPageId)
+  InviteDashboard(InstallApp? installApp, this.profilePageId, this.feedPageId)
       : super(installApp);
 
   Future<DialogModel> _setupDialog() async {
@@ -191,8 +188,7 @@ class InviteDashboard extends AppSectionBase {
 }
 
 class FollowDashboards extends AppSectionBase {
-  final RgbModel? backgroundColor;
-  FollowDashboards(InstallApp? installApp, this.backgroundColor)
+  FollowDashboards(InstallApp? installApp)
       : super(installApp);
 
   static String FOLLOWERS_IDENTIFIER = "followers_dashboard";
@@ -200,11 +196,11 @@ class FollowDashboards extends AppSectionBase {
 
   Future<DialogModel> runIt(String? profilePageId,  String? feedPageId) async {
     await _FollowingDashboard(FOLLOWERS_IDENTIFIER, "Followers", FollowingView.Followers,
-        installApp, backgroundColor, profilePageId, feedPageId).run();
+        installApp, profilePageId, feedPageId).run();
     await _FollowingDashboard(FOLLOWING_IDENTIFIER, "Following", FollowingView.Following,
-        installApp, backgroundColor, profilePageId, feedPageId).run();
-    await FollowRequestDashboard(installApp, backgroundColor, profilePageId, feedPageId).run();
-    return await InviteDashboard(installApp, backgroundColor, profilePageId, feedPageId).run();
+        installApp, profilePageId, feedPageId).run();
+    await FollowRequestDashboard(installApp, profilePageId, feedPageId).run();
+    return await InviteDashboard(installApp, profilePageId, feedPageId).run();
   }
 }
 

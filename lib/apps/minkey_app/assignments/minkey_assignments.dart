@@ -5,6 +5,6 @@ import '../../app_base.dart';
 
 // Nothing implemented, just a placeholder
 class MinkeyAssignmentViewSetup extends AssignmentViewSetup {
-  MinkeyAssignmentViewSetup({InstallApp? installApp, RgbModel? backgroundColor}) :
-        super(installApp, backgroundColor);
+  MinkeyAssignmentViewSetup({InstallApp? installApp}) :
+        super(installApp);
 }

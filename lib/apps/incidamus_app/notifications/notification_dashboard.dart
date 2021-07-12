@@ -4,8 +4,8 @@ import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.
 import '../../app_base.dart';
 
 class IncidamusNotificationDashboard extends NotificationDashboard {
-  IncidamusNotificationDashboard({InstallApp? installApp, RgbModel? backgroundColor}) :
-        super(installApp, backgroundColor);
+  IncidamusNotificationDashboard({InstallApp? installApp}) :
+        super(installApp);
   Future<DialogModel> run() async {
     return super.run();
   }

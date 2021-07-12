@@ -168,8 +168,7 @@ class EliudApp extends InstallApp {
             adminMenu: adminMenu)
         .run();
     await EliudMemberDashboard(
-        installApp: this,
-        backgroundColor: EliudColors.gray)
+        installApp: this)
         .run();
     await HelloWorld(
             installApp: this,
