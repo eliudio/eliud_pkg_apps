@@ -290,16 +290,18 @@ class MinkeyApp extends InstallApp {
             action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
                 dialogID: AssignmentViewSetup.IDENTIFIER)),
         MenuItemModel(
-            documentID: '1',
-            text: 'Follow requests',
-            description: 'Follow requests',
+            documentID: 'chat',
+            text: 'Chat',
+            description: 'Open chat',
             icon: IconModel(
-                codePoint: Icons.chat_bubble.codePoint,
+                codePoint: Icons.chat_bubble_outline_rounded.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: OpenDialog(
-              MinkeyApp.MINKEY_APP_ID,
-              dialogID: ChatDialog.IDENTIFIER,
-            )),
+            action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
+                dialogID: ChatDialog.IDENTIFIER,
+                conditions: ConditionsModel(
+                    privilegeLevelRequired:
+                        PrivilegeLevelRequired.NoPrivilegeRequired,
+                    packageCondition: CorePackage.MUST_BE_LOGGED_ON))),
         MenuItemModel(
             documentID: "join",
             text: "JOIN",
