@@ -2,7 +2,10 @@ import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_pkg_chat/extensions/chat_dashboard_component.dart';
 import 'package:eliud_pkg_chat/model/chat_component.dart';
+import 'package:eliud_pkg_chat/model/chat_dashboard_component.dart';
+import 'package:eliud_pkg_chat/model/chat_dashboard_model.dart';
 import 'package:eliud_pkg_chat/model/chat_model.dart';
 import 'package:eliud_pkg_chat/model/abstract_repository_singleton.dart';
 
@@ -27,7 +30,7 @@ class ChatDialog extends AppSectionBase {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "1",
-        componentName: AbstractChatComponent.componentName,
+        componentName: AbstractChatDashboardComponent.componentName,
         componentId: IDENTIFIER));
 
     return DialogModel(
@@ -41,8 +44,8 @@ class ChatDialog extends AppSectionBase {
         bodyComponents: components);
   }
 
-  ChatModel _chatModel() {
-    return ChatModel(
+  ChatDashboardModel _chatModel() {
+    return ChatDashboardModel(
         documentID: IDENTIFIER,
         appId: installApp!.appId,
         description: "Chat",
@@ -52,9 +55,9 @@ class ChatDialog extends AppSectionBase {
     );
   }
 
-  Future<ChatModel> _setupChat() async {
+  Future<ChatDashboardModel> _setupChat() async {
     return await AbstractRepositorySingleton.singleton
-        .chatRepository(installApp!.appId)!
+        .chatDashboardRepository(installApp!.appId)!
         .add(_chatModel());
   }
 
