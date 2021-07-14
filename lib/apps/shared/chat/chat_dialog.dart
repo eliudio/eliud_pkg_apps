@@ -37,6 +37,7 @@ class ChatDialog extends AppSectionBase {
         documentID: IDENTIFIER,
         appId: installApp!.appId,
         title: "Chat",
+        includeHeading: false,
         layout: DialogLayout.ListView,
         conditions: ConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
