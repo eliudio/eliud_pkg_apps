@@ -51,7 +51,7 @@ class FeedMenu {
       menuItemFiendFriendsPage(appId, "6", InviteDashboard.INVITE_IDENTIFIER,
           PrivilegeLevelRequired.NoPrivilegeRequired),
       menuItemAppMembersPage(appId, "7", MembershipDashboard.IDENTIFIER,
-          PrivilegeLevelRequired.NoPrivilegeRequired),
+          PrivilegeLevelRequired.OwnerPrivilegeRequired),
     ];
     MenuDefModel menu = MenuDefModel(
         documentID: FEED_MENU_ID,
