@@ -26,6 +26,7 @@ import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
+import 'package:eliud_pkg_chat/chat_package.dart';
 import 'package:eliud_pkg_feed/tools/action/post_action_model.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:flutter/material.dart';
@@ -292,6 +293,19 @@ class MinkeyApp extends InstallApp {
         MenuItemModel(
             documentID: 'chat',
             text: 'Chat',
+            description: 'Open unread chat messages',
+            icon: IconModel(
+                codePoint: Icons.chat_bubble_rounded.codePoint,
+                fontFamily: Icons.notifications.fontFamily),
+            action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
+                dialogID: ChatDialog.IDENTIFIER,
+                conditions: ConditionsModel(
+                    privilegeLevelRequired:
+                    PrivilegeLevelRequired.NoPrivilegeRequired,
+                    packageCondition: ChatPackage.CONDITION_MEMBER_HAS_UNREAD_CHAT))),
+        MenuItemModel(
+            documentID: 'chat',
+            text: 'Chat',
             description: 'Open chat',
             icon: IconModel(
                 codePoint: Icons.chat_bubble_outline_rounded.codePoint,
@@ -301,7 +315,7 @@ class MinkeyApp extends InstallApp {
                 conditions: ConditionsModel(
                     privilegeLevelRequired:
                         PrivilegeLevelRequired.NoPrivilegeRequired,
-                    packageCondition: CorePackage.MUST_BE_LOGGED_ON))),
+                    packageCondition: ChatPackage.CONDITION_MEMBER_DOES_NOT_HAVE_UNREAD_CHAT))),
         MenuItemModel(
             documentID: "join",
             text: "JOIN",
