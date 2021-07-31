@@ -291,27 +291,27 @@ class MinkeyApp extends InstallApp {
             action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
                 dialogID: AssignmentViewSetup.IDENTIFIER)),
         MenuItemModel(
-            documentID: 'chat',
+            documentID: 'chatUnread',
             text: 'Chat',
             description: 'Open unread chat messages',
             icon: IconModel(
                 codePoint: Icons.chat_bubble_rounded.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
             action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
-                dialogID: ChatDialog.IDENTIFIER,
+                dialogID: ChatDialog.IDENTIFIER_UNREAD,
                 conditions: ConditionsModel(
                     privilegeLevelRequired:
                     PrivilegeLevelRequired.NoPrivilegeRequired,
                     packageCondition: ChatPackage.CONDITION_MEMBER_HAS_UNREAD_CHAT))),
         MenuItemModel(
-            documentID: 'chat',
+            documentID: 'chatReadAndUnread',
             text: 'Chat',
             description: 'Open chat',
             icon: IconModel(
                 codePoint: Icons.chat_bubble_outline_rounded.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
             action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
-                dialogID: ChatDialog.IDENTIFIER,
+                dialogID: ChatDialog.IDENTIFIER_READ,
                 conditions: ConditionsModel(
                     privilegeLevelRequired:
                         PrivilegeLevelRequired.NoPrivilegeRequired,
