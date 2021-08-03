@@ -6,19 +6,23 @@ import 'package:eliud_pkg_feed/model/post_medium_model.dart';
 
 class ImageTools {
   static Future<MemberMediumModel> uploadPublicPhoto(String appId, MemberModel member, String assetPath) async {
-    return await MemberMediumHelper.createThumbnailUploadPhotoAsset(appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!]);
+    String memberMediumDocumentID = newRandomKey();
+    return await MemberMediumHelper.createThumbnailUploadPhotoAsset(memberMediumDocumentID, appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!]);
   }
 
   static Future<MemberMediumModel> uploadPublicVideo(String appId, MemberModel member, String assetPath) async {
-    return await MemberMediumHelper.createThumbnailUploadVideoAsset(appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!]);
+    String memberMediumDocumentID = newRandomKey();
+    return await MemberMediumHelper.createThumbnailUploadVideoAsset(memberMediumDocumentID, appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!]);
   }
 
   static Future<MemberMediumModel> uploadPublicPdf(String appId, MemberModel member, String assetPath, String documentID) async {
-    return await MemberMediumHelper.createThumbnailUploadPdfAsset(appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!], documentID);
+    String memberMediumDocumentID = newRandomKey();
+    return await MemberMediumHelper.createThumbnailUploadPdfAsset(memberMediumDocumentID, appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!], documentID);
   }
 
   static Future<MemberMediumModel> createMemberMediumModelPhoto(String appId, MemberModel member, String assetPath) async {
-    var photo = await MemberMediumHelper.createThumbnailUploadPhotoAsset(appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!]);
+    String memberMediumDocumentID = newRandomKey();
+    var photo = await MemberMediumHelper.createThumbnailUploadPhotoAsset(memberMediumDocumentID, appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!]);
     return photo;
   }
 
