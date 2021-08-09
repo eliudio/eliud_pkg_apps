@@ -19,26 +19,31 @@ class FeedMenu {
 
   FeedMenu(this.appId);
 
-  static String FEED_MENU_ID = "feedMenu";
+  static String FEED_MENU_ID_CURRENT_MEMBER = "feedMenuCurrentMember";
+  static String FEED_MENU_ID_OTHER_MEMBER = "feedMenuOtherMember";
 
-  MenuDefModel menuDef() {
+  MenuItemModel feedMenuItem() => MenuItemModel(
+        documentID: '1',
+        text: 'Feed',
+        description: 'Your Feed',
+        icon: IconModel(
+            codePoint: Icons.people.codePoint,
+            fontFamily: Icons.settings.fontFamily),
+        action: GotoPage(appId, pageID: Feed.IDENTIFIER));
+
+  MenuItemModel profileMenuItem() => MenuItemModel(
+        documentID: '2',
+        text: 'Profile',
+        description: 'Your profile',
+        icon: IconModel(
+            codePoint: Icons.person.codePoint,
+            fontFamily: Icons.settings.fontFamily),
+        action: GotoPage(appId, pageID: Profile.IDENTIFIER));
+
+  MenuDefModel menuDefCurrentMember() {
     var menuItems = <MenuItemModel>[
-      MenuItemModel(
-          documentID: '1',
-          text: 'Feed',
-          description: 'Your Feed',
-          icon: IconModel(
-              codePoint: Icons.people.codePoint,
-              fontFamily: Icons.settings.fontFamily),
-          action: GotoPage(appId, pageID: Feed.IDENTIFIER)),
-      MenuItemModel(
-          documentID: '2',
-          text: 'Profile',
-          description: 'Your profile',
-          icon: IconModel(
-              codePoint: Icons.person.codePoint,
-              fontFamily: Icons.settings.fontFamily),
-          action: GotoPage(appId, pageID: Profile.IDENTIFIER)),
+      feedMenuItem(),
+      profileMenuItem(),
       menuItemFollowRequestsPage(
           appId,
           "3",
@@ -54,25 +59,46 @@ class FeedMenu {
           PrivilegeLevelRequired.OwnerPrivilegeRequired),
     ];
     MenuDefModel menu = MenuDefModel(
-        documentID: FEED_MENU_ID,
+        documentID: FEED_MENU_ID_CURRENT_MEMBER,
         appId: appId,
-        name: "Main Menu",
+        name: "Current Member Feed Menu",
         menuItems: menuItems);
     return menu;
   }
 
-  Future<MenuDefModel> createMenuDef() async {
-    return await coreRepo.AbstractRepositorySingleton.singleton
-        .menuDefRepository(appId)!
-        .add(menuDef());
+  MenuDefModel menuDefOtherMember() {
+    var menuItems = <MenuItemModel>[
+    feedMenuItem(),
+    profileMenuItem(),
+    ];
+    MenuDefModel menu = MenuDefModel(
+        documentID: FEED_MENU_ID_OTHER_MEMBER,
+        appId: appId,
+        name: "Other Member Feed Menu",
+        menuItems: menuItems);
+    return menu;
   }
 
-  FeedMenuModel feedMenuModel(MenuDefModel menu) {
+  Future<MenuDefModel> createMenuDefCurrentMember() async {
+    return await coreRepo.AbstractRepositorySingleton.singleton
+        .menuDefRepository(appId)!
+        .add(menuDefCurrentMember());
+  }
+
+  Future<MenuDefModel> createMenuDefOtherMember() async {
+    return await coreRepo.AbstractRepositorySingleton.singleton
+        .menuDefRepository(appId)!
+        .add(menuDefOtherMember());
+  }
+
+  static String FEED_MENU_ID = "feedMenu";
+  FeedMenuModel feedMenuModel(MenuDefModel menuCurrentMember, MenuDefModel menuOtherMember, ) {
     return FeedMenuModel(
       documentID: FEED_MENU_ID,
       appId: appId,
       description: "Feed Menu",
-      menu: menu,
+      menuCurrentMember: menuCurrentMember,
+      menuOtherMember: menuOtherMember,
       itemColor: EliudColors.black,
       selectedItemColor: EliudColors.red,
       conditions: ConditionsSimpleModel(
@@ -81,14 +107,15 @@ class FeedMenu {
     );
   }
 
-  Future<FeedMenuModel> createFeedMenuModel(MenuDefModel menu) async {
+  Future<FeedMenuModel> createFeedMenuModel(MenuDefModel menuCurrentMember, MenuDefModel menuOtherMember,) async {
     return await AbstractRepositorySingleton.singleton
         .feedMenuRepository(appId)!
-        .add(feedMenuModel(menu));
+        .add(feedMenuModel(menuCurrentMember, menuOtherMember));
   }
 
   Future<void> run() async {
-    var menuDef = await createMenuDef();
-    await createFeedMenuModel(menuDef);
+    var menuDefCurrentMember = await createMenuDefCurrentMember();
+    var menuDefOtherMember = await createMenuDefOtherMember();
+    await createFeedMenuModel(menuDefCurrentMember, menuDefOtherMember);
   }
 }
