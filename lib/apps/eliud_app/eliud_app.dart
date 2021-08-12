@@ -159,13 +159,13 @@ class EliudApp extends InstallApp {
 
   @override
   Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
-      DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
+      DrawerModel drawer, DrawerModel endDrawer) async {
     await Who(
             installApp: this,
             homeMenu: homeMenu(),
             drawer: drawer,
             endDrawer: endDrawer,
-            adminMenu: adminMenu)
+            )
         .run();
     await EliudMemberDashboard(
         installApp: this)
@@ -175,16 +175,16 @@ class EliudApp extends InstallApp {
             homeMenu: homeMenu(),
             drawer: drawer,
             endDrawer: endDrawer,
-            adminMenu: adminMenu)
+            )
         .run();
     var homePageSubscribedMember = await Welcome(
             installApp: this,
             homeMenu: homeMenu(),
             drawer: drawer,
             endDrawer: endDrawer,
-            adminMenu: adminMenu)
+            )
         .run();
-    await createPolicyPages(appPolicyModel!, drawer, endDrawer,  adminMenu);
+    await createPolicyPages(appPolicyModel!, drawer, endDrawer, );
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
       homePageSubscribedMember: homePageSubscribedMember.documentID,
       homePagePublic: homePageSubscribedMember.documentID,
@@ -196,16 +196,6 @@ class EliudApp extends InstallApp {
     return await runBase(
       ownerID: ownerID,
           );
-  }
-
-  @override
-  Future<AppBarModel> appBar(
-      String? identifier, MenuDefModel? menu, String? title) async {
-    return await setupAppBar(
-        identifier,
-        menu,
-        title,
-        );
   }
 
   @override

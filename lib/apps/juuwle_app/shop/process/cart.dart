@@ -59,7 +59,7 @@ class MyCart extends PageTemplate {
     HomeMenuModel? homeMenu,
     DrawerModel? drawer,
     DrawerModel? endDrawer,
-    MenuDefModel? adminMenu}): super(
+    }): super(
       privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
       packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
       pageId: identifier,
@@ -67,7 +67,7 @@ class MyCart extends PageTemplate {
       homeMenu: homeMenu,
       drawer: drawer,
       endDrawer: endDrawer,
-      adminMenu: adminMenu);
+      );
 
   @override
   String? componentID() {

@@ -32,7 +32,7 @@ Minkey is a platform that allows to build online apps / websites / ... and make 
 """;
 
 class Welcome extends AppSection {
-  Welcome({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
+  Welcome({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer}) : super(installApp, homeMenu, drawer, endDrawer, );
 
   static String identifier = "welcome";
 
@@ -164,7 +164,7 @@ class Welcome extends AppSection {
     var tablet = await tabletImage();
     var macbook = await macbookImage();
 
-    var appBar = await installApp!.appBar(identifier, adminMenu, "Welcome");
+    var appBar = installApp!.appBar();
     await _setupWelcome();
     await _setupFader(android, iphone, tablet, macbook);
     return await _setupPage(appBar);

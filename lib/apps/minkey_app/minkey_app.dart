@@ -1,3 +1,4 @@
+import 'package:eliud_core/core/components/page_constructors/eliud_appbar.dart';
 import 'package:eliud_core/core_package.dart';
 import 'package:eliud_core/default_style/eliud_style.dart';
 import 'package:eliud_core/default_style/instances/eliud_minkey_style.dart';
@@ -149,35 +150,36 @@ class MinkeyApp extends InstallApp {
 
   @override
   Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
-      DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
-    await createPolicyPages(appPolicyModel!, drawer, endDrawer, adminMenu);
+      DrawerModel drawer, DrawerModel endDrawer) async {
+    await createPolicyPages(appPolicyModel!, drawer, endDrawer);
     var member = await AbstractMainRepositorySingleton.singleton
         .memberRepository()!
         .get(ownerID);
     if (member == null) {
       throw Exception("Can not find member");
     } else {
+
       // await createFollowMenu();
       var homePageLevel1Member = await Feed(
               installApp: this,
               homeMenu: homeMenu(),
               drawer: drawer,
               endDrawer: endDrawer,
-              adminMenu: adminMenu)
+              )
           .run(member);
       await OtherFeedPages(
               installApp: this,
               homeMenu: homeMenu(),
               drawer: drawer,
               endDrawer: endDrawer,
-              adminMenu: adminMenu)
+              )
           .run();
       await Profile(
               installApp: this,
               homeMenu: homeMenu(),
               drawer: drawer,
               endDrawer: endDrawer,
-              adminMenu: adminMenu)
+              )
           .run(member, Feed.feedModel());
       await WorkflowSetup(installApp: this).run();
       await About(
@@ -185,21 +187,21 @@ class MinkeyApp extends InstallApp {
               homeMenu: homeMenu(),
               drawer: drawer,
               endDrawer: endDrawer,
-              adminMenu: adminMenu)
+              )
           .run();
       await Welcome(
               installApp: this,
               homeMenu: homeMenu(),
               drawer: drawer,
               endDrawer: endDrawer,
-              adminMenu: adminMenu)
+              )
           .run();
       var homePageSubscribedMember = await PlayStore(
               installApp: this,
               homeMenu: homeMenu(),
               drawer: drawer,
               endDrawer: endDrawer,
-              adminMenu: adminMenu)
+              )
           .run();
       await MinkeyNotificationDashboard(
         installApp: this,
@@ -222,14 +224,14 @@ class MinkeyApp extends InstallApp {
               homeMenu: homeMenu(),
               drawer: drawer,
               endDrawer: endDrawer,
-              adminMenu: adminMenu)
+              )
           .run();
       await Album(
               installApp: this,
               homeMenu: homeMenu(),
               drawer: drawer,
               endDrawer: endDrawer,
-              adminMenu: adminMenu)
+              )
           .run(member);
 
       AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
@@ -245,16 +247,6 @@ class MinkeyApp extends InstallApp {
 
   Future<void> run(String ownerID) async {
     return await runBase(ownerID: ownerID);
-  }
-
-  @override
-  Future<AppBarModel> appBar(
-      String? identifier, MenuDefModel? menu, String? title) async {
-    return await setupAppBar(
-      identifier,
-      menu,
-      title,
-    );
   }
 
   @override

@@ -7,7 +7,7 @@ import 'package:eliud_pkg_apps/apps/shared/blocked/blocked.dart';
 import '../../app_base.dart';
 
 class JuuwleBlocked extends Blocked {
-  JuuwleBlocked({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) :
+  JuuwleBlocked({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer}) :
         super(installApp: installApp, homeMenu: homeMenu, drawer: drawer,
-          endDrawer: endDrawer, adminMenu: adminMenu);
+          endDrawer: endDrawer, );
 }

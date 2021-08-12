@@ -12,9 +12,9 @@ class About extends AboutBase {
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
       DrawerModel? endDrawer,
-      MenuDefModel? adminMenu})
+      })
       : super(IDENTIFIER, RelativeImagePosition.Aside, 1, SectionImageAlignment.Right, installApp, homeMenu, drawer, endDrawer,
-            adminMenu);
+            );
 
   static String IDENTIFIER = "about";
 

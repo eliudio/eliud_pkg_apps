@@ -30,7 +30,7 @@ class Feed extends AppSection {
       DrawerModel? drawer,
       DrawerModel? endDrawer,
       MenuDefModel? adminMenu})
-      : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
+      : super(installApp, homeMenu, drawer, endDrawer);
 
   static String IDENTIFIER = "feed";
 
@@ -108,7 +108,7 @@ class Feed extends AppSection {
     await HeaderComponent(installApp!.appId!).run(feed);
 
     // Specific to feed page
-    var appBar = await installApp!.appBar(IDENTIFIER, adminMenu, "Feed");
+    var appBar = installApp!.appBar();
     return await _setupPage(appBar);
   }
 }

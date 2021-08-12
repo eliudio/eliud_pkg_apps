@@ -43,15 +43,14 @@ class ProductPage extends BasicPageTemplate {
     InstallApp? installApp,
     HomeMenuModel? homeMenu,
     DrawerModel? drawer,
-    DrawerModel? endDrawer,
-    MenuDefModel? adminMenu}): super(
+    DrawerModel? endDrawer,}): super(
       pageId: identifier,
       privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
       installApp: installApp,
       homeMenu: homeMenu,
       drawer: drawer,
       endDrawer: endDrawer,
-      adminMenu: adminMenu);
+      );
 
   @override
   String? componentID() {

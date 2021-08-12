@@ -35,9 +35,8 @@ abstract class PageTemplate extends AppSection {
   PageTemplate({this.pageId, this.privilegeLevelRequired, this.packageCondition, this.conditionOverride, this.presentationImageAlignment, InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
-      DrawerModel? endDrawer,
-      MenuDefModel? adminMenu})
-      : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
+      DrawerModel? endDrawer})
+      : super(installApp, homeMenu, drawer, endDrawer);
 
   Future<PageModel> _setupPage(AppBarModel appBar, String? presentationId) async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -107,7 +106,7 @@ abstract class PageTemplate extends AppSection {
     PresentationModel presentationModel = await _setupPresentation(image);
     await setupComponent();
 //    var menu = await installApp.appBarMenu("Your Profile", adminMenu);
-    var appBar = await installApp!.appBar(pageId, adminMenu, "Member Area");
+    var appBar = installApp!.appBar();
     return await _setupPage(appBar, presentationModel.documentID);
   }
 }

@@ -30,10 +30,9 @@ class Shop extends AppSection {
       {InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
-      DrawerModel? endDrawer,
-      MenuDefModel? adminMenu})
+      DrawerModel? endDrawer,})
       : super(installApp, homeMenu,  drawer, endDrawer,
-            adminMenu);
+            );
 
   static String identifier = 'shop';
 
@@ -217,7 +216,7 @@ class Shop extends AppSection {
     var presentationDocumentId = presentation.documentID;
     await _setupCardBG();
     await _setupShopFronts();
-    var appBar = await installApp!.appBar(identifier, adminMenu, 'Shop');
+    var appBar = installApp!.appBar();
     var shop = await _setupShop();
     await Products(installApp, shop).run();
     await _setupPage(appBar, presentationDocumentId);

@@ -21,7 +21,7 @@ abstract class AdminBase extends AppSection {
 
   AdminBase(InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer)
       : super(
-            installApp, homeMenu, drawer, endDrawer, null);
+            installApp, homeMenu, drawer, endDrawer);
 
   String adminTitle();
 
@@ -60,7 +60,7 @@ abstract class AdminBase extends AppSection {
    * menu's, in the other appBars in the other pages.
    */
   Future<void> installAdminAppss(MenuDefModel menu) async {
-    var appBar = await installApp!.appBar("admin_app_bar", menu, adminTitle());
+    var appBar = installApp!.appBar();
     List<AdminAppInstallerBase> installers = adminAppsInstallers(
         installApp!.appId, drawer, endDrawer, appBar, homeMenu);
     installers.forEach((element) async {

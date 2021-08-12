@@ -27,9 +27,8 @@ class OtherFeedPages extends AppSection {
       {InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
-      DrawerModel? endDrawer,
-      MenuDefModel? adminMenu})
-      : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
+      DrawerModel? endDrawer})
+      : super(installApp, homeMenu, drawer, endDrawer, );
 
   Future<PageModel> _setupPage(AppBarModel appBar, String componentName, String identifier, String title) async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -70,7 +69,7 @@ class OtherFeedPages extends AppSection {
   }
 
   Future<PageModel> doIt(String componentName, String identifier, String title) async {
-    var appBar = await installApp!.appBar(identifier, adminMenu, title);
+    var appBar = installApp!.appBar();
     return await _setupPage(appBar, componentName, identifier, title);
   }
 

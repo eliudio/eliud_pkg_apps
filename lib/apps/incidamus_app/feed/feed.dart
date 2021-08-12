@@ -16,7 +16,7 @@ import '../../app_section.dart';
 import 'example_posts.dart';
 
 class Feed extends AppSection {
-  Feed({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
+  Feed({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer, }) : super(installApp, homeMenu, drawer, endDrawer, );
 
   static String IDENTIFIER = "feed";
 
@@ -58,7 +58,7 @@ class Feed extends AppSection {
 
   Future<PageModel> run(MemberModel member) async {
     await ExamplePosts(installApp!.appId).run(member, IDENTIFIER);
-    var appBar = await installApp!.appBar(IDENTIFIER, adminMenu, "Welcome");
+    var appBar = installApp!.appBar();
     await _setupFeed();
     return await _setupPage(appBar);
   }

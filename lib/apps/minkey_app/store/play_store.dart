@@ -25,7 +25,7 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 class PlayStore extends AppSection {
-  PlayStore({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu,  drawer, endDrawer, adminMenu);
+  PlayStore({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer}) : super(installApp, homeMenu,  drawer, endDrawer );
 
   static String IDENTIFIER = "playstore";
 
@@ -153,7 +153,7 @@ class PlayStore extends AppSection {
     await _setupPlayStore();
     await _setupPlayStoreBG();
     await _setupShadows();
-    var appBar = await installApp!.appBar(IDENTIFIER, adminMenu, "Store");
+    var appBar = installApp!.appBar();
     await _setupFader();
     return await _setupPage(appBar);
   }

@@ -18,12 +18,11 @@ abstract class PhotoAndSomthing extends DecoratedContent {
       InstallApp? installApp,
       HomeMenuModel? homeMenu,      DrawerModel? drawer,
       DrawerModel? endDrawer,
-      MenuDefModel? adminMenu,
       double percentageDecorationVisible,
       {bool? addLogo,
       PrivilegeLevelRequiredSimple? privilegeLevelRequiredSimple})
       : super(identifier, installApp, homeMenu, drawer, endDrawer,
-            adminMenu, percentageDecorationVisible,
+            percentageDecorationVisible,
             addLogo: addLogo,
             privilegeLevelRequiredSimple: privilegeLevelRequiredSimple);
 

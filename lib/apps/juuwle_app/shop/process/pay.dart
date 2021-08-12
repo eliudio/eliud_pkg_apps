@@ -48,7 +48,7 @@ class MyPay extends PageTemplate {
     HomeMenuModel? homeMenu,
     DrawerModel? drawer,
     DrawerModel? endDrawer,
-    MenuDefModel? adminMenu}): super(
+    }): super(
       privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
       packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
       pageId: identifier,
@@ -56,7 +56,6 @@ class MyPay extends PageTemplate {
       homeMenu: homeMenu,
       drawer: drawer,
       endDrawer: endDrawer,
-      adminMenu: adminMenu,
       presentationImageAlignment: PresentationImageAlignment.Left);
 
   @override

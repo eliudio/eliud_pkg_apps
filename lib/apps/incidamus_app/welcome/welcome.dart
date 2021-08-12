@@ -14,9 +14,9 @@ class Welcome extends OnlyPhotoAndText {
         HomeMenuModel? homeMenu,
         DrawerModel? drawer,
         DrawerModel? endDrawer,
-        MenuDefModel? adminMenu})
+        })
       : super(IDENTIFIER, installApp, homeMenu, drawer, endDrawer,
-      adminMenu, .3, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple, addLogo: true);
+       .3, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple, addLogo: true);
 
   static String IDENTIFIER = "welcome";
 

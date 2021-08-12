@@ -43,14 +43,14 @@ class OrderOverview extends PageTemplate {
     HomeMenuModel? homeMenu,
     DrawerModel? drawer,
     DrawerModel? endDrawer,
-    MenuDefModel? adminMenu}): super(
+    }): super(
       privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
       pageId: identifier,
       installApp: installApp,
       homeMenu: homeMenu,
       drawer: drawer,
       endDrawer: endDrawer,
-      adminMenu: adminMenu);
+      );
 
   @override
   String? componentID() {

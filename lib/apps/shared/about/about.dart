@@ -31,10 +31,9 @@ abstract class AboutBase extends AppSection {
       InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
-      DrawerModel? endDrawer,
-      MenuDefModel? adminMenu)
+      DrawerModel? endDrawer,)
       : super(installApp, homeMenu, drawer, endDrawer,
-      adminMenu);
+      );
 
   //static String identifier = "who";
 
@@ -109,7 +108,7 @@ abstract class AboutBase extends AppSection {
 
   Future<void> doIt() async {
     var image = await installAboutImage();
-    var appBar = await installApp!.appBar(installApp!.appId, adminMenu, aboutTitle());
+    var appBar = installApp!.appBar();
     await _store(image);
     await _setupPage(appBar);
   }

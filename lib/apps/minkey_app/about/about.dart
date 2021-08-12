@@ -11,9 +11,9 @@ class About extends Founders {
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
       DrawerModel? endDrawer,
-      MenuDefModel? adminMenu})
+      })
       : super(installApp, homeMenu, drawer, endDrawer,
-            adminMenu);
+            );
 
   Future<void> run() {
     return doItForFounders();

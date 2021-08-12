@@ -17,7 +17,7 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 class Welcome extends AppSection {
-  Welcome({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
+  Welcome({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer}) : super(installApp, homeMenu, drawer, endDrawer, );
 
   static String identifier = "welcome";
 
@@ -83,7 +83,7 @@ class Welcome extends AppSection {
   Future<PageModel> run() async {
     var welcomeImage = await uploadWelcomeImage();
 //    var appMenu = await installApp.appBarMenu("Welcome", adminMenu);
-    var appBar = await installApp!.appBar(identifier, adminMenu, "Welcome");
+    var appBar = installApp!.appBar();
     await _setupWelcome(welcomeImage);
     //await _setupFader();
     return await _setupPage(appBar);

@@ -34,9 +34,8 @@ abstract class DecoratedContent extends AppSection {
       InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
-      DrawerModel? endDrawer,
-      MenuDefModel? adminMenu, this.percentageDecorationVisible, { this.addLogo, this.privilegeLevelRequiredSimple })
-      : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
+      DrawerModel? endDrawer, this.percentageDecorationVisible, { this.addLogo, this.privilegeLevelRequiredSimple })
+      : super(installApp, homeMenu, drawer, endDrawer);
 
   Future<PageModel> _setupPage(AppBarModel appBar, String title) async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -141,7 +140,7 @@ abstract class DecoratedContent extends AppSection {
       await _setupFader();
     }
     await _decoratedContent(componentId, componentName, decoratingComponentId, decoratingComponentName, position);
-    var appBar = await installApp!.appBar(installApp!.appId, adminMenu, title);
+    var appBar = installApp!.appBar();
     await _setupPage(appBar, title);
   }
 }

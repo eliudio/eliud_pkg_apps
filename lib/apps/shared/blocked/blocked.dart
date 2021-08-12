@@ -16,7 +16,7 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 class Blocked extends AppSection {
-  Blocked({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
+  Blocked({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer}) : super(installApp, homeMenu, drawer, endDrawer);
 
   static String identifier = "blocked";
 
@@ -81,7 +81,7 @@ class Blocked extends AppSection {
 
   Future<PageModel> run() async {
     var blockedImage = await uploadBlockedImage();
-    var appBar = await installApp!.appBar(identifier, adminMenu, "Blocked");
+    var appBar = installApp!.appBar();
     await _setupBlocked(blockedImage);
     return await _setupPage(appBar);
   }

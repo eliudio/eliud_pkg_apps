@@ -17,12 +17,11 @@ abstract class OnlyPhotoAndText extends PhotoAndSomthing {
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
       DrawerModel? endDrawer,
-      MenuDefModel? adminMenu,
       double percentageDecorationVisible,
       PrivilegeLevelRequiredSimple privilegeLevelRequiredSimple,
       {bool? addLogo,})
       : super(identifier, installApp, homeMenu, drawer, endDrawer,
-            adminMenu, percentageDecorationVisible,
+            percentageDecorationVisible,
             addLogo: addLogo,
             privilegeLevelRequiredSimple: privilegeLevelRequiredSimple);
 

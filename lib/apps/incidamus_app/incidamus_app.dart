@@ -140,13 +140,12 @@ class IncidamusApp extends InstallApp {
 
   @override
   Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
-      DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
+      DrawerModel drawer, DrawerModel endDrawer) async {
     await Welcome(
         installApp: this,
         homeMenu: homeMenu(),
         drawer: drawer,
-        endDrawer: endDrawer,
-        adminMenu: adminMenu)
+        endDrawer: endDrawer)
         .run();
     var member = await (AbstractMainRepositorySingleton.singleton
         .memberRepository()!
@@ -160,7 +159,7 @@ class IncidamusApp extends InstallApp {
           homeMenu: homeMenu(),
           drawer: drawer,
           endDrawer: endDrawer,
-          adminMenu: adminMenu)
+          )
           .run();
       await WorkflowSetup(installApp: this).run();
       await Feed(
@@ -168,21 +167,21 @@ class IncidamusApp extends InstallApp {
           homeMenu: homeMenu(),
           drawer: drawer,
           endDrawer: endDrawer,
-          adminMenu: adminMenu)
+          )
           .run(member);
       await Album(
           installApp: this,
           homeMenu: homeMenu(),
           drawer: drawer,
           endDrawer: endDrawer,
-          adminMenu: adminMenu)
+          )
           .run(member);
       await About(
           installApp: this,
           homeMenu: homeMenu(),
           drawer: drawer,
           endDrawer: endDrawer,
-          adminMenu: adminMenu)
+          )
           .run();
       await MyCart(
           background: Shop.cardBG(),
@@ -191,7 +190,7 @@ class IncidamusApp extends InstallApp {
           homeMenu: homeMenu(),
           drawer: drawer,
           endDrawer: endDrawer,
-          adminMenu: adminMenu)
+          )
           .run();
       await MyPay(
           background: Shop.cardBG(),
@@ -200,7 +199,7 @@ class IncidamusApp extends InstallApp {
           homeMenu: homeMenu(),
           drawer: drawer,
           endDrawer: endDrawer,
-          adminMenu: adminMenu)
+          )
           .run();
       await OrderOverview(
           background: Shop.cardBG(),
@@ -209,7 +208,7 @@ class IncidamusApp extends InstallApp {
           homeMenu: homeMenu(),
           drawer: drawer,
           endDrawer: endDrawer,
-          adminMenu: adminMenu)
+          )
           .run();
       await MyPayConfirmation(
           background: Shop.cardBG(),
@@ -218,7 +217,7 @@ class IncidamusApp extends InstallApp {
           homeMenu: homeMenu(),
           drawer: drawer,
           endDrawer: endDrawer,
-          adminMenu: adminMenu)
+          )
           .run();
       await ProductPage(
           shop: shop,
@@ -226,7 +225,7 @@ class IncidamusApp extends InstallApp {
           homeMenu: homeMenu(),
           drawer: drawer,
           endDrawer: endDrawer,
-          adminMenu: adminMenu)
+          )
           .run();
       await IncidamusNotificationDashboard(
           installApp: this,
@@ -253,9 +252,9 @@ class IncidamusApp extends InstallApp {
           homeMenu: homeMenu(),
           drawer: drawer,
           endDrawer: endDrawer,
-          adminMenu: adminMenu)
+          )
           .run();
-      await createPolicyPages(appPolicyModel!, drawer, endDrawer, adminMenu);
+      await createPolicyPages(appPolicyModel!, drawer, endDrawer, );
       AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
         homePageBlockedMember: homePageBlockedMember.documentID,
         homePagePublic: Welcome.IDENTIFIER,
@@ -318,16 +317,6 @@ class IncidamusApp extends InstallApp {
   Future<void> run(String ownerID) async {
     return await runBase(
         ownerID: ownerID);
-  }
-
-  @override
-  Future<AppBarModel> appBar(
-      String? identifier, MenuDefModel? menu, String? title) async {
-    return await setupAppBar(
-        identifier,
-        menu,
-        title,
-        );
   }
 
   @override

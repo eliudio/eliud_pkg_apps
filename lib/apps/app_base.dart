@@ -1,4 +1,5 @@
 import 'package:eliud_core/core/access/bloc/access_bloc.dart';
+import 'package:eliud_core/core/components/page_constructors/eliud_appbar.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
@@ -24,6 +25,7 @@ import 'package:eliud_pkg_fundamentals/model/divider_model.dart';
 import 'package:flutter/material.dart';
 
 abstract class InstallApp {
+  AppBarModel? theAppBar;
   // adminAppWipers are used to delete the admin part of the app
   List<AdminAppWiperBase> adminAppWipers();
   // adminBase is used to install the admin part of the app
@@ -32,9 +34,16 @@ abstract class InstallApp {
   Future<void> setupApplication(AppHomePageReferencesModel homePages,
       String? ownerID, MemberMediumModel? logo);
   Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
-      DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu);
-  Future<AppBarModel> appBar(
-      String? appBarIdentifier, MenuDefModel? menu, String? title);
+      DrawerModel drawer, DrawerModel endDrawer);
+
+  AppBarModel appBar() {
+    if (theAppBar == null) {
+      throw Exception("theAppBar is not initialised");
+    } else {
+      return theAppBar!;
+    }
+  }
+
   MenuDefModel drawerMenuDef();
   MenuDefModel profileDrawerMenuDef();
   MenuDefModel homeMenuDef();
@@ -50,8 +59,7 @@ abstract class InstallApp {
   AppPolicyModel? appPolicyModel;
 
   // Constructor
-  InstallApp({this.appId}) {
-  }
+  InstallApp({this.appId});
 
   // Implementation
   Future<void> run(String ownerID);
@@ -185,11 +193,12 @@ abstract class InstallApp {
   }
 
   BackgroundModel _drawerHeaderBGOverride(MemberMediumModel? logo) {
+    if (logo == null) throw Exception("You must provide a logo");
     var decorationColorModels = <DecorationColorModel>[];
     var backgroundModel = BackgroundModel(
-        documentID: 'left_drawer_header_bg_' + logo!.appId!,
+        documentID: 'left_drawer_header_bg_' + logo.appId!,
         decorationColors: decorationColorModels,
-        backgroundImageURL: logo != null ? logo.url : null);
+        backgroundImageURL: logo.url);
     return backgroundModel;
   }
 
@@ -297,7 +306,7 @@ abstract class InstallApp {
 
   Future<void> runBase({String? ownerID}) async {
 /*
-    // this code isn't necesairily working correctly: I think it should probably delete all collections, including all packages, and I have the feeling it's not working.
+    // this code isn't necessarily working correctly: I think it should probably delete all collections, including all packages, and I have the feeling it's not working.
     // however, with the introduction of subcollections for app data, we don't really need this any more, so hence we can skip it
     int i = 0;
     var aaw = adminAppWipers();
@@ -315,12 +324,19 @@ abstract class InstallApp {
     await GridViews().run(appId);
     var adminMenu =
         await _appBarMenu("Menu", await _adminBase.installAdminMenus());
+
+    theAppBar = await setupAppBar(
+      "APPBAR",
+      adminMenu,
+      EliudAppBar.PAGE_TITLE_KEYWORD,
+    );
+
     await _adminBase.installAdminAppss(adminMenu);
     await setupMenus();
     await setupPosSizes();
     await setupDecorationColorModel(theLogo);
     await setupDividers();
-    var homePages = await runTheRest(ownerID, drawer, endDrawer, adminMenu);
+    var homePages = await runTheRest(ownerID, drawer, endDrawer);
     await setupApplication(homePages, ownerID, theLogoHead);
   }
 
@@ -333,7 +349,7 @@ abstract class InstallApp {
     if (usr == null) {
       throw Exception("User is null");
     } else {
-      var installedApp = await claimOwnerShipApplication(appId, usr.uid);
+      await claimOwnerShipApplication(appId, usr.uid);
       member = await AccessBloc.firebaseToMemberModel(usr);
       if (member == null) {
         print('Can not register $appId because member cannot be created');
@@ -420,7 +436,7 @@ abstract class InstallApp {
 
   Future<List<PageModel>> createPolicyPages(AppPolicyModel appPolicyModel, DrawerModel drawer,
       DrawerModel endDrawer,
-      MenuDefModel adminMenu) async {
+      ) async {
     List<PageModel> pages = [];
     appPolicyModel.policies!.forEach((element) async {
        pages.add(await PolicyPage(
@@ -430,7 +446,7 @@ abstract class InstallApp {
           homeMenu: homeMenu(),
           drawer: drawer,
           endDrawer: endDrawer,
-          adminMenu: adminMenu)
+          )
           .run());
     });
     return pages;

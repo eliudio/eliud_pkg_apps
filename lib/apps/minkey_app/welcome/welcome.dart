@@ -29,9 +29,9 @@ class Welcome extends AppSection {
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
       DrawerModel? endDrawer,
-      MenuDefModel? adminMenu})
+      })
       : super(installApp, homeMenu, drawer, endDrawer,
-            adminMenu);
+            );
 
   static List<String> IDENTIFIERs = [
     "welcome_subscribed_member",
@@ -189,7 +189,7 @@ class Welcome extends AppSection {
   // ************************ Tutorials *****************
   Future<void> run() async {
     var appBar =
-        await installApp!.appBar(APP_BAR_IDENTIFIER, adminMenu, "Welcome");
+        await installApp!.appBar();
     var android = await androidImage();
     var iphone = await iphoneImage();
     var tablet = await tabletImage();

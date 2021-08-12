@@ -6,7 +6,6 @@ import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/member_medium_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_pkg_etc/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_etc/model/policy_presentation_component.dart';
@@ -25,9 +24,8 @@ class PolicyPage extends AppSection {
       InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
-      DrawerModel? endDrawer,
-      MenuDefModel? adminMenu})
-      : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
+      DrawerModel? endDrawer})
+      : super(installApp, homeMenu, drawer, endDrawer);
 
   PolicyPresentationModel getPesentationModel(MemberMediumModel? policyModel) {
     return PolicyPresentationModel(
@@ -77,7 +75,7 @@ class PolicyPage extends AppSection {
 
   Future<PageModel> run() async {
     await createPresentationComponent(policy);
-    var appBar = await installApp!.appBar(installApp!.appId, adminMenu, title);
+    var appBar = installApp!.appBar();
     return await _setupPage(appBar);
   }
 }

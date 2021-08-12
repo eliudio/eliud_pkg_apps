@@ -17,7 +17,7 @@ import '../../app_section.dart';
 import 'example_post.dart';
 
 class Album extends AppSection {
-  Album({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
+  Album({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer, }) : super(installApp, homeMenu, drawer, endDrawer, );
 
   static String IDENTIFIER = "album";
 
@@ -60,7 +60,7 @@ class Album extends AppSection {
   Future<PageModel> run(MemberModel member) async {
     PostModel photoAlbum = await ExamplePost(installApp!.appId).photoAlbum(member);
 //    PostModel videoAlbum = await ExamplePost(newAppTools, installApp.appId).videoAlbum(member);
-    var appBar = await installApp!.appBar(IDENTIFIER, adminMenu, "Album");
+    var appBar = installApp!.appBar();
     await _setupAlbum(photoAlbum);
     return await _setupPage(appBar);
   }

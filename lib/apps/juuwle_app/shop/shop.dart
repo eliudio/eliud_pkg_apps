@@ -33,9 +33,9 @@ class Shop extends AppSection {
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
       DrawerModel? endDrawer,
-      MenuDefModel? adminMenu})
+      })
       : super(installApp, homeMenu, drawer, endDrawer,
-            adminMenu);
+            );
 
   static String identifier = 'juuwleshop';
 
@@ -239,7 +239,7 @@ class Shop extends AppSection {
     var presentationDocumentId = (await _setupPresentation(image)).documentID;
     await _setupCardBG();
     await _setupShopFronts();
-    var appBar = await installApp!.appBar(identifier, adminMenu, 'Shop');
+    var appBar = installApp!.appBar();
     var shop = await _setupShop();
     await Products(installApp, shop).run();
     await _setupFader();

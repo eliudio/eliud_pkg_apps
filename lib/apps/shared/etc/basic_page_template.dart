@@ -28,9 +28,8 @@ abstract class BasicPageTemplate extends AppSection {
   BasicPageTemplate({this.pageId, this.privilegeLevelRequired, this.packageCondition, this.conditionOverride, this.presentationImageAlignment, InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
-      DrawerModel? endDrawer,
-      MenuDefModel? adminMenu})
-      : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
+      DrawerModel? endDrawer})
+      : super(installApp, homeMenu, drawer, endDrawer);
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -64,7 +63,7 @@ abstract class BasicPageTemplate extends AppSection {
 
   Future<PageModel>  run() async {
     await setupComponent();
-    var appBar = await installApp!.appBar(pageId, adminMenu, "Member Area");
+    var appBar = installApp!.appBar();
     return await _setupPage(appBar);
   }
 }

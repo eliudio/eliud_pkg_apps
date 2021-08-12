@@ -95,7 +95,7 @@ class HelloWorldMenu {
     return menu;
   }
 
-  MenuDefModel _helloWorldMenu(MenuDefModel? adminMenu) {
+  MenuDefModel _helloWorldMenu() {
     List<MenuItemModel> menuItems = [];
     menuItems.add(MenuItemModel(
         documentID: "1",
@@ -120,12 +120,6 @@ class HelloWorldMenu {
         text: "Sign in",
         description: "Sign in",
         action: InternalAction(EliudApp.ELIUD_APP_ID, internalActionEnum: InternalActionEnum.Login)));
-    menuItems.add(MenuItemModel(
-        documentID: "ADMIN",
-        text: "Admin",
-        description: "Admin",
-        icon: IconModel(codePoint: 0xe8b8, fontFamily: Icons.settings.fontFamily),
-        action: PopupMenu(EliudApp.ELIUD_APP_ID, menuDef: adminMenu)));
     MenuDefModel menu = MenuDefModel(
         documentID: "hello_world_menu",
         appId: EliudApp.ELIUD_APP_ID,
@@ -134,13 +128,13 @@ class HelloWorldMenu {
     return menu;
   }
 
-  Future<MenuDefModel> run(MenuDefModel? adminMenu) async {
+  Future<MenuDefModel> run() async {
     await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_prepareHelloWorldMenu());
     await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_createAppMenu());
     await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_createAndroidAppMenu());
     await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_createIPhoneAppMenu());
     await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_createWebAppMenu());
     await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_setupHelloWorldMenu());
-    return await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_helloWorldMenu(adminMenu));
+    return await AbstractRepositorySingleton.singleton.menuDefRepository(EliudApp.ELIUD_APP_ID)!.add(_helloWorldMenu());
   }
 }

@@ -135,21 +135,21 @@ class JuuwleApp extends InstallApp {
 
   @override
   Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
-      DrawerModel drawer, DrawerModel endDrawer, MenuDefModel adminMenu) async {
+      DrawerModel drawer, DrawerModel endDrawer) async {
     await WorkflowSetup(installApp: this).run();
     await About(
             installApp: this,
             homeMenu: homeMenu(),
             drawer: drawer,
             endDrawer: endDrawer,
-            adminMenu: adminMenu)
+            )
         .run();
     var shop = await Shop(
             installApp: this,
             homeMenu: homeMenu(),
             drawer: drawer,
             endDrawer: endDrawer,
-            adminMenu: adminMenu)
+            )
         .run();
     await MyCart(
             background: Shop.cardBG(),
@@ -158,7 +158,7 @@ class JuuwleApp extends InstallApp {
             homeMenu: homeMenu(),
             drawer: drawer,
             endDrawer: endDrawer,
-            adminMenu: adminMenu)
+            )
         .run();
     await MyPay(
             background: Shop.cardBG(),
@@ -167,7 +167,7 @@ class JuuwleApp extends InstallApp {
             homeMenu: homeMenu(),
             drawer: drawer,
             endDrawer: endDrawer,
-            adminMenu: adminMenu)
+            )
         .run();
     await OrderOverview(
             background: Shop.cardBG(),
@@ -176,7 +176,7 @@ class JuuwleApp extends InstallApp {
             homeMenu: homeMenu(),
             drawer: drawer,
             endDrawer: endDrawer,
-            adminMenu: adminMenu)
+            )
         .run();
     await MyPayConfirmation(
             background: Shop.cardBG(),
@@ -185,7 +185,7 @@ class JuuwleApp extends InstallApp {
             homeMenu: homeMenu(),
             drawer: drawer,
             endDrawer: endDrawer,
-            adminMenu: adminMenu)
+            )
         .run();
     await ProductPage(
             shop: shop,
@@ -193,7 +193,7 @@ class JuuwleApp extends InstallApp {
             homeMenu: homeMenu(),
             drawer: drawer,
             endDrawer: endDrawer,
-            adminMenu: adminMenu)
+            )
         .run();
     await JuuwleNotificationDashboard(
             installApp: this,
@@ -216,16 +216,16 @@ class JuuwleApp extends InstallApp {
             homeMenu: homeMenu(),
             drawer: drawer,
             endDrawer: endDrawer,
-            adminMenu: adminMenu)
+            )
         .run();
     var homePageBlockedMember = await JuuwleBlocked(
             installApp: this,
             homeMenu: homeMenu(),
             drawer: drawer,
             endDrawer: endDrawer,
-            adminMenu: adminMenu)
+            )
         .run();
-    await createPolicyPages(appPolicyModel!, drawer, endDrawer,  adminMenu);
+    await createPolicyPages(appPolicyModel!, drawer, endDrawer,);
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
       homePageBlockedMember: homePageBlockedMember.documentID,
       homePageSubscribedMember: homePageSubscribedMember.documentID,
@@ -240,15 +240,6 @@ class JuuwleApp extends InstallApp {
         ownerID: ownerID);
   }
 
-  @override
-  Future<AppBarModel> appBar(
-      String? identifier, MenuDefModel? menu, String? title) async {
-    return await setupAppBar(
-        identifier,
-        menu,
-        title,
-        );
-  }
 
   // an extra menu item for the shopping cart
   List<MenuItemModel> extraMenuItems() => <MenuItemModel>[

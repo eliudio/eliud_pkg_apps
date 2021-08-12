@@ -25,9 +25,8 @@ class Profile extends AppSection {
       {InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
-      DrawerModel? endDrawer,
-      MenuDefModel? adminMenu})
-      : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
+      DrawerModel? endDrawer,})
+      : super(installApp, homeMenu, drawer, endDrawer, );
 
   static String IDENTIFIER = "profile";
 
@@ -88,7 +87,7 @@ class Profile extends AppSection {
   }
 
   Future<PageModel> run(MemberModel member, FeedModel feed) async {
-    var appBar = await installApp!.appBar(IDENTIFIER, adminMenu, "Profile");
+    var appBar = installApp!.appBar();
     await _setupProfile(feed);
     return await _setupPage(appBar);
   }

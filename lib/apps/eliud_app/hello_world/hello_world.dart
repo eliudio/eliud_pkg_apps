@@ -22,7 +22,7 @@ import 'menus.dart';
 
 
 class HelloWorld extends AppSection {
-  HelloWorld({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer, MenuDefModel? adminMenu}) : super(installApp, homeMenu, drawer, endDrawer, adminMenu);
+  HelloWorld({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer}) : super(installApp, homeMenu, drawer, endDrawer, );
 
   BookletModel _helloWorldDocument() {
     List<SectionModel> entries = [];
@@ -225,8 +225,8 @@ class HelloWorld extends AppSection {
   }
 
   Future<void> run() async {
-    var helloWorldMenuValue = await HelloWorldMenu().run(adminMenu);
-    var appBar = await installApp!.appBar(IDENTIFIER, helloWorldMenuValue, "Hello World");
+    var helloWorldMenuValue = await HelloWorldMenu().run();
+    var appBar = installApp!.appBar();
     await store(appBar);
     await HelloWorldPages(appBar, homeMenu, drawer, endDrawer).run(installApp!.member);
   }
