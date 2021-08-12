@@ -276,7 +276,7 @@ abstract class InstallApp {
     var appBar = AppBarModel(
       documentID: documentID,
       appId: appId,
-      header: HeaderSelection.None,
+      header: HeaderSelection.Title,
       title: title,
       backgroundOverride: backgroundOverride,
       iconColorOverride: iconColorOverride,
