@@ -1,6 +1,6 @@
 import 'package:eliud_core/core_package.dart';
 import 'package:eliud_core/default_style/eliud_style.dart';
-import 'package:eliud_core/default_style/instances/eliud_incidamus_style.dart';
+import 'package:eliud_core/default_style_move_to_package/instances/eliud_incidamus_style.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_bar_model.dart';
