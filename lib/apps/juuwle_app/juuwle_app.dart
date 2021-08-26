@@ -1,5 +1,5 @@
-import 'package:eliud_core/default_style/eliud_style.dart';
-import 'package:eliud_core/default_style_move_to_package/instances/eliud_juuwle_style.dart';
+import 'package:eliud_core/eliud_style_move_to_package/eliud_style.dart';
+import 'package:eliud_core/eliud_style_move_to_package/instances/eliud_juuwle_style.dart';
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/app_home_page_references_model.dart';
@@ -104,7 +104,7 @@ class JuuwleApp extends InstallApp {
       logo: logo,
       email: 'juuwle.com.info@gmail.com',
       styleFamily: EliudStyle.eliudFamilyName,
-      styleName: EliudJuuwleStyle.styleName,
+      styleName: EliudJuuwleStyle.name,
       homePages: homePages,
       routeBuilder: PageTransitionAnimation.FadeRoute,
       routeAnimationDuration: 800,

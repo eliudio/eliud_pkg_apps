@@ -1,9 +1,7 @@
-import 'package:eliud_core/core/components/page_constructors/eliud_appbar.dart';
 import 'package:eliud_core/core_package.dart';
-import 'package:eliud_core/default_style/eliud_style.dart';
-import 'package:eliud_core/default_style_move_to_package/instances/eliud_minkey_style.dart';
+import 'package:eliud_core/eliud_style_move_to_package/eliud_style.dart';
+import 'package:eliud_core/eliud_style_move_to_package/instances/eliud_minkey_style.dart';
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
-import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/app_home_page_references_model.dart';
 import 'package:eliud_core/model/app_model.dart';
 import 'package:eliud_core/model/conditions_model.dart';
@@ -23,7 +21,6 @@ import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/chat/chat_dialog.dart';
-import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
@@ -121,7 +118,7 @@ class MinkeyApp extends InstallApp {
         logo: logo,
         email: "minkey.io.info@gmail.com",
         styleFamily: EliudStyle.eliudFamilyName,
-        styleName: EliudMinkeyStyle.styleName,
+        styleName: EliudMinkeyStyle.name,
         homePages: homePages,
         routeBuilder: PageTransitionAnimation.FadeRoute,
         routeAnimationDuration: 800,
