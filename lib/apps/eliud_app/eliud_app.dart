@@ -1,5 +1,3 @@
-import 'package:eliud_core/eliud_style_move_to_package/eliud_style.dart';
-import 'package:eliud_core/eliud_style_move_to_package/instances/eliud_eliud_style.dart';
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
 import 'package:eliud_core/model/app_model.dart';
@@ -18,6 +16,8 @@ import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
+import 'package:eliud_stl_mona/instances/mona_eliud_style.dart';
+import 'package:eliud_stl_mona/mona_style.dart';
 import 'package:flutter/material.dart';
 
 import '../app_base.dart';
@@ -126,8 +126,8 @@ class EliudApp extends InstallApp {
       logo: logo,
       email: "eliud.io.info@gmail.com",
       homePages: homePages,
-      styleFamily: EliudStyle.eliudFamilyName,
-      styleName: EliudEliudStyle.name,
+      styleFamily: MonaStyle.FAMILY_NAME,
+      styleName: MonaEliudStyle.STYLE_NAME,
       routeBuilder: PageTransitionAnimation.FadeRoute,
       routeAnimationDuration: 800,
       ownerID: ownerID,

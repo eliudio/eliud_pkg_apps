@@ -45,6 +45,9 @@ dependencies:
   eliud_pkg_chat:
     path: ../eliud_pkg_chat
 
+  eliud_stl_mona:
+    path: ../eliud_stl_mona
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
