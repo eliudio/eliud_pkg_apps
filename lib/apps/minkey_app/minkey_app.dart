@@ -25,8 +25,7 @@ import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.
 import 'package:eliud_pkg_chat/chat_package.dart';
 import 'package:eliud_pkg_feed/tools/action/post_action_model.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
-import 'package:eliud_stl_mona/instances/mona_minkey_style.dart';
-import 'package:eliud_stl_mona/mona_style.dart';
+import 'package:eliud_stl_mona/mona_style_family.dart';
 import 'package:flutter/material.dart';
 
 import '../app_base.dart';
@@ -117,8 +116,8 @@ class MinkeyApp extends InstallApp {
         description: "Minkey",
         logo: logo,
         email: "minkey.io.info@gmail.com",
-        styleFamily: MonaStyle.FAMILY_NAME,
-        styleName: MonaMinkeyStyle.STYLE_NAME,
+        styleFamily: MonaStyleFamily.monaStyleFamilyName,
+        styleName: MonaStyleFamily.minkeyStyleName,
         homePages: homePages,
         routeBuilder: PageTransitionAnimation.FadeRoute,
         routeAnimationDuration: 800,

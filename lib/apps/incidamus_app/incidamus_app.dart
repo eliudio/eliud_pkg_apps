@@ -31,8 +31,8 @@ import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart'
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
 import 'package:eliud_pkg_feed/tools/action/post_action_model.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
-import 'package:eliud_stl_mona/instances/mona_incidamus_style.dart';
 import 'package:eliud_stl_mona/mona_style.dart';
+import 'package:eliud_stl_mona/mona_style_family.dart';
 import 'package:flutter/material.dart';
 
 import '../app_base.dart';
@@ -110,8 +110,8 @@ class IncidamusApp extends InstallApp {
       logo: logo,
       email: "ex.incidamus@gmail.com",
       homePages: homePages,
-      styleFamily: MonaStyle.FAMILY_NAME,
-      styleName: MonaIncidamusStyle.STYLE_NAME,
+      styleFamily: MonaStyleFamily.monaStyleFamilyName,
+      styleName: MonaStyleFamily.incidamusStyleName,
       routeBuilder: PageTransitionAnimation.FadeRoute,
       routeAnimationDuration: 800,
       ownerID: ownerID,

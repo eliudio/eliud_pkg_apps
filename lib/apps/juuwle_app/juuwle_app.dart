@@ -28,8 +28,8 @@ import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart'
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_pkg_shop/model/admin_app.dart' as shop;
-import 'package:eliud_stl_mona/instances/mona_juuwle_style.dart';
 import 'package:eliud_stl_mona/mona_style.dart';
+import 'package:eliud_stl_mona/mona_style_family.dart';
 import 'package:flutter/material.dart';
 
 import '../app_base.dart';
@@ -103,8 +103,8 @@ class JuuwleApp extends InstallApp {
       description: 'Juuwle',
       logo: logo,
       email: 'juuwle.com.info@gmail.com',
-      styleFamily: MonaStyle.FAMILY_NAME,
-      styleName: MonaJuuwleStyle.STYLE_NAME,
+      styleFamily: MonaStyleFamily.monaStyleFamilyName,
+      styleName: MonaStyleFamily.juuwleStyleName,
       homePages: homePages,
       routeBuilder: PageTransitionAnimation.FadeRoute,
       routeAnimationDuration: 800,
