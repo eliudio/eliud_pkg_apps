@@ -48,6 +48,9 @@ dependencies:
   eliud_stl_mona:
     path: ../eliud_stl_mona
 
+  eliud_decor_creator:
+    path: ../eliud_decor_creator
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

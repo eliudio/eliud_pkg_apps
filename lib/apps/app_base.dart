@@ -11,9 +11,11 @@ import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core/style/frontend/has_drawer.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
+import 'package:eliud_decor_creator/widgets/utils/defaults.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/grid_views.dart';
@@ -170,7 +172,7 @@ abstract class InstallApp {
 
   DrawerModel _drawer(MemberMediumModel? logo) {
     return DrawerModel(
-        documentID: 'DRAWER',
+        documentID: drawerID(appId!, DrawerType.Left),
         appId: appId,
         name: 'Drawer',
         headerText: '',
@@ -204,7 +206,7 @@ abstract class InstallApp {
 
   DrawerModel _profileDrawer() {
     return DrawerModel(
-        documentID: 'PROFILE_DRAWER',
+        documentID: drawerID(appId!, DrawerType.Right),
         appId: appId,
         name: 'Profile Drawer',
         headerText: '',
@@ -222,7 +224,7 @@ abstract class InstallApp {
 
   HomeMenuModel homeMenu() {
     var menu = HomeMenuModel(
-        documentID: 'MAIN_MENU',
+        documentID: homeMenuID(appId!),
         appId: appId,
         name: 'Home menu 1',
         menu: homeMenuDef(),);
@@ -274,7 +276,7 @@ abstract class InstallApp {
       RgbModel? selectedIconColorOverride,
       RgbModel? menuBackgroundColorOverride}) {
     var appBar = AppBarModel(
-      documentID: documentID,
+      documentID: appBarID(appId!),
       appId: appId,
       header: HeaderSelection.Title,
       title: title,
