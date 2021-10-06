@@ -4,7 +4,7 @@ import 'package:eliud_core/tools/random.dart';
 import 'package:eliud_core/tools/storage/member_medium_helper.dart';
 import 'package:eliud_pkg_feed/model/post_medium_model.dart';
 
-class ImageTools {
+class ImageToolsX {
   static Future<MemberMediumModel> uploadPublicPhoto(String appId, MemberModel member, String assetPath) async {
     String memberMediumDocumentID = newRandomKey();
     return await MemberMediumHelper.createThumbnailUploadPhotoAsset(memberMediumDocumentID, appId, assetPath, member.documentID!, ['PUBLIC',member.documentID!]);
