@@ -66,30 +66,30 @@ class Welcome extends AppSection {
         bodyComponents: components);
   }
 
-  Future<FaderModel> _setupFader(MemberMediumModel android, MemberMediumModel iphone, MemberMediumModel tablet, MemberMediumModel macbook, ) async {
+  Future<FaderModel> _setupFader(PlatformMediumModel android, PlatformMediumModel iphone, PlatformMediumModel tablet, PlatformMediumModel macbook, ) async {
     return AbstractRepositorySingleton.singleton
         .faderRepository(EliudApp.ELIUD_APP_ID)!
         .add(_fader(android, iphone, tablet, macbook, ));
   }
 
-  Future<MemberMediumModel> androidImage() async {
+  Future<PlatformMediumModel> androidImage() async {
     return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg');
   }
 
-  Future<MemberMediumModel> iphoneImage() async {
+  Future<PlatformMediumModel> iphoneImage() async {
     return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg');
   }
 
-  Future<MemberMediumModel> tabletImage() async {
+  Future<PlatformMediumModel> tabletImage() async {
     return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg');
   }
 
-  Future<MemberMediumModel> macbookImage() async {
+  Future<PlatformMediumModel> macbookImage() async {
     return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg');
   }
 
   static String FADER_IDENTIFIER = "welcome_fader";
-  FaderModel _fader(MemberMediumModel android, MemberMediumModel iphone, MemberMediumModel tablet, MemberMediumModel macbook, ) {
+  FaderModel _fader(PlatformMediumModel android, PlatformMediumModel iphone, PlatformMediumModel tablet, PlatformMediumModel macbook, ) {
     List<ListedItemModel> items = [];
     items.add(ListedItemModel(
         documentID: "android",

@@ -7,6 +7,7 @@ import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core/model/platform_medium_model.dart';
 import 'package:eliud_pkg_etc/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_etc/model/policy_presentation_component.dart';
 import 'package:eliud_pkg_etc/model/policy_presentation_model.dart';
@@ -15,7 +16,7 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 class PolicyPage extends AppSection {
-  final MemberMediumModel? policy;
+  final PlatformMediumModel? policy;
   final String? title;
 
   PolicyPage({
@@ -27,7 +28,7 @@ class PolicyPage extends AppSection {
       DrawerModel? endDrawer})
       : super(installApp, homeMenu, drawer, endDrawer);
 
-  PolicyPresentationModel getPesentationModel(MemberMediumModel? policyModel) {
+  PolicyPresentationModel getPesentationModel(PlatformMediumModel? policyModel) {
     return PolicyPresentationModel(
       documentID: policy!.documentID,
       appId: installApp!.appId,
@@ -39,7 +40,7 @@ class PolicyPage extends AppSection {
     );
   }
 
-  Future<PolicyPresentationModel> createPresentationComponent(MemberMediumModel? policyModel) async {
+  Future<PolicyPresentationModel> createPresentationComponent(PlatformMediumModel? policyModel) async {
     return await policyPresentationRepository(appId: installApp!.appId)!
         .add(getPesentationModel(policyModel));
   }

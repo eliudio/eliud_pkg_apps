@@ -34,7 +34,7 @@ abstract class InstallApp {
   AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer);
 
   Future<void> setupApplication(AppHomePageReferencesModel homePages,
-      String? ownerID, MemberMediumModel? logo);
+      String? ownerID, PlatformMediumModel? logo);
   Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
       DrawerModel drawer, DrawerModel endDrawer);
 
@@ -166,11 +166,11 @@ abstract class InstallApp {
         .add(screen75());
   }
 
-  Future<MemberMediumModel> _memberMediumModel(String assetLocation) async {
+  Future<PlatformMediumModel> _memberMediumModel(String assetLocation) async {
     return await ImageTools.uploadPublicPhoto(appId!, member!, assetLocation);
   }
 
-  DrawerModel _drawer(MemberMediumModel? logo) {
+  DrawerModel _drawer(PlatformMediumModel? logo) {
     return DrawerModel(
         documentID: drawerID(appId!, DrawerType.Left),
         appId: appId,
@@ -182,19 +182,19 @@ abstract class InstallApp {
         menu: drawerMenuDef());
   }
 
-  Future<DrawerModel> setupDrawer(MemberMediumModel? logo) async {
+  Future<DrawerModel> setupDrawer(PlatformMediumModel? logo) async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .drawerRepository(appId)!
         .add(_drawer(logo));
   }
 
-  Future<void> setupDecorationColorModel(MemberMediumModel? logo) async {
+  Future<void> setupDecorationColorModel(PlatformMediumModel? logo) async {
     await corerepo.AbstractRepositorySingleton.singleton
         .backgroundRepository()!
         .add(_drawerHeaderBGOverride(logo));
   }
 
-  BackgroundModel _drawerHeaderBGOverride(MemberMediumModel? logo) {
+  BackgroundModel _drawerHeaderBGOverride(PlatformMediumModel? logo) {
     if (logo == null) throw Exception("You must provide a logo");
     var decorationColorModels = <DecorationColorModel>[];
     var backgroundModel = BackgroundModel(

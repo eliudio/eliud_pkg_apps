@@ -172,7 +172,7 @@ class Shop extends AppSection {
         .add(cardBG());
   }
 
-  PresentationModel _presentation(MemberMediumModel memberMediumModel) {
+  PresentationModel _presentation(PlatformMediumModel memberMediumModel) {
     return PresentationModel(
       documentID: 'shop',
       title: 'Shop',
@@ -193,7 +193,7 @@ class Shop extends AppSection {
     );
   }
 
-  Future<PresentationModel> _setupPresentation(MemberMediumModel memberMediumModel) async {
+  Future<PresentationModel> _setupPresentation(PlatformMediumModel memberMediumModel) async {
     var presentationModel = _presentation(memberMediumModel);
     await AbstractRepositorySingleton.singleton
         .presentationRepository(IncidamusApp.INCIDAMUS_APP_ID)!
@@ -201,7 +201,7 @@ class Shop extends AppSection {
     return presentationModel;
   }
 
-  Future<MemberMediumModel> uploadImage() async {
+  Future<PlatformMediumModel> uploadImage() async {
     return await ImageTools.uploadPublicPhoto(
         installApp!.appId!,
         installApp!.member!,

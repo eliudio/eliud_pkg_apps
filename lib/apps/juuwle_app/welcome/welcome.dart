@@ -47,11 +47,11 @@ class Welcome extends AppSection {
 
   static String welcomeIdentifier = "welcome";
 
-  Future<MemberMediumModel> uploadWelcomeImage() async {
+  Future<PlatformMediumModel> uploadWelcomeImage() async {
     return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_standing.png');
   }
 
-  BookletModel _welcome(MemberMediumModel welcomeImage) {
+  BookletModel _welcome(PlatformMediumModel welcomeImage) {
     List<SectionModel> entries = [];
     {
       entries.add(SectionModel(
@@ -76,7 +76,7 @@ class Welcome extends AppSection {
     );
   }
 
-  Future<void> _setupWelcome(MemberMediumModel welcomeImage) async {
+  Future<void> _setupWelcome(PlatformMediumModel welcomeImage) async {
     await AbstractRepositorySingleton.singleton.bookletRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_welcome(welcomeImage));
   }
 

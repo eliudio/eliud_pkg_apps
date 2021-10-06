@@ -8,6 +8,7 @@ import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core/model/platform_medium_model.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals/model/booklet_component.dart';
@@ -70,17 +71,17 @@ abstract class AboutBase extends AppSection {
   String aboutTitle();
   String assetLocation();
 
-  Future<String?> _store(MemberMediumModel memberMediumModel) async {
+  Future<String?> _store(PlatformMediumModel platformMediumModel) async {
     return (await AbstractRepositorySingleton.singleton
         .bookletRepository(installApp!.appId)!
-        .add(_header(memberMediumModel))).documentID;
+        .add(_header(platformMediumModel))).documentID;
   }
 
-  Future<MemberMediumModel> installAboutImage() async {
+  Future<PlatformMediumModel> installAboutImage() async {
     return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, assetLocation());
   }
 
-  BookletModel _header(MemberMediumModel memberMediumModel) {
+  BookletModel _header(PlatformMediumModel memberMediumModel) {
     List<SectionModel> entries = [];
     {
       List<LinkModel> links = [];

@@ -46,11 +46,11 @@ class Blocked extends AppSection {
 
   static String blockedIdentifier = "blocked";
 
-  Future<MemberMediumModel> uploadBlockedImage() async {
+  Future<PlatformMediumModel> uploadBlockedImage() async {
     return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/shared/blocked/blocked.png');
   }
 
-  BookletModel _blocked(MemberMediumModel blockedImage) {
+  BookletModel _blocked(PlatformMediumModel blockedImage) {
     List<SectionModel> entries = [];
     {
       entries.add(SectionModel(
@@ -75,7 +75,7 @@ class Blocked extends AppSection {
     );
   }
 
-  Future<void> _setupBlocked(MemberMediumModel blockedImage) async {
+  Future<void> _setupBlocked(PlatformMediumModel blockedImage) async {
     await AbstractRepositorySingleton.singleton.bookletRepository(installApp!.appId)!.add(_blocked(blockedImage));
   }
 
