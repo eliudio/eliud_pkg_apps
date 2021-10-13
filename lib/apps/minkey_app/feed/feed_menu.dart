@@ -10,6 +10,7 @@ import 'package:eliud_pkg_apps/apps/shared/follow/follow_dashboards.dart';
 import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
 import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_feed/model/feed_menu_model.dart';
+import 'package:eliud_pkg_feed/model/feed_model.dart';
 import 'package:flutter/material.dart';
 
 import 'feed.dart';
@@ -92,11 +93,12 @@ class FeedMenu {
   }
 
   static String FEED_MENU_ID = "feedMenu";
-  FeedMenuModel feedMenuModel(MenuDefModel menuCurrentMember, MenuDefModel menuOtherMember, ) {
+  FeedMenuModel feedMenuModel(FeedModel feed, MenuDefModel menuCurrentMember, MenuDefModel menuOtherMember, ) {
     return FeedMenuModel(
       documentID: FEED_MENU_ID,
       appId: appId,
       description: "Feed Menu",
+      feed: feed,
       menuCurrentMember: menuCurrentMember,
       menuOtherMember: menuOtherMember,
       itemColor: EliudColors.black,
@@ -107,15 +109,15 @@ class FeedMenu {
     );
   }
 
-  Future<FeedMenuModel> createFeedMenuModel(MenuDefModel menuCurrentMember, MenuDefModel menuOtherMember,) async {
+  Future<FeedMenuModel> createFeedMenuModel(FeedModel feed, MenuDefModel menuCurrentMember, MenuDefModel menuOtherMember,) async {
     return await AbstractRepositorySingleton.singleton
         .feedMenuRepository(appId)!
-        .add(feedMenuModel(menuCurrentMember, menuOtherMember));
+        .add(feedMenuModel(feed, menuCurrentMember, menuOtherMember));
   }
 
-  Future<void> run() async {
+  Future<void> run(FeedModel feed, ) async {
     var menuDefCurrentMember = await createMenuDefCurrentMember();
     var menuDefOtherMember = await createMenuDefOtherMember();
-    await createFeedMenuModel(menuDefCurrentMember, menuDefOtherMember);
+    await createFeedMenuModel(feed, menuDefCurrentMember, menuDefOtherMember);
   }
 }

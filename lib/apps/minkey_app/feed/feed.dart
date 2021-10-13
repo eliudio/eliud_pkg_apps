@@ -61,7 +61,6 @@ class Feed extends AppSection {
         title: "Feed",
         drawer: drawer,
         endDrawer: endDrawer,
-        widgetWrapper: 'profile',
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
@@ -103,7 +102,7 @@ class Feed extends AppSection {
         installApp!.appId!, member.documentID!);
     await ExamplePosts(installApp!.appId, readAccess).run(member, IDENTIFIER);
     await ExampleProfile(installApp!.appId, readAccess).run(member, IDENTIFIER);
-    await FeedMenu(installApp!.appId!).run();
+    await FeedMenu(installApp!.appId!).run(feed);
     await ProfileComponent(installApp!.appId!).run(feed);
     await HeaderComponent(installApp!.appId!).run(feed);
 

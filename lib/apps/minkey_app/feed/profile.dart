@@ -56,7 +56,6 @@ class Profile extends AppSection {
         appId: MinkeyApp.MINKEY_APP_ID,
         title: "Profile",
         drawer: drawer,
-        widgetWrapper: 'profile',
         endDrawer: endDrawer,
         appBar: appBar,
         homeMenu: homeMenu,

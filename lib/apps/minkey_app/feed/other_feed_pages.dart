@@ -56,7 +56,6 @@ class OtherFeedPages extends AppSection {
         appId: MinkeyApp.MINKEY_APP_ID,
         title: title,
         drawer: drawer,
-        widgetWrapper: 'profile',
         endDrawer: endDrawer,
         appBar: appBar,
         homeMenu: homeMenu,
