@@ -48,8 +48,8 @@ dependencies:
   eliud_stl_mona:
     path: ../eliud_stl_mona
 
-  eliud_decor_creator:
-    path: ../eliud_decor_creator
+  eliud_pkg_create:
+    path: ../eliud_pkg_create
 
 dev_dependencies:
   flutter_test:

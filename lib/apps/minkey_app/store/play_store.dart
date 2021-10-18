@@ -18,9 +18,9 @@ import 'package:eliud_pkg_fundamentals/model/divider_component.dart';
 import 'package:eliud_pkg_fundamentals/model/fader_component.dart';
 import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
 import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
-import 'package:eliud_decor_creator/model/play_store_component.dart';
-import 'package:eliud_decor_creator/model/play_store_model.dart';
-import 'package:eliud_decor_creator/model/abstract_repository_singleton.dart' as creator;
+import 'package:eliud_pkg_create/model/play_store_component.dart';
+import 'package:eliud_pkg_create/model/play_store_model.dart';
+import 'package:eliud_pkg_create/model/abstract_repository_singleton.dart' as creator;
 
 import '../../app_base.dart';
 import '../../app_section.dart';

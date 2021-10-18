@@ -260,17 +260,17 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
-  eliud_decor_creator:
-    dependency: "direct main"
-    description:
-      path: "../eliud_decor_creator"
-      relative: true
-    source: path
-    version: "0.0.1"
   eliud_pkg_chat:
     dependency: "direct main"
     description:
       path: "../eliud_pkg_chat"
+      relative: true
+    source: path
+    version: "0.0.1"
+  eliud_pkg_create:
+    dependency: "direct main"
+    description:
+      path: "../eliud_pkg_create"
       relative: true
     source: path
     version: "0.0.1"
