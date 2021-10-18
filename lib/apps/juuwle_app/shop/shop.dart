@@ -88,7 +88,7 @@ class Shop extends AppSection {
         documentID: 'juuwle',
         description: 'Juuwle',
         posSize: installApp!.halfScreen(),
-        image: installApp!.theLogo));
+        image: installApp!.thePlatformLogo));
     var model = FaderModel(
       documentID: faderIdentifier,
       name: 'Juuwle Fader',
@@ -226,7 +226,7 @@ class Shop extends AppSection {
   }
 
   Future<PlatformMediumModel> uploadImage() async {
-    return await ImageTools.uploadPublicPhoto(
+    return await ImageTools.uploadPlatformPhoto(
         installApp!.appId!,
         installApp!.member!,
         'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_presenting.png');

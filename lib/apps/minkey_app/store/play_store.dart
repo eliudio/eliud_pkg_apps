@@ -70,7 +70,7 @@ class PlayStore extends AppSection {
           documentID: "minkey",
           description: "Minkey",
           posSize: installApp!.halfScreen(),
-          image: installApp!.theLogo));
+          image: installApp!.thePlatformLogo));
       FaderModel model = FaderModel(
         documentID: FADER_IDENTIFIER,
         name: "Welcome fader",

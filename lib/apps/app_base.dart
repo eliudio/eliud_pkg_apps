@@ -34,7 +34,7 @@ abstract class InstallApp {
   AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer);
 
   Future<void> setupApplication(AppHomePageReferencesModel homePages,
-      String? ownerID, PlatformMediumModel? logo);
+      String? ownerID, PublicMediumModel? logo);
   Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
       DrawerModel drawer, DrawerModel endDrawer);
 
@@ -53,8 +53,9 @@ abstract class InstallApp {
   String termsOfServiceAssetLocation();
   String disclaimerAssetLocation();
 
-  var theLogo;
-  var theLogoHead;
+  PublicMediumModel? thePublicLogo;
+  PublicMediumModel? thePublicLogoHead;
+  PlatformMediumModel? thePlatformLogo;
 
   final String? appId;
   MemberModel? member;
@@ -166,11 +167,15 @@ abstract class InstallApp {
         .add(screen75());
   }
 
-  Future<PlatformMediumModel> _memberMediumModel(String assetLocation) async {
+  Future<PublicMediumModel> _publicMediumModel(String assetLocation) async {
     return await ImageTools.uploadPublicPhoto(appId!, member!, assetLocation);
   }
 
-  DrawerModel _drawer(PlatformMediumModel? logo) {
+  Future<PlatformMediumModel> _platformMediumModel(String assetLocation) async {
+    return await ImageTools.uploadPlatformPhoto(appId!, member!, assetLocation);
+  }
+
+  DrawerModel _drawer(PublicMediumModel? logo) {
     return DrawerModel(
         documentID: drawerID(appId!, DrawerType.Left),
         appId: appId,
@@ -182,25 +187,25 @@ abstract class InstallApp {
         menu: drawerMenuDef());
   }
 
-  Future<DrawerModel> setupDrawer(PlatformMediumModel? logo) async {
+  Future<DrawerModel> setupDrawer(PublicMediumModel? logo) async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .drawerRepository(appId)!
         .add(_drawer(logo));
   }
 
-  Future<void> setupDecorationColorModel(PlatformMediumModel? logo) async {
+  Future<void> setupDecorationColorModel(PublicMediumModel? logo) async {
     await corerepo.AbstractRepositorySingleton.singleton
         .backgroundRepository()!
         .add(_drawerHeaderBGOverride(logo));
   }
 
-  BackgroundModel _drawerHeaderBGOverride(PlatformMediumModel? logo) {
+  BackgroundModel _drawerHeaderBGOverride(PublicMediumModel? logo) {
     if (logo == null) throw Exception("You must provide a logo");
     var decorationColorModels = <DecorationColorModel>[];
     var backgroundModel = BackgroundModel(
-        documentID: 'left_drawer_header_bg_' + logo.appId!,
+        documentID: 'left_drawer_header_bg_' + logo.baseName!,
         decorationColors: decorationColorModels,
-        backgroundImageURL: logo.url);
+        backgroundImage: logo);
     return backgroundModel;
   }
 
@@ -317,10 +322,11 @@ abstract class InstallApp {
     }
 */
     await setupAppPolicy();
-    theLogo = await _memberMediumModel(logoAssetLocation());
-    theLogoHead = await _memberMediumModel(logoHeadAssetLocation());
+    thePublicLogo = await _publicMediumModel(logoAssetLocation());
+    thePublicLogoHead = await _publicMediumModel(logoHeadAssetLocation());
+    thePlatformLogo = await _platformMediumModel(logoAssetLocation());
     var endDrawer = await setupProfileDrawer();
-    var drawer = await setupDrawer(theLogo);
+    var drawer = await setupDrawer(thePublicLogo);
     var _adminBase = adminBase(drawer, endDrawer);
 
     await GridViews().run(appId);
@@ -336,10 +342,10 @@ abstract class InstallApp {
     await _adminBase.installAdminAppss(adminMenu);
     await setupMenus();
     await setupPosSizes();
-    await setupDecorationColorModel(theLogo);
+    await setupDecorationColorModel(thePublicLogo);
     await setupDividers();
     var homePages = await runTheRest(ownerID, drawer, endDrawer);
-    await setupApplication(homePages, ownerID, theLogoHead);
+    await setupApplication(homePages, ownerID, thePublicLogoHead);
   }
 
   Future<void> wipeAndReinstall() async {
@@ -408,9 +414,9 @@ abstract class InstallApp {
   static String disclaimerID = 'disclaimer';
 
   Future<void> setupAppPolicy() async {
-    var privacyPolicy = await ImageTools.uploadPublicPdf(appId!, member!, privacyPolicyAssetLocation(), privacyID);
-    var termsOfServicePolicy = await ImageTools.uploadPublicPdf(appId!, member!, termsOfServiceAssetLocation(), termsOfServiceID);
-    var disclaimerPolicy = await ImageTools.uploadPublicPdf(appId!, member!, disclaimerAssetLocation(), disclaimerID);
+    var privacyPolicy = await ImageTools.uploadPlatformPdf(appId!, member!, privacyPolicyAssetLocation(), privacyID);
+    var termsOfServicePolicy = await ImageTools.uploadPlatformPdf(appId!, member!, termsOfServiceAssetLocation(), termsOfServiceID);
+    var disclaimerPolicy = await ImageTools.uploadPlatformPdf(appId!, member!, disclaimerAssetLocation(), disclaimerID);
 
     appPolicyModel = AppPolicyModel(
         documentID: 'policies',

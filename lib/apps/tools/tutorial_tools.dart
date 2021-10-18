@@ -68,7 +68,7 @@ class TutorialTools {
       var image;
       if (assetLocations[i] != null) {
         assetLocation = assetRoot + assetLocations[i]!;
-        image = await ImageTools.uploadPublicPhoto(appId, member!, assetLocation);
+        image = await ImageTools.uploadPlatformPhoto(appId, member!, assetLocation);
       }
       String documentID = i.toString();
       items.add(TutorialEntryModel(

@@ -28,7 +28,7 @@ abstract class PhotoAndSomthing extends DecoratedContent {
             privilegeLevelRequiredSimple: privilegeLevelRequiredSimple);
 
   Future<PlatformMediumModel> installImage(String assetLocation) async {
-    return await ImageTools.uploadPublicPhoto(
+    return await ImageTools.uploadPlatformPhoto(
         installApp!.appId!, installApp!.member!, assetLocation);
   }
 

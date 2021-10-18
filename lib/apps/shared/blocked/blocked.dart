@@ -47,7 +47,7 @@ class Blocked extends AppSection {
   static String blockedIdentifier = "blocked";
 
   Future<PlatformMediumModel> uploadBlockedImage() async {
-    return await ImageTools.uploadPublicPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/shared/blocked/blocked.png');
+    return await ImageTools.uploadPlatformPhoto(installApp!.appId!, installApp!.member!, 'packages/eliud_pkg_apps/assets/shared/blocked/blocked.png');
   }
 
   BookletModel _blocked(PlatformMediumModel blockedImage) {

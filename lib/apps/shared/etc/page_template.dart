@@ -95,7 +95,7 @@ abstract class PageTemplate extends AppSection {
   }
 
   Future<PlatformMediumModel> uploadImage() async {
-    return await ImageTools.uploadPublicPhoto(
+    return await ImageTools.uploadPlatformPhoto(
         installApp!.appId!,
         installApp!.member!,
         assetLocation());

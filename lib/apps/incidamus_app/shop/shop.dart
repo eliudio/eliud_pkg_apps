@@ -202,7 +202,7 @@ class Shop extends AppSection {
   }
 
   Future<PlatformMediumModel> uploadImage() async {
-    return await ImageTools.uploadPublicPhoto(
+    return await ImageTools.uploadPlatformPhoto(
         installApp!.appId!,
         installApp!.member!,
         'packages/eliud_pkg_apps/assets/incidamus_app/decorating/body3b.png');

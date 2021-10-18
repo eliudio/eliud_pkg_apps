@@ -8,6 +8,7 @@ import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/model/platform_medium_model.dart';
+import 'package:eliud_core/model/public_medium_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
@@ -97,7 +98,7 @@ class JuuwleApp extends InstallApp {
 
   @override
   Future<AppModel> setupApplication(AppHomePageReferencesModel homePages,
-      String? ownerID, PlatformMediumModel? logo) async {
+      String? ownerID, PublicMediumModel? logo) async {
     var application = AppModel(
       documentID: JUUWLE_APP_ID,
       title: 'Juuwle!',

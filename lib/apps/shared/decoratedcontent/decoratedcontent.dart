@@ -5,7 +5,6 @@ import 'package:eliud_core/model/conditions_model.dart';
 import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals/model/decorated_content_component.dart';
@@ -56,7 +55,7 @@ abstract class DecoratedContent extends AppSection {
         documentID: 'fader',
         description: 'Fader',
         posSize: installApp!.halfScreen(),
-        image: installApp!.theLogo));
+        image: installApp!.thePlatformLogo));
     var model = FaderModel(
       documentID: faderIdentifier,
       name: 'Fader',
