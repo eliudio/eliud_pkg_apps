@@ -57,12 +57,12 @@ abstract class InstallApp {
   PublicMediumModel? thePublicLogoHead;
   PlatformMediumModel? thePlatformLogo;
 
-  final String? appId;
+  final String appId;
   MemberModel? member;
   AppPolicyModel? appPolicyModel;
 
   // Constructor
-  InstallApp({this.appId});
+  InstallApp({required this.appId});
 
   // Implementation
   Future<void> run(String ownerID);

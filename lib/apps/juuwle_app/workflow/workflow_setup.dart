@@ -22,7 +22,7 @@ class WorkflowSetup {
         .add(_workflowForCreditCardPaymentCart());
   }
 
-  static WorkflowActionModel payCart(String? appId) =>
+  static WorkflowActionModel payCart(String appId) =>
       WorkflowActionModel(appId,
           conditions: ConditionsModel(
             privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
