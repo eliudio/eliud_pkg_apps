@@ -67,7 +67,7 @@ class ChatDialog extends AppSectionBase {
 
   Future<void> run() async {
     await _setupChat();
-    await _setupDialog(IDENTIFIER_READ, ChatPackage.CONDITION_MEMBER_DOES_NOT_HAVE_UNREAD_CHAT);
+    await _setupDialog(IDENTIFIER_READ, ChatPackage.CONDITION_MEMBER_ALL_HAVE_BEEN_READ);
     await _setupDialog(IDENTIFIER_UNREAD, ChatPackage.CONDITION_MEMBER_HAS_UNREAD_CHAT);
   }
 }

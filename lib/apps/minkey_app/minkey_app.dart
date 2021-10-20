@@ -305,7 +305,7 @@ class MinkeyApp extends InstallApp {
                 conditions: ConditionsModel(
                     privilegeLevelRequired:
                         PrivilegeLevelRequired.NoPrivilegeRequired,
-                    packageCondition: ChatPackage.CONDITION_MEMBER_DOES_NOT_HAVE_UNREAD_CHAT))),
+                    packageCondition: ChatPackage.CONDITION_MEMBER_ALL_HAVE_BEEN_READ))),
         MenuItemModel(
             documentID: "join",
             text: "JOIN",
