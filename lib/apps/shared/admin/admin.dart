@@ -45,7 +45,7 @@ abstract class AdminBase extends AppSection {
   Future<MenuDefModel> installAdminMenus() async {
     // Create the menus
     List<AdminAppMenuInstallerBase> _adminMenuInstallers = adminMenuInstallers();
-    List<MenuItemModel> menuItems = await Future.wait(_adminMenuInstallers.map((element) async => _mapIt(await element.menu(installApp!.appId!))));
+    List<MenuItemModel> menuItems = await Future.wait(_adminMenuInstallers.map((element) async => _mapIt(await element.menu(installApp!.appId))));
     MenuDefModel menu = MenuDefModel(
         documentID: "admin_sub_menu",
         appId: installApp!.appId,

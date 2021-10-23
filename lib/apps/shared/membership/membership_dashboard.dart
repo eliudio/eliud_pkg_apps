@@ -50,7 +50,7 @@ class MembershipDashboard extends AppSectionBase {
         documentID: IDENTIFIER,
         appId: installApp!.appId,
         description: "Members",
-        memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId!, profilePageId, feedPageId),
+        memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId, profilePageId, feedPageId),
         conditions: ConditionsSimpleModel(
             privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
         ),

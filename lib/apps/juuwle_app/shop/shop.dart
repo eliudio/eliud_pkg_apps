@@ -227,7 +227,7 @@ class Shop extends AppSection {
 
   Future<PlatformMediumModel> uploadImage() async {
     return await ImageTools.uploadPlatformPhoto(
-        installApp!.appId!,
+        installApp!.appId,
         installApp!.member!,
         'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_presenting.png');
   }

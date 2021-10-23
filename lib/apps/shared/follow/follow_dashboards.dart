@@ -55,7 +55,7 @@ class _FollowingDashboard extends AppSectionBase {
         appId: installApp!.appId,
         description: title,
         view: view,
-        memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId!, profilePageId, feedPageId),
+        memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId, profilePageId, feedPageId),
         conditions: ConditionsSimpleModel(
             privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
         ),
@@ -112,7 +112,7 @@ class FollowRequestDashboard extends AppSectionBase {
       documentID: FOLLOW_REQUEST_IDENTIFIER,
       appId: installApp!.appId,
       description: "Follow requests",
-      memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId!, profilePageId, feedPageId),
+      memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId, profilePageId, feedPageId),
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
@@ -168,7 +168,7 @@ class InviteDashboard extends AppSectionBase {
       documentID: INVITE_IDENTIFIER,
       appId: installApp!.appId,
       description: "Follow members",
-      memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId!, profilePageId, feedPageId),
+      memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId, profilePageId, feedPageId),
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),

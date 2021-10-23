@@ -168,16 +168,16 @@ abstract class InstallApp {
   }
 
   Future<PublicMediumModel> _publicMediumModel(String assetLocation) async {
-    return await ImageTools.uploadPublicPhoto(appId!, member!, assetLocation);
+    return await ImageTools.uploadPublicPhoto(appId, member!, assetLocation);
   }
 
   Future<PlatformMediumModel> _platformMediumModel(String assetLocation) async {
-    return await ImageTools.uploadPlatformPhoto(appId!, member!, assetLocation);
+    return await ImageTools.uploadPlatformPhoto(appId, member!, assetLocation);
   }
 
   DrawerModel _drawer(PublicMediumModel? logo) {
     return DrawerModel(
-        documentID: drawerID(appId!, DrawerType.Left),
+        documentID: drawerID(appId, DrawerType.Left),
         appId: appId,
         name: 'Drawer',
         headerText: '',
@@ -211,7 +211,7 @@ abstract class InstallApp {
 
   DrawerModel _profileDrawer() {
     return DrawerModel(
-        documentID: drawerID(appId!, DrawerType.Right),
+        documentID: drawerID(appId, DrawerType.Right),
         appId: appId,
         name: 'Profile Drawer',
         headerText: '',
@@ -229,7 +229,7 @@ abstract class InstallApp {
 
   HomeMenuModel homeMenu() {
     var menu = HomeMenuModel(
-        documentID: homeMenuID(appId!),
+        documentID: homeMenuID(appId),
         appId: appId,
         name: 'Home menu 1',
         menu: homeMenuDef(),);
@@ -281,7 +281,7 @@ abstract class InstallApp {
       RgbModel? selectedIconColorOverride,
       RgbModel? menuBackgroundColorOverride}) {
     var appBar = AppBarModel(
-      documentID: appBarID(appId!),
+      documentID: appBarID(appId),
       appId: appId,
       header: HeaderSelection.Title,
       title: title,
@@ -414,9 +414,9 @@ abstract class InstallApp {
   static String disclaimerID = 'disclaimer';
 
   Future<void> setupAppPolicy() async {
-    var privacyPolicy = await ImageTools.uploadPlatformPdf(appId!, member!, privacyPolicyAssetLocation(), privacyID);
-    var termsOfServicePolicy = await ImageTools.uploadPlatformPdf(appId!, member!, termsOfServiceAssetLocation(), termsOfServiceID);
-    var disclaimerPolicy = await ImageTools.uploadPlatformPdf(appId!, member!, disclaimerAssetLocation(), disclaimerID);
+    var privacyPolicy = await ImageTools.uploadPlatformPdf(appId, member!, privacyPolicyAssetLocation(), privacyID);
+    var termsOfServicePolicy = await ImageTools.uploadPlatformPdf(appId, member!, termsOfServiceAssetLocation(), termsOfServiceID);
+    var disclaimerPolicy = await ImageTools.uploadPlatformPdf(appId, member!, disclaimerAssetLocation(), disclaimerID);
 
     appPolicyModel = AppPolicyModel(
         documentID: 'policies',

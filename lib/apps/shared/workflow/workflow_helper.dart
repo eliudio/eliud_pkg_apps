@@ -1,7 +1,12 @@
-import 'package:eliud_pkg_membership/tools/task/membership_task_model.dart';
-import 'package:eliud_pkg_pay/tools/task/pay_task_model.dart';
-import 'package:eliud_pkg_pay/tools/task/pay_type_model.dart';
-import 'package:eliud_pkg_pay/tools/task/review_and_ship_task_model.dart';
+import 'package:eliud_core/tools/random.dart';
+import 'package:eliud_pkg_membership/tasks/approve_membership_task_model.dart';
+import 'package:eliud_pkg_membership/tasks/request_membership_task_model.dart';
+import 'package:eliud_pkg_pay/tasks/context_amount_pay_model.dart';
+import 'package:eliud_pkg_pay/tasks/creditcard_pay_type_model.dart';
+import 'package:eliud_pkg_pay/tasks/fixed_amount_pay_model.dart';
+import 'package:eliud_pkg_pay/tasks/manual_pay_type_model.dart';
+import 'package:eliud_pkg_pay/tasks/pay_type_model.dart';
+import 'package:eliud_pkg_pay/tasks/review_and_ship_task_model.dart';
 import 'package:eliud_pkg_workflow/model/workflow_model.dart';
 import 'package:eliud_pkg_workflow/model/workflow_notification_model.dart';
 import 'package:eliud_pkg_workflow/model/workflow_task_model.dart';
@@ -18,6 +23,7 @@ class WorkflowHelper {
             documentID: "workflow_task_payment",
             responsible: WorkflowTaskResponsible.CurrentMember,
             task: ContextAmountPayModel(
+              identifier: newRandomKey(),
               executeInstantly: false,
               description: 'Please pay for your buy',
               paymentType: payTypeModel,
@@ -36,6 +42,7 @@ class WorkflowHelper {
                     "Your payment has been reviewed and rejected. Feedback from the shop: ",
                 addressee: WorkflowNotificationAddressee.CurrentMember),
             task: ReviewAndShipTaskModel(
+              identifier: newRandomKey(),
               executeInstantly: false,
               description: 'Review the payment and ship the products',
             ),
@@ -44,11 +51,11 @@ class WorkflowHelper {
   }
 
   static WorkflowModel workflowForManualPaymentCart(
-      {String? payTo,
-      String? country,
-      String? bankIdentifierCode,
-      String? payeeIBAN,
-      String? bankName}) {
+      {required String payTo,
+      required String country,
+      required String bankIdentifierCode,
+      required String payeeIBAN,
+      required String bankName}) {
     return _workflowForPaymentCart(
         "cat_paid_manually",
         "Manual Cart Payment",
@@ -73,6 +80,7 @@ class WorkflowHelper {
         documentID: "request_membership",
         responsible: WorkflowTaskResponsible.CurrentMember,
         task: RequestMembershipTaskModel(
+          identifier: newRandomKey(),
           executeInstantly: false,
           description: 'Please join. It costs 20 GBP, 1 time cost',
         ),
@@ -87,6 +95,7 @@ class WorkflowHelper {
             addressee: WorkflowNotificationAddressee.CurrentMember),
         rejectMessage: null,
         task: FixedAmountPayModel(
+            identifier: newRandomKey(),
             executeInstantly: true,
             description: 'To join, pay 20 GBP',
             paymentType: payTypeModel,
@@ -106,6 +115,7 @@ class WorkflowHelper {
                 "You payment has been verified and unfortunately something went wrong. Feedback: ",
             addressee: WorkflowNotificationAddressee.First),
         task: ApproveMembershipTaskModel(
+          identifier: newRandomKey(),
           executeInstantly: false,
           description: 'Verify payment and confirm membership',
         ),
@@ -114,13 +124,13 @@ class WorkflowHelper {
   }
 
   static WorkflowModel workflowForManuallyPaidMembership(
-      {double? amount,
-      String? ccy,
-      String? payTo,
-      String? country,
-      String? bankIdentifierCode,
-      String? payeeIBAN,
-      String? bankName}) {
+      {required double amount,
+      required String ccy,
+      required String payTo,
+      required String country,
+      required String bankIdentifierCode,
+      required String payeeIBAN,
+      required String bankName}) {
     return _workflowForMembership(
         "membership_paid_manually",
         "Paid Membership (manually paid)",
@@ -143,5 +153,4 @@ class WorkflowHelper {
         "GBP",
         CreditCardPayTypeModel(requiresConfirmation: true));
   }
-
 }

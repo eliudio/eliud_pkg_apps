@@ -78,7 +78,7 @@ abstract class AboutBase extends AppSection {
   }
 
   Future<PlatformMediumModel> installAboutImage() async {
-    return await ImageTools.uploadPlatformPhoto(installApp!.appId!, installApp!.member!, assetLocation());
+    return await ImageTools.uploadPlatformPhoto(installApp!.appId, installApp!.member!, assetLocation());
   }
 
   BookletModel _header(PlatformMediumModel memberMediumModel) {
