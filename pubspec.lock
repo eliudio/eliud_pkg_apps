@@ -303,7 +303,7 @@ packages:
     source: path
     version: "1.0.0+1"
   eliud_pkg_medium:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "../eliud_pkg_medium"
       relative: true
@@ -530,7 +530,7 @@ packages:
       name: flutter_html
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.5"
   flutter_iconpicker:
     dependency: transitive
     description:

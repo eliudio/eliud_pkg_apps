@@ -1,15 +1,17 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_pkg_medium/model/album_model.dart';
+import 'package:eliud_pkg_medium/model/album_repository.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_pkg_medium/model/album_component.dart';
+import 'package:eliud_pkg_medium/model/album_repository.dart';
 import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
-import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_feed/model/album_component.dart';
-import 'package:eliud_pkg_feed/model/album_model.dart';
+import 'package:eliud_pkg_medium/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_feed/model/post_model.dart';
 
 import '../../app_base.dart';
@@ -45,23 +47,22 @@ class Album extends AppSection {
         bodyComponents: components);
   }
 
-  static AlbumModel albumModel(PostModel postModel) {
-    return AlbumModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, post: postModel, description: "My Minkey Photos",
+  Future<AlbumModel> albumModel(String memberId) async {
+    var entries = await ExampleAlbumHelper(appId: installApp!.appId, memberId: memberId).createAll();
+    return AlbumModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, albumEntries: entries, description: "My Minkey Photos",
       conditions: ConditionsSimpleModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );
   }
 
-  Future<AlbumModel> _setupAlbum(PostModel postModel) async {
-    return await AbstractRepositorySingleton.singleton.albumRepository(installApp!.appId)!.add(albumModel(postModel));
+  Future<AlbumModel> _setupAlbum(String memberId) async {
+    return await albumRepository(appId: installApp!.appId)!.add(await albumModel(memberId));
   }
 
   Future<PageModel> run(MemberModel member) async {
-    PostModel photoAlbum = await ExamplePost(installApp!.appId).photoAlbum(member);
-//    PostModel videoAlbum = await ExamplePost(newAppTools, installApp.appId).videoAlbum(member);
     var appBar = installApp!.appBar();
-    await _setupAlbum(photoAlbum);
+    await _setupAlbum(member.documentID!);
     return await _setupPage(appBar);
   }
 }

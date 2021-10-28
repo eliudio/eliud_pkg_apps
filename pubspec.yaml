@@ -51,6 +51,9 @@ dependencies:
   eliud_pkg_create:
     path: ../eliud_pkg_create
 
+  eliud_pkg_medium:
+    path: ../eliud_pkg_medium
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
