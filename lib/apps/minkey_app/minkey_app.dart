@@ -64,7 +64,6 @@ class MinkeyApp extends InstallApp {
         action: InternalAction(appId,
             internalActionEnum: InternalActionEnum.OtherApps)));
     menuItems.add(menuItemSignOut(appId, "2"));
-    menuItems.add(menuItemFlushCache(appId, "3"));
     menuItems
         .add(menuItemManageAccount(appId, "4", MemberDashboard.IDENTIFIER));
 

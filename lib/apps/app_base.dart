@@ -1,4 +1,4 @@
-import 'package:eliud_core/core/access/bloc/access_bloc.dart';
+import 'package:eliud_core/core/blocs/access/access_bloc.dart';
 import 'package:eliud_core/core/components/page_constructors/eliud_appbar.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
@@ -353,7 +353,7 @@ abstract class InstallApp {
     await AbstractMainRepositorySingleton.singleton.userRepository()!.signOut();
     var usr = await (AbstractMainRepositorySingleton.singleton
         .userRepository()!
-        .signInWithGoogle(null));
+        .signInWithGoogle());
     if (usr == null) {
       throw Exception("User is null");
     } else {
