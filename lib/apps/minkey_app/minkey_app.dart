@@ -27,6 +27,7 @@ import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.
 import 'package:eliud_pkg_chat/chat_package.dart';
 import 'package:eliud_pkg_feed/tools/action/post_action_model.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
+import 'package:eliud_pkg_workflow/workflow_package.dart';
 import 'package:eliud_stl_mona/mona_style_family.dart';
 import 'package:flutter/material.dart';
 
@@ -278,6 +279,11 @@ class MinkeyApp extends InstallApp {
                 codePoint: Icons.playlist_add_check.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
             action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
+                conditions: ConditionsModel(
+                    privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+                    packageCondition: WorkflowPackage.CONDITION_MUST_HAVE_ASSIGNMENTS,
+                    conditionOverride: ConditionOverride.InclusiveForBlockedMembers // allow blocked members to see
+                ),
                 dialogID: AssignmentViewSetup.IDENTIFIER)),
         MenuItemModel(
             documentID: 'chatUnread',
