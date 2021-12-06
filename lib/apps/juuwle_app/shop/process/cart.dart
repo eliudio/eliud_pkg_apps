@@ -61,7 +61,9 @@ class MyCart extends PageTemplate {
     DrawerModel? endDrawer,
     }): super(
       privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+/*
       packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
+*/
       pageId: identifier,
       installApp: installApp,
       homeMenu: homeMenu,
