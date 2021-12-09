@@ -2,8 +2,6 @@ import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/model/body_component_model.dart';
-import 'package:eliud_core/model/conditions_model.dart';
-import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_core/model/decoration_color_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
@@ -11,6 +9,7 @@ import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/rgb_model.dart';
 import 'package:eliud_core/model/shadow_model.dart';
+import 'package:eliud_core/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
@@ -53,8 +52,8 @@ class PlayStore extends AppSection {
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
-        conditions: ConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+        conditions: StorageConditionsModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
@@ -78,7 +77,7 @@ class PlayStore extends AppSection {
         imageSeconds: 5,
         items: items,
         appId: MinkeyApp.MINKEY_APP_ID,
-        conditions: ConditionsSimpleModel(
+        conditions: StorageConditionsModel(
             privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
         ),
       );
@@ -91,7 +90,7 @@ class PlayStore extends AppSection {
       appId: MinkeyApp.MINKEY_APP_ID,
       description: "Minkey Store",
       itemBackground: playStoreBG(),
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );

@@ -1,4 +1,4 @@
-import 'package:eliud_core/model/conditions_simple_model.dart';
+import 'package:eliud_core/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_shop/model/product_image_model.dart';
 import 'package:eliud_pkg_shop/model/product_model.dart';
@@ -58,7 +58,7 @@ Future<ProductModel> productToProductModel(ShopModel shop, InstallApp installApp
     price: product.price,
     weight: 100,
     posSize: installApp.screen75(),
-    conditions: ConditionsSimpleModel(
+    conditions: StorageConditionsModel(
         privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
     ),
   );

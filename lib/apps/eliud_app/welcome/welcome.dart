@@ -60,8 +60,8 @@ class Welcome extends AppSection {
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
-        conditions: ConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired
+        conditions: StorageConditionsModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
         ),
         bodyComponents: components);
   }
@@ -118,7 +118,7 @@ class Welcome extends AppSection {
       imageSeconds: 5,
       items: items,
       appId: EliudApp.ELIUD_APP_ID,
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );
@@ -148,7 +148,7 @@ class Welcome extends AppSection {
       name: "Welcome",
       sections:entries,
       appId: installApp!.appId,
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );

@@ -59,9 +59,8 @@ Sorry to see you go. Your account has been destroyed.
         appId: installApp!.appId,
         title: "Member dashboard",
         layout: DialogLayout.ListView,
-        conditions: ConditionsModel(
-            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-            packageCondition: CorePackage.MUST_BE_LOGGED_ON
+        conditions: StorageConditionsModel(
+            privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
@@ -77,7 +76,7 @@ Sorry to see you go. Your account has been destroyed.
         retrieveDataEmailSubject: retrieveDataEmailSubject,
         deleteDataEmailSubject: deleteDataEmailSubject,
         deleteDataEmailMessage: deleteDataEmailMessage,
-        conditions: ConditionsSimpleModel(
+        conditions: StorageConditionsModel(
             privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
         ),
     );

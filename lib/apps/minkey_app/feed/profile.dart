@@ -60,9 +60,9 @@ class Profile extends AppSection {
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
-        conditions: ConditionsModel(
+        conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequired.Level1PrivilegeRequired,
+              PrivilegeLevelRequiredSimple.Level1PrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
@@ -73,7 +73,7 @@ class Profile extends AppSection {
       feed: feed,
       appId: MinkeyApp.MINKEY_APP_ID,
       description: "My Profile",
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
           privilegeLevelRequired:
               PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );

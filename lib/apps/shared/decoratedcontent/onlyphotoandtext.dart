@@ -1,7 +1,7 @@
-import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/decoratedcontent/photoandsomething.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals/model/decorated_content_model.dart';
@@ -34,7 +34,7 @@ abstract class OnlyPhotoAndText extends PhotoAndSomthing {
         title: title,
         text: contents,
         textAlign: align,
-        conditions: ConditionsSimpleModel(
+        conditions: StorageConditionsModel(
             privilegeLevelRequired: privilegeLevelRequiredSimple));
     await simpleTextRepository(appId: appId)!.add(simpleTextModel);
     return simpleTextModel;

@@ -1,6 +1,7 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_pkg_workflow/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_workflow/model/assignment_view_component.dart';
 import 'package:eliud_pkg_workflow/model/assignment_view_model.dart';
@@ -14,6 +15,14 @@ class AssignmentViewSetup extends AppSectionBase {
         super(installApp);
 
   static String IDENTIFIER = "assignments";
+
+  static OpenDialog action(String appId) => OpenDialog(appId,
+      conditions: DisplayConditionsModel(
+          privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+          packageCondition: WorkflowPackage.CONDITION_MUST_HAVE_ASSIGNMENTS,
+          conditionOverride: ConditionOverride.InclusiveForBlockedMembers // allow blocked members to see
+      ),
+      dialogID: AssignmentViewSetup.IDENTIFIER);
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton.dialogRepository(installApp!.appId)!.add(_dialog());
@@ -29,8 +38,8 @@ class AssignmentViewSetup extends AppSectionBase {
         appId: installApp!.appId,
         title: "Assignments",
         layout: DialogLayout.ListView,
-        conditions: ConditionsModel(
-            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+        conditions: StorageConditionsModel(
+            privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
 /*
             packageCondition: WorkflowPackage.CONDITION_MUST_HAVE_ASSIGNMENTS,
             conditionOverride: ConditionOverride.InclusiveForBlockedMembers // allow blocked members to see
@@ -44,7 +53,7 @@ class AssignmentViewSetup extends AppSectionBase {
         documentID: IDENTIFIER,
         appId: installApp!.appId,
         description: "My Assignments",
-        conditions: ConditionsSimpleModel(
+        conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
         ),
     );

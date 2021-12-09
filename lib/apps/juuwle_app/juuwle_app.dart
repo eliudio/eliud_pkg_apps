@@ -253,7 +253,7 @@ class JuuwleApp extends InstallApp {
                 codePoint: Icons.shopping_basket.codePoint,
                 fontFamily: Icons.shopping_basket.fontFamily),
             action:
-                GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier)),
+            MyCart.openCartPage()),
         MenuItemModel(
             documentID: '2',
             text: 'Notifications',
@@ -261,8 +261,7 @@ class JuuwleApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.notifications.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: OpenDialog(JuuwleApp.JUUWLE_APP_ID,
-                dialogID: NotificationDashboard.IDENTIFIER)),
+            action: NotificationDashboard.action(JUUWLE_APP_ID)),
         MenuItemModel(
             documentID: '3',
             text: 'Members',
@@ -270,8 +269,7 @@ class JuuwleApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.people.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: OpenDialog(JuuwleApp.JUUWLE_APP_ID,
-                dialogID: MembershipDashboard.IDENTIFIER)),
+            action: MembershipDashboard.action(JUUWLE_APP_ID)),
         MenuItemModel(
             documentID: '4',
             text: 'Assignments',
@@ -279,8 +277,7 @@ class JuuwleApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.playlist_add_check.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: OpenDialog(JuuwleApp.JUUWLE_APP_ID,
-                dialogID: AssignmentViewSetup.IDENTIFIER)),
+            action: AssignmentViewSetup.action(JUUWLE_APP_ID)),
       ];
 
   @override

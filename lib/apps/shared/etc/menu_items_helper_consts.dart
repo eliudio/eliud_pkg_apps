@@ -1,8 +1,9 @@
 import 'package:eliud_core/core_package.dart';
-import 'package:eliud_core/model/conditions_model.dart';
+import 'package:eliud_core/model/display_conditions_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
+import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
 import 'package:eliud_pkg_follow/follow_package.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,7 @@ menuItemManageAccount(appID, documentID, dialogID) => MenuItemModel(
         fontFamily: Icons.settings.fontFamily),
     action: OpenDialog(appID,
         dialogID: dialogID,
-        conditions: ConditionsModel(
+        conditions: DisplayConditionsModel(
             privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
 
@@ -62,14 +63,20 @@ menuItemFeed(appID, documentID, pageID, text) => MenuItemModel(
         fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID, pageID: pageID));
 
-menuItemWelcome(appID, documentID, pageID, text) => MenuItemModel(
+menuItemWelcome(appID, documentID, pageID, text, {PrivilegeLevelRequired? privilegeLevelRequired}) => MenuItemModel(
     documentID: documentID,
     text: text,
     description: text,
     icon: IconModel(
         codePoint: Icons.emoji_people.codePoint,
         fontFamily: Icons.settings.fontFamily),
-    action: GotoPage(appID, pageID: pageID));
+    action: GotoPage(appID, pageID: pageID,
+    conditions: privilegeLevelRequired == null ? null : DisplayConditionsModel(
+      privilegeLevelRequired: privilegeLevelRequired,
+        conditionOverride: ConditionOverride
+            .ExactPrivilege // make sure the member only sees exactly the page addressed to him
+    ),
+    ));
 
 menuItemShop(appID, documentID, pageID, text) => MenuItemModel(
     documentID: documentID,
@@ -118,7 +125,7 @@ menuItemFollowRequestsPage(appID, documentID, pageID, privilegeLevelRequired) =>
         icon: IconModel(
             codePoint: Icons.person.codePoint,
             fontFamily: Icons.notifications.fontFamily),
-        action: GotoPage(appID, pageID: pageID, conditions: ConditionsModel(
+        action: GotoPage(appID, pageID: pageID, conditions: DisplayConditionsModel(
             privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: FollowPackage.CONDITION_MEMBER_HAS_OPEN_REQUESTS)));
 
@@ -131,7 +138,7 @@ menuItemFollowers(appID, documentID, dialogID, privilegeLevelRequired) => MenuIt
         fontFamily: Icons.settings.fontFamily),
     action: OpenDialog(appID,
         dialogID: dialogID,
-        conditions: ConditionsModel(
+        conditions: DisplayConditionsModel(
             privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
 
@@ -144,7 +151,7 @@ menuItemFollowersPage(appID, documentID, pageID, privilegeLevelRequired) => Menu
         fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID,
         pageID: pageID,
-        conditions: ConditionsModel(
+        conditions: DisplayConditionsModel(
             privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
 
@@ -157,7 +164,7 @@ menuItemFollowing(appID, documentID, dialogID, privilegeLevelRequired) => MenuIt
         fontFamily: Icons.settings.fontFamily),
     action: OpenDialog(appID,
         dialogID: dialogID,
-        conditions: ConditionsModel(
+        conditions: DisplayConditionsModel(
             privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
 
@@ -170,7 +177,7 @@ menuItemFollowingPage(appID, documentID, pageID, privilegeLevelRequired) => Menu
         fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID,
         pageID: pageID,
-        conditions: ConditionsModel(
+        conditions: DisplayConditionsModel(
             privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
 
@@ -183,26 +190,21 @@ menuItemAppMembers(appID, documentID, dialogID, privilegeLevelRequired) => MenuI
         fontFamily: Icons.notifications.fontFamily),
     action: OpenDialog(
       appID,
-      conditions: ConditionsModel(
+      conditions: DisplayConditionsModel(
           privilegeLevelRequired: privilegeLevelRequired,
           packageCondition: CorePackage.MUST_BE_LOGGED_ON),
       dialogID: dialogID,
     ));
 
-menuItemAppMembersPage(appID, documentID, pageID, privilegeLevelRequired) => MenuItemModel(
+menuItemAppMembersPage(appID, documentID, pageID) => MenuItemModel(
     documentID: '5',
     text: 'App Members',
     description: 'Members of the app',
     icon: IconModel(
         codePoint: Icons.people.codePoint,
         fontFamily: Icons.notifications.fontFamily),
-    action: GotoPage(
-      appID,
-      conditions: ConditionsModel(
-          privilegeLevelRequired: privilegeLevelRequired,
-          packageCondition: CorePackage.MUST_BE_LOGGED_ON),
-      pageID: pageID,
-    ));
+    action: MembershipDashboard.action(appID)
+  );
 
 menuItemFiendFriends(appID, documentID, dialogID, privilegeLevelRequired) => MenuItemModel(
     documentID: documentID,
@@ -213,7 +215,7 @@ menuItemFiendFriends(appID, documentID, dialogID, privilegeLevelRequired) => Men
         fontFamily: Icons.settings.fontFamily),
     action: OpenDialog(appID,
         dialogID: dialogID,
-        conditions: ConditionsModel(
+        conditions: DisplayConditionsModel(
             privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
 
@@ -226,7 +228,7 @@ menuItemFiendFriendsPage(appID, documentID, pageID, privilegeLevelRequired) => M
         fontFamily: Icons.settings.fontFamily),
     action: GotoPage(appID,
         pageID: pageID,
-        conditions: ConditionsModel(
+        conditions: DisplayConditionsModel(
             privilegeLevelRequired: privilegeLevelRequired,
             packageCondition: CorePackage.MUST_BE_LOGGED_ON)));
 

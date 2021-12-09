@@ -1,6 +1,6 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
-import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_core/model/grid_view_model.dart';
+import 'package:eliud_core/model/storage_conditions_model.dart';
 
 class GridViews {
   GridViewModel _gridView1(int id, String? appId,  GridViewScrollDirection scrollDirection) {
@@ -15,7 +15,7 @@ class GridViews {
       mainAxisSpacing: 4,
       crossAxisSpacing: 4,
       scrollDirection: scrollDirection,
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );
@@ -34,7 +34,7 @@ class GridViews {
       mainAxisSpacing: 4,
       crossAxisSpacing: 4,
       scrollDirection: scrollDirection,
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );
@@ -53,7 +53,7 @@ class GridViews {
       mainAxisSpacing: 4,
       crossAxisSpacing: 4,
       scrollDirection: scrollDirection,
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );

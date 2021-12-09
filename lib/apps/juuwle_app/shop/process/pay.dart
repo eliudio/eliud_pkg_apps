@@ -21,17 +21,25 @@ class MyPay extends PageTemplate {
 
   static const String identifier = 'juuwlepay';
 
+  static ActionModel action(String appId) => GotoPage(JuuwleApp.JUUWLE_APP_ID,
+      pageID: MyPay.identifier,
+      conditions: DisplayConditionsModel(
+        privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+        packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
+      ));
+
   PayModel _payModel() {
     return PayModel(
-        documentID: 'pay',
-        appId: installApp!.appId,
-        title: pageTitle(),
-        shop: shop,
-        payAction: WorkflowSetup.payCart(installApp!.appId),
-        succeeded: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyPayConfirmation.identifier),
-        conditions: ConditionsSimpleModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-        ),
+      documentID: 'pay',
+      appId: installApp!.appId,
+      title: pageTitle(),
+      shop: shop,
+      payAction: WorkflowSetup.payCart(installApp!.appId),
+      succeeded: GotoPage(JuuwleApp.JUUWLE_APP_ID,
+          pageID: MyPayConfirmation.identifier),
+      conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );
   }
 
@@ -48,15 +56,16 @@ class MyPay extends PageTemplate {
     HomeMenuModel? homeMenu,
     DrawerModel? drawer,
     DrawerModel? endDrawer,
-    }): super(
-      privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-      packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
-      pageId: identifier,
-      installApp: installApp,
-      homeMenu: homeMenu,
-      drawer: drawer,
-      endDrawer: endDrawer,
-      presentationImageAlignment: PresentationImageAlignment.Left);
+  }) : super(
+            privilegeLevelRequired:
+                PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+            packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
+            pageId: identifier,
+            installApp: installApp,
+            homeMenu: homeMenu,
+            drawer: drawer,
+            endDrawer: endDrawer,
+            presentationImageAlignment: PresentationImageAlignment.Left);
 
   @override
   String? componentID() {
@@ -65,9 +74,12 @@ class MyPay extends PageTemplate {
 
   @override
   Future<void> setupComponent() async {
-    await AbstractRepositorySingleton.singleton.payRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_payModel());
+    await AbstractRepositorySingleton.singleton
+        .payRepository(JuuwleApp.JUUWLE_APP_ID)!
+        .add(_payModel());
   }
 
   @override
-  String assetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_with_credit_card.png';
+  String assetLocation() =>
+      'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_with_credit_card.png';
 }

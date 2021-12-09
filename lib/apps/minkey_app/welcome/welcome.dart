@@ -39,7 +39,13 @@ class Welcome extends AppSection {
     "welcome_member_level2",
     "welcome_owner"
   ];
-  static List<PrivilegeLevelRequired> privilegeLevelsRequired = [
+  static List<PrivilegeLevelRequiredSimple> privilegeLevelsRequired = [
+    PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+    PrivilegeLevelRequiredSimple.Level1PrivilegeRequiredSimple,
+    PrivilegeLevelRequiredSimple.Level2PrivilegeRequiredSimple,
+    PrivilegeLevelRequiredSimple.OwnerPrivilegeRequiredSimple
+  ];
+  static List<PrivilegeLevelRequired> menuPrivilegeLevelsRequired = [
     PrivilegeLevelRequired.NoPrivilegeRequired,
     PrivilegeLevelRequired.Level1PrivilegeRequired,
     PrivilegeLevelRequired.Level2PrivilegeRequired,
@@ -48,13 +54,13 @@ class Welcome extends AppSection {
   static String FADER_IDENTIFIER = 'welcome_fader';
   static String APP_BAR_IDENTIFIER = 'welcome_appbar';
 
-  Future<PageModel> _setupPage(AppBarModel appBar, PrivilegeLevelRequired privilegeLevelRequired) async {
+  Future<PageModel> _setupPage(AppBarModel appBar, PrivilegeLevelRequiredSimple privilegeLevelRequired) async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .pageRepository(installApp!.appId)!
         .add(_page(appBar, privilegeLevelRequired));
   }
 
-  PageModel _page(AppBarModel appBar, PrivilegeLevelRequired privilegeLevelRequired) {
+  PageModel _page(AppBarModel appBar, PrivilegeLevelRequiredSimple privilegeLevelRequired) {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "2",
@@ -78,10 +84,8 @@ class Welcome extends AppSection {
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
-        conditions: ConditionsModel(
+        conditions: StorageConditionsModel(
             privilegeLevelRequired: privilegeLevelRequired,
-            conditionOverride: ConditionOverride
-                .ExactPrivilege // make sure the member only sees exactly the page addressed to him
             ),
         bodyComponents: components);
   }
@@ -137,14 +141,14 @@ class Welcome extends AppSection {
       imageSeconds: 5,
       items: items,
       appId: MinkeyApp.MINKEY_APP_ID,
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );
     return model;
   }
 
-  String _welcomePageContents(PrivilegeLevelRequired privilegeLevelRequired) {
+  String _welcomePageContents(PrivilegeLevelRequiredSimple privilegeLevelRequired) {
     var privilegeLevelString = privilegeLevelIntToMemberRoleString(privilegeLevelRequired.index, false);
     List<SectionSpec> sections = [];
     {
@@ -163,7 +167,7 @@ class Welcome extends AppSection {
     return DynamicHelper.getPage(pageSpec);
   }
 
-  DocumentModel _welcomeDocument(PrivilegeLevelRequired privilegeLevelRequired) {
+  DocumentModel _welcomeDocument(PrivilegeLevelRequiredSimple privilegeLevelRequired) {
     List<DocumentItemModel> list = [];
     DocumentModel document = DocumentModel(
         documentID: IDENTIFIERs[privilegeLevelRequired.index],
@@ -173,14 +177,14 @@ class Welcome extends AppSection {
         appId: MinkeyApp.MINKEY_APP_ID,
         images: list,
         padding: 10,
-        conditions: ConditionsSimpleModel(
+        conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
         ),
     );
     return document;
   }
 
-  Future<DocumentModel> _setupWelcomeDocument(PrivilegeLevelRequired privilegeLevelRequired) async {
+  Future<DocumentModel> _setupWelcomeDocument(PrivilegeLevelRequiredSimple privilegeLevelRequired) async {
     return await AbstractRepositorySingleton.singleton
         .documentRepository(installApp!.appId)!
         .add(_welcomeDocument(privilegeLevelRequired));

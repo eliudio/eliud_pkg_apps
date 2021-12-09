@@ -1,4 +1,5 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/abstract_repository_singleton.dart'
+    as corerepo;
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
@@ -18,7 +19,8 @@ import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
 import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_component.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_model.dart';
-import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart' as shoprepo;
+import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart'
+    as shoprepo;
 import 'package:eliud_pkg_shop/model/model_export.dart';
 import 'package:eliud_pkg_shop/model/shop_front_component.dart';
 
@@ -28,18 +30,27 @@ import 'process/cart.dart';
 import 'product_page.dart';
 
 class Shop extends AppSection {
-  Shop(
-      {InstallApp? installApp,
-      HomeMenuModel? homeMenu,
-      DrawerModel? drawer,
-      DrawerModel? endDrawer,
-      })
-      : super(installApp, homeMenu, drawer, endDrawer,
-            );
+  Shop({
+    InstallApp? installApp,
+    HomeMenuModel? homeMenu,
+    DrawerModel? drawer,
+    DrawerModel? endDrawer,
+  }) : super(
+          installApp,
+          homeMenu,
+          drawer,
+          endDrawer,
+        );
 
   static String identifier = 'juuwleshop';
 
-  Future<PageModel> _setupPage(AppBarModel appBar, String? presentationDocumentId) async {
+  static ActionModel action(String appId) => GotoPage(
+        JuuwleApp.JUUWLE_APP_ID,
+        pageID: Shop.identifier,
+      );
+
+  Future<PageModel> _setupPage(
+      AppBarModel appBar, String? presentationDocumentId) async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .pageRepository(JuuwleApp.JUUWLE_APP_ID)!
         .add(_page(appBar, presentationDocumentId));
@@ -69,8 +80,9 @@ class Shop extends AppSection {
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
-        conditions: ConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+        conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
@@ -96,15 +108,17 @@ class Shop extends AppSection {
       imageSeconds: 5,
       items: items,
       appId: installApp!.appId,
-      conditions: ConditionsSimpleModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+      conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );
     return model;
   }
 
   Future<ShopModel> _setupShop() async {
-    return await shoprepo.AbstractRepositorySingleton.singleton.shopRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_shop());
+    return await shoprepo.AbstractRepositorySingleton.singleton
+        .shopRepository(JuuwleApp.JUUWLE_APP_ID)!
+        .add(_shop());
   }
 
   ShopModel _shop() {
@@ -128,16 +142,17 @@ class Shop extends AppSection {
       shop: _shop(),
       addToCartColor: EliudColors.red,
       itemCardBackground: cardBG(),
-      buyAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier),
+      buyAction: MyCart.openCartPage(),
       view: ShopFrontView.Slider,
-      openProductAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: ProductPage.identifier),
+      openProductAction:
+          GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: ProductPage.identifier),
       size: 250,
       cardElevation: 10,
       cardAxisSpacing: 20,
       scrollDirection: ScrollDirection.Vertical,
-      conditions: ConditionsSimpleModel(
-        privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+      conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );
   }
 
@@ -152,22 +167,27 @@ class Shop extends AppSection {
       shop: _shop(),
       addToCartColor: EliudColors.red,
       itemCardBackground: cardBG(),
-      buyAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier),
+      buyAction: MyCart.openCartPage(),
       view: ShopFrontView.Grid,
-      openProductAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: ProductPage.identifier),
+      openProductAction:
+          GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: ProductPage.identifier),
       size: 250,
       cardElevation: 10,
       cardAxisSpacing: 20,
       scrollDirection: ScrollDirection.Vertical,
-      conditions: ConditionsSimpleModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+      conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );
   }
 
   Future<void> _setupShopFronts() async {
-    await shoprepo.AbstractRepositorySingleton.singleton.shopFrontRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_shopFront1());
-    await shoprepo.AbstractRepositorySingleton.singleton.shopFrontRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_shopFront2());
+    await shoprepo.AbstractRepositorySingleton.singleton
+        .shopFrontRepository(JuuwleApp.JUUWLE_APP_ID)!
+        .add(_shopFront1());
+    await shoprepo.AbstractRepositorySingleton.singleton
+        .shopFrontRepository(JuuwleApp.JUUWLE_APP_ID)!
+        .add(_shopFront2());
   }
 
   static BackgroundModel cardBG() {
@@ -196,28 +216,33 @@ class Shop extends AppSection {
   static String itemBackground = 'card_bg';
 
   Future<void> _setupCardBG() async {
-    await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository()!.add(cardBG());
+    await corerepo.AbstractRepositorySingleton.singleton
+        .backgroundRepository()!
+        .add(cardBG());
   }
 
   PresentationModel _presentation(PlatformMediumModel memberMediumModel) {
     return PresentationModel(
-        documentID: 'shop',
-        appId: installApp!.appId,
-      bodyComponents: [BodyComponentModel(
-          documentID: '1',
-          componentName: AbstractShopFrontComponent.componentName,
-          componentId: _shopFront2().documentID)],
+      documentID: 'shop',
+      appId: installApp!.appId,
+      bodyComponents: [
+        BodyComponentModel(
+            documentID: '1',
+            componentName: AbstractShopFrontComponent.componentName,
+            componentId: _shopFront2().documentID)
+      ],
       image: memberMediumModel,
       imagePositionRelative: PresentationRelativeImagePosition.Aside,
       imageAlignment: PresentationImageAlignment.Left,
       imageWidth: .33,
-      conditions: ConditionsSimpleModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+      conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );
   }
 
-  Future<PresentationModel> _setupPresentation(PlatformMediumModel memberMediumModel) async {
+  Future<PresentationModel> _setupPresentation(
+      PlatformMediumModel memberMediumModel) async {
     var presentationModel = _presentation(memberMediumModel);
     await AbstractRepositorySingleton.singleton
         .presentationRepository(JuuwleApp.JUUWLE_APP_ID)!

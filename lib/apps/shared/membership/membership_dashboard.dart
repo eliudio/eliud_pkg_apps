@@ -1,3 +1,4 @@
+import 'package:eliud_core/core_package.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
 import 'package:eliud_core/model/body_component_model.dart';
@@ -21,6 +22,12 @@ class MembershipDashboard extends AppSectionBase {
 
   static String IDENTIFIER = "membership_dashboard";
 
+  static OpenDialog action(String appId) => OpenDialog(appId,
+      dialogID: IDENTIFIER,
+      conditions: DisplayConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequired.OwnerPrivilegeRequired, packageCondition: CorePackage.MUST_BE_LOGGED_ON));
+
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .dialogRepository(installApp!.appId)!
@@ -39,21 +46,23 @@ class MembershipDashboard extends AppSectionBase {
         appId: installApp!.appId,
         title: "Membership dashboard",
         layout: DialogLayout.ListView,
-        conditions: ConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequired.OwnerPrivilegeRequired,
+        conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.OwnerPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
 
   MembershipDashboardModel _dashboardModel() {
     return MembershipDashboardModel(
-        documentID: IDENTIFIER,
-        appId: installApp!.appId,
-        description: "Members",
-        memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId, profilePageId, feedPageId),
-        conditions: ConditionsSimpleModel(
-            privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-        ),
+      documentID: IDENTIFIER,
+      appId: installApp!.appId,
+      description: "Members",
+      memberActions: ProfileAndFeedToAction.getMemberActionModels(
+          installApp!.appId, profilePageId, feedPageId),
+      conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.OwnerPrivilegeRequiredSimple),
     );
   }
 

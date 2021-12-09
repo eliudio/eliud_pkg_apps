@@ -2,7 +2,7 @@ import 'package:eliud_core/core_package.dart';
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
 import 'package:eliud_core/model/app_model.dart';
-import 'package:eliud_core/model/conditions_model.dart';
+import 'package:eliud_core/model/display_conditions_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
 import 'package:eliud_core/model/member_medium_model.dart';
@@ -10,6 +10,7 @@ import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/model/platform_medium_model.dart';
 import 'package:eliud_core/model/public_medium_model.dart';
+import 'package:eliud_core/model/storage_conditions_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
@@ -27,6 +28,7 @@ import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.
 import 'package:eliud_pkg_chat/chat_package.dart';
 import 'package:eliud_pkg_feed/tools/action/post_action_model.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
+import 'package:eliud_pkg_notifications/notifications_package.dart';
 import 'package:eliud_pkg_workflow/workflow_package.dart';
 import 'package:eliud_stl_mona/mona_style_family.dart';
 import 'package:flutter/material.dart';
@@ -96,7 +98,7 @@ class MinkeyApp extends InstallApp {
         appId, "apps", PlayStore.IDENTIFIER, "Apps", Icons.power_settings_new));
     for (int i = 0; i < Welcome.IDENTIFIERs.length; i++) {
       menuItems.add(menuItemWelcome(
-          appId, Welcome.IDENTIFIERs[i], Welcome.IDENTIFIERs[i], "Welcome"));
+          appId, Welcome.IDENTIFIERs[i], Welcome.IDENTIFIERs[i], "Welcome", privilegeLevelRequired: Welcome.menuPrivilegeLevelsRequired[i]));
     }
     menuItems.add(menuItemAbout(appId, "about", Founders.IDENTIFIER, "About"));
     menuItems
@@ -258,7 +260,7 @@ class MinkeyApp extends InstallApp {
                 fontFamily: Icons.notifications.fontFamily),
             action: PostActionModel(MinkeyApp.MINKEY_APP_ID,
                 feed: Feed.feedModel(),
-                conditions: ConditionsModel(
+                conditions: DisplayConditionsModel(
                     privilegeLevelRequired:
                         PrivilegeLevelRequired.NoPrivilegeRequired,
                     packageCondition: CorePackage.MUST_BE_LOGGED_ON))),
@@ -269,8 +271,7 @@ class MinkeyApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.notifications.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
-                dialogID: NotificationDashboard.IDENTIFIER)),
+            action: NotificationDashboard.action(MinkeyApp.MINKEY_APP_ID)),
         MenuItemModel(
             documentID: 'assignments',
             text: 'Assignments',
@@ -278,13 +279,7 @@ class MinkeyApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.playlist_add_check.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
-                conditions: ConditionsModel(
-                    privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-                    packageCondition: WorkflowPackage.CONDITION_MUST_HAVE_ASSIGNMENTS,
-                    conditionOverride: ConditionOverride.InclusiveForBlockedMembers // allow blocked members to see
-                ),
-                dialogID: AssignmentViewSetup.IDENTIFIER)),
+              action: AssignmentViewSetup.action(MINKEY_APP_ID)),
         MenuItemModel(
             documentID: 'chatUnread',
             text: 'Chat',
@@ -292,12 +287,7 @@ class MinkeyApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.chat_bubble_rounded.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
-                dialogID: ChatDialog.IDENTIFIER_UNREAD,
-                conditions: ConditionsModel(
-                    privilegeLevelRequired:
-                    PrivilegeLevelRequired.NoPrivilegeRequired,
-                    packageCondition: ChatPackage.CONDITION_MEMBER_HAS_UNREAD_CHAT))),
+            action: ChatDialog.unReadAction(MINKEY_APP_ID)),
         MenuItemModel(
             documentID: 'chatReadAndUnread',
             text: 'Chat',
@@ -305,12 +295,7 @@ class MinkeyApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.chat_bubble_outline_rounded.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: OpenDialog(MinkeyApp.MINKEY_APP_ID,
-                dialogID: ChatDialog.IDENTIFIER_READ,
-                conditions: ConditionsModel(
-                    privilegeLevelRequired:
-                        PrivilegeLevelRequired.NoPrivilegeRequired,
-                    packageCondition: ChatPackage.CONDITION_MEMBER_ALL_HAVE_BEEN_READ))),
+            action: ChatDialog.readAction(MINKEY_APP_ID)),
         MenuItemModel(
             documentID: "join",
             text: "JOIN",

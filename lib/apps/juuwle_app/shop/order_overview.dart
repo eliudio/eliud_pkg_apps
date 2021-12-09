@@ -24,7 +24,7 @@ class OrderOverview extends PageTemplate {
         shop: shop,
         itemImageBackground: null,
         itemDetailBackground: background,
-        conditions: ConditionsSimpleModel(
+        conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
         ),
     );
@@ -44,7 +44,7 @@ class OrderOverview extends PageTemplate {
     DrawerModel? drawer,
     DrawerModel? endDrawer,
     }): super(
-      privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+      privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
       pageId: identifier,
       installApp: installApp,
       homeMenu: homeMenu,

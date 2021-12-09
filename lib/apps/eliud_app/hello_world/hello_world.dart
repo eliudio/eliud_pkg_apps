@@ -1,12 +1,11 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/body_component_model.dart';
-import 'package:eliud_core/model/conditions_model.dart';
-import 'package:eliud_core/model/conditions_simple_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core/model/storage_conditions_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_pkg_apps/apps/eliud_app/hello_world/pages.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
@@ -183,7 +182,7 @@ class HelloWorld extends AppSection {
       name: "Hello world",
       sections:entries,
       appId: EliudApp.ELIUD_APP_ID,
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       )
     );
@@ -209,8 +208,8 @@ class HelloWorld extends AppSection {
       homeMenu: homeMenu,
       layout: PageLayout.OnlyTheFirstComponent,
       bodyComponents: components,
-      conditions: ConditionsModel(
-        privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired
+      conditions: StorageConditionsModel(
+        privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );
   }

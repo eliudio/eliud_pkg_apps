@@ -56,8 +56,7 @@ class FeedMenu {
           PrivilegeLevelRequired.NoPrivilegeRequired),
       menuItemFiendFriendsPage(appId, "6", InviteDashboard.INVITE_IDENTIFIER,
           PrivilegeLevelRequired.NoPrivilegeRequired),
-      menuItemAppMembersPage(appId, "7", MembershipDashboard.IDENTIFIER,
-          PrivilegeLevelRequired.OwnerPrivilegeRequired),
+      menuItemAppMembersPage(appId, "7", MembershipDashboard.IDENTIFIER),
     ];
     MenuDefModel menu = MenuDefModel(
         documentID: FEED_MENU_ID_CURRENT_MEMBER,
@@ -103,7 +102,7 @@ class FeedMenu {
       menuOtherMember: menuOtherMember,
       itemColor: EliudColors.black,
       selectedItemColor: EliudColors.red,
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
           privilegeLevelRequired:
               PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );

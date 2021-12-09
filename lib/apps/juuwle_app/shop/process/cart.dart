@@ -1,9 +1,9 @@
 import 'package:eliud_core/model/background_model.dart';
-import 'package:eliud_core/model/conditions_model.dart';
-import 'package:eliud_core/model/conditions_simple_model.dart';
+import 'package:eliud_core/model/display_conditions_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core/model/storage_conditions_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/pay.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/shop.dart';
@@ -24,6 +24,13 @@ class MyCart extends PageTemplate {
 
   static const String identifier = 'juuwlecart';
 
+  static GotoPage openCartPage() => GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier, conditions:
+      DisplayConditionsModel(
+        privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+        packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
+      )
+  );
+
   CartModel _cart() {
     return CartModel(
         documentID: 'cart',
@@ -34,10 +41,10 @@ class MyCart extends PageTemplate {
         shop: shop,
         itemImageBackground: null,
         itemDetailBackground: background,
-        checkoutAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyPay.identifier),
-        backToShopAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: Shop.identifier),
-        openProductAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: ProductPage.identifier),
-        conditions: ConditionsSimpleModel(
+        checkoutAction: MyPay.action(JuuwleApp.JUUWLE_APP_ID),
+        backToShopAction: Shop.action(JuuwleApp.JUUWLE_APP_ID),
+        openProductAction: ProductPage.action(JuuwleApp.JUUWLE_APP_ID),
+        conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
         ),
     );
@@ -60,7 +67,7 @@ class MyCart extends PageTemplate {
     DrawerModel? drawer,
     DrawerModel? endDrawer,
     }): super(
-      privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+      privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
 /*
       packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
 */

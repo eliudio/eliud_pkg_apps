@@ -64,9 +64,9 @@ class Feed extends AppSection {
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
-        conditions: ConditionsModel(
+        conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequired.Level1PrivilegeRequired,
+              PrivilegeLevelRequiredSimple.Level1PrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
@@ -83,7 +83,7 @@ class Feed extends AppSection {
       audioPost: false,
       albumPost: true,
       articlePost: true,
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
           privilegeLevelRequired:
               PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );

@@ -8,6 +8,7 @@ import 'package:eliud_pkg_apps/apps/shared/etc/basic_page_template.dart';
 import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/model/model_export.dart';
 import 'package:eliud_pkg_shop/model/product_display_component.dart';
+import 'package:eliud_pkg_shop/shop_package.dart';
 
 import '../../app_base.dart';
 import '../juuwle_app.dart';
@@ -17,18 +18,25 @@ class ProductPage extends BasicPageTemplate {
 
   static const String identifier = 'productpage';
 
+  static ActionModel action(String appId) => GotoPage(JuuwleApp.JUUWLE_APP_ID,
+      pageID: ProductPage.identifier,
+      conditions: DisplayConditionsModel(
+        privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+        packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
+      ));
+
   ProductDisplayModel _productDisplayOverview() {
     return ProductDisplayModel(
       documentID: 'product',
       appId: installApp!.appId,
       title: pageTitle(),
       shop: shop,
-      buyAction: GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier),
+      buyAction: MyCart.openCartPage(),
       itemDetailBackground: null,
       addToBasketText: 'Add to basket',
-      conditions: ConditionsSimpleModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+      conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );
   }
 
@@ -44,14 +52,15 @@ class ProductPage extends BasicPageTemplate {
     HomeMenuModel? homeMenu,
     DrawerModel? drawer,
     DrawerModel? endDrawer,
-    }): super(
-      pageId: identifier,
-      privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-      installApp: installApp,
-      homeMenu: homeMenu,
-      drawer: drawer,
-      endDrawer: endDrawer,
-      );
+  }) : super(
+          pageId: identifier,
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+          installApp: installApp,
+          homeMenu: homeMenu,
+          drawer: drawer,
+          endDrawer: endDrawer,
+        );
 
   @override
   String? componentID() {
@@ -60,6 +69,8 @@ class ProductPage extends BasicPageTemplate {
 
   @override
   Future<void> setupComponent() async {
-    await AbstractRepositorySingleton.singleton.productDisplayRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_productDisplayOverview());
+    await AbstractRepositorySingleton.singleton
+        .productDisplayRepository(JuuwleApp.JUUWLE_APP_ID)!
+        .add(_productDisplayOverview());
   }
 }

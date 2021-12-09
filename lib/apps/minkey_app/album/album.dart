@@ -41,8 +41,8 @@ class Album extends AppSection {
         appBar: appBar,
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
-        conditions: ConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequired.Level1PrivilegeRequired,
+        conditions: StorageConditionsModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.Level1PrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
@@ -50,7 +50,7 @@ class Album extends AppSection {
   Future<AlbumModel> albumModel(String memberId) async {
     var entries = await ExampleAlbumHelper(appId: installApp!.appId, memberId: memberId).createAll();
     return AlbumModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, albumEntries: entries, description: "My Minkey Photos",
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );

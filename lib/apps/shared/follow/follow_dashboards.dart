@@ -43,8 +43,8 @@ class _FollowingDashboard extends AppSectionBase {
         appId: installApp!.appId,
         title: title,
         layout: DialogLayout.ListView,
-        conditions: ConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+        conditions: StorageConditionsModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
@@ -56,7 +56,7 @@ class _FollowingDashboard extends AppSectionBase {
         description: title,
         view: view,
         memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId, profilePageId, feedPageId),
-        conditions: ConditionsSimpleModel(
+        conditions: StorageConditionsModel(
             privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
         ),
     );
@@ -100,9 +100,8 @@ class FollowRequestDashboard extends AppSectionBase {
         appId: installApp!.appId,
         title: "Follow requests",
         layout: DialogLayout.ListView,
-        conditions: ConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-          packageCondition: FollowPackage.CONDITION_MEMBER_HAS_OPEN_REQUESTS,
+        conditions: StorageConditionsModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
@@ -113,7 +112,7 @@ class FollowRequestDashboard extends AppSectionBase {
       appId: installApp!.appId,
       description: "Follow requests",
       memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId, profilePageId, feedPageId),
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );
@@ -157,8 +156,8 @@ class InviteDashboard extends AppSectionBase {
         appId: installApp!.appId,
         title: "Follow members",
         layout: DialogLayout.ListView,
-        conditions: ConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+        conditions: StorageConditionsModel(
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
@@ -169,7 +168,7 @@ class InviteDashboard extends AppSectionBase {
       appId: installApp!.appId,
       description: "Follow members",
       memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.appId, profilePageId, feedPageId),
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );

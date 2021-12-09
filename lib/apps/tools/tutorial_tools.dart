@@ -86,7 +86,7 @@ class TutorialTools {
       title: title,
       description: description,
       tutorialEntries: items,
-      conditions: ConditionsSimpleModel(
+      conditions: StorageConditionsModel(
         privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
     );
@@ -105,8 +105,8 @@ class TutorialTools {
       homeMenu: homeMenu,
       bodyComponents: components,
       layout: PageLayout.OnlyTheFirstComponent,
-      conditions: ConditionsModel(
-        privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+      conditions: StorageConditionsModel(
+        privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
       ),
     );
     return await AbstractRepositorySingleton.singleton.pageRepository(appId)!.add(page);
