@@ -26,11 +26,10 @@ class ChatDialog extends AppSectionBase {
           packageCondition: ChatPackage.CONDITION_MEMBER_HAS_UNREAD_CHAT));
 
   static OpenDialog readAction(String appId) => OpenDialog(appId,
-  dialogID: ChatDialog.IDENTIFIER_READ,
-  conditions: DisplayConditionsModel(
-  privilegeLevelRequired:
-  PrivilegeLevelRequired.NoPrivilegeRequired,
-  packageCondition: ChatPackage.CONDITION_MEMBER_ALL_HAVE_BEEN_READ));
+      dialogID: ChatDialog.IDENTIFIER_READ,
+      conditions: DisplayConditionsModel(
+          privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
+          packageCondition: ChatPackage.CONDITION_MEMBER_ALL_HAVE_BEEN_READ));
 
   static String CHAT_ID = "chat";
 
@@ -51,6 +50,7 @@ class ChatDialog extends AppSectionBase {
         documentID: identifier,
         appId: installApp!.appId,
         title: "Chat",
+        includeHeading: false,
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired:
