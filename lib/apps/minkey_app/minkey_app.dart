@@ -22,6 +22,7 @@ import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/chat/chat_dialog.dart';
+import 'package:eliud_pkg_apps/apps/shared/chat/chat_page.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
@@ -40,6 +41,7 @@ import 'album/album.dart';
 import 'assignments/minkey_assignments.dart';
 import 'blocked/minkey_blocked.dart';
 import 'chat/chat_dialog.dart';
+import 'chat/chat_page.dart';
 import 'feed/feed.dart';
 import 'feed/other_feed_pages.dart';
 import 'feed/profile.dart';
@@ -216,8 +218,11 @@ class MinkeyApp extends InstallApp {
       await MinkeyFollowDashboards(
         installApp: this,
       ).run();
-      await MinkeyChatDialog(
+      await MinkeyChatPage(
         installApp: this,
+        homeMenu: homeMenu(),
+        drawer: drawer,
+        endDrawer: endDrawer,
       ).run();
       var homePageBlockedMember = await MinkeyBlocked(
               installApp: this,
@@ -287,7 +292,7 @@ class MinkeyApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.chat_bubble_rounded.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: ChatDialog.unReadAction(MINKEY_APP_ID)),
+            action: ChatPage.unReadAction(MINKEY_APP_ID)),
         MenuItemModel(
             documentID: 'chatReadAndUnread',
             text: 'Chat',
@@ -295,7 +300,7 @@ class MinkeyApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.chat_bubble_outline_rounded.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: ChatDialog.readAction(MINKEY_APP_ID)),
+            action: ChatPage.readAction(MINKEY_APP_ID)),
         MenuItemModel(
             documentID: "join",
             text: "JOIN",
