@@ -1,4 +1,5 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/abstract_repository_singleton.dart'
+    as corerepo;
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/model/body_component_model.dart';
@@ -19,29 +20,42 @@ import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
 import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
 import 'package:eliud_pkg_create/model/play_store_component.dart';
 import 'package:eliud_pkg_create/model/play_store_model.dart';
-import 'package:eliud_pkg_create/model/abstract_repository_singleton.dart' as creator;
+import 'package:eliud_pkg_create/model/abstract_repository_singleton.dart'
+    as creator;
 
 import '../../app_base.dart';
 import '../../app_section.dart';
 
 class PlayStore extends AppSection {
-  PlayStore({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer}) : super(installApp, homeMenu,  drawer, endDrawer );
+  PlayStore(
+      {InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer})
+      : super(installApp, homeMenu, drawer, endDrawer);
 
   static String IDENTIFIER = "playstore";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp!.appId)!.add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton
+        .pageRepository(installApp!.appId)!
+        .add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
-        documentID: "2", componentName: AbstractFaderComponent.componentName, componentId: FADER_IDENTIFIER));
+        documentID: "2",
+        componentName: AbstractFaderComponent.componentName,
+        componentId: FADER_IDENTIFIER));
     components.add(BodyComponentModel(
-        documentID: "3", componentName: AbstractDividerComponent.componentName, componentId: "divider_1"));
+        documentID: "3",
+        componentName: AbstractDividerComponent.componentName,
+        componentId: "divider_1"));
     components.add(BodyComponentModel(
-        documentID: "3", componentName: AbstractPlayStoreComponent.componentName, componentId: "playstore_1"));
-
+        documentID: "3",
+        componentName: AbstractPlayStoreComponent.componentName,
+        componentId: "playstore_1"));
 
     return PageModel(
         documentID: IDENTIFIER,
@@ -53,35 +67,38 @@ class PlayStore extends AppSection {
         homeMenu: homeMenu,
         layout: PageLayout.ListView,
         conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
 
   Future<FaderModel> _setupFader() async {
-    return await AbstractRepositorySingleton.singleton.faderRepository(installApp!.appId)!.add(_fader());
+    return await AbstractRepositorySingleton.singleton
+        .faderRepository(installApp!.appId)!
+        .add(_fader());
   }
 
   static String FADER_IDENTIFIER = IDENTIFIER;
   FaderModel _fader() {
-      List<ListedItemModel> items = [];
-      items.add(ListedItemModel(
-          documentID: "minkey",
-          description: "Minkey",
-          posSize: installApp!.halfScreen(),
-          image: installApp!.thePlatformLogo));
-      FaderModel model = FaderModel(
-        documentID: FADER_IDENTIFIER,
-        name: "Welcome fader",
-        animationMilliseconds: 1000,
-        imageSeconds: 5,
-        items: items,
-        appId: MinkeyApp.MINKEY_APP_ID,
-        conditions: StorageConditionsModel(
-            privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-        ),
-      );
-      return model;
+    List<ListedItemModel> items = [];
+    items.add(ListedItemModel(
+        documentID: "minkey",
+        description: "Minkey",
+        posSize: installApp!.halfScreen(),
+        image: installApp!.thePlatformLogo));
+    FaderModel model = FaderModel(
+      documentID: FADER_IDENTIFIER,
+      name: "Welcome fader",
+      animationMilliseconds: 1000,
+      imageSeconds: 5,
+      items: items,
+      appId: MinkeyApp.MINKEY_APP_ID,
+      conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+    );
+    return model;
   }
 
   PlayStoreModel playStore() {
@@ -91,13 +108,15 @@ class PlayStore extends AppSection {
       description: "Minkey Store",
       itemBackground: playStoreBG(),
       conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );
   }
 
   Future<PlayStoreModel> _setupPlayStore() async {
-    return await creator.AbstractRepositorySingleton.singleton.playStoreRepository(installApp!.appId)!.add(playStore());
+    return await creator.AbstractRepositorySingleton.singleton
+        .playStoreRepository(installApp!.appId)!
+        .add(playStore());
   }
 
   BackgroundModel playStoreBG() {
@@ -114,8 +133,8 @@ class PlayStore extends AppSection {
     );
 
     decorationColorModels.add(decorationColorModel2);
-    BackgroundModel backgroundModel =
-    BackgroundModel(
+    BackgroundModel backgroundModel = BackgroundModel(
+      appId: installApp!.appId,
       documentID: "playstore_bg",
       beginGradientPosition: StartGradientPosition.TopLeft,
       endGradientPosition: EndGradientPosition.BottomRight,
@@ -127,25 +146,28 @@ class PlayStore extends AppSection {
   }
 
   Future<BackgroundModel> _setupPlayStoreBG() async {
-    return await corerepo.AbstractRepositorySingleton.singleton.backgroundRepository()!.add(playStoreBG());
+    return await corerepo.AbstractRepositorySingleton.singleton
+        .backgroundRepository(installApp!.appId)!
+        .add(playStoreBG());
   }
 
   ShadowModel _shadowModel() {
-    ShadowModel shadowModel =
-    ShadowModel(
+    ShadowModel shadowModel = ShadowModel(
+        appId: installApp!.appId,
         documentID: "store_item_shadow",
         comments: "Store Item shadow",
         color: EliudColors.grayTransparent,
         offsetDX: 4,
         offsetDY: 3,
         spreadRadius: 7,
-        blurRadius: 7
-    );
+        blurRadius: 7);
     return shadowModel;
   }
 
   Future<ShadowModel> _setupShadows() async {
-    return await corerepo.AbstractRepositorySingleton.singleton.shadowRepository()!.add(_shadowModel());
+    return await corerepo.AbstractRepositorySingleton.singleton
+        .shadowRepository(installApp!.appId)!
+        .add(_shadowModel());
   }
 
   // ************************ Tutorials *****************

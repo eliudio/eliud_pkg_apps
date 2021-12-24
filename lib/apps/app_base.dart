@@ -195,7 +195,7 @@ abstract class InstallApp {
 
   Future<void> setupDecorationColorModel(PublicMediumModel? logo) async {
     await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository()!
+        .backgroundRepository(appId)!
         .add(_drawerHeaderBGOverride(logo));
   }
 
@@ -203,6 +203,7 @@ abstract class InstallApp {
     if (logo == null) throw Exception("You must provide a logo");
     var decorationColorModels = <DecorationColorModel>[];
     var backgroundModel = BackgroundModel(
+        appId: appId,
         documentID: 'left_drawer_header_bg_' + logo.baseName!,
         decorationColors: decorationColorModels,
         backgroundImage: logo);

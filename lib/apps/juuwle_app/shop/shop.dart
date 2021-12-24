@@ -141,7 +141,7 @@ class Shop extends AppSection {
       description: 'These are my featured products',
       shop: _shop(),
       addToCartColor: EliudColors.red,
-      itemCardBackground: cardBG(),
+      itemCardBackground: cardBG(installApp!.appId),
       buyAction: MyCart.openCartPage(),
       view: ShopFrontView.Slider,
       openProductAction:
@@ -166,7 +166,7 @@ class Shop extends AppSection {
       description: 'These are my lovely products',
       shop: _shop(),
       addToCartColor: EliudColors.red,
-      itemCardBackground: cardBG(),
+      itemCardBackground: cardBG(installApp!.appId),
       buyAction: MyCart.openCartPage(),
       view: ShopFrontView.Grid,
       openProductAction:
@@ -190,7 +190,7 @@ class Shop extends AppSection {
         .add(_shopFront2());
   }
 
-  static BackgroundModel cardBG() {
+  static BackgroundModel cardBG(String appId) {
     var decorationColorModels = <DecorationColorModel>[];
     var decorationColorModel1 = DecorationColorModel(
       documentID: '1',
@@ -204,6 +204,7 @@ class Shop extends AppSection {
 
     decorationColorModels.add(decorationColorModel2);
     var backgroundModel = BackgroundModel(
+      appId: appId,
       documentID: itemBackground,
       border: true,
       beginGradientPosition: StartGradientPosition.CenterLeft,
@@ -217,8 +218,8 @@ class Shop extends AppSection {
 
   Future<void> _setupCardBG() async {
     await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository()!
-        .add(cardBG());
+        .backgroundRepository(installApp!.appId)!
+        .add(cardBG(installApp!.appId));
   }
 
   PresentationModel _presentation(PlatformMediumModel memberMediumModel) {
