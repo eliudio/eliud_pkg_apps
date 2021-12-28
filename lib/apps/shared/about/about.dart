@@ -39,7 +39,7 @@ abstract class AboutBase extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.appId)!
+        .pageRepository(installApp!.theApp.documentID!)!
         .add(_page(appBar));
   }
 
@@ -53,7 +53,7 @@ abstract class AboutBase extends AppSection {
 
     return PageModel(
         documentID: identifier,
-        appId: installApp!.appId,
+        appId: installApp!.theApp.documentID!,
         title: aboutTitle(),
         drawer: drawer,
         endDrawer: endDrawer,
@@ -72,12 +72,12 @@ abstract class AboutBase extends AppSection {
 
   Future<String?> _store(PlatformMediumModel platformMediumModel) async {
     return (await AbstractRepositorySingleton.singleton
-        .bookletRepository(installApp!.appId)!
+        .bookletRepository(installApp!.theApp.documentID!)!
         .add(_header(platformMediumModel))).documentID;
   }
 
   Future<PlatformMediumModel> installAboutImage() async {
-    return await ImageTools.uploadPlatformPhoto(installApp!.appId, installApp!.member!, assetLocation());
+    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, assetLocation());
   }
 
   BookletModel _header(PlatformMediumModel memberMediumModel) {
@@ -99,7 +99,7 @@ abstract class AboutBase extends AppSection {
       documentID: identifier,
       name: "About",
       sections: entries,
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),

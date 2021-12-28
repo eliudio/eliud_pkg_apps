@@ -24,7 +24,7 @@ class Album extends AppSection {
   static String IDENTIFIER = "album";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp!.appId)!.add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp!.theApp.documentID!)!.add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
@@ -48,7 +48,7 @@ class Album extends AppSection {
   }
 
   Future<AlbumModel> albumModel(String memberId) async {
-    var entries = await ExampleAlbumHelper(appId: installApp!.appId, memberId: memberId).createAll();
+    var entries = await ExampleAlbumHelper(memberId: memberId).createAll();
     return AlbumModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, albumEntries: entries, description: "My Minkey Photos",
       conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
@@ -57,7 +57,7 @@ class Album extends AppSection {
   }
 
   Future<AlbumModel> _setupAlbum(String memberId) async {
-    return await albumRepository(appId: installApp!.appId)!.add(await albumModel(memberId));
+    return await albumRepository(appId: installApp!.theApp.documentID!)!.add(await albumModel(memberId));
   }
 
   Future<PageModel> run(MemberModel member) async {

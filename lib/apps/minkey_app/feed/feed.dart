@@ -36,7 +36,7 @@ class Feed extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.appId)!
+        .pageRepository(installApp!.theApp.documentID!)!
         .add(_page(appBar));
   }
 
@@ -91,7 +91,7 @@ class Feed extends AppSection {
 
   Future<FeedModel> _setupFeed() async {
     return await AbstractRepositorySingleton.singleton
-        .feedRepository(installApp!.appId)!
+        .feedRepository(installApp!.theApp.documentID!)!
         .add(feedModel());
   }
 
@@ -99,12 +99,12 @@ class Feed extends AppSection {
     var feed = await _setupFeed();
     // common for all pages:
     var readAccess = await PostFollowersMemberHelper.asPublic(
-        installApp!.appId, member.documentID!);
-    await ExamplePosts(installApp!.appId, readAccess).run(member, IDENTIFIER);
-    await ExampleProfile(installApp!.appId, readAccess).run(member, IDENTIFIER);
-    await FeedMenu(installApp!.appId).run(feed);
-    await ProfileComponent(installApp!.appId).run(feed);
-    await HeaderComponent(installApp!.appId).run(feed);
+        MinkeyApp.app, member.documentID!);
+    await ExamplePosts(readAccess).run(member, IDENTIFIER);
+    await ExampleProfile(readAccess).run(member, IDENTIFIER);
+    await FeedMenu().run(feed);
+    await ProfileComponent().run(feed);
+    await HeaderComponent().run(feed);
 
     // Specific to feed page
     var appBar = installApp!.appBar();

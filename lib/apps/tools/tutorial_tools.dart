@@ -60,7 +60,7 @@ class TutorialTools {
   }
 
 */
-  static Future<TutorialModel> constructTutorialModel(MemberModel? member, String appId, String tutorialID, String name, String title, String description, String assetRoot, List<String?> assetLocations, List<String?> codes, List<String> descriptions) async {
+  static Future<TutorialModel> constructTutorialModel(MemberModel? member, AppModel app, String tutorialID, String name, String title, String description, String assetRoot, List<String?> assetLocations, List<String?> codes, List<String> descriptions) async {
     assert(assetLocations.length == descriptions.length);
     List<TutorialEntryModel> items = [];
     for (int i = 0; i < assetLocations.length; i++) {
@@ -68,7 +68,7 @@ class TutorialTools {
       var image;
       if (assetLocations[i] != null) {
         assetLocation = assetRoot + assetLocations[i]!;
-        image = await ImageTools.uploadPlatformPhoto(appId, member!, assetLocation);
+        image = await ImageTools.uploadPlatformPhoto(app, member!, assetLocation);
       }
       String documentID = i.toString();
       items.add(TutorialEntryModel(
@@ -81,7 +81,7 @@ class TutorialTools {
 
     return TutorialModel(
       documentID: tutorialID,
-      appId: appId,
+      appId: app.documentID!,
       name: name,
       title: title,
       description: description,

@@ -3,17 +3,17 @@ import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_feed/model/feed_model.dart';
 import 'package:eliud_pkg_feed/model/profile_model.dart';
 
-class ProfileComponent {
-  final String appId;
+import '../minkey_app.dart';
 
-  ProfileComponent(this.appId);
+class ProfileComponent {
+  ProfileComponent();
 
   static String PROFILE_ID = "profile";
 
   ProfileModel profileModel(FeedModel feed) {
     return ProfileModel(
       documentID: PROFILE_ID,
-      appId: appId,
+      appId: MinkeyApp.app.documentID!,
       feed: feed,
       description: "Profile",
       conditions: StorageConditionsModel(
@@ -24,7 +24,7 @@ class ProfileComponent {
 
   Future<ProfileModel> createProfileModel(FeedModel feed) async {
     return await AbstractRepositorySingleton.singleton
-        .profileRepository(appId)!
+        .profileRepository(MinkeyApp.app.documentID)!
         .add(profileModel(feed));
   }
 

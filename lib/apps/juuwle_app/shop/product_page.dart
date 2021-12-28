@@ -18,7 +18,7 @@ class ProductPage extends BasicPageTemplate {
 
   static const String identifier = 'productpage';
 
-  static ActionModel action(String appId) => GotoPage(JuuwleApp.JUUWLE_APP_ID,
+  static ActionModel action(String appId) => GotoPage(JuuwleApp.app,
       pageID: ProductPage.identifier,
       conditions: DisplayConditionsModel(
         privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
@@ -28,7 +28,7 @@ class ProductPage extends BasicPageTemplate {
   ProductDisplayModel _productDisplayOverview() {
     return ProductDisplayModel(
       documentID: 'product',
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       title: pageTitle(),
       shop: shop,
       buyAction: MyCart.openCartPage(),

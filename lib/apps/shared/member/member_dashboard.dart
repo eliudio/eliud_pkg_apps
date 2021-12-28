@@ -43,7 +43,7 @@ Sorry to see you go. Your account has been destroyed.
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp!.appId)!
+        .dialogRepository(installApp!.theApp.documentID!)!
         .add(_dialog());
   }
 
@@ -56,7 +56,7 @@ Sorry to see you go. Your account has been destroyed.
 
     return DialogModel(
         documentID: IDENTIFIER,
-        appId: installApp!.appId,
+        appId: installApp!.theApp.documentID!,
         title: "Member dashboard",
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
@@ -68,7 +68,7 @@ Sorry to see you go. Your account has been destroyed.
   MemberDashboardModel _dashboardModel() {
     return MemberDashboardModel(
         documentID: IDENTIFIER,
-        appId: installApp!.appId,
+        appId: installApp!.theApp.documentID!,
         description: "Member dashboard",
         updateProfileText: updateProfileText,
         retrieveDataText: retrieveDataText,
@@ -84,7 +84,7 @@ Sorry to see you go. Your account has been destroyed.
 
   Future<MemberDashboardModel> _setupDashboard() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .memberDashboardRepository(installApp!.appId)!
+        .memberDashboardRepository(installApp!.theApp.documentID!)!
         .add(_dashboardModel());
   }
 

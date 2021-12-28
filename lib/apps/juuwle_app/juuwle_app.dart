@@ -44,24 +44,24 @@ import 'notifications/juuwle_notification_dashboard.dart';
 
 class JuuwleApp extends InstallApp {
   static String JUUWLE_APP_ID = 'JUUWLE_APP';
+  static AppModel app = AppModel(documentID: JUUWLE_APP_ID);
 
   JuuwleApp()
-      : super(
-            appId: JUUWLE_APP_ID,);
+      : super(app);
 
   @override
   MenuDefModel profileDrawerMenuDef() {
     var menuItems = <MenuItemModel>[];
     menuItems
-        .add(menuItemManageAccount(appId, "my_juuwle", MemberDashboard.IDENTIFIER));
+        .add(menuItemManageAccount(app, "my_juuwle", MemberDashboard.IDENTIFIER));
     menuItems.add(MenuItemModel(
         documentID: 'orders',
         text: 'Your orders',
         description: 'Your orders',
         icon: IconModel(codePoint: 0xe896, fontFamily: 'MaterialIcons'),
-        action: GotoPage(JuuwleApp.JUUWLE_APP_ID,
+        action: GotoPage(app,
             pageID: OrderOverview.identifier)));
-    menuItems.add(menuItemSignOut(appId, 'sign_out'));
+    menuItems.add(menuItemSignOut(app, 'sign_out'));
     var menu = MenuDefModel(
         documentID: 'drawer_profile_menu',
         appId: JUUWLE_APP_ID,
@@ -85,9 +85,9 @@ class JuuwleApp extends InstallApp {
   @override
   MenuDefModel homeMenuDef() {
     var menuItems = <MenuItemModel>[];
-    menuItems.add(menuItemWelcome(appId, "1", Welcome.identifier, "Welcome"));
-    menuItems.add(menuItemShoppingBag(appId, "2", Shop.identifier, "Shop"));
-    menuItems.add(menuItemAbout(appId, "4", About.IDENTIFIER, "About"));
+    menuItems.add(menuItemWelcome(app, "1", Welcome.identifier, "Welcome"));
+    menuItems.add(menuItemShoppingBag(app, "2", Shop.identifier, "Shop"));
+    menuItems.add(menuItemAbout(app, "4", About.IDENTIFIER, "About"));
     var menu = MenuDefModel(
         documentID: 'main',
         appId: JUUWLE_APP_ID,
@@ -154,7 +154,7 @@ class JuuwleApp extends InstallApp {
             )
         .run();
     await MyCart(
-            background: Shop.cardBG(appId),
+            background: Shop.cardBG(JUUWLE_APP_ID),
             shop: shop,
             installApp: this,
             homeMenu: homeMenu(),
@@ -163,7 +163,7 @@ class JuuwleApp extends InstallApp {
             )
         .run();
     await MyPay(
-            background: Shop.cardBG(appId),
+            background: Shop.cardBG(JUUWLE_APP_ID),
             shop: shop,
             installApp: this,
             homeMenu: homeMenu(),
@@ -172,7 +172,7 @@ class JuuwleApp extends InstallApp {
             )
         .run();
     await OrderOverview(
-            background: Shop.cardBG(appId),
+            background: Shop.cardBG(JUUWLE_APP_ID),
             shop: shop,
             installApp: this,
             homeMenu: homeMenu(),
@@ -181,7 +181,7 @@ class JuuwleApp extends InstallApp {
             )
         .run();
     await MyPayConfirmation(
-            background: Shop.cardBG(appId),
+            background: Shop.cardBG(JUUWLE_APP_ID),
             shop: shop,
             installApp: this,
             homeMenu: homeMenu(),
@@ -261,7 +261,7 @@ class JuuwleApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.notifications.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: NotificationDashboard.action(JUUWLE_APP_ID)),
+            action: NotificationDashboard.action(app)),
         MenuItemModel(
             documentID: '3',
             text: 'Members',
@@ -269,7 +269,7 @@ class JuuwleApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.people.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: MembershipDashboard.action(JUUWLE_APP_ID)),
+            action: MembershipDashboard.action(app)),
         MenuItemModel(
             documentID: '4',
             text: 'Assignments',
@@ -277,7 +277,7 @@ class JuuwleApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.playlist_add_check.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: AssignmentViewSetup.action(JUUWLE_APP_ID)),
+            action: AssignmentViewSetup.action(app)),
       ];
 
   @override

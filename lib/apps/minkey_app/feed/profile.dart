@@ -32,7 +32,7 @@ class Profile extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.appId)!
+        .pageRepository(installApp!.theApp.documentID!)!
         .add(_page(appBar));
   }
 
@@ -81,7 +81,7 @@ class Profile extends AppSection {
 
   Future<ProfileModel> _setupProfile(FeedModel feed) async {
     return await AbstractRepositorySingleton.singleton
-        .profileRepository(installApp!.appId)!
+        .profileRepository(installApp!.theApp.documentID!)!
         .add(profileModel(feed));
   }
 

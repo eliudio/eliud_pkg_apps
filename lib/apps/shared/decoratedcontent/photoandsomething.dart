@@ -29,7 +29,7 @@ abstract class PhotoAndSomthing extends DecoratedContent {
 
   Future<PlatformMediumModel> installImage(String assetLocation) async {
     return await ImageTools.uploadPlatformPhoto(
-        installApp!.appId!, installApp!.member!, assetLocation);
+        installApp!.theApp, installApp!.member!, assetLocation);
   }
 
   Future<SimpleImageModel> createSimpleImage(

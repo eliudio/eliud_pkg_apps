@@ -45,7 +45,7 @@ class Shop extends AppSection {
   static String identifier = 'juuwleshop';
 
   static ActionModel action(String appId) => GotoPage(
-        JuuwleApp.JUUWLE_APP_ID,
+        JuuwleApp.app,
         pageID: Shop.identifier,
       );
 
@@ -107,7 +107,7 @@ class Shop extends AppSection {
       animationMilliseconds: 1000,
       imageSeconds: 5,
       items: items,
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
               PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
@@ -127,7 +127,7 @@ class Shop extends AppSection {
         description: 'Main shop',
         shortDescription: 'Main shop',
         currency: 'eur',
-        appId: installApp!.appId);
+        appId: installApp!.theApp.documentID!);
     return document;
   }
 
@@ -136,16 +136,16 @@ class Shop extends AppSection {
   ShopFrontModel _shopFront1() {
     return ShopFrontModel(
       documentID: shopFrontIdentifier1,
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       title: 'Featured',
       description: 'These are my featured products',
       shop: _shop(),
       addToCartColor: EliudColors.red,
-      itemCardBackground: cardBG(installApp!.appId),
+      itemCardBackground: cardBG(installApp!.theApp.documentID!),
       buyAction: MyCart.openCartPage(),
       view: ShopFrontView.Slider,
       openProductAction:
-          GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: ProductPage.identifier),
+          GotoPage(JuuwleApp.app, pageID: ProductPage.identifier),
       size: 250,
       cardElevation: 10,
       cardAxisSpacing: 20,
@@ -161,16 +161,16 @@ class Shop extends AppSection {
   ShopFrontModel _shopFront2() {
     return ShopFrontModel(
       documentID: shopFrontIdentifier2,
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       title: 'My products',
       description: 'These are my lovely products',
       shop: _shop(),
       addToCartColor: EliudColors.red,
-      itemCardBackground: cardBG(installApp!.appId),
+      itemCardBackground: cardBG(installApp!.theApp.documentID!),
       buyAction: MyCart.openCartPage(),
       view: ShopFrontView.Grid,
       openProductAction:
-          GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: ProductPage.identifier),
+          GotoPage(JuuwleApp.app, pageID: ProductPage.identifier),
       size: 250,
       cardElevation: 10,
       cardAxisSpacing: 20,
@@ -218,14 +218,14 @@ class Shop extends AppSection {
 
   Future<void> _setupCardBG() async {
     await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(installApp!.appId)!
-        .add(cardBG(installApp!.appId));
+        .backgroundRepository(installApp!.theApp.documentID!)!
+        .add(cardBG(installApp!.theApp.documentID!));
   }
 
   PresentationModel _presentation(PlatformMediumModel memberMediumModel) {
     return PresentationModel(
       documentID: 'shop',
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       bodyComponents: [
         BodyComponentModel(
             documentID: '1',
@@ -253,7 +253,7 @@ class Shop extends AppSection {
 
   Future<PlatformMediumModel> uploadImage() async {
     return await ImageTools.uploadPlatformPhoto(
-        installApp!.appId,
+        installApp!.theApp,
         installApp!.member!,
         'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_presenting.png');
   }

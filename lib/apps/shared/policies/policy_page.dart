@@ -30,7 +30,7 @@ class PolicyPage extends AppSection {
   PolicyPresentationModel getPesentationModel(PlatformMediumModel? policyModel) {
     return PolicyPresentationModel(
       documentID: policy!.documentID,
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       description: title,
       policy: policyModel,
       conditions: StorageConditionsModel(
@@ -40,13 +40,13 @@ class PolicyPage extends AppSection {
   }
 
   Future<PolicyPresentationModel> createPresentationComponent(PlatformMediumModel? policyModel) async {
-    return await policyPresentationRepository(appId: installApp!.appId)!
+    return await policyPresentationRepository(appId: installApp!.theApp.documentID!)!
         .add(getPesentationModel(policyModel));
   }
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.appId)!
+        .pageRepository(installApp!.theApp.documentID!)!
         .add(_page(appBar));
   }
 
@@ -60,7 +60,7 @@ class PolicyPage extends AppSection {
 
     return PageModel(
         documentID: policy!.documentID,
-        appId: installApp!.appId,
+        appId: installApp!.theApp.documentID!,
         title: title,
         drawer: drawer,
         endDrawer: endDrawer,

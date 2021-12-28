@@ -35,7 +35,7 @@ abstract class BasicPageTemplate extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.appId)!
+        .pageRepository(installApp!.theApp.documentID!)!
         .add(_page(appBar));
   }
 
@@ -48,7 +48,7 @@ abstract class BasicPageTemplate extends AppSection {
 
     return PageModel(
         documentID: pageId,
-        appId: installApp!.appId,
+        appId: installApp!.theApp.documentID!,
         title: pageTitle(),
         drawer: drawer,
         endDrawer: endDrawer,

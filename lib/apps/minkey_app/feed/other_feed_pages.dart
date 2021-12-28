@@ -32,7 +32,7 @@ class OtherFeedPages extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar, String componentName, String identifier, String title) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.appId)!
+        .pageRepository(installApp!.theApp.documentID!)!
         .add(_page(appBar, componentName, identifier, title));
   }
 

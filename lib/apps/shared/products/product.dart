@@ -28,29 +28,29 @@ Future<ProductModel> productToProductModel(ShopModel shop, InstallApp installApp
     productImages.add(ProductImageModel(
         documentID: product.imageId1(),
         image: await ImageTools.uploadPlatformPhoto(
-            installApp.appId, installApp.member!, product.assetLocation1!)));
+            installApp.theApp, installApp.member!, product.assetLocation1!)));
   }
   if (product.assetLocation2 != null) {
     productImages.add(ProductImageModel(
         documentID: product.imageId1(),
         image: await ImageTools.uploadPlatformPhoto(
-            installApp.appId, installApp.member!, product.assetLocation2!)));
+            installApp.theApp, installApp.member!, product.assetLocation2!)));
   }
   if (product.assetLocation3 != null) {
     productImages.add(ProductImageModel(
         documentID: product.imageId1(),
         image: await ImageTools.uploadPlatformPhoto(
-            installApp.appId, installApp.member!, product.assetLocation3!)));
+            installApp.theApp, installApp.member!, product.assetLocation3!)));
   }
   if (product.assetLocation4 != null) {
     productImages.add(ProductImageModel(
         documentID: product.imageId1(),
         image: await ImageTools.uploadPlatformPhoto(
-            installApp.appId, installApp.member!, product.assetLocation4!)));
+            installApp.theApp, installApp.member!, product.assetLocation4!)));
   }
   return new ProductModel(
     documentID: product.id,
-    appId: installApp.appId,
+    appId: installApp.theApp.documentID!,
     title: product.title,
     about: product.about,
     shop: shop,

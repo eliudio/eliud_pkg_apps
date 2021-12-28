@@ -19,12 +19,12 @@ class ChatPage extends AppSection {
   static String IDENTIFIER_READ = "chat_page_read";
   static String IDENTIFIER_UNREAD = "chat_page_unread";
 
-  static GotoPage unReadAction(String appId) => GotoPage(appId, pageID: IDENTIFIER_UNREAD,
+  static GotoPage unReadAction(AppModel app) => GotoPage(app, pageID: IDENTIFIER_UNREAD,
       conditions: DisplayConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
           packageCondition: ChatPackage.CONDITION_MEMBER_HAS_UNREAD_CHAT));
 
-  static GotoPage readAction(String appId) => GotoPage(appId, pageID: IDENTIFIER_READ,
+  static GotoPage readAction(AppModel app) => GotoPage(app, pageID: IDENTIFIER_READ,
       conditions: DisplayConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
           packageCondition: ChatPackage.CONDITION_MEMBER_ALL_HAVE_BEEN_READ));
@@ -33,7 +33,7 @@ class ChatPage extends AppSection {
 
   Future<PageModel> _setupPage(String identifier) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.appId)!
+        .pageRepository(installApp!.theApp.documentID!)!
         .add(_page(identifier));
   }
 
@@ -46,7 +46,7 @@ class ChatPage extends AppSection {
 
     return PageModel(
         documentID: identifier,
-        appId: installApp!.appId,
+        appId: installApp!.theApp.documentID!,
         title: "Chat",
         drawer: drawer,
         endDrawer: endDrawer,
@@ -63,7 +63,7 @@ class ChatPage extends AppSection {
   ChatDashboardModel _chatModel() {
     return ChatDashboardModel(
       documentID: CHAT_ID,
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       description: "Chat",
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
@@ -73,7 +73,7 @@ class ChatPage extends AppSection {
 
   Future<ChatDashboardModel> _setupChat() async {
     return await AbstractRepositorySingleton.singleton
-        .chatDashboardRepository(installApp!.appId)!
+        .chatDashboardRepository(installApp!.theApp.documentID!)!
         .add(_chatModel());
   }
 

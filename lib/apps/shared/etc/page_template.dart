@@ -41,7 +41,7 @@ abstract class PageTemplate extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar, String? presentationId) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.appId)!
+        .pageRepository(installApp!.theApp.documentID!)!
         .add(_page(appBar, presentationId));
   }
 
@@ -54,7 +54,7 @@ abstract class PageTemplate extends AppSection {
 
     return PageModel(
         documentID: pageId,
-        appId: installApp!.appId,
+        appId: installApp!.theApp.documentID!,
         title: pageTitle(),
         drawer: drawer,
         endDrawer: endDrawer,
@@ -70,7 +70,7 @@ abstract class PageTemplate extends AppSection {
   PresentationModel _presentation(PlatformMediumModel image) {
     return PresentationModel(
       documentID: pageId,
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       bodyComponents: [
         BodyComponentModel(
           documentID: pageId,
@@ -88,13 +88,13 @@ abstract class PageTemplate extends AppSection {
 
   Future<PresentationModel> _setupPresentation(PlatformMediumModel image) async {
     var presentation = _presentation(image);
-    await AbstractRepositorySingleton.singleton.presentationRepository(installApp!.appId)!.add(presentation);
+    await AbstractRepositorySingleton.singleton.presentationRepository(installApp!.theApp.documentID!)!.add(presentation);
     return presentation;
   }
 
   Future<PlatformMediumModel> uploadImage() async {
     return await ImageTools.uploadPlatformPhoto(
-        installApp!.appId,
+        installApp!.theApp,
         installApp!.member!,
         assetLocation());
   }

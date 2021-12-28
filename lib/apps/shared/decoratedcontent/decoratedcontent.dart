@@ -37,13 +37,13 @@ abstract class DecoratedContent extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar, String title) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.appId)!
+        .pageRepository(installApp!.theApp.documentID!)!
         .add(_page(appBar, title));
   }
 
   Future<FaderModel> _setupFader() async {
     return await AbstractRepositorySingleton.singleton
-        .faderRepository(installApp!.appId)!
+        .faderRepository(installApp!.theApp.documentID!)!
         .add(_fader());
   }
 
@@ -61,7 +61,7 @@ abstract class DecoratedContent extends AppSection {
       animationMilliseconds: 1000,
       imageSeconds: 5,
       items: items,
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:privilegeLevelRequiredSimple),
     );
@@ -88,7 +88,7 @@ abstract class DecoratedContent extends AppSection {
 
     return PageModel(
         documentID: identifier,
-        appId: installApp!.appId,
+        appId: installApp!.theApp.documentID!,
         title: title,
         drawer: drawer,
         endDrawer: endDrawer,
@@ -109,7 +109,7 @@ abstract class DecoratedContent extends AppSection {
       DecorationComponentPosition position) async {
     var decoratedContent = DecoratedContentModel(
       documentID: identifier,
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       name: identifier,
       contentComponentId: componentId,
       contentComponentName: componentName,
@@ -122,7 +122,7 @@ abstract class DecoratedContent extends AppSection {
       ),
     );
     await AbstractRepositorySingleton.singleton
-        .decoratedContentRepository(installApp!.appId)!
+        .decoratedContentRepository(installApp!.theApp.documentID!)!
         .add(decoratedContent);
     return decoratedContent;
   }

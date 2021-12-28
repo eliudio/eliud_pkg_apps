@@ -20,7 +20,7 @@ class MyPayConfirmation extends PageTemplate {
 
   static const String identifier = 'juuwlepayconfirmation';
 
-  static ActionModel action(String appId) => GotoPage(JuuwleApp.JUUWLE_APP_ID,
+  static ActionModel action(String appId) => GotoPage(JuuwleApp.app,
       pageID: MyPayConfirmation.identifier,
       conditions: DisplayConditionsModel(
         privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
@@ -30,11 +30,11 @@ class MyPayConfirmation extends PageTemplate {
   PayConfirmationModel _payConfirmationModel() {
     return PayConfirmationModel(
       documentID: 'payconfirmation',
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       title: pageTitle(),
       shop: shop,
       backToShopAction:
-          GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: Shop.identifier),
+          GotoPage(JuuwleApp.app, pageID: Shop.identifier),
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
               PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),

@@ -21,7 +21,7 @@ class Blocked extends AppSection {
   static String identifier = "blocked";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp!.appId)!.add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp!.theApp.documentID!)!.add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
@@ -31,7 +31,7 @@ class Blocked extends AppSection {
 
     return PageModel(
         documentID: identifier,
-        appId: installApp!.appId,
+        appId: installApp!.theApp.documentID!,
         title: "Blocked !",
         drawer: drawer,
         endDrawer: endDrawer,
@@ -47,7 +47,7 @@ class Blocked extends AppSection {
   static String blockedIdentifier = "blocked";
 
   Future<PlatformMediumModel> uploadBlockedImage() async {
-    return await ImageTools.uploadPlatformPhoto(installApp!.appId, installApp!.member!, 'packages/eliud_pkg_apps/assets/shared/blocked/blocked.png');
+    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/shared/blocked/blocked.png');
   }
 
   BookletModel _blocked(PlatformMediumModel blockedImage) {
@@ -68,7 +68,7 @@ class Blocked extends AppSection {
       documentID: blockedIdentifier,
       name: "Blocked!",
       sections:entries,
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
@@ -76,7 +76,7 @@ class Blocked extends AppSection {
   }
 
   Future<void> _setupBlocked(PlatformMediumModel blockedImage) async {
-    await AbstractRepositorySingleton.singleton.bookletRepository(installApp!.appId)!.add(_blocked(blockedImage));
+    await AbstractRepositorySingleton.singleton.bookletRepository(installApp!.theApp.documentID!)!.add(_blocked(blockedImage));
   }
 
   Future<PageModel> run() async {

@@ -13,11 +13,9 @@ import 'package:eliud_pkg_medium/model/album_entry_model.dart';
 import '../minkey_app.dart';
 
 class ExampleAlbumHelper {
-  final String appId;
   final String memberId;
 
   ExampleAlbumHelper({
-    required this.appId,
     required this.memberId,
   });
 
@@ -25,7 +23,7 @@ class ExampleAlbumHelper {
     return AlbumEntryModel(
         documentID: newRandomKey(),
         name: 'example 1',
-        medium: await PlatformMediumHelper(appId, memberId,
+        medium: await PlatformMediumHelper(MinkeyApp.app, memberId,
             PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple)
             .createThumbnailUploadPhotoAsset(
             newRandomKey(), path));

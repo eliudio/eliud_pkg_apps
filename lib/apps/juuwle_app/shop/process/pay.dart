@@ -21,7 +21,7 @@ class MyPay extends PageTemplate {
 
   static const String identifier = 'juuwlepay';
 
-  static ActionModel action(String appId) => GotoPage(JuuwleApp.JUUWLE_APP_ID,
+  static ActionModel action(String appId) => GotoPage(JuuwleApp.app,
       pageID: MyPay.identifier,
       conditions: DisplayConditionsModel(
         privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
@@ -31,11 +31,11 @@ class MyPay extends PageTemplate {
   PayModel _payModel() {
     return PayModel(
       documentID: 'pay',
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       title: pageTitle(),
       shop: shop,
-      payAction: WorkflowSetup.payCart(installApp!.appId),
-      succeeded: GotoPage(JuuwleApp.JUUWLE_APP_ID,
+      payAction: WorkflowSetup.payCart(),
+      succeeded: GotoPage(JuuwleApp.app,
           pageID: MyPayConfirmation.identifier),
       conditions: StorageConditionsModel(
           privilegeLevelRequired:

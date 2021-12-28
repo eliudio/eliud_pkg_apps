@@ -7,43 +7,43 @@ import 'package:eliud_core/tools/storage/public_medium_helper.dart';
 import 'package:eliud_pkg_feed/model/post_medium_model.dart';
 
 class ImageTools {
-  static Future<PublicMediumModel> uploadPublicPhoto(String appId, MemberModel member, String assetPath) async {
+  static Future<PublicMediumModel> uploadPublicPhoto(AppModel app, MemberModel member, String assetPath) async {
     String memberMediumDocumentID = newRandomKey();
-    return await PublicMediumHelper(appId, member.documentID!, ).createThumbnailUploadPhotoAsset(memberMediumDocumentID, assetPath, );
+    return await PublicMediumHelper(app, member.documentID!, ).createThumbnailUploadPhotoAsset(memberMediumDocumentID, assetPath, );
   }
 
-  static Future<PlatformMediumModel> uploadPlatformPhoto(String appId, MemberModel member, String assetPath) async {
+  static Future<PlatformMediumModel> uploadPlatformPhoto(AppModel app, MemberModel member, String assetPath) async {
     String memberMediumDocumentID = newRandomKey();
-    return await PlatformMediumHelper(appId, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadPhotoAsset(memberMediumDocumentID, assetPath, );
+    return await PlatformMediumHelper(app, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadPhotoAsset(memberMediumDocumentID, assetPath, );
   }
 
-  static Future<PlatformMediumModel> uploadPlatformVideo(String appId, MemberModel member, String assetPath) async {
+  static Future<PlatformMediumModel> uploadPlatformVideo(AppModel app, MemberModel member, String assetPath) async {
     String memberMediumDocumentID = newRandomKey();
-    return await PlatformMediumHelper(appId, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadVideoAsset(memberMediumDocumentID, assetPath, );
+    return await PlatformMediumHelper(app, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadVideoAsset(memberMediumDocumentID, assetPath, );
   }
 
-  static Future<PlatformMediumModel> uploadPlatformPdf(String appId, MemberModel member, String assetPath, String documentID) async {
+  static Future<PlatformMediumModel> uploadPlatformPdf(AppModel app, MemberModel member, String assetPath, String documentID) async {
     String memberMediumDocumentID = newRandomKey();
-    return await PlatformMediumHelper(appId, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadPdfAsset(memberMediumDocumentID, assetPath, documentID);
+    return await PlatformMediumHelper(app, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadPdfAsset(memberMediumDocumentID, assetPath, documentID);
   }
 
-  static Future<MemberMediumModel> createMemberMediumModelPhoto(String appId, MemberModel member, String assetPath) async {
+  static Future<MemberMediumModel> createMemberMediumModelPhoto(AppModel app, MemberModel member, String assetPath) async {
     String memberMediumDocumentID = newRandomKey();
-    var photo = await MemberMediumHelper(appId, member.documentID!, ['PUBLIC',member.documentID!]).createThumbnailUploadPhotoAsset(memberMediumDocumentID, assetPath, );
+    var photo = await MemberMediumHelper(app, member.documentID!, ['PUBLIC',member.documentID!]).createThumbnailUploadPhotoAsset(memberMediumDocumentID, assetPath, );
     return photo;
   }
 
-  static Future<PostMediumModel> createPostMediumModelPhoto(String appId, MemberModel member, String assetPath) async {
-    var photo = await createMemberMediumModelPhoto(appId, member, assetPath);
+  static Future<PostMediumModel> createPostMediumModelPhoto(AppModel app, MemberModel member, String assetPath) async {
+    var photo = await createMemberMediumModelPhoto(app, member, assetPath);
     return PostMediumModel(
       documentID: newRandomKey(),
       memberMedium: photo,
     );
   }
 
-  static Future<PostMediumModel> createPostMediumModelVideo(String appId, MemberModel member, String assetPath) async {
+  static Future<PostMediumModel> createPostMediumModelVideo(AppModel app, MemberModel member, String assetPath) async {
     String memberMediumDocumentID = newRandomKey();
-    var video = await MemberMediumHelper(appId, member.documentID!, ['PUBLIC',member.documentID!]).createThumbnailUploadVideoAsset(memberMediumDocumentID, assetPath, );
+    var video = await MemberMediumHelper(app, member.documentID!, ['PUBLIC',member.documentID!]).createThumbnailUploadVideoAsset(memberMediumDocumentID, assetPath, );
     return PostMediumModel(
       documentID: newRandomKey(),
       memberMedium: video,

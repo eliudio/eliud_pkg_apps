@@ -71,7 +71,7 @@ flutter:
   static String CREATE_FLUTTER_PROJECT = "create-flutter-project";
 
   Future<PageModel> _setupCreateFlutterProject(MemberModel? member) async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_FLUTTER_PROJECT,
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.app, CREATE_FLUTTER_PROJECT,
         "Create Flutter Project", "Create Flutter Project", "Follow the below steps to create your first flutter project.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
         [ "create-flutter-project1.jpg", "create-flutter-project2.jpg", "create-flutter-project3.jpg", "create-flutter-project4.jpg", null, null, null ],
@@ -93,7 +93,7 @@ flutter:
   static String CREATE_GOOGLE_ACCOUNT = "create-google-account";
 
   Future<PageModel> _setupCreateGoogleAccount(MemberModel? member) async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_GOOGLE_ACCOUNT,
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.app, CREATE_GOOGLE_ACCOUNT,
         "Create Google Account", "Create Google Account", "Follow the below steps to create a google account.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
         [ "create-google-account1.jpg", "create-google-account3.jpg", "create-google-account2.jpg", "create-google-account4.jpg", "create-google-account5.jpg", ],
@@ -113,7 +113,7 @@ flutter:
   static String CREATE_FIREBASE_PROJECT = "create-firebase-project";
 
   Future<PageModel> _setupCreateFirebaseProject(MemberModel? member) async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_FIREBASE_PROJECT,
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.app, CREATE_FIREBASE_PROJECT,
         "Create Firebase Project",
         "Firebase Project", "Follow the below steps to create a Firebase Project.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
@@ -134,7 +134,7 @@ flutter:
   static String CREATE_ANDROID_APP = "create-android-app";
 
   Future<PageModel> _setupCreateFirebaseAndroidApp(MemberModel? member) async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_ANDROID_APP, "Create Android App",
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.app, CREATE_ANDROID_APP, "Create Android App",
         "Create Firebase Android App", "Follow the below steps to create an Android App.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
     [ null, "create-android-app1.jpg", "firebase-home.jpg", "create-android-app2.jpg", "create-android-app4.jpg", "create-android-app3.jpg", "create-android-app5.jpg", "create-android-app6.jpg", "create-android-app7.jpg", ],
@@ -157,7 +157,7 @@ flutter:
   static String CREATE_DATABASE = "create-database";
 
   Future<PageModel> _setupCreateFirebaseDatabase(MemberModel? member) async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_DATABASE, "Create Database",
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.app, CREATE_DATABASE, "Create Database",
         "Create Database", "Follow the below steps to create the firebase database.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
     [ "firebase-home.jpg", "create-database1.jpg", "create-database2.jpg", "create-database3.jpg"],
@@ -174,7 +174,7 @@ flutter:
   static String CREATE_STORAGE = "create-storage";
 
   Future<PageModel> _setupCreateFirebaseStorage(MemberModel? member) async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_STORAGE, "Create Storage",
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.app, CREATE_STORAGE, "Create Storage",
         "Create Storage", "Follow the below steps to create the storage.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
     [ "firebase-home.jpg", "create-storage1.jpg", "create-storage2.png", "create-storage3.jpg", "create-storage4.jpg" ],
@@ -193,7 +193,7 @@ flutter:
   static String CREATE_AUTHENTICATION = "create-authentication";
 
   Future<PageModel> _setupFirebaseAuthentication(MemberModel? member) async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_AUTHENTICATION, "Setup Authentication",
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.app, CREATE_AUTHENTICATION, "Setup Authentication",
         "Setup Authentication", "Follow the below steps to setup authentication.",
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
     [ "firebase-home.jpg", "create-authentication1.jpg", "create-authentication2.jpg"],
@@ -310,7 +310,7 @@ This will create a google api console project and client ID. We will need this i
   static String CREATE_FLUTTER_WEBPROJECT = "create-flutter-webproject";
 
   Future<PageModel> _setupCreateFlutterWebProject(MemberModel? member) async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_FLUTTER_WEBPROJECT,
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.app, CREATE_FLUTTER_WEBPROJECT,
         "Create Flutter Web Project", "Create Flutter Web Project", "Follow the below steps to create your first flutter project.",
         // We can reuse the flutter-project images
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
@@ -337,7 +337,7 @@ This will create a google api console project and client ID. We will need this i
 
   // todo: this is wrong, this is android explain, not web explain
   Future<PageModel> _setupCreateFirebaseWebApp(MemberModel? member) async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, CREATE_WEB_APP, "Create Web App",
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.app, CREATE_WEB_APP, "Create Web App",
         "Create Firebase WebApp", "Follow the below steps to create a Web App.",
         // Here we can reuse the android images
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',
@@ -390,7 +390,7 @@ Basically:
   static String DEPLOY_WEB_APP = "deploy-web-app";
 
   Future<PageModel> _setupDeployWebApp(MemberModel? member) async {
-    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.ELIUD_APP_ID, DEPLOY_WEB_APP, "Deploy Web App",
+    await AbstractRepositorySingleton.singleton.tutorialRepository(EliudApp.ELIUD_APP_ID)!.add(await TutorialTools.constructTutorialModel(member, EliudApp.app, DEPLOY_WEB_APP, "Deploy Web App",
         "Deploy the WebApp", "Follow the below steps to deploy your Web App.",
         // images
         'packages/eliud_pkg_apps/assets/eliud_app/tutorials/',

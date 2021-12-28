@@ -8,6 +8,8 @@ import 'package:eliud_pkg_workflow/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_workflow/model/workflow_model.dart';
 import 'package:eliud_pkg_workflow/tools/action/workflow_action_model.dart';
 
+import '../minkey_app.dart';
+
 class WorkflowSetup {
   final InstallApp? installApp;
 
@@ -57,21 +59,21 @@ class WorkflowSetup {
 
   Future<void> _setupWorkflows() async {
     await AbstractRepositorySingleton.singleton
-        .workflowRepository(installApp!.appId)!
+        .workflowRepository(installApp!.theApp.documentID!)!
         .add(_workflowForManuallyPaidMembership());
     await AbstractRepositorySingleton.singleton
-        .workflowRepository(installApp!.appId)!
+        .workflowRepository(installApp!.theApp.documentID!)!
         .add(_workflowForMembershipPaidByCard());
     await AbstractRepositorySingleton.singleton
-        .workflowRepository(installApp!.appId)!
+        .workflowRepository(installApp!.theApp.documentID!)!
         .add(_workflowForManualPaymentCart());
     await AbstractRepositorySingleton.singleton
-        .workflowRepository(installApp!.appId)!
+        .workflowRepository(installApp!.theApp.documentID!)!
         .add(_workflowForCreditCardPaymentCart());
   }
 
   static WorkflowActionModel requestMembershipAction(String appId) =>
-      WorkflowActionModel(appId,
+      WorkflowActionModel(MinkeyApp.app,
           conditions: DisplayConditionsModel(
             privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
             packageCondition: MembershipPackage.MEMBER_HAS_NO_MEMBERSHIP_YET,
@@ -79,7 +81,7 @@ class WorkflowSetup {
           workflow: _workflowForManuallyPaidMembership());
 
   static WorkflowActionModel payCart(String appId) =>
-      WorkflowActionModel(appId,
+      WorkflowActionModel(MinkeyApp.app,
           conditions: DisplayConditionsModel(
             privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
             packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,

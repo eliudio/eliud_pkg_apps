@@ -31,10 +31,10 @@ import 'member/eliud_member_dashboard.dart';
  */
 class EliudApp extends InstallApp {
   static String ELIUD_APP_ID = "ELIUD_APP";
+  static AppModel app = AppModel(documentID: ELIUD_APP_ID);
 
   EliudApp()
-      : super(
-            appId: ELIUD_APP_ID,);
+      : super(app);
 
   @override
   MenuDefModel profileDrawerMenuDef() {
@@ -44,9 +44,9 @@ class EliudApp extends InstallApp {
         text: "Other apps",
         description: "Other apps",
         action:
-            InternalAction(appId, internalActionEnum: InternalActionEnum.OtherApps)));
-    menuItems.add(menuItemSignOut(appId, "2"));
-    menuItems.add(menuItemManageAccount(appId, "4", MemberDashboard.IDENTIFIER));
+            InternalAction(EliudApp.app, internalActionEnum: InternalActionEnum.OtherApps)));
+    menuItems.add(menuItemSignOut(app, "2"));
+    menuItems.add(menuItemManageAccount(app, "4", MemberDashboard.IDENTIFIER));
     MenuDefModel menu = MenuDefModel(
         documentID: "drawer_profile_menu",
         appId: ELIUD_APP_ID,
@@ -70,20 +70,20 @@ class EliudApp extends InstallApp {
   @override
   MenuDefModel homeMenuDef() {
     List<MenuItemModel> menuItems = [];
-    menuItems.add(menuItemHome(appId, "1", "welcome"));
+    menuItems.add(menuItemHome(app, "1", "welcome"));
     menuItems.add(MenuItemModel(
         documentID: "2",
         text: "Hello World",
         description: "Hello World",
         icon: IconModel(codePoint: Icons.flight_takeoff.codePoint, fontFamily: "MaterialIcons"),
-        action: GotoPage(appId, pageID: "hello_world")));
+        action: GotoPage(app, pageID: "hello_world")));
     menuItems.add(MenuItemModel(
         documentID: "3",
         text: "Advanced",
         description: "Advanced",
         icon: IconModel(codePoint: Icons.tour.codePoint, fontFamily: "MaterialIcons"),
-        action: GotoPage(appId, pageID: "advanced")));
-    menuItems.add(menuItemAbout(appId, "4", Founders.IDENTIFIER, Founders.IDENTIFIER));
+        action: GotoPage(EliudApp.app, pageID: "advanced")));
+    menuItems.add(menuItemAbout(app, "4", Founders.IDENTIFIER, Founders.IDENTIFIER));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
         appId: ELIUD_APP_ID,

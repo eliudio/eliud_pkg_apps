@@ -13,12 +13,11 @@ import 'package:eliud_pkg_feed/model/feed_menu_model.dart';
 import 'package:eliud_pkg_feed/model/feed_model.dart';
 import 'package:flutter/material.dart';
 
+import '../minkey_app.dart';
 import 'feed.dart';
 
 class FeedMenu {
-  final String appId;
-
-  FeedMenu(this.appId);
+  FeedMenu();
 
   static String FEED_MENU_ID_CURRENT_MEMBER = "feedMenuCurrentMember";
   static String FEED_MENU_ID_OTHER_MEMBER = "feedMenuOtherMember";
@@ -30,7 +29,7 @@ class FeedMenu {
         icon: IconModel(
             codePoint: Icons.people.codePoint,
             fontFamily: Icons.settings.fontFamily),
-        action: GotoPage(appId, pageID: Feed.IDENTIFIER));
+        action: GotoPage(MinkeyApp.app, pageID: Feed.IDENTIFIER));
 
   MenuItemModel profileMenuItem() => MenuItemModel(
         documentID: '2',
@@ -39,28 +38,28 @@ class FeedMenu {
         icon: IconModel(
             codePoint: Icons.person.codePoint,
             fontFamily: Icons.settings.fontFamily),
-        action: GotoPage(appId, pageID: Profile.IDENTIFIER));
+        action: GotoPage(MinkeyApp.app, pageID: Profile.IDENTIFIER));
 
   MenuDefModel menuDefCurrentMember() {
     var menuItems = <MenuItemModel>[
       feedMenuItem(),
       profileMenuItem(),
       menuItemFollowRequestsPage(
-          appId,
+          MinkeyApp.app,
           "3",
           FollowRequestDashboard.FOLLOW_REQUEST_IDENTIFIER,
           PrivilegeLevelRequired.NoPrivilegeRequired),
-      menuItemFollowersPage(appId, "4", FollowDashboards.FOLLOWERS_IDENTIFIER,
+      menuItemFollowersPage(MinkeyApp.app, "4", FollowDashboards.FOLLOWERS_IDENTIFIER,
           PrivilegeLevelRequired.NoPrivilegeRequired),
-      menuItemFollowingPage(appId, "5", FollowDashboards.FOLLOWING_IDENTIFIER,
+      menuItemFollowingPage(MinkeyApp.app, "5", FollowDashboards.FOLLOWING_IDENTIFIER,
           PrivilegeLevelRequired.NoPrivilegeRequired),
-      menuItemFiendFriendsPage(appId, "6", InviteDashboard.INVITE_IDENTIFIER,
+      menuItemFiendFriendsPage(MinkeyApp.app, "6", InviteDashboard.INVITE_IDENTIFIER,
           PrivilegeLevelRequired.NoPrivilegeRequired),
-      menuItemAppMembersPage(appId, "7", MembershipDashboard.IDENTIFIER),
+      menuItemAppMembersPage(MinkeyApp.app, "7", MembershipDashboard.IDENTIFIER),
     ];
     MenuDefModel menu = MenuDefModel(
         documentID: FEED_MENU_ID_CURRENT_MEMBER,
-        appId: appId,
+        appId: MinkeyApp.app.documentID!,
         name: "Current Member Feed Menu",
         menuItems: menuItems);
     return menu;
@@ -73,7 +72,7 @@ class FeedMenu {
     ];
     MenuDefModel menu = MenuDefModel(
         documentID: FEED_MENU_ID_OTHER_MEMBER,
-        appId: appId,
+        appId: MinkeyApp.app.documentID!,
         name: "Other Member Feed Menu",
         menuItems: menuItems);
     return menu;
@@ -81,13 +80,13 @@ class FeedMenu {
 
   Future<MenuDefModel> createMenuDefCurrentMember() async {
     return await coreRepo.AbstractRepositorySingleton.singleton
-        .menuDefRepository(appId)!
+        .menuDefRepository(MinkeyApp.app.documentID!)!
         .add(menuDefCurrentMember());
   }
 
   Future<MenuDefModel> createMenuDefOtherMember() async {
     return await coreRepo.AbstractRepositorySingleton.singleton
-        .menuDefRepository(appId)!
+        .menuDefRepository(MinkeyApp.app.documentID!)!
         .add(menuDefOtherMember());
   }
 
@@ -95,7 +94,7 @@ class FeedMenu {
   FeedMenuModel feedMenuModel(FeedModel feed, MenuDefModel menuCurrentMember, MenuDefModel menuOtherMember, ) {
     return FeedMenuModel(
       documentID: FEED_MENU_ID,
-      appId: appId,
+      appId: MinkeyApp.app.documentID,
       description: "Feed Menu",
       feed: feed,
       menuCurrentMember: menuCurrentMember,
@@ -110,7 +109,7 @@ class FeedMenu {
 
   Future<FeedMenuModel> createFeedMenuModel(FeedModel feed, MenuDefModel menuCurrentMember, MenuDefModel menuOtherMember,) async {
     return await AbstractRepositorySingleton.singleton
-        .feedMenuRepository(appId)!
+        .feedMenuRepository(MinkeyApp.app.documentID!)!
         .add(feedMenuModel(feed, menuCurrentMember, menuOtherMember));
   }
 

@@ -19,13 +19,13 @@ class ChatDialog extends AppSectionBase {
   static String IDENTIFIER_READ = "chat_dialog_read";
   static String IDENTIFIER_UNREAD = "chat_dialog_unread";
 
-  static OpenDialog unReadAction(String appId) => OpenDialog(appId,
+  static OpenDialog unReadAction(AppModel app) => OpenDialog(app,
       dialogID: ChatDialog.IDENTIFIER_UNREAD,
       conditions: DisplayConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
           packageCondition: ChatPackage.CONDITION_MEMBER_HAS_UNREAD_CHAT));
 
-  static OpenDialog readAction(String appId) => OpenDialog(appId,
+  static OpenDialog readAction(AppModel app) => OpenDialog(app,
       dialogID: ChatDialog.IDENTIFIER_READ,
       conditions: DisplayConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
@@ -35,7 +35,7 @@ class ChatDialog extends AppSectionBase {
 
   Future<DialogModel> _setupDialog(String identifier) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp!.appId)!
+        .dialogRepository(installApp!.theApp.documentID!)!
         .add(_dialog(identifier));
   }
 
@@ -48,7 +48,7 @@ class ChatDialog extends AppSectionBase {
 
     return DialogModel(
         documentID: identifier,
-        appId: installApp!.appId,
+        appId: installApp!.theApp.documentID!,
         title: "Chat",
         includeHeading: false,
         layout: DialogLayout.ListView,
@@ -62,7 +62,7 @@ class ChatDialog extends AppSectionBase {
   ChatDashboardModel _chatModel() {
     return ChatDashboardModel(
       documentID: CHAT_ID,
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       description: "Chat",
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
@@ -72,7 +72,7 @@ class ChatDialog extends AppSectionBase {
 
   Future<ChatDashboardModel> _setupChat() async {
     return await AbstractRepositorySingleton.singleton
-        .chatDashboardRepository(installApp!.appId)!
+        .chatDashboardRepository(installApp!.theApp.documentID!)!
         .add(_chatModel());
   }
 

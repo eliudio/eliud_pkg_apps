@@ -44,7 +44,7 @@ abstract class OnlyPhotoAndText extends PhotoAndSomthing {
       DecorationComponentPosition imagePosition, String imageAssetLocation,
       {SimpleTextAlign? align}) async {
     var simpleTextModel =
-        await createSimpleTextModel(installApp!.appId, title, contents, align: align);
+        await createSimpleTextModel(installApp!.theApp.documentID!, title, contents, align: align);
     var componentId = simpleTextModel.documentID;
     var componentName = AbstractSimpleTextComponent.componentName;
     return super.installPhoto(componentId, componentName, title, imagePosition, imageAssetLocation);

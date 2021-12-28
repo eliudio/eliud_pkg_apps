@@ -24,7 +24,7 @@ class MyCart extends PageTemplate {
 
   static const String identifier = 'juuwlecart';
 
-  static GotoPage openCartPage() => GotoPage(JuuwleApp.JUUWLE_APP_ID, pageID: MyCart.identifier, conditions:
+  static GotoPage openCartPage() => GotoPage(JuuwleApp.app, pageID: MyCart.identifier, conditions:
       DisplayConditionsModel(
         privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
         packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
@@ -34,7 +34,7 @@ class MyCart extends PageTemplate {
   CartModel _cart() {
     return CartModel(
         documentID: 'cart',
-        appId: installApp!.appId,
+        appId: installApp!.theApp.documentID!,
         title: pageTitle(),
         description: 'Shopping bag',
         checkoutText: 'Checkout',

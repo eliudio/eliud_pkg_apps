@@ -3,10 +3,10 @@ import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_feed/model/feed_model.dart';
 import 'package:eliud_pkg_feed/model/header_model.dart';
 
-class HeaderComponent {
-  final String appId;
+import '../minkey_app.dart';
 
-  HeaderComponent(this.appId);
+class HeaderComponent {
+  HeaderComponent();
 
   static String HEADER_ID = "header";
 
@@ -14,7 +14,7 @@ class HeaderComponent {
     return HeaderModel(
       documentID: HEADER_ID,
       feed: feed,
-      appId: appId,
+      appId: MinkeyApp.app.documentID,
       description: "Header",
       conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
@@ -24,7 +24,7 @@ class HeaderComponent {
 
   Future<HeaderModel> createHeaderModel(FeedModel feed) async {
     return await AbstractRepositorySingleton.singleton
-        .headerRepository(appId)!
+        .headerRepository(MinkeyApp.app.documentID)!
         .add(headerModel(feed));
   }
 

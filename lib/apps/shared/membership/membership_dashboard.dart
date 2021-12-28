@@ -22,7 +22,7 @@ class MembershipDashboard extends AppSectionBase {
 
   static String IDENTIFIER = "membership_dashboard";
 
-  static OpenDialog action(String appId) => OpenDialog(appId,
+  static OpenDialog action(AppModel app) => OpenDialog(app,
       dialogID: IDENTIFIER,
       conditions: DisplayConditionsModel(
           privilegeLevelRequired:
@@ -30,7 +30,7 @@ class MembershipDashboard extends AppSectionBase {
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp!.appId)!
+        .dialogRepository(installApp!.theApp.documentID!)!
         .add(_dialog());
   }
 
@@ -43,7 +43,7 @@ class MembershipDashboard extends AppSectionBase {
 
     return DialogModel(
         documentID: IDENTIFIER,
-        appId: installApp!.appId,
+        appId: installApp!.theApp.documentID!,
         title: "Membership dashboard",
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
@@ -56,10 +56,10 @@ class MembershipDashboard extends AppSectionBase {
   MembershipDashboardModel _dashboardModel() {
     return MembershipDashboardModel(
       documentID: IDENTIFIER,
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       description: "Members",
       memberActions: ProfileAndFeedToAction.getMemberActionModels(
-          installApp!.appId, profilePageId, feedPageId),
+          installApp!.theApp, profilePageId, feedPageId),
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
               PrivilegeLevelRequiredSimple.OwnerPrivilegeRequiredSimple),
@@ -68,7 +68,7 @@ class MembershipDashboard extends AppSectionBase {
 
   Future<MembershipDashboardModel> _setupDashboard() async {
     return await AbstractRepositorySingleton.singleton
-        .membershipDashboardRepository(installApp!.appId)!
+        .membershipDashboardRepository(installApp!.theApp.documentID!)!
         .add(_dashboardModel());
   }
 

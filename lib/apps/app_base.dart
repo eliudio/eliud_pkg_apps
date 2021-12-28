@@ -27,6 +27,7 @@ import 'package:eliud_pkg_fundamentals/model/divider_model.dart';
 import 'package:flutter/material.dart';
 
 abstract class InstallApp {
+  final AppModel theApp;
   AppBarModel? theAppBar;
   // adminAppWipers are used to delete the admin part of the app
   List<AdminAppWiperBase> adminAppWipers();
@@ -57,12 +58,11 @@ abstract class InstallApp {
   PublicMediumModel? thePublicLogoHead;
   PlatformMediumModel? thePlatformLogo;
 
-  final String appId;
   MemberModel? member;
   AppPolicyModel? appPolicyModel;
 
   // Constructor
-  InstallApp({required this.appId});
+  InstallApp(this.theApp);
 
   // Implementation
   Future<void> run(String ownerID);
@@ -91,7 +91,7 @@ abstract class InstallApp {
   }
 
   Future<AccessModel> claimAccess(String ownerID) async {
-    return await accessRepository(appId: appId)!.add(AccessModel(
+    return await accessRepository(appId: theApp.documentID!)!.add(AccessModel(
         documentID: ownerID,
         privilegeLevel: PrivilegeLevel.OwnerPrivilege,
         points: 0));
@@ -100,7 +100,7 @@ abstract class InstallApp {
   PosSizeModel halfScreen() {
     return PosSizeModel(
         documentID: 'halfScreen',
-        appId: appId,
+        appId: theApp.documentID!,
         name: 'HalfScreen both orientations',
         widthPortrait: 1,
         widthTypePortrait: WidthTypePortrait.PercentageWidth,
@@ -120,7 +120,7 @@ abstract class InstallApp {
   PosSizeModel screen75() {
     return PosSizeModel(
         documentID: 'screen75',
-        appId: appId,
+        appId: theApp.documentID!,
         name: '75 % both orientations',
         widthPortrait: .75,
         widthTypePortrait: WidthTypePortrait.PercentageWidth,
@@ -140,7 +140,7 @@ abstract class InstallApp {
   PosSizeModel fullScreen() {
     return PosSizeModel(
         documentID: 'fullScreen',
-        appId: appId,
+        appId: theApp.documentID!,
         name: 'Fullscreen both orientations',
         fitLandscape: LandscapeFitType.LandscapeCover,
         widthLandscape: 1,
@@ -157,28 +157,28 @@ abstract class InstallApp {
 
   Future<void> setupPosSizes() async {
     await corerepo.AbstractRepositorySingleton.singleton
-        .posSizeRepository(appId)!
+        .posSizeRepository(theApp.documentID!)!
         .add(halfScreen());
     await corerepo.AbstractRepositorySingleton.singleton
-        .posSizeRepository(appId)!
+        .posSizeRepository(theApp.documentID!)!
         .add(fullScreen());
     await corerepo.AbstractRepositorySingleton.singleton
-        .posSizeRepository(appId)!
+        .posSizeRepository(theApp.documentID!)!
         .add(screen75());
   }
 
   Future<PublicMediumModel> _publicMediumModel(String assetLocation) async {
-    return await ImageTools.uploadPublicPhoto(appId, member!, assetLocation);
+    return await ImageTools.uploadPublicPhoto(theApp, member!, assetLocation);
   }
 
   Future<PlatformMediumModel> _platformMediumModel(String assetLocation) async {
-    return await ImageTools.uploadPlatformPhoto(appId, member!, assetLocation);
+    return await ImageTools.uploadPlatformPhoto(theApp, member!, assetLocation);
   }
 
   DrawerModel _drawer(PublicMediumModel? logo) {
     return DrawerModel(
-        documentID: drawerID(appId, DrawerType.Left),
-        appId: appId,
+        documentID: drawerID(theApp.documentID!, DrawerType.Left),
+        appId: theApp.documentID!,
         name: 'Drawer',
         headerText: '',
         headerBackgroundOverride: _drawerHeaderBGOverride(logo),
@@ -189,13 +189,13 @@ abstract class InstallApp {
 
   Future<DrawerModel> setupDrawer(PublicMediumModel? logo) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .drawerRepository(appId)!
+        .drawerRepository(theApp.documentID!)!
         .add(_drawer(logo));
   }
 
   Future<void> setupDecorationColorModel(PublicMediumModel? logo) async {
     await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(appId)!
+        .backgroundRepository(theApp.documentID!)!
         .add(_drawerHeaderBGOverride(logo));
   }
 
@@ -203,7 +203,7 @@ abstract class InstallApp {
     if (logo == null) throw Exception("You must provide a logo");
     var decorationColorModels = <DecorationColorModel>[];
     var backgroundModel = BackgroundModel(
-        appId: appId,
+        appId: theApp.documentID!,
         documentID: 'left_drawer_header_bg_' + logo.baseName!,
         decorationColors: decorationColorModels,
         backgroundImage: logo);
@@ -212,8 +212,8 @@ abstract class InstallApp {
 
   DrawerModel _profileDrawer() {
     return DrawerModel(
-        documentID: drawerID(appId, DrawerType.Right),
-        appId: appId,
+        documentID: drawerID(theApp.documentID!, DrawerType.Right),
+        appId: theApp.documentID!,
         name: 'Profile Drawer',
         headerText: '',
         secondHeaderText: 'name: \${userName}\ngroup: \${userGroup}',
@@ -224,14 +224,14 @@ abstract class InstallApp {
 
   Future<DrawerModel> setupProfileDrawer() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .drawerRepository(appId)!
+        .drawerRepository(theApp.documentID!)!
         .add(_profileDrawer());
   }
 
   HomeMenuModel homeMenu() {
     var menu = HomeMenuModel(
-        documentID: homeMenuID(appId),
-        appId: appId,
+        documentID: homeMenuID(theApp.documentID!),
+        appId: theApp.documentID!,
         name: 'Home menu 1',
         menu: homeMenuDef(),);
     return menu;
@@ -239,16 +239,16 @@ abstract class InstallApp {
 
   Future<void> setupMenus() async {
     await corerepo.AbstractRepositorySingleton.singleton
-        .homeMenuRepository(appId)!
+        .homeMenuRepository(theApp.documentID!)!
         .add(homeMenu());
     await corerepo.AbstractRepositorySingleton.singleton
-        .menuDefRepository(appId)!
+        .menuDefRepository(theApp.documentID!)!
         .add(homeMenuDef());
     await corerepo.AbstractRepositorySingleton.singleton
-        .menuDefRepository(appId)!
+        .menuDefRepository(theApp.documentID!)!
         .add(drawerMenuDef());
     await corerepo.AbstractRepositorySingleton.singleton
-        .menuDefRepository(appId)!
+        .menuDefRepository(theApp.documentID!)!
         .add(profileDrawerMenuDef());
   }
 
@@ -261,7 +261,7 @@ abstract class InstallApp {
       height: 10,
       indent: 0,
       thickness: .5,
-      appId: appId,
+      appId: theApp.documentID!,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
               PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
@@ -270,7 +270,7 @@ abstract class InstallApp {
   }
 
   Future<void> setupDividers() async {
-    await dividerRepository(appId: appId)!.add(_divider());
+    await dividerRepository(appId: theApp.documentID!)!.add(_divider());
   }
 
   AppBarModel _appBar(
@@ -282,8 +282,8 @@ abstract class InstallApp {
       RgbModel? selectedIconColorOverride,
       RgbModel? menuBackgroundColorOverride}) {
     var appBar = AppBarModel(
-      documentID: appBarID(appId),
-      appId: appId,
+      documentID: appBarID(theApp.documentID!),
+      appId: theApp.documentID!,
       header: HeaderSelection.Title,
       title: title,
       backgroundOverride: backgroundOverride,
@@ -304,7 +304,7 @@ abstract class InstallApp {
       RgbModel? selectedIconColorOverride,
       RgbModel? menuBackgroundColorOverride}) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .appBarRepository(appId)!
+        .appBarRepository(theApp.documentID!)!
         .add(_appBar(documentID, menu, title, backgroundOverride: backgroundOverride, iconColorOverride: iconColorOverride,
         selectedIconColorOverride: selectedIconColorOverride, menuBackgroundColorOverride: menuBackgroundColorOverride));
   }
@@ -330,7 +330,7 @@ abstract class InstallApp {
     var drawer = await setupDrawer(thePublicLogo);
     var _adminBase = adminBase(drawer, endDrawer);
 
-    await GridViews().run(appId);
+    await GridViews().run(theApp.documentID!);
     var adminMenu =
         await _appBarMenu("Menu", await _adminBase.installAdminMenus());
 
@@ -358,14 +358,14 @@ abstract class InstallApp {
     if (usr == null) {
       throw Exception("User is null");
     } else {
-      await claimOwnerShipApplication(appId, usr.uid);
+      await claimOwnerShipApplication(theApp.documentID!, usr.uid);
       member = await AccessBloc.firebaseToMemberModel(usr);
       if (member == null) {
-        print('Can not register $appId because member cannot be created');
+        print('Can not register $theApp.documentID! because member cannot be created');
       } else {
         await claimAccess(usr.uid);
         await run(usr.uid);
-        print('Installed $appId successfully');
+        print('Installed $theApp.documentID! successfully');
       }
     }
   }
@@ -383,7 +383,7 @@ abstract class InstallApp {
           documentID: '2',
           text: 'Sign in',
           description: 'Sign in',
-          action: InternalAction(appId,
+          action: InternalAction(theApp,
               internalActionEnum: InternalActionEnum.Login)),
     );
     menuItems.add(MenuItemModel(
@@ -393,11 +393,11 @@ abstract class InstallApp {
         icon: IconModel(
             codePoint: Icons.settings.codePoint,
             fontFamily: Icons.settings.fontFamily),
-        action: PopupMenu(appId, menuDef: adminMenu)));
+        action: PopupMenu(theApp, menuDef: adminMenu)));
 
     var menu = MenuDefModel(
         documentID: appBarMenuIdentifier,
-        appId: appId,
+        appId: theApp.documentID!,
         name: title,
         menuItems: menuItems);
     return menu;
@@ -405,7 +405,7 @@ abstract class InstallApp {
 
   Future<MenuDefModel> _appBarMenu(String title, MenuDefModel adminMenu) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .menuDefRepository(appId)!
+        .menuDefRepository(theApp.documentID!)!
         .add(_appBarMenuDef(title, adminMenu));
   }
 
@@ -415,13 +415,13 @@ abstract class InstallApp {
   static String disclaimerID = 'disclaimer';
 
   Future<void> setupAppPolicy() async {
-    var privacyPolicy = await ImageTools.uploadPlatformPdf(appId, member!, privacyPolicyAssetLocation(), privacyID);
-    var termsOfServicePolicy = await ImageTools.uploadPlatformPdf(appId, member!, termsOfServiceAssetLocation(), termsOfServiceID);
-    var disclaimerPolicy = await ImageTools.uploadPlatformPdf(appId, member!, disclaimerAssetLocation(), disclaimerID);
+    var privacyPolicy = await ImageTools.uploadPlatformPdf(theApp, member!, privacyPolicyAssetLocation(), privacyID);
+    var termsOfServicePolicy = await ImageTools.uploadPlatformPdf(theApp, member!, termsOfServiceAssetLocation(), termsOfServiceID);
+    var disclaimerPolicy = await ImageTools.uploadPlatformPdf(theApp, member!, disclaimerAssetLocation(), disclaimerID);
 
     appPolicyModel = AppPolicyModel(
         documentID: 'policies',
-        appId: appId,
+        appId: theApp.documentID!,
         comments: 'All policies of the app',
         policies: [
           AppPolicyItemModel(
@@ -440,7 +440,7 @@ abstract class InstallApp {
             policy: disclaimerPolicy,
           ),
         ]);
-    await corerepo.appPolicyRepository(appId: appId)!.add(appPolicyModel!);
+    await corerepo.appPolicyRepository(appId: theApp.documentID!)!.add(appPolicyModel!);
   }
 
   Future<List<PageModel>> createPolicyPages(AppPolicyModel appPolicyModel, DrawerModel drawer,
@@ -465,7 +465,7 @@ abstract class InstallApp {
     List<MenuItemModel> menuItems = [];
     appPolicyModel!.policies!.forEach((element) async {
       menuItems.add(menuItem(
-          appId, element.documentID, element.documentID, element.name, Icons.rule));
+          theApp.documentID!, element.documentID, element.documentID, element.name, Icons.rule));
     });
     return menuItems;
   }

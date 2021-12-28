@@ -38,7 +38,7 @@ class PlayStore extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.appId)!
+        .pageRepository(installApp!.theApp.documentID!)!
         .add(_page(appBar));
   }
 
@@ -75,7 +75,7 @@ class PlayStore extends AppSection {
 
   Future<FaderModel> _setupFader() async {
     return await AbstractRepositorySingleton.singleton
-        .faderRepository(installApp!.appId)!
+        .faderRepository(installApp!.theApp.documentID!)!
         .add(_fader());
   }
 
@@ -115,7 +115,7 @@ class PlayStore extends AppSection {
 
   Future<PlayStoreModel> _setupPlayStore() async {
     return await creator.AbstractRepositorySingleton.singleton
-        .playStoreRepository(installApp!.appId)!
+        .playStoreRepository(installApp!.theApp.documentID!)!
         .add(playStore());
   }
 
@@ -134,7 +134,7 @@ class PlayStore extends AppSection {
 
     decorationColorModels.add(decorationColorModel2);
     BackgroundModel backgroundModel = BackgroundModel(
-      appId: installApp!.appId,
+      appId: installApp!.theApp.documentID!,
       documentID: "playstore_bg",
       beginGradientPosition: StartGradientPosition.TopLeft,
       endGradientPosition: EndGradientPosition.BottomRight,
@@ -147,13 +147,13 @@ class PlayStore extends AppSection {
 
   Future<BackgroundModel> _setupPlayStoreBG() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(installApp!.appId)!
+        .backgroundRepository(installApp!.theApp.documentID!)!
         .add(playStoreBG());
   }
 
   ShadowModel _shadowModel() {
     ShadowModel shadowModel = ShadowModel(
-        appId: installApp!.appId,
+        appId: installApp!.theApp.documentID!,
         documentID: "store_item_shadow",
         comments: "Store Item shadow",
         color: EliudColors.grayTransparent,
@@ -166,7 +166,7 @@ class PlayStore extends AppSection {
 
   Future<ShadowModel> _setupShadows() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .shadowRepository(installApp!.appId)!
+        .shadowRepository(installApp!.theApp.documentID!)!
         .add(_shadowModel());
   }
 

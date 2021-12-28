@@ -6,13 +6,14 @@ import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart' as postRepo;
 import 'package:eliud_pkg_feed/model/member_profile_model.dart';
 
+import '../minkey_app.dart';
+
 class ExampleProfile {
-  final String? appId;
   final List<String> readAccess;
 
   static String IDENTIFIER = "exampleProfile";
 
-  ExampleProfile(this.appId, this.readAccess);
+  ExampleProfile(this.readAccess);
 
   Future<void> run(MemberModel member, String  feedId) async {
     await exampleMemberProfileModel(member, feedId);
@@ -23,11 +24,11 @@ class ExampleProfile {
     if (memberPublicInfo == null) {
       throw Exception("ERROR: can't retrieve member data");
     }
-    var profilePhoto = await ImageTools.createMemberMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/minkey_app/profile/exampleprofile.png');
-    var profileBackground = await ImageTools.createMemberMediumModelPhoto(appId!, member, 'packages/eliud_pkg_apps/assets/minkey_app/profile/pexels-pixabay-258109.jpg');
+    var profilePhoto = await ImageTools.createMemberMediumModelPhoto(MinkeyApp.app, member, 'packages/eliud_pkg_apps/assets/minkey_app/profile/exampleprofile.png');
+    var profileBackground = await ImageTools.createMemberMediumModelPhoto(MinkeyApp.app, member, 'packages/eliud_pkg_apps/assets/minkey_app/profile/pexels-pixabay-258109.jpg');
     var value = MemberProfileModel(
       documentID: memberPublicInfo.documentID! + "-" + feedId,
-      appId: appId,
+      appId: MinkeyApp.app.documentID!,
       authorId: member.documentID,
       feedId: feedId,
       profileBackground: profileBackground,
@@ -36,7 +37,7 @@ class ExampleProfile {
       profile: kHtml,
     );
 
-     await postRepo.memberProfileRepository(appId: appId)!.add(value);
+     await postRepo.memberProfileRepository(appId: MinkeyApp.app.documentID)!.add(value);
     return value;
   }
 }

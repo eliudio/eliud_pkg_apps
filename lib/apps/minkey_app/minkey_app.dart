@@ -53,10 +53,11 @@ import 'membership/minkey_membership_dashboard.dart';
  */
 class MinkeyApp extends InstallApp {
   static String MINKEY_APP_ID = "MINKEY_APP";
+  static AppModel app = AppModel(documentID: MINKEY_APP_ID);
 
   MinkeyApp()
-      : super(
-          appId: MINKEY_APP_ID,
+      : super(app,
+
         );
 
   @override
@@ -66,11 +67,11 @@ class MinkeyApp extends InstallApp {
         documentID: "1",
         text: "Other apps",
         description: "Other apps",
-        action: InternalAction(appId,
+        action: InternalAction(app,
             internalActionEnum: InternalActionEnum.OtherApps)));
-    menuItems.add(menuItemSignOut(appId, "2"));
+    menuItems.add(menuItemSignOut(app, "2"));
     menuItems
-        .add(menuItemManageAccount(appId, "4", MemberDashboard.IDENTIFIER));
+        .add(menuItemManageAccount(app, "4", MemberDashboard.IDENTIFIER));
 
     MenuDefModel menu = MenuDefModel(
         documentID: "drawer_profile_menu",
@@ -95,16 +96,16 @@ class MinkeyApp extends InstallApp {
   @override
   MenuDefModel homeMenuDef() {
     List<MenuItemModel> menuItems = [];
-    menuItems.add(menuItemFeed(appId, "feed", Feed.IDENTIFIER, "Feed"));
+    menuItems.add(menuItemFeed(app, "feed", Feed.IDENTIFIER, "Feed"));
     menuItems.add(menuItem(
-        appId, "apps", PlayStore.IDENTIFIER, "Apps", Icons.power_settings_new));
+        app, "apps", PlayStore.IDENTIFIER, "Apps", Icons.power_settings_new));
     for (int i = 0; i < Welcome.IDENTIFIERs.length; i++) {
       menuItems.add(menuItemWelcome(
-          appId, Welcome.IDENTIFIERs[i], Welcome.IDENTIFIERs[i], "Welcome", privilegeLevelRequired: Welcome.menuPrivilegeLevelsRequired[i]));
+          app, Welcome.IDENTIFIERs[i], Welcome.IDENTIFIERs[i], "Welcome", privilegeLevelRequired: Welcome.menuPrivilegeLevelsRequired[i]));
     }
-    menuItems.add(menuItemAbout(appId, "about", Founders.IDENTIFIER, "About"));
+    menuItems.add(menuItemAbout(app, "about", Founders.IDENTIFIER, "About"));
     menuItems
-        .add(menuItem(appId, "album", Album.IDENTIFIER, "Album", Icons.photo));
+        .add(menuItem(app, "album", Album.IDENTIFIER, "Album", Icons.photo));
     MenuDefModel menu = MenuDefModel(
         documentID: "main",
         appId: MINKEY_APP_ID,
@@ -263,7 +264,7 @@ class MinkeyApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.post_add.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: PostActionModel(MinkeyApp.MINKEY_APP_ID,
+            action: PostActionModel(app,
                 feed: Feed.feedModel(),
                 conditions: DisplayConditionsModel(
                     privilegeLevelRequired:
@@ -276,7 +277,7 @@ class MinkeyApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.notifications.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: NotificationDashboard.action(MinkeyApp.MINKEY_APP_ID)),
+            action: NotificationDashboard.action(app)),
         MenuItemModel(
             documentID: 'assignments',
             text: 'Assignments',
@@ -284,7 +285,7 @@ class MinkeyApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.playlist_add_check.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-              action: AssignmentViewSetup.action(MINKEY_APP_ID)),
+              action: AssignmentViewSetup.action(app)),
         MenuItemModel(
             documentID: 'chatUnread',
             text: 'Chat',
@@ -292,7 +293,7 @@ class MinkeyApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.chat_bubble_rounded.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: ChatPage.unReadAction(MINKEY_APP_ID)),
+            action: ChatPage.unReadAction(app)),
         MenuItemModel(
             documentID: 'chatReadAndUnread',
             text: 'Chat',
@@ -300,7 +301,7 @@ class MinkeyApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.chat_bubble_outline_rounded.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-            action: ChatPage.readAction(MINKEY_APP_ID)),
+            action: ChatPage.readAction(app)),
         MenuItemModel(
             documentID: "join",
             text: "JOIN",
