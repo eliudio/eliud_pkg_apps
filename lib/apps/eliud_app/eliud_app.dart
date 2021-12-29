@@ -128,8 +128,6 @@ class EliudApp extends InstallApp {
       homePages: homePages,
       styleFamily: MonaStyleFamily.monaStyleFamilyName,
       styleName: MonaStyleFamily.eliudStyleName,
-      routeBuilder: PageTransitionAnimation.FadeRoute,
-      routeAnimationDuration: 800,
       ownerID: ownerID,
       appStatus: AppStatus.Live,
       policies: appPolicyModel

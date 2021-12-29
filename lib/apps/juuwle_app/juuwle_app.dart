@@ -108,8 +108,6 @@ class JuuwleApp extends InstallApp {
       styleFamily: MonaStyleFamily.monaStyleFamilyName,
       styleName: MonaStyleFamily.juuwleStyleName,
       homePages: homePages,
-      routeBuilder: PageTransitionAnimation.FadeRoute,
-      routeAnimationDuration: 800,
       ownerID: ownerID,
       appStatus: AppStatus.Live,
       policies: appPolicyModel,
