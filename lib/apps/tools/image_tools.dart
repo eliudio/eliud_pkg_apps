@@ -8,28 +8,33 @@ import 'package:eliud_pkg_feed/model/post_medium_model.dart';
 
 class ImageTools {
   static Future<PublicMediumModel> uploadPublicPhoto(AppModel app, MemberModel member, String assetPath) async {
-    String memberMediumDocumentID = newRandomKey();
-    return await PublicMediumHelper(app, member.documentID!, ).createThumbnailUploadPhotoAsset(memberMediumDocumentID, assetPath, );
+    String docID = newRandomKey();
+    return await PublicMediumHelper(app, member.documentID!, ).createThumbnailUploadPhotoAsset(docID, assetPath, );
   }
 
   static Future<PlatformMediumModel> uploadPlatformPhoto(AppModel app, MemberModel member, String assetPath) async {
-    String memberMediumDocumentID = newRandomKey();
-    return await PlatformMediumHelper(app, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadPhotoAsset(memberMediumDocumentID, assetPath, );
+    String docID = newRandomKey();
+    return await PlatformMediumHelper(app, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadPhotoAsset(docID, assetPath, );
   }
 
   static Future<PlatformMediumModel> uploadPlatformVideo(AppModel app, MemberModel member, String assetPath) async {
-    String memberMediumDocumentID = newRandomKey();
-    return await PlatformMediumHelper(app, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadVideoAsset(memberMediumDocumentID, assetPath, );
+    String docID = newRandomKey();
+    return await PlatformMediumHelper(app, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadVideoAsset(docID, assetPath, );
   }
 
   static Future<PlatformMediumModel> uploadPlatformPdf(AppModel app, MemberModel member, String assetPath, String documentID) async {
-    String memberMediumDocumentID = newRandomKey();
-    return await PlatformMediumHelper(app, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadPdfAsset(memberMediumDocumentID, assetPath, documentID);
+    String docID = newRandomKey();
+    return await PlatformMediumHelper(app, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadPdfAsset(docID, assetPath, documentID);
+  }
+
+  static Future<PublicMediumModel> uploadPublicPdf(AppModel app, MemberModel member, String assetPath, String documentID) async {
+    String docID = newRandomKey();
+    return await PublicMediumHelper(app, member.documentID!).createThumbnailUploadPdfAsset(docID, assetPath, documentID);
   }
 
   static Future<MemberMediumModel> createMemberMediumModelPhoto(AppModel app, MemberModel member, String assetPath) async {
-    String memberMediumDocumentID = newRandomKey();
-    var photo = await MemberMediumHelper(app, member.documentID!, ['PUBLIC',member.documentID!]).createThumbnailUploadPhotoAsset(memberMediumDocumentID, assetPath, );
+    String docID = newRandomKey();
+    var photo = await MemberMediumHelper(app, member.documentID!, ['PUBLIC',member.documentID!]).createThumbnailUploadPhotoAsset(docID, assetPath, );
     return photo;
   }
 
@@ -42,8 +47,8 @@ class ImageTools {
   }
 
   static Future<PostMediumModel> createPostMediumModelVideo(AppModel app, MemberModel member, String assetPath) async {
-    String memberMediumDocumentID = newRandomKey();
-    var video = await MemberMediumHelper(app, member.documentID!, ['PUBLIC',member.documentID!]).createThumbnailUploadVideoAsset(memberMediumDocumentID, assetPath, );
+    String docID = newRandomKey();
+    var video = await MemberMediumHelper(app, member.documentID!, ['PUBLIC',member.documentID!]).createThumbnailUploadVideoAsset(docID, assetPath, );
     return PostMediumModel(
       documentID: newRandomKey(),
       memberMedium: video,

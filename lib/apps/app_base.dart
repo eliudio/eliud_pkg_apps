@@ -415,9 +415,9 @@ abstract class InstallApp {
   static String disclaimerID = 'disclaimer';
 
   Future<void> setupAppPolicy() async {
-    var privacyPolicy = await ImageTools.uploadPlatformPdf(theApp, member!, privacyPolicyAssetLocation(), privacyID);
-    var termsOfServicePolicy = await ImageTools.uploadPlatformPdf(theApp, member!, termsOfServiceAssetLocation(), termsOfServiceID);
-    var disclaimerPolicy = await ImageTools.uploadPlatformPdf(theApp, member!, disclaimerAssetLocation(), disclaimerID);
+    var privacyPolicy = await ImageTools.uploadPublicPdf(theApp, member!, privacyPolicyAssetLocation(), privacyID);
+    var termsOfServicePolicy = await ImageTools.uploadPublicPdf(theApp, member!, termsOfServiceAssetLocation(), termsOfServiceID);
+    var disclaimerPolicy = await ImageTools.uploadPublicPdf(theApp, member!, disclaimerAssetLocation(), disclaimerID);
 
     appPolicyModel = AppPolicyModel(
         documentID: 'policies',
@@ -465,7 +465,7 @@ abstract class InstallApp {
     List<MenuItemModel> menuItems = [];
     appPolicyModel!.policies!.forEach((element) async {
       menuItems.add(menuItem(
-          theApp.documentID!, element.documentID, element.documentID, element.name, Icons.rule));
+          theApp, element.documentID, element.documentID, element.name, Icons.rule));
     });
     return menuItems;
   }
