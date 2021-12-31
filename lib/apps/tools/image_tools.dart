@@ -12,19 +12,19 @@ class ImageTools {
     return await PublicMediumHelper(app, member.documentID!, ).createThumbnailUploadPhotoAsset(docID, assetPath, );
   }
 
-  static Future<PlatformMediumModel> uploadPlatformPhoto(AppModel app, MemberModel member, String assetPath) async {
+  static Future<PlatformMediumModel> uploadPlatformPhoto(AppModel app, MemberModel member, String assetPath, PrivilegeLevelRequiredSimple privilegeLevelRequiredSimple) async {
     String docID = newRandomKey();
-    return await PlatformMediumHelper(app, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadPhotoAsset(docID, assetPath, );
+    return await PlatformMediumHelper(app, member.documentID!, privilegeLevelRequiredSimple).createThumbnailUploadPhotoAsset(docID, assetPath, );
   }
 
-  static Future<PlatformMediumModel> uploadPlatformVideo(AppModel app, MemberModel member, String assetPath) async {
+  static Future<PlatformMediumModel> uploadPlatformVideo(AppModel app, MemberModel member, String assetPath, PrivilegeLevelRequiredSimple privilegeLevelRequiredSimple) async {
     String docID = newRandomKey();
-    return await PlatformMediumHelper(app, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadVideoAsset(docID, assetPath, );
+    return await PlatformMediumHelper(app, member.documentID!, privilegeLevelRequiredSimple).createThumbnailUploadVideoAsset(docID, assetPath, );
   }
 
-  static Future<PlatformMediumModel> uploadPlatformPdf(AppModel app, MemberModel member, String assetPath, String documentID) async {
+  static Future<PlatformMediumModel> uploadPlatformPdf(AppModel app, MemberModel member, String assetPath, String documentID, PrivilegeLevelRequiredSimple privilegeLevelRequiredSimple) async {
     String docID = newRandomKey();
-    return await PlatformMediumHelper(app, member.documentID!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple).createThumbnailUploadPdfAsset(docID, assetPath, documentID);
+    return await PlatformMediumHelper(app, member.documentID!, privilegeLevelRequiredSimple).createThumbnailUploadPdfAsset(docID, assetPath, documentID);
   }
 
   static Future<PublicMediumModel> uploadPublicPdf(AppModel app, MemberModel member, String assetPath, String documentID) async {

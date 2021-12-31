@@ -97,19 +97,19 @@ class Welcome extends AppSection {
   }
 
   Future<PlatformMediumModel> androidImage() async {
-    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg');
+    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg', PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
   }
 
   Future<PlatformMediumModel> iphoneImage() async {
-    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg');
+    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg', PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
   }
 
   Future<PlatformMediumModel> tabletImage() async {
-    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg');
+    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg', PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
   }
 
   Future<PlatformMediumModel> macbookImage() async {
-    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg');
+    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg', PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
   }
 
   FaderModel _fader(PlatformMediumModel android, PlatformMediumModel iphone, PlatformMediumModel tablet, PlatformMediumModel macbook, ) {

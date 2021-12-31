@@ -28,25 +28,25 @@ Future<ProductModel> productToProductModel(ShopModel shop, InstallApp installApp
     productImages.add(ProductImageModel(
         documentID: product.imageId1(),
         image: await ImageTools.uploadPlatformPhoto(
-            installApp.theApp, installApp.member!, product.assetLocation1!)));
+            installApp.theApp, installApp.member!, product.assetLocation1!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple)));
   }
   if (product.assetLocation2 != null) {
     productImages.add(ProductImageModel(
         documentID: product.imageId1(),
         image: await ImageTools.uploadPlatformPhoto(
-            installApp.theApp, installApp.member!, product.assetLocation2!)));
+            installApp.theApp, installApp.member!, product.assetLocation2!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple)));
   }
   if (product.assetLocation3 != null) {
     productImages.add(ProductImageModel(
         documentID: product.imageId1(),
         image: await ImageTools.uploadPlatformPhoto(
-            installApp.theApp, installApp.member!, product.assetLocation3!)));
+            installApp.theApp, installApp.member!, product.assetLocation3!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple)));
   }
   if (product.assetLocation4 != null) {
     productImages.add(ProductImageModel(
         documentID: product.imageId1(),
         image: await ImageTools.uploadPlatformPhoto(
-            installApp.theApp, installApp.member!, product.assetLocation4!)));
+            installApp.theApp, installApp.member!, product.assetLocation4!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple)));
   }
   return new ProductModel(
     documentID: product.id,

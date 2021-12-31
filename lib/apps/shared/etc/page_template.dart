@@ -96,7 +96,7 @@ abstract class PageTemplate extends AppSection {
     return await ImageTools.uploadPlatformPhoto(
         installApp!.theApp,
         installApp!.member!,
-        assetLocation());
+        assetLocation(), PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
   }
 
 

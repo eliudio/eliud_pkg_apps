@@ -48,7 +48,7 @@ class Welcome extends AppSection {
   static String welcomeIdentifier = "welcome";
 
   Future<PlatformMediumModel> uploadWelcomeImage() async {
-    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_standing.png');
+    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_standing.png', PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
   }
 
   BookletModel _welcome(PlatformMediumModel welcomeImage) {

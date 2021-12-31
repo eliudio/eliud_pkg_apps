@@ -172,7 +172,7 @@ abstract class InstallApp {
   }
 
   Future<PlatformMediumModel> _platformMediumModel(String assetLocation) async {
-    return await ImageTools.uploadPlatformPhoto(theApp, member!, assetLocation);
+    return await ImageTools.uploadPlatformPhoto(theApp, member!, assetLocation, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
   }
 
   DrawerModel _drawer(PublicMediumModel? logo) {

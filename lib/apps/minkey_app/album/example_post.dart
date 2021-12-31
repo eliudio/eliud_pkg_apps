@@ -24,7 +24,7 @@ class ExampleAlbumHelper {
         documentID: newRandomKey(),
         name: 'example 1',
         medium: await PlatformMediumHelper(MinkeyApp.app, memberId,
-            PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple)
+            PrivilegeLevelRequiredSimple.Level1PrivilegeRequiredSimple)
             .createThumbnailUploadPhotoAsset(
             newRandomKey(), path));
   }

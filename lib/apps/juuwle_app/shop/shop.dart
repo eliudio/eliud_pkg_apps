@@ -255,7 +255,7 @@ class Shop extends AppSection {
     return await ImageTools.uploadPlatformPhoto(
         installApp!.theApp,
         installApp!.member!,
-        'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_presenting.png');
+        'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_presenting.png', PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
   }
 
   static String appBarIdentifier = 'store';
