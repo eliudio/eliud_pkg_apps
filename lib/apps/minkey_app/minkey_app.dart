@@ -161,6 +161,13 @@ class MinkeyApp extends InstallApp {
     } else {
 
       // await createFollowMenu();
+      await Album(
+        installApp: this,
+        homeMenu: homeMenu(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+      )
+          .run(member);
       var homePageLevel1Member = await Feed(
               installApp: this,
               homeMenu: homeMenu(),
@@ -230,13 +237,6 @@ class MinkeyApp extends InstallApp {
               endDrawer: endDrawer,
               )
           .run();
-      await Album(
-              installApp: this,
-              homeMenu: homeMenu(),
-              drawer: drawer,
-              endDrawer: endDrawer,
-              )
-          .run(member);
 
       AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
         homePageBlockedMember: homePageBlockedMember.documentID,
