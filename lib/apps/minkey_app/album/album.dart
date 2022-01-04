@@ -50,13 +50,7 @@ class Album extends AppSection {
 
   Future<AlbumModel> albumModel(String memberId) async {
     var entries = await ExampleAlbumHelper(memberId: memberId).createAll();
-    List<AlbumEntryModel> cEntries = [];
-    for (var e in entries) {
-      if (e != null) {
-        cEntries.add(e);
-      }
-    }
-    return AlbumModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, albumEntries: cEntries, description: "My Minkey Photos",
+    return AlbumModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, albumEntries: entries, description: "My Minkey Photos",
       conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
