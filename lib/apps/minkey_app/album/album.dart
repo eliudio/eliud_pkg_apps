@@ -1,5 +1,6 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_pkg_medium/model/album_entry_model.dart';
 import 'package:eliud_pkg_medium/model/album_model.dart';
 import 'package:eliud_pkg_medium/model/album_repository.dart';
 import 'package:eliud_core/model/body_component_model.dart';
@@ -49,7 +50,13 @@ class Album extends AppSection {
 
   Future<AlbumModel> albumModel(String memberId) async {
     var entries = await ExampleAlbumHelper(memberId: memberId).createAll();
-    return AlbumModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, albumEntries: entries, description: "My Minkey Photos",
+    List<AlbumEntryModel> cEntries = [];
+    for (var e in entries) {
+      if (e != null) {
+        cEntries.add(e);
+      }
+    }
+    return AlbumModel(documentID: IDENTIFIER, appId: MinkeyApp.MINKEY_APP_ID, albumEntries: cEntries, description: "My Minkey Photos",
       conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
