@@ -5,15 +5,16 @@ import 'package:eliud_core/model/member_model.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart' as postRepo;
 import 'package:eliud_pkg_feed/model/member_profile_model.dart';
+import 'package:eliud_pkg_feed/model/post_model.dart';
 
 import '../minkey_app.dart';
 
 class ExampleProfile {
-  final List<String> readAccess;
+  final MemberProfileAccessibleByGroup accessibleByGroup;
 
   static String IDENTIFIER = "exampleProfile";
 
-  ExampleProfile(this.readAccess);
+  ExampleProfile(this.accessibleByGroup);
 
   Future<void> run(MemberModel member, String  feedId) async {
     await exampleMemberProfileModel(member, feedId);
@@ -33,8 +34,9 @@ class ExampleProfile {
       feedId: feedId,
       profileBackground: profileBackground,
       profileOverride: profilePhoto.url,
-      readAccess: readAccess,
+      accessibleByGroup: accessibleByGroup,
       profile: kHtml,
+      readAccess: member.documentID != null ? [member.documentID!] : null,  // default readAccess to the owner. The function will expand this based on accessibleByGroup/Members
     );
 
      await postRepo.memberProfileRepository(appId: MinkeyApp.app.documentID)!.add(value);

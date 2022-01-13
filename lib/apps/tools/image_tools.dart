@@ -34,7 +34,7 @@ class ImageTools {
 
   static Future<MemberMediumModel> createMemberMediumModelPhoto(AppModel app, MemberModel member, String assetPath) async {
     String docID = newRandomKey();
-    var photo = await MemberMediumHelper(app, member.documentID!, ['PUBLIC',member.documentID!]).createThumbnailUploadPhotoAsset(docID, assetPath, );
+    var photo = await MemberMediumHelper(app, member.documentID!, MemberMediumAccessibleByGroup.Public).createThumbnailUploadPhotoAsset(docID, assetPath, );
     return photo;
   }
 
@@ -48,7 +48,7 @@ class ImageTools {
 
   static Future<PostMediumModel> createPostMediumModelVideo(AppModel app, MemberModel member, String assetPath) async {
     String docID = newRandomKey();
-    var video = await MemberMediumHelper(app, member.documentID!, ['PUBLIC',member.documentID!]).createThumbnailUploadVideoAsset(docID, assetPath, );
+    var video = await MemberMediumHelper(app, member.documentID!, MemberMediumAccessibleByGroup.Public).createThumbnailUploadVideoAsset(docID, assetPath, );
     return PostMediumModel(
       documentID: newRandomKey(),
       memberMedium: video,

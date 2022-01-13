@@ -32,6 +32,7 @@ class ExampleAlbumHelper {
   Future<List<AlbumEntryModel>> createAll() async {
     return [
     await create('packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
+/*
     await create('packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
     await create('packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
     await create('packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
@@ -49,6 +50,7 @@ class ExampleAlbumHelper {
     await create('packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
     await create('packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
     await create('packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
+*/
     ];
   }
 }

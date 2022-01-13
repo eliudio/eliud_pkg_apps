@@ -14,7 +14,7 @@ import 'package:eliud_pkg_feed/model/feed_component.dart';
 import 'package:eliud_pkg_feed/model/feed_menu_component.dart';
 import 'package:eliud_pkg_feed/model/feed_model.dart';
 import 'package:eliud_pkg_feed/model/header_component.dart';
-import 'package:eliud_pkg_feed/tools/etc/post_followers_helper.dart';
+import 'package:eliud_pkg_feed/model/model_export.dart';
 
 import '../../app_base.dart';
 import '../../app_section.dart';
@@ -98,10 +98,8 @@ class Feed extends AppSection {
   Future<PageModel> run(MemberModel member) async {
     var feed = await _setupFeed();
     // common for all pages:
-    var readAccess = await PostFollowersMemberHelper.asPublic(
-        MinkeyApp.app, member.documentID!);
-    await ExamplePosts(readAccess).run(member, IDENTIFIER);
-    await ExampleProfile(readAccess).run(member, IDENTIFIER);
+    await ExamplePosts(PostAccessibleByGroup.Public).run(member, IDENTIFIER);
+    await ExampleProfile(MemberProfileAccessibleByGroup.Public).run(member, IDENTIFIER);
     await FeedMenu().run(feed);
     await ProfileComponent().run(feed);
     await HeaderComponent().run(feed);

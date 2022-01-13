@@ -14,9 +14,9 @@ import '../minkey_app.dart';
 import 'example_profile.dart';
 
 class ExamplePosts {
-  final List<String> readAccess;
+  final PostAccessibleByGroup accessibleByGroup;
 
-  ExamplePosts(this.readAccess);
+  ExamplePosts(this.accessibleByGroup);
 
   Future<void> run(MemberModel member, String feedId) async {
     var memberPublicInfo =
@@ -41,7 +41,7 @@ class ExamplePosts {
                 archived: PostArchiveStatus.Active,
                 description:
                     'Hi guys, this is another post, this time about another product in my shop',
-                readAccess: readAccess));
+                accessibleByGroup: accessibleByGroup));
       } catch (e) {
         print(e);
       }
@@ -56,7 +56,9 @@ class ExamplePosts {
         appId: MinkeyApp.MINKEY_APP_ID,
         archived: PostArchiveStatus.Active,
         html: kHtml,
-        readAccess: readAccess));
+        accessibleByGroup: accessibleByGroup,
+        readAccess: [memberPublicInfo.documentID!],  // default readAccess to the owner. The function will expand this based on accessibleByGroup/Members
+      ));
 
     await postRepo.AbstractRepositorySingleton.singleton
         .postRepository(MinkeyApp.MINKEY_APP_ID)!
@@ -68,7 +70,7 @@ class ExamplePosts {
             appId: MinkeyApp.MINKEY_APP_ID,
             archived: PostArchiveStatus.Active,
             description: "Hi guys, this is my first post these are photos",
-            readAccess: readAccess,
+            accessibleByGroup: accessibleByGroup,
             memberMedia: [
               await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
@@ -120,7 +122,7 @@ class ExamplePosts {
             appId: MinkeyApp.MINKEY_APP_ID,
             archived: PostArchiveStatus.Active,
             description: "Hi guys, this is my first post these are videos",
-            readAccess: readAccess,
+            accessibleByGroup: accessibleByGroup,
             memberMedia: [
               await ImageTools.createPostMediumModelVideo(MinkeyApp.app, member,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
