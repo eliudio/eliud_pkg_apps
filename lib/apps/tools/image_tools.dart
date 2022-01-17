@@ -1,10 +1,8 @@
-
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/random.dart';
 import 'package:eliud_core/tools/storage/member_medium_helper.dart';
 import 'package:eliud_core/tools/storage/platform_medium_helper.dart';
 import 'package:eliud_core/tools/storage/public_medium_helper.dart';
-import 'package:eliud_pkg_feed/model/post_medium_model.dart';
 
 class ImageTools {
   static Future<PublicMediumModel> uploadPublicPhoto(AppModel app, MemberModel member, String assetPath) async {
@@ -38,18 +36,18 @@ class ImageTools {
     return photo;
   }
 
-  static Future<PostMediumModel> createPostMediumModelPhoto(AppModel app, MemberModel member, String assetPath) async {
+  static Future<MemberMediumContainerModel> createPostMediumModelPhoto(AppModel app, MemberModel member, String assetPath) async {
     var photo = await createMemberMediumModelPhoto(app, member, assetPath);
-    return PostMediumModel(
+    return MemberMediumContainerModel(
       documentID: newRandomKey(),
       memberMedium: photo,
     );
   }
 
-  static Future<PostMediumModel> createPostMediumModelVideo(AppModel app, MemberModel member, String assetPath) async {
+  static Future<MemberMediumContainerModel> createPostMediumModelVideo(AppModel app, MemberModel member, String assetPath) async {
     String docID = newRandomKey();
     var video = await MemberMediumHelper(app, member.documentID!, MemberMediumAccessibleByGroup.Public).createThumbnailUploadVideoAsset(docID, assetPath, );
-    return PostMediumModel(
+    return MemberMediumContainerModel(
       documentID: newRandomKey(),
       memberMedium: video,
     );
