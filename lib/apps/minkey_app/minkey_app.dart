@@ -160,6 +160,13 @@ class MinkeyApp extends InstallApp {
       throw Exception("Can not find member");
     } else {
 
+      await Album(
+        installApp: this,
+        homeMenu: homeMenu(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+      )
+          .run(member);
       var homePageLevel1Member = await Feed(
         installApp: this,
         homeMenu: homeMenu(),
@@ -168,13 +175,6 @@ class MinkeyApp extends InstallApp {
       )
           .run(member);
       // await createFollowMenu();
-      await Album(
-        installApp: this,
-        homeMenu: homeMenu(),
-        drawer: drawer,
-        endDrawer: endDrawer,
-      )
-          .run(member);
       await OtherFeedPages(
               installApp: this,
               homeMenu: homeMenu(),

@@ -363,7 +363,27 @@ abstract class InstallApp {
       if (member == null) {
         print('Can not register $theApp.documentID! because member cannot be created');
       } else {
+/*
+        var idToken1 = await usr.getIdToken(true);
+        var metadata1 = usr.metadata;
+        var idTokenResult1 = await usr.getIdTokenResult(true);
+        print('BEFORE: ' + idTokenResult1.claims.toString());
+*/
         await claimAccess(usr.uid);
+/*
+        var idToken2 = await usr.getIdToken(true);
+        var metadata2 = usr.metadata;
+        var idTokenResult2 = await usr.getIdTokenResult(true);
+        print('SECOND STEP, claims: ' + idTokenResult2.claims.toString());
+*/
+        await usr.reload();
+/*
+        var idToken3 = await usr.getIdToken(true);
+        var metadata3 = usr.metadata;
+        var idTokenResult3 = await usr.getIdTokenResult(true);
+*/
+        var idTokenResult = await usr.getIdTokenResult(true);
+        print('Claims after claiming access: ' + idTokenResult.claims.toString());
         await run(usr.uid);
         print('Installed $theApp.documentID! successfully');
       }
