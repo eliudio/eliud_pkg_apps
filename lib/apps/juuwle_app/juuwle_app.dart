@@ -30,7 +30,6 @@ import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart'
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_pkg_shop/model/admin_app.dart' as shop;
-import 'package:eliud_stl_mona/mona_style.dart';
 import 'package:eliud_stl_mona/mona_style_family.dart';
 import 'package:flutter/material.dart';
 
