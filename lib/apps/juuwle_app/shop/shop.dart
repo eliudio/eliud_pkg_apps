@@ -141,7 +141,7 @@ class Shop extends AppSection {
       description: 'These are my featured products',
       shop: _shop(),
       addToCartColor: EliudColors.red,
-      itemCardBackground: cardBG(installApp!.theApp.documentID!),
+      itemCardBackground: cardBG(),
       buyAction: MyCart.openCartPage(),
       view: ShopFrontView.Slider,
       openProductAction:
@@ -166,7 +166,7 @@ class Shop extends AppSection {
       description: 'These are my lovely products',
       shop: _shop(),
       addToCartColor: EliudColors.red,
-      itemCardBackground: cardBG(installApp!.theApp.documentID!),
+      itemCardBackground: cardBG(),
       buyAction: MyCart.openCartPage(),
       view: ShopFrontView.Grid,
       openProductAction:
@@ -190,7 +190,7 @@ class Shop extends AppSection {
         .add(_shopFront2());
   }
 
-  static BackgroundModel cardBG(String appId) {
+  static BackgroundModel cardBG() {
     var decorationColorModels = <DecorationColorModel>[];
     var decorationColorModel1 = DecorationColorModel(
       documentID: '1',
@@ -204,8 +204,6 @@ class Shop extends AppSection {
 
     decorationColorModels.add(decorationColorModel2);
     var backgroundModel = BackgroundModel(
-      appId: appId,
-      documentID: itemBackground,
       border: true,
       beginGradientPosition: StartGradientPosition.CenterLeft,
       endGradientPosition: EndGradientPosition.CenterRight,
@@ -215,12 +213,6 @@ class Shop extends AppSection {
   }
 
   static String itemBackground = 'card_bg';
-
-  Future<void> _setupCardBG() async {
-    await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(installApp!.theApp.documentID!)!
-        .add(cardBG(installApp!.theApp.documentID!));
-  }
 
   PresentationModel _presentation(PlatformMediumModel memberMediumModel) {
     return PresentationModel(
@@ -263,7 +255,6 @@ class Shop extends AppSection {
   Future<ShopModel> run() async {
     var image = await uploadImage();
     var presentationDocumentId = (await _setupPresentation(image)).documentID;
-    await _setupCardBG();
     await _setupShopFronts();
     var appBar = installApp!.appBar();
     var shop = await _setupShop();

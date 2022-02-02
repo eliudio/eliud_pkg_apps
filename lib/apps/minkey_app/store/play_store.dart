@@ -134,8 +134,6 @@ class PlayStore extends AppSection {
 
     decorationColorModels.add(decorationColorModel2);
     BackgroundModel backgroundModel = BackgroundModel(
-      appId: installApp!.theApp.documentID!,
-      documentID: "playstore_bg",
       beginGradientPosition: StartGradientPosition.TopLeft,
       endGradientPosition: EndGradientPosition.BottomRight,
       decorationColors: decorationColorModels,
@@ -143,12 +141,6 @@ class PlayStore extends AppSection {
       shadow: _shadowModel(),
     );
     return backgroundModel;
-  }
-
-  Future<BackgroundModel> _setupPlayStoreBG() async {
-    return await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(installApp!.theApp.documentID!)!
-        .add(playStoreBG());
   }
 
   ShadowModel _shadowModel() {
@@ -173,7 +165,6 @@ class PlayStore extends AppSection {
   // ************************ Tutorials *****************
   Future<PageModel> run() async {
     await _setupPlayStore();
-    await _setupPlayStoreBG();
     await _setupShadows();
     var appBar = installApp!.appBar();
     await _setupFader();

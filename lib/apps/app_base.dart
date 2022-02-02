@@ -193,18 +193,10 @@ abstract class InstallApp {
         .add(_drawer(logo));
   }
 
-  Future<void> setupDecorationColorModel(PublicMediumModel? logo) async {
-    await corerepo.AbstractRepositorySingleton.singleton
-        .backgroundRepository(theApp.documentID!)!
-        .add(_drawerHeaderBGOverride(logo));
-  }
-
   BackgroundModel _drawerHeaderBGOverride(PublicMediumModel? logo) {
     if (logo == null) throw Exception("You must provide a logo");
     var decorationColorModels = <DecorationColorModel>[];
     var backgroundModel = BackgroundModel(
-        appId: theApp.documentID!,
-        documentID: 'left_drawer_header_bg_' + logo.baseName!,
         decorationColors: decorationColorModels,
         backgroundImage: logo);
     return backgroundModel;
@@ -343,7 +335,6 @@ abstract class InstallApp {
     await _adminBase.installAdminAppss(adminMenu);
     await setupMenus();
     await setupPosSizes();
-    await setupDecorationColorModel(thePublicLogo);
     await setupDividers();
     var homePages = await runTheRest(ownerID, drawer, endDrawer);
     await setupApplication(homePages, ownerID, thePublicLogoHead);

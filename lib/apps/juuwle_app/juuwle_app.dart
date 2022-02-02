@@ -151,7 +151,7 @@ class JuuwleApp extends InstallApp {
             )
         .run();
     await MyCart(
-            background: Shop.cardBG(JUUWLE_APP_ID),
+            background: Shop.cardBG(),
             shop: shop,
             installApp: this,
             homeMenu: homeMenu(),
@@ -160,7 +160,7 @@ class JuuwleApp extends InstallApp {
             )
         .run();
     await MyPay(
-            background: Shop.cardBG(JUUWLE_APP_ID),
+            background: Shop.cardBG(),
             shop: shop,
             installApp: this,
             homeMenu: homeMenu(),
@@ -169,7 +169,7 @@ class JuuwleApp extends InstallApp {
             )
         .run();
     await OrderOverview(
-            background: Shop.cardBG(JUUWLE_APP_ID),
+            background: Shop.cardBG(),
             shop: shop,
             installApp: this,
             homeMenu: homeMenu(),
@@ -178,7 +178,7 @@ class JuuwleApp extends InstallApp {
             )
         .run();
     await MyPayConfirmation(
-            background: Shop.cardBG(JUUWLE_APP_ID),
+            background: Shop.cardBG(),
             shop: shop,
             installApp: this,
             homeMenu: homeMenu(),
