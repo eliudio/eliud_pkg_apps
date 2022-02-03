@@ -6,7 +6,6 @@ import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/decoration_color_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_core/model/rgb_model.dart';
 import 'package:eliud_core/model/shadow_model.dart';
@@ -146,7 +145,6 @@ class PlayStore extends AppSection {
   ShadowModel _shadowModel() {
     ShadowModel shadowModel = ShadowModel(
         appId: installApp!.theApp.documentID!,
-        documentID: "store_item_shadow",
         comments: "Store Item shadow",
         color: EliudColors.grayTransparent,
         offsetDX: 4,
@@ -156,16 +154,9 @@ class PlayStore extends AppSection {
     return shadowModel;
   }
 
-  Future<ShadowModel> _setupShadows() async {
-    return await corerepo.AbstractRepositorySingleton.singleton
-        .shadowRepository(installApp!.theApp.documentID!)!
-        .add(_shadowModel());
-  }
-
   // ************************ Tutorials *****************
   Future<PageModel> run() async {
     await _setupPlayStore();
-    await _setupShadows();
     var appBar = installApp!.appBar();
     await _setupFader();
     return await _setupPage(appBar);
