@@ -144,7 +144,6 @@ class PlayStore extends AppSection {
 
   ShadowModel _shadowModel() {
     ShadowModel shadowModel = ShadowModel(
-        comments: "Store Item shadow",
         color: EliudColors.grayTransparent,
         offsetDX: 4,
         offsetDY: 3,
