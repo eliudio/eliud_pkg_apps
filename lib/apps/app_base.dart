@@ -99,8 +99,10 @@ abstract class InstallApp {
 
   PosSizeModel halfScreen() {
     return PosSizeModel(
+/*
         documentID: 'halfScreen',
         appId: theApp.documentID!,
+*/
         name: 'HalfScreen both orientations',
         widthPortrait: 1,
         widthTypePortrait: WidthTypePortrait.PercentageWidth,
@@ -119,8 +121,10 @@ abstract class InstallApp {
 
   PosSizeModel screen75() {
     return PosSizeModel(
+/*
         documentID: 'screen75',
         appId: theApp.documentID!,
+*/
         name: '75 % both orientations',
         widthPortrait: .75,
         widthTypePortrait: WidthTypePortrait.PercentageWidth,
@@ -139,8 +143,10 @@ abstract class InstallApp {
 
   PosSizeModel fullScreen() {
     return PosSizeModel(
+/*
         documentID: 'fullScreen',
         appId: theApp.documentID!,
+*/
         name: 'Fullscreen both orientations',
         fitLandscape: LandscapeFitType.LandscapeCover,
         widthLandscape: 1,
@@ -155,6 +161,7 @@ abstract class InstallApp {
         clip: ClipType.NoClip);
   }
 
+/*
   Future<void> setupPosSizes() async {
     await corerepo.AbstractRepositorySingleton.singleton
         .posSizeRepository(theApp.documentID!)!
@@ -167,6 +174,7 @@ abstract class InstallApp {
         .add(screen75());
   }
 
+*/
   Future<PublicMediumModel> _publicMediumModel(String assetLocation) async {
     return await ImageTools.uploadPublicPhoto(theApp, member!, assetLocation);
   }
@@ -334,7 +342,7 @@ abstract class InstallApp {
 
     await _adminBase.installAdminAppss(adminMenu);
     await setupMenus();
-    await setupPosSizes();
+    //await setupPosSizes();
     await setupDividers();
     var homePages = await runTheRest(ownerID, drawer, endDrawer);
     await setupApplication(homePages, ownerID, thePublicLogoHead);
