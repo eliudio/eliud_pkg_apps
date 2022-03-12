@@ -11,6 +11,7 @@ import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/model/platform_medium_model.dart';
 import 'package:eliud_core/model/public_medium_model.dart';
 import 'package:eliud_core/model/storage_conditions_model.dart';
+import 'package:eliud_core/style/frontend/has_drawer.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
@@ -27,6 +28,7 @@ import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
 import 'package:eliud_pkg_chat/chat_package.dart';
+import 'package:eliud_pkg_create/tools/defaults.dart' as defaults;
 import 'package:eliud_pkg_feed/tools/action/post_action_model.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_pkg_notifications/notifications_package.dart';
@@ -56,8 +58,8 @@ class MinkeyApp extends InstallApp {
   static AppModel app = AppModel(documentID: MINKEY_APP_ID);
 
   MinkeyApp()
-      : super(app,
-
+      : super(
+          app,
         );
 
   @override
@@ -70,11 +72,10 @@ class MinkeyApp extends InstallApp {
         action: InternalAction(app,
             internalActionEnum: InternalActionEnum.OtherApps)));
     menuItems.add(menuItemSignOut(app, "2"));
-    menuItems
-        .add(menuItemManageAccount(app, "4", MemberDashboard.IDENTIFIER));
+    menuItems.add(menuItemManageAccount(app, "4", MemberDashboard.IDENTIFIER));
 
     MenuDefModel menu = MenuDefModel(
-        documentID: "drawer_profile_menu",
+        documentID: defaults.drawerID(theApp.documentID!, DrawerType.Right),
         appId: MINKEY_APP_ID,
         name: "Drawer Profile Menu",
         menuItems: menuItems);
@@ -87,7 +88,7 @@ class MinkeyApp extends InstallApp {
     var drawerMenuItems = _homeMenuDef.menuItems!;
     drawerMenuItems.addAll(getPolicyMenuItems());
     MenuDefModel drawerMenu = _homeMenuDef.copyWith(
-        documentID: "drawer_menu",
+        documentID: defaults.drawerID(theApp.documentID!, DrawerType.Left),
         name: "Drawer Menu (copy of main menu)",
         menuItems: drawerMenuItems);
     return drawerMenu;
@@ -101,13 +102,14 @@ class MinkeyApp extends InstallApp {
         app, "apps", PlayStore.IDENTIFIER, "Apps", Icons.power_settings_new));
     for (int i = 0; i < Welcome.IDENTIFIERs.length; i++) {
       menuItems.add(menuItemWelcome(
-          app, Welcome.IDENTIFIERs[i], Welcome.IDENTIFIERs[i], "Welcome", privilegeLevelRequired: Welcome.menuPrivilegeLevelsRequired[i]));
+          app, Welcome.IDENTIFIERs[i], Welcome.IDENTIFIERs[i], "Welcome",
+          privilegeLevelRequired: Welcome.menuPrivilegeLevelsRequired[i]));
     }
     menuItems.add(menuItemAbout(app, "about", Founders.IDENTIFIER, "About"));
     menuItems
         .add(menuItem(app, "album", Album.IDENTIFIER, "Album", Icons.photo));
     MenuDefModel menu = MenuDefModel(
-        documentID: "main",
+        documentID: defaults.homeMenuID(theApp.documentID!),
         appId: MINKEY_APP_ID,
         name: "Main Menu",
         menuItems: menuItems);
@@ -150,8 +152,8 @@ class MinkeyApp extends InstallApp {
   }
 
   @override
-  Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
-      DrawerModel drawer, DrawerModel endDrawer) async {
+  Future<AppHomePageReferencesModel> runTheRest(
+      String? ownerID, DrawerModel drawer, DrawerModel endDrawer) async {
     await createPolicyPages(appPolicyModel!, drawer, endDrawer);
     var member = await AbstractMainRepositorySingleton.singleton
         .memberRepository()!
@@ -159,58 +161,50 @@ class MinkeyApp extends InstallApp {
     if (member == null) {
       throw Exception("Can not find member");
     } else {
-
       await Album(
         installApp: this,
         homeMenu: homeMenu(),
         drawer: drawer,
         endDrawer: endDrawer,
-      )
-          .run(member);
+      ).run(member);
       var homePageLevel1Member = await Feed(
         installApp: this,
         homeMenu: homeMenu(),
         drawer: drawer,
         endDrawer: endDrawer,
-      )
-          .run(member);
+      ).run(member);
       // await createFollowMenu();
       await OtherFeedPages(
-              installApp: this,
-              homeMenu: homeMenu(),
-              drawer: drawer,
-              endDrawer: endDrawer,
-              )
-          .run();
+        installApp: this,
+        homeMenu: homeMenu(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+      ).run();
       await Profile(
-              installApp: this,
-              homeMenu: homeMenu(),
-              drawer: drawer,
-              endDrawer: endDrawer,
-              )
-          .run(member, Feed.feedModel());
+        installApp: this,
+        homeMenu: homeMenu(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+      ).run(member, Feed.feedModel());
       await WorkflowSetup(installApp: this).run();
       await About(
-              installApp: this,
-              homeMenu: homeMenu(),
-              drawer: drawer,
-              endDrawer: endDrawer,
-              )
-          .run();
+        installApp: this,
+        homeMenu: homeMenu(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+      ).run();
       await Welcome(
-              installApp: this,
-              homeMenu: homeMenu(),
-              drawer: drawer,
-              endDrawer: endDrawer,
-              )
-          .run();
+        installApp: this,
+        homeMenu: homeMenu(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+      ).run();
       var homePageSubscribedMember = await PlayStore(
-              installApp: this,
-              homeMenu: homeMenu(),
-              drawer: drawer,
-              endDrawer: endDrawer,
-              )
-          .run();
+        installApp: this,
+        homeMenu: homeMenu(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+      ).run();
       await MinkeyNotificationDashboard(
         installApp: this,
       ).run();
@@ -231,12 +225,11 @@ class MinkeyApp extends InstallApp {
         endDrawer: endDrawer,
       ).run();
       var homePageBlockedMember = await MinkeyBlocked(
-              installApp: this,
-              homeMenu: homeMenu(),
-              drawer: drawer,
-              endDrawer: endDrawer,
-              )
-          .run();
+        installApp: this,
+        homeMenu: homeMenu(),
+        drawer: drawer,
+        endDrawer: endDrawer,
+      ).run();
 
       AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
         homePageBlockedMember: homePageBlockedMember.documentID,
@@ -283,7 +276,7 @@ class MinkeyApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.playlist_add_check.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
-              action: AssignmentViewSetup.action(app)),
+            action: AssignmentViewSetup.action(app)),
         MenuItemModel(
             documentID: 'chatUnread',
             text: 'Chat',

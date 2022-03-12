@@ -15,7 +15,7 @@ import 'package:eliud_core/style/frontend/has_drawer.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
-import 'package:eliud_pkg_create/tools/defaults.dart';
+import 'package:eliud_pkg_create/tools/defaults.dart' as defaults;
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/grid_views.dart';
@@ -185,7 +185,7 @@ abstract class InstallApp {
 
   DrawerModel _drawer(PublicMediumModel? logo) {
     return DrawerModel(
-        documentID: drawerID(theApp.documentID!, DrawerType.Left),
+        documentID: defaults.drawerID(theApp.documentID!, DrawerType.Left),
         appId: theApp.documentID!,
         name: 'Drawer',
         headerText: '',
@@ -212,7 +212,7 @@ abstract class InstallApp {
 
   DrawerModel _profileDrawer() {
     return DrawerModel(
-        documentID: drawerID(theApp.documentID!, DrawerType.Right),
+        documentID: defaults.drawerID(theApp.documentID!, DrawerType.Right),
         appId: theApp.documentID!,
         name: 'Profile Drawer',
         headerText: '',
@@ -230,7 +230,7 @@ abstract class InstallApp {
 
   HomeMenuModel homeMenu() {
     var menu = HomeMenuModel(
-        documentID: homeMenuID(theApp.documentID!),
+        documentID: defaults.homeMenuID(theApp.documentID!),
         appId: theApp.documentID!,
         name: 'Home menu 1',
         menu: homeMenuDef(),);
@@ -282,7 +282,7 @@ abstract class InstallApp {
       RgbModel? selectedIconColorOverride,
       RgbModel? menuBackgroundColorOverride}) {
     var appBar = AppBarModel(
-      documentID: appBarID(theApp.documentID!),
+      documentID: defaults.appBarID(theApp.documentID!),
       appId: theApp.documentID!,
       header: HeaderSelection.Title,
       title: title,
@@ -389,8 +389,10 @@ abstract class InstallApp {
     }
   }
 
+/*
   String appBarMenuIdentifier = 'appbar_menu';
 
+*/
   List<MenuItemModel>? extraMenuItems();
 
   MenuDefModel _appBarMenuDef(String title, MenuDefModel adminMenu) {
@@ -415,7 +417,7 @@ abstract class InstallApp {
         action: PopupMenu(theApp, menuDef: adminMenu)));
 
     var menu = MenuDefModel(
-        documentID: appBarMenuIdentifier,
+        documentID: defaults.appBarID(theApp.documentID!),
         appId: theApp.documentID!,
         name: title,
         menuItems: menuItems);

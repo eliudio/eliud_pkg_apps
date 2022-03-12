@@ -9,6 +9,7 @@ import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
 import 'package:eliud_core/model/platform_medium_model.dart';
 import 'package:eliud_core/model/public_medium_model.dart';
+import 'package:eliud_core/style/frontend/has_drawer.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
@@ -28,6 +29,7 @@ import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
+import 'package:eliud_pkg_create/tools/defaults.dart' as defaults;
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_pkg_shop/model/admin_app.dart' as shop;
 import 'package:eliud_stl_mona/mona_style_family.dart';
@@ -62,7 +64,7 @@ class JuuwleApp extends InstallApp {
             pageID: OrderOverview.identifier)));
     menuItems.add(menuItemSignOut(app, 'sign_out'));
     var menu = MenuDefModel(
-        documentID: 'drawer_profile_menu',
+        documentID: defaults.drawerID(theApp.documentID!, DrawerType.Right),
         appId: JUUWLE_APP_ID,
         name: 'Drawer Profile Menu',
         menuItems: menuItems);
@@ -75,7 +77,7 @@ class JuuwleApp extends InstallApp {
     var drawerMenuItems = _homeMenuDef.menuItems!;
     drawerMenuItems.addAll(getPolicyMenuItems());
     MenuDefModel drawerMenu = _homeMenuDef.copyWith(
-        documentID: "drawer_menu", name: "Drawer Menu (copy of main menu)",
+        documentID: defaults.drawerID(theApp.documentID!, DrawerType.Left), name: "Drawer Menu (copy of main menu)",
         menuItems: drawerMenuItems
     );
     return drawerMenu;
@@ -88,7 +90,7 @@ class JuuwleApp extends InstallApp {
     menuItems.add(menuItemShoppingBag(app, "2", Shop.identifier, "Shop"));
     menuItems.add(menuItemAbout(app, "4", About.IDENTIFIER, "About"));
     var menu = MenuDefModel(
-        documentID: 'main',
+        documentID: defaults.homeMenuID(theApp.documentID!),
         appId: JUUWLE_APP_ID,
         name: 'Main Menu',
         menuItems: menuItems);
