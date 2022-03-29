@@ -105,7 +105,6 @@ class PlayStore extends AppSection {
       documentID: "playstore_1",
       appId: MinkeyApp.MINKEY_APP_ID,
       description: "Minkey Store",
-      itemBackground: playStoreBG(),
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
               PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
