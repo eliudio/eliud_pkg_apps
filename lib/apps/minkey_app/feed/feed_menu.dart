@@ -1,3 +1,4 @@
+/*
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as coreRepo;
 import 'package:eliud_core/model/menu_def_model.dart';
@@ -119,3 +120,4 @@ class FeedMenu {
     await createFeedMenuModel(feed, menuDefCurrentMember, menuDefOtherMember);
   }
 }
+*/

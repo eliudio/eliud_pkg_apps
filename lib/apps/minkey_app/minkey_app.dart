@@ -97,7 +97,7 @@ class MinkeyApp extends InstallApp {
   @override
   MenuDefModel homeMenuDef() {
     List<MenuItemModel> menuItems = [];
-    menuItems.add(menuItemFeed(app, "feed", Feed.IDENTIFIER, "Feed"));
+//    menuItems.add(menuItemFeed(app, "feed", Feed.IDENTIFIER, "Feed"));
     menuItems.add(menuItem(
         app, "apps", PlayStore.IDENTIFIER, "Apps", Icons.power_settings_new));
     for (int i = 0; i < Welcome.IDENTIFIERs.length; i++) {
@@ -167,13 +167,16 @@ class MinkeyApp extends InstallApp {
         drawer: drawer,
         endDrawer: endDrawer,
       ).run(member);
+/*
       var homePageLevel1Member = await Feed(
         installApp: this,
         homeMenu: homeMenu(),
         drawer: drawer,
         endDrawer: endDrawer,
       ).run(member);
+*/
       // await createFollowMenu();
+/*
       await OtherFeedPages(
         installApp: this,
         homeMenu: homeMenu(),
@@ -186,6 +189,7 @@ class MinkeyApp extends InstallApp {
         drawer: drawer,
         endDrawer: endDrawer,
       ).run(member, Feed.feedModel());
+*/
       await WorkflowSetup(installApp: this).run();
       await About(
         installApp: this,
@@ -211,13 +215,17 @@ class MinkeyApp extends InstallApp {
       await MinkeyMemberDashboard(
         installApp: this,
       ).run();
+/*
       await MinkeyMembershipDashboard(
         installApp: this,
       ).run();
+*/
       await MinkeyAssignmentViewSetup(installApp: this).run();
+/*
       await MinkeyFollowDashboards(
         installApp: this,
       ).run();
+*/
       await MinkeyChatPage(
         installApp: this,
         homeMenu: homeMenu(),
@@ -230,6 +238,8 @@ class MinkeyApp extends InstallApp {
         drawer: drawer,
         endDrawer: endDrawer,
       ).run();
+
+      var homePageLevel1Member = homePageSubscribedMember;
 
       AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
         homePageBlockedMember: homePageBlockedMember.documentID,
@@ -248,6 +258,7 @@ class MinkeyApp extends InstallApp {
 
   @override
   List<MenuItemModel> extraMenuItems() => <MenuItemModel>[
+/*
         MenuItemModel(
             documentID: 'feed',
             text: 'Post',
@@ -261,6 +272,7 @@ class MinkeyApp extends InstallApp {
                     privilegeLevelRequired:
                         PrivilegeLevelRequired.NoPrivilegeRequired,
                     packageCondition: CorePackage.MUST_BE_LOGGED_ON))),
+*/
         MenuItemModel(
             documentID: 'notifications',
             text: 'Notifications',

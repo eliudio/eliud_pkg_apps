@@ -1,3 +1,4 @@
+/*
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/feed/feed.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/feed/profile.dart';
@@ -12,3 +13,4 @@ class MinkeyFollowDashboards extends FollowDashboards {
     return super.runIt(Profile.IDENTIFIER, Feed.IDENTIFIER);
   }
 }
+*/
