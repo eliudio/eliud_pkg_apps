@@ -143,7 +143,6 @@ class Shop extends AppSection {
       addToCartColor: EliudColors.red,
       itemCardBackground: cardBG(),
       buyAction: MyCart.openCartPage(),
-      view: ShopFrontView.Slider,
       openProductAction:
           GotoPage(JuuwleApp.app, pageID: ProductPage.identifier),
       size: 250,
@@ -168,7 +167,6 @@ class Shop extends AppSection {
       addToCartColor: EliudColors.red,
       itemCardBackground: cardBG(),
       buyAction: MyCart.openCartPage(),
-      view: ShopFrontView.Grid,
       openProductAction:
           GotoPage(JuuwleApp.app, pageID: ProductPage.identifier),
       size: 250,
