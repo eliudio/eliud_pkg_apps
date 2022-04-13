@@ -58,8 +58,10 @@ Future<ProductModel> productToProductModel(ShopModel shop, InstallApp installApp
     price: product.price,
     weight: 100,
     posSize: installApp.screen75(),
+/*
     conditions: StorageConditionsModel(
         privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
     ),
+*/
   );
 }
