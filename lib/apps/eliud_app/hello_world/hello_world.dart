@@ -180,7 +180,7 @@ class HelloWorld extends AppSection {
 
     return BookletModel(
       documentID: "hello_world",
-      name: "Hello world",
+        description: "Hello world",
       sections:entries,
       appId: EliudApp.ELIUD_APP_ID,
       conditions: StorageConditionsModel(

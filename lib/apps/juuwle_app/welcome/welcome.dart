@@ -67,7 +67,7 @@ class Welcome extends AppSection {
 
     return BookletModel(
       documentID: welcomeIdentifier,
-      name: "Welcome",
+      description: "Welcome",
       sections:entries,
       appId: installApp!.theApp.documentID!,
       conditions: StorageConditionsModel(

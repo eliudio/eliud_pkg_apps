@@ -103,7 +103,7 @@ class Shop extends AppSection {
         image: installApp!.thePlatformLogo));
     var model = FaderModel(
       documentID: faderIdentifier,
-      name: 'Juuwle Fader',
+      description: 'Juuwle Fader',
       animationMilliseconds: 1000,
       imageSeconds: 5,
       items: items,

@@ -227,7 +227,7 @@ abstract class InstallApp {
   DividerModel _divider() {
     var dividerModel = DividerModel(
       documentID: 'divider_1',
-      name: 'first divider',
+      description: 'first divider',
       color: EliudColors.black,
       endIndent: 0,
       height: 10,

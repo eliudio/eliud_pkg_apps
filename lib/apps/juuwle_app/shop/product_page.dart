@@ -29,7 +29,7 @@ class ProductPage extends BasicPageTemplate {
     return ProductDisplayModel(
       documentID: 'product',
       appId: installApp!.theApp.documentID!,
-      title: pageTitle(),
+      description: pageTitle(),
       shop: shop,
       buyAction: MyCart.openCartPage(),
       itemDetailBackground: null,

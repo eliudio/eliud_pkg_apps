@@ -32,7 +32,7 @@ class MyPay extends PageTemplate {
     return PayModel(
       documentID: 'pay',
       appId: installApp!.theApp.documentID!,
-      title: pageTitle(),
+      description: pageTitle(),
       shop: shop,
       payAction: WorkflowSetup.payCart(),
       succeeded: GotoPage(JuuwleApp.app,

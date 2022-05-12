@@ -88,7 +88,7 @@ class PlayStore extends AppSection {
         image: installApp!.thePlatformLogo));
     FaderModel model = FaderModel(
       documentID: FADER_IDENTIFIER,
-      name: "Welcome fader",
+      description: "Welcome fader",
       animationMilliseconds: 1000,
       imageSeconds: 5,
       items: items,

@@ -20,7 +20,7 @@ class OrderOverview extends PageTemplate {
     return OrderOverviewModel(
         documentID: 'orders',
         appId: installApp!.theApp.documentID!,
-        title: pageTitle(),
+      description: pageTitle(),
         shop: shop,
         itemImageBackground: null,
         itemDetailBackground: background,

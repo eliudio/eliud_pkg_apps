@@ -97,7 +97,7 @@ abstract class AboutBase extends AppSection {
 
     return BookletModel(
       documentID: identifier,
-      name: "About",
+      description: "About",
       sections: entries,
       appId: installApp!.theApp.documentID!,
       conditions: StorageConditionsModel(

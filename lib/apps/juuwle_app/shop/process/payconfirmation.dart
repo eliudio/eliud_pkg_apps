@@ -31,7 +31,7 @@ class MyPayConfirmation extends PageTemplate {
     return PayConfirmationModel(
       documentID: 'payconfirmation',
       appId: installApp!.theApp.documentID!,
-      title: pageTitle(),
+      description: pageTitle(),
       shop: shop,
       backToShopAction:
           GotoPage(JuuwleApp.app, pageID: Shop.identifier),

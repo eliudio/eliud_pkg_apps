@@ -66,7 +66,7 @@ class Blocked extends AppSection {
 
     return BookletModel(
       documentID: blockedIdentifier,
-      name: "Blocked!",
+      description: "Blocked!",
       sections:entries,
       appId: installApp!.theApp.documentID!,
       conditions: StorageConditionsModel(
