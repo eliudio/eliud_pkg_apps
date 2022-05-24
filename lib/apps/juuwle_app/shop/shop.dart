@@ -107,7 +107,7 @@ class Shop extends AppSection {
       animationMilliseconds: 1000,
       imageSeconds: 5,
       items: items,
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
               PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
@@ -127,7 +127,7 @@ class Shop extends AppSection {
         description: 'Main shop',
         shortDescription: 'Main shop',
         currency: 'eur',
-        appId: installApp!.theApp.documentID!);
+        appId: installApp!.theApp.documentID);
     return document;
   }
 
@@ -136,7 +136,7 @@ class Shop extends AppSection {
   ShopFrontModel _shopFront1() {
     return ShopFrontModel(
       documentID: shopFrontIdentifier1,
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       title: 'Featured',
       description: 'These are my featured products',
       shop: _shop(),
@@ -160,7 +160,7 @@ class Shop extends AppSection {
   ShopFrontModel _shopFront2() {
     return ShopFrontModel(
       documentID: shopFrontIdentifier2,
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       title: 'My products',
       description: 'These are my lovely products',
       shop: _shop(),
@@ -215,7 +215,7 @@ class Shop extends AppSection {
   PresentationModel _presentation(PlatformMediumModel memberMediumModel) {
     return PresentationModel(
       documentID: 'shop',
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       bodyComponents: [
         BodyComponentModel(
             documentID: '1',

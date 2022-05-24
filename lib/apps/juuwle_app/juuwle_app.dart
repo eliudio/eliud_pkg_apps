@@ -45,7 +45,7 @@ import 'notifications/juuwle_notification_dashboard.dart';
 
 class JuuwleApp extends InstallApp {
   static String JUUWLE_APP_ID = 'JUUWLE_APP';
-  static AppModel app = AppModel(documentID: JUUWLE_APP_ID);
+  static AppModel app = AppModel(documentID: JUUWLE_APP_ID, ownerID: '??');
 
   JuuwleApp()
       : super(app);
@@ -64,7 +64,7 @@ class JuuwleApp extends InstallApp {
             pageID: OrderOverview.identifier)));
     menuItems.add(menuItemSignOut(app, 'sign_out'));
     var menu = MenuDefModel(
-        documentID: defaults.drawerID(theApp.documentID!, DrawerType.Right),
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.Right),
         appId: JUUWLE_APP_ID,
         name: 'Drawer Profile Menu',
         menuItems: menuItems);
@@ -77,7 +77,7 @@ class JuuwleApp extends InstallApp {
     var drawerMenuItems = _homeMenuDef.menuItems!;
     drawerMenuItems.addAll(getPolicyMenuItems());
     MenuDefModel drawerMenu = _homeMenuDef.copyWith(
-        documentID: defaults.drawerID(theApp.documentID!, DrawerType.Left), name: "Drawer Menu (copy of main menu)",
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.Left), name: "Drawer Menu (copy of main menu)",
         menuItems: drawerMenuItems
     );
     return drawerMenu;
@@ -90,7 +90,7 @@ class JuuwleApp extends InstallApp {
     menuItems.add(menuItemShoppingBag(app, "2", Shop.identifier, "Shop"));
     menuItems.add(menuItemAbout(app, "4", About.IDENTIFIER, "About"));
     var menu = MenuDefModel(
-        documentID: defaults.homeMenuID(theApp.documentID!),
+        documentID: defaults.homeMenuID(theApp.documentID),
         appId: JUUWLE_APP_ID,
         name: 'Main Menu',
         menuItems: menuItems);
@@ -99,7 +99,7 @@ class JuuwleApp extends InstallApp {
 
   @override
   Future<AppModel> setupApplication(AppHomePageReferencesModel homePages,
-      String? ownerID, PublicMediumModel? logo) async {
+      String ownerID, PublicMediumModel? logo) async {
     var application = AppModel(
       documentID: JUUWLE_APP_ID,
       title: 'Juuwle!',

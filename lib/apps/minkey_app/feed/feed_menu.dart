@@ -60,7 +60,7 @@ class FeedMenu {
     ];
     MenuDefModel menu = MenuDefModel(
         documentID: FEED_MENU_ID_CURRENT_MEMBER,
-        appId: MinkeyApp.app.documentID!,
+        appId: MinkeyApp.app.documentID,
         name: "Current Member Feed Menu",
         menuItems: menuItems);
     return menu;
@@ -73,7 +73,7 @@ class FeedMenu {
     ];
     MenuDefModel menu = MenuDefModel(
         documentID: FEED_MENU_ID_OTHER_MEMBER,
-        appId: MinkeyApp.app.documentID!,
+        appId: MinkeyApp.app.documentID,
         name: "Other Member Feed Menu",
         menuItems: menuItems);
     return menu;
@@ -81,13 +81,13 @@ class FeedMenu {
 
   Future<MenuDefModel> createMenuDefCurrentMember() async {
     return await coreRepo.AbstractRepositorySingleton.singleton
-        .menuDefRepository(MinkeyApp.app.documentID!)!
+        .menuDefRepository(MinkeyApp.app.documentID)!
         .add(menuDefCurrentMember());
   }
 
   Future<MenuDefModel> createMenuDefOtherMember() async {
     return await coreRepo.AbstractRepositorySingleton.singleton
-        .menuDefRepository(MinkeyApp.app.documentID!)!
+        .menuDefRepository(MinkeyApp.app.documentID)!
         .add(menuDefOtherMember());
   }
 
@@ -110,7 +110,7 @@ class FeedMenu {
 
   Future<FeedMenuModel> createFeedMenuModel(FeedModel feed, MenuDefModel menuCurrentMember, MenuDefModel menuOtherMember,) async {
     return await AbstractRepositorySingleton.singleton
-        .feedMenuRepository(MinkeyApp.app.documentID!)!
+        .feedMenuRepository(MinkeyApp.app.documentID)!
         .add(feedMenuModel(feed, menuCurrentMember, menuOtherMember));
   }
 

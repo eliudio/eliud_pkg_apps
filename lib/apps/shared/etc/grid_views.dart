@@ -3,7 +3,7 @@ import 'package:eliud_core/model/grid_view_model.dart';
 import 'package:eliud_core/model/storage_conditions_model.dart';
 
 class GridViews {
-  GridViewModel _gridView1(int id, String? appId,  GridViewScrollDirection scrollDirection) {
+  GridViewModel _gridView1(int id, String appId,  GridViewScrollDirection scrollDirection) {
     return GridViewModel(
       documentID: "$id",
       appId: appId,
@@ -21,7 +21,7 @@ class GridViews {
     );
   }
 
-  GridViewModel _gridView2(int id, String? appId,  GridViewScrollDirection scrollDirection) {
+  GridViewModel _gridView2(int id, String appId,  GridViewScrollDirection scrollDirection) {
     return GridViewModel(
       documentID: "$id",
       appId: appId,
@@ -40,7 +40,7 @@ class GridViews {
     );
   }
 
-  GridViewModel _gridView3(int id, String? appId,  GridViewScrollDirection scrollDirection) {
+  GridViewModel _gridView3(int id, String appId,  GridViewScrollDirection scrollDirection) {
     return GridViewModel(
       documentID: "$id",
       appId: appId,
@@ -61,7 +61,7 @@ class GridViews {
 
   String _toString(GridViewScrollDirection scrollDirection) => scrollDirection == GridViewScrollDirection.Vertical ? "Vertical" : "Horizontal";
 
-  Future<void> run(String? appId) async {
+  Future<void> run(String appId) async {
     await AbstractRepositorySingleton.singleton.gridViewRepository(appId)!.add(_gridView1(1, appId, GridViewScrollDirection.Vertical));
     await AbstractRepositorySingleton.singleton.gridViewRepository(appId)!.add(_gridView2(2, appId, GridViewScrollDirection.Vertical));
     await AbstractRepositorySingleton.singleton.gridViewRepository(appId)!.add(_gridView3(3, appId, GridViewScrollDirection.Vertical));

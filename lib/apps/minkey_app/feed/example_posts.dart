@@ -33,7 +33,7 @@ class ExamplePosts {
             .add(PostModel(
                 documentID: "example1",
                 feedId: feedId,
-                authorId: memberPublicInfo.documentID!,
+                authorId: memberPublicInfo.documentID,
                 appId: MinkeyApp.MINKEY_APP_ID,
                 postAppId: JuuwleApp.JUUWLE_APP_ID,
                 postPageId: ProductPage.identifier,
@@ -52,12 +52,12 @@ class ExamplePosts {
         .add(PostModel(
         documentID: "exampleHtml",
         feedId: feedId,
-        authorId: memberPublicInfo.documentID!,
+        authorId: memberPublicInfo.documentID,
         appId: MinkeyApp.MINKEY_APP_ID,
         archived: PostArchiveStatus.Active,
         html: kHtml,
         accessibleByGroup: accessibleByGroup,
-        readAccess: [memberPublicInfo.documentID!],  // default readAccess to the owner. The function will expand this based on accessibleByGroup/Members
+        readAccess: [memberPublicInfo.documentID],  // default readAccess to the owner. The function will expand this based on accessibleByGroup/Members
       ));
 
     await postRepo.AbstractRepositorySingleton.singleton
@@ -66,7 +66,7 @@ class ExamplePosts {
           PostModel(
             documentID: "example2",
             feedId: feedId,
-            authorId: memberPublicInfo.documentID!,
+            authorId: memberPublicInfo.documentID,
             appId: MinkeyApp.MINKEY_APP_ID,
             archived: PostArchiveStatus.Active,
             description: "Hi guys, this is my first post these are photos",
@@ -118,7 +118,7 @@ class ExamplePosts {
           PostModel(
             documentID: "example3",
             feedId: feedId,
-            authorId: memberPublicInfo.documentID!,
+            authorId: memberPublicInfo.documentID,
             appId: MinkeyApp.MINKEY_APP_ID,
             archived: PostArchiveStatus.Active,
             description: "Hi guys, this is my first post these are videos",

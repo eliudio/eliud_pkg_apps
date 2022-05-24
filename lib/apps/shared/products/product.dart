@@ -49,8 +49,8 @@ Future<ProductModel> productToProductModel(ShopModel shop, InstallApp installApp
             installApp.theApp, installApp.member!, product.assetLocation4!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple)));
   }
   return new ProductModel(
-    documentID: product.id,
-    appId: installApp.theApp.documentID!,
+    documentID: product.id ?? 'product.id was null',
+    appId: installApp.theApp.documentID,
     title: product.title,
     about: product.about,
     shop: shop,

@@ -12,9 +12,10 @@ import 'package:eliud_pkg_workflow/model/workflow_notification_model.dart';
 import 'package:eliud_pkg_workflow/model/workflow_task_model.dart';
 
 class WorkflowHelper {
-  static WorkflowModel _workflowForPaymentCart(
+  static WorkflowModel _workflowForPaymentCart(String appId,
       String documentID, String name, PayTypeModel payTypeModel) {
     return WorkflowModel(
+      appId: appId,
         documentID: "cart_paid_manually",
         name: "Manual Cart Payment",
         workflowTask: [
@@ -51,12 +52,14 @@ class WorkflowHelper {
   }
 
   static WorkflowModel workflowForManualPaymentCart(
-      {required String payTo,
+      {required String appId,
+        required String payTo,
       required String country,
       required String bankIdentifierCode,
       required String payeeIBAN,
       required String bankName}) {
     return _workflowForPaymentCart(
+      appId,
         "cat_paid_manually",
         "Manual Cart Payment",
         ManualPayTypeModel(
@@ -67,14 +70,14 @@ class WorkflowHelper {
             bankName: bankName));
   }
 
-  static WorkflowModel workflowForCreditCardPaymentCart() {
-    return _workflowForPaymentCart("cart_paid_by_card",
+  static WorkflowModel workflowForCreditCardPaymentCart(String appId) {
+    return _workflowForPaymentCart(appId, "cart_paid_by_card",
         "Cart Payment with Card", CreditCardPayTypeModel());
   }
 
-  static WorkflowModel _workflowForMembership(String documentID, String name,
+  static WorkflowModel _workflowForMembership(String appId, String documentID, String name,
       double amount, String ccy, PayTypeModel payTypeModel) {
-    return WorkflowModel(documentID: documentID, name: name, workflowTask: [
+    return WorkflowModel(appId: appId, documentID: documentID, name: name, workflowTask: [
       WorkflowTaskModel(
         seqNumber: 1,
         documentID: "request_membership",
@@ -124,7 +127,8 @@ class WorkflowHelper {
   }
 
   static WorkflowModel workflowForManuallyPaidMembership(
-      {required double amount,
+      {required String appId,
+      required double amount,
       required String ccy,
       required String payTo,
       required String country,
@@ -132,6 +136,7 @@ class WorkflowHelper {
       required String payeeIBAN,
       required String bankName}) {
     return _workflowForMembership(
+      appId,
         "membership_paid_manually",
         "Paid Membership (manually paid)",
         20,
@@ -144,9 +149,9 @@ class WorkflowHelper {
             bankName: bankName));
   }
 
-  static WorkflowModel workflowForMembershipPaidByCard(
+  static WorkflowModel workflowForMembershipPaidByCard(String appId,
       {double? amount, String? ccy}) {
-    return _workflowForMembership(
+    return _workflowForMembership(appId,
         "membership_paid_manually",
         "Paid Membership (Credit card payment)",
         20,

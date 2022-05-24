@@ -17,11 +17,11 @@ class TutorialTools {
   Map<String, ImageModel> _images = HashMap();
 
   Future<MemberMediumModel> uploadPublicPhoto(String appId, MemberModel member, String assetName) async {
-    return await UploadFile.createThumbnailUploadPhotoAsset(appId, assetName, member.documentID, ['PUBLIC', member.documentID!]);
+    return await UploadFile.createThumbnailUploadPhotoAsset(appId, assetName, member.documentID, ['PUBLIC', member.documentID]);
   }
 
   Future<MemberMediumModel> uploadPublicVideo(String appId, MemberModel member, String assetName) async {
-    return await UploadFile.createThumbnailUploadVideoAsset(appId, assetName, member.documentID, ['PUBLIC', member.documentID!]);
+    return await UploadFile.createThumbnailUploadVideoAsset(appId, assetName, member.documentID, ['PUBLIC', member.documentID]);
   }
 
   ImageModel findImageModel(String documentID) {
@@ -81,7 +81,7 @@ class TutorialTools {
 
     return TutorialModel(
       documentID: tutorialID,
-      appId: app.documentID!,
+      appId: app.documentID,
       name: name,
       title: title,
       description: description,

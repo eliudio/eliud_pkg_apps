@@ -13,7 +13,7 @@ class ProfileComponent {
   ProfileModel profileModel(FeedModel feed) {
     return ProfileModel(
       documentID: PROFILE_ID,
-      appId: MinkeyApp.app.documentID!,
+      appId: MinkeyApp.app.documentID,
       feed: feed,
       description: "Profile",
       conditions: StorageConditionsModel(

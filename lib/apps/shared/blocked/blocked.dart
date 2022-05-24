@@ -21,7 +21,7 @@ class Blocked extends AppSection {
   static String identifier = "blocked";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp!.theApp.documentID!)!.add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp!.theApp.documentID)!.add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
@@ -31,7 +31,7 @@ class Blocked extends AppSection {
 
     return PageModel(
         documentID: identifier,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         title: "Blocked !",
         drawer: drawer,
         endDrawer: endDrawer,
@@ -68,7 +68,7 @@ class Blocked extends AppSection {
       documentID: blockedIdentifier,
       description: "Blocked!",
       sections:entries,
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),
@@ -76,7 +76,7 @@ class Blocked extends AppSection {
   }
 
   Future<void> _setupBlocked(PlatformMediumModel blockedImage) async {
-    await AbstractRepositorySingleton.singleton.bookletRepository(installApp!.theApp.documentID!)!.add(_blocked(blockedImage));
+    await AbstractRepositorySingleton.singleton.bookletRepository(installApp!.theApp.documentID)!.add(_blocked(blockedImage));
   }
 
   Future<PageModel> run() async {

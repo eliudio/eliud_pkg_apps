@@ -28,7 +28,7 @@ class NotificationDashboard extends AppSectionBase {
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp!.theApp.documentID!)!
+        .dialogRepository(installApp!.theApp.documentID)!
         .add(_dialog());
   }
 
@@ -41,7 +41,7 @@ class NotificationDashboard extends AppSectionBase {
 
     return DialogModel(
         documentID: IDENTIFIER,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         title: "Notifications",
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
@@ -53,7 +53,7 @@ class NotificationDashboard extends AppSectionBase {
   NotificationDashboardModel _dashboardModel() {
     return NotificationDashboardModel(
         documentID: IDENTIFIER,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         description: "My Notifications",
         conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
@@ -63,7 +63,7 @@ class NotificationDashboard extends AppSectionBase {
 
   Future<NotificationDashboardModel> _setupDashboard() async {
     return await AbstractRepositorySingleton.singleton
-        .notificationDashboardRepository(installApp!.theApp.documentID!)!
+        .notificationDashboardRepository(installApp!.theApp.documentID)!
         .add(_dashboardModel());
   }
 

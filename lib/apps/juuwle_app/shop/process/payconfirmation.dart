@@ -30,7 +30,7 @@ class MyPayConfirmation extends PageTemplate {
   PayConfirmationModel _payConfirmationModel() {
     return PayConfirmationModel(
       documentID: 'payconfirmation',
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       description: pageTitle(),
       shop: shop,
       backToShopAction:

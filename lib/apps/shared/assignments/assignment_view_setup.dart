@@ -25,7 +25,7 @@ class AssignmentViewSetup extends AppSectionBase {
       dialogID: AssignmentViewSetup.IDENTIFIER);
 
   Future<DialogModel> _setupDialog() async {
-    return await corerepo.AbstractRepositorySingleton.singleton.dialogRepository(installApp!.theApp.documentID!)!.add(_dialog());
+    return await corerepo.AbstractRepositorySingleton.singleton.dialogRepository(installApp!.theApp.documentID)!.add(_dialog());
   }
 
   DialogModel _dialog() {
@@ -35,7 +35,7 @@ class AssignmentViewSetup extends AppSectionBase {
 
     return DialogModel(
         documentID: IDENTIFIER,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         title: "Assignments",
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
@@ -51,7 +51,7 @@ class AssignmentViewSetup extends AppSectionBase {
   AssignmentViewModel _assignmentViewModel() {
     return AssignmentViewModel(
         documentID: IDENTIFIER,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         description: "My Assignments",
         conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
@@ -60,7 +60,7 @@ class AssignmentViewSetup extends AppSectionBase {
   }
 
   Future<AssignmentViewModel> _setupAssignmentView() async {
-    return await AbstractRepositorySingleton.singleton.assignmentViewRepository(installApp!.theApp.documentID!)!.add(_assignmentViewModel());
+    return await AbstractRepositorySingleton.singleton.assignmentViewRepository(installApp!.theApp.documentID)!.add(_assignmentViewModel());
   }
 
   Future<DialogModel> run() async {

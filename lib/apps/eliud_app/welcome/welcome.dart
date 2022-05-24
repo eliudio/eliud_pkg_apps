@@ -147,7 +147,7 @@ class Welcome extends AppSection {
       documentID: welcomeIdentifier,
       description: "Welcome",
       sections:entries,
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
       ),

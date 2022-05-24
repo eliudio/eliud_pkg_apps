@@ -35,7 +35,7 @@ abstract class InstallApp {
   AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer);
 
   Future<void> setupApplication(AppHomePageReferencesModel homePages,
-      String? ownerID, PublicMediumModel? logo);
+      String ownerID, PublicMediumModel? logo);
   Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
       DrawerModel drawer, DrawerModel endDrawer);
 
@@ -73,7 +73,7 @@ abstract class InstallApp {
   // The second time because the wipe has deleted the entry
   // This process works except when the app was create by someone else before. In which case you must delete the app through console.firebase.google.com or by logging in as the owner of the app
   Future<AppModel> claimOwnerShipApplication(
-      String? appId, String ownerID) async {
+      String appId, String ownerID) async {
     // first delete the app
     AppModel? oldApp = await appRepository()!.get(appId);
     if (oldApp != null) {
@@ -91,8 +91,9 @@ abstract class InstallApp {
   }
 
   Future<AccessModel> claimAccess(String ownerID) async {
-    return await accessRepository(appId: theApp.documentID!)!.add(AccessModel(
+    return await accessRepository(appId: theApp.documentID)!.add(AccessModel(
         documentID: ownerID,
+        appId: theApp.documentID,
         privilegeLevel: PrivilegeLevel.OwnerPrivilege,
         points: 0));
   }
@@ -157,8 +158,8 @@ abstract class InstallApp {
 
   DrawerModel _drawer(PublicMediumModel? logo) {
     return DrawerModel(
-        documentID: defaults.drawerID(theApp.documentID!, DrawerType.Left),
-        appId: theApp.documentID!,
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.Left),
+        appId: theApp.documentID,
         name: 'Drawer',
         headerText: '',
         headerBackgroundOverride: _drawerHeaderBGOverride(logo),
@@ -169,7 +170,7 @@ abstract class InstallApp {
 
   Future<DrawerModel> setupDrawer(PublicMediumModel? logo) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .drawerRepository(theApp.documentID!)!
+        .drawerRepository(theApp.documentID)!
         .add(_drawer(logo));
   }
 
@@ -184,8 +185,8 @@ abstract class InstallApp {
 
   DrawerModel _profileDrawer() {
     return DrawerModel(
-        documentID: defaults.drawerID(theApp.documentID!, DrawerType.Right),
-        appId: theApp.documentID!,
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.Right),
+        appId: theApp.documentID,
         name: 'Profile Drawer',
         headerText: '',
         secondHeaderText: 'name: \${userName}\ngroup: \${userGroup}',
@@ -196,14 +197,14 @@ abstract class InstallApp {
 
   Future<DrawerModel> setupProfileDrawer() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .drawerRepository(theApp.documentID!)!
+        .drawerRepository(theApp.documentID)!
         .add(_profileDrawer());
   }
 
   HomeMenuModel homeMenu() {
     var menu = HomeMenuModel(
-        documentID: defaults.homeMenuID(theApp.documentID!),
-        appId: theApp.documentID!,
+        documentID: defaults.homeMenuID(theApp.documentID),
+        appId: theApp.documentID,
         name: 'Home menu 1',
         menu: homeMenuDef(),);
     return menu;
@@ -211,16 +212,16 @@ abstract class InstallApp {
 
   Future<void> setupMenus() async {
     await corerepo.AbstractRepositorySingleton.singleton
-        .homeMenuRepository(theApp.documentID!)!
+        .homeMenuRepository(theApp.documentID)!
         .add(homeMenu());
     await corerepo.AbstractRepositorySingleton.singleton
-        .menuDefRepository(theApp.documentID!)!
+        .menuDefRepository(theApp.documentID)!
         .add(homeMenuDef());
     await corerepo.AbstractRepositorySingleton.singleton
-        .menuDefRepository(theApp.documentID!)!
+        .menuDefRepository(theApp.documentID)!
         .add(drawerMenuDef());
     await corerepo.AbstractRepositorySingleton.singleton
-        .menuDefRepository(theApp.documentID!)!
+        .menuDefRepository(theApp.documentID)!
         .add(profileDrawerMenuDef());
   }
 
@@ -233,7 +234,7 @@ abstract class InstallApp {
       height: 10,
       indent: 0,
       thickness: .5,
-      appId: theApp.documentID!,
+      appId: theApp.documentID,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
               PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
@@ -242,7 +243,7 @@ abstract class InstallApp {
   }
 
   Future<void> setupDividers() async {
-    await dividerRepository(appId: theApp.documentID!)!.add(_divider());
+    await dividerRepository(appId: theApp.documentID)!.add(_divider());
   }
 
   AppBarModel _appBar(
@@ -254,8 +255,8 @@ abstract class InstallApp {
       RgbModel? selectedIconColorOverride,
       RgbModel? menuBackgroundColorOverride}) {
     var appBar = AppBarModel(
-      documentID: defaults.appBarID(theApp.documentID!),
-      appId: theApp.documentID!,
+      documentID: defaults.appBarID(theApp.documentID),
+      appId: theApp.documentID,
       header: HeaderSelection.Title,
       title: title,
       backgroundOverride: backgroundOverride,
@@ -276,7 +277,7 @@ abstract class InstallApp {
       RgbModel? selectedIconColorOverride,
       RgbModel? menuBackgroundColorOverride}) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .appBarRepository(theApp.documentID!)!
+        .appBarRepository(theApp.documentID)!
         .add(_appBar(documentID, menu, title, backgroundOverride: backgroundOverride, iconColorOverride: iconColorOverride,
         selectedIconColorOverride: selectedIconColorOverride, menuBackgroundColorOverride: menuBackgroundColorOverride));
   }
@@ -284,7 +285,7 @@ abstract class InstallApp {
   String logoAssetLocation();
   String logoHeadAssetLocation();
 
-  Future<void> runBase({String? ownerID}) async {
+  Future<void> runBase({required String ownerID}) async {
 /*
     // this code isn't necessarily working correctly: I think it should probably delete all collections, including all packages, and I have the feeling it's not working.
     // however, with the introduction of subcollections for app data, we don't really need this any more, so hence we can skip it
@@ -302,7 +303,7 @@ abstract class InstallApp {
     var drawer = await setupDrawer(thePublicLogo);
     var _adminBase = adminBase(drawer, endDrawer);
 
-    await GridViews().run(theApp.documentID!);
+    await GridViews().run(theApp.documentID);
     var adminMenu =
         await _appBarMenu("Menu", await _adminBase.installAdminMenus());
 
@@ -329,10 +330,10 @@ abstract class InstallApp {
     if (usr == null) {
       throw Exception("User is null");
     } else {
-      await claimOwnerShipApplication(theApp.documentID!, usr.uid);
+      await claimOwnerShipApplication(theApp.documentID, usr.uid);
       member = await AccessBloc.firebaseToMemberModel(usr);
       if (member == null) {
-        print('Can not register $theApp.documentID! because member cannot be created');
+        print('Can not register $theApp.documentID because member cannot be created');
       } else {
 /*
         var idToken1 = await usr.getIdToken(true);
@@ -356,7 +357,7 @@ abstract class InstallApp {
         var idTokenResult = await usr.getIdTokenResult(true);
         print('Claims after claiming access: ' + idTokenResult.claims.toString());
         await run(usr.uid);
-        print('Installed $theApp.documentID! successfully');
+        print('Installed $theApp.documentID successfully');
       }
     }
   }
@@ -389,8 +390,8 @@ abstract class InstallApp {
         action: PopupMenu(theApp, menuDef: adminMenu)));
 
     var menu = MenuDefModel(
-        documentID: defaults.appBarID(theApp.documentID!),
-        appId: theApp.documentID!,
+        documentID: defaults.appBarID(theApp.documentID),
+        appId: theApp.documentID,
         name: title,
         menuItems: menuItems);
     return menu;
@@ -398,7 +399,7 @@ abstract class InstallApp {
 
   Future<MenuDefModel> _appBarMenu(String title, MenuDefModel adminMenu) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .menuDefRepository(theApp.documentID!)!
+        .menuDefRepository(theApp.documentID)!
         .add(_appBarMenuDef(title, adminMenu));
   }
 
@@ -414,7 +415,7 @@ abstract class InstallApp {
 
     appPolicyModel = AppPolicyModel(
         documentID: 'policies',
-        appId: theApp.documentID!,
+        appId: theApp.documentID,
         comments: 'All policies of the app',
         policies: [
           AppPolicyItemModel(
@@ -433,7 +434,7 @@ abstract class InstallApp {
             policy: disclaimerPolicy,
           ),
         ]);
-    await corerepo.appPolicyRepository(appId: theApp.documentID!)!.add(appPolicyModel!);
+    await corerepo.appPolicyRepository(appId: theApp.documentID)!.add(appPolicyModel!);
   }
 
   Future<List<PageModel>> createPolicyPages(AppPolicyModel appPolicyModel, DrawerModel drawer,

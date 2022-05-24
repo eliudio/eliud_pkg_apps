@@ -56,7 +56,7 @@ class Welcome extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar, PrivilegeLevelRequiredSimple privilegeLevelRequired) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.theApp.documentID!)!
+        .pageRepository(installApp!.theApp.documentID)!
         .add(_page(appBar, privilegeLevelRequired));
   }
 
@@ -92,7 +92,7 @@ class Welcome extends AppSection {
 
   Future<FaderModel> _setupFader(PlatformMediumModel android, PlatformMediumModel iphone, PlatformMediumModel tablet, PlatformMediumModel macbook, ) async {
     return await AbstractRepositorySingleton.singleton
-        .faderRepository(installApp!.theApp.documentID!)!
+        .faderRepository(installApp!.theApp.documentID)!
         .add(_fader(android, iphone, tablet, macbook, ));
   }
 
@@ -186,7 +186,7 @@ class Welcome extends AppSection {
 
   Future<DocumentModel> _setupWelcomeDocument(PrivilegeLevelRequiredSimple privilegeLevelRequired) async {
     return await AbstractRepositorySingleton.singleton
-        .documentRepository(installApp!.theApp.documentID!)!
+        .documentRepository(installApp!.theApp.documentID)!
         .add(_welcomeDocument(privilegeLevelRequired));
   }
 

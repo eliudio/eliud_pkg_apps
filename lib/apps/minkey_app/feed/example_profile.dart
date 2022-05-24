@@ -28,15 +28,15 @@ class ExampleProfile {
     var profilePhoto = await ImageTools.createMemberMediumModelPhoto(MinkeyApp.app, member, 'packages/eliud_pkg_apps/assets/minkey_app/profile/exampleprofile.png');
     var profileBackground = await ImageTools.createMemberMediumModelPhoto(MinkeyApp.app, member, 'packages/eliud_pkg_apps/assets/minkey_app/profile/pexels-pixabay-258109.jpg');
     var value = MemberProfileModel(
-      documentID: memberPublicInfo.documentID! + "-" + feedId,
-      appId: MinkeyApp.app.documentID!,
+      documentID: memberPublicInfo.documentID + "-" + feedId,
+      appId: MinkeyApp.app.documentID,
       authorId: member.documentID,
       feedId: feedId,
       profileBackground: profileBackground,
       profileOverride: profilePhoto.url,
       accessibleByGroup: accessibleByGroup,
       profile: kHtml,
-      readAccess: member.documentID != null ? [member.documentID!] : null,  // default readAccess to the owner. The function will expand this based on accessibleByGroup/Members
+      readAccess: member.documentID != null ? [member.documentID] : null,  // default readAccess to the owner. The function will expand this based on accessibleByGroup/Members
     );
 
      await postRepo.memberProfileRepository(appId: MinkeyApp.app.documentID)!.add(value);

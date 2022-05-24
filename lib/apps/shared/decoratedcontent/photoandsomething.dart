@@ -37,7 +37,7 @@ abstract class PhotoAndSomthing extends DecoratedContent {
     var simpleImageModel = SimpleImageModel(
       documentID: identifier,
       appId: memberMediumModel.appId,
-      title: null,
+      description: null,
       image: memberMediumModel,
       conditions: StorageConditionsModel(
           privilegeLevelRequired: getPrivilegeLevelRequiredSimple()),

@@ -31,7 +31,7 @@ class MyPay extends PageTemplate {
   PayModel _payModel() {
     return PayModel(
       documentID: 'pay',
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       description: pageTitle(),
       shop: shop,
       payAction: WorkflowSetup.payCart(),

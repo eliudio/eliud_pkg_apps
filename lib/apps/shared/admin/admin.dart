@@ -48,11 +48,11 @@ abstract class AdminBase extends AppSection {
     List<MenuItemModel> menuItems = await Future.wait(_adminMenuInstallers.map((element) async => _mapIt(await element.menu(installApp!.theApp))));
     MenuDefModel menu = MenuDefModel(
         documentID: "admin_sub_menu",
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         name: "Admin Sub Menu",
         menuItems: menuItems);
 
-    return await AbstractRepositorySingleton.singleton.menuDefRepository(installApp!.theApp.documentID!)!.add(menu);
+    return await AbstractRepositorySingleton.singleton.menuDefRepository(installApp!.theApp.documentID)!.add(menu);
   }
 
   /*
@@ -62,7 +62,7 @@ abstract class AdminBase extends AppSection {
   Future<void> installAdminAppss(MenuDefModel menu) async {
     var appBar = installApp!.appBar();
     List<AdminAppInstallerBase> installers = adminAppsInstallers(
-        installApp!.theApp.documentID!, drawer, endDrawer, appBar, homeMenu);
+        installApp!.theApp.documentID, drawer, endDrawer, appBar, homeMenu);
     installers.forEach((element) async {
       await element.run();
     });

@@ -33,7 +33,7 @@ import 'member/eliud_member_dashboard.dart';
  */
 class EliudApp extends InstallApp {
   static String ELIUD_APP_ID = "ELIUD_APP";
-  static AppModel app = AppModel(documentID: ELIUD_APP_ID);
+  static AppModel app = AppModel(documentID: ELIUD_APP_ID, ownerID: '??');
 
   EliudApp()
       : super(app);
@@ -50,7 +50,7 @@ class EliudApp extends InstallApp {
     menuItems.add(menuItemSignOut(app, "2"));
     menuItems.add(menuItemManageAccount(app, "4", MemberDashboard.IDENTIFIER));
     MenuDefModel menu = MenuDefModel(
-        documentID: defaults.drawerID(theApp.documentID!, DrawerType.Right),
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.Right),
         appId: ELIUD_APP_ID,
         name: "Drawer Profile Menu",
         menuItems: menuItems);
@@ -63,7 +63,7 @@ class EliudApp extends InstallApp {
     var drawerMenuItems = _homeMenuDef.menuItems!;
     drawerMenuItems.addAll(getPolicyMenuItems());
     MenuDefModel drawerMenu = _homeMenuDef.copyWith(
-        documentID: defaults.drawerID(theApp.documentID!, DrawerType.Left), name: "Drawer Menu (copy of main menu)",
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.Left), name: "Drawer Menu (copy of main menu)",
         menuItems: drawerMenuItems
     );
     return drawerMenu;
@@ -87,7 +87,7 @@ class EliudApp extends InstallApp {
         action: GotoPage(EliudApp.app, pageID: "advanced")));
     menuItems.add(menuItemAbout(app, "4", Founders.IDENTIFIER, Founders.IDENTIFIER));
     MenuDefModel menu = MenuDefModel(
-        documentID: defaults.homeMenuID(theApp.documentID!),
+        documentID: defaults.homeMenuID(theApp.documentID),
         appId: ELIUD_APP_ID,
         name: "Main Menu",
         menuItems: menuItems);
@@ -119,7 +119,7 @@ class EliudApp extends InstallApp {
 
   Future<AppModel> setupApplication(
       AppHomePageReferencesModel homePages,
-      String? ownerID,
+      String ownerID,
       PublicMediumModel? logo) async {
     AppModel application = AppModel(
       documentID: ELIUD_APP_ID,

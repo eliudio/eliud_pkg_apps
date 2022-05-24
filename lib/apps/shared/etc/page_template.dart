@@ -18,7 +18,7 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 abstract class PageTemplate extends AppSection {
-  final String? pageId;
+  final String pageId;
   final PrivilegeLevelRequiredSimple? privilegeLevelRequired;
   final String? packageCondition;
   final ConditionOverride? conditionOverride;
@@ -33,7 +33,7 @@ abstract class PageTemplate extends AppSection {
   String componentName();
   Future<void> setupComponent();
 
-  PageTemplate({this.pageId, this.privilegeLevelRequired, this.packageCondition, this.conditionOverride, this.presentationImageAlignment, InstallApp? installApp,
+  PageTemplate({required this.pageId, this.privilegeLevelRequired, this.packageCondition, this.conditionOverride, this.presentationImageAlignment, InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
       DrawerModel? endDrawer})
@@ -41,7 +41,7 @@ abstract class PageTemplate extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar, String? presentationId) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.theApp.documentID!)!
+        .pageRepository(installApp!.theApp.documentID)!
         .add(_page(appBar, presentationId));
   }
 
@@ -54,7 +54,7 @@ abstract class PageTemplate extends AppSection {
 
     return PageModel(
         documentID: pageId,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         title: pageTitle(),
         drawer: drawer,
         endDrawer: endDrawer,
@@ -70,7 +70,7 @@ abstract class PageTemplate extends AppSection {
   PresentationModel _presentation(PlatformMediumModel image) {
     return PresentationModel(
       documentID: pageId,
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       bodyComponents: [
         BodyComponentModel(
           documentID: pageId,
@@ -88,7 +88,7 @@ abstract class PageTemplate extends AppSection {
 
   Future<PresentationModel> _setupPresentation(PlatformMediumModel image) async {
     var presentation = _presentation(image);
-    await AbstractRepositorySingleton.singleton.presentationRepository(installApp!.theApp.documentID!)!.add(presentation);
+    await AbstractRepositorySingleton.singleton.presentationRepository(installApp!.theApp.documentID)!.add(presentation);
     return presentation;
   }
 

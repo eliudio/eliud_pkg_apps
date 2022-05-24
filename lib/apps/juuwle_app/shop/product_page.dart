@@ -28,7 +28,7 @@ class ProductPage extends BasicPageTemplate {
   ProductDisplayModel _productDisplayOverview() {
     return ProductDisplayModel(
       documentID: 'product',
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       description: pageTitle(),
       shop: shop,
       buyAction: MyCart.openCartPage(),

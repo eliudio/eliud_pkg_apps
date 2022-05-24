@@ -27,7 +27,7 @@ class _FollowingDashboard extends AppSectionBase {
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp!.theApp.documentID!)!
+        .dialogRepository(installApp!.theApp.documentID)!
         .add(_dialog());
   }
 
@@ -40,7 +40,7 @@ class _FollowingDashboard extends AppSectionBase {
 
     return DialogModel(
         documentID: identifier,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         title: title,
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
@@ -52,7 +52,7 @@ class _FollowingDashboard extends AppSectionBase {
   FollowingDashboardModel _dashboardModel() {
     return FollowingDashboardModel(
         documentID: identifier,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         description: title,
         view: view,
         memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.theApp, profilePageId, feedPageId),
@@ -64,7 +64,7 @@ class _FollowingDashboard extends AppSectionBase {
 
   Future<FollowingDashboardModel> _setupDashboard() async {
     return await AbstractRepositorySingleton.singleton
-        .followingDashboardRepository(installApp!.theApp.documentID!)!
+        .followingDashboardRepository(installApp!.theApp.documentID)!
         .add(_dashboardModel());
   }
 
@@ -84,7 +84,7 @@ class FollowRequestDashboard extends AppSectionBase {
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp!.theApp.documentID!)!
+        .dialogRepository(installApp!.theApp.documentID)!
         .add(_dialog());
   }
 
@@ -97,7 +97,7 @@ class FollowRequestDashboard extends AppSectionBase {
 
     return DialogModel(
         documentID: FOLLOW_REQUEST_IDENTIFIER,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         title: "Follow requests",
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
@@ -109,7 +109,7 @@ class FollowRequestDashboard extends AppSectionBase {
   FollowRequestsDashboardModel _dashboardModel() {
     return FollowRequestsDashboardModel(
       documentID: FOLLOW_REQUEST_IDENTIFIER,
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       description: "Follow requests",
       memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.theApp, profilePageId, feedPageId),
       conditions: StorageConditionsModel(
@@ -120,7 +120,7 @@ class FollowRequestDashboard extends AppSectionBase {
 
   Future<FollowRequestsDashboardModel> _setupDashboard() async {
     return await AbstractRepositorySingleton.singleton
-        .followRequestsDashboardRepository(installApp!.theApp.documentID!)!
+        .followRequestsDashboardRepository(installApp!.theApp.documentID)!
         .add(_dashboardModel());
   }
 
@@ -140,7 +140,7 @@ class InviteDashboard extends AppSectionBase {
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp!.theApp.documentID!)!
+        .dialogRepository(installApp!.theApp.documentID)!
         .add(_dialog());
   }
 
@@ -153,7 +153,7 @@ class InviteDashboard extends AppSectionBase {
 
     return DialogModel(
         documentID: INVITE_IDENTIFIER,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         title: "Follow members",
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
@@ -165,7 +165,7 @@ class InviteDashboard extends AppSectionBase {
   InviteDashboardModel _dashboardModel() {
     return InviteDashboardModel(
       documentID: INVITE_IDENTIFIER,
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       description: "Follow members",
       memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.theApp, profilePageId, feedPageId),
       conditions: StorageConditionsModel(
@@ -176,7 +176,7 @@ class InviteDashboard extends AppSectionBase {
 
   Future<InviteDashboardModel> _setupDashboard() async {
     return await AbstractRepositorySingleton.singleton
-        .inviteDashboardRepository(installApp!.theApp.documentID!)!
+        .inviteDashboardRepository(installApp!.theApp.documentID)!
         .add(_dashboardModel());
   }
 

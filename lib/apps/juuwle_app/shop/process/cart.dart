@@ -34,7 +34,7 @@ class MyCart extends PageTemplate {
   CartModel _cart() {
     return CartModel(
         documentID: 'cart',
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         title: pageTitle(),
         description: 'Shopping bag',
         checkoutText: 'Checkout',

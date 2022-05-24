@@ -1,4 +1,3 @@
-import 'package:eliud_core/core_package.dart';
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
 import 'package:eliud_core/model/app_model.dart';
@@ -55,7 +54,7 @@ import 'membership/minkey_membership_dashboard.dart';
  */
 class MinkeyApp extends InstallApp {
   static String MINKEY_APP_ID = "MINKEY_APP";
-  static AppModel app = AppModel(documentID: MINKEY_APP_ID);
+  static AppModel app = AppModel(documentID: MINKEY_APP_ID, ownerID: '?');
 
   MinkeyApp()
       : super(
@@ -75,7 +74,7 @@ class MinkeyApp extends InstallApp {
     menuItems.add(menuItemManageAccount(app, "4", MemberDashboard.IDENTIFIER));
 
     MenuDefModel menu = MenuDefModel(
-        documentID: defaults.drawerID(theApp.documentID!, DrawerType.Right),
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.Right),
         appId: MINKEY_APP_ID,
         name: "Drawer Profile Menu",
         menuItems: menuItems);
@@ -88,7 +87,7 @@ class MinkeyApp extends InstallApp {
     var drawerMenuItems = _homeMenuDef.menuItems!;
     drawerMenuItems.addAll(getPolicyMenuItems());
     MenuDefModel drawerMenu = _homeMenuDef.copyWith(
-        documentID: defaults.drawerID(theApp.documentID!, DrawerType.Left),
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.Left),
         name: "Drawer Menu (copy of main menu)",
         menuItems: drawerMenuItems);
     return drawerMenu;
@@ -109,7 +108,7 @@ class MinkeyApp extends InstallApp {
     menuItems
         .add(menuItem(app, "album", Album.IDENTIFIER, "Album", Icons.photo));
     MenuDefModel menu = MenuDefModel(
-        documentID: defaults.homeMenuID(theApp.documentID!),
+        documentID: defaults.homeMenuID(theApp.documentID),
         appId: MINKEY_APP_ID,
         name: "Main Menu",
         menuItems: menuItems);
@@ -118,7 +117,7 @@ class MinkeyApp extends InstallApp {
 
   @override
   Future<AppModel> setupApplication(AppHomePageReferencesModel homePages,
-      String? ownerID, PublicMediumModel? logo) async {
+      String ownerID, PublicMediumModel? logo) async {
     AppModel application = AppModel(
         documentID: MINKEY_APP_ID,
         title: "Minkey!",
@@ -311,7 +310,7 @@ class MinkeyApp extends InstallApp {
             description: "Request membership",
             icon: null,
             action:
-                WorkflowSetup.requestMembershipAction(MinkeyApp.MINKEY_APP_ID))
+                WorkflowSetup.requestMembershipAction())
       ];
 
   @override

@@ -26,7 +26,7 @@ abstract class OnlyPhotoAndText extends PhotoAndSomthing {
             privilegeLevelRequiredSimple: privilegeLevelRequiredSimple);
 
   Future<SimpleTextModel> createSimpleTextModel(
-      String? appId, String title, String contents,
+      String appId, String title, String contents,
       {SimpleTextAlign? align}) async {
     var simpleTextModel = SimpleTextModel(
         documentID: identifier,
@@ -44,7 +44,7 @@ abstract class OnlyPhotoAndText extends PhotoAndSomthing {
       DecorationComponentPosition imagePosition, String imageAssetLocation,
       {SimpleTextAlign? align}) async {
     var simpleTextModel =
-        await createSimpleTextModel(installApp!.theApp.documentID!, title, contents, align: align);
+        await createSimpleTextModel(installApp!.theApp.documentID, title, contents, align: align);
     var componentId = simpleTextModel.documentID;
     var componentName = AbstractSimpleTextComponent.componentName;
     return super.installPhoto(componentId, componentName, title, imagePosition, imageAssetLocation);

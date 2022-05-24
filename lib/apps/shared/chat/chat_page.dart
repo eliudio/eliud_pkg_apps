@@ -33,7 +33,7 @@ class ChatPage extends AppSection {
 
   Future<PageModel> _setupPage(String identifier) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.theApp.documentID!)!
+        .pageRepository(installApp!.theApp.documentID)!
         .add(_page(identifier));
   }
 
@@ -46,7 +46,7 @@ class ChatPage extends AppSection {
 
     return PageModel(
         documentID: identifier,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         title: "Chat",
         drawer: drawer,
         endDrawer: endDrawer,
@@ -63,7 +63,7 @@ class ChatPage extends AppSection {
   ChatDashboardModel _chatModel() {
     return ChatDashboardModel(
       documentID: CHAT_ID,
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       description: "Chat",
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
@@ -73,7 +73,7 @@ class ChatPage extends AppSection {
 
   Future<ChatDashboardModel> _setupChat() async {
     return await AbstractRepositorySingleton.singleton
-        .chatDashboardRepository(installApp!.theApp.documentID!)!
+        .chatDashboardRepository(installApp!.theApp.documentID)!
         .add(_chatModel());
   }
 

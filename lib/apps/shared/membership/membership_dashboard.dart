@@ -30,7 +30,7 @@ class MembershipDashboard extends AppSectionBase {
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp!.theApp.documentID!)!
+        .dialogRepository(installApp!.theApp.documentID)!
         .add(_dialog());
   }
 
@@ -43,7 +43,7 @@ class MembershipDashboard extends AppSectionBase {
 
     return DialogModel(
         documentID: IDENTIFIER,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         title: "Membership dashboard",
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
@@ -56,7 +56,7 @@ class MembershipDashboard extends AppSectionBase {
   MembershipDashboardModel _dashboardModel() {
     return MembershipDashboardModel(
       documentID: IDENTIFIER,
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       description: "Members",
       memberActions: ProfileAndFeedToAction.getMemberActionModels(
           installApp!.theApp, profilePageId, feedPageId),
@@ -68,7 +68,7 @@ class MembershipDashboard extends AppSectionBase {
 
   Future<MembershipDashboardModel> _setupDashboard() async {
     return await AbstractRepositorySingleton.singleton
-        .membershipDashboardRepository(installApp!.theApp.documentID!)!
+        .membershipDashboardRepository(installApp!.theApp.documentID)!
         .add(_dashboardModel());
   }
 

@@ -37,13 +37,13 @@ abstract class DecoratedContent extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar, String title) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.theApp.documentID!)!
+        .pageRepository(installApp!.theApp.documentID)!
         .add(_page(appBar, title));
   }
 
   Future<FaderModel> _setupFader() async {
     return await AbstractRepositorySingleton.singleton
-        .faderRepository(installApp!.theApp.documentID!)!
+        .faderRepository(installApp!.theApp.documentID)!
         .add(_fader());
   }
 
@@ -57,11 +57,11 @@ abstract class DecoratedContent extends AppSection {
         image: installApp!.thePlatformLogo));
     var model = FaderModel(
       documentID: faderIdentifier,
-      name: 'Fader',
+      description: 'Fader',
       animationMilliseconds: 1000,
       imageSeconds: 5,
       items: items,
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:privilegeLevelRequiredSimple),
     );
@@ -88,7 +88,7 @@ abstract class DecoratedContent extends AppSection {
 
     return PageModel(
         documentID: identifier,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         title: title,
         drawer: drawer,
         endDrawer: endDrawer,
@@ -109,8 +109,8 @@ abstract class DecoratedContent extends AppSection {
       DecorationComponentPosition position) async {
     var decoratedContent = DecoratedContentModel(
       documentID: identifier,
-      appId: installApp!.theApp.documentID!,
-      name: identifier,
+      appId: installApp!.theApp.documentID,
+      description: identifier,
       contentComponentId: componentId,
       contentComponentName: componentName,
       decoratingComponentName: decoratingComponentName,
@@ -122,7 +122,7 @@ abstract class DecoratedContent extends AppSection {
       ),
     );
     await AbstractRepositorySingleton.singleton
-        .decoratedContentRepository(installApp!.theApp.documentID!)!
+        .decoratedContentRepository(installApp!.theApp.documentID)!
         .add(decoratedContent);
     return decoratedContent;
   }

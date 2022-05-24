@@ -12,7 +12,7 @@ import '../../app_base.dart';
 import '../../app_section.dart';
 
 abstract class BasicPageTemplate extends AppSection {
-  final String? pageId;
+  final String pageId;
   final PrivilegeLevelRequiredSimple? privilegeLevelRequired;
 /*
   final String? packageCondition;
@@ -27,7 +27,7 @@ abstract class BasicPageTemplate extends AppSection {
   String componentName();
   Future<void> setupComponent();
 
-  BasicPageTemplate({this.pageId, this.privilegeLevelRequired, /*this.packageCondition, this.conditionOverride, */this.presentationImageAlignment, InstallApp? installApp,
+  BasicPageTemplate({required this.pageId, this.privilegeLevelRequired, /*this.packageCondition, this.conditionOverride, */this.presentationImageAlignment, InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
       DrawerModel? endDrawer})
@@ -35,7 +35,7 @@ abstract class BasicPageTemplate extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.theApp.documentID!)!
+        .pageRepository(installApp!.theApp.documentID)!
         .add(_page(appBar));
   }
 
@@ -48,7 +48,7 @@ abstract class BasicPageTemplate extends AppSection {
 
     return PageModel(
         documentID: pageId,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         title: pageTitle(),
         drawer: drawer,
         endDrawer: endDrawer,

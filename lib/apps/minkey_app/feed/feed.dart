@@ -37,7 +37,7 @@ class Feed extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.theApp.documentID!)!
+        .pageRepository(installApp!.theApp.documentID)!
         .add(_page(appBar));
   }
 
@@ -92,7 +92,7 @@ class Feed extends AppSection {
 
   Future<FeedModel> _setupFeed() async {
     return await AbstractRepositorySingleton.singleton
-        .feedRepository(installApp!.theApp.documentID!)!
+        .feedRepository(installApp!.theApp.documentID)!
         .add(feedModel());
   }
 

@@ -37,7 +37,7 @@ class PlayStore extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(installApp!.theApp.documentID!)!
+        .pageRepository(installApp!.theApp.documentID)!
         .add(_page(appBar));
   }
 
@@ -74,7 +74,7 @@ class PlayStore extends AppSection {
 
   Future<FaderModel> _setupFader() async {
     return await AbstractRepositorySingleton.singleton
-        .faderRepository(installApp!.theApp.documentID!)!
+        .faderRepository(installApp!.theApp.documentID)!
         .add(_fader());
   }
 
@@ -113,7 +113,7 @@ class PlayStore extends AppSection {
 
   Future<PlayStoreModel> _setupPlayStore() async {
     return await creator.AbstractRepositorySingleton.singleton
-        .playStoreRepository(installApp!.theApp.documentID!)!
+        .playStoreRepository(installApp!.theApp.documentID)!
         .add(playStore());
   }
 

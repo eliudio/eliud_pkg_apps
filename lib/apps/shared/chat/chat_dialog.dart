@@ -35,7 +35,7 @@ class ChatDialog extends AppSectionBase {
 
   Future<DialogModel> _setupDialog(String identifier) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .dialogRepository(installApp!.theApp.documentID!)!
+        .dialogRepository(installApp!.theApp.documentID)!
         .add(_dialog(identifier));
   }
 
@@ -48,7 +48,7 @@ class ChatDialog extends AppSectionBase {
 
     return DialogModel(
         documentID: identifier,
-        appId: installApp!.theApp.documentID!,
+        appId: installApp!.theApp.documentID,
         title: "Chat",
         includeHeading: false,
         layout: DialogLayout.ListView,
@@ -62,7 +62,7 @@ class ChatDialog extends AppSectionBase {
   ChatDashboardModel _chatModel() {
     return ChatDashboardModel(
       documentID: CHAT_ID,
-      appId: installApp!.theApp.documentID!,
+      appId: installApp!.theApp.documentID,
       description: "Chat",
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
@@ -72,7 +72,7 @@ class ChatDialog extends AppSectionBase {
 
   Future<ChatDashboardModel> _setupChat() async {
     return await AbstractRepositorySingleton.singleton
-        .chatDashboardRepository(installApp!.theApp.documentID!)!
+        .chatDashboardRepository(installApp!.theApp.documentID)!
         .add(_chatModel());
   }
 
