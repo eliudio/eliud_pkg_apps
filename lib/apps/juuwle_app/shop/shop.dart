@@ -75,6 +75,7 @@ class Shop extends AppSection {
         documentID: identifier,
         appId: JuuwleApp.JUUWLE_APP_ID,
         title: 'Shop',
+        description: 'Shop',
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,

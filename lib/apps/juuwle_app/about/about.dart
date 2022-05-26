@@ -30,5 +30,8 @@ class About extends AboutBase {
   String aboutTitle() => "About me";
 
   @override
+  String aboutDescription() => "About me";
+
+  @override
   String assetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_sitting.png';
 }

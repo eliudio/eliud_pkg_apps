@@ -17,11 +17,12 @@ import '../../app_section.dart';
 class _FollowingDashboard extends AppSectionBase {
   final String identifier;
   final String title;
+  final String description;
   final FollowingView view;
   final String? profilePageId;
   final String? feedPageId;
 
-  _FollowingDashboard(this.identifier, this.title, this.view,
+  _FollowingDashboard(this.identifier, this.title, this.description, this.view,
       InstallApp? installApp, this.profilePageId, this.feedPageId, )
       : super(installApp);
 
@@ -42,6 +43,7 @@ class _FollowingDashboard extends AppSectionBase {
         documentID: identifier,
         appId: installApp!.theApp.documentID,
         title: title,
+        description: description,
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
@@ -99,6 +101,7 @@ class FollowRequestDashboard extends AppSectionBase {
         documentID: FOLLOW_REQUEST_IDENTIFIER,
         appId: installApp!.theApp.documentID,
         title: "Follow requests",
+        description: "Follow requests",
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
@@ -155,6 +158,7 @@ class InviteDashboard extends AppSectionBase {
         documentID: INVITE_IDENTIFIER,
         appId: installApp!.theApp.documentID,
         title: "Follow members",
+        description: "Follow members",
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
@@ -194,9 +198,9 @@ class FollowDashboards extends AppSectionBase {
   static String FOLLOWING_IDENTIFIER = "following_dashboard";
 
   Future<DialogModel> runIt(String? profilePageId,  String? feedPageId) async {
-    await _FollowingDashboard(FOLLOWERS_IDENTIFIER, "Followers", FollowingView.Followers,
+    await _FollowingDashboard(FOLLOWERS_IDENTIFIER, "Followers", "Followers", FollowingView.Followers,
         installApp, profilePageId, feedPageId).run();
-    await _FollowingDashboard(FOLLOWING_IDENTIFIER, "Following", FollowingView.Following,
+    await _FollowingDashboard(FOLLOWING_IDENTIFIER, "Following", "Following", FollowingView.Following,
         installApp, profilePageId, feedPageId).run();
     await FollowRequestDashboard(installApp, profilePageId, feedPageId).run();
     return await InviteDashboard(installApp, profilePageId, feedPageId).run();

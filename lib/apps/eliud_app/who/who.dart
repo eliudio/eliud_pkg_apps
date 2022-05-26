@@ -26,4 +26,7 @@ class Who extends Founders {
 
   @override
   String aboutTitle() => "Who's who and why?";
+
+  @override
+  String aboutDescription()  => "Who's who and why?";
 }

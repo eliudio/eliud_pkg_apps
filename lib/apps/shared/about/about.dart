@@ -55,6 +55,7 @@ abstract class AboutBase extends AppSection {
         documentID: identifier,
         appId: installApp!.theApp.documentID,
         title: aboutTitle(),
+        description: aboutDescription(),
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,
@@ -68,6 +69,7 @@ abstract class AboutBase extends AppSection {
 
   String aboutText();
   String aboutTitle();
+  String aboutDescription();
   String assetLocation();
 
   Future<String?> _store(PlatformMediumModel platformMediumModel) async {

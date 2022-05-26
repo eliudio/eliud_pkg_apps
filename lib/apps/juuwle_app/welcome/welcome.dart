@@ -34,6 +34,7 @@ class Welcome extends AppSection {
         documentID: identifier,
         appId: JuuwleApp.JUUWLE_APP_ID,
         title: "Welcome",
+        description: "Welcome",
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,

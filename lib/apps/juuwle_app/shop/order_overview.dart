@@ -34,6 +34,9 @@ class OrderOverview extends PageTemplate {
   String pageTitle() => 'Your Orders';
 
   @override
+  String pageDescription() => 'Your Orders';
+
+  @override
   String componentName() => AbstractOrderOverviewComponent.componentName;
 
   OrderOverview({

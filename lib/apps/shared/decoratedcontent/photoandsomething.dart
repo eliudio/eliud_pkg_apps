@@ -47,13 +47,13 @@ abstract class PhotoAndSomthing extends DecoratedContent {
     return simpleImageModel;
   }
 
-  Future<void> installPhoto(String? componentId, String componentName, String title, DecorationComponentPosition imagePosition, String imageAssetLocation,
+  Future<void> installPhoto(String? componentId, String componentName, String title, String description, DecorationComponentPosition imagePosition, String imageAssetLocation,
       ) async {
     var memberMediumModel = await installImage(imageAssetLocation);
     var decoration = await createSimpleImage(memberMediumModel);
     var decoratingComponentId = decoration.documentID;
     var decoratingComponentName = AbstractSimpleImageComponent.componentName;
-    return super.installDecoratedContent(title, componentId, componentName,
+    return super.installDecoratedContent(title, description, componentId, componentName,
         decoratingComponentId, decoratingComponentName, imagePosition);
   }
 }

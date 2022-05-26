@@ -60,6 +60,7 @@ class PlayStore extends AppSection {
         documentID: IDENTIFIER,
         appId: MinkeyApp.MINKEY_APP_ID,
         title: "Apps",
+        description: "Apps",
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,

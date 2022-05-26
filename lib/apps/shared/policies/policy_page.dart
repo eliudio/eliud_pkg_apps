@@ -17,11 +17,13 @@ import '../../app_section.dart';
 
 class PolicyPage extends AppSection {
   final PublicMediumModel? policy;
-  final String? title;
+  final String title;
+  final String description;
 
   PolicyPage({
       this.policy,
-      this.title,
+      required this.title,
+      required this.description,
       InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
@@ -63,6 +65,7 @@ class PolicyPage extends AppSection {
         documentID: policy!.documentID,
         appId: installApp!.theApp.documentID,
         title: title,
+        description: description,
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,

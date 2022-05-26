@@ -45,6 +45,7 @@ class MembershipDashboard extends AppSectionBase {
         documentID: IDENTIFIER,
         appId: installApp!.theApp.documentID,
         title: "Membership dashboard",
+        description: "Membership dashboard",
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired:

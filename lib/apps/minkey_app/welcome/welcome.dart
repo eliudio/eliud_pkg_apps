@@ -79,6 +79,7 @@ class Welcome extends AppSection {
         documentID: IDENTIFIERs[privilegeLevelRequired.index],
         appId: MinkeyApp.MINKEY_APP_ID,
         title: "Welcome",
+        description: "Welcome",
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,

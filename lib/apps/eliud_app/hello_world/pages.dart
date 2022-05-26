@@ -86,7 +86,7 @@ flutter:
           "7. Update the file andoid/app/build.gradle and specify minSdkVersion 21"
         ]
     ));
-    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_FLUTTER_PROJECT, "Create Flutter Project", drawer, appBar, homeMenu);
+    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_FLUTTER_PROJECT, "Create Flutter Project", "Create Flutter Project", drawer, appBar, homeMenu);
   }
 
   // ************************ Tutorial: Google Account *****************
@@ -106,7 +106,7 @@ flutter:
           "5. Agree to the google terms and processing of information and press Create Account.",
     ]
     ));
-    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_GOOGLE_ACCOUNT, "Create Google Account", drawer, appBar, homeMenu);
+    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_GOOGLE_ACCOUNT, "Create Google Account", "Create Google Account", drawer, appBar, homeMenu);
   }
 
   // ************************ Tutorial: Firebase project *****************
@@ -127,7 +127,7 @@ flutter:
       "5. Wait for the project to be created",
       "6. Ones the project is created, press Continue",
     ]));
-    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_FIREBASE_PROJECT, "Create Firebase Project", drawer, appBar, homeMenu);
+    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_FIREBASE_PROJECT, "Create Firebase Project", "Create Firebase Project", drawer, appBar, homeMenu);
   }
 
   // ************************ Tutorial: Android App *****************
@@ -150,7 +150,7 @@ flutter:
       "8. Allow this screen to indicate your app is working correctly. Run your app form Android Studio.",
       "9. The screen should indicate your app is working correctly and connected to firebase as required. Success! If not, go through the different steps of the tutorial ones again and verify if you've followed each step correctly.",
     ]));
-    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_ANDROID_APP, "Create Android App", drawer, appBar, homeMenu);
+    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_ANDROID_APP, "Create Android App", "Create Android App", drawer, appBar, homeMenu);
   }
 
   // ************************ Tutorial: Database *****************
@@ -167,7 +167,7 @@ flutter:
       "3. When prompted for the database specifications, select 'Start in test mode'. At a later stage we will update these settings / rules to make your database safe. But for now, we're happy with test mode. Click Next",
       "4. Select a Cloud Firestire location and press Done"
     ]));
-    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_DATABASE, "Create Database", drawer, appBar, homeMenu);
+    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_DATABASE, "Create Database", "Create Database", drawer, appBar, homeMenu);
   }
 
   // ************************ Tutorial: Storage *****************
@@ -186,7 +186,7 @@ flutter:
       "4. Select a cloud storage location and press Done",
       "5. Select the Rules tab and specify the rules as indicated, i.e. allow read and write for all."
     ]));
-    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_STORAGE, "Create Storage", drawer, appBar, homeMenu);
+    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_STORAGE, "Create Storage", "Create Storage", drawer, appBar, homeMenu);
   }
 
   // ************************ Tutorial: Authentication *****************
@@ -203,7 +203,7 @@ flutter:
       "2. Select Authentication from the left hand side menu. Then press Set up sign-in method",
       "3. Find Google from the Sign-in method, enabld and specify the project-level settings. Press Save"
     ]));
-    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_AUTHENTICATION, "Setup Authentication", drawer, appBar, homeMenu);
+    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_AUTHENTICATION, "Setup Authentication", "Setup Authentication", drawer, appBar, homeMenu);
   }
 
   // ************************ Tutorial: Flutter Project *****************
@@ -329,7 +329,7 @@ This will create a google api console project and client ID. We will need this i
           "10. Update index.html, change description, meta data, color, etc",
         ]
     ));
-    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_FLUTTER_WEBPROJECT, "Create Flutter Web Project", drawer, appBar, homeMenu);
+    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_FLUTTER_WEBPROJECT, "Create Flutter Web Project", "Create Flutter Web Project", drawer, appBar, homeMenu);
   }
 
   // ************************ Tutorial: Android App *****************
@@ -348,7 +348,7 @@ This will create a google api console project and client ID. We will need this i
           "2. Provide an App nickname and select Firebase Hosting. Select your project from the drop down box. Then click on Register app. Then click Next when asked to add the Firebase SDK. click next when asked to Install Firebase CLI. Click on 'Continue to the console' the the deploy to Firebase hosting.",
           "3. Follow these instructions to allow refresh of clients when updates are made to the app: https://stackoverflow.com/questions/46667316/firebase-hosting-force-browser-to-reset-cache-on-new-deploys"
         ]));
-    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_WEB_APP, "Create Web App", drawer, appBar, homeMenu);
+    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, CREATE_WEB_APP, "Create Web App", "Create Web App", drawer, appBar, homeMenu);
   }
 
   // ************************ Tutorial: Deploy web app *****************
@@ -406,7 +406,7 @@ Basically:
           "5. To make sure your domain opens your web app, follow these steps"
 
         ]));
-    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, DEPLOY_WEB_APP, "Deploy Web App", drawer, appBar, homeMenu);
+    return await TutorialTools.createTutorial(EliudApp.ELIUD_APP_ID, DEPLOY_WEB_APP, "Deploy Web App", "Deploy Web App", drawer, appBar, homeMenu);
   }
 
   // ************************ Setup *****************

@@ -33,6 +33,7 @@ class Blocked extends AppSection {
         documentID: identifier,
         appId: installApp!.theApp.documentID,
         title: "Blocked !",
+        description: "Blocked !",
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,

@@ -40,13 +40,13 @@ abstract class OnlyPhotoAndText extends PhotoAndSomthing {
     return simpleTextModel;
   }
 
-  Future<void> installPhotoAndText(String title, String contents,
+  Future<void> installPhotoAndText(String title, String description, String contents,
       DecorationComponentPosition imagePosition, String imageAssetLocation,
       {SimpleTextAlign? align}) async {
     var simpleTextModel =
         await createSimpleTextModel(installApp!.theApp.documentID, title, contents, align: align);
     var componentId = simpleTextModel.documentID;
     var componentName = AbstractSimpleTextComponent.componentName;
-    return super.installPhoto(componentId, componentName, title, imagePosition, imageAssetLocation);
+    return super.installPhoto(componentId, componentName, title, description, imagePosition, imageAssetLocation);
   }
 }

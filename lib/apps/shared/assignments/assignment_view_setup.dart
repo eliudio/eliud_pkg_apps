@@ -37,6 +37,7 @@ class AssignmentViewSetup extends AppSectionBase {
         documentID: IDENTIFIER,
         appId: installApp!.theApp.documentID,
         title: "Assignments",
+        description: "Assignments",
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
             privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,

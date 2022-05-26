@@ -58,6 +58,7 @@ Sorry to see you go. Your account has been destroyed.
         documentID: IDENTIFIER,
         appId: installApp!.theApp.documentID,
         title: "Member dashboard",
+        description: "Member dashboard",
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
             privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,

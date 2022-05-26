@@ -26,6 +26,7 @@ abstract class PageTemplate extends AppSection {
   PresentationImageAlignment? presentationImageAlignment;
 
   String pageTitle();
+  String pageDescription();
 
   String assetLocation();
 
@@ -56,6 +57,7 @@ abstract class PageTemplate extends AppSection {
         documentID: pageId,
         appId: installApp!.theApp.documentID,
         title: pageTitle(),
+        description: pageDescription(),
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,

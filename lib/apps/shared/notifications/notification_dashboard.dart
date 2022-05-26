@@ -43,6 +43,7 @@ class NotificationDashboard extends AppSectionBase {
         documentID: IDENTIFIER,
         appId: installApp!.theApp.documentID,
         title: "Notifications",
+        description: "Notifications",
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,

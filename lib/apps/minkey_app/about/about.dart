@@ -24,4 +24,7 @@ class About extends Founders {
 
   @override
   String aboutTitle() => "About";
+
+  @override
+  String aboutDescription() => "About";
 }

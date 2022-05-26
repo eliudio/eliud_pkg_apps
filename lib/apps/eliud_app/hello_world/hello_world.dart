@@ -203,6 +203,7 @@ class HelloWorld extends AppSection {
       documentID: IDENTIFIER,
       appId: EliudApp.ELIUD_APP_ID,
       title: "Hello World",
+      description: "Hello World",
       drawer: drawer,
       endDrawer: endDrawer,
       appBar: appBar,

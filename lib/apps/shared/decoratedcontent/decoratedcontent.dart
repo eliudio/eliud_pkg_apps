@@ -35,10 +35,10 @@ abstract class DecoratedContent extends AppSection {
       DrawerModel? endDrawer, this.percentageDecorationVisible, { this.addLogo, this.privilegeLevelRequiredSimple })
       : super(installApp, homeMenu, drawer, endDrawer);
 
-  Future<PageModel> _setupPage(AppBarModel appBar, String title) async {
+  Future<PageModel> _setupPage(AppBarModel appBar, String title, String description) async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .pageRepository(installApp!.theApp.documentID)!
-        .add(_page(appBar, title));
+        .add(_page(appBar, title, description));
   }
 
   Future<FaderModel> _setupFader() async {
@@ -68,7 +68,7 @@ abstract class DecoratedContent extends AppSection {
     return model;
   }
 
-  PageModel _page(AppBarModel appBar, String title) {
+  PageModel _page(AppBarModel appBar, String title, String description) {
     List<BodyComponentModel> components = [];
     if ((addLogo != null) && addLogo!) {
       components.add(BodyComponentModel(
@@ -90,6 +90,7 @@ abstract class DecoratedContent extends AppSection {
         documentID: identifier,
         appId: installApp!.theApp.documentID,
         title: title,
+        description: description,
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,
@@ -129,6 +130,7 @@ abstract class DecoratedContent extends AppSection {
 
   Future<void> installDecoratedContent(
       String title,
+      String description,
       String? componentId,
       String componentName,
       String? decoratingComponentId,
@@ -139,6 +141,6 @@ abstract class DecoratedContent extends AppSection {
     }
     await _decoratedContent(componentId, componentName, decoratingComponentId, decoratingComponentName, position);
     var appBar = installApp!.appBar();
-    await _setupPage(appBar, title);
+    await _setupPage(appBar, title, description);
   }
 }

@@ -55,6 +55,7 @@ class Welcome extends AppSection {
         documentID: identifier,
         appId: EliudApp.ELIUD_APP_ID,
         title: "Welcome",
+        description: "Welcome",
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,

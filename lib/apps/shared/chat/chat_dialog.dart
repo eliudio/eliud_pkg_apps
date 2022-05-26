@@ -50,6 +50,7 @@ class ChatDialog extends AppSectionBase {
         documentID: identifier,
         appId: installApp!.theApp.documentID,
         title: "Chat",
+        description: "Chat",
         includeHeading: false,
         layout: DialogLayout.ListView,
         conditions: StorageConditionsModel(

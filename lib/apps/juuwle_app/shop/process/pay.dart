@@ -47,6 +47,9 @@ class MyPay extends PageTemplate {
   String pageTitle() => 'Payment';
 
   @override
+  String pageDescription() => 'Payment';
+
+  @override
   String componentName() => AbstractPayComponent.componentName;
 
   MyPay({

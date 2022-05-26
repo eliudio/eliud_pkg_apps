@@ -444,7 +444,8 @@ abstract class InstallApp {
     appPolicyModel.policies!.forEach((element) async {
        pages.add(await PolicyPage(
           policy: element.policy,
-          title: element.name,
+         title: element.name ?? '?',
+         description: element.name ?? '?',
           installApp: this,
           homeMenu: homeMenu(),
           drawer: drawer,

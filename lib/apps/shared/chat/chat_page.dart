@@ -48,6 +48,7 @@ class ChatPage extends AppSection {
         documentID: identifier,
         appId: installApp!.theApp.documentID,
         title: "Chat",
+        description: "Chat",
         drawer: drawer,
         endDrawer: endDrawer,
         homeMenu: homeMenu,

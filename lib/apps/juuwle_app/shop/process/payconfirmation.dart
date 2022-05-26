@@ -45,6 +45,9 @@ class MyPayConfirmation extends PageTemplate {
   String pageTitle() => 'Success';
 
   @override
+  String pageDescription() => 'Success';
+
+  @override
   String componentName() => AbstractPayConfirmationComponent.componentName;
 
   MyPayConfirmation({

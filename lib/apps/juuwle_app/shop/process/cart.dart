@@ -54,6 +54,9 @@ class MyCart extends PageTemplate {
   String pageTitle() => 'Your Bag';
 
   @override
+  String pageDescription() => 'Your Bag';
+
+  @override
   String pageImageID() => 'cartImage';
 
   @override

@@ -60,6 +60,7 @@ class Feed extends AppSection {
         documentID: IDENTIFIER,
         appId: MinkeyApp.MINKEY_APP_ID,
         title: "Feed",
+        description: "Feed",
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,

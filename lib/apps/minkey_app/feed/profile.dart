@@ -56,6 +56,7 @@ class Profile extends AppSection {
         documentID: IDENTIFIER,
         appId: MinkeyApp.MINKEY_APP_ID,
         title: "Profile",
+        description: "Profile",
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,

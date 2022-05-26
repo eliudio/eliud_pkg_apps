@@ -92,7 +92,7 @@ class TutorialTools {
     );
   }
 
-  static Future<PageModel> createTutorial(String appId, String tutorialID, String title, DrawerModel? drawer, AppBarModel appBar, HomeMenuModel? homeMenu) async {
+  static Future<PageModel> createTutorial(String appId, String tutorialID, String title, String description, DrawerModel? drawer, AppBarModel appBar, HomeMenuModel? homeMenu) async {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "1", componentName: AbstractTutorialComponent.componentName, componentId: tutorialID));
@@ -100,6 +100,7 @@ class TutorialTools {
       documentID: tutorialID,
       appId: appId,
       title: title,
+      description: description,
       appBar: appBar,
       drawer: drawer,
       homeMenu: homeMenu,

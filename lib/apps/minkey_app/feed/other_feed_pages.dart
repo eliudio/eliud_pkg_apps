@@ -37,7 +37,7 @@ class OtherFeedPages extends AppSection {
         .add(_page(appBar, componentName, identifier, title));
   }
 
-  PageModel _page(AppBarModel appBar, String componentName, String identifier, String title) {
+  PageModel _page(AppBarModel appBar, String componentName, String identifier, String description, String title) {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
         documentID: "1",
@@ -56,6 +56,7 @@ class OtherFeedPages extends AppSection {
         documentID: identifier,
         appId: MinkeyApp.MINKEY_APP_ID,
         title: title,
+        description: description,
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,
