@@ -349,6 +349,9 @@ abstract class InstallApp {
       var idTokenResult2 = await usr.getIdTokenResult(true);
       print('SECOND STEP, claims: ' + idTokenResult2.claims.toString());
 */
+
+      // I seem to require to signout and sign in again, to allow to upload images as part of creating the app. I don't know why
+      // unfortunatly the following does not do this job: await usr.reload();
       await AbstractMainRepositorySingleton.singleton.userRepository()!.signOut();
       usr = await (AbstractMainRepositorySingleton.singleton
           .userRepository()!

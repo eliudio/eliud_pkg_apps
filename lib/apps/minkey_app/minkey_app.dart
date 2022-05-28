@@ -125,7 +125,7 @@ class MinkeyApp extends InstallApp {
         logo: logo,
         email: "minkey.io.info@gmail.com",
         styleFamily: MonaStyleFamily.monaStyleFamilyName,
-        styleName: MonaStyleFamily.minkeyStyleName,
+        styleName: MonaStyleFamily.johanStyleName,
         homePages: homePages,
         ownerID: ownerID,
         appStatus: AppStatus.Live,
