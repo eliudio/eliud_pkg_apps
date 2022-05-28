@@ -72,6 +72,13 @@ class MinkeyApp extends InstallApp {
             internalActionEnum: InternalActionEnum.OtherApps)));
     menuItems.add(menuItemSignOut(app, "2"));
     menuItems.add(menuItemManageAccount(app, "4", MemberDashboard.IDENTIFIER));
+    menuItems.add(MenuItemModel(
+        documentID: "join",
+        text: "JOIN",
+        description: "Request membership",
+        icon: null,
+        action:
+        WorkflowSetup.requestMembershipAction()));
 
     MenuDefModel menu = MenuDefModel(
         documentID: defaults.drawerID(theApp.documentID, DrawerType.Right),
@@ -304,13 +311,6 @@ class MinkeyApp extends InstallApp {
                 codePoint: Icons.chat_bubble_outline_rounded.codePoint,
                 fontFamily: Icons.notifications.fontFamily),
             action: ChatPage.readAction(app)),
-        MenuItemModel(
-            documentID: "join",
-            text: "JOIN",
-            description: "Request membership",
-            icon: null,
-            action:
-                WorkflowSetup.requestMembershipAction())
       ];
 
   @override
