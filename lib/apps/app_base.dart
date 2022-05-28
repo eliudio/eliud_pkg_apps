@@ -72,7 +72,7 @@ abstract class InstallApp {
   // We do this twice: the first time before wiping the data. This is to assure that we can wipe
   // The second time because the wipe has deleted the entry
   // This process works except when the app was create by someone else before. In which case you must delete the app through console.firebase.google.com or by logging in as the owner of the app
-  Future<AppModel> claimOwnerShipApplication(
+  Future<AppModel> _claimOwnerShipApplication(
       String appId, String ownerID) async {
     // first delete the app
     AppModel? oldApp = await appRepository()!.get(appId);
@@ -329,36 +329,43 @@ abstract class InstallApp {
         .signInWithGoogle());
     if (usr == null) {
       throw Exception("User is null");
+    }
+    await _claimOwnerShipApplication(theApp.documentID, usr.uid);
+
+    member = await AccessBloc.firebaseToMemberModel(usr);
+    if (member == null) {
+      print('Can not register $theApp.documentID because member cannot be created');
     } else {
-      await claimOwnerShipApplication(theApp.documentID, usr.uid);
-      member = await AccessBloc.firebaseToMemberModel(usr);
-      if (member == null) {
-        print('Can not register $theApp.documentID because member cannot be created');
-      } else {
 /*
-        var idToken1 = await usr.getIdToken(true);
-        var metadata1 = usr.metadata;
-        var idTokenResult1 = await usr.getIdTokenResult(true);
-        print('BEFORE: ' + idTokenResult1.claims.toString());
+      var idToken1 = await usr.getIdToken(true);
+      var metadata1 = usr.metadata;
+      var idTokenResult1 = await usr.getIdTokenResult(true);
+      print('BEFORE: ' + idTokenResult1.claims.toString());
 */
-        await claimAccess(usr.uid);
+      await claimAccess(usr.uid);
 /*
-        var idToken2 = await usr.getIdToken(true);
-        var metadata2 = usr.metadata;
-        var idTokenResult2 = await usr.getIdTokenResult(true);
-        print('SECOND STEP, claims: ' + idTokenResult2.claims.toString());
+      var idToken2 = await usr.getIdToken(true);
+      var metadata2 = usr.metadata;
+      var idTokenResult2 = await usr.getIdTokenResult(true);
+      print('SECOND STEP, claims: ' + idTokenResult2.claims.toString());
 */
-        await usr.reload();
-/*
-        var idToken3 = await usr.getIdToken(true);
-        var metadata3 = usr.metadata;
-        var idTokenResult3 = await usr.getIdTokenResult(true);
-*/
-        var idTokenResult = await usr.getIdTokenResult(true);
-        print('Claims after claiming access: ' + idTokenResult.claims.toString());
-        await run(usr.uid);
-        print('Installed $theApp.documentID successfully');
+      await AbstractMainRepositorySingleton.singleton.userRepository()!.signOut();
+      usr = await (AbstractMainRepositorySingleton.singleton
+          .userRepository()!
+          .signInWithGoogle());
+      if (usr == null) {
+        throw Exception("User is null");
       }
+
+/*
+      var idToken3 = await usr.getIdToken(true);
+      var metadata3 = usr.metadata;
+      var idTokenResult3 = await usr.getIdTokenResult(true);
+*/
+      var idTokenResult = await usr.getIdTokenResult(true);
+      print('Claims after claiming access: ' + idTokenResult.claims.toString());
+      await run(usr.uid);
+      print('Installed $theApp.documentID successfully');
     }
   }
 
