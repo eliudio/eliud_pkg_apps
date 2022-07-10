@@ -251,3 +251,4 @@ flutter:
     - packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Privacy-Policy.pdf
     - packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Terms-of-Service.pdf
     - packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Disclaimer.pdf
+    - packages/eliud_pkg_apps/assets/json_apps/minkey.json

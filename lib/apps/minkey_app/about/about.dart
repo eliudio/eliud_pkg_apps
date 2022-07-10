@@ -3,7 +3,7 @@ import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 
 class About extends Founders {
   About({

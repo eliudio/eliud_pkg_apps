@@ -16,7 +16,7 @@ import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
 import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
 import 'package:eliud_pkg_fundamentals/model/section_model.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 import '../../app_section.dart';
 import '../eliud_app.dart';
 

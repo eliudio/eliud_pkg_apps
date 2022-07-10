@@ -24,7 +24,7 @@ import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart'
 import 'package:eliud_pkg_shop/model/model_export.dart';
 import 'package:eliud_pkg_shop/model/shop_front_component.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 import '../../app_section.dart';
 import 'process/cart.dart';
 import 'product_page.dart';

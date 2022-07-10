@@ -15,7 +15,7 @@ import 'package:eliud_pkg_fundamentals/model/booklet_model.dart';
 import 'package:eliud_pkg_fundamentals/model/link_model.dart';
 import 'package:eliud_pkg_fundamentals/model/section_model.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 import '../../app_section.dart';
 
 abstract class AboutBase extends AppSection {

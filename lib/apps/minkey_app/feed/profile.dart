@@ -16,7 +16,7 @@ import 'package:eliud_pkg_feed/model/header_component.dart';
 import 'package:eliud_pkg_feed/model/profile_component.dart';
 import 'package:eliud_pkg_feed/model/profile_model.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 import '../../app_section.dart';
 import 'feed_menu.dart';
 import 'header_component.dart';

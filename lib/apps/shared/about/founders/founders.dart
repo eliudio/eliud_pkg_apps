@@ -5,6 +5,7 @@ import 'package:eliud_pkg_apps/apps/shared/about/about.dart';
 import 'package:eliud_pkg_fundamentals/model/section_model.dart';
 
 import '../../../app_base.dart';
+import '../../../install_app.dart';
 
 abstract class Founders extends AboutBase {
   static String IDENTIFIER = 'about';

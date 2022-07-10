@@ -6,7 +6,7 @@ import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/model/model_export.dart';
 import 'package:eliud_pkg_shop/model/order_overview_component.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 import '../../shared/etc/page_template.dart';
 import '../juuwle_app.dart';
 

@@ -17,7 +17,7 @@ import 'package:eliud_pkg_feed/model/feed_model.dart';
 import 'package:eliud_pkg_feed/model/header_component.dart';
 import 'package:eliud_pkg_feed/model/model_export.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 import '../../app_section.dart';
 import 'example_posts.dart';
 import 'example_profile.dart';

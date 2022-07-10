@@ -24,6 +24,7 @@ import 'package:eliud_stl_mona/mona_style_family.dart';
 import 'package:flutter/material.dart';
 
 import '../app_base.dart';
+import '../install_app.dart';
 import 'admin/admin.dart';
 import 'hello_world/hello_world.dart';
 import 'member/eliud_member_dashboard.dart';

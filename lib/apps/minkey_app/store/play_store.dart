@@ -22,7 +22,7 @@ import 'package:eliud_pkg_create/model/play_store_model.dart';
 import 'package:eliud_pkg_create/model/abstract_repository_singleton.dart'
     as creator;
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 import '../../app_section.dart';
 
 class PlayStore extends AppSection {

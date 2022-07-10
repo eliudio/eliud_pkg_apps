@@ -10,7 +10,7 @@ import 'package:eliud_pkg_shop/model/model_export.dart';
 import 'package:eliud_pkg_shop/model/product_display_component.dart';
 import 'package:eliud_pkg_shop/shop_package.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 import '../juuwle_app.dart';
 
 class ProductPage extends BasicPageTemplate {

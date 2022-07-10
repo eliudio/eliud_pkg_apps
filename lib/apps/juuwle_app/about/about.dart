@@ -4,7 +4,7 @@ import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/about.dart';
 import 'package:eliud_pkg_fundamentals/model/section_model.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 
 class About extends AboutBase {
   About(

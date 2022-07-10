@@ -8,7 +8,7 @@ import 'package:eliud_pkg_fundamentals/model/decorated_content_model.dart';
 import 'package:eliud_pkg_fundamentals/model/simple_text_component.dart';
 import 'package:eliud_pkg_fundamentals/model/simple_text_model.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 
 abstract class OnlyPhotoAndText extends PhotoAndSomthing {
   OnlyPhotoAndText(

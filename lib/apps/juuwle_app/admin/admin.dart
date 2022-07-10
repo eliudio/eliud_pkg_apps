@@ -8,7 +8,7 @@ import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_pkg_shop/model/admin_app.dart' as shop;
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 
 class Admin extends AdminBase {
   Admin(

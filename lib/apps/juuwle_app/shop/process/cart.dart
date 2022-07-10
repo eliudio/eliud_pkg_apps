@@ -14,6 +14,7 @@ import 'package:eliud_pkg_shop/model/shop_model.dart';
 import 'package:eliud_pkg_shop/shop_package.dart';
 
 import '../../../../apps/app_base.dart';
+import '../../../install_app.dart';
 import '../../../shared/etc/page_template.dart';
 import '../../juuwle_app.dart';
 import '../product_page.dart';

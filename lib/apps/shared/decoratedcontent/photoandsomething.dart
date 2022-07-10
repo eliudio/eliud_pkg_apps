@@ -11,7 +11,7 @@ import 'package:eliud_pkg_fundamentals/model/decorated_content_model.dart';
 import 'package:eliud_pkg_fundamentals/model/simple_image_component.dart';
 import 'package:eliud_pkg_fundamentals/model/simple_image_model.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 
 abstract class PhotoAndSomthing extends DecoratedContent {
   PhotoAndSomthing(

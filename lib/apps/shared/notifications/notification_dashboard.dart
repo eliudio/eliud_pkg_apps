@@ -8,7 +8,7 @@ import 'package:eliud_pkg_notifications/model/notification_dashboard_component.d
 import 'package:eliud_pkg_notifications/model/notification_dashboard_model.dart';
 import 'package:eliud_pkg_notifications/notifications_package.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 import '../../app_section.dart';
 
 class NotificationDashboard extends AppSectionBase {

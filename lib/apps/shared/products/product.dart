@@ -4,7 +4,7 @@ import 'package:eliud_pkg_shop/model/product_image_model.dart';
 import 'package:eliud_pkg_shop/model/product_model.dart';
 import 'package:eliud_pkg_shop/model/shop_model.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 
 class Product {
   final String? id;

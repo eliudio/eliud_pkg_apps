@@ -36,6 +36,7 @@ import 'package:eliud_stl_mona/mona_style_family.dart';
 import 'package:flutter/material.dart';
 
 import '../app_base.dart';
+import '../install_app.dart';
 import 'about/about.dart';
 import 'admin/admin.dart';
 import 'album/album.dart';

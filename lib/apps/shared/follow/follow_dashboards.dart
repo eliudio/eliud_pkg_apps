@@ -11,7 +11,7 @@ import 'package:eliud_pkg_follow/model/following_dashboard_model.dart';
 import 'package:eliud_pkg_follow/model/invite_dashboard_component.dart';
 import 'package:eliud_pkg_follow/model/invite_dashboard_model.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 import '../../app_section.dart';
 
 class _FollowingDashboard extends AppSectionBase {

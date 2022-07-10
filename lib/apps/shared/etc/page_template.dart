@@ -14,7 +14,7 @@ import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart'
 import 'package:eliud_pkg_fundamentals/model/presentation_component.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_model.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 import '../../app_section.dart';
 
 abstract class PageTemplate extends AppSection {

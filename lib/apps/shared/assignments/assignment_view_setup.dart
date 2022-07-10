@@ -7,7 +7,7 @@ import 'package:eliud_pkg_workflow/model/assignment_view_component.dart';
 import 'package:eliud_pkg_workflow/model/assignment_view_model.dart';
 import 'package:eliud_pkg_workflow/workflow_package.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 import '../../app_section.dart';
 
 class AssignmentViewSetup extends AppSectionBase {

@@ -5,7 +5,7 @@ import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/member_dashboard_component.dart';
 import 'package:eliud_core/model/model_export.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 import '../../app_section.dart';
 
 class MemberDashboard extends AppSectionBase {

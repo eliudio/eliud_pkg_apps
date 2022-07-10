@@ -7,6 +7,8 @@ import 'package:eliud_pkg_workflow/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_workflow/model/workflow_model.dart';
 import 'package:eliud_pkg_workflow/tools/action/workflow_action_model.dart';
 
+import '../../install_app.dart';
+
 class WorkflowSetup {
   final InstallApp installApp;
 

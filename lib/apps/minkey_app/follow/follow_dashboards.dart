@@ -4,7 +4,7 @@ import 'package:eliud_pkg_apps/apps/minkey_app/feed/feed.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/feed/profile.dart';
 import 'package:eliud_pkg_apps/apps/shared/follow/follow_dashboards.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 
 class MinkeyFollowDashboards extends FollowDashboards {
   MinkeyFollowDashboards({InstallApp? installApp}) :

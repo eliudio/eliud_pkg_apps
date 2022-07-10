@@ -8,7 +8,7 @@ import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/model/page_model.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_model.dart';
 
-import '../../app_base.dart';
+import '../../install_app.dart';
 import '../../app_section.dart';
 
 abstract class BasicPageTemplate extends AppSection {
