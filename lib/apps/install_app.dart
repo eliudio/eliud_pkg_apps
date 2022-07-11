@@ -345,17 +345,17 @@ abstract class InstallApp extends AppBase {
         comments: 'All policies of the app',
         policies: [
           AppPolicyItemModel(
-            documentID: privacyID,
+            documentID: privacyID + "-1",
             name: 'Privacy Policy',
             policy: privacyPolicy,
           ),
           AppPolicyItemModel(
-            documentID: termsOfServiceID,
+            documentID: termsOfServiceID + "-1",
             name: 'Terms of Service',
             policy: termsOfServicePolicy,
           ),
           AppPolicyItemModel(
-            documentID: disclaimerID,
+            documentID: disclaimerID + "-1",
             name: 'Disclaimer',
             policy: disclaimerPolicy,
           ),

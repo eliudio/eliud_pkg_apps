@@ -58,6 +58,8 @@ abstract class JsonApp extends AppBase {
             e.toString());
       }
     }
+
+    appRepository(appId: theApp.documentID)!.flush();
   }
 
   String jsonLocation();
