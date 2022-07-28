@@ -3,7 +3,7 @@ import 'package:eliud_core/model/app_model.dart';
 import '../json_app.dart';
 
 class JuuwleJsonApp extends JsonApp {
-  static String JUUWLE_APP_ID = "JUUWLE_APP2";
+  static String JUUWLE_APP_ID = "JUUWLE_APP_JSON";
 
   static AppModel app = AppModel(documentID: JUUWLE_APP_ID, ownerID: '?');
 
