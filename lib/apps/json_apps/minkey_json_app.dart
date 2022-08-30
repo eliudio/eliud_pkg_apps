@@ -3,7 +3,7 @@ import 'package:eliud_core/model/app_model.dart';
 import '../json_app.dart';
 
 class MinkeyJsonApp extends JsonApp {
-  static String MINKEY_APP_ID = "MINKEY_APP_JSON";
+  static String MINKEY_APP_ID = "MINKEY_APP";
 
   static AppModel app = AppModel(documentID: MINKEY_APP_ID, ownerID: '?');
 
