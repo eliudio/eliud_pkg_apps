@@ -9,5 +9,5 @@ class MinkeyJsonApp extends JsonApp {
 
   MinkeyJsonApp() : super(app);
 
-  String jsonLocation() => 'packages/eliud_pkg_apps/assets/json_apps/minkey.json';
+  String jsonLocation() => 'packages/eliud_pkg_apps/assets/json_apps/minkey2.json';
 }
