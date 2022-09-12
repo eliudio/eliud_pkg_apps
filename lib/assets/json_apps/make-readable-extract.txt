@@ -1,0 +1,5 @@
+notepad++, regex 
+replace: "extract":\[.*?\]
+with: "extract":\[\]
+
+then Ctrl+Alt-Shift-M
