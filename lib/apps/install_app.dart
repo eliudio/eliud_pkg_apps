@@ -51,9 +51,9 @@ abstract class InstallApp extends AppBase {
   MenuDefModel drawerMenuDef();
   MenuDefModel profileDrawerMenuDef();
   MenuDefModel homeMenuDef();
-  String privacyPolicyAssetLocationX();
-  String termsOfServiceAssetLocationX();
-  String disclaimerAssetLocationX();
+  String privacyPolicyAssetLocation();
+  String termsOfServiceAssetLocation();
+  String disclaimerAssetLocation();
 
   PublicMediumModel? thePublicLogo;
   PublicMediumModel? thePublicLogoHead;
@@ -330,9 +330,9 @@ abstract class InstallApp extends AppBase {
   }
 
   // Policy
-  static String privacyIDX = 'privacy_policy';
-  static String termsOfServiceIDX = 'terms_of_service';
-  static String disclaimerIDX = 'disclaimer';
+  static String privacyID = 'privacy_policy';
+  static String termsOfServiceID = 'terms_of_service';
+  static String disclaimerID = 'disclaimer';
 
   Future<void> setupAppPolicy() async {
     var privacyPolicy = await ImageTools.uploadPublicPdf(theApp, member!, privacyPolicyAssetLocation(), privacyID);
