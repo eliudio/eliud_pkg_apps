@@ -112,7 +112,7 @@ class JuuwleApp extends InstallApp {
       homePages: homePages,
       ownerID: ownerID,
       appStatus: AppStatus.Live,
-      policies: appPolicyModel,
+
     );
     return await AbstractMainRepositorySingleton.singleton
         .appRepository()!

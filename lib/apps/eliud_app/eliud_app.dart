@@ -133,7 +133,7 @@ class EliudApp extends InstallApp {
       styleName: MonaStyleFamily.eliudStyleName,
       ownerID: ownerID,
       appStatus: AppStatus.Live,
-      policies: appPolicyModel
+
     );
 
     return await AbstractMainRepositorySingleton.singleton
