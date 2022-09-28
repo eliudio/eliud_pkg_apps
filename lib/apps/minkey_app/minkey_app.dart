@@ -161,7 +161,6 @@ class MinkeyApp extends InstallApp {
   @override
   Future<AppHomePageReferencesModel> runTheRest(
       String? ownerID, DrawerModel drawer, DrawerModel endDrawer) async {
-    await createPolicyPages(appPolicyModel!, drawer, endDrawer);
     var member = await AbstractMainRepositorySingleton.singleton
         .memberRepository()!
         .get(ownerID);

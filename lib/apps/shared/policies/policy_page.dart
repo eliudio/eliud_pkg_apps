@@ -1,12 +1,10 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
 import 'package:eliud_core/model/app_bar_model.dart';
+import 'package:eliud_core/model/app_policy_model.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
-import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/model/page_model.dart';
-import 'package:eliud_core/model/platform_medium_model.dart';
-import 'package:eliud_core/model/public_medium_model.dart';
 import 'package:eliud_core/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_etc/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_etc/model/policy_presentation_component.dart';
@@ -16,7 +14,7 @@ import '../../install_app.dart';
 import '../../app_section.dart';
 
 class PolicyPage extends AppSection {
-  final PublicMediumModel? policy;
+  final AppPolicyModel? policy;
   final String title;
   final String description;
 
@@ -30,21 +28,21 @@ class PolicyPage extends AppSection {
       DrawerModel? endDrawer})
       : super(installApp, homeMenu, drawer, endDrawer);
 
-  PolicyPresentationModel getPesentationModel(PublicMediumModel? policyModel) {
+  PolicyPresentationModel getPesentationModel() {
     return PolicyPresentationModel(
       documentID: policy!.documentID,
       appId: installApp!.theApp.documentID,
       description: title,
-      policy: policyModel,
+      policies: policy,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
           PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
     );
   }
 
-  Future<PolicyPresentationModel> createPresentationComponent(PublicMediumModel? policyModel) async {
+  Future<PolicyPresentationModel> createPresentationComponent() async {
     return await policyPresentationRepository(appId: installApp!.theApp.documentID)!
-        .add(getPesentationModel(policyModel));
+        .add(getPesentationModel());
   }
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
@@ -78,7 +76,7 @@ class PolicyPage extends AppSection {
   }
 
   Future<PageModel> run() async {
-    await createPresentationComponent(policy);
+    await createPresentationComponent();
     var appBar = installApp!.appBar();
     return await _setupPage(appBar);
   }

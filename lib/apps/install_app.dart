@@ -29,6 +29,7 @@ import 'package:flutter/material.dart';
 import 'app_base.dart';
 
 abstract class InstallApp extends AppBase {
+  List<PageModel>? policyPages;
   AppBarModel? theAppBar;
   // adminAppWipers are used to delete the admin part of the app
   List<AdminAppWiperBase> adminAppWipers();
@@ -261,12 +262,12 @@ abstract class InstallApp extends AppBase {
       await aaw[i].deleteAll(appId);
     }
 */
-    await setupAppPolicy();
     thePublicLogo = await _publicMediumModel(logoAssetLocation());
     thePublicLogoHead = await _publicMediumModel(logoHeadAssetLocation());
     thePlatformLogo = await _platformMediumModel(logoAssetLocation());
     var endDrawer = await setupProfileDrawer();
     var drawer = await setupDrawer(thePublicLogo);
+    await setupAppPoliciesAndPages(drawer, endDrawer);
     var _adminBase = adminBase(drawer, endDrawer);
 
     await GridViews().run(theApp.documentID);
@@ -334,59 +335,49 @@ abstract class InstallApp extends AppBase {
   static String termsOfServiceID = 'terms_of_service';
   static String disclaimerID = 'disclaimer';
 
-  Future<void> setupAppPolicy() async {
+  Future<void> setupAppPoliciesAndPages(DrawerModel drawer,
+      DrawerModel endDrawer,) async {
     var privacyPolicy = await ImageTools.uploadPublicPdf(theApp, member!, privacyPolicyAssetLocation(), privacyID);
     var termsOfServicePolicy = await ImageTools.uploadPublicPdf(theApp, member!, termsOfServiceAssetLocation(), termsOfServiceID);
     var disclaimerPolicy = await ImageTools.uploadPublicPdf(theApp, member!, disclaimerAssetLocation(), disclaimerID);
 
-    appPolicyModel = AppPolicyModel(
-        documentID: 'policies',
+    var privacyPolicyModel = AppPolicyModel(
+        documentID: 'privacy-policy',
         appId: theApp.documentID,
-        comments: 'All policies of the app',
-        policies: [
-          AppPolicyItemModel(
-            documentID: privacyID + "-1",
-            name: 'Privacy Policy',
-            policy: privacyPolicy,
-          ),
-          AppPolicyItemModel(
-            documentID: termsOfServiceID + "-1",
-            name: 'Terms of Service',
-            policy: termsOfServicePolicy,
-          ),
-          AppPolicyItemModel(
-            documentID: disclaimerID + "-1",
-            name: 'Disclaimer',
-            policy: disclaimerPolicy,
-          ),
-        ]);
-    await corerepo.appPolicyRepository(appId: theApp.documentID)!.add(appPolicyModel!);
-  }
+        name: 'Privacy Policy',
+        policy: privacyPolicy);
+    await corerepo.appPolicyRepository(appId: theApp.documentID)!.add(privacyPolicyModel);
+    var termsOfServiceModel = AppPolicyModel(
+        documentID: 'terms-of-service',
+        appId: theApp.documentID,
+        name: 'Terms of Service',
+        policy: termsOfServicePolicy);
+    await corerepo.appPolicyRepository(appId: theApp.documentID)!.add(termsOfServiceModel);
+    var disclaimerModel = AppPolicyModel(
+        documentID: 'disclaimer',
+        appId: theApp.documentID,
+        name: 'Disclaimer',
+        policy: disclaimerPolicy);
+    await corerepo.appPolicyRepository(appId: theApp.documentID)!.add(disclaimerModel);
 
-  Future<List<PageModel>> createPolicyPages(AppPolicyModel appPolicyModel, DrawerModel drawer,
-      DrawerModel endDrawer,
-      ) async {
-    List<PageModel> pages = [];
-    appPolicyModel.policies!.forEach((element) async {
-       pages.add(await PolicyPage(
-          policy: element.policy,
-         title: element.name ?? '?',
-         description: element.name ?? '?',
+    policyPages = [];
+    policyPages!.add(await PolicyPage(
+          policy: privacyPolicyModel,
+         title: 'Privacy',
+         description: 'Privacy',
           installApp: this,
           homeMenu: homeMenu(),
           drawer: drawer,
           endDrawer: endDrawer,
           )
           .run());
-    });
-    return pages;
   }
 
   List<MenuItemModel> getPolicyMenuItems() {
     List<MenuItemModel> menuItems = [];
-    appPolicyModel!.policies!.forEach((element) async {
+    policyPages!.forEach((element) async {
       menuItems.add(menuItem(
-          theApp, element.documentID, element.documentID, element.name, Icons.rule));
+          theApp, element.documentID, element.documentID, element.description, Icons.rule));
     });
     return menuItems;
   }

@@ -227,7 +227,6 @@ class JuuwleApp extends InstallApp {
             endDrawer: endDrawer,
             )
         .run();
-    await createPolicyPages(appPolicyModel!, drawer, endDrawer,);
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
       homePageBlockedMember: homePageBlockedMember.documentID,
       homePageSubscribedMember: homePageSubscribedMember.documentID,
