@@ -337,9 +337,9 @@ abstract class InstallApp extends AppBase {
 
   Future<void> setupAppPoliciesAndPages(DrawerModel drawer,
       DrawerModel endDrawer,) async {
-    var privacyPolicy = await ImageTools.uploadPublicPdf(theApp, member!, privacyPolicyAssetLocation(), privacyID);
-    var termsOfServicePolicy = await ImageTools.uploadPublicPdf(theApp, member!, termsOfServiceAssetLocation(), termsOfServiceID);
-    var disclaimerPolicy = await ImageTools.uploadPublicPdf(theApp, member!, disclaimerAssetLocation(), disclaimerID);
+    var privacyPolicy = await ImageTools.uploadPlatformPdf(theApp, member!, privacyPolicyAssetLocation(), privacyID, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+    var termsOfServicePolicy = await ImageTools.uploadPlatformPdf(theApp, member!, termsOfServiceAssetLocation(), termsOfServiceID, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+    var disclaimerPolicy = await ImageTools.uploadPlatformPdf(theApp, member!, disclaimerAssetLocation(), disclaimerID, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
 
     var privacyPolicyModel = AppPolicyModel(
         documentID: 'privacy-policy',
