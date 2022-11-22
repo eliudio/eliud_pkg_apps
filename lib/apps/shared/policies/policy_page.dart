@@ -15,13 +15,9 @@ import '../../app_section.dart';
 
 class PolicyPage extends AppSection {
   final AppPolicyModel? policy;
-  final String title;
-  final String description;
 
   PolicyPage({
       this.policy,
-      required this.title,
-      required this.description,
       InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
@@ -32,7 +28,7 @@ class PolicyPage extends AppSection {
     return PolicyPresentationModel(
       documentID: policy!.documentID,
       appId: installApp!.theApp.documentID,
-      description: title,
+      description: policy!.name!,
       policies: policy,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
@@ -62,8 +58,8 @@ class PolicyPage extends AppSection {
     return PageModel(
         documentID: policy!.documentID,
         appId: installApp!.theApp.documentID,
-        title: title,
-        description: description,
+        title: policy!.name!,
+        description: policy!.name!,
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,

@@ -38,8 +38,8 @@ abstract class InstallApp extends AppBase {
 
   Future<void> setupApplication(AppHomePageReferencesModel homePages,
       String ownerID, PublicMediumModel? logo);
-  Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
-      DrawerModel drawer, DrawerModel endDrawer);
+  Future<AppHomePageReferencesModel> runTheRest(
+      String? ownerID, DrawerModel drawer, DrawerModel endDrawer);
 
   AppBarModel appBar() {
     if (theAppBar == null) {
@@ -114,13 +114,13 @@ abstract class InstallApp extends AppBase {
         clip: ClipType.NoClip);
   }
 
-
   Future<PublicMediumModel> _publicMediumModel(String assetLocation) async {
     return await ImageTools.uploadPublicPhoto(theApp, member!, assetLocation);
   }
 
   Future<PlatformMediumModel> _platformMediumModel(String assetLocation) async {
-    return await ImageTools.uploadPlatformPhoto(theApp, member!, assetLocation, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+    return await ImageTools.uploadPlatformPhoto(theApp, member!, assetLocation,
+        PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
   }
 
   DrawerModel _drawer(PublicMediumModel? logo) {
@@ -145,8 +145,7 @@ abstract class InstallApp extends AppBase {
     if (logo == null) throw Exception("You must provide a logo");
     var decorationColorModels = <DecorationColorModel>[];
     var backgroundModel = BackgroundModel(
-        decorationColors: decorationColorModels,
-        backgroundImage: logo);
+        decorationColors: decorationColorModels, backgroundImage: logo);
     return backgroundModel;
   }
 
@@ -170,10 +169,11 @@ abstract class InstallApp extends AppBase {
 
   HomeMenuModel homeMenu() {
     var menu = HomeMenuModel(
-        documentID: defaults.homeMenuID(theApp.documentID),
-        appId: theApp.documentID,
-        name: 'Home menu 1',
-        menu: homeMenuDef(),);
+      documentID: defaults.homeMenuID(theApp.documentID),
+      appId: theApp.documentID,
+      name: 'Home menu 1',
+      menu: homeMenuDef(),
+    );
     return menu;
   }
 
@@ -213,11 +213,8 @@ abstract class InstallApp extends AppBase {
     await dividerRepository(appId: theApp.documentID)!.add(_divider());
   }
 
-  AppBarModel _appBar(
-      String? documentID,
-      MenuDefModel? menu,
-      String? title,{
-      BackgroundModel? backgroundOverride,
+  AppBarModel _appBar(String? documentID, MenuDefModel? menu, String? title,
+      {BackgroundModel? backgroundOverride,
       RgbModel? iconColorOverride,
       RgbModel? selectedIconColorOverride,
       RgbModel? menuBackgroundColorOverride}) {
@@ -236,17 +233,18 @@ abstract class InstallApp extends AppBase {
   }
 
   Future<AppBarModel> setupAppBar(
-      String? documentID,
-      MenuDefModel? menu,
-      String? title,{
-      BackgroundModel? backgroundOverride,
+      String? documentID, MenuDefModel? menu, String? title,
+      {BackgroundModel? backgroundOverride,
       RgbModel? iconColorOverride,
       RgbModel? selectedIconColorOverride,
       RgbModel? menuBackgroundColorOverride}) async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .appBarRepository(theApp.documentID)!
-        .add(_appBar(documentID, menu, title, backgroundOverride: backgroundOverride, iconColorOverride: iconColorOverride,
-        selectedIconColorOverride: selectedIconColorOverride, menuBackgroundColorOverride: menuBackgroundColorOverride));
+        .add(_appBar(documentID, menu, title,
+            backgroundOverride: backgroundOverride,
+            iconColorOverride: iconColorOverride,
+            selectedIconColorOverride: selectedIconColorOverride,
+            menuBackgroundColorOverride: menuBackgroundColorOverride));
   }
 
   String logoAssetLocation();
@@ -267,7 +265,6 @@ abstract class InstallApp extends AppBase {
     thePlatformLogo = await _platformMediumModel(logoAssetLocation());
     var endDrawer = await setupProfileDrawer();
     var drawer = await setupDrawer(thePublicLogo);
-    await setupAppPoliciesAndPages(drawer, endDrawer);
     var _adminBase = adminBase(drawer, endDrawer);
 
     await GridViews().run(theApp.documentID);
@@ -279,6 +276,7 @@ abstract class InstallApp extends AppBase {
       adminMenu,
       EliudAppBar.PAGE_TITLE_KEYWORD,
     );
+    await setupAppPoliciesAndPages(drawer, endDrawer);
 
     await _adminBase.installAdminAppss(adminMenu);
     await setupMenus();
@@ -287,7 +285,6 @@ abstract class InstallApp extends AppBase {
     var homePages = await runTheRest(ownerID, drawer, endDrawer);
     await setupApplication(homePages, ownerID, thePublicLogoHead);
   }
-
 
 /*
   String appBarMenuIdentifier = 'appbar_menu';
@@ -335,50 +332,83 @@ abstract class InstallApp extends AppBase {
   static String termsOfServiceID = 'terms_of_service';
   static String disclaimerID = 'disclaimer';
 
-  Future<void> setupAppPoliciesAndPages(DrawerModel drawer,
-      DrawerModel endDrawer,) async {
-    var privacyPolicy = await ImageTools.uploadPlatformPdf(theApp, member!, privacyPolicyAssetLocation(), privacyID, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
-    var termsOfServicePolicy = await ImageTools.uploadPlatformPdf(theApp, member!, termsOfServiceAssetLocation(), termsOfServiceID, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
-    var disclaimerPolicy = await ImageTools.uploadPlatformPdf(theApp, member!, disclaimerAssetLocation(), disclaimerID, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+  Future<void> setupAppPoliciesAndPages(
+    DrawerModel drawer,
+    DrawerModel endDrawer,
+  ) async {
+    var privacyPolicy = await ImageTools.uploadPlatformPdf(
+        theApp,
+        member!,
+        privacyPolicyAssetLocation(),
+        privacyID,
+        PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+    var termsOfServicePolicy = await ImageTools.uploadPlatformPdf(
+        theApp,
+        member!,
+        termsOfServiceAssetLocation(),
+        termsOfServiceID,
+        PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+    var disclaimerPolicy = await ImageTools.uploadPlatformPdf(
+        theApp,
+        member!,
+        disclaimerAssetLocation(),
+        disclaimerID,
+        PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
 
     var privacyPolicyModel = AppPolicyModel(
-        documentID: 'privacy-policy',
+        documentID: privacyID,
         appId: theApp.documentID,
         name: 'Privacy Policy',
         policy: privacyPolicy);
-    await corerepo.appPolicyRepository(appId: theApp.documentID)!.add(privacyPolicyModel);
+    await corerepo
+        .appPolicyRepository(appId: theApp.documentID)!
+        .add(privacyPolicyModel);
     var termsOfServiceModel = AppPolicyModel(
-        documentID: 'terms-of-service',
+        documentID: termsOfServiceID,
         appId: theApp.documentID,
         name: 'Terms of Service',
         policy: termsOfServicePolicy);
-    await corerepo.appPolicyRepository(appId: theApp.documentID)!.add(termsOfServiceModel);
+    await corerepo
+        .appPolicyRepository(appId: theApp.documentID)!
+        .add(termsOfServiceModel);
     var disclaimerModel = AppPolicyModel(
-        documentID: 'disclaimer',
+        documentID: disclaimerID,
         appId: theApp.documentID,
         name: 'Disclaimer',
         policy: disclaimerPolicy);
-    await corerepo.appPolicyRepository(appId: theApp.documentID)!.add(disclaimerModel);
+    await corerepo
+        .appPolicyRepository(appId: theApp.documentID)!
+        .add(disclaimerModel);
 
     policyPages = [];
     policyPages!.add(await PolicyPage(
-          policy: privacyPolicyModel,
-         title: 'Privacy',
-         description: 'Privacy',
-          installApp: this,
-          homeMenu: homeMenu(),
-          drawer: drawer,
-          endDrawer: endDrawer,
-          )
-          .run());
+      policy: privacyPolicyModel,
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run());
+    policyPages!.add(await PolicyPage(
+      policy: termsOfServiceModel,
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run());
+    policyPages!.add(await PolicyPage(
+      policy: disclaimerModel,
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run());
   }
 
   List<MenuItemModel> getPolicyMenuItems() {
     List<MenuItemModel> menuItems = [];
-    policyPages!.forEach((element) async {
-      menuItems.add(menuItem(
-          theApp, element.documentID, element.documentID, element.description, Icons.rule));
-    });
+    menuItems.add(menuItem(theApp, privacyID, privacyID, 'Privacy Policy', Icons.account_balance));
+    menuItems.add(menuItem(theApp, termsOfServiceID, termsOfServiceID, 'Terms of Service', Icons.account_balance));
+    menuItems.add(menuItem(theApp, disclaimerID, disclaimerID, 'Disclaimer', Icons.account_balance));
     return menuItems;
   }
 }
