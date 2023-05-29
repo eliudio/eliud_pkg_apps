@@ -128,7 +128,11 @@ class Shop extends AppSection {
         description: 'Main shop',
         shortDescription: 'Main shop',
         currency: 'eur',
-        appId: installApp!.theApp.documentID);
+        appId: installApp!.theApp.documentID,
+        conditions:
+      StorageConditionsModel(
+          privilegeLevelRequired:
+          PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),);
     return document;
   }
 
