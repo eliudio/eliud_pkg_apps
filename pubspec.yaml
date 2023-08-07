@@ -1,57 +1,32 @@
 name: eliud_pkg_apps
 description: Eliud package with generation of app contents
-version: 0.0.1
-author:
-homepage:
+homepage: https://eliud.io
+repository: https://github.com/eliudio/eliud
+
+version: 1.0.2
 
 environment:
-  sdk: '>=2.18.0-271.7.beta <3.0.0'
+  sdk: ">=2.17.0 <4.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  eliud_core:
-    path: ../eliud_core
-
-  eliud_pkg_fundamentals:
-    path: ../eliud_pkg_fundamentals
-
-  eliud_pkg_shop:
-    path: ../eliud_pkg_shop
-
-  eliud_pkg_feed:
-    path: ../eliud_pkg_feed
-
-  eliud_pkg_notifications:
-    path: ../eliud_pkg_notifications
-
-  eliud_pkg_workflow:
-    path: ../eliud_pkg_workflow
-
-  eliud_pkg_follow:
-    path: ../eliud_pkg_follow
-
-  eliud_pkg_membership:
-    path: ../eliud_pkg_membership
-
-  eliud_pkg_pay:
-    path: ../eliud_pkg_pay
-
-  eliud_pkg_etc:
-    path: ../eliud_pkg_etc
-
-  eliud_pkg_chat:
-    path: ../eliud_pkg_chat
-
-  eliud_stl_mona:
-    path: ../eliud_stl_mona
-
-  eliud_pkg_create:
-    path: ../eliud_pkg_create
-
-  eliud_pkg_medium:
-    path: ../eliud_pkg_medium
+  eliud_core: ^1.0.1
+  eliud_pkg_fundamentals: ^1.0.0
+  eliud_pkg_shop: ^1.0.0
+  eliud_pkg_feed: ^1.0.0
+  eliud_pkg_notifications: ^1.0.0
+  eliud_pkg_workflow: ^1.0.0
+  eliud_pkg_follow: ^1.0.0
+  eliud_pkg_membership: ^1.0.0
+  eliud_pkg_pay: ^1.0.0
+  eliud_pkg_etc: ^1.0.0
+  eliud_pkg_chat: ^1.0.0
+  eliud_stl_mona: ^1.0.0
+  eliud_pkg_create: ^1.0.0
+  eliud_pkg_medium: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -108,7 +83,6 @@ flutter:
     - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg
     - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg
     - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg
-    - packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4
     - packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg
     - packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg
     - packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg
@@ -118,95 +92,6 @@ flutter:
     - packages/eliud_pkg_apps/assets/minkey_app/legal/Minkey-Disclaimer.pdf
     - packages/eliud_pkg_apps/assets/minkey_app/profile/exampleprofile.png
     - packages/eliud_pkg_apps/assets/minkey_app/profile/pexels-pixabay-258109.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/logos/logo.png
-    - packages/eliud_pkg_apps/assets/incidamus_app/logos/logo_head.png
-    - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo1.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo2.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_photo3.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/feed/example_video1.mp4
-    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/face1.png
-    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/face2.png
-    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/face3.png
-    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/face4.png
-    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/body1.png
-    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/body2.png
-    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/body3.png
-    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/body3b.png
-    - packages/eliud_pkg_apps/assets/incidamus_app/decorating/body4.png
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/1.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/2.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/3.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/4.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/5.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/6.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/7.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/8.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/9.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/10.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/11.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/12.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/13.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/14.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/15.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/16.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/17.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/18.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/19.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/20.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/21.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/22.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/23.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/24.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/25.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/26.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/27.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/28.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/29.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/30.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/31.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/32.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/33.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/34.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/35.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/36.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/37.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/38.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/39.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/40.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/41.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/42.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/43.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/44.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/45.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/46.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/47.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/48.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/49.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/50.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/51.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/52.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/53.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/54.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/55.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/56.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/57.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/58.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/59.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/60.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/61.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/62.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/63.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/photos/64.jpg
-    - packages/eliud_pkg_apps/assets/incidamus_app/products/blackandwhite1.webp
-    - packages/eliud_pkg_apps/assets/incidamus_app/products/blackandwhite2.webp
-    - packages/eliud_pkg_apps/assets/incidamus_app/products/blackandwhite3.webp
-    - packages/eliud_pkg_apps/assets/incidamus_app/products/blackandwhite4.webp
-    - packages/eliud_pkg_apps/assets/incidamus_app/products/sludge1.webp
-    - packages/eliud_pkg_apps/assets/incidamus_app/products/govno1.webp
-    - packages/eliud_pkg_apps/assets/incidamus_app/products/blackandwhitecar1.webp
-    - packages/eliud_pkg_apps/assets/incidamus_app/legal/Incidamus-Privacy-Policy.pdf
-    - packages/eliud_pkg_apps/assets/incidamus_app/legal/Incidamus-Terms-of-Service.pdf
-    - packages/eliud_pkg_apps/assets/incidamus_app/legal/Incidamus-Disclaimer.pdf
     - packages/eliud_pkg_apps/assets/juuwle_app/logos/logo.png
     - packages/eliud_pkg_apps/assets/juuwle_app/logos/logo_head.jpg
     - packages/eliud_pkg_apps/assets/shared/about/thocha.png
@@ -254,3 +139,8 @@ flutter:
     - packages/eliud_pkg_apps/assets/json_apps/minkey.json
     - packages/eliud_pkg_apps/assets/json_apps/juuwle.json
     - packages/eliud_pkg_apps/assets/json_apps/eliud.json
+
+platforms:
+  android:
+  ios:
+  web:

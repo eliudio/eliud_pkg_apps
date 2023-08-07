@@ -37,8 +37,13 @@ abstract class JsonApp extends AppBase {
   JsonApp(AppModel theApp): super(theApp);
 
   Future<String> getJson() async {
-    var json = await rootBundle.loadString(jsonLocation());;
-    return json;
+    try {
+      var json = await rootBundle.loadString(jsonLocation());;
+      return json;
+    } catch (error) {
+      print (error);
+      throw error;
+    }
   }
 
   @override

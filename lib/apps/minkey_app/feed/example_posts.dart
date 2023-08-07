@@ -124,18 +124,7 @@ class ExamplePosts {
             description: "Hi guys, this is my first post these are videos",
             accessibleByGroup: accessibleByGroup,
             memberMedia: [
-              await ImageTools.createPostMediumModelVideo(MinkeyApp.app, member,
-                  'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
-              await ImageTools.createPostMediumModelVideo(MinkeyApp.app, member,
-                  'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
-              await ImageTools.createPostMediumModelVideo(MinkeyApp.app, member,
-                  'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
-              await ImageTools.createPostMediumModelVideo(MinkeyApp.app, member,
-                  'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
-              await ImageTools.createPostMediumModelVideo(MinkeyApp.app, member,
-                  'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
-              await ImageTools.createPostMediumModelVideo(MinkeyApp.app, member,
-                  'packages/eliud_pkg_apps/assets/minkey_app/feed/example_video1.mp4'),
+
             ],
           ),
         );
