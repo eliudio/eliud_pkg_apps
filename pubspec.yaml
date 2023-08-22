@@ -1,146 +1,140 @@
-name: eliud_pkg_apps
-description: Eliud package with generation of app contents
-homepage: https://eliud.io
-repository: https://github.com/eliudio/eliud_pkg_apps
-
-version: 1.0.3+3
-
+---
+name: "eliud_pkg_apps"
+description: "Eliud package with generation of app contents"
+homepage: "https://eliud.io"
+repository: "https://github.com/eliudio/eliud_pkg_apps"
+version: "1.0.3+7"
 environment:
   sdk: ">=2.17.0 <4.0.0"
   flutter: ">=3.0.0"
-
 dependencies:
   flutter:
-    sdk: flutter
-
-  eliud_core: ^1.0.4+1
-  eliud_pkg_fundamentals: ^1.0.1+1
-  eliud_pkg_shop: ^1.0.1+1
-  eliud_pkg_feed: ^1.0.2+1
-  eliud_pkg_notifications: ^1.0.1+1
-  eliud_pkg_workflow: ^1.0.1+1
-  eliud_pkg_follow: ^1.0.1+1
-  eliud_pkg_membership: ^1.0.1+1
-  eliud_pkg_pay: ^1.0.1+1
-  eliud_pkg_etc: ^1.0.1+1
-  eliud_pkg_chat: ^1.0.1+1
-  eliud_stl_mona: ^1.0.1+1
-  eliud_pkg_create: ^1.0.2+1
-  eliud_pkg_medium: ^1.0.1+1
-
+    sdk: "flutter"
+  eliud_core: "1.0.4+8"
+  eliud_pkg_fundamentals: "^1.0.1+1"
+  eliud_pkg_shop: "^1.0.1+1"
+  eliud_pkg_feed: "^1.0.2+1"
+  eliud_pkg_notifications: "^1.0.1+1"
+  eliud_pkg_workflow: "^1.0.1+1"
+  eliud_pkg_follow: "^1.0.1+1"
+  eliud_pkg_membership: "^1.0.1+1"
+  eliud_pkg_pay: "^1.0.1+1"
+  eliud_pkg_etc: "^1.0.1+1"
+  eliud_pkg_chat: "^1.0.1+1"
+  eliud_stl_mona: "^1.0.1+1"
+  eliud_pkg_create: "^1.0.2+1"
+  eliud_pkg_medium: "^1.0.1+1"
 dev_dependencies:
   flutter_test:
-    sdk: flutter
-
+    sdk: "flutter"
 flutter:
   assets:
-    - packages/eliud_pkg_apps/assets/eliud_app/logos/logo.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/logos/logo_head.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/devices/android.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/devices/iphone.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/devices/macbook.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/devices/tablet.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app1.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app2.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app3.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app4.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app5.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app6.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app7.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-authentication1.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-authentication2.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-database1.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-database2.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-database3.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project1.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project2.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project3.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project4.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project5.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project6.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-project1.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-project2.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-project3.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-project4.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-webproject3.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account1.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account2.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account3.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account4.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account5.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-storage1.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-storage2.png
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-storage3.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-storage4.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-webapp2.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/deploy-webapp1.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/tutorials/firebase-home.jpg
-    - packages/eliud_pkg_apps/assets/eliud_app/legal/Eliud-Privacy-Policy.pdf
-    - packages/eliud_pkg_apps/assets/eliud_app/legal/Eliud-Terms-of-Service.pdf
-    - packages/eliud_pkg_apps/assets/eliud_app/legal/Eliud-Disclaimer.pdf
-    - packages/eliud_pkg_apps/assets/minkey_app/logos/logo.png
-    - packages/eliud_pkg_apps/assets/minkey_app/logos/logo_head.png
-    - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg
-    - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg
-    - packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg
-    - packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg
-    - packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg
-    - packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg
-    - packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg
-    - packages/eliud_pkg_apps/assets/minkey_app/legal/Minkey-Privacy-Policy.pdf
-    - packages/eliud_pkg_apps/assets/minkey_app/legal/Minkey-Terms-of-Service.pdf
-    - packages/eliud_pkg_apps/assets/minkey_app/legal/Minkey-Disclaimer.pdf
-    - packages/eliud_pkg_apps/assets/minkey_app/profile/exampleprofile.png
-    - packages/eliud_pkg_apps/assets/minkey_app/profile/pexels-pixabay-258109.jpg
-    - packages/eliud_pkg_apps/assets/juuwle_app/logos/logo.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/logos/logo_head.jpg
-    - packages/eliud_pkg_apps/assets/shared/about/thocha.png
-    - packages/eliud_pkg_apps/assets/shared/blocked/blocked.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_sitting.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_standing.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_with_credit_card.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_presenting.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_with_bags.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/gouldianfinch1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/gouldianfinch2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/redbreastedblackbird1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/redbreastedblackbird2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/queenofthenight1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/queenofthenight2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/goldenoriole1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/goldenoriole2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/turquoisekakariki1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/turquoisekakariki2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/amaryllis1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/amaryllis2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/daisy1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/daisy2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/anemone1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/anemone2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/lilyofthenile1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/lilyofthenile2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/bluebackedmanakin1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/bluebackedmanakin2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/northerncardinal1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/northerncardinal2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/eurasianmagpie1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/eurasianmagpie2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/myna1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/myna2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/parakeet1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/parakeet2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/kingbird1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/kingbird2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/grosbeak1.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/products/grosbeak2.png
-    - packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Privacy-Policy.pdf
-    - packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Terms-of-Service.pdf
-    - packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Disclaimer.pdf
-    - packages/eliud_pkg_apps/assets/json_apps/minkey.json
-    - packages/eliud_pkg_apps/assets/json_apps/juuwle.json
-    - packages/eliud_pkg_apps/assets/json_apps/eliud.json
-
+  - "packages/eliud_pkg_apps/assets/eliud_app/logos/logo.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/logos/logo_head.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/devices/android.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/devices/iphone.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/devices/macbook.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/devices/tablet.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app1.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app2.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app3.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app4.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app5.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app6.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-android-app7.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-authentication1.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-authentication2.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-database1.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-database2.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-database3.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project1.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project2.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project3.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project4.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project5.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-firebase-project6.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-project1.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-project2.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-project3.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-project4.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-flutter-webproject3.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account1.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account2.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account3.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account4.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-google-account5.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-storage1.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-storage2.png"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-storage3.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-storage4.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/create-webapp2.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/deploy-webapp1.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/tutorials/firebase-home.jpg"
+  - "packages/eliud_pkg_apps/assets/eliud_app/legal/Eliud-Privacy-Policy.pdf"
+  - "packages/eliud_pkg_apps/assets/eliud_app/legal/Eliud-Terms-of-Service.pdf"
+  - "packages/eliud_pkg_apps/assets/eliud_app/legal/Eliud-Disclaimer.pdf"
+  - "packages/eliud_pkg_apps/assets/minkey_app/logos/logo.png"
+  - "packages/eliud_pkg_apps/assets/minkey_app/logos/logo_head.png"
+  - "packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg"
+  - "packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg"
+  - "packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg"
+  - "packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg"
+  - "packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg"
+  - "packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg"
+  - "packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg"
+  - "packages/eliud_pkg_apps/assets/minkey_app/legal/Minkey-Privacy-Policy.pdf"
+  - "packages/eliud_pkg_apps/assets/minkey_app/legal/Minkey-Terms-of-Service.pdf"
+  - "packages/eliud_pkg_apps/assets/minkey_app/legal/Minkey-Disclaimer.pdf"
+  - "packages/eliud_pkg_apps/assets/minkey_app/profile/exampleprofile.png"
+  - "packages/eliud_pkg_apps/assets/minkey_app/profile/pexels-pixabay-258109.jpg"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/logos/logo.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/logos/logo_head.jpg"
+  - "packages/eliud_pkg_apps/assets/shared/about/thocha.png"
+  - "packages/eliud_pkg_apps/assets/shared/blocked/blocked.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_sitting.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_standing.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_with_credit_card.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_presenting.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_with_bags.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/gouldianfinch1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/gouldianfinch2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/redbreastedblackbird1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/redbreastedblackbird2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/queenofthenight1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/queenofthenight2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/goldenoriole1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/goldenoriole2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/turquoisekakariki1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/turquoisekakariki2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/amaryllis1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/amaryllis2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/daisy1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/daisy2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/anemone1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/anemone2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/lilyofthenile1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/lilyofthenile2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/bluebackedmanakin1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/bluebackedmanakin2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/northerncardinal1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/northerncardinal2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/eurasianmagpie1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/eurasianmagpie2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/myna1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/myna2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/parakeet1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/parakeet2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/kingbird1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/kingbird2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/grosbeak1.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/products/grosbeak2.png"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Privacy-Policy.pdf"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Terms-of-Service.pdf"
+  - "packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Disclaimer.pdf"
+  - "packages/eliud_pkg_apps/assets/json_apps/minkey.json"
+  - "packages/eliud_pkg_apps/assets/json_apps/juuwle.json"
+  - "packages/eliud_pkg_apps/assets/json_apps/eliud.json"
 platforms:
-  android:
-  ios:
-  web:
+  android: null
+  ios: null
+  web: null
