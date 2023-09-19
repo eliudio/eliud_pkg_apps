@@ -22,7 +22,7 @@ dependencies:
   eliud_pkg_etc: ^1.0.1+5
   eliud_pkg_chat: ^1.0.1+6
   eliud_stl_mona: ^1.0.1+5
-  eliud_pkg_create: ^1.0.3
+  eliud_pkg_create: ^1.0.5
   eliud_pkg_medium: ^1.0.1+5
 dev_dependencies:
   flutter_test:
