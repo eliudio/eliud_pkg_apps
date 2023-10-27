@@ -3,27 +3,27 @@ name: eliud_pkg_apps
 description: Eliud package with generation of app contents
 homepage: https://eliud.io
 repository: https://github.com/eliudio/eliud_pkg_apps
-version: 1.0.4+18
+version: 1.0.4+19
 environment:
   sdk: '>=2.17.0 <4.0.0'
   flutter: '>=3.0.0'
 dependencies:
   flutter:
     sdk: flutter
-  eliud_core: ^1.0.19
-  eliud_pkg_fundamentals: ^1.0.2+7
-  eliud_pkg_shop: ^1.0.1+19
-  eliud_pkg_feed: ^1.0.6+1
-  eliud_pkg_notifications: ^1.0.1+19
-  eliud_pkg_workflow: ^1.0.1+19
-  eliud_pkg_follow: ^1.0.2+1
-  eliud_pkg_membership: ^1.0.2+1
-  eliud_pkg_pay: ^1.0.1+20
-  eliud_pkg_etc: ^1.0.1+19
-  eliud_pkg_chat: ^1.0.5+1
-  eliud_stl_mona: ^1.0.8+1
-  eliud_pkg_create: ^1.0.12
-  eliud_pkg_medium: ^1.0.1+19
+  eliud_core: ^1.0.19+1
+  eliud_pkg_fundamentals: ^1.0.2+8
+  eliud_pkg_shop: ^1.0.1+20
+  eliud_pkg_feed: ^1.0.6+2
+  eliud_pkg_notifications: ^1.0.1+20
+  eliud_pkg_workflow: ^1.0.1+20
+  eliud_pkg_follow: ^1.0.2+2
+  eliud_pkg_membership: ^1.0.2+2
+  eliud_pkg_pay: ^1.0.1+21
+  eliud_pkg_etc: ^1.0.1+20
+  eliud_pkg_chat: ^1.0.5+2
+  eliud_stl_mona: ^1.0.8+2
+  eliud_pkg_create: ^1.0.12+1
+  eliud_pkg_medium: ^1.0.1+20
 dev_dependencies:
   flutter_test:
     sdk: flutter
