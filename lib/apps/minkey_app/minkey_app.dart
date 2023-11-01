@@ -1,15 +1,11 @@
 import 'package:eliud_core/model/admin_app.dart' as coreadmin;
 import 'package:eliud_core/model/app_home_page_references_model.dart';
 import 'package:eliud_core/model/app_model.dart';
-import 'package:eliud_core/model/display_conditions_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
-import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
-import 'package:eliud_core/model/platform_medium_model.dart';
 import 'package:eliud_core/model/public_medium_model.dart';
-import 'package:eliud_core/model/storage_conditions_model.dart';
 import 'package:eliud_core/style/frontend/has_drawer.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
@@ -21,35 +17,23 @@ import 'package:eliud_pkg_apps/apps/minkey_app/workflow/workflow_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
 import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
-import 'package:eliud_pkg_apps/apps/shared/chat/chat_dialog.dart';
 import 'package:eliud_pkg_apps/apps/shared/chat/chat_page.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
-import 'package:eliud_pkg_chat/chat_package.dart';
 import 'package:eliud_pkg_create/tools/defaults.dart' as defaults;
-import 'package:eliud_pkg_feed/tools/action/post_action_model.dart';
 import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
-import 'package:eliud_pkg_notifications/notifications_package.dart';
-import 'package:eliud_pkg_workflow/workflow_package.dart';
 import 'package:eliud_stl_mona/mona_style_family.dart';
 import 'package:flutter/material.dart';
 
-import '../app_base.dart';
 import '../install_app.dart';
 import 'about/about.dart';
 import 'admin/admin.dart';
 import 'album/album.dart';
 import 'assignments/minkey_assignments.dart';
 import 'blocked/minkey_blocked.dart';
-import 'chat/chat_dialog.dart';
 import 'chat/chat_page.dart';
-import 'feed/feed.dart';
-import 'feed/other_feed_pages.dart';
-import 'feed/profile.dart';
-import 'follow/follow_dashboards.dart';
 import 'member/minkey_member_dashboard.dart';
-import 'membership/minkey_membership_dashboard.dart';
 
 /* This code cleans the database and generates the minkey app, which includes the admin pages
  */

@@ -1,7 +1,5 @@
-import 'package:eliud_core/core_package.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
-import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/member_dashboard_component.dart';
 import 'package:eliud_core/model/model_export.dart';
 

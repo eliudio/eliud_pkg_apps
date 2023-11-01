@@ -1,6 +1,3 @@
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/home_menu_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/payconfirmation.dart';
@@ -11,7 +8,6 @@ import 'package:eliud_pkg_shop/model/model_export.dart';
 import 'package:eliud_pkg_shop/model/pay_component.dart';
 import 'package:eliud_pkg_shop/shop_package.dart';
 
-import '../../../../apps/app_base.dart';
 import '../../../install_app.dart';
 import '../../../shared/etc/page_template.dart';
 import '../../juuwle_app.dart';

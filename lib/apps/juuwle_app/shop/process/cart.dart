@@ -2,7 +2,6 @@ import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/model/display_conditions_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/home_menu_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/storage_conditions_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/pay.dart';
@@ -13,7 +12,6 @@ import 'package:eliud_pkg_shop/model/cart_model.dart';
 import 'package:eliud_pkg_shop/model/shop_model.dart';
 import 'package:eliud_pkg_shop/shop_package.dart';
 
-import '../../../../apps/app_base.dart';
 import '../../../install_app.dart';
 import '../../../shared/etc/page_template.dart';
 import '../../juuwle_app.dart';

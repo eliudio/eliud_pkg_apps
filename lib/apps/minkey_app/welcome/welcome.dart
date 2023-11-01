@@ -1,9 +1,5 @@
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
-import 'package:eliud_core/model/app_bar_model.dart';
-import 'package:eliud_core/model/body_component_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_core/tools/tool_set.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
@@ -218,7 +214,7 @@ class Welcome extends AppSection {
 
   // ************************ Tutorials *****************
   Future<void> run() async {
-    var appBar = await installApp!.appBar();
+    var appBar = installApp!.appBar();
     var android = await androidImage();
     var iphone = await iphoneImage();
     var tablet = await tabletImage();

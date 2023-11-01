@@ -1,5 +1,4 @@
 import 'package:eliud_core/model/display_conditions_model.dart';
-import 'package:eliud_pkg_apps/apps/app_base.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
 import 'package:eliud_pkg_apps/apps/shared/workflow/workflow_helper.dart';
 import 'package:eliud_pkg_shop/shop_package.dart';

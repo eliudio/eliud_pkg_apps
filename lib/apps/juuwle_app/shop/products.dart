@@ -2,7 +2,6 @@ import 'package:eliud_pkg_apps/apps/shared/products/product.dart';
 import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/model/model_export.dart';
 
-import '../../../apps/app_base.dart';
 import '../../install_app.dart';
 import '../juuwle_app.dart';
 

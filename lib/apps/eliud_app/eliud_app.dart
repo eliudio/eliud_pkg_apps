@@ -3,10 +3,8 @@ import 'package:eliud_core/model/app_home_page_references_model.dart';
 import 'package:eliud_core/model/app_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
 import 'package:eliud_core/model/icon_model.dart';
-import 'package:eliud_core/model/member_medium_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
 import 'package:eliud_core/model/menu_item_model.dart';
-import 'package:eliud_core/model/platform_medium_model.dart';
 import 'package:eliud_core/model/public_medium_model.dart';
 import 'package:eliud_core/style/frontend/has_drawer.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
@@ -23,7 +21,6 @@ import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_stl_mona/mona_style_family.dart';
 import 'package:flutter/material.dart';
 
-import '../app_base.dart';
 import '../install_app.dart';
 import 'admin/admin.dart';
 import 'hello_world/hello_world.dart';
