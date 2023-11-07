@@ -15,6 +15,5 @@ class AppSection extends AppSectionBase {
   final DrawerModel? drawer;
   final DrawerModel? endDrawer;
 
-  AppSection(InstallApp? installApp, this.homeMenu, this.drawer, this.endDrawer):
-      super(installApp);
+  AppSection(super.installApp, this.homeMenu, this.drawer, this.endDrawer);
 }

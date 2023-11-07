@@ -33,7 +33,7 @@ class PlayStore extends AppSection {
       DrawerModel? endDrawer})
       : super(installApp, homeMenu, drawer, endDrawer);
 
-  static String IDENTIFIER = "playstore";
+  static String identifier = "playstore";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -46,7 +46,7 @@ class PlayStore extends AppSection {
     components.add(BodyComponentModel(
         documentID: "2",
         componentName: AbstractFaderComponent.componentName,
-        componentId: FADER_IDENTIFIER));
+        componentId: faderIdentifier));
     components.add(BodyComponentModel(
         documentID: "3",
         componentName: AbstractDividerComponent.componentName,
@@ -57,18 +57,18 @@ class PlayStore extends AppSection {
         componentId: "playstore_1"));
 
     return PageModel(
-        documentID: IDENTIFIER,
-        appId: MinkeyApp.MINKEY_APP_ID,
+        documentID: identifier,
+        appId: MinkeyApp.minkeyAppId,
         title: "Apps",
         description: "Apps",
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,
         homeMenu: homeMenu,
-        layout: PageLayout.ListView,
+        layout: PageLayout.listView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
@@ -79,7 +79,7 @@ class PlayStore extends AppSection {
         .add(_fader());
   }
 
-  static String FADER_IDENTIFIER = IDENTIFIER;
+  static String faderIdentifier = identifier;
   FaderModel _fader() {
     List<ListedItemModel> items = [];
     items.add(ListedItemModel(
@@ -88,15 +88,15 @@ class PlayStore extends AppSection {
         posSize: installApp!.halfScreen(),
         image: installApp!.thePlatformLogo));
     FaderModel model = FaderModel(
-      documentID: FADER_IDENTIFIER,
+      documentID: faderIdentifier,
       description: "Welcome fader",
       animationMilliseconds: 1000,
       imageSeconds: 5,
       items: items,
-      appId: MinkeyApp.MINKEY_APP_ID,
+      appId: MinkeyApp.minkeyAppId,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
     return model;
   }
@@ -104,11 +104,11 @@ class PlayStore extends AppSection {
   PlayStoreModel playStore() {
     return PlayStoreModel(
       documentID: "playstore_1",
-      appId: MinkeyApp.MINKEY_APP_ID,
+      appId: MinkeyApp.minkeyAppId,
       description: "Minkey Store",
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
@@ -133,8 +133,8 @@ class PlayStore extends AppSection {
 
     decorationColorModels.add(decorationColorModel2);
     BackgroundModel backgroundModel = BackgroundModel(
-      beginGradientPosition: StartGradientPosition.TopLeft,
-      endGradientPosition: EndGradientPosition.BottomRight,
+      beginGradientPosition: StartGradientPosition.topLeft,
+      endGradientPosition: EndGradientPosition.bottomRight,
       decorationColors: decorationColorModels,
       border: true,
       shadow: _shadowModel(),

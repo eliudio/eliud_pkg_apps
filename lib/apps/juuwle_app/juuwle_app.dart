@@ -40,28 +40,26 @@ import 'member/juuwle_member_dashboard.dart';
 import 'notifications/juuwle_notification_dashboard.dart';
 
 class JuuwleApp extends InstallApp {
-  static String JUUWLE_APP_ID = 'JUUWLE_APP';
-  static AppModel app = AppModel(documentID: JUUWLE_APP_ID, ownerID: '??');
+  static String juuwleAppId = 'JUUWLE_APP';
+  static AppModel app = AppModel(documentID: juuwleAppId, ownerID: '??');
 
-  JuuwleApp()
-      : super(app);
+  JuuwleApp() : super(app);
 
   @override
   MenuDefModel profileDrawerMenuDef() {
     var menuItems = <MenuItemModel>[];
-    menuItems
-        .add(menuItemManageAccount(app, "my_juuwle", MemberDashboard.IDENTIFIER));
+    menuItems.add(
+        menuItemManageAccount(app, "my_juuwle", MemberDashboard.identifier));
     menuItems.add(MenuItemModel(
         documentID: 'orders',
         text: 'Your orders',
         description: 'Your orders',
         icon: IconModel(codePoint: 0xe896, fontFamily: 'MaterialIcons'),
-        action: GotoPage(app,
-            pageID: OrderOverview.identifier)));
+        action: GotoPage(app, pageID: OrderOverview.identifier)));
     menuItems.add(menuItemSignOut(app, 'sign_out'));
     var menu = MenuDefModel(
-        documentID: defaults.drawerID(theApp.documentID, DrawerType.Right),
-        appId: JUUWLE_APP_ID,
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.right),
+        appId: juuwleAppId,
         name: 'Drawer Profile Menu',
         menuItems: menuItems);
     return menu;
@@ -69,13 +67,13 @@ class JuuwleApp extends InstallApp {
 
   @override
   MenuDefModel drawerMenuDef() {
-    MenuDefModel _homeMenuDef = homeMenuDef();
-    var drawerMenuItems = _homeMenuDef.menuItems!;
+    MenuDefModel theHomeMenuDef = homeMenuDef();
+    var drawerMenuItems = theHomeMenuDef.menuItems!;
     drawerMenuItems.addAll(getPolicyMenuItems());
-    MenuDefModel drawerMenu = _homeMenuDef.copyWith(
-        documentID: defaults.drawerID(theApp.documentID, DrawerType.Left), name: "Drawer Menu (copy of main menu)",
-        menuItems: drawerMenuItems
-    );
+    MenuDefModel drawerMenu = theHomeMenuDef.copyWith(
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.left),
+        name: "Drawer Menu (copy of main menu)",
+        menuItems: drawerMenuItems);
     return drawerMenu;
   }
 
@@ -84,10 +82,10 @@ class JuuwleApp extends InstallApp {
     var menuItems = <MenuItemModel>[];
     menuItems.add(menuItemWelcome(app, "1", Welcome.identifier, "Welcome"));
     menuItems.add(menuItemShoppingBag(app, "2", Shop.identifier, "Shop"));
-    menuItems.add(menuItemAbout(app, "4", About.IDENTIFIER, "About"));
+    menuItems.add(menuItemAbout(app, "4", About.identifier2, "About"));
     var menu = MenuDefModel(
         documentID: defaults.homeMenuID(theApp.documentID),
-        appId: JUUWLE_APP_ID,
+        appId: juuwleAppId,
         name: 'Main Menu',
         menuItems: menuItems);
     return menu;
@@ -97,7 +95,7 @@ class JuuwleApp extends InstallApp {
   Future<AppModel> setupApplication(AppHomePageReferencesModel homePages,
       String ownerID, PublicMediumModel? logo) async {
     var application = AppModel(
-      documentID: JUUWLE_APP_ID,
+      documentID: juuwleAppId,
       title: 'Juuwle!',
       description: 'Juuwle',
       logo: logo,
@@ -106,8 +104,7 @@ class JuuwleApp extends InstallApp {
       styleName: MonaStyleFamily.juuwleStyleName,
       homePages: homePages,
       ownerID: ownerID,
-      appStatus: AppStatus.Live,
-
+      appStatus: AppStatus.live,
     );
     return await AbstractMainRepositorySingleton.singleton
         .appRepository()!
@@ -131,97 +128,84 @@ class JuuwleApp extends InstallApp {
   }
 
   @override
-  Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
-      DrawerModel drawer, DrawerModel endDrawer) async {
+  Future<AppHomePageReferencesModel> runTheRest(
+      String? ownerID, DrawerModel drawer, DrawerModel endDrawer) async {
     await WorkflowSetup(installApp: this).run();
     await About(
-            installApp: this,
-            homeMenu: homeMenu(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            )
-        .run();
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run();
     var shop = await Shop(
-            installApp: this,
-            homeMenu: homeMenu(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            )
-        .run();
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run();
     await MyCart(
-            background: Shop.cardBG(),
-            shop: shop,
-            installApp: this,
-            homeMenu: homeMenu(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            )
-        .run();
+      background: Shop.cardBG(),
+      shop: shop,
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run();
     await MyPay(
-            background: Shop.cardBG(),
-            shop: shop,
-            installApp: this,
-            homeMenu: homeMenu(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            )
-        .run();
+      background: Shop.cardBG(),
+      shop: shop,
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run();
     await OrderOverview(
-            background: Shop.cardBG(),
-            shop: shop,
-            installApp: this,
-            homeMenu: homeMenu(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            )
-        .run();
+      background: Shop.cardBG(),
+      shop: shop,
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run();
     await MyPayConfirmation(
-            background: Shop.cardBG(),
-            shop: shop,
-            installApp: this,
-            homeMenu: homeMenu(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            )
-        .run();
+      background: Shop.cardBG(),
+      shop: shop,
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run();
     await ProductPage(
-            shop: shop,
-            installApp: this,
-            homeMenu: homeMenu(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            )
-        .run();
+      shop: shop,
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run();
     await JuuwleNotificationDashboard(
-            installApp: this,
-    )
-        .run();
+      installApp: this,
+    ).run();
     await JuuwleMembershipDashboard(
-        installApp: this,
-        )
-        .run();
+      installApp: this,
+    ).run();
     await JuuwleMemberDashboard(
-        installApp: this,
-        )
-        .run();
+      installApp: this,
+    ).run();
     await JuuwleAssignmentViewSetup(
-            installApp: this,
-        )
-        .run();
+      installApp: this,
+    ).run();
     var homePageSubscribedMember = await Welcome(
-            installApp: this,
-            homeMenu: homeMenu(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            )
-        .run();
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run();
     var homePageBlockedMember = await JuuwleBlocked(
-            installApp: this,
-            homeMenu: homeMenu(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            )
-        .run();
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run();
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
       homePageBlockedMember: homePageBlockedMember.documentID,
       homePageSubscribedMember: homePageSubscribedMember.documentID,
@@ -232,12 +216,11 @@ class JuuwleApp extends InstallApp {
 
   @override
   Future<void> run(String ownerID) async {
-    return await runBase(
-        ownerID: ownerID);
+    return await runBase(ownerID: ownerID);
   }
 
-
   // an extra menu item for the shopping cart
+  @override
   List<MenuItemModel> extraMenuItems() => <MenuItemModel>[
         MenuItemModel(
             documentID: '1',
@@ -246,8 +229,7 @@ class JuuwleApp extends InstallApp {
             icon: IconModel(
                 codePoint: Icons.shopping_basket.codePoint,
                 fontFamily: Icons.shopping_basket.fontFamily),
-            action:
-            MyCart.openCartPage()),
+            action: MyCart.openCartPage()),
         MenuItemModel(
             documentID: '2',
             text: 'Notifications',
@@ -275,18 +257,23 @@ class JuuwleApp extends InstallApp {
       ];
 
   @override
-  String logoAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/logos/logo.png';
+  String logoAssetLocation() =>
+      'packages/eliud_pkg_apps/assets/juuwle_app/logos/logo.png';
 
   @override
-  String logoHeadAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/logos/logo_head.jpg';
+  String logoHeadAssetLocation() =>
+      'packages/eliud_pkg_apps/assets/juuwle_app/logos/logo_head.jpg';
 
   // Policies
   @override
-  String privacyPolicyAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Privacy-Policy.pdf';
+  String privacyPolicyAssetLocation() =>
+      'packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Privacy-Policy.pdf';
 
   @override
-  String termsOfServiceAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Terms-of-Service.pdf';
+  String termsOfServiceAssetLocation() =>
+      'packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Terms-of-Service.pdf';
 
   @override
-  String disclaimerAssetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Disclaimer.pdf';
+  String disclaimerAssetLocation() =>
+      'packages/eliud_pkg_apps/assets/juuwle_app/legal/Juuwle-Disclaimer.pdf';
 }

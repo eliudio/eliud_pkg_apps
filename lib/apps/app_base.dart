@@ -23,11 +23,12 @@ abstract class AppBase {
 
     member = await AccessBloc.firebaseToMemberModel(usr);
     if (member == null) {
-      print('Can not register $theApp.documentID because member cannot be created');
+      print(
+          'Can not register $theApp.documentID because member cannot be created');
     } else {
       memberClaimRepository()!.listenTo(member!.documentID, (value) async {
         await usr.reload();
-        var idTokenResult = await usr.getIdTokenResult(true);
+        await usr.getIdTokenResult(true);
       });
 
       await claimAccess(theApp.documentID, usr.uid);

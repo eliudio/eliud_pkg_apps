@@ -6,13 +6,16 @@ import '../../install_app.dart';
 
 class Who extends Founders {
   Who({
-      InstallApp? installApp,
-      HomeMenuModel? homeMenu,
-      DrawerModel? drawer,
-      DrawerModel? endDrawer,
-      })
-      : super(installApp, homeMenu, drawer, endDrawer,
-            );
+    InstallApp? installApp,
+    HomeMenuModel? homeMenu,
+    DrawerModel? drawer,
+    DrawerModel? endDrawer,
+  }) : super(
+          installApp,
+          homeMenu,
+          drawer,
+          endDrawer,
+        );
 
   Future<void> run() {
     return doItForFounders();
@@ -26,5 +29,5 @@ class Who extends Founders {
   String aboutTitle() => "Who's who and why?";
 
   @override
-  String aboutDescription()  => "Who's who and why?";
+  String aboutDescription() => "Who's who and why?";
 }

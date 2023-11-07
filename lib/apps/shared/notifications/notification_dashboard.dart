@@ -7,23 +7,22 @@ import 'package:eliud_pkg_notifications/model/notification_dashboard_component.d
 import 'package:eliud_pkg_notifications/model/notification_dashboard_model.dart';
 import 'package:eliud_pkg_notifications/notifications_package.dart';
 
-import '../../install_app.dart';
 import '../../app_section.dart';
 
 class NotificationDashboard extends AppSectionBase {
-  NotificationDashboard(
-      InstallApp? installApp)
-      : super(installApp);
+  NotificationDashboard(super.installApp);
 
-  static String IDENTIFIER = "notification_dashboard";
+  static String identifier = "notification_dashboard";
 
   static OpenDialog action(AppModel app) => OpenDialog(app,
-        dialogID: NotificationDashboard.IDENTIFIER,
-        conditions: DisplayConditionsModel(
-        privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-        packageCondition: NotificationsPackage.CONDITION_MEMBER_HAS_UNREAD_NOTIFICATIONS,
-        conditionOverride: ConditionOverride.InclusiveForBlockedMembers // allow blocked members to see
-    ));
+      dialogID: NotificationDashboard.identifier,
+      conditions: DisplayConditionsModel(
+          privilegeLevelRequired: PrivilegeLevelRequired.noPrivilegeRequired,
+          packageCondition:
+              NotificationsPackage.CONDITION_MEMBER_HAS_UNREAD_NOTIFICATIONS,
+          conditionOverride: ConditionOverride
+              .inclusiveForBlockedMembers // allow blocked members to see
+          ));
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -36,28 +35,29 @@ class NotificationDashboard extends AppSectionBase {
     components.add(BodyComponentModel(
         documentID: "1",
         componentName: AbstractNotificationDashboardComponent.componentName,
-        componentId: IDENTIFIER));
+        componentId: identifier));
 
     return DialogModel(
-        documentID: IDENTIFIER,
+        documentID: identifier,
         appId: installApp!.theApp.documentID,
         title: "Notifications",
         description: "Notifications",
-        layout: DialogLayout.ListView,
+        layout: DialogLayout.listView,
         conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
 
   NotificationDashboardModel _dashboardModel() {
     return NotificationDashboardModel(
-        documentID: IDENTIFIER,
-        appId: installApp!.theApp.documentID,
-        description: "My Notifications",
-        conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-        ),
+      documentID: identifier,
+      appId: installApp!.theApp.documentID,
+      description: "My Notifications",
+      conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 

@@ -3,11 +3,13 @@ import 'package:eliud_core/model/app_model.dart';
 import '../json_app.dart';
 
 class MinkeyJsonApp extends JsonApp {
-  static String MINKEY_APP_ID = "MINKEY_APP";
+  static String minkeyAppId = "MINKEY_APP";
 
-  static AppModel app = AppModel(documentID: MINKEY_APP_ID, ownerID: '?');
+  static AppModel app = AppModel(documentID: minkeyAppId, ownerID: '?');
 
   MinkeyJsonApp() : super(app);
 
-  String jsonLocation() => 'packages/eliud_pkg_apps/assets/json_apps/minkey.json';
+  @override
+  String jsonLocation() =>
+      'packages/eliud_pkg_apps/assets/json_apps/minkey.json';
 }

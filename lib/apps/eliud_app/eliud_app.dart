@@ -30,11 +30,10 @@ import 'member/eliud_member_dashboard.dart';
  * Extend this code to support new components
  */
 class EliudApp extends InstallApp {
-  static String ELIUD_APP_ID = "ELIUD_APP";
-  static AppModel app = AppModel(documentID: ELIUD_APP_ID, ownerID: '??');
+  static String eliudAppId = "ELIUD_APP";
+  static AppModel app = AppModel(documentID: eliudAppId, ownerID: '??');
 
-  EliudApp()
-      : super(app);
+  EliudApp() : super(app);
 
   @override
   MenuDefModel profileDrawerMenuDef() {
@@ -43,13 +42,13 @@ class EliudApp extends InstallApp {
         documentID: "1",
         text: "Other apps",
         description: "Other apps",
-        action:
-            InternalAction(EliudApp.app, internalActionEnum: InternalActionEnum.OtherApps)));
+        action: InternalAction(EliudApp.app,
+            internalActionEnum: InternalActionEnum.otherApps)));
     menuItems.add(menuItemSignOut(app, "2"));
-    menuItems.add(menuItemManageAccount(app, "4", MemberDashboard.IDENTIFIER));
+    menuItems.add(menuItemManageAccount(app, "4", MemberDashboard.identifier));
     MenuDefModel menu = MenuDefModel(
-        documentID: defaults.drawerID(theApp.documentID, DrawerType.Right),
-        appId: ELIUD_APP_ID,
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.right),
+        appId: eliudAppId,
         name: "Drawer Profile Menu",
         menuItems: menuItems);
     return menu;
@@ -57,13 +56,13 @@ class EliudApp extends InstallApp {
 
   @override
   MenuDefModel drawerMenuDef() {
-    MenuDefModel _homeMenuDef = homeMenuDef();
-    var drawerMenuItems = _homeMenuDef.menuItems!;
+    MenuDefModel theHomeMenuDef = homeMenuDef();
+    var drawerMenuItems = theHomeMenuDef.menuItems!;
     drawerMenuItems.addAll(getPolicyMenuItems());
-    MenuDefModel drawerMenu = _homeMenuDef.copyWith(
-        documentID: defaults.drawerID(theApp.documentID, DrawerType.Left), name: "Drawer Menu (copy of main menu)",
-        menuItems: drawerMenuItems
-    );
+    MenuDefModel drawerMenu = theHomeMenuDef.copyWith(
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.left),
+        name: "Drawer Menu (copy of main menu)",
+        menuItems: drawerMenuItems);
     return drawerMenu;
   }
 
@@ -75,18 +74,22 @@ class EliudApp extends InstallApp {
         documentID: "2",
         text: "Hello World",
         description: "Hello World",
-        icon: IconModel(codePoint: Icons.flight_takeoff.codePoint, fontFamily: "MaterialIcons"),
+        icon: IconModel(
+            codePoint: Icons.flight_takeoff.codePoint,
+            fontFamily: "MaterialIcons"),
         action: GotoPage(app, pageID: "hello_world")));
     menuItems.add(MenuItemModel(
         documentID: "3",
         text: "Advanced",
         description: "Advanced",
-        icon: IconModel(codePoint: Icons.tour.codePoint, fontFamily: "MaterialIcons"),
+        icon: IconModel(
+            codePoint: Icons.tour.codePoint, fontFamily: "MaterialIcons"),
         action: GotoPage(EliudApp.app, pageID: "advanced")));
-    menuItems.add(menuItemAbout(app, "4", Founders.IDENTIFIER, Founders.IDENTIFIER));
+    menuItems.add(
+        menuItemAbout(app, "4", Founders.identifier2, Founders.identifier2));
     MenuDefModel menu = MenuDefModel(
         documentID: defaults.homeMenuID(theApp.documentID),
-        appId: ELIUD_APP_ID,
+        appId: eliudAppId,
         name: "Main Menu",
         menuItems: menuItems);
     return menu;
@@ -109,18 +112,17 @@ class EliudApp extends InstallApp {
         action: InternalAction(internalActionEnum: InternalActionEnum.Login)));
     return MenuDefModel(
         documentID: "ICON_MENU_1",
-        appId: ELIUD_APP_ID,
+        appId: eliudAppId,
         name: "Menu Definition 1",
         menuItems: menuItems);
   }
 */
 
-  Future<AppModel> setupApplication(
-      AppHomePageReferencesModel homePages,
-      String ownerID,
-      PublicMediumModel? logo) async {
+  @override
+  Future<AppModel> setupApplication(AppHomePageReferencesModel homePages,
+      String ownerID, PublicMediumModel? logo) async {
     AppModel application = AppModel(
-      documentID: ELIUD_APP_ID,
+      documentID: eliudAppId,
       title: "Eliud!",
       description: "Eliud",
       logo: logo,
@@ -129,8 +131,7 @@ class EliudApp extends InstallApp {
       styleFamily: MonaStyleFamily.monaStyleFamilyName,
       styleName: MonaStyleFamily.eliudStyleName,
       ownerID: ownerID,
-      appStatus: AppStatus.Live,
-
+      appStatus: AppStatus.live,
     );
 
     return await AbstractMainRepositorySingleton.singleton
@@ -154,32 +155,27 @@ class EliudApp extends InstallApp {
   }
 
   @override
-  Future<AppHomePageReferencesModel> runTheRest(String? ownerID,
-      DrawerModel drawer, DrawerModel endDrawer) async {
+  Future<AppHomePageReferencesModel> runTheRest(
+      String? ownerID, DrawerModel drawer, DrawerModel endDrawer) async {
     await Who(
-            installApp: this,
-            homeMenu: homeMenu(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            )
-        .run();
-    await EliudMemberDashboard(
-        installApp: this)
-        .run();
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run();
+    await EliudMemberDashboard(installApp: this).run();
     await HelloWorld(
-            installApp: this,
-            homeMenu: homeMenu(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            )
-        .run();
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run();
     var homePageSubscribedMember = await Welcome(
-            installApp: this,
-            homeMenu: homeMenu(),
-            drawer: drawer,
-            endDrawer: endDrawer,
-            )
-        .run();
+      installApp: this,
+      homeMenu: homeMenu(),
+      drawer: drawer,
+      endDrawer: endDrawer,
+    ).run();
     AppHomePageReferencesModel homePages = AppHomePageReferencesModel(
       homePageSubscribedMember: homePageSubscribedMember.documentID,
       homePagePublic: homePageSubscribedMember.documentID,
@@ -187,10 +183,11 @@ class EliudApp extends InstallApp {
     return homePages;
   }
 
+  @override
   Future<void> run(String ownerID) async {
     return await runBase(
       ownerID: ownerID,
-          );
+    );
   }
 
   @override
@@ -198,18 +195,23 @@ class EliudApp extends InstallApp {
   List<MenuItemModel>? extraMenuItems() => null;
 
   @override
-  String logoAssetLocation() => 'packages/eliud_pkg_apps/assets/eliud_app/logos/logo.jpg';
+  String logoAssetLocation() =>
+      'packages/eliud_pkg_apps/assets/eliud_app/logos/logo.jpg';
 
   @override
-  String logoHeadAssetLocation() => 'packages/eliud_pkg_apps/assets/eliud_app/logos/logo_head.jpg';
+  String logoHeadAssetLocation() =>
+      'packages/eliud_pkg_apps/assets/eliud_app/logos/logo_head.jpg';
 
   // Policies
   @override
-  String privacyPolicyAssetLocation() => 'packages/eliud_pkg_apps/assets/eliud_app/legal/Eliud-Privacy-Policy.pdf';
+  String privacyPolicyAssetLocation() =>
+      'packages/eliud_pkg_apps/assets/eliud_app/legal/Eliud-Privacy-Policy.pdf';
 
   @override
-  String termsOfServiceAssetLocation() => 'packages/eliud_pkg_apps/assets/eliud_app/legal/Eliud-Terms-of-Service.pdf';
+  String termsOfServiceAssetLocation() =>
+      'packages/eliud_pkg_apps/assets/eliud_app/legal/Eliud-Terms-of-Service.pdf';
 
   @override
-  String disclaimerAssetLocation() => 'packages/eliud_pkg_apps/assets/eliud_app/legal/Eliud-Disclaimer.pdf';
+  String disclaimerAssetLocation() =>
+      'packages/eliud_pkg_apps/assets/eliud_app/legal/Eliud-Disclaimer.pdf';
 }

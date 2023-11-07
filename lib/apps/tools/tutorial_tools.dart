@@ -1,4 +1,3 @@
-
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_fundamentals/model/tutorial_component.dart';
@@ -55,23 +54,36 @@ class TutorialTools {
   }
 
 */
-  static Future<TutorialModel> constructTutorialModel(MemberModel? member, AppModel app, String tutorialID, String name, String title, String description, String assetRoot, List<String?> assetLocations, List<String?> codes, List<String> descriptions) async {
+  static Future<TutorialModel> constructTutorialModel(
+      MemberModel? member,
+      AppModel app,
+      String tutorialID,
+      String name,
+      String title,
+      String description,
+      String assetRoot,
+      List<String?> assetLocations,
+      List<String?> codes,
+      List<String> descriptions) async {
     assert(assetLocations.length == descriptions.length);
     List<TutorialEntryModel> items = [];
     for (int i = 0; i < assetLocations.length; i++) {
       String assetLocation;
-      var image;
+      PlatformMediumModel? image;
       if (assetLocations[i] != null) {
         assetLocation = assetRoot + assetLocations[i]!;
-        image = await ImageTools.uploadPlatformPhoto(app, member!, assetLocation, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+        image = await ImageTools.uploadPlatformPhoto(
+            app,
+            member!,
+            assetLocation,
+            PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
       }
       String documentID = i.toString();
       items.add(TutorialEntryModel(
           documentID: documentID,
           description: descriptions[i],
           image: image,
-          code: codes[i]
-      ));
+          code: codes[i]));
     }
 
     return TutorialModel(
@@ -82,15 +94,24 @@ class TutorialTools {
       description: description,
       tutorialEntries: items,
       conditions: StorageConditionsModel(
-        privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
-  static Future<PageModel> createTutorial(String appId, String tutorialID, String title, String description, DrawerModel? drawer, AppBarModel appBar, HomeMenuModel? homeMenu) async {
+  static Future<PageModel> createTutorial(
+      String appId,
+      String tutorialID,
+      String title,
+      String description,
+      DrawerModel? drawer,
+      AppBarModel appBar,
+      HomeMenuModel? homeMenu) async {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
-        documentID: "1", componentName: AbstractTutorialComponent.componentName, componentId: tutorialID));
+        documentID: "1",
+        componentName: AbstractTutorialComponent.componentName,
+        componentId: tutorialID));
     PageModel page = PageModel(
       documentID: tutorialID,
       appId: appId,
@@ -100,12 +121,14 @@ class TutorialTools {
       drawer: drawer,
       homeMenu: homeMenu,
       bodyComponents: components,
-      layout: PageLayout.OnlyTheFirstComponent,
+      layout: PageLayout.onlyTheFirstComponent,
       conditions: StorageConditionsModel(
-        privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+        privilegeLevelRequired:
+            PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
       ),
     );
-    return await AbstractRepositorySingleton.singleton.pageRepository(appId)!.add(page);
+    return await AbstractRepositorySingleton.singleton
+        .pageRepository(appId)!
+        .add(page);
   }
-
 }

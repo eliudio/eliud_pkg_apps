@@ -3,7 +3,6 @@ import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_shop/model/model_export.dart';
 import 'package:eliud_pkg_shop/model/order_overview_component.dart';
 
-import '../../install_app.dart';
 import '../../shared/etc/page_template.dart';
 import '../juuwle_app.dart';
 
@@ -15,15 +14,15 @@ class OrderOverview extends PageTemplate {
 
   OrderOverviewModel _orderOverview() {
     return OrderOverviewModel(
-        documentID: 'orders',
-        appId: installApp!.theApp.documentID,
+      documentID: 'orders',
+      appId: installApp!.theApp.documentID,
       description: pageTitle(),
-        shop: shop,
-        itemImageBackground: null,
-        itemDetailBackground: background,
-        conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-        ),
+      shop: shop,
+      itemImageBackground: null,
+      itemDetailBackground: background,
+      conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
@@ -39,18 +38,15 @@ class OrderOverview extends PageTemplate {
   OrderOverview({
     this.background,
     this.shop,
-    InstallApp? installApp,
-    HomeMenuModel? homeMenu,
-    DrawerModel? drawer,
-    DrawerModel? endDrawer,
-    }): super(
-      privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
-      pageId: identifier,
-      installApp: installApp,
-      homeMenu: homeMenu,
-      drawer: drawer,
-      endDrawer: endDrawer,
-      );
+    super.installApp,
+    super.homeMenu,
+    super.drawer,
+    super.endDrawer,
+  }) : super(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
+          pageId: identifier,
+        );
 
   @override
   String? componentID() {
@@ -59,9 +55,12 @@ class OrderOverview extends PageTemplate {
 
   @override
   Future<void> setupComponent() async {
-    await AbstractRepositorySingleton.singleton.orderOverviewRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_orderOverview());
+    await AbstractRepositorySingleton.singleton
+        .orderOverviewRepository(JuuwleApp.juuwleAppId)!
+        .add(_orderOverview());
   }
 
   @override
-  String assetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_with_bags.png';
+  String assetLocation() =>
+      'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_with_bags.png';
 }

@@ -19,14 +19,14 @@ class ExampleAlbumHelper {
         documentID: newRandomKey(),
         name: 'example 1',
         medium: await PlatformMediumHelper(MinkeyApp.app, memberId,
-            PrivilegeLevelRequiredSimple.Level1PrivilegeRequiredSimple)
-            .createThumbnailUploadPhotoAsset(
-            newRandomKey(), path));
+                PrivilegeLevelRequiredSimple.level1PrivilegeRequiredSimple)
+            .createThumbnailUploadPhotoAsset(newRandomKey(), path));
   }
 
   Future<List<AlbumEntryModel>> createAll() async {
     return [
-    await create('packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
+      await create(
+          'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
 /*
     await create('packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
     await create('packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),

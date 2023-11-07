@@ -7,4 +7,3 @@ abstract class Runner {
 abstract class MenuRunner {
   Future<MenuDefModel> run(MenuDefModel adminMenu);
 }
-

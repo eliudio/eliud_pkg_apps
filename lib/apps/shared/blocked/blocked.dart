@@ -1,4 +1,5 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/abstract_repository_singleton.dart'
+    as corerepo;
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
@@ -10,18 +11,27 @@ import '../../install_app.dart';
 import '../../app_section.dart';
 
 class Blocked extends AppSection {
-  Blocked({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer}) : super(installApp, homeMenu, drawer, endDrawer);
+  Blocked(
+      {InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer})
+      : super(installApp, homeMenu, drawer, endDrawer);
 
   static String identifier = "blocked";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(installApp!.theApp.documentID)!.add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton
+        .pageRepository(installApp!.theApp.documentID)!
+        .add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
     List<BodyComponentModel> components = [];
     components.add(BodyComponentModel(
-        documentID: "1", componentName: AbstractBookletComponent.componentName, componentId: blockedIdentifier));
+        documentID: "1",
+        componentName: AbstractBookletComponent.componentName,
+        componentId: blockedIdentifier));
 
     return PageModel(
         documentID: identifier,
@@ -32,9 +42,10 @@ class Blocked extends AppSection {
         endDrawer: endDrawer,
         appBar: appBar,
         homeMenu: homeMenu,
-        layout: PageLayout.ListView,
+        layout: PageLayout.listView,
         conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
@@ -42,7 +53,11 @@ class Blocked extends AppSection {
   static String blockedIdentifier = "blocked";
 
   Future<PlatformMediumModel> uploadBlockedImage() async {
-    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/shared/blocked/blocked.png', PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+    return await ImageTools.uploadPlatformPhoto(
+        installApp!.theApp,
+        installApp!.member!,
+        'packages/eliud_pkg_apps/assets/shared/blocked/blocked.png',
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
   BookletModel _blocked(PlatformMediumModel blockedImage) {
@@ -62,16 +77,18 @@ class Blocked extends AppSection {
     return BookletModel(
       documentID: blockedIdentifier,
       description: "Blocked!",
-      sections:entries,
+      sections: entries,
       appId: installApp!.theApp.documentID,
       conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
   Future<void> _setupBlocked(PlatformMediumModel blockedImage) async {
-    await AbstractRepositorySingleton.singleton.bookletRepository(installApp!.theApp.documentID)!.add(_blocked(blockedImage));
+    await AbstractRepositorySingleton.singleton
+        .bookletRepository(installApp!.theApp.documentID)!
+        .add(_blocked(blockedImage));
   }
 
   Future<PageModel> run() async {

@@ -54,7 +54,7 @@ class OtherFeedPages extends AppSection {
 
     return PageModel(
         documentID: identifier,
-        appId: MinkeyApp.MINKEY_APP_ID,
+        appId: MinkeyApp.minkeyAppId,
         title: title,
         description: description,
         drawer: drawer,
@@ -64,7 +64,7 @@ class OtherFeedPages extends AppSection {
         layout: PageLayout.ListView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.Level1PrivilegeRequiredSimple,
+              PrivilegeLevelRequiredSimple.level1PrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
@@ -75,11 +75,11 @@ class OtherFeedPages extends AppSection {
   }
 
   Future<void> run() async {
-    await doIt(AbstractFollowingDashboardComponent.componentName, FollowDashboards.FOLLOWERS_IDENTIFIER, "Followers");
-    await doIt(AbstractFollowingDashboardComponent.componentName, FollowDashboards.FOLLOWING_IDENTIFIER, "Following");
-    await doIt(AbstractFollowRequestsDashboardComponent.componentName, FollowRequestDashboard.FOLLOW_REQUEST_IDENTIFIER, "Follow requests");
-    await doIt(AbstractInviteDashboardComponent.componentName, InviteDashboard.INVITE_IDENTIFIER, "Find Friends");
-    await doIt(AbstractMembershipDashboardComponent.componentName, MembershipDashboard.IDENTIFIER, "App Members");
+    await doIt(AbstractFollowingDashboardComponent.componentName, FollowDashboards.followersIdentifier, "Followers");
+    await doIt(AbstractFollowingDashboardComponent.componentName, FollowDashboards.followingIdentifier, "Following");
+    await doIt(AbstractFollowRequestsDashboardComponent.componentName, FollowRequestDashboard.followRequestIdentifier, "Follow requests");
+    await doIt(AbstractInviteDashboardComponent.componentName, InviteDashboard.inviteIdentifier, "Find Friends");
+    await doIt(AbstractMembershipDashboardComponent.componentName, MembershipDashboard.identifier, "App Members");
   }
 }
 */

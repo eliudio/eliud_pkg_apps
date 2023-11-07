@@ -1,4 +1,5 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/abstract_repository_singleton.dart'
+    as corerepo;
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
@@ -26,12 +27,24 @@ Minkey is a platform that allows to build online apps / websites / ... and make 
 """;
 
 class Welcome extends AppSection {
-  Welcome({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer}) : super(installApp, homeMenu, drawer, endDrawer, );
+  Welcome(
+      {InstallApp? installApp,
+      HomeMenuModel? homeMenu,
+      DrawerModel? drawer,
+      DrawerModel? endDrawer})
+      : super(
+          installApp,
+          homeMenu,
+          drawer,
+          endDrawer,
+        );
 
   static String identifier = "welcome";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton.pageRepository(EliudApp.ELIUD_APP_ID)!.add(_page(appBar));
+    return await corerepo.AbstractRepositorySingleton.singleton
+        .pageRepository(EliudApp.eliudAppId)!
+        .add(_page(appBar));
   }
 
   PageModel _page(AppBarModel appBar) {
@@ -39,52 +52,87 @@ class Welcome extends AppSection {
     components.add(BodyComponentModel(
         documentID: "2",
         componentName: AbstractFaderComponent.componentName,
-        componentId: FADER_IDENTIFIER));
+        componentId: faderIdentifier));
     components.add(BodyComponentModel(
-        documentID: "3", componentName: AbstractDividerComponent.componentName, componentId: "divider_1"));
+        documentID: "3",
+        componentName: AbstractDividerComponent.componentName,
+        componentId: "divider_1"));
     components.add(BodyComponentModel(
-        documentID: "4", componentName: AbstractBookletComponent.componentName, componentId: welcomeIdentifier));
+        documentID: "4",
+        componentName: AbstractBookletComponent.componentName,
+        componentId: welcomeIdentifier));
 
     return PageModel(
         documentID: identifier,
-        appId: EliudApp.ELIUD_APP_ID,
+        appId: EliudApp.eliudAppId,
         title: "Welcome",
         description: "Welcome",
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,
         homeMenu: homeMenu,
-        layout: PageLayout.ListView,
+        layout: PageLayout.listView,
         conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-        ),
+            privilegeLevelRequired:
+                PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
         bodyComponents: components);
   }
 
-  Future<FaderModel> _setupFader(PlatformMediumModel android, PlatformMediumModel iphone, PlatformMediumModel tablet, PlatformMediumModel macbook, ) async {
+  Future<FaderModel> _setupFader(
+    PlatformMediumModel android,
+    PlatformMediumModel iphone,
+    PlatformMediumModel tablet,
+    PlatformMediumModel macbook,
+  ) async {
     return AbstractRepositorySingleton.singleton
-        .faderRepository(EliudApp.ELIUD_APP_ID)!
-        .add(_fader(android, iphone, tablet, macbook, ));
+        .faderRepository(EliudApp.eliudAppId)!
+        .add(_fader(
+          android,
+          iphone,
+          tablet,
+          macbook,
+        ));
   }
 
   Future<PlatformMediumModel> androidImage() async {
-    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg', PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+    return await ImageTools.uploadPlatformPhoto(
+        installApp!.theApp,
+        installApp!.member!,
+        'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg',
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
   Future<PlatformMediumModel> iphoneImage() async {
-    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg', PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+    return await ImageTools.uploadPlatformPhoto(
+        installApp!.theApp,
+        installApp!.member!,
+        'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg',
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
   Future<PlatformMediumModel> tabletImage() async {
-    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg', PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+    return await ImageTools.uploadPlatformPhoto(
+        installApp!.theApp,
+        installApp!.member!,
+        'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg',
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
   Future<PlatformMediumModel> macbookImage() async {
-    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, 'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg', PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+    return await ImageTools.uploadPlatformPhoto(
+        installApp!.theApp,
+        installApp!.member!,
+        'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg',
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
-  static String FADER_IDENTIFIER = "welcome_fader";
-  FaderModel _fader(PlatformMediumModel android, PlatformMediumModel iphone, PlatformMediumModel tablet, PlatformMediumModel macbook, ) {
+  static String faderIdentifier = "welcome_fader";
+  FaderModel _fader(
+    PlatformMediumModel android,
+    PlatformMediumModel iphone,
+    PlatformMediumModel tablet,
+    PlatformMediumModel macbook,
+  ) {
     List<ListedItemModel> items = [];
     items.add(ListedItemModel(
         documentID: "android",
@@ -107,15 +155,15 @@ class Welcome extends AppSection {
         posSize: installApp!.screen75(),
         image: tablet));
     FaderModel model = FaderModel(
-      documentID: FADER_IDENTIFIER,
+      documentID: faderIdentifier,
       description: "Welcome fader",
       animationMilliseconds: 1000,
       imageSeconds: 5,
       items: items,
-      appId: EliudApp.ELIUD_APP_ID,
+      appId: EliudApp.eliudAppId,
       conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
     return model;
   }
@@ -141,16 +189,18 @@ class Welcome extends AppSection {
     return BookletModel(
       documentID: welcomeIdentifier,
       description: "Welcome",
-      sections:entries,
+      sections: entries,
       appId: installApp!.theApp.documentID,
       conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
   Future<void> _setupWelcome() async {
-    await AbstractRepositorySingleton.singleton.bookletRepository(EliudApp.ELIUD_APP_ID)!.add(_welcome());
+    await AbstractRepositorySingleton.singleton
+        .bookletRepository(EliudApp.eliudAppId)!
+        .add(_welcome());
   }
 
   Future<PageModel> run() async {

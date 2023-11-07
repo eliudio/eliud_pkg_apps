@@ -21,10 +21,17 @@ class Admin extends AdminBase {
   String adminTitle() => "Admin";
 
   @override
-  List<AdminAppInstallerBase> adminAppsInstallers(String? appID, DrawerModel? drawer, drawermodelEnddrawer, AppBarModel appBar, HomeMenuModel? homeMenu) {
+  List<AdminAppInstallerBase> adminAppsInstallers(
+      String? appID,
+      DrawerModel? drawer,
+      theEndDrawer,
+      AppBarModel appBar,
+      HomeMenuModel? homeMenu) {
     return [
-      coreadmin.AdminApp(appID!, drawer!, endDrawer!, appBar, homeMenu!, EliudColors.black, EliudColors.green, EliudColors.lightRed),
-      fundamentals.AdminApp(appID, drawer, endDrawer!, appBar, homeMenu, EliudColors.black, EliudColors.green, EliudColors.lightRed),
+      coreadmin.AdminApp(appID!, drawer!, endDrawer!, appBar, homeMenu!,
+          EliudColors.black, EliudColors.green, EliudColors.lightRed),
+      fundamentals.AdminApp(appID, drawer, endDrawer!, appBar, homeMenu,
+          EliudColors.black, EliudColors.green, EliudColors.lightRed),
     ];
   }
 

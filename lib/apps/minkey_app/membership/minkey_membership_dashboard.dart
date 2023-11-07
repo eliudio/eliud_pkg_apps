@@ -8,7 +8,7 @@ import '../../install_app.dart';
 
 class MinkeyMembershipDashboard extends MembershipDashboard {
   MinkeyMembershipDashboard({InstallApp? installApp}) :
-        super(installApp, Profile.IDENTIFIER, Feed.IDENTIFIER);
+        super(installApp, Profile.identifier, Feed.identifier);
   Future<DialogModel> run() async {
     return super.run();
   }

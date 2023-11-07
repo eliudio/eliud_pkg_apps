@@ -23,13 +23,12 @@ class WorkflowSetup {
         .add(_workflowForCreditCardPaymentCart(installApp.theApp.documentID));
   }
 
-  static WorkflowActionModel payCart() =>
-      WorkflowActionModel(JuuwleApp.app,
-          conditions: DisplayConditionsModel(
-            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-            packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
-          ),
-          workflow: _workflowForCreditCardPaymentCart(JuuwleApp.app.documentID));
+  static WorkflowActionModel payCart() => WorkflowActionModel(JuuwleApp.app,
+      conditions: DisplayConditionsModel(
+        privilegeLevelRequired: PrivilegeLevelRequired.noPrivilegeRequired,
+        packageCondition: ShopPackage.conditionCartsHasItems,
+      ),
+      workflow: _workflowForCreditCardPaymentCart(JuuwleApp.app.documentID));
 
   Future<void> run() async {
     return await _setupWorkflows();

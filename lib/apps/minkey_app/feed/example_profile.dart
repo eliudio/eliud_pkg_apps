@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:eliud_core/model/abstract_repository_singleton.dart';
 import 'package:eliud_core/model/member_model.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart' as postRepo;
+import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart'
+    as pr;
 import 'package:eliud_pkg_feed/model/member_profile_model.dart';
 
 import '../minkey_app.dart';
@@ -11,23 +12,31 @@ import '../minkey_app.dart';
 class ExampleProfile {
   final MemberProfileAccessibleByGroup accessibleByGroup;
 
-  static String IDENTIFIER = "exampleProfile";
+  static String identifier = "exampleProfile";
 
   ExampleProfile(this.accessibleByGroup);
 
-  Future<void> run(MemberModel member, String  feedId) async {
+  Future<void> run(MemberModel member, String feedId) async {
     await exampleMemberProfileModel(member, feedId);
   }
 
-  Future<MemberProfileModel> exampleMemberProfileModel(MemberModel member, String feedId) async {
-    var memberPublicInfo = await memberPublicInfoRepository()!.get(member.documentID);
+  Future<MemberProfileModel> exampleMemberProfileModel(
+      MemberModel member, String feedId) async {
+    var memberPublicInfo =
+        await memberPublicInfoRepository()!.get(member.documentID);
     if (memberPublicInfo == null) {
       throw Exception("ERROR: can't retrieve member data");
     }
-    var profilePhoto = await ImageTools.createMemberMediumModelPhoto(MinkeyApp.app, member, 'packages/eliud_pkg_apps/assets/minkey_app/profile/exampleprofile.png');
-    var profileBackground = await ImageTools.createMemberMediumModelPhoto(MinkeyApp.app, member, 'packages/eliud_pkg_apps/assets/minkey_app/profile/pexels-pixabay-258109.jpg');
+    var profilePhoto = await ImageTools.createMemberMediumModelPhoto(
+        MinkeyApp.app,
+        member,
+        'packages/eliud_pkg_apps/assets/minkey_app/profile/exampleprofile.png');
+    var profileBackground = await ImageTools.createMemberMediumModelPhoto(
+        MinkeyApp.app,
+        member,
+        'packages/eliud_pkg_apps/assets/minkey_app/profile/pexels-pixabay-258109.jpg');
     var value = MemberProfileModel(
-      documentID: memberPublicInfo.documentID + "-" + feedId,
+      documentID: "${memberPublicInfo.documentID}-$feedId",
       appId: MinkeyApp.app.documentID,
       authorId: member.documentID,
       feedId: feedId,
@@ -35,10 +44,12 @@ class ExampleProfile {
       profileOverride: profilePhoto.url,
       accessibleByGroup: accessibleByGroup,
       profile: kHtml,
-      readAccess: member.documentID != null ? [member.documentID] : null,  // default readAccess to the owner. The function will expand this based on accessibleByGroup/Members
+      readAccess: [member.documentID], // default readAccess to the owner. The function will expand this based on accessibleByGroup/Members
     );
 
-     await postRepo.memberProfileRepository(appId: MinkeyApp.app.documentID)!.add(value);
+    await pr
+        .memberProfileRepository(appId: MinkeyApp.app.documentID)!
+        .add(value);
     return value;
   }
 }

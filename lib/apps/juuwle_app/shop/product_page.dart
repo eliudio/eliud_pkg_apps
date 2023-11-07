@@ -7,7 +7,6 @@ import 'package:eliud_pkg_shop/model/model_export.dart';
 import 'package:eliud_pkg_shop/model/product_display_component.dart';
 import 'package:eliud_pkg_shop/shop_package.dart';
 
-import '../../install_app.dart';
 import '../juuwle_app.dart';
 
 class ProductPage extends BasicPageTemplate {
@@ -18,8 +17,8 @@ class ProductPage extends BasicPageTemplate {
   static ActionModel action(String appId) => GotoPage(JuuwleApp.app,
       pageID: ProductPage.identifier,
       conditions: DisplayConditionsModel(
-        privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-        packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
+        privilegeLevelRequired: PrivilegeLevelRequired.noPrivilegeRequired,
+        packageCondition: ShopPackage.conditionCartsHasItems,
       ));
 
   ProductDisplayModel _productDisplayOverview() {
@@ -33,7 +32,7 @@ class ProductPage extends BasicPageTemplate {
       addToBasketText: 'Add to basket',
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
@@ -45,18 +44,14 @@ class ProductPage extends BasicPageTemplate {
 
   ProductPage({
     this.shop,
-    InstallApp? installApp,
-    HomeMenuModel? homeMenu,
-    DrawerModel? drawer,
-    DrawerModel? endDrawer,
+    super.installApp,
+    super.homeMenu,
+    super.drawer,
+    super.endDrawer,
   }) : super(
           pageId: identifier,
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
-          installApp: installApp,
-          homeMenu: homeMenu,
-          drawer: drawer,
-          endDrawer: endDrawer,
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
         );
 
   @override
@@ -67,7 +62,7 @@ class ProductPage extends BasicPageTemplate {
   @override
   Future<void> setupComponent() async {
     await AbstractRepositorySingleton.singleton
-        .productDisplayRepository(JuuwleApp.JUUWLE_APP_ID)!
+        .productDisplayRepository(JuuwleApp.juuwleAppId)!
         .add(_productDisplayOverview());
   }
 }

@@ -46,7 +46,7 @@ class Shop extends AppSection {
   Future<PageModel> _setupPage(
       AppBarModel appBar, String? presentationDocumentId) async {
     return await corerepo.AbstractRepositorySingleton.singleton
-        .pageRepository(JuuwleApp.JUUWLE_APP_ID)!
+        .pageRepository(JuuwleApp.juuwleAppId)!
         .add(_page(appBar, presentationDocumentId));
   }
 
@@ -67,24 +67,24 @@ class Shop extends AppSection {
 
     return PageModel(
         documentID: identifier,
-        appId: JuuwleApp.JUUWLE_APP_ID,
+        appId: JuuwleApp.juuwleAppId,
         title: 'Shop',
         description: 'Shop',
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,
         homeMenu: homeMenu,
-        layout: PageLayout.ListView,
+        layout: PageLayout.listView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
 
   Future<FaderModel> _setupFader() async {
     return await AbstractRepositorySingleton.singleton
-        .faderRepository(JuuwleApp.JUUWLE_APP_ID)!
+        .faderRepository(JuuwleApp.juuwleAppId)!
         .add(_fader());
   }
 
@@ -105,28 +105,28 @@ class Shop extends AppSection {
       appId: installApp!.theApp.documentID,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
     return model;
   }
 
   Future<ShopModel> _setupShop() async {
     return await shoprepo.AbstractRepositorySingleton.singleton
-        .shopRepository(JuuwleApp.JUUWLE_APP_ID)!
+        .shopRepository(JuuwleApp.juuwleAppId)!
         .add(_shop());
   }
 
   ShopModel _shop() {
     var document = ShopModel(
-        documentID: identifier,
-        description: 'Main shop',
-        shortDescription: 'Main shop',
-        currency: 'eur',
-        appId: installApp!.theApp.documentID,
-        conditions:
-      StorageConditionsModel(
+      documentID: identifier,
+      description: 'Main shop',
+      shortDescription: 'Main shop',
+      currency: 'eur',
+      appId: installApp!.theApp.documentID,
+      conditions: StorageConditionsModel(
           privilegeLevelRequired:
-          PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),);
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
+    );
     return document;
   }
 
@@ -147,10 +147,10 @@ class Shop extends AppSection {
       size: 250,
       cardElevation: 10,
       cardAxisSpacing: 20,
-      scrollDirection: ScrollDirection.Vertical,
+      scrollDirection: ScrollDirection.vertical,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
@@ -171,19 +171,19 @@ class Shop extends AppSection {
       size: 250,
       cardElevation: 10,
       cardAxisSpacing: 20,
-      scrollDirection: ScrollDirection.Vertical,
+      scrollDirection: ScrollDirection.vertical,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
   Future<void> _setupShopFronts() async {
     await shoprepo.AbstractRepositorySingleton.singleton
-        .shopFrontRepository(JuuwleApp.JUUWLE_APP_ID)!
+        .shopFrontRepository(JuuwleApp.juuwleAppId)!
         .add(_shopFront1());
     await shoprepo.AbstractRepositorySingleton.singleton
-        .shopFrontRepository(JuuwleApp.JUUWLE_APP_ID)!
+        .shopFrontRepository(JuuwleApp.juuwleAppId)!
         .add(_shopFront2());
   }
 
@@ -202,8 +202,8 @@ class Shop extends AppSection {
     decorationColorModels.add(decorationColorModel2);
     var backgroundModel = BackgroundModel(
       border: true,
-      beginGradientPosition: StartGradientPosition.CenterLeft,
-      endGradientPosition: EndGradientPosition.CenterRight,
+      beginGradientPosition: StartGradientPosition.centerLeft,
+      endGradientPosition: EndGradientPosition.centerRight,
       decorationColors: decorationColorModels,
     );
     return backgroundModel;
@@ -227,7 +227,7 @@ class Shop extends AppSection {
       imageWidth: .33,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
@@ -235,7 +235,7 @@ class Shop extends AppSection {
       PlatformMediumModel memberMediumModel) async {
     var presentationModel = _presentation(memberMediumModel);
     await AbstractRepositorySingleton.singleton
-        .presentationRepository(JuuwleApp.JUUWLE_APP_ID)!
+        .presentationRepository(JuuwleApp.juuwleAppId)!
         .add(presentationModel);
     return presentationModel;
   }
@@ -244,7 +244,8 @@ class Shop extends AppSection {
     return await ImageTools.uploadPlatformPhoto(
         installApp!.theApp,
         installApp!.member!,
-        'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_presenting.png', PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+        'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_presenting.png',
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
   static String appBarIdentifier = 'store';

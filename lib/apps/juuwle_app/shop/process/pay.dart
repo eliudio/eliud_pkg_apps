@@ -8,7 +8,6 @@ import 'package:eliud_pkg_shop/model/model_export.dart';
 import 'package:eliud_pkg_shop/model/pay_component.dart';
 import 'package:eliud_pkg_shop/shop_package.dart';
 
-import '../../../install_app.dart';
 import '../../../shared/etc/page_template.dart';
 import '../../juuwle_app.dart';
 
@@ -21,8 +20,8 @@ class MyPay extends PageTemplate {
   static ActionModel action(String appId) => GotoPage(JuuwleApp.app,
       pageID: MyPay.identifier,
       conditions: DisplayConditionsModel(
-        privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-        packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
+        privilegeLevelRequired: PrivilegeLevelRequired.noPrivilegeRequired,
+        packageCondition: ShopPackage.conditionCartsHasItems,
       ));
 
   PayModel _payModel() {
@@ -32,11 +31,10 @@ class MyPay extends PageTemplate {
       description: pageTitle(),
       shop: shop,
       payAction: WorkflowSetup.payCart(),
-      succeeded: GotoPage(JuuwleApp.app,
-          pageID: MyPayConfirmation.identifier),
+      succeeded: GotoPage(JuuwleApp.app, pageID: MyPayConfirmation.identifier),
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
@@ -52,19 +50,15 @@ class MyPay extends PageTemplate {
   MyPay({
     this.background,
     this.shop,
-    InstallApp? installApp,
-    HomeMenuModel? homeMenu,
-    DrawerModel? drawer,
-    DrawerModel? endDrawer,
+    super.installApp,
+    super.homeMenu,
+    super.drawer,
+    super.endDrawer,
   }) : super(
             privilegeLevelRequired:
-                PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
-            packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
+                PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
+            packageCondition: ShopPackage.conditionCartsHasItems,
             pageId: identifier,
-            installApp: installApp,
-            homeMenu: homeMenu,
-            drawer: drawer,
-            endDrawer: endDrawer,
             presentationImageAlignment: PresentationImageAlignment.Left);
 
   @override
@@ -75,7 +69,7 @@ class MyPay extends PageTemplate {
   @override
   Future<void> setupComponent() async {
     await AbstractRepositorySingleton.singleton
-        .payRepository(JuuwleApp.JUUWLE_APP_ID)!
+        .payRepository(JuuwleApp.juuwleAppId)!
         .add(_payModel());
   }
 

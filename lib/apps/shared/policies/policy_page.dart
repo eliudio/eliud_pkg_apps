@@ -1,4 +1,5 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/abstract_repository_singleton.dart'
+    as corerepo;
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/app_policy_model.dart';
 import 'package:eliud_core/model/body_component_model.dart';
@@ -16,8 +17,8 @@ import '../../app_section.dart';
 class PolicyPage extends AppSection {
   final AppPolicyModel? policy;
 
-  PolicyPage({
-      this.policy,
+  PolicyPage(
+      {this.policy,
       InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
@@ -32,12 +33,13 @@ class PolicyPage extends AppSection {
       policies: policy,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-          PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
   Future<PolicyPresentationModel> createPresentationComponent() async {
-    return await policyPresentationRepository(appId: installApp!.theApp.documentID)!
+    return await policyPresentationRepository(
+            appId: installApp!.theApp.documentID)!
         .add(getPesentationModel());
   }
 
@@ -64,9 +66,10 @@ class PolicyPage extends AppSection {
         endDrawer: endDrawer,
         appBar: appBar,
         homeMenu: homeMenu,
-        layout: PageLayout.ListView,
+        layout: PageLayout.listView,
         conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }

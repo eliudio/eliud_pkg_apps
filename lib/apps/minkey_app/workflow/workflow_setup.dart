@@ -31,12 +31,12 @@ class WorkflowSetup {
         country: country,
         bankIdentifierCode: bankIdentifierCode,
         payeeIBAN: payeeIBAN,
-        bankName: bankName
-    );
+        bankName: bankName);
   }
 
   static WorkflowModel _workflowForMembershipPaidByCard(String appId) {
-    return WorkflowHelper.workflowForMembershipPaidByCard(appId,
+    return WorkflowHelper.workflowForMembershipPaidByCard(
+      appId,
       amount: amount,
       ccy: ccy,
     );
@@ -44,13 +44,12 @@ class WorkflowSetup {
 
   static WorkflowModel _workflowForManualPaymentCart(String appId) {
     return WorkflowHelper.workflowForManualPaymentCart(
-      appId: appId,
+        appId: appId,
         payTo: payTo,
         country: country,
         bankIdentifierCode: bankIdentifierCode,
         payeeIBAN: payeeIBAN,
-        bankName: bankName
-    );
+        bankName: bankName);
   }
 
   static WorkflowModel _workflowForCreditCardPaymentCart(String appId) {
@@ -72,21 +71,20 @@ class WorkflowSetup {
         .add(_workflowForCreditCardPaymentCart(installApp.theApp.documentID));
   }
 
-  static WorkflowActionModel requestMembershipAction() =>
-      WorkflowActionModel(MinkeyApp.app,
-          conditions: DisplayConditionsModel(
-            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-            packageCondition: MembershipPackage.MEMBER_HAS_NO_MEMBERSHIP_YET,
-          ),
-          workflow: _workflowForManuallyPaidMembership(MinkeyApp.app.documentID));
+  static WorkflowActionModel requestMembershipAction() => WorkflowActionModel(
+      MinkeyApp.app,
+      conditions: DisplayConditionsModel(
+        privilegeLevelRequired: PrivilegeLevelRequired.noPrivilegeRequired,
+        packageCondition: MembershipPackage.memberHasNoMembershipYet,
+      ),
+      workflow: _workflowForManuallyPaidMembership(MinkeyApp.app.documentID));
 
-  static WorkflowActionModel payCart() =>
-      WorkflowActionModel(MinkeyApp.app,
-          conditions: DisplayConditionsModel(
-            privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-            packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
-          ),
-          workflow: _workflowForCreditCardPaymentCart(MinkeyApp.app.documentID));
+  static WorkflowActionModel payCart() => WorkflowActionModel(MinkeyApp.app,
+      conditions: DisplayConditionsModel(
+        privilegeLevelRequired: PrivilegeLevelRequired.noPrivilegeRequired,
+        packageCondition: ShopPackage.conditionCartsHasItems,
+      ),
+      workflow: _workflowForCreditCardPaymentCart(MinkeyApp.app.documentID));
 
   Future<void> run() async {
     await _setupWorkflows();

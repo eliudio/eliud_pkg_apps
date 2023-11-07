@@ -8,17 +8,17 @@ import '../minkey_app.dart';
 class ProfileComponent {
   ProfileComponent();
 
-  static String PROFILE_ID = "profile";
+  static String profileId = "profile";
 
   ProfileModel profileModel(FeedModel feed) {
     return ProfileModel(
-      documentID: PROFILE_ID,
+      documentID: profileId,
       appId: MinkeyApp.app.documentID,
       feed: feed,
       description: "Profile",
       conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 

@@ -10,7 +10,7 @@ class MinkeyFollowDashboards extends FollowDashboards {
   MinkeyFollowDashboards({InstallApp? installApp}) :
         super(installApp);
   Future<DialogModel> run() async {
-    return super.runIt(Profile.IDENTIFIER, Feed.IDENTIFIER);
+    return super.runIt(Profile.identifier, Feed.identifier);
   }
 }
 */

@@ -4,6 +4,5 @@ import '../../install_app.dart';
 
 // Nothing implemented, just a placeholder
 class JuuwleAssignmentViewSetup extends AssignmentViewSetup {
-  JuuwleAssignmentViewSetup({InstallApp? installApp}) :
-        super(installApp);
+  JuuwleAssignmentViewSetup({InstallApp? installApp}) : super(installApp);
 }

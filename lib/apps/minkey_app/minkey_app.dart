@@ -38,8 +38,8 @@ import 'member/minkey_member_dashboard.dart';
 /* This code cleans the database and generates the minkey app, which includes the admin pages
  */
 class MinkeyApp extends InstallApp {
-  static String MINKEY_APP_ID = "MINKEY_APP";
-  static AppModel app = AppModel(documentID: MINKEY_APP_ID, ownerID: '?');
+  static String minkeyAppId = "MINKEY_APP";
+  static AppModel app = AppModel(documentID: minkeyAppId, ownerID: '?');
 
   MinkeyApp()
       : super(
@@ -54,20 +54,19 @@ class MinkeyApp extends InstallApp {
         text: "Other apps",
         description: "Other apps",
         action: InternalAction(app,
-            internalActionEnum: InternalActionEnum.OtherApps)));
+            internalActionEnum: InternalActionEnum.otherApps)));
     menuItems.add(menuItemSignOut(app, "2"));
-    menuItems.add(menuItemManageAccount(app, "4", MemberDashboard.IDENTIFIER));
+    menuItems.add(menuItemManageAccount(app, "4", MemberDashboard.identifier));
     menuItems.add(MenuItemModel(
         documentID: "join",
         text: "JOIN",
         description: "Request membership",
         icon: null,
-        action:
-        WorkflowSetup.requestMembershipAction()));
+        action: WorkflowSetup.requestMembershipAction()));
 
     MenuDefModel menu = MenuDefModel(
-        documentID: defaults.drawerID(theApp.documentID, DrawerType.Right),
-        appId: MINKEY_APP_ID,
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.right),
+        appId: minkeyAppId,
         name: "Drawer Profile Menu",
         menuItems: menuItems);
     return menu;
@@ -75,11 +74,11 @@ class MinkeyApp extends InstallApp {
 
   @override
   MenuDefModel drawerMenuDef() {
-    MenuDefModel _homeMenuDef = homeMenuDef();
-    var drawerMenuItems = _homeMenuDef.menuItems!;
+    MenuDefModel theHomeMenuDef = homeMenuDef();
+    var drawerMenuItems = theHomeMenuDef.menuItems!;
     drawerMenuItems.addAll(getPolicyMenuItems());
-    MenuDefModel drawerMenu = _homeMenuDef.copyWith(
-        documentID: defaults.drawerID(theApp.documentID, DrawerType.Left),
+    MenuDefModel drawerMenu = theHomeMenuDef.copyWith(
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.left),
         name: "Drawer Menu (copy of main menu)",
         menuItems: drawerMenuItems);
     return drawerMenu;
@@ -88,20 +87,20 @@ class MinkeyApp extends InstallApp {
   @override
   MenuDefModel homeMenuDef() {
     List<MenuItemModel> menuItems = [];
-//    menuItems.add(menuItemFeed(app, "feed", Feed.IDENTIFIER, "Feed"));
+//    menuItems.add(menuItemFeed(app, "feed", Feed.identifier, "Feed"));
     menuItems.add(menuItem(
-        app, "apps", PlayStore.IDENTIFIER, "Apps", Icons.power_settings_new));
-    for (int i = 0; i < Welcome.IDENTIFIERs.length; i++) {
+        app, "apps", PlayStore.identifier, "Apps", Icons.power_settings_new));
+    for (int i = 0; i < Welcome.theIdentifiers.length; i++) {
       menuItems.add(menuItemWelcome(
-          app, Welcome.IDENTIFIERs[i], Welcome.IDENTIFIERs[i], "Welcome",
+          app, Welcome.theIdentifiers[i], Welcome.theIdentifiers[i], "Welcome",
           privilegeLevelRequired: Welcome.menuPrivilegeLevelsRequired[i]));
     }
-    menuItems.add(menuItemAbout(app, "about", Founders.IDENTIFIER, "About"));
+    menuItems.add(menuItemAbout(app, "about", Founders.identifier2, "About"));
     menuItems
-        .add(menuItem(app, "album", Album.IDENTIFIER, "Album", Icons.photo));
+        .add(menuItem(app, "album", Album.identifier, "Album", Icons.photo));
     MenuDefModel menu = MenuDefModel(
         documentID: defaults.homeMenuID(theApp.documentID),
-        appId: MINKEY_APP_ID,
+        appId: minkeyAppId,
         name: "Main Menu",
         menuItems: menuItems);
     return menu;
@@ -111,17 +110,17 @@ class MinkeyApp extends InstallApp {
   Future<AppModel> setupApplication(AppHomePageReferencesModel homePages,
       String ownerID, PublicMediumModel? logo) async {
     AppModel application = AppModel(
-        documentID: MINKEY_APP_ID,
-        title: "Minkey!",
-        description: "Minkey",
-        logo: logo,
-        email: "minkey.io.info@gmail.com",
-        styleFamily: MonaStyleFamily.monaStyleFamilyName,
-        styleName: MonaStyleFamily.johanStyleName,
-        homePages: homePages,
-        ownerID: ownerID,
-        appStatus: AppStatus.Live,
-        );
+      documentID: minkeyAppId,
+      title: "Minkey!",
+      description: "Minkey",
+      logo: logo,
+      email: "minkey.io.info@gmail.com",
+      styleFamily: MonaStyleFamily.monaStyleFamilyName,
+      styleName: MonaStyleFamily.johanStyleName,
+      homePages: homePages,
+      ownerID: ownerID,
+      appStatus: AppStatus.live,
+    );
     return await AbstractMainRepositorySingleton.singleton
         .appRepository()!
         .update(application);
@@ -242,6 +241,7 @@ class MinkeyApp extends InstallApp {
     }
   }
 
+  @override
   Future<void> run(String ownerID) async {
     return await runBase(ownerID: ownerID);
   }
@@ -260,7 +260,7 @@ class MinkeyApp extends InstallApp {
                 feed: Feed.feedModel(),
                 conditions: DisplayConditionsModel(
                     privilegeLevelRequired:
-                        PrivilegeLevelRequired.NoPrivilegeRequired,
+                        PrivilegeLevelRequired.noPrivilegeRequired,
                     packageCondition: CorePackage.MUST_BE_LOGGED_ON))),
 */
         MenuItemModel(

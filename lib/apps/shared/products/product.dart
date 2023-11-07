@@ -16,39 +16,60 @@ class Product {
   final String? assetLocation4;
   final double? price;
 
-  Product({this.id, this.title, this.about, this.assetLocation1, this.assetLocation2, this.assetLocation3, this.assetLocation4, this.price});
+  Product(
+      {this.id,
+      this.title,
+      this.about,
+      this.assetLocation1,
+      this.assetLocation2,
+      this.assetLocation3,
+      this.assetLocation4,
+      this.price});
 
-  String imageId1() => title! + "a";
-  String imageId2() => title! + "b";
+  String imageId1() => "${title!}a";
+  String imageId2() => "${title!}b";
 }
 
-Future<ProductModel> productToProductModel(ShopModel shop, InstallApp installApp, Product product) async {
+Future<ProductModel> productToProductModel(
+    ShopModel shop, InstallApp installApp, Product product) async {
   List<ProductImageModel> productImages = [];
   if (product.assetLocation1 != null) {
     productImages.add(ProductImageModel(
         documentID: product.imageId1(),
         image: await ImageTools.uploadPlatformPhoto(
-            installApp.theApp, installApp.member!, product.assetLocation1!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple)));
+            installApp.theApp,
+            installApp.member!,
+            product.assetLocation1!,
+            PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple)));
   }
   if (product.assetLocation2 != null) {
     productImages.add(ProductImageModel(
         documentID: product.imageId1(),
         image: await ImageTools.uploadPlatformPhoto(
-            installApp.theApp, installApp.member!, product.assetLocation2!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple)));
+            installApp.theApp,
+            installApp.member!,
+            product.assetLocation2!,
+            PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple)));
   }
   if (product.assetLocation3 != null) {
     productImages.add(ProductImageModel(
         documentID: product.imageId1(),
         image: await ImageTools.uploadPlatformPhoto(
-            installApp.theApp, installApp.member!, product.assetLocation3!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple)));
+            installApp.theApp,
+            installApp.member!,
+            product.assetLocation3!,
+            PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple)));
   }
   if (product.assetLocation4 != null) {
     productImages.add(ProductImageModel(
         documentID: product.imageId1(),
         image: await ImageTools.uploadPlatformPhoto(
-            installApp.theApp, installApp.member!, product.assetLocation4!, PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple)));
+            installApp.theApp,
+            installApp.member!,
+            product.assetLocation4!,
+            PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple)));
   }
-  return new ProductModel(
+  return ProductModel(
     documentID: product.id ?? 'product.id was null',
     appId: installApp.theApp.documentID,
     title: product.title,
@@ -60,7 +81,7 @@ Future<ProductModel> productToProductModel(ShopModel shop, InstallApp installApp
     posSize: installApp.screen75(),
 /*
     conditions: StorageConditionsModel(
-        privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+        privilegeLevelRequired: PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple
     ),
 */
   );

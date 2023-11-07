@@ -53,55 +53,55 @@ abstract class InstallApp extends AppBase {
   AppPolicyModel? appPolicyModel;
 
   // Constructor
-  InstallApp(AppModel theApp) : super(theApp);
+  InstallApp(super.theApp);
 
   PosSizeModel halfScreen() {
     return PosSizeModel(
         widthPortrait: 1,
-        widthTypePortrait: WidthTypePortrait.PercentageWidth,
+        widthTypePortrait: WidthTypePortrait.percentageWidth,
         heightPortrait: .5,
-        heightTypePortrait: HeightTypePortrait.PercentageHeight,
-        fitPortrait: PortraitFitType.PortraitFitWidth,
-        alignTypePortrait: PortraitAlignType.PortraitAlignCenter,
+        heightTypePortrait: HeightTypePortrait.percentageHeight,
+        fitPortrait: PortraitFitType.portraitFitWidth,
+        alignTypePortrait: PortraitAlignType.portraitAlignCenter,
         widthLandscape: 1,
-        widthTypeLandscape: WidthTypeLandscape.PercentageWidth,
+        widthTypeLandscape: WidthTypeLandscape.percentageWidth,
         heightLandscape: .5,
-        heightTypeLandscape: HeightTypeLandscape.PercentageHeight,
-        fitLandscape: LandscapeFitType.LandscapeFitHeight,
-        alignTypeLandscape: LandscapeAlignType.LandscapeAlignCenter,
-        clip: ClipType.NoClip);
+        heightTypeLandscape: HeightTypeLandscape.percentageHeight,
+        fitLandscape: LandscapeFitType.landscapeFitHeight,
+        alignTypeLandscape: LandscapeAlignType.landscapeAlignCenter,
+        clip: ClipType.noClip);
   }
 
   PosSizeModel screen75() {
     return PosSizeModel(
         widthPortrait: .75,
-        widthTypePortrait: WidthTypePortrait.PercentageWidth,
+        widthTypePortrait: WidthTypePortrait.percentageWidth,
         heightPortrait: .75,
-        heightTypePortrait: HeightTypePortrait.PercentageHeight,
-        fitPortrait: PortraitFitType.PortraitFitWidth,
-        alignTypePortrait: PortraitAlignType.PortraitAlignCenter,
+        heightTypePortrait: HeightTypePortrait.percentageHeight,
+        fitPortrait: PortraitFitType.portraitFitWidth,
+        alignTypePortrait: PortraitAlignType.portraitAlignCenter,
         widthLandscape: .75,
-        widthTypeLandscape: WidthTypeLandscape.PercentageWidth,
+        widthTypeLandscape: WidthTypeLandscape.percentageWidth,
         heightLandscape: .75,
-        heightTypeLandscape: HeightTypeLandscape.PercentageHeight,
-        fitLandscape: LandscapeFitType.LandscapeFitHeight,
-        alignTypeLandscape: LandscapeAlignType.LandscapeAlignCenter,
-        clip: ClipType.NoClip);
+        heightTypeLandscape: HeightTypeLandscape.percentageHeight,
+        fitLandscape: LandscapeFitType.landscapeFitHeight,
+        alignTypeLandscape: LandscapeAlignType.landscapeAlignCenter,
+        clip: ClipType.noClip);
   }
 
   PosSizeModel fullScreen() {
     return PosSizeModel(
-        fitLandscape: LandscapeFitType.LandscapeCover,
+        fitLandscape: LandscapeFitType.landscapeCover,
         widthLandscape: 1,
         heightLandscape: 1,
-        heightTypeLandscape: HeightTypeLandscape.PercentageHeight,
-        widthTypeLandscape: WidthTypeLandscape.PercentageWidth,
-        fitPortrait: PortraitFitType.PortraitFitHeight,
+        heightTypeLandscape: HeightTypeLandscape.percentageHeight,
+        widthTypeLandscape: WidthTypeLandscape.percentageWidth,
+        fitPortrait: PortraitFitType.portraitFitHeight,
         widthPortrait: 1,
         heightPortrait: 1,
-        heightTypePortrait: HeightTypePortrait.PercentageHeight,
-        widthTypePortrait: WidthTypePortrait.PercentageWidth,
-        clip: ClipType.NoClip);
+        heightTypePortrait: HeightTypePortrait.percentageHeight,
+        widthTypePortrait: WidthTypePortrait.percentageWidth,
+        clip: ClipType.noClip);
   }
 
   Future<PublicMediumModel> _publicMediumModel(String assetLocation) async {
@@ -110,12 +110,12 @@ abstract class InstallApp extends AppBase {
 
   Future<PlatformMediumModel> _platformMediumModel(String assetLocation) async {
     return await ImageTools.uploadPlatformPhoto(theApp, member!, assetLocation,
-        PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
   DrawerModel _drawer(PublicMediumModel? logo) {
     return DrawerModel(
-        documentID: defaults.drawerID(theApp.documentID, DrawerType.Left),
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.left),
         appId: theApp.documentID,
         name: 'Drawer',
         headerText: '',
@@ -141,7 +141,7 @@ abstract class InstallApp extends AppBase {
 
   DrawerModel _profileDrawer() {
     return DrawerModel(
-        documentID: defaults.drawerID(theApp.documentID, DrawerType.Right),
+        documentID: defaults.drawerID(theApp.documentID, DrawerType.right),
         appId: theApp.documentID,
         name: 'Profile Drawer',
         headerText: '',
@@ -194,7 +194,7 @@ abstract class InstallApp extends AppBase {
       appId: theApp.documentID,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
     return dividerModel;
   }
@@ -211,7 +211,7 @@ abstract class InstallApp extends AppBase {
     var appBar = AppBarModel(
       documentID: defaults.appBarID(theApp.documentID),
       appId: theApp.documentID,
-      header: HeaderSelection.Title,
+      header: HeaderSelection.title,
       title: title,
       backgroundOverride: backgroundOverride,
       iconColorOverride: iconColorOverride,
@@ -255,20 +255,20 @@ abstract class InstallApp extends AppBase {
     thePlatformLogo = await _platformMediumModel(logoAssetLocation());
     var endDrawer = await setupProfileDrawer();
     var drawer = await setupDrawer(thePublicLogo);
-    var _adminBase = adminBase(drawer, endDrawer);
+    var theAdminBase = adminBase(drawer, endDrawer);
 
     await GridViews().run(theApp.documentID);
     var adminMenu =
-        await _appBarMenu("Menu", await _adminBase.installAdminMenus());
+        await _appBarMenu("Menu", await theAdminBase.installAdminMenus());
 
     theAppBar = await setupAppBar(
       "APPBAR",
       adminMenu,
-      EliudAppBar.PAGE_TITLE_KEYWORD,
+      EliudAppBar.pageTitleKeyword,
     );
     await setupAppPoliciesAndPages(drawer, endDrawer);
 
-    await _adminBase.installAdminAppss(adminMenu);
+    await theAdminBase.installAdminAppss(adminMenu);
     await setupMenus();
     //await setupPosSizes();
     await setupDividers();
@@ -292,7 +292,7 @@ abstract class InstallApp extends AppBase {
           text: 'Sign in',
           description: 'Sign in',
           action: InternalAction(theApp,
-              internalActionEnum: InternalActionEnum.Login)),
+              internalActionEnum: InternalActionEnum.login)),
     );
     menuItems.add(MenuItemModel(
         documentID: '3',
@@ -331,19 +331,19 @@ abstract class InstallApp extends AppBase {
         member!,
         privacyPolicyAssetLocation(),
         privacyID,
-        PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
     var termsOfServicePolicy = await ImageTools.uploadPlatformPdf(
         theApp,
         member!,
         termsOfServiceAssetLocation(),
         termsOfServiceID,
-        PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
     var disclaimerPolicy = await ImageTools.uploadPlatformPdf(
         theApp,
         member!,
         disclaimerAssetLocation(),
         disclaimerID,
-        PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
 
     var privacyPolicyModel = AppPolicyModel(
         documentID: privacyID,
@@ -396,9 +396,12 @@ abstract class InstallApp extends AppBase {
 
   List<MenuItemModel> getPolicyMenuItems() {
     List<MenuItemModel> menuItems = [];
-    menuItems.add(menuItem(theApp, privacyID, privacyID, 'Privacy Policy', Icons.account_balance));
-    menuItems.add(menuItem(theApp, termsOfServiceID, termsOfServiceID, 'Terms of Service', Icons.account_balance));
-    menuItems.add(menuItem(theApp, disclaimerID, disclaimerID, 'Disclaimer', Icons.account_balance));
+    menuItems.add(menuItem(
+        theApp, privacyID, privacyID, 'Privacy Policy', Icons.account_balance));
+    menuItems.add(menuItem(theApp, termsOfServiceID, termsOfServiceID,
+        'Terms of Service', Icons.account_balance));
+    menuItems.add(menuItem(theApp, disclaimerID, disclaimerID, 'Disclaimer',
+        Icons.account_balance));
     return menuItems;
   }
 }

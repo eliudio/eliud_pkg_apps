@@ -1,4 +1,5 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/abstract_repository_singleton.dart'
+    as corerepo;
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/profile_and_feed_to_action.dart';
 import 'package:eliud_pkg_follow/model/abstract_repository_singleton.dart';
@@ -20,9 +21,15 @@ class _FollowingDashboard extends AppSectionBase {
   final String? profilePageId;
   final String? feedPageId;
 
-  _FollowingDashboard(this.identifier, this.title, this.description, this.view,
-      InstallApp? installApp, this.profilePageId, this.feedPageId, )
-      : super(installApp);
+  _FollowingDashboard(
+    this.identifier,
+    this.title,
+    this.description,
+    this.view,
+    InstallApp? installApp,
+    this.profilePageId,
+    this.feedPageId,
+  ) : super(installApp);
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -42,23 +49,25 @@ class _FollowingDashboard extends AppSectionBase {
         appId: installApp!.theApp.documentID,
         title: title,
         description: description,
-        layout: DialogLayout.ListView,
+        layout: DialogLayout.listView,
         conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
 
   FollowingDashboardModel _dashboardModel() {
     return FollowingDashboardModel(
-        documentID: identifier,
-        appId: installApp!.theApp.documentID,
-        description: title,
-        view: view,
-        memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.theApp, profilePageId, feedPageId),
-        conditions: StorageConditionsModel(
-            privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-        ),
+      documentID: identifier,
+      appId: installApp!.theApp.documentID,
+      description: title,
+      view: view,
+      memberActions: ProfileAndFeedToAction.getMemberActionModels(
+          installApp!.theApp, profilePageId, feedPageId),
+      conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
@@ -78,9 +87,8 @@ class FollowRequestDashboard extends AppSectionBase {
   final String? profilePageId;
   final String? feedPageId;
 
-  static String FOLLOW_REQUEST_IDENTIFIER = "follow_requests_dashboard";
-  FollowRequestDashboard(InstallApp? installApp, this.profilePageId, this.feedPageId)
-      : super(installApp);
+  static String followRequestIdentifier = "follow_requests_dashboard";
+  FollowRequestDashboard(super.installApp, this.profilePageId, this.feedPageId);
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -93,29 +101,31 @@ class FollowRequestDashboard extends AppSectionBase {
     components.add(BodyComponentModel(
         documentID: "1",
         componentName: AbstractFollowRequestsDashboardComponent.componentName,
-        componentId: FOLLOW_REQUEST_IDENTIFIER));
+        componentId: followRequestIdentifier));
 
     return DialogModel(
-        documentID: FOLLOW_REQUEST_IDENTIFIER,
+        documentID: followRequestIdentifier,
         appId: installApp!.theApp.documentID,
         title: "Follow requests",
         description: "Follow requests",
-        layout: DialogLayout.ListView,
+        layout: DialogLayout.listView,
         conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
 
   FollowRequestsDashboardModel _dashboardModel() {
     return FollowRequestsDashboardModel(
-      documentID: FOLLOW_REQUEST_IDENTIFIER,
+      documentID: followRequestIdentifier,
       appId: installApp!.theApp.documentID,
       description: "Follow requests",
-      memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.theApp, profilePageId, feedPageId),
+      memberActions: ProfileAndFeedToAction.getMemberActionModels(
+          installApp!.theApp, profilePageId, feedPageId),
       conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
@@ -135,9 +145,8 @@ class InviteDashboard extends AppSectionBase {
   final String? profilePageId;
   final String? feedPageId;
 
-  static String INVITE_IDENTIFIER = "invite_dashboard";
-  InviteDashboard(InstallApp? installApp, this.profilePageId, this.feedPageId)
-      : super(installApp);
+  static String inviteIdentifier = "invite_dashboard";
+  InviteDashboard(super.installApp, this.profilePageId, this.feedPageId);
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -150,29 +159,31 @@ class InviteDashboard extends AppSectionBase {
     components.add(BodyComponentModel(
         documentID: "1",
         componentName: AbstractInviteDashboardComponent.componentName,
-        componentId: INVITE_IDENTIFIER));
+        componentId: inviteIdentifier));
 
     return DialogModel(
-        documentID: INVITE_IDENTIFIER,
+        documentID: inviteIdentifier,
         appId: installApp!.theApp.documentID,
         title: "Follow members",
         description: "Follow members",
-        layout: DialogLayout.ListView,
+        layout: DialogLayout.listView,
         conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
 
   InviteDashboardModel _dashboardModel() {
     return InviteDashboardModel(
-      documentID: INVITE_IDENTIFIER,
+      documentID: inviteIdentifier,
       appId: installApp!.theApp.documentID,
       description: "Follow members",
-      memberActions: ProfileAndFeedToAction.getMemberActionModels(installApp!.theApp, profilePageId, feedPageId),
+      memberActions: ProfileAndFeedToAction.getMemberActionModels(
+          installApp!.theApp, profilePageId, feedPageId),
       conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
@@ -189,19 +200,19 @@ class InviteDashboard extends AppSectionBase {
 }
 
 class FollowDashboards extends AppSectionBase {
-  FollowDashboards(InstallApp? installApp)
-      : super(installApp);
+  FollowDashboards(super.installApp);
 
-  static String FOLLOWERS_IDENTIFIER = "followers_dashboard";
-  static String FOLLOWING_IDENTIFIER = "following_dashboard";
+  static String followersIdentifier = "followers_dashboard";
+  static String followingIdentifier = "following_dashboard";
 
-  Future<DialogModel> runIt(String? profilePageId,  String? feedPageId) async {
-    await _FollowingDashboard(FOLLOWERS_IDENTIFIER, "Followers", "Followers", FollowingView.Followers,
-        installApp, profilePageId, feedPageId).run();
-    await _FollowingDashboard(FOLLOWING_IDENTIFIER, "Following", "Following", FollowingView.Following,
-        installApp, profilePageId, feedPageId).run();
+  Future<DialogModel> runIt(String? profilePageId, String? feedPageId) async {
+    await _FollowingDashboard(followersIdentifier, "Followers", "Followers",
+            FollowingView.Followers, installApp, profilePageId, feedPageId)
+        .run();
+    await _FollowingDashboard(followingIdentifier, "Following", "Following",
+            FollowingView.Following, installApp, profilePageId, feedPageId)
+        .run();
     await FollowRequestDashboard(installApp, profilePageId, feedPageId).run();
     return await InviteDashboard(installApp, profilePageId, feedPageId).run();
   }
 }
-

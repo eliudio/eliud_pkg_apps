@@ -6,13 +6,16 @@ import '../../install_app.dart';
 
 class About extends Founders {
   About({
-      InstallApp? installApp,
-      HomeMenuModel? homeMenu,
-      DrawerModel? drawer,
-      DrawerModel? endDrawer,
-      })
-      : super(installApp, homeMenu, drawer, endDrawer,
-            );
+    InstallApp? installApp,
+    HomeMenuModel? homeMenu,
+    DrawerModel? drawer,
+    DrawerModel? endDrawer,
+  }) : super(
+          installApp,
+          homeMenu,
+          drawer,
+          endDrawer,
+        );
 
   Future<void> run() {
     return doItForFounders();

@@ -1,4 +1,5 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/abstract_repository_singleton.dart'
+    as corerepo;
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/display_conditions_model.dart';
@@ -32,13 +33,20 @@ abstract class PageTemplate extends AppSection {
   String componentName();
   Future<void> setupComponent();
 
-  PageTemplate({required this.pageId, this.privilegeLevelRequired, this.packageCondition, this.conditionOverride, this.presentationImageAlignment, InstallApp? installApp,
+  PageTemplate(
+      {required this.pageId,
+      this.privilegeLevelRequired,
+      this.packageCondition,
+      this.conditionOverride,
+      this.presentationImageAlignment,
+      InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
       DrawerModel? endDrawer})
       : super(installApp, homeMenu, drawer, endDrawer);
 
-  Future<PageModel> _setupPage(AppBarModel appBar, String? presentationId) async {
+  Future<PageModel> _setupPage(
+      AppBarModel appBar, String? presentationId) async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .pageRepository(installApp!.theApp.documentID)!
         .add(_page(appBar, presentationId));
@@ -60,7 +68,7 @@ abstract class PageTemplate extends AppSection {
         endDrawer: endDrawer,
         appBar: appBar,
         homeMenu: homeMenu,
-        layout: PageLayout.ListView,
+        layout: PageLayout.listView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired: privilegeLevelRequired,
         ),
@@ -73,22 +81,27 @@ abstract class PageTemplate extends AppSection {
       appId: installApp!.theApp.documentID,
       bodyComponents: [
         BodyComponentModel(
-          documentID: pageId,
-          componentId: componentID(),
-          componentName: componentName())],
+            documentID: pageId,
+            componentId: componentID(),
+            componentName: componentName())
+      ],
       image: image,
       imagePositionRelative: PresentationRelativeImagePosition.Aside,
-      imageAlignment: presentationImageAlignment == null ? PresentationImageAlignment.Right : presentationImageAlignment,
+      imageAlignment:
+          presentationImageAlignment ?? PresentationImageAlignment.Right,
       imageWidth: .40,
       conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
-  Future<PresentationModel> _setupPresentation(PlatformMediumModel image) async {
+  Future<PresentationModel> _setupPresentation(
+      PlatformMediumModel image) async {
     var presentation = _presentation(image);
-    await AbstractRepositorySingleton.singleton.presentationRepository(installApp!.theApp.documentID)!.add(presentation);
+    await AbstractRepositorySingleton.singleton
+        .presentationRepository(installApp!.theApp.documentID)!
+        .add(presentation);
     return presentation;
   }
 
@@ -96,11 +109,11 @@ abstract class PageTemplate extends AppSection {
     return await ImageTools.uploadPlatformPhoto(
         installApp!.theApp,
         installApp!.member!,
-        assetLocation(), PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+        assetLocation(),
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
-
-  Future<PageModel>  run() async {
+  Future<PageModel> run() async {
     var image = await uploadImage();
     PresentationModel presentationModel = await _setupPresentation(image);
     await setupComponent();

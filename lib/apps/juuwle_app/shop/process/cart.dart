@@ -1,7 +1,5 @@
 import 'package:eliud_core/model/background_model.dart';
 import 'package:eliud_core/model/display_conditions_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/storage_conditions_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/pay.dart';
@@ -12,7 +10,6 @@ import 'package:eliud_pkg_shop/model/cart_model.dart';
 import 'package:eliud_pkg_shop/model/shop_model.dart';
 import 'package:eliud_pkg_shop/shop_package.dart';
 
-import '../../../install_app.dart';
 import '../../../shared/etc/page_template.dart';
 import '../../juuwle_app.dart';
 import '../product_page.dart';
@@ -23,29 +20,29 @@ class MyCart extends PageTemplate {
 
   static const String identifier = 'juuwlecart';
 
-  static GotoPage openCartPage() => GotoPage(JuuwleApp.app, pageID: MyCart.identifier, conditions:
-      DisplayConditionsModel(
-        privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-        packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
-      )
-  );
+  static GotoPage openCartPage() => GotoPage(JuuwleApp.app,
+      pageID: MyCart.identifier,
+      conditions: DisplayConditionsModel(
+        privilegeLevelRequired: PrivilegeLevelRequired.noPrivilegeRequired,
+        packageCondition: ShopPackage.conditionCartsHasItems,
+      ));
 
   CartModel _cart() {
     return CartModel(
-        documentID: 'cart',
-        appId: installApp!.theApp.documentID,
-        title: pageTitle(),
-        description: 'Shopping bag',
-        checkoutText: 'Checkout',
-        shop: shop,
-        itemImageBackground: null,
-        itemDetailBackground: background,
-        checkoutAction: MyPay.action(JuuwleApp.JUUWLE_APP_ID),
-        backToShopAction: Shop.action(JuuwleApp.JUUWLE_APP_ID),
-        openProductAction: ProductPage.action(JuuwleApp.JUUWLE_APP_ID),
-        conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-        ),
+      documentID: 'cart',
+      appId: installApp!.theApp.documentID,
+      title: pageTitle(),
+      description: 'Shopping bag',
+      checkoutText: 'Checkout',
+      shop: shop,
+      itemImageBackground: null,
+      itemDetailBackground: background,
+      checkoutAction: MyPay.action(JuuwleApp.juuwleAppId),
+      backToShopAction: Shop.action(JuuwleApp.juuwleAppId),
+      openProductAction: ProductPage.action(JuuwleApp.juuwleAppId),
+      conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
@@ -55,7 +52,6 @@ class MyCart extends PageTemplate {
   @override
   String pageDescription() => 'Your Bag';
 
-  @override
   String pageImageID() => 'cartImage';
 
   @override
@@ -64,21 +60,18 @@ class MyCart extends PageTemplate {
   MyCart({
     this.background,
     this.shop,
-    InstallApp? installApp,
-    HomeMenuModel? homeMenu,
-    DrawerModel? drawer,
-    DrawerModel? endDrawer,
-    }): super(
-      privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+    super.installApp,
+    super.homeMenu,
+    super.drawer,
+    super.endDrawer,
+  }) : super(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
 /*
       packageCondition: ShopPackage.CONDITION_CARTS_HAS_ITEMS,
 */
-      pageId: identifier,
-      installApp: installApp,
-      homeMenu: homeMenu,
-      drawer: drawer,
-      endDrawer: endDrawer,
-      );
+          pageId: identifier,
+        );
 
   @override
   String? componentID() {
@@ -87,10 +80,12 @@ class MyCart extends PageTemplate {
 
   @override
   Future<void> setupComponent() async {
-    await AbstractRepositorySingleton.singleton.
-    cartRepository(JuuwleApp.JUUWLE_APP_ID)!.add(_cart());
+    await AbstractRepositorySingleton.singleton
+        .cartRepository(JuuwleApp.juuwleAppId)!
+        .add(_cart());
   }
 
   @override
-  String assetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_with_bags.png';
+  String assetLocation() =>
+      'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_with_bags.png';
 }

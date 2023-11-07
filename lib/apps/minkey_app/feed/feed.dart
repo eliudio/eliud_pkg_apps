@@ -33,7 +33,7 @@ class Feed extends AppSection {
       MenuDefModel? adminMenu})
       : super(installApp, homeMenu, drawer, endDrawer);
 
-  static String IDENTIFIER = "feed";
+  static String identifier = "feed";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -54,11 +54,11 @@ class Feed extends AppSection {
     components.add(BodyComponentModel(
         documentID: "3",
         componentName: AbstractFeedComponent.componentName,
-        componentId: IDENTIFIER));
+        componentId: identifier));
 
     return PageModel(
-        documentID: IDENTIFIER,
-        appId: MinkeyApp.MINKEY_APP_ID,
+        documentID: identifier,
+        appId: MinkeyApp.minkeyAppId,
         title: "Feed",
         description: "Feed",
         drawer: drawer,
@@ -68,15 +68,15 @@ class Feed extends AppSection {
         layout: PageLayout.ListView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.Level1PrivilegeRequiredSimple,
+              PrivilegeLevelRequiredSimple.level1PrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
 
   static FeedModel feedModel() {
     return FeedModel(
-      documentID: IDENTIFIER,
-      appId: MinkeyApp.MINKEY_APP_ID,
+      documentID: identifier,
+      appId: MinkeyApp.minkeyAppId,
       description: "My Minkey Feed",
       thumbImage: ThumbStyle.Thumbs,
       photoPost: true,
@@ -87,7 +87,7 @@ class Feed extends AppSection {
       articlePost: true,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
@@ -100,8 +100,8 @@ class Feed extends AppSection {
   Future<PageModel> run(MemberModel member) async {
     var feed = await _setupFeed();
     // common for all pages:
-    await ExamplePosts(PostAccessibleByGroup.Public).run(member, IDENTIFIER);
-    await ExampleProfile(MemberProfileAccessibleByGroup.Public).run(member, IDENTIFIER);
+    await ExamplePosts(PostAccessibleByGroup.Public).run(member, identifier);
+    await ExampleProfile(MemberProfileAccessibleByGroup.Public).run(member, identifier);
     await FeedMenu().run(feed);
     await ProfileComponent().run(feed);
     await HeaderComponent().run(feed);

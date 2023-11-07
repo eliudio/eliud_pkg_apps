@@ -1,4 +1,5 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/abstract_repository_singleton.dart'
+    as corerepo;
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
@@ -23,7 +24,9 @@ abstract class DecoratedContent extends AppSection {
   final PrivilegeLevelRequiredSimple? privilegeLevelRequiredSimple;
 
   PrivilegeLevelRequiredSimple? getPrivilegeLevelRequiredSimple() {
-    if (privilegeLevelRequiredSimple == null) return PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple;
+    if (privilegeLevelRequiredSimple == null) {
+      return PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple;
+    }
     return privilegeLevelRequiredSimple;
   }
 
@@ -32,10 +35,14 @@ abstract class DecoratedContent extends AppSection {
       InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
-      DrawerModel? endDrawer, this.percentageDecorationVisible, { this.addLogo, this.privilegeLevelRequiredSimple })
+      DrawerModel? endDrawer,
+      this.percentageDecorationVisible,
+      {this.addLogo,
+      this.privilegeLevelRequiredSimple})
       : super(installApp, homeMenu, drawer, endDrawer);
 
-  Future<PageModel> _setupPage(AppBarModel appBar, String title, String description) async {
+  Future<PageModel> _setupPage(
+      AppBarModel appBar, String title, String description) async {
     return await corerepo.AbstractRepositorySingleton.singleton
         .pageRepository(installApp!.theApp.documentID)!
         .add(_page(appBar, title, description));
@@ -63,7 +70,7 @@ abstract class DecoratedContent extends AppSection {
       items: items,
       appId: installApp!.theApp.documentID,
       conditions: StorageConditionsModel(
-          privilegeLevelRequired:privilegeLevelRequiredSimple),
+          privilegeLevelRequired: privilegeLevelRequiredSimple),
     );
     return model;
   }
@@ -95,9 +102,10 @@ abstract class DecoratedContent extends AppSection {
         endDrawer: endDrawer,
         appBar: appBar,
         homeMenu: homeMenu,
-        layout: PageLayout.ListView,
+        layout: PageLayout.listView,
         conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
@@ -119,8 +127,7 @@ abstract class DecoratedContent extends AppSection {
       percentageDecorationVisible: percentageDecorationVisible,
       decorationComponentPosition: position,
       conditions: StorageConditionsModel(
-          privilegeLevelRequired: getPrivilegeLevelRequiredSimple()
-      ),
+          privilegeLevelRequired: getPrivilegeLevelRequiredSimple()),
     );
     await AbstractRepositorySingleton.singleton
         .decoratedContentRepository(installApp!.theApp.documentID)!
@@ -139,7 +146,8 @@ abstract class DecoratedContent extends AppSection {
     if ((addLogo != null) && addLogo!) {
       await _setupFader();
     }
-    await _decoratedContent(componentId, componentName, decoratingComponentId, decoratingComponentName, position);
+    await _decoratedContent(componentId, componentName, decoratingComponentId,
+        decoratingComponentName, position);
     var appBar = installApp!.appBar();
     await _setupPage(appBar, title, description);
   }

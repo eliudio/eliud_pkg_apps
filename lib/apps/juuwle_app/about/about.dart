@@ -6,16 +6,23 @@ import 'package:eliud_pkg_fundamentals/model/section_model.dart';
 import '../../install_app.dart';
 
 class About extends AboutBase {
-  About(
-      {InstallApp? installApp,
-      HomeMenuModel? homeMenu,
-      DrawerModel? drawer,
-      DrawerModel? endDrawer,
-      })
-      : super(IDENTIFIER, RelativeImagePosition.Aside, 1, SectionImageAlignment.Right, installApp, homeMenu, drawer, endDrawer,
-            );
+  About({
+    InstallApp? installApp,
+    HomeMenuModel? homeMenu,
+    DrawerModel? drawer,
+    DrawerModel? endDrawer,
+  }) : super(
+          identifier2,
+          RelativeImagePosition.Aside,
+          1,
+          SectionImageAlignment.Right,
+          installApp,
+          homeMenu,
+          drawer,
+          endDrawer,
+        );
 
-  static String IDENTIFIER = "about";
+  static String identifier2 = "about";
 
   Future<void> run() {
     return doIt();
@@ -32,5 +39,6 @@ class About extends AboutBase {
   String aboutDescription() => "About me";
 
   @override
-  String assetLocation() => 'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_sitting.png';
+  String assetLocation() =>
+      'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_sitting.png';
 }

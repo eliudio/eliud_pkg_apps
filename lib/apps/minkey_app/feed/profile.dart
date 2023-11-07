@@ -29,7 +29,7 @@ class Profile extends AppSection {
       DrawerModel? endDrawer,})
       : super(installApp, homeMenu, drawer, endDrawer, );
 
-  static String IDENTIFIER = "profile";
+  static String identifier = "profile";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -50,11 +50,11 @@ class Profile extends AppSection {
     components.add(BodyComponentModel(
         documentID: "3",
         componentName: AbstractProfileComponent.componentName,
-        componentId: IDENTIFIER));
+        componentId: identifier));
 
     return PageModel(
-        documentID: IDENTIFIER,
-        appId: MinkeyApp.MINKEY_APP_ID,
+        documentID: identifier,
+        appId: MinkeyApp.minkeyAppId,
         title: "Profile",
         description: "Profile",
         drawer: drawer,
@@ -64,20 +64,20 @@ class Profile extends AppSection {
         layout: PageLayout.ListView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.Level1PrivilegeRequiredSimple,
+              PrivilegeLevelRequiredSimple.level1PrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
 
   static ProfileModel profileModel(FeedModel feed) {
     return ProfileModel(
-      documentID: IDENTIFIER,
+      documentID: identifier,
       feed: feed,
-      appId: MinkeyApp.MINKEY_APP_ID,
+      appId: MinkeyApp.minkeyAppId,
       description: "My Profile",
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 

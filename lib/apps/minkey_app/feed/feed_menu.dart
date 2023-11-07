@@ -30,7 +30,7 @@ class FeedMenu {
         icon: IconModel(
             codePoint: Icons.people.codePoint,
             fontFamily: Icons.settings.fontFamily),
-        action: GotoPage(MinkeyApp.app, pageID: Feed.IDENTIFIER));
+        action: GotoPage(MinkeyApp.app, pageID: Feed.identifier));
 
   MenuItemModel profileMenuItem() => MenuItemModel(
         documentID: '2',
@@ -39,7 +39,7 @@ class FeedMenu {
         icon: IconModel(
             codePoint: Icons.person.codePoint,
             fontFamily: Icons.settings.fontFamily),
-        action: GotoPage(MinkeyApp.app, pageID: Profile.IDENTIFIER));
+        action: GotoPage(MinkeyApp.app, pageID: Profile.identifier));
 
   MenuDefModel menuDefCurrentMember() {
     var menuItems = <MenuItemModel>[
@@ -48,15 +48,15 @@ class FeedMenu {
       menuItemFollowRequestsPage(
           MinkeyApp.app,
           "3",
-          FollowRequestDashboard.FOLLOW_REQUEST_IDENTIFIER,
-          PrivilegeLevelRequired.NoPrivilegeRequired),
-      menuItemFollowersPage(MinkeyApp.app, "4", FollowDashboards.FOLLOWERS_IDENTIFIER,
-          PrivilegeLevelRequired.NoPrivilegeRequired),
-      menuItemFollowingPage(MinkeyApp.app, "5", FollowDashboards.FOLLOWING_IDENTIFIER,
-          PrivilegeLevelRequired.NoPrivilegeRequired),
-      menuItemFiendFriendsPage(MinkeyApp.app, "6", InviteDashboard.INVITE_IDENTIFIER,
-          PrivilegeLevelRequired.NoPrivilegeRequired),
-      menuItemAppMembersPage(MinkeyApp.app, "7", MembershipDashboard.IDENTIFIER),
+          FollowRequestDashboard.followRequestIdentifier,
+          PrivilegeLevelRequired.noPrivilegeRequired),
+      menuItemFollowersPage(MinkeyApp.app, "4", FollowDashboards.followersIdentifier,
+          PrivilegeLevelRequired.noPrivilegeRequired),
+      menuItemFollowingPage(MinkeyApp.app, "5", FollowDashboards.followingIdentifier,
+          PrivilegeLevelRequired.noPrivilegeRequired),
+      menuItemFiendFriendsPage(MinkeyApp.app, "6", InviteDashboard.inviteIdentifier,
+          PrivilegeLevelRequired.noPrivilegeRequired),
+      menuItemAppMembersPage(MinkeyApp.app, "7", MembershipDashboard.identifier),
     ];
     MenuDefModel menu = MenuDefModel(
         documentID: FEED_MENU_ID_CURRENT_MEMBER,
@@ -104,7 +104,7 @@ class FeedMenu {
       selectedItemColor: EliudColors.red,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 

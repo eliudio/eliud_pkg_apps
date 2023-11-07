@@ -8,24 +8,21 @@ import 'package:eliud_pkg_membership/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_membership/model/membership_dashboard_component.dart';
 import 'package:eliud_pkg_membership/model/membership_dashboard_model.dart';
 
-import '../../install_app.dart';
 import '../../app_section.dart';
 
 class MembershipDashboard extends AppSectionBase {
   final String? profilePageId;
   final String? feedPageId;
 
-  MembershipDashboard(
-      InstallApp? installApp, this.profilePageId, this.feedPageId)
-      : super(installApp);
+  MembershipDashboard(super.installApp, this.profilePageId, this.feedPageId);
 
-  static String IDENTIFIER = "membership_dashboard";
+  static String identifier = "membership_dashboard";
 
   static OpenDialog action(AppModel app) => OpenDialog(app,
-      dialogID: IDENTIFIER,
+      dialogID: identifier,
       conditions: DisplayConditionsModel(
-          privilegeLevelRequired:
-              PrivilegeLevelRequired.OwnerPrivilegeRequired, packageCondition: CorePackage.MUST_BE_LOGGED_ON));
+          privilegeLevelRequired: PrivilegeLevelRequired.ownerPrivilegeRequired,
+          packageCondition: CorePackage.mustBeLoggedIn));
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -38,31 +35,31 @@ class MembershipDashboard extends AppSectionBase {
     components.add(BodyComponentModel(
         documentID: "1",
         componentName: AbstractMembershipDashboardComponent.componentName,
-        componentId: IDENTIFIER));
+        componentId: identifier));
 
     return DialogModel(
-        documentID: IDENTIFIER,
+        documentID: identifier,
         appId: installApp!.theApp.documentID,
         title: "Membership dashboard",
         description: "Membership dashboard",
-        layout: DialogLayout.ListView,
+        layout: DialogLayout.listView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.OwnerPrivilegeRequiredSimple,
+              PrivilegeLevelRequiredSimple.ownerPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
 
   MembershipDashboardModel _dashboardModel() {
     return MembershipDashboardModel(
-      documentID: IDENTIFIER,
+      documentID: identifier,
       appId: installApp!.theApp.documentID,
       description: "Members",
       memberActions: ProfileAndFeedToAction.getMemberActionModels(
           installApp!.theApp, profilePageId, feedPageId),
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.OwnerPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.ownerPrivilegeRequiredSimple),
     );
   }
 

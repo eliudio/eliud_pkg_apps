@@ -12,17 +12,17 @@ import 'package:eliud_pkg_workflow/model/workflow_notification_model.dart';
 import 'package:eliud_pkg_workflow/model/workflow_task_model.dart';
 
 class WorkflowHelper {
-  static WorkflowModel _workflowForPaymentCart(String appId,
-      String documentID, String name, PayTypeModel payTypeModel) {
+  static WorkflowModel _workflowForPaymentCart(
+      String appId, String documentID, String name, PayTypeModel payTypeModel) {
     return WorkflowModel(
-      appId: appId,
+        appId: appId,
         documentID: "cart_paid_manually",
         name: "Manual Cart Payment",
         workflowTask: [
           WorkflowTaskModel(
             seqNumber: 1,
             documentID: "workflow_task_payment",
-            responsible: WorkflowTaskResponsible.CurrentMember,
+            responsible: WorkflowTaskResponsible.currentMember,
             task: ContextAmountPayModel(
               identifier: newRandomKey(),
               executeInstantly: false,
@@ -33,15 +33,15 @@ class WorkflowHelper {
           WorkflowTaskModel(
             seqNumber: 2,
             documentID: "review_payment_and_ship",
-            responsible: WorkflowTaskResponsible.Owner,
+            responsible: WorkflowTaskResponsible.owner,
             confirmMessage: WorkflowNotificationModel(
                 message:
                     "Your payment has been reviewed and approved and your order is being prepared for shipment. Feedback from the shop: ",
-                addressee: WorkflowNotificationAddressee.CurrentMember),
+                addressee: WorkflowNotificationAddressee.currentMember),
             rejectMessage: WorkflowNotificationModel(
                 message:
                     "Your payment has been reviewed and rejected. Feedback from the shop: ",
-                addressee: WorkflowNotificationAddressee.CurrentMember),
+                addressee: WorkflowNotificationAddressee.currentMember),
             task: ReviewAndShipTaskModel(
               identifier: newRandomKey(),
               executeInstantly: false,
@@ -53,13 +53,13 @@ class WorkflowHelper {
 
   static WorkflowModel workflowForManualPaymentCart(
       {required String appId,
-        required String payTo,
+      required String payTo,
       required String country,
       required String bankIdentifierCode,
       required String payeeIBAN,
       required String bankName}) {
     return _workflowForPaymentCart(
-      appId,
+        appId,
         "cat_paid_manually",
         "Manual Cart Payment",
         ManualPayTypeModel(
@@ -75,55 +75,59 @@ class WorkflowHelper {
         "Cart Payment with Card", CreditCardPayTypeModel());
   }
 
-  static WorkflowModel _workflowForMembership(String appId, String documentID, String name,
-      double amount, String ccy, PayTypeModel payTypeModel) {
-    return WorkflowModel(appId: appId, documentID: documentID, name: name, workflowTask: [
-      WorkflowTaskModel(
-        seqNumber: 1,
-        documentID: "request_membership",
-        responsible: WorkflowTaskResponsible.CurrentMember,
-        task: RequestMembershipTaskModel(
-          identifier: newRandomKey(),
-          executeInstantly: false,
-          description: 'Please join. It costs 20 GBP, 1 time cost',
-        ),
-      ),
-      WorkflowTaskModel(
-        seqNumber: 2,
-        documentID: "pay_membership",
-        responsible: WorkflowTaskResponsible.CurrentMember,
-        confirmMessage: WorkflowNotificationModel(
-            message:
-                "Your payment and membership request is now with the owner for review. You will be notified soon",
-            addressee: WorkflowNotificationAddressee.CurrentMember),
-        rejectMessage: null,
-        task: FixedAmountPayModel(
-            identifier: newRandomKey(),
-            executeInstantly: true,
-            description: 'To join, pay 20 GBP',
-            paymentType: payTypeModel,
-            ccy: ccy,
-            amount: amount),
-      ),
-      WorkflowTaskModel(
-        seqNumber: 3,
-        documentID: "confirm_membership",
-        responsible: WorkflowTaskResponsible.Owner,
-        confirmMessage: WorkflowNotificationModel(
-            message:
-                "You payment has been verified and you're now a member. Welcome! Feedback: ",
-            addressee: WorkflowNotificationAddressee.First),
-        rejectMessage: WorkflowNotificationModel(
-            message:
-                "You payment has been verified and unfortunately something went wrong. Feedback: ",
-            addressee: WorkflowNotificationAddressee.First),
-        task: ApproveMembershipTaskModel(
-          identifier: newRandomKey(),
-          executeInstantly: false,
-          description: 'Verify payment and confirm membership',
-        ),
-      ),
-    ]);
+  static WorkflowModel _workflowForMembership(String appId, String documentID,
+      String name, double amount, String ccy, PayTypeModel payTypeModel) {
+    return WorkflowModel(
+        appId: appId,
+        documentID: documentID,
+        name: name,
+        workflowTask: [
+          WorkflowTaskModel(
+            seqNumber: 1,
+            documentID: "request_membership",
+            responsible: WorkflowTaskResponsible.currentMember,
+            task: RequestMembershipTaskModel(
+              identifier: newRandomKey(),
+              executeInstantly: false,
+              description: 'Please join. It costs 20 GBP, 1 time cost',
+            ),
+          ),
+          WorkflowTaskModel(
+            seqNumber: 2,
+            documentID: "pay_membership",
+            responsible: WorkflowTaskResponsible.currentMember,
+            confirmMessage: WorkflowNotificationModel(
+                message:
+                    "Your payment and membership request is now with the owner for review. You will be notified soon",
+                addressee: WorkflowNotificationAddressee.currentMember),
+            rejectMessage: null,
+            task: FixedAmountPayModel(
+                identifier: newRandomKey(),
+                executeInstantly: true,
+                description: 'To join, pay 20 GBP',
+                paymentType: payTypeModel,
+                ccy: ccy,
+                amount: amount),
+          ),
+          WorkflowTaskModel(
+            seqNumber: 3,
+            documentID: "confirm_membership",
+            responsible: WorkflowTaskResponsible.owner,
+            confirmMessage: WorkflowNotificationModel(
+                message:
+                    "You payment has been verified and you're now a member. Welcome! Feedback: ",
+                addressee: WorkflowNotificationAddressee.first),
+            rejectMessage: WorkflowNotificationModel(
+                message:
+                    "You payment has been verified and unfortunately something went wrong. Feedback: ",
+                addressee: WorkflowNotificationAddressee.first),
+            task: ApproveMembershipTaskModel(
+              identifier: newRandomKey(),
+              executeInstantly: false,
+              description: 'Verify payment and confirm membership',
+            ),
+          ),
+        ]);
   }
 
   static WorkflowModel workflowForManuallyPaidMembership(
@@ -136,7 +140,7 @@ class WorkflowHelper {
       required String payeeIBAN,
       required String bankName}) {
     return _workflowForMembership(
-      appId,
+        appId,
         "membership_paid_manually",
         "Paid Membership (manually paid)",
         20,
@@ -151,7 +155,8 @@ class WorkflowHelper {
 
   static WorkflowModel workflowForMembershipPaidByCard(String appId,
       {double? amount, String? ccy}) {
-    return _workflowForMembership(appId,
+    return _workflowForMembership(
+        appId,
         "membership_paid_manually",
         "Paid Membership (Credit card payment)",
         20,

@@ -29,26 +29,26 @@ class Welcome extends AppSection {
           endDrawer,
         );
 
-  static List<String> IDENTIFIERs = [
+  static List<String> theIdentifiers = [
     "welcome_subscribed_member",
     "welcome_member_level1",
     "welcome_member_level2",
     "welcome_owner"
   ];
   static List<PrivilegeLevelRequiredSimple> privilegeLevelsRequired = [
-    PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
-    PrivilegeLevelRequiredSimple.Level1PrivilegeRequiredSimple,
-    PrivilegeLevelRequiredSimple.Level2PrivilegeRequiredSimple,
-    PrivilegeLevelRequiredSimple.OwnerPrivilegeRequiredSimple
+    PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
+    PrivilegeLevelRequiredSimple.level1PrivilegeRequiredSimple,
+    PrivilegeLevelRequiredSimple.level2PrivilegeRequiredSimple,
+    PrivilegeLevelRequiredSimple.ownerPrivilegeRequiredSimple
   ];
   static List<PrivilegeLevelRequired> menuPrivilegeLevelsRequired = [
-    PrivilegeLevelRequired.NoPrivilegeRequired,
-    PrivilegeLevelRequired.Level1PrivilegeRequired,
-    PrivilegeLevelRequired.Level2PrivilegeRequired,
-    PrivilegeLevelRequired.OwnerPrivilegeRequired
+    PrivilegeLevelRequired.noPrivilegeRequired,
+    PrivilegeLevelRequired.level1PrivilegeRequired,
+    PrivilegeLevelRequired.level2PrivilegeRequired,
+    PrivilegeLevelRequired.ownerPrivilegeRequired
   ];
-  static String FADER_IDENTIFIER = 'welcome_fader';
-  static String APP_BAR_IDENTIFIER = 'welcome_appbar';
+  static String faderIdentifier = 'welcome_fader';
+  static String appBarIdentifier = 'welcome_appbar';
 
   Future<PageModel> _setupPage(AppBarModel appBar,
       PrivilegeLevelRequiredSimple privilegeLevelRequired) async {
@@ -63,7 +63,7 @@ class Welcome extends AppSection {
     components.add(BodyComponentModel(
         documentID: "2",
         componentName: AbstractFaderComponent.componentName,
-        componentId: FADER_IDENTIFIER));
+        componentId: faderIdentifier));
     components.add(BodyComponentModel(
         documentID: "3",
         componentName: AbstractDividerComponent.componentName,
@@ -71,18 +71,18 @@ class Welcome extends AppSection {
     components.add(BodyComponentModel(
         documentID: "4",
         componentName: AbstractDocumentComponent.componentName,
-        componentId: IDENTIFIERs[privilegeLevelRequired.index]));
+        componentId: theIdentifiers[privilegeLevelRequired.index]));
 
     return PageModel(
-        documentID: IDENTIFIERs[privilegeLevelRequired.index],
-        appId: MinkeyApp.MINKEY_APP_ID,
+        documentID: theIdentifiers[privilegeLevelRequired.index],
+        appId: MinkeyApp.minkeyAppId,
         title: "Welcome",
         description: "Welcome",
         drawer: drawer,
         endDrawer: endDrawer,
         appBar: appBar,
         homeMenu: homeMenu,
-        layout: PageLayout.ListView,
+        layout: PageLayout.listView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired: privilegeLevelRequired,
         ),
@@ -110,7 +110,7 @@ class Welcome extends AppSection {
         installApp!.theApp,
         installApp!.member!,
         'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg',
-        PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
   Future<PlatformMediumModel> iphoneImage() async {
@@ -118,7 +118,7 @@ class Welcome extends AppSection {
         installApp!.theApp,
         installApp!.member!,
         'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg',
-        PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
   Future<PlatformMediumModel> tabletImage() async {
@@ -126,7 +126,7 @@ class Welcome extends AppSection {
         installApp!.theApp,
         installApp!.member!,
         'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg',
-        PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
   Future<PlatformMediumModel> macbookImage() async {
@@ -134,7 +134,7 @@ class Welcome extends AppSection {
         installApp!.theApp,
         installApp!.member!,
         'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg',
-        PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
   FaderModel _fader(
@@ -165,15 +165,15 @@ class Welcome extends AppSection {
         posSize: installApp!.halfScreen(),
         image: tablet));
     FaderModel model = FaderModel(
-      documentID: FADER_IDENTIFIER,
+      documentID: faderIdentifier,
       description: "Welcome fader",
       animationMilliseconds: 1000,
       imageSeconds: 5,
       items: items,
-      appId: MinkeyApp.MINKEY_APP_ID,
+      appId: MinkeyApp.minkeyAppId,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
     return model;
   }
@@ -182,25 +182,22 @@ class Welcome extends AppSection {
       PrivilegeLevelRequiredSimple privilegeLevelRequired) {
     var privilegeLevelString = privilegeLevelIntToMemberRoleString(
         privilegeLevelRequired.index, false);
-    return "Hello! Welcome to Minkey. " +
-        ((privilegeLevelRequired.index == 0)
-            ? "You are not yet registered. Why not JOIN?"
-            : "You are registered as $privilegeLevelString");
+    return "Hello! Welcome to Minkey. ${(privilegeLevelRequired.index == 0) ? "You are not yet registered. Why not JOIN?" : "You are registered as $privilegeLevelString"}";
   }
 
   DocumentModel _welcomeDocument(
       PrivilegeLevelRequiredSimple privilegeLevelRequired) {
     List<DocumentItemModel> list = [];
     DocumentModel document = DocumentModel(
-      documentID: IDENTIFIERs[privilegeLevelRequired.index],
+      documentID: theIdentifiers[privilegeLevelRequired.index],
       description: "First document",
       content: _welcomePageContents(privilegeLevelRequired),
-      appId: MinkeyApp.MINKEY_APP_ID,
+      appId: MinkeyApp.minkeyAppId,
       images: list,
       padding: 10,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
     return document;
   }
@@ -221,7 +218,7 @@ class Welcome extends AppSection {
     var macbook = await macbookImage();
 
     await _setupFader(android, iphone, tablet, macbook);
-    for (int i = 0; i < IDENTIFIERs.length; i++) {
+    for (int i = 0; i < theIdentifiers.length; i++) {
       await _setupWelcomeDocument(privilegeLevelsRequired[i]);
       await _setupPage(appBar, privilegeLevelsRequired[i]);
     }

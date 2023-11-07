@@ -3,7 +3,6 @@ import 'package:eliud_core/model/abstract_repository_singleton.dart'
 import 'package:eliud_core/model/member_dashboard_component.dart';
 import 'package:eliud_core/model/model_export.dart';
 
-import '../../install_app.dart';
 import '../../app_section.dart';
 
 class MemberDashboard extends AppSectionBase {
@@ -33,11 +32,9 @@ Your request to destroy your account...
 Sorry to see you go. Your account has been destroyed.
 """;
 
-  MemberDashboard(
-      InstallApp? installApp)
-      : super(installApp);
+  MemberDashboard(super.installApp);
 
-  static String IDENTIFIER = "member_dashboard";
+  static String identifier = "member_dashboard";
 
   Future<DialogModel> _setupDialog() async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -50,34 +47,35 @@ Sorry to see you go. Your account has been destroyed.
     components.add(BodyComponentModel(
         documentID: "1",
         componentName: AbstractMemberDashboardComponent.componentName,
-        componentId: IDENTIFIER));
+        componentId: identifier));
 
     return DialogModel(
-        documentID: IDENTIFIER,
+        documentID: identifier,
         appId: installApp!.theApp.documentID,
         title: "Member dashboard",
         description: "Member dashboard",
-        layout: DialogLayout.ListView,
+        layout: DialogLayout.listView,
         conditions: StorageConditionsModel(
-            privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
 
   MemberDashboardModel _dashboardModel() {
     return MemberDashboardModel(
-        documentID: IDENTIFIER,
-        appId: installApp!.theApp.documentID,
-        description: "Member dashboard",
-        updateProfileText: updateProfileText,
-        retrieveDataText: retrieveDataText,
-        deleteDataText: deleteDataText,
-        retrieveDataEmailSubject: retrieveDataEmailSubject,
-        deleteDataEmailSubject: deleteDataEmailSubject,
-        deleteDataEmailMessage: deleteDataEmailMessage,
-        conditions: StorageConditionsModel(
-            privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-        ),
+      documentID: identifier,
+      appId: installApp!.theApp.documentID,
+      description: "Member dashboard",
+      updateProfileText: updateProfileText,
+      retrieveDataText: retrieveDataText,
+      deleteDataText: deleteDataText,
+      retrieveDataEmailSubject: retrieveDataEmailSubject,
+      deleteDataEmailSubject: deleteDataEmailSubject,
+      deleteDataEmailMessage: deleteDataEmailMessage,
+      conditions: StorageConditionsModel(
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 

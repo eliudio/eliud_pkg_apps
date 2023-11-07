@@ -1,5 +1,3 @@
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/home_menu_model.dart';
 import 'package:eliud_core/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/decoratedcontent/photoandsomething.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
@@ -7,22 +5,17 @@ import 'package:eliud_pkg_fundamentals/model/decorated_content_model.dart';
 import 'package:eliud_pkg_fundamentals/model/simple_text_component.dart';
 import 'package:eliud_pkg_fundamentals/model/simple_text_model.dart';
 
-import '../../install_app.dart';
-
 abstract class OnlyPhotoAndText extends PhotoAndSomthing {
   OnlyPhotoAndText(
-      String identifier,
-      InstallApp? installApp,
-      HomeMenuModel? homeMenu,
-      DrawerModel? drawer,
-      DrawerModel? endDrawer,
-      double percentageDecorationVisible,
-      PrivilegeLevelRequiredSimple privilegeLevelRequiredSimple,
-      {bool? addLogo,})
-      : super(identifier, installApp, homeMenu, drawer, endDrawer,
-            percentageDecorationVisible,
-            addLogo: addLogo,
-            privilegeLevelRequiredSimple: privilegeLevelRequiredSimple);
+    super.identifier,
+    super.installApp,
+    super.homeMenu,
+    super.drawer,
+    super.endDrawer,
+    super.percentageDecorationVisible,
+    PrivilegeLevelRequiredSimple privilegeLevelRequiredSimple, {
+    super.addLogo,
+  }) : super(privilegeLevelRequiredSimple: privilegeLevelRequiredSimple);
 
   Future<SimpleTextModel> createSimpleTextModel(
       String appId, String title, String contents,
@@ -39,13 +32,19 @@ abstract class OnlyPhotoAndText extends PhotoAndSomthing {
     return simpleTextModel;
   }
 
-  Future<void> installPhotoAndText(String title, String description, String contents,
-      DecorationComponentPosition imagePosition, String imageAssetLocation,
+  Future<void> installPhotoAndText(
+      String title,
+      String description,
+      String contents,
+      DecorationComponentPosition imagePosition,
+      String imageAssetLocation,
       {SimpleTextAlign? align}) async {
-    var simpleTextModel =
-        await createSimpleTextModel(installApp!.theApp.documentID, title, contents, align: align);
+    var simpleTextModel = await createSimpleTextModel(
+        installApp!.theApp.documentID, title, contents,
+        align: align);
     var componentId = simpleTextModel.documentID;
     var componentName = AbstractSimpleTextComponent.componentName;
-    return super.installPhoto(componentId, componentName, title, description, imagePosition, imageAssetLocation);
+    return super.installPhoto(componentId, componentName, title, description,
+        imagePosition, imageAssetLocation);
   }
 }

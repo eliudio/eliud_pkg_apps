@@ -1,4 +1,5 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/abstract_repository_singleton.dart'
+    as corerepo;
 import 'package:eliud_core/model/model_export.dart';
 import 'package:eliud_pkg_fundamentals/model/presentation_model.dart';
 
@@ -21,7 +22,11 @@ abstract class BasicPageTemplate extends AppSection {
   String componentName();
   Future<void> setupComponent();
 
-  BasicPageTemplate({required this.pageId, this.privilegeLevelRequired, /*this.packageCondition, this.conditionOverride, */this.presentationImageAlignment, InstallApp? installApp,
+  BasicPageTemplate(
+      {required this.pageId,
+      this.privilegeLevelRequired,
+      /*this.packageCondition, this.conditionOverride, */ this.presentationImageAlignment,
+      InstallApp? installApp,
       HomeMenuModel? homeMenu,
       DrawerModel? drawer,
       DrawerModel? endDrawer})
@@ -48,7 +53,7 @@ abstract class BasicPageTemplate extends AppSection {
         endDrawer: endDrawer,
         appBar: appBar,
         homeMenu: homeMenu,
-        layout: PageLayout.ListView,
+        layout: PageLayout.listView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired: privilegeLevelRequired,
 /*
@@ -59,7 +64,7 @@ abstract class BasicPageTemplate extends AppSection {
         bodyComponents: components);
   }
 
-  Future<PageModel>  run() async {
+  Future<PageModel> run() async {
     await setupComponent();
     var appBar = installApp!.appBar();
     return await _setupPage(appBar);

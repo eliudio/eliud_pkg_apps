@@ -18,7 +18,7 @@ class HeaderComponent {
       appId: MinkeyApp.app.documentID,
       description: "Header",
       conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
+          privilegeLevelRequired: PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple
       ),
     );
   }

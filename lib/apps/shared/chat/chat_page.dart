@@ -11,24 +11,36 @@ import '../../install_app.dart';
 import '../../app_section.dart';
 
 class ChatPage extends AppSection {
-  ChatPage({InstallApp? installApp, HomeMenuModel? homeMenu, DrawerModel? drawer, DrawerModel? endDrawer, }) : super(installApp, homeMenu, drawer, endDrawer, );
+  ChatPage({
+    InstallApp? installApp,
+    HomeMenuModel? homeMenu,
+    DrawerModel? drawer,
+    DrawerModel? endDrawer,
+  }) : super(
+          installApp,
+          homeMenu,
+          drawer,
+          endDrawer,
+        );
 
   // Security is setup to indicate if a page or dialog is accessible
   // For this reason we need 2 dialogs, one for unread and one for read chats
-  static String IDENTIFIER_READ = "chat_page_read";
-  static String IDENTIFIER_UNREAD = "chat_page_unread";
+  static String identifierReadIt = "chat_page_read";
+  static String identifierUnreadIt = "chat_page_unread";
 
-  static GotoPage unReadAction(AppModel app) => GotoPage(app, pageID: IDENTIFIER_UNREAD,
+  static GotoPage unReadAction(AppModel app) => GotoPage(app,
+      pageID: identifierUnreadIt,
       conditions: DisplayConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-          packageCondition: ChatPackage.CONDITION_MEMBER_HAS_UNREAD_CHAT));
+          privilegeLevelRequired: PrivilegeLevelRequired.noPrivilegeRequired,
+          packageCondition: ChatPackage.conditionMemberHasUnreadChat));
 
-  static GotoPage readAction(AppModel app) => GotoPage(app, pageID: IDENTIFIER_READ,
+  static GotoPage readAction(AppModel app) => GotoPage(app,
+      pageID: identifierReadIt,
       conditions: DisplayConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequired.NoPrivilegeRequired,
-          packageCondition: ChatPackage.CONDITION_MEMBER_ALL_HAVE_BEEN_READ));
+          privilegeLevelRequired: PrivilegeLevelRequired.noPrivilegeRequired,
+          packageCondition: ChatPackage.conditionMemberAllHaveBeenRead));
 
-  static String CHAT_ID = "chat";
+  static String chatId = "chat";
 
   Future<PageModel> _setupPage(String identifier) async {
     return await corerepo.AbstractRepositorySingleton.singleton
@@ -41,7 +53,7 @@ class ChatPage extends AppSection {
     components.add(BodyComponentModel(
         documentID: "1",
         componentName: AbstractChatDashboardComponent.componentName,
-        componentId: CHAT_ID));
+        componentId: chatId));
 
     return PageModel(
         documentID: identifier,
@@ -52,22 +64,22 @@ class ChatPage extends AppSection {
         endDrawer: endDrawer,
         homeMenu: homeMenu,
         appBar: installApp!.appBar(),
-        layout: PageLayout.ListView,
+        layout: PageLayout.listView,
         conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
 
   ChatDashboardModel _chatModel() {
     return ChatDashboardModel(
-      documentID: CHAT_ID,
+      documentID: chatId,
       appId: installApp!.theApp.documentID,
       description: "Chat",
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
-              PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple),
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 
@@ -79,7 +91,7 @@ class ChatPage extends AppSection {
 
   Future<void> run() async {
     await _setupChat();
-    await _setupPage(IDENTIFIER_READ);
-    await _setupPage(IDENTIFIER_UNREAD);
+    await _setupPage(identifierReadIt);
+    await _setupPage(identifierUnreadIt);
   }
 }

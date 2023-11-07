@@ -7,7 +7,7 @@ import 'package:eliud_pkg_apps/apps/juuwle_app/shop/product_page.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/products.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart'
-    as postRepo;
+    as pr;
 import 'package:eliud_pkg_feed/model/post_model.dart';
 
 import '../minkey_app.dart';
@@ -25,17 +25,17 @@ class ExamplePosts {
       throw Exception("ERROR: can't retrieve member data");
     }
     for (int j = 0; j < 1; j++) {
-      int j = 0;
-      int i = j * 21;
+      //int j = 0;
+      //int i = j * 21;
       try {
-        await postRepo.AbstractRepositorySingleton.singleton
-            .postRepository(MinkeyApp.MINKEY_APP_ID)!
+        await pr.AbstractRepositorySingleton.singleton
+            .postRepository(MinkeyApp.minkeyAppId)!
             .add(PostModel(
                 documentID: "example1",
                 feedId: feedId,
                 authorId: memberPublicInfo.documentID,
-                appId: MinkeyApp.MINKEY_APP_ID,
-                postAppId: JuuwleApp.JUUWLE_APP_ID,
+                appId: MinkeyApp.minkeyAppId,
+                postAppId: JuuwleApp.juuwleAppId,
                 postPageId: ProductPage.identifier,
                 pageParameters: {'productId': Products.productId2},
                 archived: PostArchiveStatus.Active,
@@ -47,27 +47,29 @@ class ExamplePosts {
       }
     }
 
-    await postRepo.AbstractRepositorySingleton.singleton
-        .postRepository(MinkeyApp.MINKEY_APP_ID)!
+    await pr.AbstractRepositorySingleton.singleton
+        .postRepository(MinkeyApp.minkeyAppId)!
         .add(PostModel(
-        documentID: "exampleHtml",
-        feedId: feedId,
-        authorId: memberPublicInfo.documentID,
-        appId: MinkeyApp.MINKEY_APP_ID,
-        archived: PostArchiveStatus.Active,
-        html: kHtml,
-        accessibleByGroup: accessibleByGroup,
-        readAccess: [memberPublicInfo.documentID],  // default readAccess to the owner. The function will expand this based on accessibleByGroup/Members
-      ));
+          documentID: "exampleHtml",
+          feedId: feedId,
+          authorId: memberPublicInfo.documentID,
+          appId: MinkeyApp.minkeyAppId,
+          archived: PostArchiveStatus.Active,
+          html: kHtml,
+          accessibleByGroup: accessibleByGroup,
+          readAccess: [
+            memberPublicInfo.documentID
+          ], // default readAccess to the owner. The function will expand this based on accessibleByGroup/Members
+        ));
 
-    await postRepo.AbstractRepositorySingleton.singleton
-        .postRepository(MinkeyApp.MINKEY_APP_ID)!
+    await pr.AbstractRepositorySingleton.singleton
+        .postRepository(MinkeyApp.minkeyAppId)!
         .add(
           PostModel(
             documentID: "example2",
             feedId: feedId,
             authorId: memberPublicInfo.documentID,
-            appId: MinkeyApp.MINKEY_APP_ID,
+            appId: MinkeyApp.minkeyAppId,
             archived: PostArchiveStatus.Active,
             description: "Hi guys, this is my first post these are photos",
             accessibleByGroup: accessibleByGroup,
@@ -112,20 +114,18 @@ class ExamplePosts {
           ),
         );
 
-    await postRepo.AbstractRepositorySingleton.singleton
-        .postRepository(MinkeyApp.MINKEY_APP_ID)!
+    await pr.AbstractRepositorySingleton.singleton
+        .postRepository(MinkeyApp.minkeyAppId)!
         .add(
           PostModel(
             documentID: "example3",
             feedId: feedId,
             authorId: memberPublicInfo.documentID,
-            appId: MinkeyApp.MINKEY_APP_ID,
+            appId: MinkeyApp.minkeyAppId,
             archived: PostArchiveStatus.Active,
             description: "Hi guys, this is my first post these are videos",
             accessibleByGroup: accessibleByGroup,
-            memberMedia: [
-
-            ],
+            memberMedia: [],
           ),
         );
   }

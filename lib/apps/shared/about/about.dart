@@ -1,4 +1,5 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart' as corerepo;
+import 'package:eliud_core/model/abstract_repository_singleton.dart'
+    as corerepo;
 import 'package:eliud_core/model/app_bar_model.dart';
 import 'package:eliud_core/model/body_component_model.dart';
 import 'package:eliud_core/model/drawer_model.dart';
@@ -22,16 +23,20 @@ abstract class AboutBase extends AppSection {
   final RelativeImagePosition imagePosition;
   final SectionImageAlignment alignment;
   AboutBase(
-      this.identifier,
-      this.imagePosition,
-      this.imageWidth,
-      this.alignment,
-      InstallApp? installApp,
-      HomeMenuModel? homeMenu,
-      DrawerModel? drawer,
-      DrawerModel? endDrawer,)
-      : super(installApp, homeMenu, drawer, endDrawer,
-      );
+    this.identifier,
+    this.imagePosition,
+    this.imageWidth,
+    this.alignment,
+    InstallApp? installApp,
+    HomeMenuModel? homeMenu,
+    DrawerModel? drawer,
+    DrawerModel? endDrawer,
+  ) : super(
+          installApp,
+          homeMenu,
+          drawer,
+          endDrawer,
+        );
 
   //static String identifier = "who";
 
@@ -58,9 +63,10 @@ abstract class AboutBase extends AppSection {
         endDrawer: endDrawer,
         appBar: appBar,
         homeMenu: homeMenu,
-        layout: PageLayout.ListView,
+        layout: PageLayout.listView,
         conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple,
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
         ),
         bodyComponents: components);
   }
@@ -72,12 +78,17 @@ abstract class AboutBase extends AppSection {
 
   Future<String?> _store(PlatformMediumModel platformMediumModel) async {
     return (await AbstractRepositorySingleton.singleton
-        .bookletRepository(installApp!.theApp.documentID)!
-        .add(_header(platformMediumModel))).documentID;
+            .bookletRepository(installApp!.theApp.documentID)!
+            .add(_header(platformMediumModel)))
+        .documentID;
   }
 
   Future<PlatformMediumModel> installAboutImage() async {
-    return await ImageTools.uploadPlatformPhoto(installApp!.theApp, installApp!.member!, assetLocation(), PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple);
+    return await ImageTools.uploadPlatformPhoto(
+        installApp!.theApp,
+        installApp!.member!,
+        assetLocation(),
+        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
   BookletModel _header(PlatformMediumModel memberMediumModel) {
@@ -101,8 +112,8 @@ abstract class AboutBase extends AppSection {
       sections: entries,
       appId: installApp!.theApp.documentID,
       conditions: StorageConditionsModel(
-          privilegeLevelRequired: PrivilegeLevelRequiredSimple.NoPrivilegeRequiredSimple
-      ),
+          privilegeLevelRequired:
+              PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple),
     );
   }
 

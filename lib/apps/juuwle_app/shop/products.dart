@@ -231,9 +231,8 @@ class Products {
     for (int i = 0; i < theProducts.length; i++) {
       Product p = theProducts[i];
       await AbstractRepositorySingleton.singleton
-          .productRepository(JuuwleApp.JUUWLE_APP_ID)!
+          .productRepository(JuuwleApp.juuwleAppId)!
           .add(await productToProductModel(shop, installApp!, p));
     }
   }
 }
-
