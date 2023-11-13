@@ -11,9 +11,9 @@ abstract class Founders extends AboutBase {
       DrawerModel? endDrawer)
       : super(
             identifier2,
-            RelativeImagePosition.Aside,
+            RelativeImagePosition.aside,
             .3,
-            SectionImageAlignment.Left,
+            SectionImageAlignment.left,
             installApp,
             homeMenu,
             drawer,

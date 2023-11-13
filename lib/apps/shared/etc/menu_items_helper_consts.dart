@@ -138,7 +138,7 @@ menuItemFollowRequestsPage(
             conditions: DisplayConditionsModel(
                 privilegeLevelRequired: privilegeLevelRequired,
                 packageCondition:
-                    FollowPackage.CONDITION_MEMBER_HAS_OPEN_REQUESTS)));
+                    FollowPackage.conditionMemberHasOpenRequests)));
 
 menuItemFollowers(AppModel app, documentID, dialogID, privilegeLevelRequired) =>
     MenuItemModel(

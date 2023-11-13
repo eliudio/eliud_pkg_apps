@@ -207,10 +207,10 @@ class FollowDashboards extends AppSectionBase {
 
   Future<DialogModel> runIt(String? profilePageId, String? feedPageId) async {
     await _FollowingDashboard(followersIdentifier, "Followers", "Followers",
-            FollowingView.Followers, installApp, profilePageId, feedPageId)
+            FollowingView.followers, installApp, profilePageId, feedPageId)
         .run();
     await _FollowingDashboard(followingIdentifier, "Following", "Following",
-            FollowingView.Following, installApp, profilePageId, feedPageId)
+            FollowingView.following, installApp, profilePageId, feedPageId)
         .run();
     await FollowRequestDashboard(installApp, profilePageId, feedPageId).run();
     return await InviteDashboard(installApp, profilePageId, feedPageId).run();

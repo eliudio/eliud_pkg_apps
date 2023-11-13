@@ -59,7 +59,7 @@ class MyPay extends PageTemplate {
                 PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
             packageCondition: ShopPackage.conditionCartsHasItems,
             pageId: identifier,
-            presentationImageAlignment: PresentationImageAlignment.Left);
+            presentationImageAlignment: PresentationImageAlignment.left);
 
   @override
   String? componentID() {

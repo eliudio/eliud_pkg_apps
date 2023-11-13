@@ -86,9 +86,9 @@ abstract class PageTemplate extends AppSection {
             componentName: componentName())
       ],
       image: image,
-      imagePositionRelative: PresentationRelativeImagePosition.Aside,
+      imagePositionRelative: PresentationRelativeImagePosition.aside,
       imageAlignment:
-          presentationImageAlignment ?? PresentationImageAlignment.Right,
+          presentationImageAlignment ?? PresentationImageAlignment.right,
       imageWidth: .40,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:

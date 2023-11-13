@@ -15,8 +15,7 @@ abstract class AdminBase extends AppSection {
       AppBarModel appBar,
       HomeMenuModel? homeMenu);
 
-  AdminBase(super.installApp, super.homeMenu,
-      super.drawer, super.endDrawer);
+  AdminBase(super.installApp, super.homeMenu, super.drawer, super.endDrawer);
 
   String adminTitle();
 
@@ -43,8 +42,9 @@ abstract class AdminBase extends AppSection {
     // Create the menus
     List<AdminAppMenuInstallerBase> theAdminMenuInstallers =
         adminMenuInstallers();
-    List<MenuItemModel> menuItems = await Future.wait(theAdminMenuInstallers.map(
-        (element) async => _mapIt(await element.menu(installApp!.theApp))));
+    List<MenuItemModel> menuItems = await Future.wait(
+        theAdminMenuInstallers.map(
+            (element) async => _mapIt(await element.menu(installApp!.theApp))));
     MenuDefModel menu = MenuDefModel(
         documentID: "admin_sub_menu",
         appId: installApp!.theApp.documentID,

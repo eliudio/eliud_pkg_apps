@@ -57,7 +57,7 @@ class MyPayConfirmation extends PageTemplate {
                 PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple,
             packageCondition: ShopPackage.conditionCartsHasItems,
             pageId: identifier,
-            presentationImageAlignment: PresentationImageAlignment.Right);
+            presentationImageAlignment: PresentationImageAlignment.right);
 
   @override
   String? componentID() {

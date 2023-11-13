@@ -45,8 +45,7 @@ class HelloWorldMenu {
         icon: IconModel(
             codePoint: Icons.arrow_right.codePoint,
             fontFamily: Icons.settings.fontFamily),
-        action:
-            GotoPage(EliudApp.app, pageID: HelloWorldPages.createStorage)));
+        action: GotoPage(EliudApp.app, pageID: HelloWorldPages.createStorage)));
     menuItems.add(MenuItemModel(
         documentID: HelloWorldPages.createAuthentication,
         text: "1.5 Setup Authentication",
@@ -82,8 +81,7 @@ class HelloWorldMenu {
         icon: IconModel(
             codePoint: Icons.arrow_right.codePoint,
             fontFamily: Icons.settings.fontFamily),
-        action:
-            GotoPage(EliudApp.app, pageID: HelloWorldPages.createWebApp)));
+        action: GotoPage(EliudApp.app, pageID: HelloWorldPages.createWebApp)));
     return MenuDefModel(
         documentID: "create_android_app",
         appId: EliudApp.eliudAppId,
@@ -109,8 +107,8 @@ class HelloWorldMenu {
         icon: IconModel(
             codePoint: Icons.arrow_right.codePoint,
             fontFamily: Icons.settings.fontFamily),
-        action: GotoPage(EliudApp.app,
-            pageID: HelloWorldPages.createAndroidApp)));
+        action:
+            GotoPage(EliudApp.app, pageID: HelloWorldPages.createAndroidApp)));
     return MenuDefModel(
         documentID: "create_iphone_app",
         appId: EliudApp.eliudAppId,
@@ -127,8 +125,7 @@ class HelloWorldMenu {
         icon: IconModel(
             codePoint: Icons.arrow_right.codePoint,
             fontFamily: Icons.settings.fontFamily),
-        action:
-            GotoPage(EliudApp.app, pageID: HelloWorldPages.createWebApp)));
+        action: GotoPage(EliudApp.app, pageID: HelloWorldPages.createWebApp)));
     menuItems.add(MenuItemModel(
         documentID: HelloWorldPages.createAndroidApp,
         text: "2.3.2 Create Visual Studio Flutter Project for Web App",
@@ -145,8 +142,7 @@ class HelloWorldMenu {
         icon: IconModel(
             codePoint: Icons.arrow_right.codePoint,
             fontFamily: Icons.settings.fontFamily),
-        action:
-            GotoPage(EliudApp.app, pageID: HelloWorldPages.deployWebApp)));
+        action: GotoPage(EliudApp.app, pageID: HelloWorldPages.deployWebApp)));
     return MenuDefModel(
         documentID: "createWebApp",
         appId: EliudApp.eliudAppId,
@@ -163,8 +159,8 @@ class HelloWorldMenu {
         icon: IconModel(
             codePoint: Icons.arrow_right.codePoint,
             fontFamily: Icons.settings.fontFamily),
-        action: GotoPage(EliudApp.app,
-            pageID: HelloWorldPages.createAndroidApp)));
+        action:
+            GotoPage(EliudApp.app, pageID: HelloWorldPages.createAndroidApp)));
     menuItems.add(MenuItemModel(
         documentID: HelloWorldPages.createFlutterProject,
         text: "3.2 Setup a drawer",

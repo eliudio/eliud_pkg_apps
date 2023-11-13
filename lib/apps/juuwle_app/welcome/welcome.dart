@@ -75,8 +75,8 @@ class Welcome extends AppSection {
           description:
               "Welcome to juuwle.\n\n\nJuuwle is your new favorite online store for all your necklaces, bracelets, and so on. You fancy x, y or z? Then you've come to the right place. Juuwle specialises in a, b and c! You will also be able to find some d, e and f. \n\n\nI hope you enjoy your stay on juuwle.com \n\n\nCharlotte\n\n\nDid you know? For an even better experence: juuwle is available as app on apple store, google play store, and also available as windows, linux and mac application.",
           image: welcomeImage,
-          imagePositionRelative: RelativeImagePosition.Aside,
-          imageAlignment: SectionImageAlignment.Right,
+          imagePositionRelative: RelativeImagePosition.aside,
+          imageAlignment: SectionImageAlignment.right,
           imageWidth: .33,
           links: []));
     }

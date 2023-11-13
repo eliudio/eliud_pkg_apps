@@ -68,8 +68,8 @@ class Blocked extends AppSection {
           title: "Blocked!",
           description: "You are blocked.\n\n\nExplain...",
           image: blockedImage,
-          imagePositionRelative: RelativeImagePosition.Aside,
-          imageAlignment: SectionImageAlignment.Right,
+          imagePositionRelative: RelativeImagePosition.aside,
+          imageAlignment: SectionImageAlignment.right,
           imageWidth: .33,
           links: []));
     }

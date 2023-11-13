@@ -19,7 +19,7 @@ class NotificationDashboard extends AppSectionBase {
       conditions: DisplayConditionsModel(
           privilegeLevelRequired: PrivilegeLevelRequired.noPrivilegeRequired,
           packageCondition:
-              NotificationsPackage.CONDITION_MEMBER_HAS_UNREAD_NOTIFICATIONS,
+              NotificationsPackage.conditionMemberHasUnreadNotifications,
           conditionOverride: ConditionOverride
               .inclusiveForBlockedMembers // allow blocked members to see
           ));

@@ -566,14 +566,8 @@ This will create a google api console project and client ID. We will need this i
               "2. Provide an App nickname and select Firebase Hosting. Select your project from the drop down box. Then click on Register app. Then click Next when asked to add the Firebase SDK. click next when asked to Install Firebase CLI. Click on 'Continue to the console' the the deploy to Firebase hosting.",
               "3. Follow these instructions to allow refresh of clients when updates are made to the app: https://stackoverflow.com/questions/46667316/firebase-hosting-force-browser-to-reset-cache-on-new-deploys"
             ]));
-    return await TutorialTools.createTutorial(
-        EliudApp.eliudAppId,
-        createWebApp,
-        "Create Web App",
-        "Create Web App",
-        drawer,
-        appBar,
-        homeMenu);
+    return await TutorialTools.createTutorial(EliudApp.eliudAppId, createWebApp,
+        "Create Web App", "Create Web App", drawer, appBar, homeMenu);
   }
 
   // ************************ Tutorial: Deploy web app *****************
@@ -649,14 +643,8 @@ Basically:
               "4. To deploy your web app to your hosting, follow these steps",
               "5. To make sure your domain opens your web app, follow these steps"
             ]));
-    return await TutorialTools.createTutorial(
-        EliudApp.eliudAppId,
-        deployWebApp,
-        "Deploy Web App",
-        "Deploy Web App",
-        drawer,
-        appBar,
-        homeMenu);
+    return await TutorialTools.createTutorial(EliudApp.eliudAppId, deployWebApp,
+        "Deploy Web App", "Deploy Web App", drawer, appBar, homeMenu);
   }
 
   // ************************ Setup *****************

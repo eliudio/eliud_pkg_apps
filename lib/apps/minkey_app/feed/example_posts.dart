@@ -6,8 +6,7 @@ import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/product_page.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/products.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart'
-    as pr;
+import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart' as pr;
 import 'package:eliud_pkg_feed/model/post_model.dart';
 
 import '../minkey_app.dart';
@@ -38,7 +37,7 @@ class ExamplePosts {
                 postAppId: JuuwleApp.juuwleAppId,
                 postPageId: ProductPage.identifier,
                 pageParameters: {'productId': Products.productId2},
-                archived: PostArchiveStatus.Active,
+                archived: PostArchiveStatus.active,
                 description:
                     'Hi guys, this is another post, this time about another product in my shop',
                 accessibleByGroup: accessibleByGroup));
@@ -54,7 +53,7 @@ class ExamplePosts {
           feedId: feedId,
           authorId: memberPublicInfo.documentID,
           appId: MinkeyApp.minkeyAppId,
-          archived: PostArchiveStatus.Active,
+          archived: PostArchiveStatus.active,
           html: kHtml,
           accessibleByGroup: accessibleByGroup,
           readAccess: [
@@ -70,7 +69,7 @@ class ExamplePosts {
             feedId: feedId,
             authorId: memberPublicInfo.documentID,
             appId: MinkeyApp.minkeyAppId,
-            archived: PostArchiveStatus.Active,
+            archived: PostArchiveStatus.active,
             description: "Hi guys, this is my first post these are photos",
             accessibleByGroup: accessibleByGroup,
             memberMedia: [
@@ -122,7 +121,7 @@ class ExamplePosts {
             feedId: feedId,
             authorId: memberPublicInfo.documentID,
             appId: MinkeyApp.minkeyAppId,
-            archived: PostArchiveStatus.Active,
+            archived: PostArchiveStatus.active,
             description: "Hi guys, this is my first post these are videos",
             accessibleByGroup: accessibleByGroup,
             memberMedia: [],

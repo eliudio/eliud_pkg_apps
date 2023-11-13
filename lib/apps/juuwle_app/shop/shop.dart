@@ -222,8 +222,8 @@ class Shop extends AppSection {
             componentId: _shopFront2().documentID)
       ],
       image: memberMediumModel,
-      imagePositionRelative: PresentationRelativeImagePosition.Aside,
-      imageAlignment: PresentationImageAlignment.Left,
+      imagePositionRelative: PresentationRelativeImagePosition.aside,
+      imageAlignment: PresentationImageAlignment.left,
       imageWidth: .33,
       conditions: StorageConditionsModel(
           privilegeLevelRequired:

@@ -13,9 +13,9 @@ class About extends AboutBase {
     DrawerModel? endDrawer,
   }) : super(
           identifier2,
-          RelativeImagePosition.Aside,
+          RelativeImagePosition.aside,
           1,
-          SectionImageAlignment.Right,
+          SectionImageAlignment.right,
           installApp,
           homeMenu,
           drawer,
