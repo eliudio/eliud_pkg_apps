@@ -1,4 +1,4 @@
-import 'package:eliud_core/model/storage_conditions_model.dart';
+import 'package:eliud_core_model/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/decoratedcontent/photoandsomething.dart';
 import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals/model/decorated_content_model.dart';

@@ -1,4 +1,4 @@
-import 'package:eliud_core/tools/random.dart';
+import 'package:eliud_core_model/tools/etc/random.dart';
 import 'package:eliud_pkg_membership/tasks/approve_membership_task_model.dart';
 import 'package:eliud_pkg_membership/tasks/request_membership_task_model.dart';
 import 'package:eliud_pkg_pay/tasks/context_amount_pay_model.dart';

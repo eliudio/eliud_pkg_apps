@@ -1,6 +1,6 @@
-import 'package:eliud_core/model/background_model.dart';
+import 'package:eliud_core_model/model/background_model.dart';
 import 'package:eliud_core/model/display_conditions_model.dart';
-import 'package:eliud_core/model/storage_conditions_model.dart';
+import 'package:eliud_core_model/model/storage_conditions_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/pay.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/shop.dart';

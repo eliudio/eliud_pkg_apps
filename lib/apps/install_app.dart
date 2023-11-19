@@ -2,7 +2,7 @@ import 'package:eliud_core/core/components/page_constructors/eliud_appbar.dart';
 import 'package:eliud_core/model/abstract_repository_singleton.dart'
     as corerepo;
 import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_core/style/frontend/has_drawer.dart';
+import 'package:eliud_core_model/style/frontend/has_drawer.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_core/tools/admin_app_base.dart';
 import 'package:eliud_pkg_create/tools/defaults.dart' as defaults;

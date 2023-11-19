@@ -1,4 +1,4 @@
-import 'package:eliud_core/model/app_model.dart';
+import 'package:eliud_core_model/model/app_model.dart';
 import 'package:eliud_core/tools/action/action_model.dart';
 import 'package:eliud_pkg_etc/model/member_action_model.dart';
 
