@@ -1,6 +1,6 @@
-import 'package:eliud_core_model/model/app_model.dart';
-import 'package:eliud_core/tools/action/action_model.dart';
-import 'package:eliud_pkg_etc/model/member_action_model.dart';
+import 'package:eliud_core_main/apis/action_api/actions/goto_page.dart';
+import 'package:eliud_core_main/model/app_model.dart';
+import 'package:eliud_pkg_etc_model/model/member_action_model.dart';
 
 class ProfileAndFeedToAction {
   static List<MemberActionModel> getMemberActionModels(

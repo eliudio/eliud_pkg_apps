@@ -1,12 +1,18 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart'
-    as corerepo;
-import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
+    as mainrepo;
+import 'package:eliud_core_main/model/app_bar_model.dart';
+import 'package:eliud_core_main/model/body_component_model.dart';
+import 'package:eliud_core_main/model/drawer_model.dart';
+import 'package:eliud_core_main/model/home_menu_model.dart';
+import 'package:eliud_core_main/model/page_model.dart';
+import 'package:eliud_core_main/model/platform_medium_model.dart';
+import 'package:eliud_core_main/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_fundamentals/model/booklet_component.dart';
-import 'package:eliud_pkg_fundamentals/model/booklet_model.dart';
-import 'package:eliud_pkg_fundamentals/model/section_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_fundamentals_model/model/booklet_component.dart';
+import 'package:eliud_pkg_fundamentals_model/model/booklet_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/section_model.dart';
 
 import '../../install_app.dart';
 import '../../app_section.dart';
@@ -27,7 +33,7 @@ class Welcome extends AppSection {
   static String identifier = "welcome";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton
+    return await mainrepo.AbstractRepositorySingleton.singleton
         .pageRepository(JuuwleApp.juuwleAppId)!
         .add(_page(appBar));
   }

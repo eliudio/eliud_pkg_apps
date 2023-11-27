@@ -1,8 +1,8 @@
-import 'package:eliud_core_model/model/storage_conditions_model.dart';
+import 'package:eliud_core_main/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-import 'package:eliud_pkg_shop/model/product_image_model.dart';
-import 'package:eliud_pkg_shop/model/product_model.dart';
-import 'package:eliud_pkg_shop/model/shop_model.dart';
+import 'package:eliud_pkg_shop_model/model/product_image_model.dart';
+import 'package:eliud_pkg_shop_model/model/product_model.dart';
+import 'package:eliud_pkg_shop_model/model/shop_model.dart';
 
 import '../../install_app.dart';
 

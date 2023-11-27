@@ -1,10 +1,11 @@
 import 'dart:async';
 
-import 'package:eliud_core/model/abstract_repository_singleton.dart';
-import 'package:eliud_core/model/member_model.dart';
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart';
+import 'package:eliud_core_main/model/member_model.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart' as pr;
-import 'package:eliud_pkg_feed/model/member_profile_model.dart';
+import 'package:eliud_pkg_feed_model/model/abstract_repository_singleton.dart'
+    as pr;
+import 'package:eliud_pkg_feed_model/model/member_profile_model.dart';
 
 import '../minkey_app.dart';
 

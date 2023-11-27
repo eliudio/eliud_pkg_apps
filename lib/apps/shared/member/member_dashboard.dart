@@ -1,7 +1,10 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart'
-    as corerepo;
-import 'package:eliud_core/model/member_dashboard_component.dart';
-import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
+    as mainrepo;
+import 'package:eliud_core_model/model/abstract_repository_singleton.dart'
+    as modelrepo;
+import 'package:eliud_core_main/model/model_export.dart';
+import 'package:eliud_core_model/model/member_dashboard_component.dart';
+import 'package:eliud_core_model/model/member_dashboard_model.dart';
 
 import '../../app_section.dart';
 
@@ -37,7 +40,7 @@ Sorry to see you go. Your account has been destroyed.
   static String identifier = "member_dashboard";
 
   Future<DialogModel> _setupDialog() async {
-    return await corerepo.AbstractRepositorySingleton.singleton
+    return await mainrepo.AbstractRepositorySingleton.singleton
         .dialogRepository(installApp!.theApp.documentID)!
         .add(_dialog());
   }
@@ -80,7 +83,7 @@ Sorry to see you go. Your account has been destroyed.
   }
 
   Future<MemberDashboardModel> _setupDashboard() async {
-    return await corerepo.AbstractRepositorySingleton.singleton
+    return await modelrepo.AbstractRepositorySingleton.singleton
         .memberDashboardRepository(installApp!.theApp.documentID)!
         .add(_dashboardModel());
   }

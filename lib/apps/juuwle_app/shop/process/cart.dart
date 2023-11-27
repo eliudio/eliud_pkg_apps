@@ -1,13 +1,13 @@
-import 'package:eliud_core_model/model/background_model.dart';
-import 'package:eliud_core/model/display_conditions_model.dart';
-import 'package:eliud_core_model/model/storage_conditions_model.dart';
-import 'package:eliud_core/tools/action/action_model.dart';
+import 'package:eliud_core_main/apis/action_api/actions/goto_page.dart';
+import 'package:eliud_core_main/model/background_model.dart';
+import 'package:eliud_core_main/model/display_conditions_model.dart';
+import 'package:eliud_core_main/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/process/pay.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/shop.dart';
-import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_shop/model/cart_component.dart';
-import 'package:eliud_pkg_shop/model/cart_model.dart';
-import 'package:eliud_pkg_shop/model/shop_model.dart';
+import 'package:eliud_pkg_shop_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_shop_model/model/cart_component.dart';
+import 'package:eliud_pkg_shop_model/model/cart_model.dart';
+import 'package:eliud_pkg_shop_model/model/shop_model.dart';
 import 'package:eliud_pkg_shop/shop_package.dart';
 
 import '../../../shared/etc/page_template.dart';

@@ -1,8 +1,10 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart';
-import 'package:eliud_core/model/icon_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/menu_item_model.dart';
-import 'package:eliud_core/tools/action/action_model.dart';
+import 'package:eliud_core_main/apis/action_api/actions/goto_page.dart';
+import 'package:eliud_core_main/apis/action_api/actions/internal_action.dart';
+import 'package:eliud_core_main/apis/action_api/actions/popup_menu.dart';
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart';
+import 'package:eliud_core_main/model/icon_model.dart';
+import 'package:eliud_core_main/model/menu_def_model.dart';
+import 'package:eliud_core_main/model/menu_item_model.dart';
 import 'package:eliud_pkg_apps/apps/eliud_app/hello_world/pages.dart';
 import 'package:flutter/material.dart';
 

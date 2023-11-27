@@ -1,15 +1,15 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart'
-    as corerepo;
-import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
+    as mainrepo;
+import 'package:eliud_core_main/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_fundamentals/model/booklet_component.dart';
-import 'package:eliud_pkg_fundamentals/model/booklet_model.dart';
-import 'package:eliud_pkg_fundamentals/model/divider_component.dart';
-import 'package:eliud_pkg_fundamentals/model/fader_component.dart';
-import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
-import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
-import 'package:eliud_pkg_fundamentals/model/section_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_fundamentals_model/model/booklet_component.dart';
+import 'package:eliud_pkg_fundamentals_model/model/booklet_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/divider_component.dart';
+import 'package:eliud_pkg_fundamentals_model/model/fader_component.dart';
+import 'package:eliud_pkg_fundamentals_model/model/fader_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/listed_item_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/section_model.dart';
 
 import '../../install_app.dart';
 import '../../app_section.dart';
@@ -42,7 +42,7 @@ class Welcome extends AppSection {
   static String identifier = "welcome";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton
+    return await mainrepo.AbstractRepositorySingleton.singleton
         .pageRepository(EliudApp.eliudAppId)!
         .add(_page(appBar));
   }

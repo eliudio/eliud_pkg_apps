@@ -1,22 +1,31 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart'
-    as corerepo;
-import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_core/tools/action/action_model.dart';
+import 'package:eliud_core_main/apis/action_api/actions/goto_page.dart';
+import 'package:eliud_core_main/model/app_bar_model.dart';
+import 'package:eliud_core_main/model/background_model.dart';
+import 'package:eliud_core_main/model/body_component_model.dart';
+import 'package:eliud_core_main/model/decoration_color_model.dart';
+import 'package:eliud_core_main/model/drawer_model.dart';
+import 'package:eliud_core_main/model/home_menu_model.dart';
+import 'package:eliud_core_main/model/page_model.dart';
+import 'package:eliud_core_main/model/platform_medium_model.dart';
+import 'package:eliud_core_main/model/storage_conditions_model.dart';
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
+    as mainrepo;
+import 'package:eliud_core_main/apis/action_api/action_model.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/shop/products.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_fundamentals/model/divider_component.dart';
-import 'package:eliud_pkg_fundamentals/model/fader_component.dart';
-import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
-import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
-import 'package:eliud_pkg_fundamentals/model/presentation_component.dart';
-import 'package:eliud_pkg_fundamentals/model/presentation_model.dart';
-import 'package:eliud_pkg_shop/model/abstract_repository_singleton.dart'
+import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_fundamentals_model/model/divider_component.dart';
+import 'package:eliud_pkg_fundamentals_model/model/fader_component.dart';
+import 'package:eliud_pkg_fundamentals_model/model/fader_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/listed_item_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/presentation_component.dart';
+import 'package:eliud_pkg_fundamentals_model/model/presentation_model.dart';
+import 'package:eliud_pkg_shop_model/model/abstract_repository_singleton.dart'
     as shoprepo;
-import 'package:eliud_pkg_shop/model/model_export.dart';
-import 'package:eliud_pkg_shop/model/shop_front_component.dart';
+import 'package:eliud_pkg_shop_model/model/model_export.dart';
+import 'package:eliud_pkg_shop_model/model/shop_front_component.dart';
 
 import '../../install_app.dart';
 import '../../app_section.dart';
@@ -45,7 +54,7 @@ class Shop extends AppSection {
 
   Future<PageModel> _setupPage(
       AppBarModel appBar, String? presentationDocumentId) async {
-    return await corerepo.AbstractRepositorySingleton.singleton
+    return await mainrepo.AbstractRepositorySingleton.singleton
         .pageRepository(JuuwleApp.juuwleAppId)!
         .add(_page(appBar, presentationDocumentId));
   }

@@ -1,4 +1,4 @@
-import 'package:eliud_core_model/model/rgb_model.dart';
+import 'package:eliud_core_main/model/rgb_model.dart';
 
 class EliudColors {
   static RgbModel lightRed = RgbModel(r: 145, g: 0, b: 0, opacity: 0.50);

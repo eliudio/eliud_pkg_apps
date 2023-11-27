@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:eliud_core_model/model/storage_conditions_model.dart';
-import 'package:eliud_core_model/tools/etc/random.dart';
-import 'package:eliud_core/tools/storage/platform_medium_helper.dart';
-import 'package:eliud_pkg_medium/model/album_entry_model.dart';
+import 'package:eliud_core_main/model/storage_conditions_model.dart';
+import 'package:eliud_core_helpers/etc/random.dart';
+import 'package:eliud_core_main/storage/platform_medium_helper.dart';
+import 'package:eliud_pkg_medium_model/model/album_entry_model.dart';
 
 import '../minkey_app.dart';
 

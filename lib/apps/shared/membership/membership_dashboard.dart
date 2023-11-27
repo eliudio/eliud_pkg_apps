@@ -1,12 +1,12 @@
 import 'package:eliud_core/core_package.dart';
-import 'package:eliud_core/model/abstract_repository_singleton.dart'
+import 'package:eliud_core_main/apis/action_api/actions/open_dialog.dart';
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
     as corerepo;
-import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_core/tools/action/action_model.dart';
+import 'package:eliud_core_main/model/model_export.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/profile_and_feed_to_action.dart';
-import 'package:eliud_pkg_membership/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_membership/model/membership_dashboard_component.dart';
-import 'package:eliud_pkg_membership/model/membership_dashboard_model.dart';
+import 'package:eliud_pkg_membership_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_membership_model/model/membership_dashboard_component.dart';
+import 'package:eliud_pkg_membership_model/model/membership_dashboard_model.dart';
 
 import '../../app_section.dart';
 

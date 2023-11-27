@@ -1,5 +1,5 @@
 /*
-import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core_main/model/model_export.dart';
 import 'package:eliud_pkg_feed/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_feed/model/feed_model.dart';
 import 'package:eliud_pkg_feed/model/header_model.dart';

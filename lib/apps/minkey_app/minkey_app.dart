@@ -1,34 +1,29 @@
-import 'package:eliud_core/model/admin_app.dart' as coreadmin;
-import 'package:eliud_core/model/app_home_page_references_model.dart';
-import 'package:eliud_core_model/model/app_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/icon_model.dart';
-import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/menu_item_model.dart';
-import 'package:eliud_core/model/public_medium_model.dart';
-import 'package:eliud_core_model/style/frontend/has_drawer.dart';
-import 'package:eliud_core/tools/action/action_model.dart';
-import 'package:eliud_core/tools/admin_app_base.dart';
-import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
+import 'package:eliud_core_main/apis/action_api/actions/internal_action.dart';
+import 'package:eliud_core_main/model/app_home_page_references_model.dart';
+import 'package:eliud_core_main/model/app_model.dart';
+import 'package:eliud_core_main/model/drawer_model.dart';
+import 'package:eliud_core_main/model/icon_model.dart';
+import 'package:eliud_core_main/model/menu_def_model.dart';
+import 'package:eliud_core_main/model/menu_item_model.dart';
+import 'package:eliud_core_main/model/public_medium_model.dart';
+import 'package:eliud_core_main/apis/style/frontend/has_drawer.dart';
+import 'package:eliud_core_main/tools/main_abstract_repository_singleton.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/notifications/minkey_notification_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/store/play_store.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/welcome/welcome.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/workflow/workflow_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
-import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/assignments/assignment_view_setup.dart';
 import 'package:eliud_pkg_apps/apps/shared/chat/chat_page.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/member/member_dashboard.dart';
 import 'package:eliud_pkg_apps/apps/shared/notifications/notification_dashboard.dart';
 import 'package:eliud_pkg_create/tools/defaults.dart' as defaults;
-import 'package:eliud_pkg_fundamentals/model/admin_app.dart' as fundamentals;
 import 'package:eliud_stl_mona/mona_style_family.dart';
 import 'package:flutter/material.dart';
 
 import '../install_app.dart';
 import 'about/about.dart';
-import 'admin/admin.dart';
 import 'album/album.dart';
 import 'assignments/minkey_assignments.dart';
 import 'blocked/minkey_blocked.dart';
@@ -124,21 +119,6 @@ class MinkeyApp extends InstallApp {
     return await AbstractMainRepositorySingleton.singleton
         .appRepository()!
         .update(application);
-  }
-
-  @override
-  AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer) => Admin(
-      installApp: this,
-      homeMenu: homeMenu(),
-      drawer: drawer,
-      endDrawer: endDrawer);
-
-  @override
-  List<AdminAppWiperBase> adminAppWipers() {
-    return [
-      coreadmin.AdminAppWiper(),
-      fundamentals.AdminAppWiper(),
-    ];
   }
 
   @override

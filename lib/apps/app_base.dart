@@ -1,7 +1,8 @@
-import 'package:eliud_core/core/blocs/access/access_bloc.dart';
-import 'package:eliud_core/model/abstract_repository_singleton.dart';
-import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
+import 'package:eliud_core/access/access_bloc.dart';
+import 'package:eliud_core_main/model/app_model.dart';
+import 'package:eliud_core_main/model/member_model.dart';
+import 'package:eliud_core_main/tools/main_abstract_repository_singleton.dart';
+import 'package:eliud_core_model/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_create/tools/new_app_functions.dart';
 
 abstract class AppBase {

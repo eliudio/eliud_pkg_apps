@@ -1,11 +1,11 @@
-import 'package:eliud_core/model/app_bar_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/home_menu_model.dart';
-import 'package:eliud_core/model/member_model.dart';
-import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core_main/model/app_bar_model.dart';
+import 'package:eliud_core_main/model/drawer_model.dart';
+import 'package:eliud_core_main/model/home_menu_model.dart';
+import 'package:eliud_core_main/model/member_model.dart';
+import 'package:eliud_core_main/model/page_model.dart';
 import 'package:eliud_pkg_apps/apps/eliud_app/eliud_app.dart';
 import 'package:eliud_pkg_apps/apps/tools/tutorial_tools.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton.dart';
 
 class HelloWorldPages {
   static final String _gotoHomeFirebase =

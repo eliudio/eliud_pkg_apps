@@ -1,5 +1,5 @@
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core_main/model/drawer_model.dart';
+import 'package:eliud_core_main/model/home_menu_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/about/founders/founders.dart';
 
 import '../../install_app.dart';

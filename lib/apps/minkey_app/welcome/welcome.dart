@@ -1,17 +1,24 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart'
-    as corerepo;
-import 'package:eliud_core/model/model_export.dart';
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
+    as mainrepo;
 import 'package:eliud_core/tools/tool_set.dart';
+import 'package:eliud_core_main/model/app_bar_model.dart';
+import 'package:eliud_core_main/model/body_component_model.dart';
+import 'package:eliud_core_main/model/display_conditions_model.dart';
+import 'package:eliud_core_main/model/drawer_model.dart';
+import 'package:eliud_core_main/model/home_menu_model.dart';
+import 'package:eliud_core_main/model/page_model.dart';
+import 'package:eliud_core_main/model/platform_medium_model.dart';
+import 'package:eliud_core_main/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_fundamentals/model/divider_component.dart';
-import 'package:eliud_pkg_fundamentals/model/document_component.dart';
-import 'package:eliud_pkg_fundamentals/model/document_item_model.dart';
-import 'package:eliud_pkg_fundamentals/model/document_model.dart';
-import 'package:eliud_pkg_fundamentals/model/fader_component.dart';
-import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
-import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_fundamentals_model/model/divider_component.dart';
+import 'package:eliud_pkg_fundamentals_model/model/document_component.dart';
+import 'package:eliud_pkg_fundamentals_model/model/document_item_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/document_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/fader_component.dart';
+import 'package:eliud_pkg_fundamentals_model/model/fader_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/listed_item_model.dart';
 
 import '../../install_app.dart';
 import '../../app_section.dart';
@@ -52,7 +59,7 @@ class Welcome extends AppSection {
 
   Future<PageModel> _setupPage(AppBarModel appBar,
       PrivilegeLevelRequiredSimple privilegeLevelRequired) async {
-    return await corerepo.AbstractRepositorySingleton.singleton
+    return await mainrepo.AbstractRepositorySingleton.singleton
         .pageRepository(installApp!.theApp.documentID)!
         .add(_page(appBar, privilegeLevelRequired));
   }

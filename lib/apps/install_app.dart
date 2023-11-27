@@ -1,19 +1,33 @@
+import 'package:eliud_core_main/apis/action_api/actions/internal_action.dart';
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
+    as mainrepo;
+import 'package:eliud_core_model/model/abstract_repository_singleton.dart'
+    as modelrepo;
 import 'package:eliud_core/core/components/page_constructors/eliud_appbar.dart';
-import 'package:eliud_core/model/abstract_repository_singleton.dart'
-    as corerepo;
-import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_core_model/style/frontend/has_drawer.dart';
-import 'package:eliud_core/tools/action/action_model.dart';
-import 'package:eliud_core/tools/admin_app_base.dart';
+import 'package:eliud_core_main/apis/style/frontend/has_drawer.dart';
+import 'package:eliud_core_main/model/app_bar_model.dart';
+import 'package:eliud_core_main/model/app_home_page_references_model.dart';
+import 'package:eliud_core_main/model/background_model.dart';
+import 'package:eliud_core_main/model/decoration_color_model.dart';
+import 'package:eliud_core_main/model/drawer_model.dart';
+import 'package:eliud_core_main/model/home_menu_model.dart';
+import 'package:eliud_core_main/model/menu_def_model.dart';
+import 'package:eliud_core_main/model/menu_item_model.dart';
+import 'package:eliud_core_main/model/page_model.dart';
+import 'package:eliud_core_main/model/platform_medium_model.dart';
+import 'package:eliud_core_main/model/pos_size_model.dart';
+import 'package:eliud_core_main/model/public_medium_model.dart';
+import 'package:eliud_core_main/model/rgb_model.dart';
+import 'package:eliud_core_main/model/storage_conditions_model.dart';
+import 'package:eliud_core_model/model/app_policy_model.dart';
 import 'package:eliud_pkg_create/tools/defaults.dart' as defaults;
-import 'package:eliud_pkg_apps/apps/shared/admin/admin.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/grid_views.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/policies/policy_page.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_fundamentals/model/divider_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_fundamentals_model/model/divider_model.dart';
 import 'package:flutter/material.dart';
 
 import 'app_base.dart';
@@ -21,10 +35,6 @@ import 'app_base.dart';
 abstract class InstallApp extends AppBase {
   List<PageModel>? policyPages;
   AppBarModel? theAppBar;
-  // adminAppWipers are used to delete the admin part of the app
-  List<AdminAppWiperBase> adminAppWipers();
-  // adminBase is used to install the admin part of the app
-  AdminBase adminBase(DrawerModel drawer, DrawerModel endDrawer);
 
   Future<void> setupApplication(AppHomePageReferencesModel homePages,
       String ownerID, PublicMediumModel? logo);
@@ -126,7 +136,7 @@ abstract class InstallApp extends AppBase {
   }
 
   Future<DrawerModel> setupDrawer(PublicMediumModel? logo) async {
-    return await corerepo.AbstractRepositorySingleton.singleton
+    return await mainrepo.AbstractRepositorySingleton.singleton
         .drawerRepository(theApp.documentID)!
         .add(_drawer(logo));
   }
@@ -152,7 +162,7 @@ abstract class InstallApp extends AppBase {
   }
 
   Future<DrawerModel> setupProfileDrawer() async {
-    return await corerepo.AbstractRepositorySingleton.singleton
+    return await mainrepo.AbstractRepositorySingleton.singleton
         .drawerRepository(theApp.documentID)!
         .add(_profileDrawer());
   }
@@ -168,16 +178,16 @@ abstract class InstallApp extends AppBase {
   }
 
   Future<void> setupMenus() async {
-    await corerepo.AbstractRepositorySingleton.singleton
+    await mainrepo.AbstractRepositorySingleton.singleton
         .homeMenuRepository(theApp.documentID)!
         .add(homeMenu());
-    await corerepo.AbstractRepositorySingleton.singleton
+    await mainrepo.AbstractRepositorySingleton.singleton
         .menuDefRepository(theApp.documentID)!
         .add(homeMenuDef());
-    await corerepo.AbstractRepositorySingleton.singleton
+    await mainrepo.AbstractRepositorySingleton.singleton
         .menuDefRepository(theApp.documentID)!
         .add(drawerMenuDef());
-    await corerepo.AbstractRepositorySingleton.singleton
+    await mainrepo.AbstractRepositorySingleton.singleton
         .menuDefRepository(theApp.documentID)!
         .add(profileDrawerMenuDef());
   }
@@ -228,7 +238,7 @@ abstract class InstallApp extends AppBase {
       RgbModel? iconColorOverride,
       RgbModel? selectedIconColorOverride,
       RgbModel? menuBackgroundColorOverride}) async {
-    return await corerepo.AbstractRepositorySingleton.singleton
+    return await mainrepo.AbstractRepositorySingleton.singleton
         .appBarRepository(theApp.documentID)!
         .add(_appBar(documentID, menu, title,
             backgroundOverride: backgroundOverride,
@@ -255,20 +265,17 @@ abstract class InstallApp extends AppBase {
     thePlatformLogo = await _platformMediumModel(logoAssetLocation());
     var endDrawer = await setupProfileDrawer();
     var drawer = await setupDrawer(thePublicLogo);
-    var theAdminBase = adminBase(drawer, endDrawer);
 
     await GridViews().run(theApp.documentID);
-    var adminMenu =
-        await _appBarMenu("Menu", await theAdminBase.installAdminMenus());
+    var menu = await _appBarMenu("Menu");
 
     theAppBar = await setupAppBar(
       "APPBAR",
-      adminMenu,
+      menu,
       EliudAppBar.pageTitleKeyword,
     );
     await setupAppPoliciesAndPages(drawer, endDrawer);
 
-    await theAdminBase.installAdminAppss(adminMenu);
     await setupMenus();
     //await setupPosSizes();
     await setupDividers();
@@ -282,7 +289,9 @@ abstract class InstallApp extends AppBase {
 */
   List<MenuItemModel>? extraMenuItems();
 
-  MenuDefModel _appBarMenuDef(String title, MenuDefModel adminMenu) {
+  MenuDefModel _appBarMenuDef(
+    String title,
+  ) {
     List<MenuItemModel>? extraItems = extraMenuItems();
     var menuItems = <MenuItemModel>[];
     if (extraItems != null) menuItems.addAll(extraItems);
@@ -294,15 +303,6 @@ abstract class InstallApp extends AppBase {
           action: InternalAction(theApp,
               internalActionEnum: InternalActionEnum.login)),
     );
-    menuItems.add(MenuItemModel(
-        documentID: '3',
-        text: 'Admin',
-        description: 'Admin',
-        icon: IconModel(
-            codePoint: Icons.settings.codePoint,
-            fontFamily: Icons.settings.fontFamily),
-        action: PopupMenu(theApp, menuDef: adminMenu)));
-
     var menu = MenuDefModel(
         documentID: defaults.appBarID(theApp.documentID),
         appId: theApp.documentID,
@@ -311,10 +311,14 @@ abstract class InstallApp extends AppBase {
     return menu;
   }
 
-  Future<MenuDefModel> _appBarMenu(String title, MenuDefModel adminMenu) async {
-    return await corerepo.AbstractRepositorySingleton.singleton
+  Future<MenuDefModel> _appBarMenu(
+    String title,
+  ) async {
+    return await mainrepo.AbstractRepositorySingleton.singleton
         .menuDefRepository(theApp.documentID)!
-        .add(_appBarMenuDef(title, adminMenu));
+        .add(_appBarMenuDef(
+          title,
+        ));
   }
 
   // Policy
@@ -350,7 +354,7 @@ abstract class InstallApp extends AppBase {
         appId: theApp.documentID,
         name: 'Privacy Policy',
         policy: privacyPolicy);
-    await corerepo
+    await modelrepo
         .appPolicyRepository(appId: theApp.documentID)!
         .add(privacyPolicyModel);
     var termsOfServiceModel = AppPolicyModel(
@@ -358,7 +362,7 @@ abstract class InstallApp extends AppBase {
         appId: theApp.documentID,
         name: 'Terms of Service',
         policy: termsOfServicePolicy);
-    await corerepo
+    await modelrepo
         .appPolicyRepository(appId: theApp.documentID)!
         .add(termsOfServiceModel);
     var disclaimerModel = AppPolicyModel(
@@ -366,7 +370,7 @@ abstract class InstallApp extends AppBase {
         appId: theApp.documentID,
         name: 'Disclaimer',
         policy: disclaimerPolicy);
-    await corerepo
+    await modelrepo
         .appPolicyRepository(appId: theApp.documentID)!
         .add(disclaimerModel);
 

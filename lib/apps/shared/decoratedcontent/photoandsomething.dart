@@ -1,11 +1,11 @@
-import 'package:eliud_core/model/platform_medium_model.dart';
-import 'package:eliud_core_model/model/storage_conditions_model.dart';
+import 'package:eliud_core_main/model/platform_medium_model.dart';
+import 'package:eliud_core_main/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/decoratedcontent/decoratedcontent.dart';
 import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_fundamentals/model/decorated_content_model.dart';
-import 'package:eliud_pkg_fundamentals/model/simple_image_component.dart';
-import 'package:eliud_pkg_fundamentals/model/simple_image_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_fundamentals_model/model/decorated_content_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/simple_image_component.dart';
+import 'package:eliud_pkg_fundamentals_model/model/simple_image_model.dart';
 
 abstract class PhotoAndSomthing extends DecoratedContent {
   PhotoAndSomthing(super.identifier, super.installApp, super.homeMenu,

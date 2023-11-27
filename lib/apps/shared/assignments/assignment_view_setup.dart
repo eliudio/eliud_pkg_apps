@@ -1,10 +1,14 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart'
-    as corerepo;
-import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_core/tools/action/action_model.dart';
-import 'package:eliud_pkg_workflow/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_workflow/model/assignment_view_component.dart';
-import 'package:eliud_pkg_workflow/model/assignment_view_model.dart';
+import 'package:eliud_core_main/apis/action_api/actions/open_dialog.dart';
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
+    as mainrepo;
+import 'package:eliud_core_main/model/app_model.dart';
+import 'package:eliud_core_main/model/body_component_model.dart';
+import 'package:eliud_core_main/model/dialog_model.dart';
+import 'package:eliud_core_main/model/display_conditions_model.dart';
+import 'package:eliud_core_main/model/storage_conditions_model.dart';
+import 'package:eliud_pkg_workflow_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_workflow_model/model/assignment_view_component.dart';
+import 'package:eliud_pkg_workflow_model/model/assignment_view_model.dart';
 import 'package:eliud_pkg_workflow/workflow_package.dart';
 
 import '../../app_section.dart';
@@ -24,7 +28,7 @@ class AssignmentViewSetup extends AppSectionBase {
       dialogID: AssignmentViewSetup.identifier);
 
   Future<DialogModel> _setupDialog() async {
-    return await corerepo.AbstractRepositorySingleton.singleton
+    return await mainrepo.AbstractRepositorySingleton.singleton
         .dialogRepository(installApp!.theApp.documentID)!
         .add(_dialog());
   }

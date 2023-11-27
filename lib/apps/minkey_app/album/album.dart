@@ -1,10 +1,16 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart'
-    as corerepo;
-import 'package:eliud_pkg_medium/model/album_model.dart';
-import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_pkg_medium/model/album_component.dart';
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
+    as mainrepo;
+import 'package:eliud_core_main/model/app_bar_model.dart';
+import 'package:eliud_core_main/model/body_component_model.dart';
+import 'package:eliud_core_main/model/drawer_model.dart';
+import 'package:eliud_core_main/model/home_menu_model.dart';
+import 'package:eliud_core_main/model/member_model.dart';
+import 'package:eliud_core_main/model/page_model.dart';
+import 'package:eliud_core_main/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
-import 'package:eliud_pkg_medium/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_medium_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_medium_model/model/album_component.dart';
+import 'package:eliud_pkg_medium_model/model/album_model.dart';
 
 import '../../install_app.dart';
 import '../../app_section.dart';
@@ -26,7 +32,7 @@ class Album extends AppSection {
   static String identifier = "album";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton
+    return await mainrepo.AbstractRepositorySingleton.singleton
         .pageRepository(installApp!.theApp.documentID)!
         .add(_page(appBar));
   }

@@ -1,9 +1,9 @@
 /*
-import 'package:eliud_core/model/abstract_repository_singleton.dart'
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
     as coreRepo;
 import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_core/tools/action/action_model.dart';
+import 'package:eliud_core_main/model/model_export.dart';
+import 'package:eliud_core_main/apis/action_api/action_model.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/feed/profile.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';

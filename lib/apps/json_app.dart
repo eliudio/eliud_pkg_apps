@@ -1,5 +1,5 @@
-import 'package:eliud_core/tools/main_abstract_repository_singleton.dart';
 import 'dart:async';
+import 'package:eliud_core_main/tools/main_abstract_repository_singleton.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:eliud_pkg_create/jsontomodeltojson/jsontomodelhelper.dart';
 

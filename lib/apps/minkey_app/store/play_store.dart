@@ -1,25 +1,25 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart'
-    as corerepo;
-import 'package:eliud_core/model/app_bar_model.dart';
-import 'package:eliud_core_model/model/background_model.dart';
-import 'package:eliud_core/model/body_component_model.dart';
-import 'package:eliud_core/model/decoration_color_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/home_menu_model.dart';
-import 'package:eliud_core/model/page_model.dart';
-import 'package:eliud_core_model/model/rgb_model.dart';
-import 'package:eliud_core/model/shadow_model.dart';
-import 'package:eliud_core_model/model/storage_conditions_model.dart';
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
+    as mainrepo;
+import 'package:eliud_core_main/model/app_bar_model.dart';
+import 'package:eliud_core_main/model/background_model.dart';
+import 'package:eliud_core_main/model/body_component_model.dart';
+import 'package:eliud_core_main/model/decoration_color_model.dart';
+import 'package:eliud_core_main/model/drawer_model.dart';
+import 'package:eliud_core_main/model/home_menu_model.dart';
+import 'package:eliud_core_main/model/page_model.dart';
+import 'package:eliud_core_main/model/rgb_model.dart';
+import 'package:eliud_core_main/model/shadow_model.dart';
+import 'package:eliud_core_main/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_fundamentals/model/divider_component.dart';
-import 'package:eliud_pkg_fundamentals/model/fader_component.dart';
-import 'package:eliud_pkg_fundamentals/model/fader_model.dart';
-import 'package:eliud_pkg_fundamentals/model/listed_item_model.dart';
-import 'package:eliud_pkg_create/model/play_store_component.dart';
-import 'package:eliud_pkg_create/model/play_store_model.dart';
-import 'package:eliud_pkg_create/model/abstract_repository_singleton.dart'
+import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_fundamentals_model/model/divider_component.dart';
+import 'package:eliud_pkg_fundamentals_model/model/fader_component.dart';
+import 'package:eliud_pkg_fundamentals_model/model/fader_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/listed_item_model.dart';
+import 'package:eliud_pkg_create_model/model/play_store_component.dart';
+import 'package:eliud_pkg_create_model/model/play_store_model.dart';
+import 'package:eliud_pkg_create_model/model/abstract_repository_singleton.dart'
     as creator;
 
 import '../../install_app.dart';
@@ -36,7 +36,7 @@ class PlayStore extends AppSection {
   static String identifier = "playstore";
 
   Future<PageModel> _setupPage(AppBarModel appBar) async {
-    return await corerepo.AbstractRepositorySingleton.singleton
+    return await mainrepo.AbstractRepositorySingleton.singleton
         .pageRepository(installApp!.theApp.documentID)!
         .add(_page(appBar));
   }

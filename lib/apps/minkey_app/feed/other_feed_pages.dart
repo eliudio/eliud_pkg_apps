@@ -1,22 +1,22 @@
 /*
-import 'package:eliud_core/model/abstract_repository_singleton.dart'
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
     as corerepo;
-import 'package:eliud_core/model/app_bar_model.dart';
-import 'package:eliud_core/model/body_component_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/home_menu_model.dart';
+import 'package:eliud_core_main/model/app_bar_model.dart';
+import 'package:eliud_core_main/model/body_component_model.dart';
+import 'package:eliud_core_main/model/drawer_model.dart';
+import 'package:eliud_core_main/model/home_menu_model.dart';
 import 'package:eliud_core/model/menu_def_model.dart';
-import 'package:eliud_core/model/model_export.dart';
-import 'package:eliud_core/model/page_model.dart';
+import 'package:eliud_core_main/model/model_export.dart';
+import 'package:eliud_core_main/model/page_model.dart';
 import 'package:eliud_pkg_apps/apps/minkey_app/minkey_app.dart';
 import 'package:eliud_pkg_apps/apps/shared/follow/follow_dashboards.dart';
 import 'package:eliud_pkg_apps/apps/shared/membership/membership_dashboard.dart';
 import 'package:eliud_pkg_feed/model/feed_menu_component.dart';
 import 'package:eliud_pkg_feed/model/header_component.dart';
-import 'package:eliud_pkg_follow/model/follow_requests_dashboard_component.dart';
-import 'package:eliud_pkg_follow/model/following_dashboard_component.dart';
-import 'package:eliud_pkg_follow/model/invite_dashboard_component.dart';
-import 'package:eliud_pkg_membership/model/membership_dashboard_component.dart';
+import 'package:eliud_pkg_follow_model/model/follow_requests_dashboard_component.dart';
+import 'package:eliud_pkg_follow_model/model/following_dashboard_component.dart';
+import 'package:eliud_pkg_follow_model/model/invite_dashboard_component.dart';
+import 'package:eliud_pkg_membership_model/model/membership_dashboard_component.dart';
 
 import '../../install_app.dart';
 import '../../app_section.dart';

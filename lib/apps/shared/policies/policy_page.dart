@@ -1,15 +1,15 @@
-import 'package:eliud_core/model/abstract_repository_singleton.dart'
+import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
     as corerepo;
-import 'package:eliud_core/model/app_bar_model.dart';
-import 'package:eliud_core/model/app_policy_model.dart';
-import 'package:eliud_core/model/body_component_model.dart';
-import 'package:eliud_core/model/drawer_model.dart';
-import 'package:eliud_core/model/home_menu_model.dart';
-import 'package:eliud_core/model/page_model.dart';
-import 'package:eliud_core_model/model/storage_conditions_model.dart';
-import 'package:eliud_pkg_etc/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_etc/model/policy_presentation_component.dart';
-import 'package:eliud_pkg_etc/model/policy_presentation_model.dart';
+import 'package:eliud_core_main/model/app_bar_model.dart';
+import 'package:eliud_core_main/model/body_component_model.dart';
+import 'package:eliud_core_main/model/drawer_model.dart';
+import 'package:eliud_core_main/model/home_menu_model.dart';
+import 'package:eliud_core_main/model/page_model.dart';
+import 'package:eliud_core_main/model/storage_conditions_model.dart';
+import 'package:eliud_core_model/model/app_policy_model.dart';
+import 'package:eliud_pkg_etc_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_etc_model/model/policy_presentation_component.dart';
+import 'package:eliud_pkg_etc_model/model/policy_presentation_model.dart';
 
 import '../../install_app.dart';
 import '../../app_section.dart';

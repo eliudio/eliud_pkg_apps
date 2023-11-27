@@ -1,9 +1,9 @@
-import 'package:eliud_core_model/model/storage_conditions_model.dart';
+import 'package:eliud_core_main/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/decoratedcontent/photoandsomething.dart';
-import 'package:eliud_pkg_fundamentals/model/abstract_repository_singleton.dart';
-import 'package:eliud_pkg_fundamentals/model/decorated_content_model.dart';
-import 'package:eliud_pkg_fundamentals/model/simple_text_component.dart';
-import 'package:eliud_pkg_fundamentals/model/simple_text_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton.dart';
+import 'package:eliud_pkg_fundamentals_model/model/decorated_content_model.dart';
+import 'package:eliud_pkg_fundamentals_model/model/simple_text_component.dart';
+import 'package:eliud_pkg_fundamentals_model/model/simple_text_model.dart';
 
 abstract class OnlyPhotoAndText extends PhotoAndSomthing {
   OnlyPhotoAndText(

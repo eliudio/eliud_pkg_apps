@@ -1,4 +1,4 @@
-import 'package:eliud_core/model/menu_def_model.dart';
+import 'package:eliud_core_main/model/menu_def_model.dart';
 
 abstract class Runner {
   Future<void> run();
