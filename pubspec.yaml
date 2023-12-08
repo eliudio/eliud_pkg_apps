@@ -23,9 +23,9 @@ dependencies:
     path: ../eliud_pkg_fundamentals_model
   eliud_pkg_shop:
     path: ../eliud_pkg_shop
-  eliud_pkg_feed: 
+  eliud_pkg_feed:
     path: ../eliud_pkg_feed
-  eliud_pkg_notifications: 
+  eliud_pkg_notifications:
     path: ../eliud_pkg_notifications
   eliud_pkg_workflow:
     path: ../eliud_pkg_workflow

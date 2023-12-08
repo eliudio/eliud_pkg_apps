@@ -63,7 +63,7 @@ class _FollowingDashboard extends AppSectionBase {
       appId: installApp!.theApp.documentID,
       description: title,
       view: view,
-      memberActions: ProfileAndFeedToAction.getMemberActionModels(
+      memberActions: AppProfileAndFeedToAction.getMemberActionModels(
           installApp!.theApp, profilePageId, feedPageId),
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
@@ -121,7 +121,7 @@ class FollowRequestDashboard extends AppSectionBase {
       documentID: followRequestIdentifier,
       appId: installApp!.theApp.documentID,
       description: "Follow requests",
-      memberActions: ProfileAndFeedToAction.getMemberActionModels(
+      memberActions: AppProfileAndFeedToAction.getMemberActionModels(
           installApp!.theApp, profilePageId, feedPageId),
       conditions: StorageConditionsModel(
           privilegeLevelRequired:
@@ -179,7 +179,7 @@ class InviteDashboard extends AppSectionBase {
       documentID: inviteIdentifier,
       appId: installApp!.theApp.documentID,
       description: "Follow members",
-      memberActions: ProfileAndFeedToAction.getMemberActionModels(
+      memberActions: AppProfileAndFeedToAction.getMemberActionModels(
           installApp!.theApp, profilePageId, feedPageId),
       conditions: StorageConditionsModel(
           privilegeLevelRequired:

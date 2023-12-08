@@ -1,4 +1,6 @@
+import 'package:eliud_core_helpers/etc/random.dart';
 import 'package:eliud_core_main/apis/action_api/actions/goto_page.dart';
+import 'package:eliud_core_main/apis/style/_default/tools/colors.dart';
 import 'package:eliud_core_main/model/app_bar_model.dart';
 import 'package:eliud_core_main/model/background_model.dart';
 import 'package:eliud_core_main/model/body_component_model.dart';
@@ -12,9 +14,6 @@ import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
     as mainrepo;
 import 'package:eliud_core_main/apis/action_api/action_model.dart';
 import 'package:eliud_pkg_apps/apps/juuwle_app/juuwle_app.dart';
-import 'package:eliud_pkg_apps/apps/juuwle_app/shop/products.dart';
-import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
-import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals_model/model/divider_component.dart';
 import 'package:eliud_pkg_fundamentals_model/model/fader_component.dart';
@@ -22,6 +21,8 @@ import 'package:eliud_pkg_fundamentals_model/model/fader_model.dart';
 import 'package:eliud_pkg_fundamentals_model/model/listed_item_model.dart';
 import 'package:eliud_pkg_fundamentals_model/model/presentation_component.dart';
 import 'package:eliud_pkg_fundamentals_model/model/presentation_model.dart';
+import 'package:eliud_pkg_shop/wizards/builders/util/image_tools.dart';
+import 'package:eliud_pkg_shop/wizards/builders/util/products.dart';
 import 'package:eliud_pkg_shop_model/model/abstract_repository_singleton.dart'
     as shoprepo;
 import 'package:eliud_pkg_shop_model/model/model_export.dart';
@@ -252,7 +253,7 @@ class Shop extends AppSection {
   Future<PlatformMediumModel> uploadImage() async {
     return await ImageTools.uploadPlatformPhoto(
         installApp!.theApp,
-        installApp!.member!,
+        installApp!.member!.documentID,
         'packages/eliud_pkg_apps/assets/juuwle_app/decorating/charlotte_presenting.png',
         PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
@@ -265,7 +266,7 @@ class Shop extends AppSection {
     await _setupShopFronts();
     var appBar = installApp!.appBar();
     var shop = await _setupShop();
-    await Products(installApp, shop).run();
+    await Products(shop: shop, uniqueId: newRandomKey(), app: installApp!.theApp, memberId: installApp!.member!.documentID).run();
     await _setupFader();
     await _setupPage(appBar, presentationDocumentId);
     return shop;

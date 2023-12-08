@@ -19,6 +19,7 @@ import 'package:eliud_pkg_fundamentals_model/model/document_model.dart';
 import 'package:eliud_pkg_fundamentals_model/model/fader_component.dart';
 import 'package:eliud_pkg_fundamentals_model/model/fader_model.dart';
 import 'package:eliud_pkg_fundamentals_model/model/listed_item_model.dart';
+import 'package:eliud_pkg_shop/wizards/builders/util/image_tools.dart';
 
 import '../../install_app.dart';
 import '../../app_section.dart';
@@ -115,7 +116,7 @@ class Welcome extends AppSection {
   Future<PlatformMediumModel> androidImage() async {
     return await ImageTools.uploadPlatformPhoto(
         installApp!.theApp,
-        installApp!.member!,
+        installApp!.member!.documentID,
         'packages/eliud_pkg_apps/assets/minkey_app/devices/android.jpg',
         PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
@@ -123,7 +124,7 @@ class Welcome extends AppSection {
   Future<PlatformMediumModel> iphoneImage() async {
     return await ImageTools.uploadPlatformPhoto(
         installApp!.theApp,
-        installApp!.member!,
+        installApp!.member!.documentID,
         'packages/eliud_pkg_apps/assets/minkey_app/devices/iphone.jpg',
         PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
@@ -131,7 +132,7 @@ class Welcome extends AppSection {
   Future<PlatformMediumModel> tabletImage() async {
     return await ImageTools.uploadPlatformPhoto(
         installApp!.theApp,
-        installApp!.member!,
+        installApp!.member!.documentID,
         'packages/eliud_pkg_apps/assets/minkey_app/devices/tablet.jpg',
         PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
@@ -139,7 +140,7 @@ class Welcome extends AppSection {
   Future<PlatformMediumModel> macbookImage() async {
     return await ImageTools.uploadPlatformPhoto(
         installApp!.theApp,
-        installApp!.member!,
+        installApp!.member!.documentID,
         'packages/eliud_pkg_apps/assets/minkey_app/devices/macbook.jpg',
         PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }

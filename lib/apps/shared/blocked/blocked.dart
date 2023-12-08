@@ -12,6 +12,7 @@ import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton
 import 'package:eliud_pkg_fundamentals_model/model/booklet_component.dart';
 import 'package:eliud_pkg_fundamentals_model/model/booklet_model.dart';
 import 'package:eliud_pkg_fundamentals_model/model/section_model.dart';
+import 'package:eliud_pkg_shop/wizards/builders/util/image_tools.dart';
 
 import '../../install_app.dart';
 import '../../app_section.dart';
@@ -61,7 +62,7 @@ class Blocked extends AppSection {
   Future<PlatformMediumModel> uploadBlockedImage() async {
     return await ImageTools.uploadPlatformPhoto(
         installApp!.theApp,
-        installApp!.member!,
+        installApp!.member!.documentID,
         'packages/eliud_pkg_apps/assets/shared/blocked/blocked.png',
         PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }

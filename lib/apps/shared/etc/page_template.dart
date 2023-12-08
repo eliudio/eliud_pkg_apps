@@ -12,6 +12,7 @@ import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals_model/model/presentation_component.dart';
 import 'package:eliud_pkg_fundamentals_model/model/presentation_model.dart';
+import 'package:eliud_pkg_shop/wizards/builders/util/image_tools.dart';
 
 import '../../install_app.dart';
 import '../../app_section.dart';
@@ -108,7 +109,7 @@ abstract class PageTemplate extends AppSection {
   Future<PlatformMediumModel> uploadImage() async {
     return await ImageTools.uploadPlatformPhoto(
         installApp!.theApp,
-        installApp!.member!,
+        installApp!.member!.documentID,
         assetLocation(),
         PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }

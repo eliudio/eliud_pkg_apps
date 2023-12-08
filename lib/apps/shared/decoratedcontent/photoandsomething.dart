@@ -6,6 +6,7 @@ import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton
 import 'package:eliud_pkg_fundamentals_model/model/decorated_content_model.dart';
 import 'package:eliud_pkg_fundamentals_model/model/simple_image_component.dart';
 import 'package:eliud_pkg_fundamentals_model/model/simple_image_model.dart';
+import 'package:eliud_pkg_shop/wizards/builders/util/image_tools.dart';
 
 abstract class PhotoAndSomthing extends DecoratedContent {
   PhotoAndSomthing(super.identifier, super.installApp, super.homeMenu,
@@ -15,7 +16,7 @@ abstract class PhotoAndSomthing extends DecoratedContent {
   Future<PlatformMediumModel> installImage(String assetLocation) async {
     return await ImageTools.uploadPlatformPhoto(
         installApp!.theApp,
-        installApp!.member!,
+        installApp!.member!.documentID,
         assetLocation,
         PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }

@@ -1,4 +1,5 @@
 import 'package:eliud_core_main/apis/action_api/actions/internal_action.dart';
+import 'package:eliud_core_main/apis/style/_default/tools/colors.dart';
 import 'package:eliud_core_main/model/abstract_repository_singleton.dart'
     as mainrepo;
 import 'package:eliud_core_model/model/abstract_repository_singleton.dart'
@@ -21,13 +22,12 @@ import 'package:eliud_core_main/model/rgb_model.dart';
 import 'package:eliud_core_main/model/storage_conditions_model.dart';
 import 'package:eliud_core_model/model/app_policy_model.dart';
 import 'package:eliud_pkg_create/tools/defaults.dart' as defaults;
-import 'package:eliud_pkg_apps/apps/shared/etc/colors.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/grid_views.dart';
 import 'package:eliud_pkg_apps/apps/shared/etc/menu_items_helper_consts.dart';
 import 'package:eliud_pkg_apps/apps/shared/policies/policy_page.dart';
-import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals_model/model/divider_model.dart';
+import 'package:eliud_pkg_shop/wizards/builders/util/image_tools.dart';
 import 'package:flutter/material.dart';
 
 import 'app_base.dart';
@@ -115,11 +115,11 @@ abstract class InstallApp extends AppBase {
   }
 
   Future<PublicMediumModel> _publicMediumModel(String assetLocation) async {
-    return await ImageTools.uploadPublicPhoto(theApp, member!, assetLocation);
+    return await ImageTools.uploadPublicPhoto(theApp, member!.documentID, assetLocation);
   }
 
   Future<PlatformMediumModel> _platformMediumModel(String assetLocation) async {
-    return await ImageTools.uploadPlatformPhoto(theApp, member!, assetLocation,
+    return await ImageTools.uploadPlatformPhoto(theApp, member!.documentID, assetLocation,
         PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
@@ -332,19 +332,19 @@ abstract class InstallApp extends AppBase {
   ) async {
     var privacyPolicy = await ImageTools.uploadPlatformPdf(
         theApp,
-        member!,
+        member!.documentID,
         privacyPolicyAssetLocation(),
         privacyID,
         PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
     var termsOfServicePolicy = await ImageTools.uploadPlatformPdf(
         theApp,
-        member!,
+        member!.documentID,
         termsOfServiceAssetLocation(),
         termsOfServiceID,
         PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
     var disclaimerPolicy = await ImageTools.uploadPlatformPdf(
         theApp,
-        member!,
+        member!.documentID,
         disclaimerAssetLocation(),
         disclaimerID,
         PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);

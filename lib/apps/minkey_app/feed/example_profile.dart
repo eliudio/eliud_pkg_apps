@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:eliud_core_main/model/abstract_repository_singleton.dart';
 import 'package:eliud_core_main/model/member_model.dart';
-import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_feed_model/model/abstract_repository_singleton.dart'
     as pr;
 import 'package:eliud_pkg_feed_model/model/member_profile_model.dart';
+import 'package:eliud_pkg_shop/wizards/builders/util/image_tools.dart';
 
 import '../minkey_app.dart';
 
@@ -29,11 +29,11 @@ class ExampleProfile {
     }
     var profilePhoto = await ImageTools.createMemberMediumModelPhoto(
         MinkeyApp.app,
-        member,
+        member.documentID,
         'packages/eliud_pkg_apps/assets/minkey_app/profile/exampleprofile.png');
     var profileBackground = await ImageTools.createMemberMediumModelPhoto(
         MinkeyApp.app,
-        member,
+        member.documentID,
         'packages/eliud_pkg_apps/assets/minkey_app/profile/pexels-pixabay-258109.jpg');
     var value = MemberProfileModel(
       documentID: "${memberPublicInfo.documentID}-$feedId",

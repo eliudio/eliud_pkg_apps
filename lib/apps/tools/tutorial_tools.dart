@@ -3,6 +3,7 @@ import 'package:eliud_core_main/model/model_export.dart';
 import 'package:eliud_pkg_fundamentals_model/model/tutorial_component.dart';
 import 'package:eliud_pkg_fundamentals_model/model/tutorial_entry_model.dart';
 import 'package:eliud_pkg_fundamentals_model/model/tutorial_model.dart';
+import 'package:eliud_pkg_shop/wizards/builders/util/image_tools.dart';
 
 import 'image_tools.dart';
 
@@ -74,7 +75,7 @@ class TutorialTools {
         assetLocation = assetRoot + assetLocations[i]!;
         image = await ImageTools.uploadPlatformPhoto(
             app,
-            member!,
+            member!.documentID,
             assetLocation,
             PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
       }
