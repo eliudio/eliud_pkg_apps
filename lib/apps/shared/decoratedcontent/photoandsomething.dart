@@ -1,7 +1,6 @@
 import 'package:eliud_core_main/model/platform_medium_model.dart';
 import 'package:eliud_core_main/model/storage_conditions_model.dart';
 import 'package:eliud_pkg_apps/apps/shared/decoratedcontent/decoratedcontent.dart';
-import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals_model/model/decorated_content_model.dart';
 import 'package:eliud_pkg_fundamentals_model/model/simple_image_component.dart';

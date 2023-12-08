@@ -5,8 +5,6 @@ import 'package:eliud_pkg_fundamentals_model/model/tutorial_entry_model.dart';
 import 'package:eliud_pkg_fundamentals_model/model/tutorial_model.dart';
 import 'package:eliud_pkg_shop/wizards/builders/util/image_tools.dart';
 
-import 'image_tools.dart';
-
 class TutorialTools {
 /*
   Map<String, ImageModel> _images = HashMap();

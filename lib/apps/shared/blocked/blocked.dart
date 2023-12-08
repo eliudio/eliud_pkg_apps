@@ -7,7 +7,6 @@ import 'package:eliud_core_main/model/home_menu_model.dart';
 import 'package:eliud_core_main/model/page_model.dart';
 import 'package:eliud_core_main/model/platform_medium_model.dart';
 import 'package:eliud_core_main/model/storage_conditions_model.dart';
-import 'package:eliud_pkg_apps/apps/tools/image_tools.dart';
 import 'package:eliud_pkg_fundamentals_model/model/abstract_repository_singleton.dart';
 import 'package:eliud_pkg_fundamentals_model/model/booklet_component.dart';
 import 'package:eliud_pkg_fundamentals_model/model/booklet_model.dart';
