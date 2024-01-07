@@ -74,41 +74,77 @@ class ExamplePosts {
             description: "Hi guys, this is my first post these are photos",
             accessibleByGroup: accessibleByGroup,
             memberMedia: [
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo1.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo2.jpg'),
-              await ImageTools.createPostMediumModelPhoto(MinkeyApp.app, member.documentID,
+              await ImageTools.createPostMediumModelPhoto(
+                  MinkeyApp.app,
+                  member.documentID,
                   'packages/eliud_pkg_apps/assets/minkey_app/feed/example_photo3.jpg'),
             ],
           ),

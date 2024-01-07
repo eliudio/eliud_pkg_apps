@@ -6,49 +6,50 @@ homepage: https://eliud.io
 repository: https://github.com/eliudio/eliud_pkg_apps
 version: 1.1.5+6
 environment:
-  sdk: '>=2.17.0 <4.0.0'
+  sdk: '>=3.2.0 <4.0.0'
   flutter: '>=3.0.0'
 dependencies:
-  eliud_core:
+  eliud_core:                                                                                        # ANDROID IOS             WEB
     path: ../eliud_core
-  eliud_core_main:
+  eliud_core_main:                                                                                   # ANDROID IOS             WEB
     path: ../eliud_core_main
-  eliud_core_helpers:
+  eliud_core_helpers:                                                                                # ANDROID IOS             WEB
     path: ../eliud_core_helpers
-  eliud_core_model:
+  eliud_core_model:                                                                                  # ANDROID IOS             WEB
     path: ../eliud_core_model
-  eliud_pkg_fundamentals:
+  eliud_pkg_fundamentals:                                                                            # ANDROID IOS             WEB
     path: ../eliud_pkg_fundamentals
-  eliud_pkg_fundamentals_model:
+  eliud_pkg_fundamentals_model:                                                                      # ANDROID IOS             WEB
     path: ../eliud_pkg_fundamentals_model
-  eliud_pkg_shop:
+  eliud_pkg_shop:                                                                                    # ANDROID IOS             WEB
     path: ../eliud_pkg_shop
-  eliud_pkg_feed:
+  eliud_pkg_feed:                                                                                    # ANDROID IOS             WEB
     path: ../eliud_pkg_feed
-  eliud_pkg_notifications:
+  eliud_pkg_notifications:                                                                           # ANDROID IOS             WEB
     path: ../eliud_pkg_notifications
-  eliud_pkg_workflow:
+  eliud_pkg_workflow:                                                                                # ANDROID IOS             WEB
     path: ../eliud_pkg_workflow
-  eliud_pkg_follow:
+  eliud_pkg_follow:                                                                                  # ANDROID IOS             WEB
     path: ../eliud_pkg_follow
-  eliud_pkg_membership:
+  eliud_pkg_membership:                                                                              # ANDROID IOS             WEB
     path: ../eliud_pkg_membership
-  eliud_pkg_pay:
+  eliud_pkg_pay:                                                                                     # ANDROID IOS             WEB
     path: ../eliud_pkg_pay
-  eliud_pkg_etc:
+  eliud_pkg_etc:                                                                                     # ANDROID IOS             WEB
     path: ../eliud_pkg_etc
-  eliud_pkg_etc_model:
+  eliud_pkg_etc_model:                                                                               # ANDROID IOS             WEB
     path: ../eliud_pkg_etc_model
-  eliud_pkg_chat:
+  eliud_pkg_chat:                                                                                    # ANDROID IOS             WEB
     path: ../eliud_pkg_chat
-  eliud_stl_mona:
+  eliud_stl_mona:                                                                                    # ANDROID IOS             WEB
     path: ../eliud_stl_mona
-  eliud_pkg_create:
+  eliud_pkg_create:                                                                                  # ANDROID IOS             WEB
     path: ../eliud_pkg_create
-  eliud_pkg_medium:
+  eliud_pkg_medium:                                                                                  # ANDROID IOS             WEB
     path: ../eliud_pkg_medium
-  eliud_pkg_medium_model:
+  eliud_pkg_medium_model:                                                                            # ANDROID IOS             WEB
     path: ../eliud_pkg_medium_model
+
   flutter:
     sdk: flutter
 dev_dependencies:

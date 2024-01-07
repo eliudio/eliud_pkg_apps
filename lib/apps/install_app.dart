@@ -115,12 +115,13 @@ abstract class InstallApp extends AppBase {
   }
 
   Future<PublicMediumModel> _publicMediumModel(String assetLocation) async {
-    return await ImageTools.uploadPublicPhoto(theApp, member!.documentID, assetLocation);
+    return await ImageTools.uploadPublicPhoto(
+        theApp, member!.documentID, assetLocation);
   }
 
   Future<PlatformMediumModel> _platformMediumModel(String assetLocation) async {
-    return await ImageTools.uploadPlatformPhoto(theApp, member!.documentID, assetLocation,
-        PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
+    return await ImageTools.uploadPlatformPhoto(theApp, member!.documentID,
+        assetLocation, PrivilegeLevelRequiredSimple.noPrivilegeRequiredSimple);
   }
 
   DrawerModel _drawer(PublicMediumModel? logo) {

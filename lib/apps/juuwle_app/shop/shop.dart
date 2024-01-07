@@ -266,7 +266,12 @@ class Shop extends AppSection {
     await _setupShopFronts();
     var appBar = installApp!.appBar();
     var shop = await _setupShop();
-    await Products(shop: shop, uniqueId: newRandomKey(), app: installApp!.theApp, memberId: installApp!.member!.documentID).run();
+    await Products(
+            shop: shop,
+            uniqueId: newRandomKey(),
+            app: installApp!.theApp,
+            memberId: installApp!.member!.documentID)
+        .run();
     await _setupFader();
     await _setupPage(appBar, presentationDocumentId);
     return shop;
