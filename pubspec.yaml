@@ -4,52 +4,39 @@ description: "eliud_pkg_apps is a package to allow to programmatically create ap
   \ as opposed to through the GUI. More info at https://eliud.io"
 homepage: https://eliud.io
 repository: https://github.com/eliudio/eliud_pkg_apps
-version: 1.1.5+6
+version: 1.1.8
 environment:
   sdk: '>=3.2.0 <4.0.0'
   flutter: '>=3.0.0'
 dependencies:
-  eliud_core:                                                                                        # ANDROID IOS             WEB
-    path: ../eliud_core
-  eliud_core_main:                                                                                   # ANDROID IOS             WEB
-    path: ../eliud_core_main
-  eliud_core_helpers:                                                                                # ANDROID IOS             WEB
-    path: ../eliud_core_helpers
-  eliud_core_model:                                                                                  # ANDROID IOS             WEB
-    path: ../eliud_core_model
-  eliud_pkg_fundamentals:                                                                            # ANDROID IOS             WEB
-    path: ../eliud_pkg_fundamentals
-  eliud_pkg_fundamentals_model:                                                                      # ANDROID IOS             WEB
-    path: ../eliud_pkg_fundamentals_model
-  eliud_pkg_shop:                                                                                    # ANDROID IOS             WEB
-    path: ../eliud_pkg_shop
-  eliud_pkg_feed:                                                                                    # ANDROID IOS             WEB
-    path: ../eliud_pkg_feed
-  eliud_pkg_notifications:                                                                           # ANDROID IOS             WEB
-    path: ../eliud_pkg_notifications
-  eliud_pkg_workflow:                                                                                # ANDROID IOS             WEB
-    path: ../eliud_pkg_workflow
-  eliud_pkg_follow:                                                                                  # ANDROID IOS             WEB
-    path: ../eliud_pkg_follow
-  eliud_pkg_membership:                                                                              # ANDROID IOS             WEB
-    path: ../eliud_pkg_membership
-  eliud_pkg_pay:                                                                                     # ANDROID IOS             WEB
-    path: ../eliud_pkg_pay
-  eliud_pkg_etc:                                                                                     # ANDROID IOS             WEB
-    path: ../eliud_pkg_etc
-  eliud_pkg_etc_model:                                                                               # ANDROID IOS             WEB
-    path: ../eliud_pkg_etc_model
-  eliud_pkg_chat:                                                                                    # ANDROID IOS             WEB
-    path: ../eliud_pkg_chat
-  eliud_stl_mona:                                                                                    # ANDROID IOS             WEB
-    path: ../eliud_stl_mona
-  eliud_pkg_create:                                                                                  # ANDROID IOS             WEB
-    path: ../eliud_pkg_create
-  eliud_pkg_medium:                                                                                  # ANDROID IOS             WEB
-    path: ../eliud_pkg_medium
-  eliud_pkg_medium_model:                                                                            # ANDROID IOS             WEB
-    path: ../eliud_pkg_medium_model
-
+  eliud_core: ^1.1.6
+  eliud_core_helpers: ^1.0.0
+  eliud_core_main: ^1.0.2
+  eliud_core_model: ^1.0.0
+  eliud_pkg_chat: ^1.1.7
+  eliud_pkg_chat_model: ^1.0.0
+  eliud_pkg_create: ^1.1.7
+  eliud_pkg_create_model: ^1.0.0
+  eliud_pkg_etc: ^1.1.7
+  eliud_pkg_etc_model: ^1.0.0
+  eliud_pkg_feed_model: ^1.0.0
+  eliud_pkg_feed: ^1.1.7
+  eliud_pkg_follow: ^1.1.7
+  eliud_pkg_follow_model: ^1.0.0
+  eliud_pkg_fundamentals: ^1.1.7
+  eliud_pkg_fundamentals_model: ^1.1.7
+  eliud_pkg_medium: ^1.1.6
+  eliud_pkg_medium_model: ^1.0.0
+  eliud_pkg_membership: ^1.1.7
+  eliud_pkg_membership_model: ^1.0.0
+  eliud_pkg_notifications: ^1.1.6
+  eliud_pkg_notifications_model: ^1.0.0
+  eliud_pkg_pay: ^1.2.0
+  eliud_pkg_shop: ^1.1.6
+  eliud_pkg_shop_model: ^1.0.0
+  eliud_pkg_workflow: ^1.1.6
+  eliud_pkg_workflow_model: ^1.0.0
+  eliud_stl_mona: ^1.1.6
   flutter:
     sdk: flutter
 dev_dependencies:
